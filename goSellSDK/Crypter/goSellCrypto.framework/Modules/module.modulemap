@@ -1,0 +1,11 @@
+framework module goSellCrypto {
+  umbrella header "goSellCrypto.h"
+
+  export *
+  module * { export * }
+}
+
+module goSellCrypto.Swift {
+    header "goSellCrypto-Swift.h"
+    requires objc
+}

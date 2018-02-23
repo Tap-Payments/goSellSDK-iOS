@@ -1,0 +1,17 @@
+PODS:
+  - SwiftLint (0.25.0)
+  - TapNetworkManager (1.0):
+    - TapNetworkManager/Core (= 1.0)
+  - TapNetworkManager/Core (1.0)
+
+DEPENDENCIES:
+  - SwiftLint
+  - TapNetworkManager
+
+SPEC CHECKSUMS:
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
+  TapNetworkManager: 284d0598b40226581da07ecefb679fe44cb1efe7
+
+PODFILE CHECKSUM: 229dd92df7ddb9e58efaaeaaa1e550b5f13f35df
+
+COCOAPODS: 1.4.0
