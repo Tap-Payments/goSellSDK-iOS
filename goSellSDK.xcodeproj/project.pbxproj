@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		003DD09521A3011E5BFC2066 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7098547858414DC9D21839CA /* Pods_goSellSDK.framework */; };
 		A40D32272031E6DE0030FDDE /* goSellSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A40D32192031E6DE0030FDDE /* goSellSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A46CDF1A2042ABEE00EA38A5 /* CreateTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B087203C1A97007E7711 /* CreateTokenRequest.swift */; };
+		A46CDF1B2042ABEE00EA38A5 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B088203C1A97007E7711 /* Token.swift */; };
+		A46CDF1C2042ABEE00EA38A5 /* UpdateChargeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B08F203C1A97007E7711 /* UpdateChargeRequest.swift */; };
+		A46CDF1D2042ABEE00EA38A5 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0D8203C3FB7007E7711 /* Response.swift */; };
+		A46CDF1E2042ABEE00EA38A5 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0B0203C1A98007E7711 /* Client.swift */; };
+		A46CDF1F2042ABEE00EA38A5 /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B08E203C1A97007E7711 /* Charge.swift */; };
+		A46CDF202042ABEE00EA38A5 /* ChargeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B091203C1A97007E7711 /* ChargeClient.swift */; };
+		A46CDF212042ABEE00EA38A5 /* SecureEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0B6203C1A98007E7711 /* SecureEncodable.swift */; };
+		A46CDF222042ABEE00EA38A5 /* Encodable+goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0AE203C1A98007E7711 /* Encodable+goSellSDK.swift */; };
+		A46CDF232042ABEE00EA38A5 /* goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0AA203C1A98007E7711 /* goSellSDK.swift */; };
+		A46CDF242042ABEE00EA38A5 /* TokenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B08A203C1A97007E7711 /* TokenClient.swift */; };
+		A46CDF252042ABEE00EA38A5 /* CreateChargeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B08D203C1A97007E7711 /* CreateChargeRequest.swift */; };
+		A46CDF262042ABEE00EA38A5 /* Crypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0B4203C1A98007E7711 /* Crypter.swift */; };
+		A46CDF272042ABEE00EA38A5 /* TapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0AC203C1A98007E7711 /* TapError.swift */; };
+		A46CDF282042ABEE00EA38A5 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0B2203C1A98007E7711 /* Identifiable.swift */; };
+		A46CDF292042ABEE00EA38A5 /* Decodable+goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0AF203C1A98007E7711 /* Decodable+goSellSDK.swift */; };
+		A46CDF2C2042ABEE00EA38A5 /* goSellCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D1B0B5203C1A98007E7711 /* goSellCrypto.framework */; };
+		A46CDF2E2042ABEE00EA38A5 /* goSellSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A40D32192031E6DE0030FDDE /* goSellSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4D1B0B7203C1A98007E7711 /* CreateTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B087203C1A97007E7711 /* CreateTokenRequest.swift */; };
 		A4D1B0B8203C1A98007E7711 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B088203C1A97007E7711 /* Token.swift */; };
 		A4D1B0B9203C1A98007E7711 /* TokenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B08A203C1A97007E7711 /* TokenClient.swift */; };
@@ -30,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		113DE6404466EFBA0DEE78A2 /* Pods-goSellSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKTests/Pods-goSellSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		47549B974FA706C53039E1B0 /* Pods-goSellSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		4E5EECF3913773CD760D6C6B /* Pods-goSellSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.release.xcconfig"; sourceTree = "<group>"; };
 		63089D0104DB7E6EA8317640 /* Pods-goSellSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKTests/Pods-goSellSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7098547858414DC9D21839CA /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4CD584AEB98A50A75AB94A /* Pods_goSellSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +57,8 @@
 		A40D32192031E6DE0030FDDE /* goSellSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = goSellSDK.h; sourceTree = "<group>"; };
 		A40D321A2031E6DE0030FDDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4118B82203AD845003415C2 /* goSellSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = goSellSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A46CDF342042ABEE00EA38A5 /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A46CDF362042BE6300EA38A5 /* TapNetworkManager_Carthage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapNetworkManager_Carthage.framework; path = Carthage/Build/iOS/TapNetworkManager_Carthage.framework; sourceTree = "<group>"; };
 		A4D1B087203C1A97007E7711 /* CreateTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTokenRequest.swift; sourceTree = "<group>"; };
 		A4D1B088203C1A97007E7711 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		A4D1B08A203C1A97007E7711 /* TokenClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenClient.swift; sourceTree = "<group>"; };
@@ -54,8 +76,6 @@
 		A4D1B0B5203C1A98007E7711 /* goSellCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = goSellCrypto.framework; sourceTree = "<group>"; };
 		A4D1B0B6203C1A98007E7711 /* SecureEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureEncodable.swift; sourceTree = "<group>"; };
 		A4D1B0D8203C3FB7007E7711 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		C10FBFA9D3D6E06A2583666C /* Pods-goSellSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.release.xcconfig"; sourceTree = "<group>"; };
-		FC5B5801DF8591A2DAED385E /* Pods-goSellSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,12 +88,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A46CDF2A2042ABEE00EA38A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46CDF2C2042ABEE00EA38A5 /* goSellCrypto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2900C46CE6138AD739CAC575 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A46CDF362042BE6300EA38A5 /* TapNetworkManager_Carthage.framework */,
 				7098547858414DC9D21839CA /* Pods_goSellSDK.framework */,
 				8A4CD584AEB98A50A75AB94A /* Pods_goSellSDKTests.framework */,
 			);
@@ -95,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				A40D32162031E6DE0030FDDE /* goSellSDK.framework */,
+				A46CDF342042ABEE00EA38A5 /* goSellSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,10 +246,10 @@
 		B54D072525BA1C5095116892 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FC5B5801DF8591A2DAED385E /* Pods-goSellSDK.debug.xcconfig */,
-				C10FBFA9D3D6E06A2583666C /* Pods-goSellSDK.release.xcconfig */,
 				63089D0104DB7E6EA8317640 /* Pods-goSellSDKTests.debug.xcconfig */,
 				113DE6404466EFBA0DEE78A2 /* Pods-goSellSDKTests.release.xcconfig */,
+				47549B974FA706C53039E1B0 /* Pods-goSellSDK.debug.xcconfig */,
+				4E5EECF3913773CD760D6C6B /* Pods-goSellSDK.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -232,6 +262,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40D32272031E6DE0030FDDE /* goSellSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A46CDF2D2042ABEE00EA38A5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46CDF2E2042ABEE00EA38A5 /* goSellSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +296,24 @@
 			productReference = A40D32162031E6DE0030FDDE /* goSellSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		A46CDF172042ABEE00EA38A5 /* goSellSDK_Carthage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A46CDF312042ABEE00EA38A5 /* Build configuration list for PBXNativeTarget "goSellSDK_Carthage" */;
+			buildPhases = (
+				A46CDF192042ABEE00EA38A5 /* Sources */,
+				A46CDF2A2042ABEE00EA38A5 /* Frameworks */,
+				A46CDF2D2042ABEE00EA38A5 /* Headers */,
+				A46CDF2F2042ABEE00EA38A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = goSellSDK_Carthage;
+			productName = goSellSDK;
+			productReference = A46CDF342042ABEE00EA38A5 /* goSellSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -271,6 +327,9 @@
 					A40D32152031E6DE0030FDDE = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					A46CDF172042ABEE00EA38A5 = {
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -288,12 +347,20 @@
 			projectRoot = "";
 			targets = (
 				A40D32152031E6DE0030FDDE /* goSellSDK */,
+				A46CDF172042ABEE00EA38A5 /* goSellSDK_Carthage */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A40D32142031E6DE0030FDDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A46CDF2F2042ABEE00EA38A5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -359,6 +426,29 @@
 				A4D1B0CD203C1A98007E7711 /* TapError.swift in Sources */,
 				A4D1B0D1203C1A98007E7711 /* Identifiable.swift in Sources */,
 				A4D1B0CF203C1A98007E7711 /* Decodable+goSellSDK.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A46CDF192042ABEE00EA38A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A46CDF1A2042ABEE00EA38A5 /* CreateTokenRequest.swift in Sources */,
+				A46CDF1B2042ABEE00EA38A5 /* Token.swift in Sources */,
+				A46CDF1C2042ABEE00EA38A5 /* UpdateChargeRequest.swift in Sources */,
+				A46CDF1D2042ABEE00EA38A5 /* Response.swift in Sources */,
+				A46CDF1E2042ABEE00EA38A5 /* Client.swift in Sources */,
+				A46CDF1F2042ABEE00EA38A5 /* Charge.swift in Sources */,
+				A46CDF202042ABEE00EA38A5 /* ChargeClient.swift in Sources */,
+				A46CDF212042ABEE00EA38A5 /* SecureEncodable.swift in Sources */,
+				A46CDF222042ABEE00EA38A5 /* Encodable+goSellSDK.swift in Sources */,
+				A46CDF232042ABEE00EA38A5 /* goSellSDK.swift in Sources */,
+				A46CDF242042ABEE00EA38A5 /* TokenClient.swift in Sources */,
+				A46CDF252042ABEE00EA38A5 /* CreateChargeRequest.swift in Sources */,
+				A46CDF262042ABEE00EA38A5 /* Crypter.swift in Sources */,
+				A46CDF272042ABEE00EA38A5 /* TapError.swift in Sources */,
+				A46CDF282042ABEE00EA38A5 /* Identifiable.swift in Sources */,
+				A46CDF292042ABEE00EA38A5 /* Decodable+goSellSDK.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +570,7 @@
 		};
 		A40D322B2031E6DE0030FDDE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC5B5801DF8591A2DAED385E /* Pods-goSellSDK.debug.xcconfig */;
+			baseConfigurationReference = 47549B974FA706C53039E1B0 /* Pods-goSellSDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -508,7 +598,7 @@
 		};
 		A40D322C2031E6DE0030FDDE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C10FBFA9D3D6E06A2583666C /* Pods-goSellSDK.release.xcconfig */;
+			baseConfigurationReference = 4E5EECF3913773CD760D6C6B /* Pods-goSellSDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -533,6 +623,61 @@
 			};
 			name = Release;
 		};
+		A46CDF322042ABEE00EA38A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/goSellSDK/Crypter",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/goSellSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
+				PRODUCT_NAME = goSellSDK;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A46CDF332042ABEE00EA38A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/goSellSDK/Crypter",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/goSellSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
+				PRODUCT_NAME = goSellSDK;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -550,6 +695,15 @@
 			buildConfigurations = (
 				A40D322B2031E6DE0030FDDE /* Debug */,
 				A40D322C2031E6DE0030FDDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A46CDF312042ABEE00EA38A5 /* Build configuration list for PBXNativeTarget "goSellSDK_Carthage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A46CDF322042ABEE00EA38A5 /* Debug */,
+				A46CDF332042ABEE00EA38A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

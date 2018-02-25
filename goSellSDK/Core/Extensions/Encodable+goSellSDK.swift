@@ -5,6 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class Foundation.NSJSONSerialization.JSONEncoder
+import class Foundation.NSJSONSerialization.JSONSerialization
+
 /// Useful extension to Encodable protocol.
 internal extension Encodable {
     
