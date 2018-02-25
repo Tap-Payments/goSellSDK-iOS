@@ -5,6 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class Foundation.NSJSONSerialization.JSONDecoder
+import class Foundation.NSJSONSerialization.JSONSerialization
+
 /// Useful extension to Decodable protocol.
 internal extension Decodable {
     

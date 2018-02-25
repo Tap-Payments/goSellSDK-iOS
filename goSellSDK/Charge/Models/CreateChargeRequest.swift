@@ -5,6 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct Foundation.NSDecimal.Decimal
+import class Foundation.NSObject.NSObject
+import struct Foundation.NSURL.URL
+
 // MARK: - CreateChargeRequest -
 
 /// Create charge request model.

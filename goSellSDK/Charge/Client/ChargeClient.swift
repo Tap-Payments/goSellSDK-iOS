@@ -5,6 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct Foundation.NSDate.Date
+import class Foundation.NSJSONSerialization.JSONDecoder
+import class Foundation.NSNumberFormatter.NumberFormatter
+import class Foundation.NSObject.NSObject
 import struct TapNetworkManager.TapBodyModel
 import class TapNetworkManager.TapNetworkManager
 import class TapNetworkManager.TapNetworkRequestOperation
