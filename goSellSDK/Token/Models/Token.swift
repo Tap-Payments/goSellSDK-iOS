@@ -5,6 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct Foundation.NSDate.Date
+import class Foundation.NSObject.NSObject
+
 /// Token model.
 @objcMembers public class Token: NSObject, Decodable, Identifiable {
     

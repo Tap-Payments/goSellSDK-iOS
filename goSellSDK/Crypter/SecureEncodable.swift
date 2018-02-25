@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class Foundation.NSJSONSerialization.JSONEncoder
+
 /// Secure Encodable protocol.
 internal protocol SecureEncodable: Encodable { }
 
