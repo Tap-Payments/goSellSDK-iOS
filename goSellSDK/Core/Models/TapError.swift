@@ -5,6 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class Foundation.NSObject.NSObject
+import class Foundation.NSURLResponse.URLResponse
+import class Foundation.NSURLSession.URLSessionDataTask
+
 // MARK: - TapSerializationError -
 
 /// Serialization error.

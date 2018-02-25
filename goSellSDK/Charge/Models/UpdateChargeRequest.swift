@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class Foundation.NSObject.NSObject
+
 /// Model to update the charge.
 @objcMembers public class UpdateChargeRequest: NSObject, Encodable {
     

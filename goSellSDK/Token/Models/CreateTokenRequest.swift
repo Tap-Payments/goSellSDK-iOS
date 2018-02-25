@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class Foundation.NSObject.NSObject
+
 // MARK: - CreateTokenRequest -
 
 /// Create token request model.
