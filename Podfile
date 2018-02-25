@@ -5,7 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 def shared_pods
     
-    pod 'TapNetworkManager', '~> 1.0.1'
+    pod 'TapNetworkManager'
     
 end
 
