@@ -37,7 +37,7 @@ end
 Then, run the following command:
 
 ```bash
-$ pod install
+$ pod update
 ```
 
 ## Installation with Carthage
@@ -65,7 +65,7 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 ## Setup
 First of all, `goSellSDK` should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of `goSellSDK`.
 
-Swift:
+*Swift*:
 
 ```swift
 import goSellSDK // import goSellSDK framework
@@ -77,7 +77,7 @@ func setupGoSellSDK() {
 }
 ```
 
-Objective-C:
+*Objective-C*:
 
 
 ```objective-c
@@ -102,12 +102,136 @@ Currently the following sections are available:
 
 Tokens are used in charges. The interact with the Tokens APIs, please refer to the `TokenClient` class inside the SDK.
 
+Example of token creation:
+
+*Swift*:
+
+```swift
+func exampleCreateToken() {
+        
+    let fullCard = CreateTokenCard(number: "4111111111111111",
+                                   expirationMonth: 10,
+                                   expirationYear: 20,
+                                   cvc: "123",
+                                   name: "Testing VISA card",
+                                   city: "Some city",
+                                   country: "Some country",
+                                   addressLine1: "First line",
+                                   addressLine2: "Second line",
+                                   addressState: "Royal State",                                    
+                                   addressZip: 007)
+        
+    let request = CreateTokenRequest(card: fullCard)
+        
+    TokenClient.createToken(with: request) { (token, error) in
+            
+        if let _ = token {
+                
+            NSLog("Successfully created token.")
+        }
+        else {
+                
+            NSLog("Failed to create token with error: \(error!)")
+        }
+    }
+}
+```
+
+*Objective-C*:
+
+```objective-c
+- (void)exampleCreateToken {
+    
+    CreateTokenCard  *fullCard = [[CreateTokenCard alloc] initWithNumber:@"4111111111111111"
+                                                         expirationMonth:10
+                                                          expirationYear:20
+                                                                     cvc:@"123"
+                                                                    name:@"Testing VISA card"
+                                                                    city:@"Some city"
+                                                                 country:@"Some country"
+                                                            addressLine1:@"First line"
+                                                            addressLine2:@"Second line"
+                                                            addressState:@"Royal State"
+                                                              addressZip:007];
+    
+    CreateTokenRequest *request = [[CreateTokenRequest alloc] initWithCard:fullCard];
+    
+    [TokenClient createTokenWith:request completion:^(Token * _Nullable token, TapSDKError * _Nullable error) {
+        
+        if (token) {
+            
+            NSLog(@"Successfully created token.");
+        }
+        else {
+            
+            NSLog(@"Failed to create token with error: %@", error);
+        }
+    }];
+}
+```
+
+
 ### Charges
 
 To interact with the Charges APIs, please refer to the `ChargeClient` class inside the SDK.
 
+Example of charge creation:
+
+*Swift*:
+
+```swift
+func exampleCreateCharge() {
+        
+	let redirect = CreateChargeRedirect(returnURL: URL(string: "your_return_url")!, postURL: URL(string: "your_post_url")!)
+    let source = CreateChargeSource(tokenIdentifier: "tok_XXXXXXXXXXXXXXXXXXXXXXXX")
+    let request = CreateChargeRequest(amount: 1000.0, currency: "kwd", redirect: redirect, source: source)
+        
+    ChargeClient.createCharge(with: request) { (charge, error) in
+            
+        if let _ = charge {
+                
+            NSLog("Charge successfully created.")
+        }
+        else {
+                
+            NSLog("Failed to create charge with error: \(error!)")
+        }
+    }
+}
+
+```
+
+*Objective-C*:
+
+```objective-c
+- (void)exampleCreateCharge {
+    
+    CreateChargeRedirect *redirect = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"]
+                                                                             postURL:[NSURL URLWithString:@"your_post_url"]];
+    
+    CreateChargeSource *source = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
+    
+    CreateChargeRequest *request = [[CreateChargeRequest alloc] initWithAmount:[NSDecimalNumber numberWithInteger:1000].decimalValue
+                                                                      currency:@"kwd"
+                                                                      redirect:redirect
+                                                                        source:source];
+    
+    [ChargeClient createChargeWith:request completion:^(Charge * _Nullable charge, TapSDKError * _Nullable error) {
+        
+        if ( charge ) {
+            
+            NSLog(@"Charge successfully created.");
+        }
+        else {
+            
+            NSLog(@"Failed to create charge with error: %@", error);
+        }
+    }];
+}
+```
+
+-----
 # Documentation
--------------
 Documentation is available at [github-pages][2].<br>
 Also documented sources are attached to the library.
 
