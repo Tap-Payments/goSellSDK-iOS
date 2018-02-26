@@ -16,6 +16,7 @@ import class Foundation.NSURLSession.URLSessionDataTask
 /// - wrongData: Wrong data to serialize/deserialize.
 public enum TapSerializationError: Int, Error {
     
+    /// Wrong data to serialize/deserialize.
     case wrongData
 }
 
@@ -29,9 +30,16 @@ public enum TapSerializationError: Int, Error {
 /// - unknown: Unknown error.
 public enum TAPSDKErrorType: Int {
     
+    /// API error.
     case api
+    
+    /// Network error.
     case network
+    
+    /// Serialization error.
     case serialization
+    
+    /// Unknown error.
     case unknown
     
     /// Readable error type.
