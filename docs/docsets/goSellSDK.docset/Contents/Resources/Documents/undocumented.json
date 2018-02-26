@@ -1,0 +1,40 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Core/Models/TapError.swift",
+      "line": 19,
+      "symbol": "TapSerializationError.wrongData",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Core/Models/TapError.swift",
+      "line": 32,
+      "symbol": "TAPSDKErrorType.api",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Core/Models/TapError.swift",
+      "line": 33,
+      "symbol": "TAPSDKErrorType.network",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Core/Models/TapError.swift",
+      "line": 34,
+      "symbol": "TAPSDKErrorType.serialization",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Core/Models/TapError.swift",
+      "line": 35,
+      "symbol": "TAPSDKErrorType.unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS"
+}
