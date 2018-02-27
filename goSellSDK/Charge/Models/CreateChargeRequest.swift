@@ -201,9 +201,16 @@ import struct Foundation.NSURL.URL
 /// - FAWRY: Fawry source identifier.
 @objc public enum SourceIdentifier: Int {
     
+    /// KNET source identifier.
     case KNET
+    
+    /// Benefit source identifier.
     case BENEFIT
+    
+    /// Sadad source identifier.
     case SADAD
+    
+    /// Fawry source identifier.
     case FAWRY
     
     fileprivate var stringValue: String {

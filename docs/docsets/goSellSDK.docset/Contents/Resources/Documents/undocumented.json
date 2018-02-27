@@ -1,0 +1,47 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Charge/Models/Charge.swift",
+      "line": 98,
+      "symbol": "Charge.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Charge/Models/Charge.swift",
+      "line": 179,
+      "symbol": "ChargeRedirect.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Charge/Models/Charge.swift",
+      "line": 227,
+      "symbol": "ChargeSource.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Core/Models/TapError.swift",
+      "line": 101,
+      "symbol": "TapSDKError.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Token/Models/Token.swift",
+      "line": 42,
+      "symbol": "Token.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS/goSellSDK/Token/Models/Token.swift",
+      "line": 125,
+      "symbol": "TokenCard.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dpashkov/Documents/Xcode/goSellSDK-iOS"
+}
