@@ -39,6 +39,7 @@ import class Foundation.NSObject.NSObject
     /// Defines if token was used.
     public private(set) var isUsed: Bool = false
     
+    /// Pretty printed description of the Token object.
     public override var description: String {
         
         let lines: [String] = [
@@ -122,6 +123,7 @@ import class Foundation.NSObject.NSObject
     /// Zip or postal code.
     public private(set) var addressZip: Int?
     
+    /// Pretty printed description of the TokenCard object.
     public override var description: String {
         
         let lines: [String] = [
