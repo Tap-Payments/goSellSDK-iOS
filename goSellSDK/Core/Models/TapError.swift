@@ -16,7 +16,26 @@ import class Foundation.NSURLSession.URLSessionDataTask
 /// - wrongData: Wrong data to serialize/deserialize.
 public enum TapSerializationError: Int, Error {
     
+    /// Wrong data to serialize/deserialize.
     case wrongData
+    
+    internal var readableType: String {
+        
+        switch self {
+            
+        case .wrongData:
+            
+            return "Wrong data"
+        }
+    }
+}
+
+extension TapSerializationError: CustomStringConvertible {
+    
+    public var description: String {
+        
+        return self.readableType
+    }
 }
 
 // MARK: - TAPSDKErrorType -
@@ -29,9 +48,16 @@ public enum TapSerializationError: Int, Error {
 /// - unknown: Unknown error.
 public enum TAPSDKErrorType: Int {
     
+    /// API error.
     case api
+    
+    /// Network error.
     case network
+    
+    /// Serialization error.
     case serialization
+    
+    /// Unknown error.
     case unknown
     
     /// Readable error type.
@@ -44,6 +70,14 @@ public enum TAPSDKErrorType: Int {
         case .serialization: return "Serialization"
         case .unknown: return "Unknown"
         }
+    }
+}
+
+extension TAPSDKErrorType: CustomStringConvertible {
+    
+    public var description: String {
+        
+        return self.readableType
     }
 }
 
@@ -63,6 +97,12 @@ public enum TAPSDKErrorType: Int {
         self.type = type
         super.init()
     }
+    
+    /// Pretty printed description of TapSDKError object.
+    public override var description: String {
+        
+        return "Error type: \(self.type.description)"
+    }
 }
 
 // MARK: - TapSDKKnownError -
@@ -79,9 +119,9 @@ public enum TAPSDKErrorType: Int {
     /// Readable description of the error.
     public override var description: String {
      
-        let errorDescription = self.error == nil ? "nil" : "\(self.error!)"
+        let errorDescription = self.error == nil ? "nil" : "\(self.error!.localizedDescription)"
         let urlResponseDescription = self.urlResponse?.description ?? "nil"
-        return "\(self.type.readableType) error has occured.\nUnderlying error: \(errorDescription)\nURL response: \(urlResponseDescription)"
+        return "\(super.description)\nUnderlying error: \(errorDescription)\nURL response: \(urlResponseDescription)"
     }
     
     /// Initializes the error with type, underlying error and URL response.
@@ -112,8 +152,8 @@ public enum TAPSDKErrorType: Int {
     /// Readable description of the error.
     public override var description: String {
      
-        let urlResponseDescription = urlResponse?.description ?? "nil"
-        return "API error has occured.\nError: \(error.description)\nURL response: \(urlResponseDescription)"
+        let urlResponseDescription = self.urlResponse?.description ?? "nil"
+        return "\(super.description)\nError: \(self.error.description)\nURL response: \(urlResponseDescription)"
     }
     
     /// Initializes the error with parsed error from the backend and URL response.
@@ -140,8 +180,8 @@ public enum TAPSDKErrorType: Int {
     /// Readable description of the error.
     public override var description: String {
         
-        let dataTaskDescription = dataTask?.description ?? "nil"
-        return "Unknown error. Data task: \(dataTaskDescription)"
+        let dataTaskDescription = self.dataTask?.description ?? "nil"
+        return "\(super.description)\nData task: \(dataTaskDescription)"
     }
     
     /// Initializes an error with data task.

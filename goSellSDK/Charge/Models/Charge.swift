@@ -95,6 +95,37 @@ import struct Foundation.NSURL.URL
     /// Information related to the payment page redirect.
     public private(set) var redirect: ChargeRedirect?
     
+    /// Pretty printed description of the Charge object.
+    public override var description: String {
+        
+        let lines: [String] = [
+        
+            "Charge",
+            "identifier:           \(self.identifier?.description ?? "nil")",
+            "object:               \(self.object?.description ?? "nil")",
+            "amount:               \(self.amount)",
+            "refunded amount:      \(self.refundedAmount)",
+            "creation date:        \(self.creationDate?.description ?? "nil")",
+            "currency:             \(self.currency?.description ?? "nil")",
+            "description:          \(self.descriptionText?.description ?? "nil")",
+            "failure code:         \(self.failureCode?.description ?? "nil")",
+            "failure message:      \(self.failureMessage?.description ?? "nil")",
+            "live mode:            \(self.isLiveMode)",
+            "metadata:             \(self.metadata?.description ?? "nil")",
+            "paid:                 \(self.isPaid)",
+            "receipt email:        \(self.receiptEmail?.description ?? "nil")",
+            "receipt sms:          \(self.receiptSMS?.description ?? "nil")",
+            "receipt number:       \(self.receiptNumber?.description ?? "nil")",
+            "refunded:             \(self.isRefunded)",
+            "statement descriptor: \(self.statementDescriptor ?? "nil")",
+            "status:               \(self.status?.description ?? "nil")",
+            "source:               \(self.source?.description(with: 26) ?? "nil")",
+            "redirect:             \(self.redirect?.description(with: 26) ?? "nil")"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -146,6 +177,21 @@ import struct Foundation.NSURL.URL
     /// The status of the payment is either succeeded, pending, or failed
     public private(set) var postURL: URL?
     
+    /// Pretty printed description of the ChargeRedirect object.
+    public override var description: String {
+        
+        let lines: [String] = [
+        
+            "Redirect",
+            "status:     \(self.status?.description ?? "nil")",
+            "url:        \(self.url?.description ?? "nil")",
+            "return url: \(self.returnURL?.description ?? "nil")",
+            "post url:   \(self.postURL?.description ?? "nil")"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -179,6 +225,22 @@ import struct Foundation.NSURL.URL
     
     /// The last 4 digits of the card.
     public private(set) var lastFourDigits: String?
+    
+    /// Pretty printed description of the ChargeSource object.
+    public override var description: String {
+        
+        let lines: [String] = [
+        
+            "Source",
+            "identifier:       \(self.identifier?.description ?? "nil")",
+            "object:           \(self.objectType?.description ?? "nil")",
+            "expiration month: \(self.expirationMonth?.description ?? "nil")",
+            "expiration year:  \(self.expirationYear?.description ?? "nil")",
+            "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
     
     // MARK: - Private -
     
