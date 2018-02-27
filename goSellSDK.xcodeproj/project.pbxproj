@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		003DD09521A3011E5BFC2066 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7098547858414DC9D21839CA /* Pods_goSellSDK.framework */; };
 		A40D32272031E6DE0030FDDE /* goSellSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A40D32192031E6DE0030FDDE /* goSellSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A45A5B9F204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5B9E204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift */; };
 		A46CDF1A2042ABEE00EA38A5 /* CreateTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B087203C1A97007E7711 /* CreateTokenRequest.swift */; };
 		A46CDF1B2042ABEE00EA38A5 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B088203C1A97007E7711 /* Token.swift */; };
 		A46CDF1C2042ABEE00EA38A5 /* UpdateChargeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B08F203C1A97007E7711 /* UpdateChargeRequest.swift */; };
@@ -57,6 +58,7 @@
 		A40D32192031E6DE0030FDDE /* goSellSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = goSellSDK.h; sourceTree = "<group>"; };
 		A40D321A2031E6DE0030FDDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4118B82203AD845003415C2 /* goSellSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = goSellSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A45A5B9E204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomStringConvertible+goSellSDK.swift"; sourceTree = "<group>"; };
 		A46CDF342042ABEE00EA38A5 /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46CDF362042BE6300EA38A5 /* TapNetworkManager_Carthage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapNetworkManager_Carthage.framework; path = Carthage/Build/iOS/TapNetworkManager_Carthage.framework; sourceTree = "<group>"; };
 		A4D1B087203C1A97007E7711 /* CreateTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTokenRequest.swift; sourceTree = "<group>"; };
@@ -219,8 +221,9 @@
 		A4D1B0AD203C1A98007E7711 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A4D1B0AE203C1A98007E7711 /* Encodable+goSellSDK.swift */,
+				A45A5B9E204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift */,
 				A4D1B0AF203C1A98007E7711 /* Decodable+goSellSDK.swift */,
+				A4D1B0AE203C1A98007E7711 /* Encodable+goSellSDK.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D1B0B7203C1A98007E7711 /* CreateTokenRequest.swift in Sources */,
+				A45A5B9F204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift in Sources */,
 				A4D1B0B8203C1A98007E7711 /* Token.swift in Sources */,
 				A4D1B0BC203C1A98007E7711 /* UpdateChargeRequest.swift in Sources */,
 				A4D1B0D9203C3FB7007E7711 /* Response.swift in Sources */,

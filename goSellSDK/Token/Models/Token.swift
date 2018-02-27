@@ -39,6 +39,24 @@ import class Foundation.NSObject.NSObject
     /// Defines if token was used.
     public private(set) var isUsed: Bool = false
     
+    public override var description: String {
+        
+        let lines: [String] = [
+            
+            "Token",
+            "identifier:    \(self.identifier?.description ?? "nil")",
+            "object:        \(self.object?.description ?? "nil")",
+            "card:          \(self.card?.description(with: 19) ?? "nil")",
+            "type:          \(self.type?.description ?? "nil")",
+            "creation date: \(self.creationDate?.description ?? "nil")",
+            "client IP:     \(self.clientIP?.description ?? "nil")",
+            "live mode:     \(self.isLiveMode)",
+            "used:          \(self.isUsed)"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -103,6 +121,30 @@ import class Foundation.NSObject.NSObject
     
     /// Zip or postal code.
     public private(set) var addressZip: Int?
+    
+    public override var description: String {
+        
+        let lines: [String] = [
+        
+            "Card",
+            "identifier:       \(self.identifier?.description ?? "nil")",
+            "object:           \(self.object?.description ?? "nil")",
+            "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")",
+            "expiration month: \(self.expirationMonth)",
+            "expiration year:  \(self.expirationYear)",
+            "brand:            \(self.brand?.description ?? "nil")",
+            "customer:         \(self.customer?.description ?? "nil")",
+            "card type:        \(self.cardType?.description ?? "nil")",
+            "fingerprint:      \(self.fingerprint?.description ?? "nil")",
+            "address country:  \(self.addressCountry?.description ?? "nil")",
+            "address city:     \(self.addressCity?.description ?? "nil")",
+            "address line 1:   \(self.addressLine1?.description ?? "nil")",
+            "address line 2:   \(self.addressLine2?.description ?? "nil")",
+            "address zip:      \(self.addressZip?.description ?? "nil")"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
     
     // MARK: - Private -
     
