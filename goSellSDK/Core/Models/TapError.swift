@@ -98,6 +98,7 @@ extension TAPSDKErrorType: CustomStringConvertible {
         super.init()
     }
     
+    /// Pretty printed description of TapSDKError object.
     public override var description: String {
         
         return "Error type: \(self.type.description)"

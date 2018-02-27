@@ -95,6 +95,7 @@ import struct Foundation.NSURL.URL
     /// Information related to the payment page redirect.
     public private(set) var redirect: ChargeRedirect?
     
+    /// Pretty printed description of the Charge object.
     public override var description: String {
         
         let lines: [String] = [
@@ -176,6 +177,7 @@ import struct Foundation.NSURL.URL
     /// The status of the payment is either succeeded, pending, or failed
     public private(set) var postURL: URL?
     
+    /// Pretty printed description of the ChargeRedirect object.
     public override var description: String {
         
         let lines: [String] = [
@@ -224,6 +226,7 @@ import struct Foundation.NSURL.URL
     /// The last 4 digits of the card.
     public private(set) var lastFourDigits: String?
     
+    /// Pretty printed description of the ChargeSource object.
     public override var description: String {
         
         let lines: [String] = [
