@@ -102,7 +102,7 @@ Currently the following sections are available:
 
 Tokens are used in charges. The interact with the Tokens APIs, please refer to the `TokenClient` class inside the SDK.
 
-Example of token creation:
+Example of **token** creation:
 
 *Swift*:
 
@@ -175,7 +175,7 @@ func exampleCreateToken() {
 
 To interact with the Charges APIs, please refer to the `ChargeClient` class inside the SDK.
 
-Example of charge creation:
+Example of **charge** creation:
 
 *Swift*:
 
@@ -227,6 +227,68 @@ func exampleCreateCharge() {
             NSLog(@"Failed to create charge with error: %@", error);
         }
     }];
+}
+```
+
+Example of **source** creation:
+
+*Swift*:
+
+```swift
+func exampleCreateSource() {
+    
+    // with token identifier
+    let tokenSource = CreateChargeSource(tokenIdentifier: "tok_XXXXXXXXXXXXXXXXXXXXXXXX")
+    
+    // static source
+    let staticKNETSource = CreateChargeSource(staticIdentifier: .KNET)
+    
+    // with plain card data
+    let plainSource = CreateChargeSource(cardNumber: "4111111111111111", expirationMonth: 10, expirationYear: 20, cvc: "123")
+}
+```
+
+*Objective-C*:
+
+```objective-c
+- (void)exampleCreateSource {
+    
+    // with token identifier
+    CreateChargeSource *tokenSource = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
+    
+    // static source
+    CreateChargeSource *staticKNETSource = [[CreateChargeSource alloc] initWithStaticIdentifier:SourceIdentifierKNET];
+    
+    // with plain card data
+    CreateChargeSource *plainSource = [[CreateChargeSource alloc] initWithCardNumber:@"4111111111111111" expirationMonth:10 expirationYear:20 cvc:@"123"];
+}
+```
+
+Example of **redirect** creation:
+
+*Swift*:
+
+```swift
+func exampleCreateRedirect() {
+        
+    // without post url
+    let redirectWithoutPostURL = CreateChargeRedirect(returnURL: URL(string: "your_return_url")!)
+        
+    // with post url
+    let redirectWithPostURL = CreateChargeRedirect(returnURL: URL(string: "your_return_url")!, postURL: URL(string: "your_post_url")!)
+}
+```
+
+*Objective-C*:
+
+```objective-c
+- (void)exampleCreateRedirect {
+    
+    // without post url
+    CreateChargeRedirect *redirectWithoutPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"]];
+    
+    // with post url
+    CreateChargeRedirect *redirectWithPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"] postURL:[NSURL URLWithString:@"your_post_url"]];
 }
 ```
 
