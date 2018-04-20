@@ -2,11 +2,12 @@ Pod::Spec.new do |goSellSDK|
     
     goSellSDK.platform = :ios
     goSellSDK.ios.deployment_target = '8.0'
-    goSellSDK.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
+    goSellSDK.swift_version = '4.1'
+    goSellSDK.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1' }
     goSellSDK.name = 'goSellSDK'
     goSellSDK.summary = 'goSell SDK for iOS'
     goSellSDK.requires_arc = true
-    goSellSDK.version = '1.0.3'
+    goSellSDK.version = '1.0.4'
     goSellSDK.license = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage = 'https://github.com/Tap-Payments/goSellSDK-iOS'
@@ -31,7 +32,6 @@ Pod::Spec.new do |goSellSDK|
     
         crypter.dependency 'goSellSDK/Core'
         crypter.source_files = 'goSellSDK/Crypter/**/*.swift'
-        crypter.vendored_frameworks = 'goSellSDK/Crypter/goSellCrypto.framework'
     
     end
     

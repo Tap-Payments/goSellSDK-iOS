@@ -2,7 +2,6 @@
 //  CustomStringConvertible+goSellSDK.swift
 //  goSellSDK
 //
-//  Created by Dennis Pashkov on 2/27/18.
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
