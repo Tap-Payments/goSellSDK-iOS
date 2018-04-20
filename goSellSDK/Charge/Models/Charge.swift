@@ -247,7 +247,7 @@ import struct Foundation.NSURL.URL
     private enum CodingKeys: String, CodingKey {
         
         case identifier = "id"
-        case objectType = "object_type"
+        case objectType = "object"
         case expirationMonth = "exp_month"
         case expirationYear = "exp_year"
         case lastFourDigits = "last4"

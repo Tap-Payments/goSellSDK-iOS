@@ -5,7 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-@import Foundation;
+@import Foundation.NSObjCRuntime;
 
 //! Project version number for goSellSDK.
 FOUNDATION_EXPORT double goSellSDKVersionNumber;
