@@ -34,12 +34,17 @@ import struct Foundation.NSURL.URL
     /// Amount refunded (can be less than the amount attribute on the charge if a partial refund was issued).
     public private(set) var refundedAmount: Decimal = 0.0
     
+    public private(set) var isCaptured: Bool = false
+    
     /// Time at which the object was created. Measured in seconds since the Unix epoch.
     public private(set) var creationDate: Date?
     
     /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public private(set) var currency: String?
 
+    /// Customer identifier.
+    public private(set) var customerIdentifier: String?
+    
     /// An arbitrary string attached to the object. Often useful for displaying to users.
     public private(set) var descriptionText: String?
     
@@ -105,6 +110,7 @@ import struct Foundation.NSURL.URL
             "object:               \(self.object?.description ?? "nil")",
             "amount:               \(self.amount)",
             "refunded amount:      \(self.refundedAmount)",
+            "captured:             \(self.isCaptured)",
             "creation date:        \(self.creationDate?.description ?? "nil")",
             "currency:             \(self.currency?.description ?? "nil")",
             "description:          \(self.descriptionText?.description ?? "nil")",
@@ -131,25 +137,26 @@ import struct Foundation.NSURL.URL
     private enum CodingKeys: String, CodingKey {
         
         case identifier = "id"
-        case object
-        case amount
+        case object = "object"
+        case amount = "amount"
         case refundedAmount = "amount_refunded"
+        case isCaptured = "captured"
         case creationDate = "created"
-        case currency
+        case currency = "currency"
         case descriptionText = "description"
         case failureCode = "failure_code"
         case failureMessage = "failure_message"
         case isLiveMode = "livemode"
-        case metadata
+        case metadata = "metadata"
         case isPaid = "paid"
         case receiptEmail = "receipt_email"
         case receiptSMS = "receipt_sms"
         case receiptNumber = "receipt_number"
         case isRefunded = "refunded"
-        case source
+        case source = "source"
         case statementDescriptor = "statement_descriptor"
-        case status
-        case redirect
+        case status = "status"
+        case redirect = "redirect"
     }
 }
 
@@ -196,8 +203,8 @@ import struct Foundation.NSURL.URL
     
     private enum CodingKeys: String, CodingKey {
         
-        case status
-        case url
+        case status = "status"
+        case url = "url"
         case returnURL = "return_url"
         case postURL = "post_url"
     }
@@ -215,7 +222,7 @@ import struct Foundation.NSURL.URL
     public private(set) var identifier: String?
     
     /// String representing the object’s type. Objects of the same type share the same value.
-    public private(set) var objectType: String?
+    public private(set) var object: String?
     
     /// Two digit number representing the card's expiration month.
     public private(set) var expirationMonth: String?
@@ -226,6 +233,15 @@ import struct Foundation.NSURL.URL
     /// The last 4 digits of the card.
     public private(set) var lastFourDigits: String?
     
+    /// Adress city.
+    public private(set) var addressCity: String?
+    
+    /// Address country.
+    public private(set) var addressCountry: String?
+    
+    /// Card brand.
+    public private(set) var brand: String?
+    
     /// Pretty printed description of the ChargeSource object.
     public override var description: String {
         
@@ -233,10 +249,13 @@ import struct Foundation.NSURL.URL
         
             "Source",
             "identifier:       \(self.identifier?.description ?? "nil")",
-            "object:           \(self.objectType?.description ?? "nil")",
+            "object:           \(self.object?.description ?? "nil")",
             "expiration month: \(self.expirationMonth?.description ?? "nil")",
             "expiration year:  \(self.expirationYear?.description ?? "nil")",
-            "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")"
+            "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")",
+            "address city:     \(self.addressCity?.description ?? "nil")",
+            "address country:  \(self.addressCountry?.description ?? "nil")",
+            "brand:            \(self.brand?.description ?? "nil")"
         ]
         
         return "\n" + lines.joined(separator: "\n\t")
@@ -247,7 +266,7 @@ import struct Foundation.NSURL.URL
     private enum CodingKeys: String, CodingKey {
         
         case identifier = "id"
-        case objectType = "object"
+        case object = "object"
         case expirationMonth = "exp_month"
         case expirationYear = "exp_year"
         case lastFourDigits = "last4"

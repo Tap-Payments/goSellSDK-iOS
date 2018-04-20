@@ -7,7 +7,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.name = 'goSellSDK'
     goSellSDK.summary = 'goSell SDK for iOS'
     goSellSDK.requires_arc = true
-    goSellSDK.version = '1.0.4'
+    goSellSDK.version = '1.0.5'
     goSellSDK.license = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage = 'https://github.com/Tap-Payments/goSellSDK-iOS'
@@ -16,7 +16,7 @@ Pod::Spec.new do |goSellSDK|
     
     goSellSDK.subspec 'Core' do |core|
     
-        core.dependency 'TapNetworkManager'
+        core.dependency 'TapNetworkManager', '1.0.3'
         core.source_files = 'goSellSDK/Core/**/*.swift'
     
     end
