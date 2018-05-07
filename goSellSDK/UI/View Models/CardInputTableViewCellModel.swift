@@ -14,7 +14,13 @@ internal class CardInputTableViewCellModel: CellViewModel {
     
     internal weak var cell: CardInputTableViewCell?
     
-    internal private(set) lazy var paymentOptions: [PaymentOption] = []
+    internal var paymentOptions: [PaymentOption] = [] {
+        
+        didSet {
+            
+            self.updatePaymentOptions()
+        }
+    }
     
     internal var tableViewCellModels: [ImageTableViewCellModel]
     internal var displayedTableViewCellModels: [ImageTableViewCellModel] {
@@ -57,6 +63,16 @@ internal class CardInputTableViewCellModel: CellViewModel {
     internal func connectionFinished() {
         
         self.cell?.bindContent()
+    }
+    
+    // MARK: - Private -
+    // MARK: Methods
+    
+    private func updatePaymentOptions() {
+        
+        let iconURLs = self.paymentOptions.map { $0.imageURL }
+        self.tableViewCellModels = type(of: self).generateTableViewCellModels(with: iconURLs)
+        self.updateDisplayedCollectionViewCellModels()
     }
 }
 

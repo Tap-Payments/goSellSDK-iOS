@@ -6,6 +6,7 @@
 //
 
 import struct CoreGraphics.CGGeometry.CGRect
+import class TapVisualEffectView.TapVisualEffectView
 import class UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
@@ -28,9 +29,10 @@ public class PaymentContainerViewController: UIViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if let paymentController = segue.destination as? PaymentViewController {
+        if let navigationController = segue.destination as? UINavigationController, navigationController.rootViewController is PaymentViewController {
             
-            paymentController.transitioningDelegate = self
+            navigationController.delegate = self.animationsHandler
+            navigationController.transitioningDelegate = self.animationsHandler
         }
     }
     
@@ -42,9 +44,19 @@ public class PaymentContainerViewController: UIViewController {
     // MARK: - Private -
     // MARK: Properties
     
+    @IBOutlet private weak var blurView: TapVisualEffectView? {
+        
+        didSet {
+            
+            self.blurView?.style = .none
+        }
+    }
+    
     private var hasShownPaymentController = false
     
     private var payButtonFrame: CGRect = .zero
+    
+    private lazy var animationsHandler = TransitionAnimationsHandler()
     
     // MARK: Methods
     
@@ -66,11 +78,31 @@ public class PaymentContainerViewController: UIViewController {
     }
 }
 
-// MARK: - UIViewControllerTransitioningDelegate
-extension PaymentContainerViewController: UIViewControllerTransitioningDelegate {
+// MARK: - TransitionAnimationsHandler
+extension PaymentContainerViewController {
     
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    fileprivate class TransitionAnimationsHandler: NSObject {}
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension PaymentContainerViewController.TransitionAnimationsHandler: UIViewControllerTransitioningDelegate {
+    
+    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return PaymentPresentationAnimationController(startFrame: self.payButtonFrame)
+        return PaymentPresentationAnimationController()
+    }
+    
+    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return PaymentDismissalAnimationController()
+    }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension PaymentContainerViewController.TransitionAnimationsHandler: UINavigationControllerDelegate {
+    
+    fileprivate func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return UINavigationControllerSideAnimationController(operation: operation)
     }
 }

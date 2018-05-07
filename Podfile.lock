@@ -43,6 +43,9 @@ PODS:
     - TapAdditionsKit/SwiftStandartLibrary/Array
     - TapAdditionsKit/SwiftStandartLibrary/Sequence
     - TapAdditionsKit/UIKit/UIColor
+  - TapAdditionsKit/UIKit/UINavigationController (1.0.5):
+    - TapAdditionsKit/Tap/TypeAlias
+    - TapSwiftFixes/Threading
   - TapAdditionsKit/UIKit/UIResponder (1.0.5):
     - TapAdditionsKit/Tap/TypeAlias
   - TapAdditionsKit/UIKit/UIScreen (1.0.5)
@@ -110,6 +113,7 @@ DEPENDENCIES:
   - TapAdditionsKit/SwiftStandartLibrary/Dictionary
   - TapAdditionsKit/SwiftStandartLibrary/OptionSet
   - TapAdditionsKit/SwiftStandartLibrary/String
+  - TapAdditionsKit/UIKit/UINavigationController
   - TapAdditionsKit/UIKit/UIResponder
   - TapAdditionsKit/UIKit/UIScreen
   - TapAdditionsKit/UIKit/UIView
@@ -153,6 +157,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: dfc8a6fc03cbb7313cad63d293c589d02566ca37
   TapVisualEffectView: d69ad714fef55a5c728069de51a3aa16607db164
 
-PODFILE CHECKSUM: 4c78207a8e9c663e86e1408fb50f140fc663f45c
+PODFILE CHECKSUM: 9927c2c4af2076ff6e24474d1c9bee2ca8ffe742
 
 COCOAPODS: 1.5.0

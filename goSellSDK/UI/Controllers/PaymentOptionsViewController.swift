@@ -9,6 +9,27 @@ import class UIKit.UIViewController.UIViewController
 
 internal class PaymentOptionsViewController: UIViewController {
     
+    internal override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        self.subscribePaymentOptionsUpdateNotification()
+    }
+    
+    internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for: segue, sender: sender)
+        
+        if let currenciesController = segue.destination as? CurrencySelectionViewController {
+            
+            PaymentDataManager.shared.prepareCurrencySelectionController(currenciesController)
+        }
+    }
+    
+    deinit {
+        
+        self.unsubscribePaymentOptionsUpdateNotification()
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -21,6 +42,26 @@ internal class PaymentOptionsViewController: UIViewController {
             self.paymentOptionsTableView?.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
             self.paymentOptionsTableView?.rowHeight = UITableViewAutomaticDimension
             self.paymentOptionsTableView?.estimatedRowHeight = UITableViewAutomaticDimension
+        }
+    }
+    
+    // MARK: Methods
+    
+    private func subscribePaymentOptionsUpdateNotification() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(paymentOptionsUpdated(_:)), name: .paymentOptionsModelsUpdated, object: nil)
+    }
+    
+    private func unsubscribePaymentOptionsUpdateNotification() {
+        
+        NotificationCenter.default.removeObserver(self, name: .paymentOptionsModelsUpdated, object: nil)
+    }
+    
+    @objc private func paymentOptionsUpdated(_ notification: Notification) {
+        
+        DispatchQueue.main.async {
+            
+            self.paymentOptionsTableView?.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
 }

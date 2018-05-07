@@ -25,17 +25,6 @@ internal class PaymentViewController: BaseViewController {
     
     // MARK: - Private -
     // MARK: Properties
-    
-    @IBOutlet private weak var blurredBackgroundView: TapVisualEffectView?
-    
-    @IBOutlet private weak var blurredPayButtonBackgroundView: TapVisualEffectView? {
-        
-        didSet {
-            
-            self.blurredPayButtonBackgroundView?.style = Theme.current.settings.backgroundBlurStyle
-        }
-    }
-    
 }
 
 // MARK: - MerchantInformationHeaderViewControllerDelegate

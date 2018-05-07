@@ -41,6 +41,12 @@
         return lhs.isoCode == rhs.isoCode
     }
     
+    public override func isEqual(_ object: Any?) -> Bool {
+        
+        guard let other = object as? Currency else { return false }
+        return self.isoCode == other.isoCode
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     

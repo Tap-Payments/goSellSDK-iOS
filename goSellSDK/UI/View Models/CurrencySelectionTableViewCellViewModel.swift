@@ -28,6 +28,11 @@ internal class CurrencySelectionTableViewCellViewModel: CellViewModel {
     internal private(set) var displayedTransactionCurrencyText: String?
     internal private(set) var displayedUserCurrencyText: String?
     
+    internal override var indexPathOfCellToSelect: IndexPath? {
+        
+        return self.indexPath
+    }
+    
     // MARK: Methods
     
     internal init(indexPath: IndexPath, transactionCurrency: AmountedCurrency, userSelectedCurrency: AmountedCurrency) {

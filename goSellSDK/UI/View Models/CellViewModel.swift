@@ -12,7 +12,7 @@ internal class CellViewModel: ViewModel {
     
     internal weak var tableView: UITableView?
     
-    internal let indexPath: IndexPath
+    internal var indexPath: IndexPath
     
     internal var indexPathOfCellToSelect: IndexPath? {
         
