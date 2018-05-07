@@ -29,6 +29,15 @@ internal class Source: Codable {
     /// Two or four digit number representing the card's expiration year.
     internal private(set) var expirationYear: Int?
     
+    /// City/District/Suburb/Town/Village.
+    internal private(set) var addressCity: String?
+    
+    /// Billing address country, if provided when creating card.
+    internal private(set) var addressCountry: String?
+    
+    /// Card brand.
+    internal private(set) var brand: String?
+    
     // MARK: Methods
     
     /// Initializes the source with token identifier.
@@ -113,12 +122,13 @@ internal class Source: Codable {
         case expirationMonth = "exp_month"
         case expirationYear = "exp_year"
         case lastFourDigits = "last4"
+        case addressCity = "address_city"
+        case addressCountry = "address_country"
+        case brand = "brand"
         
         case number = "number"
         case cvc = "cvc"
         case cardholderName = "name"
-        case addressCity = "address_city"
-        case addressCountry = "address_country"
         case addressLine1 = "address_line1"
         case addressLine2 = "address_line2"
         case addressState = "address_state"
@@ -135,12 +145,6 @@ internal class Source: Codable {
     
     /// Cardholder name.
     private var cardholderName: String?
-    
-    /// City/District/Suburb/Town/Village.
-    private var addressCity: String?
-    
-    /// Billing address country, if provided when creating card.
-    private var addressCountry: String?
     
     /// Address line 1 (Street address/PO Box/Company name).
     private var addressLine1: String?
@@ -180,7 +184,10 @@ extension Source: CustomStringConvertible {
             "object:           \(self.object?.description ?? "nil")",
             "expiration month: \(self.expirationMonth?.description ?? "nil")",
             "expiration year:  \(self.expirationYear?.description ?? "nil")",
-            "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")"
+            "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")",
+            "address city:     \(self.addressCity?.description ?? "nil")",
+            "address country:  \(self.addressCountry?.description ?? "nil")",
+            "brand:            \(self.brand?.description ?? "nil")"
         ]
         
         return "\n" + lines.joined(separator: "\n\t")

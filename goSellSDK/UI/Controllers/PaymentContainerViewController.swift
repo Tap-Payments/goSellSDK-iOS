@@ -37,7 +37,7 @@ public class PaymentContainerViewController: UIViewController {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal weak var payButton: PayButtonProtocol?
+    internal weak var payButton: (PayButtonProtocol & UIView)?
     
     // MARK: - Private -
     // MARK: Properties

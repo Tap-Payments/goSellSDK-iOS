@@ -22,6 +22,9 @@ public enum TapSDKErrorType: Int {
     /// Serialization error.
     case serialization
     
+    /// Internal error.
+    case `internal`
+    
     /// Unknown error.
     case unknown
     
@@ -33,6 +36,7 @@ public enum TapSDKErrorType: Int {
         case .api: return "API"
         case .network: return "Network"
         case .serialization: return "Serialization"
+        case .internal: return "Internal"
         case .unknown: return "Unknown"
         }
     }

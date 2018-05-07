@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Example View Controller-->
+        <!--Data Source-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ExampleViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,17 +21,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="4xO-ET-klP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6b2-JM-nJ9" customClass="PayButton" customModule="goSellSDK">
-                                <rect key="frame" x="8" y="473" width="359" height="44"/>
+                                <rect key="frame" x="8" y="615" width="359" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="av4-gv-Dij"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="6m7-Zc-Eqx"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uxk-2k-fLN"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4xO-ET-klP" secondAttribute="trailing" id="58K-CY-g9W"/>
                             <constraint firstAttribute="trailing" secondItem="6b2-JM-nJ9" secondAttribute="trailing" constant="8" id="8Bb-9f-Voi"/>
-                            <constraint firstItem="24L-YU-wCA" firstAttribute="top" secondItem="6b2-JM-nJ9" secondAttribute="bottom" constant="150" id="RyN-RE-iTz"/>
+                            <constraint firstItem="4xO-ET-klP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="J6Q-NQ-Lb8"/>
+                            <constraint firstItem="4xO-ET-klP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Qmc-DB-4HC"/>
+                            <constraint firstItem="24L-YU-wCA" firstAttribute="top" secondItem="6b2-JM-nJ9" secondAttribute="bottom" constant="8" id="RyN-RE-iTz"/>
+                            <constraint firstAttribute="bottom" secondItem="4xO-ET-klP" secondAttribute="bottom" id="cWP-Sc-JvA"/>
                             <constraint firstItem="6b2-JM-nJ9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="yvx-jC-cg8"/>
                         </constraints>
                     </view>
@@ -43,4 +54,7 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="750" height="1334"/>
+    </resources>
 </document>

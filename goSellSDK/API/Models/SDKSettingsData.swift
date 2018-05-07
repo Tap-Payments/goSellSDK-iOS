@@ -6,22 +6,26 @@
 //
 
 /// goSell SDK settings data model.
-internal class SDKSettingsData: Decodable {
+internal struct SDKSettingsData: Decodable {
     
     // MARK: - Internal -
     // MARK: Properties
     
     /// Payments mode.
-    internal private(set) var isLiveMode: Bool = false
+    internal let isLiveMode: Bool = false
     
     /// Permissions.
-    internal private(set) var permissions: Permissions = .none
-    
-    /// Defines if application is verified.
-    internal private(set) var isApplicationVerified: Bool = false
+    internal let permissions: Permissions = .none
     
     /// Encryption key.
-    internal private(set) var encryptionKey: String = .empty
+    // FIXME: Remove optionality here.
+    internal private(set) var encryptionKey: String? = .empty
+    
+    /// Merchant information.
+    internal let merchant: Merchant
+    
+    /// Internal SDK settings.
+    internal let internalSettings: InternalSDKSettings
     
     // MARK: - Private -
     
@@ -29,7 +33,8 @@ internal class SDKSettingsData: Decodable {
         
         case isLiveMode = "livemode"
         case permissions = "permissions"
-        case isApplicationVerified = "verified_application"
         case encryptionKey = "encryption_key"
+        case merchant = "merchant"
+        case internalSettings = "sdk_settings"
     }
 }

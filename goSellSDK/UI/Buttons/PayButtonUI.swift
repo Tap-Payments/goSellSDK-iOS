@@ -14,6 +14,9 @@ internal class PayButtonUI: TapNibView {
     // MARK: - Internal -
     // MARK: Properties
     
+    /// Payment data source.
+    internal weak var dataSource: PaymentDataSource?
+    
     /// Delegate.
     internal weak var delegate: PayButtonUIDelegate?
     
@@ -28,6 +31,25 @@ internal class PayButtonUI: TapNibView {
     internal override class var bundle: Bundle {
         
         return .goSellSDKResources
+    }
+    
+    // MARK: Methods
+    
+    internal func startLoader() {
+        
+        self.loader?.startAnimating()
+    }
+    
+    internal func stopLoader(waitUntilFinish: Bool = true) {
+        
+        if waitUntilFinish {
+            
+            self.loader?.stopAnimatingWhenFull()
+        }
+        else {
+            
+            self.loader?.stopAnimating()
+        }
     }
     
     // MARK: - Private -

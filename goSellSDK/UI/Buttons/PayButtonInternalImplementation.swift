@@ -7,7 +7,12 @@
 
 import class UIKit.UIStoryboard.UIStoryboard
 
-internal protocol PayButtonInternalImplementation: PayButtonProtocol {}
+internal protocol PayButtonInternalImplementation: PayButtonProtocol {
+    
+    var uiElement: PayButtonUI? { get }
+    
+    var theme: Theme { get }
+}
 
 internal extension PayButtonInternalImplementation {
     
@@ -16,19 +21,32 @@ internal extension PayButtonInternalImplementation {
     
     internal func payButtonTouchUpInside() {
         
-        self.loadPaymentOptionsAndShowPaymentController()
+        PaymentDataManager.shared.startOver(with: self)
+    }
+    
+    internal func paymentDataManagerDidStartLoadingPaymentOptions() {
+        
+        self.uiElement?.startLoader()
+    }
+    
+    internal func paymentDataManagerDidStopLoadingPaymentOptions(with success: Bool) {
+        
+        self.uiElement?.stopLoader()
+        
+        guard success else { return }
+        
+        let controller = self.instantiatePaymentContainerController()
+        
+        if let selfAsView = self as? UIView & PayButtonProtocol {
+            
+            controller.payButton = selfAsView
+        }
+        
+        self.delegate?.showPaymentController(controller)
     }
     
     // MARK: - Private -
     // MARK: Methods
-    
-    private func loadPaymentOptionsAndShowPaymentController() {
-        
-        let controller = self.instantiatePaymentContainerController()
-        controller.payButton = self
-        
-        self.delegate?.showPaymentController(controller)
-    }
     
     private func instantiatePaymentContainerController() -> PaymentContainerViewController {
         

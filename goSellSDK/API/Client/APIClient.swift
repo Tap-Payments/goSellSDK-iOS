@@ -5,11 +5,13 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class TapApplication.ApplicationPlistInfo
+import class TapApplication.TapApplicationPlistInfo
+import class TapApplication.TapBundlePlistInfo
 import func TapSwiftFixes.performOnBackgroundThread
 import func TapSwiftFixes.performOnMainThread
 import class TapNetworkManager.TapNetworkManager
 import class TapNetworkManager.TapNetworkRequestOperation
+import class UIKit.UIDevice.UIDevice
 
 /// API client.
 internal class APIClient {
@@ -32,17 +34,12 @@ internal class APIClient {
             fatalError("Secret key must be set in order to use goSellSDK.")
         }
         
-        let bundleID = ApplicationPlistInfo.shared.bundleIdentifier
-        
-        guard bundleID.length > 0 else {
-            
-            fatalError("Application must have bundle identifier in order to use goSellSDK.")
-        }
+        let applicationValue = self.applicationHeaderValue
         
         return [
             
             Constants.HTTPHeaderKey.authorization: "Bearer \(secretKey)",
-            Constants.HTTPHeaderKey.application: bundleID
+            Constants.HTTPHeaderKey.application: applicationValue
         ]
     }
     
@@ -139,7 +136,20 @@ internal class APIClient {
             @available(*, unavailable) private init() { }
         }
         
-        private static let baseURLString = "https://api.tap.company/v1/"
+        fileprivate struct HTTPHeaderValueKey {
+            
+            fileprivate static let appID = "app_id"
+            fileprivate static let requirer = "requirer"
+            fileprivate static let requirerValue = "SDK"
+            fileprivate static let requirerVersion = "requirer_version"
+            fileprivate static let requirerOS = "requirer_os"
+            fileprivate static let requirerOSVersion = "requirer_os_version"
+            fileprivate static let appLocale = "app_locale"
+            
+            @available(*, unavailable) private init() { }
+        }
+        
+        private static let baseURLString = "https://api.tap.company/v2/"
         
         @available(*, unavailable) private init() { }
     }
@@ -147,6 +157,47 @@ internal class APIClient {
     // MARK: Properties
     
     private let networkManager = TapNetworkManager(baseURL: Constants.baseURL)
+    
+    private let applicationStaticDetails: [String: Any] = {
+        
+        guard let bundleID = TapApplicationPlistInfo.shared.bundleIdentifier, !bundleID.isEmpty else {
+            
+            fatalError("Application must have bundle identifier in order to use goSellSDK.")
+        }
+        
+        let sdkPlistInfo = TapBundlePlistInfo(bundle: Bundle(for: goSellSDK.self))
+        
+        guard let requirerVersion = sdkPlistInfo.shortVersionString, !requirerVersion.isEmpty else {
+            
+            fatalError("Seems like SDK is not integrated well.")
+        }
+
+        let osName = UIDevice.current.systemName
+        let osVersion = UIDevice.current.systemVersion
+        
+        let result: [String: Any] = [
+        
+            Constants.HTTPHeaderValueKey.appID: bundleID,
+            Constants.HTTPHeaderValueKey.requirer: Constants.HTTPHeaderValueKey.requirerValue,
+            Constants.HTTPHeaderValueKey.requirerVersion: requirerVersion,
+            Constants.HTTPHeaderValueKey.requirerOS: osName,
+            Constants.HTTPHeaderValueKey.requirerOSVersion: osVersion
+        ]
+        
+        return result
+    }()
+    
+    private var applicationHeaderValue: String {
+        
+        var applicationDetails = self.applicationStaticDetails
+        
+        let localeIdentifier = goSellSDK.localeIdentifier
+        applicationDetails[Constants.HTTPHeaderValueKey.appLocale] = localeIdentifier
+        
+        let result = (applicationDetails.map { "\($0.key)=\($0.value)" }).joined(separator: "|")
+        
+        return result
+    }
     
     // MARK: Methods
     
