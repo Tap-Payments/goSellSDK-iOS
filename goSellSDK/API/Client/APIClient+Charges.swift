@@ -72,6 +72,6 @@ internal extension APIClient {
     
     private var chargesRoute: Route {
         
-        return Route.charges
+        return .charges
     }
 }

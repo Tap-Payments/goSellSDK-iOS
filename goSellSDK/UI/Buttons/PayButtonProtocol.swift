@@ -8,7 +8,7 @@
 import protocol TapAdditionsKit.ClassProtocol
 import class UIKit.UIView.UIView
 
-public protocol PayButtonProtocol: ClassProtocol where Self: UIView {
+public protocol PayButtonProtocol: ClassProtocol {
     
     var isEnabled: Bool { get set }
     var state: PayButtonState { get }
@@ -19,7 +19,7 @@ public protocol PayButtonProtocol: ClassProtocol where Self: UIView {
     var delegate: PayButtonDelegate? { get set }
 }
 
-internal extension PayButtonProtocol {
+internal extension PayButtonProtocol where Self: UIView {
     
     var view: UIView {
         

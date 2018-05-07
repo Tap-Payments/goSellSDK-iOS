@@ -8,7 +8,20 @@
 import class TapVisualEffectView.TapVisualEffectView
 import class UIKit.UIViewController.UIViewController
 
-internal class PaymentViewController: UIViewController {
+internal class PaymentViewController: BaseViewController {
+    
+    // MARK: - Internal -
+    // MARK: Methods
+    
+    internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for: segue, sender: sender)
+        
+        if let merchantHeaderController = segue.destination as? MerchantInformationHeaderViewController {
+            
+            merchantHeaderController.delegate = self
+        }
+    }
     
     // MARK: - Private -
     // MARK: Properties
@@ -19,20 +32,35 @@ internal class PaymentViewController: UIViewController {
         
         didSet {
             
-            self.blurredPayButtonBackgroundView?.style = .light
+            self.blurredPayButtonBackgroundView?.style = Theme.current.settings.backgroundBlurStyle
         }
     }
     
-    // MARK: Methods
+}
+
+// MARK: - MerchantInformationHeaderViewControllerDelegate
+extension PaymentViewController: MerchantInformationHeaderViewControllerDelegate {
     
-    @IBAction private func closeButtonTouchUpInside(_ sender: Any) {
+    internal func merchantInformationHeaderViewControllerCloseButtonClicked(_ controller: MerchantInformationHeaderViewController) {
         
         DispatchQueue.main.async {
             
-            let presentingController = self.presentingViewController
-            self.dismiss(animated: true) {
+            let dismissalClosure = {
                 
-                presentingController?.dismiss(animated: false)
+                let presentingController = self.presentingViewController
+                self.dismiss(animated: true) {
+                    
+                    presentingController?.dismiss(animated: false)
+                }
+            }
+            
+            if let firstResponder = self.view.firstResponder {
+                
+                firstResponder.resignFirstResponder(dismissalClosure)
+            }
+            else {
+                
+                dismissalClosure()
             }
         }
     }

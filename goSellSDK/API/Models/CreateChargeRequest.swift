@@ -5,12 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-//import struct Foundation.NSDecimal.Decimal
-//import class Foundation.NSObject.NSObject
-//import struct Foundation.NSURL.URL
-
 /// Create charge request model.
-internal class CreateChargeRequest: Encodable {
+internal struct CreateChargeRequest: Encodable {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -19,7 +15,7 @@ internal class CreateChargeRequest: Encodable {
     internal var amount: Decimal
     
     /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
-    internal var currency: String
+    internal var currency: Currency
     
     /// Information related to the redirect.
     internal var redirect: Redirect
@@ -77,7 +73,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - metadata: Metadata.
     ///   - receiptSMS: Receipt SMS.
     ///   - receiptEmail: Receipt email.
-    internal init(amount: Decimal, currency: String, redirect: Redirect, source: Source? = nil, statementDescriptor: String? = nil, descriptionText: String? = nil, metadata: [String: String]? = nil, receiptSMS: String? = nil, receiptEmail: String? = nil) {
+    internal init(amount: Decimal, currency: Currency, redirect: Redirect, source: Source? = nil, statementDescriptor: String? = nil, descriptionText: String? = nil, metadata: [String: String]? = nil, receiptSMS: String? = nil, receiptEmail: String? = nil) {
         
         self.amount = amount
         self.currency = currency

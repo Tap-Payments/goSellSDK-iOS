@@ -41,3 +41,6 @@
         self.urlResponse = response
     }
 }
+
+// MARK: - Error
+extension TapSDKKnownError: Error {}

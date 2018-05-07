@@ -21,7 +21,10 @@ internal struct Permissions: OptionSet, Decodable {
     
     internal init(from decoder: Decoder) throws {
         
-        self.init(rawValue: Set<String>())
+        let container = try decoder.singleValueContainer()
+        let value = try container.decode(RawValue.self)
+        
+        self.init(rawValue: value)
     }
     
     internal init(rawValue: Set<String>) {

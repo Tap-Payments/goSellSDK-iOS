@@ -1,0 +1,63 @@
+//
+//  CurrencySelectionTableViewCellViewModel.swift
+//  goSellSDK
+//
+//  Copyright © 2018 Tap Payments. All rights reserved.
+//
+
+/// View model for currency selection
+internal class CurrencySelectionTableViewCellViewModel: CellViewModel {
+    
+    // MARK: - Internal -
+    // MARK: Properties
+    
+    /// Transaction currency
+    internal let transactionCurrency: AmountedCurrency
+    
+    /// User selected currency
+    internal var userSelectedCurrency: AmountedCurrency {
+        
+        didSet {
+            
+            self.updateDisplayedTexts(updateContent: true)
+        }
+    }
+    
+    internal weak var cell: CurrencySelectionTableViewCell?
+    
+    internal private(set) var displayedTransactionCurrencyText: String?
+    internal private(set) var displayedUserCurrencyText: String?
+    
+    // MARK: Methods
+    
+    internal init(indexPath: IndexPath, transactionCurrency: AmountedCurrency, userSelectedCurrency: AmountedCurrency) {
+        
+        self.transactionCurrency = transactionCurrency
+        self.userSelectedCurrency = userSelectedCurrency
+        super.init(indexPath: indexPath)
+        
+        self.updateDisplayedTexts()
+    }
+    
+    internal override func tableViewDidSelectCell(_ sender: UITableView) {
+        
+        super.tableViewDidSelectCell(sender)
+    }
+    
+    // MARK: - Private -
+    // MARK: Methods
+    
+    private func updateDisplayedTexts(updateContent: Bool = false) {
+        
+        self.displayedTransactionCurrencyText = self.transactionCurrency == self.userSelectedCurrency ? .empty : self.transactionCurrency.displayValue
+        self.displayedUserCurrencyText = self.userSelectedCurrency.displayValue
+        
+        if updateContent {
+            
+            self.updateCell(animated: true)
+        }
+    }
+}
+
+// MARK: - SingleCellModel
+extension CurrencySelectionTableViewCellViewModel: SingleCellModel {}

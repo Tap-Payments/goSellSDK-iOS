@@ -29,6 +29,18 @@ public class PayButton: TapNibView {
     /// State of the receiver.
     public var state: PayButtonState = .enabled
     
+    /// Theme of the payment controller. Default is light.
+    public var controllerTheme: Theme = .light
+    
+    /// Payment data source.
+    @IBOutlet public weak var dataSource: PaymentDataSource? {
+        
+        didSet {
+            
+            self.ui?.dataSource = self.dataSource
+        }
+    }
+    
     /// Delegate.
     @IBOutlet public weak var delegate: PayButtonDelegate?
     
@@ -48,6 +60,7 @@ public class PayButton: TapNibView {
         didSet {
             
             self.ui?.delegate = self
+            self.ui?.dataSource = self.dataSource
         }
     }
 }
@@ -59,4 +72,15 @@ extension PayButton: PayButtonUIDelegate {
     }
 }
 
-extension PayButton: PayButtonInternalImplementation {}
+extension PayButton: PayButtonInternalImplementation {
+    
+    internal var theme: Theme {
+        
+        return self.controllerTheme
+    }
+    
+    internal var uiElement: PayButtonUI? {
+        
+        return self.ui
+    }
+}
