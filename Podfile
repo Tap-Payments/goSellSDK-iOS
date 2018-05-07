@@ -11,6 +11,7 @@ def shared_pods
     pod 'TapAdditionsKit/SwiftStandartLibrary/Dictionary'
     pod 'TapAdditionsKit/SwiftStandartLibrary/OptionSet'
     pod 'TapAdditionsKit/SwiftStandartLibrary/String'
+    pod 'TapAdditionsKit/UIKit/UINavigationController'
     pod 'TapAdditionsKit/UIKit/UIResponder'
     pod 'TapAdditionsKit/UIKit/UIScreen'
     pod 'TapAdditionsKit/UIKit/UIView'

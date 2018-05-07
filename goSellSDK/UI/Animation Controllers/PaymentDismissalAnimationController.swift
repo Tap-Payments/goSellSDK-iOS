@@ -1,25 +1,14 @@
 //
-//  PaymentPresentationAnimationController.swift
+//  PaymentDismissalAnimationController.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGGeometry.CGRect
 import struct TapAdditionsKit.TypeAlias
 import class TapVisualEffectView.TapVisualEffectView
-import class UIKit.UIView.UIView
-import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
-import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
 
-internal class PaymentPresentationAnimationController: NSObject {
-    
-    // MARK: - Internal -
-    
-    internal init(startFrame: CGRect) {
-        
-        self.startFrame = startFrame
-    }
+internal class PaymentDismissalAnimationController: NSObject {
     
     // MARK: - Private -
     
@@ -29,13 +18,10 @@ internal class PaymentPresentationAnimationController: NSObject {
         
         @available(*, unavailable) private init() {}
     }
-    
-    // MARK: Properties
-    
-    private let startFrame: CGRect
 }
 
-extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransitioning {
+// MARK: - UIViewControllerAnimatedTransitioning
+extension PaymentDismissalAnimationController: UIViewControllerAnimatedTransitioning {
     
     internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         
@@ -48,28 +34,25 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
             
             let fromController = transitionContext.viewController(forKey: .from),
             let toController = transitionContext.viewController(forKey: .to),
+            let fromView = fromController.view,
             let toView = toController.view
-        
+            
         else { return }
         
         let containerView = transitionContext.containerView
         
         containerView.addSubview(toView)
+        containerView.addSubview(fromView)
         
-        let finalFrame = transitionContext.finalFrame(for: toController)
-        
-        var startFrame = finalFrame
-        startFrame.origin.y = finalFrame.maxY
-        
-        toView.frame = startFrame
+        var finalFrame = transitionContext.finalFrame(for: fromController)
+        finalFrame.origin.y = finalFrame.maxY
         
         let blurView = toView.subview(ofClass: TapVisualEffectView.self)
-        blurView?.style = .none
         
         let animations: TypeAlias.ArgumentlessClosure = {
             
-            toView.frame = finalFrame
-            blurView?.style = Theme.current.settings.backgroundBlurStyle
+            fromView.frame = finalFrame
+            blurView?.style = .none
         }
         
         UIView.animate(withDuration: Constants.animationDuration, animations: animations) { _ in

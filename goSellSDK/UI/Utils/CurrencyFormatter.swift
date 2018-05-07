@@ -28,7 +28,7 @@ internal class CurrencyFormatter {
         return synchronized(self.currencyFormatter) {
             
             self.currencyFormatter.locale = locale
-            self.currencyFormatter.currencyCode = amountedCurrency.currency.isoCode
+            self.currencyFormatter.currencyCode = amountedCurrency.currency.isoCode.uppercased()
             
             self.currencyFormatter.positiveFormat = nil
             self.currencyFormatter.negativeFormat = nil

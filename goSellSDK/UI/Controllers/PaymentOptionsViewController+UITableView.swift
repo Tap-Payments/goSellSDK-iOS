@@ -24,10 +24,7 @@ extension PaymentOptionsViewController: UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let model = (PaymentDataManager.shared.paymentOptionCellViewModels.filter { $0.indexPath == indexPath }).first else {
-            
-            fatalError("Data source is corrupted.")
-        }
+        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
         
         if let currencyCellModel = model as? CurrencySelectionTableViewCellViewModel {
             
@@ -67,10 +64,7 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        guard let model = (PaymentDataManager.shared.paymentOptionCellViewModels.filter { $0.indexPath == indexPath }).first else {
-            
-            fatalError("Data source is corrupted.")
-        }
+        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
         
         if let currencyModel = model as? CurrencySelectionTableViewCellViewModel {
             
@@ -92,31 +86,19 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        guard let model = (PaymentDataManager.shared.paymentOptionCellViewModels.filter { $0.indexPath == indexPath }).first else {
-            
-            fatalError("Data source is corrupted.")
-        }
-        
+        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
         return model.indexPathOfCellToSelect
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let model = (PaymentDataManager.shared.paymentOptionCellViewModels.filter { $0.indexPath == indexPath }).first else {
-            
-            fatalError("Data source is corrupted.")
-        }
-        
+        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
         model.tableViewDidSelectCell(tableView)
     }
     
     internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        guard let model = (PaymentDataManager.shared.paymentOptionCellViewModels.filter { $0.indexPath == indexPath }).first else {
-            
-            fatalError("Data source is corrupted.")
-        }
-        
+        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
         model.tableViewDidDeselectCell(tableView)
     }
 }

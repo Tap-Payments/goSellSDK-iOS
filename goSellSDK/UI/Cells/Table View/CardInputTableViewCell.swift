@@ -25,27 +25,33 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        
-        if self.isSelected {
-            
-            return super.hitTest(point, with: event)
-        }
-        
-        self.controls?.forEach { $0.isUserInteractionEnabled = true }
-        self.controls?.forEach { $0.updateToolbarButtonsState() }
-        
-        self.model?.manuallySelectCellAndCallTableViewDelegate()
-        
-        return super.hitTest(point, with: event)
-    }
+//    internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+//        
+//        if self.isSelected {
+//            
+//            return super.hitTest(point, with: event)
+//        }
+//        
+//        self.enableUserInteractionAndUpdateToolbarInAllControls()
+//        
+//        self.model?.manuallySelectCellAndCallTableViewDelegate()
+//        
+//        return super.hitTest(point, with: event)
+//    }
     
     internal override func setSelected(_ selected: Bool, animated: Bool) {
         
-        if !selected {
+        if selected {
             
+            self.enableUserInteractionAndUpdateToolbarInAllControls()
+            self.model?.manuallySelectCellAndCallTableViewDelegate()
+        }
+        else {
+            
+            self.firstResponder?.resignFirstResponder()
             self.controls?.forEach { $0.isUserInteractionEnabled = false }
         }
+        
         
         super.setSelected(selected, animated: animated)
     }
@@ -91,6 +97,14 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var saveCardSwitch: UISwitch?
     
     @IBOutlet private var controls: [UIView]?
+    
+    // MARK: Methods
+    
+    private func enableUserInteractionAndUpdateToolbarInAllControls() {
+        
+        self.controls?.forEach { $0.isUserInteractionEnabled = true }
+        self.controls?.forEach { $0.updateToolbarButtonsState() }
+    }
 }
 
 // MARK: - LoadingWithModelCell
