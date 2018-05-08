@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UIImage.UIImage
+
 /// Loading image view state.
 ///
 /// - notLoaded: Image loading has not started.

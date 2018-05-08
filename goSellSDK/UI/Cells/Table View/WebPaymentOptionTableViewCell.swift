@@ -11,6 +11,7 @@ import class UIKit.UIImageView.UIImageView
 import class UIKit.UILabel.UILabel
 import class UIKit.UIScreen.UIScreen
 import class UIKit.UITableViewCell.UITableViewCell
+import class UIKit.UIView.UIView
 
 internal class WebPaymentOptionTableViewCell: BaseTableViewCell {
     

@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UITableView.UITableView
+
 /// Base class for payment options view models.
 internal class PaymentOptionCellViewModel: CellViewModel {
     

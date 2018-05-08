@@ -6,6 +6,12 @@
 //
 
 import protocol TapAdditionsKit.ClassProtocol
+import class UIKit.UIImageView.UIImageView
+import class UIKit.UILabel.UILabel
+import class UIKit.UITableView.UITableView
+import protocol UIKit.UITableView.UITableViewDataSource
+import protocol UIKit.UITableView.UITableViewDelegate
+import class UIKit.UITableViewCell.UITableViewCell
 
 internal protocol CurrencySelectionViewControllerDelegate: ClassProtocol {
     

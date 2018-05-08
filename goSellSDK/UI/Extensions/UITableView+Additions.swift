@@ -5,6 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UITableView.UITableView
+import enum UIKit.UITableView.UITableViewScrollPosition
+
 internal extension UITableView {
     
     // MARK: - Internal -

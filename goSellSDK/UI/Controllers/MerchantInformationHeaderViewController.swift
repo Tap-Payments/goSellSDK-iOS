@@ -6,6 +6,9 @@
 //
 
 import class TapNetworkManager.TapImageLoader
+import class UIKit.UIButton.UIButton
+import class UIKit.UILabel.UILabel
+import class UIKit.UIViewController.UIViewController
 
 /// Merchant information header view controller.
 internal class MerchantInformationHeaderViewController: UIViewController {

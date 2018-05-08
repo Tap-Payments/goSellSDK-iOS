@@ -8,6 +8,8 @@
 import enum TapCardValidator.CardBrand
 import struct TapCardValidator.DefinedCardBrand
 import class TapEditableView.TapEditableView
+import class UIKit.UIResponder.UIResponder
+import class UIKit.UITextField.UITextField
 
 internal extension CardInputTableViewCellModel {
     

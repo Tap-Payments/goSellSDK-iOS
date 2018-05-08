@@ -5,6 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UITextField.UITextField
+import protocol UIKit.UITextField.UITextFieldDelegate
+
 /// Cardholder name validator.
 internal class CardholderNameValidator: CardValidator {
     

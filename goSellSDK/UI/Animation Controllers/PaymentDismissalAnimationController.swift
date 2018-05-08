@@ -7,6 +7,9 @@
 
 import struct TapAdditionsKit.TypeAlias
 import class TapVisualEffectView.TapVisualEffectView
+import class UIKit.UIView.UIView
+import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
+import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
 
 internal class PaymentDismissalAnimationController: NSObject {
     

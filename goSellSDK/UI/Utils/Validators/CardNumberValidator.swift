@@ -9,6 +9,9 @@ import protocol TapAdditionsKit.ClassProtocol
 import enum TapCardValidator.CardBrand
 import class TapCardValidator.CardValidator
 import struct TapCardValidator.DefinedCardBrand
+import class UIKit.UITextField.UITextField
+import protocol UIKit.UITextField.UITextFieldDelegate
+import class UIKit.UIView.UIView
 
 internal protocol CardBrandChangeReporting: ClassProtocol {
     

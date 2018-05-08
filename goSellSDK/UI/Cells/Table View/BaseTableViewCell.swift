@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UITableViewCell.UITableViewCell
+
 /// Base Table View Cell.
 internal class BaseTableViewCell: UITableViewCell {
     

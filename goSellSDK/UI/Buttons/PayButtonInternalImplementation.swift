@@ -6,6 +6,7 @@
 //
 
 import class UIKit.UIStoryboard.UIStoryboard
+import class UIKit.UIView.UIView
 
 internal protocol PayButtonInternalImplementation: PayButtonProtocol {
     

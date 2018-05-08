@@ -5,6 +5,11 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UITableView.UITableView
+import protocol UIKit.UITableView.UITableViewDataSource
+import protocol UIKit.UITableView.UITableViewDelegate
+import class UIKit.UITableViewCell.UITableViewCell
+
 internal extension CardInputTableViewCellModel {
     
     internal class CardInputTableViewCellModelTableViewHandler: NSObject {

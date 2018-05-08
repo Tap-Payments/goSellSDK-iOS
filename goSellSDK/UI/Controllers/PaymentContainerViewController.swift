@@ -7,7 +7,11 @@
 
 import struct CoreGraphics.CGGeometry.CGRect
 import class TapVisualEffectView.TapVisualEffectView
+import class UIKit.UINavigationController.UINavigationController
+import protocol UIKit.UINavigationController.UINavigationControllerDelegate
+import enum UIKit.UINavigationController.UINavigationControllerOperation
 import class UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class UIKit.UIView.UIView
 import class UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate

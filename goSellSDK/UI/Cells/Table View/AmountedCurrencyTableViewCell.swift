@@ -6,6 +6,9 @@
 //
 
 import struct TapAdditionsKit.TypeAlias
+import class UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class UIKit.UILabel.UILabel
+import class UIKit.UIView.UIView
 
 internal class AmountedCurrencyTableViewCell: BaseTableViewCell {
     

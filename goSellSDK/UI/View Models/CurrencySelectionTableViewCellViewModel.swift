@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UITableView.UITableView
+
 /// View model for currency selection
 internal class CurrencySelectionTableViewCellViewModel: CellViewModel {
     

@@ -5,6 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct UIKit.UIGeometry.UIEdgeInsets
+import class UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class UIKit.UITableView.UITableView
+import let UIKit.UITableView.UITableViewAutomaticDimension
 import class UIKit.UIViewController.UIViewController
 
 internal class PaymentOptionsViewController: UIViewController {
