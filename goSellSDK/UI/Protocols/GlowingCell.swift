@@ -5,7 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class QuartzCore.CAAnimation.CABasicAnimation
 import protocol TapAdditionsKit.ClassProtocol
+import class UIKit.UIColor.UIColor
+import class UIKit.UIView.UIView
 
 /// Glowing Cell protocol.
 internal protocol GlowingCell: ClassProtocol {

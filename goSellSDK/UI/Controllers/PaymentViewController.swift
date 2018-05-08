@@ -6,6 +6,7 @@
 //
 
 import class TapVisualEffectView.TapVisualEffectView
+import class UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class UIKit.UIViewController.UIViewController
 
 internal class PaymentViewController: BaseViewController {

@@ -6,6 +6,7 @@
 //
 
 import protocol TapAdditionsKit.ClassProtocol
+import class UIKit.UITextField.UITextField
 
 /// Data validation protocol.
 internal protocol DataValidation: ClassProtocol {

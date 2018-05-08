@@ -6,6 +6,12 @@
 //
 
 import func TapSwiftFixes.performOnMainThread
+import class UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class UIKit.UIView.UIView
+import struct UIKit.UIView.UIViewAnimationOptions
+import class UIKit.UIViewController.UIViewController
+import var UIKit.UIWindow.UIKeyboardAnimationDurationUserInfoKey
+import var UIKit.UIWindow.UIKeyboardFrameEndUserInfoKey
 
 /// Base View Controller.
 internal class BaseViewController: UIViewController {

@@ -6,6 +6,8 @@
 //
 
 import enum TapVisualEffectView.TapBlurEffectStyle
+import class UIKit.NSParagraphStyle.NSMutableParagraphStyle
+import enum UIKit.UITextInputTraits.UIKeyboardAppearance
 
 internal struct ThemeSettings {
     

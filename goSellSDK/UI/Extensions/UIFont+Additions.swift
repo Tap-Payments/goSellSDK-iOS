@@ -5,6 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct CoreGraphics.CGBase.CGFloat
+import class UIKit.UIFont.UIFont
+
 internal extension UIFont {
     
     // MARK: - Internal -

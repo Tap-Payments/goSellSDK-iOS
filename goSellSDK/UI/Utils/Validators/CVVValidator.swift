@@ -8,6 +8,8 @@
 import protocol TapAdditionsKit.ClassProtocol
 import enum TapCardValidator.CardBrand
 import class TapCardValidator.CardValidator
+import class UIKit.UITextField.UITextField
+import protocol UIKit.UITextField.UITextFieldDelegate
 
 /// CVV validator.
 internal class CVVValidator: CardValidator {

@@ -7,6 +7,7 @@
 
 import class TapGLKit.TapActivityIndicatorView
 import class TapNibView.TapNibView
+import class UIKit.UIImageView.UIImageView
 
 internal class LoadingImageView: TapNibView {
     

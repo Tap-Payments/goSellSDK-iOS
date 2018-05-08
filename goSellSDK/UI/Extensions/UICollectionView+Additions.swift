@@ -6,6 +6,7 @@
 //
 
 import struct TapAdditionsKit.TypeAlias
+import class UIKit.UICollectionView.UICollectionView
 
 internal extension UICollectionView {
     

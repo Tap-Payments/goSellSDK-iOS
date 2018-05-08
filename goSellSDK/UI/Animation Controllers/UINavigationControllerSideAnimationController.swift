@@ -5,6 +5,11 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import enum UIKit.UINavigationController.UINavigationControllerOperation
+import class UIKit.UIView.UIView
+import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
+import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
+
 internal class UINavigationControllerSideAnimationController: NSObject {
     
     // MARK: - Internal -
