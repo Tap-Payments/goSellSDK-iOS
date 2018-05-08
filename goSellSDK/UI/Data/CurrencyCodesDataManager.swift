@@ -69,7 +69,9 @@ internal class CurrencyCodesDataManager {
     
     private var selectedViewModel: AmountedCurrencyTableViewCellModel {
         
-        guard let result = (self.allCellsViewModels.filter { $0.isSelected }).first else {
+        
+        
+        guard let result = (self.allCellsViewModels.first { $0.isSelected }) else {
             
             fatalError("Currency code data manager is corrupted.")
         }

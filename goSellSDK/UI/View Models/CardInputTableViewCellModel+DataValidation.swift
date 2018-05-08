@@ -87,6 +87,16 @@ internal extension CardInputTableViewCellModel {
         if let nonnullValidator = validator {
             
             self.cardDataValidators.append(nonnullValidator)
+            
+            if let data = self.inputData[nonnullValidator.validationType] {
+                
+                nonnullValidator.update(with: data)
+            }
+            
+            if let textFieldValidator = nonnullValidator as? TextInputDataValidation {
+                
+                textFieldValidator.updateInputFieldAttributes()
+            }
         }
     }
     
@@ -107,6 +117,12 @@ internal extension CardInputTableViewCellModel {
 // MARK: - CardValidatorDelegate
 extension CardInputTableViewCellModel: CardValidatorDelegate {
     
+    internal func cardValidator(_ validator: CardValidator, inputDataChanged data: Any?) {
+        
+        self.inputData[validator.validationType] = data
+    }
+    
+    
     internal func validationStateChanged(to valid: Bool, on type: ValidationType) {
         
     }
@@ -123,7 +139,7 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
         
         self.updateDisplayedCollectionViewCellModels()
         
-        if let cvvValidator = (self.cardDataValidators.filter { $0.validationType == .cvv }).first as? CVVValidator {
+        if let cvvValidator = (self.cardDataValidators.first { $0.validationType == .cvv }) as? CVVValidator {
             
             cvvValidator.cardBrand = definedCardBrand.cardBrand
         }

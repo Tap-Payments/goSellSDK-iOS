@@ -58,6 +58,20 @@ internal class CardNumberValidator: CardValidator {
         self.setupTextField()
     }
     
+    internal override func update(with inputData: Any?) {
+        
+        if let text = inputData as? String {
+            
+            self.textField.text = text
+        }
+        else {
+            
+            self.textField.text = nil
+        }
+        
+        self.updateInputFieldAttributes()
+    }
+    
     internal override func validate() {
         
         let recognizedBrand = self.recognizedCardType
@@ -72,12 +86,12 @@ internal class CardNumberValidator: CardValidator {
     // MARK: - Private -
     // MARK: Properties
     
-    private unowned let textField: UITextField
+    private unowned var textField: UITextField
     
     private lazy var textFieldDelegate = CardNumberTextFieldDelegate(validator: self)
     
-    private let availableCardBrands: [CardBrand]
-    private let preferredCardBrands: [CardBrand]
+    private var availableCardBrands: [CardBrand]
+    private var preferredCardBrands: [CardBrand]
     
     private var previousRecognizedType: DefinedCardBrand?
     
@@ -104,6 +118,7 @@ internal class CardNumberValidator: CardValidator {
         let recognizedType = self.recognizedCardType
         defer {
             
+            self.delegate?.cardValidator(self, inputDataChanged: self.cardNumber)
             self.compareNewRecognizedBrandToPrevoiusAndCallDelegate(recognizedType)
         }
         

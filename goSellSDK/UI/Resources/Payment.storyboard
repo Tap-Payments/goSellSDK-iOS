@@ -165,21 +165,21 @@
                                                     </constraints>
                                                 </view>
                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6q-JU-GTv" userLabel="Separator">
-                                                    <rect key="frame" x="66" y="2" width="1" height="62"/>
+                                                    <rect key="frame" x="63" y="2" width="1" height="62"/>
                                                     <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="LrR-ub-NnR"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6H4-rV-chJ">
-                                                    <rect key="frame" x="0.0" y="1" width="66" height="63"/>
+                                                    <rect key="frame" x="0.0" y="1" width="63" height="63"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="63" id="gPp-YP-yS1"/>
-                                                        <constraint firstAttribute="width" constant="66" id="pP5-Zo-FNw"/>
+                                                        <constraint firstAttribute="width" secondItem="6H4-rV-chJ" secondAttribute="height" id="J7V-h5-edu"/>
+                                                        <constraint firstAttribute="height" constant="63" id="skV-dE-8eD"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkw-B1-pmN">
-                                                    <rect key="frame" x="78" y="12.5" width="48" height="40"/>
+                                                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkw-B1-pmN">
+                                                    <rect key="frame" x="75" y="12.5" width="48" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2d-AB-e4N">
                                                             <rect key="frame" x="0.0" y="0.0" width="48" height="16"/>
@@ -227,9 +227,6 @@
                                         <connections>
                                             <outlet property="transactionCurrencyLabel" destination="V2d-AB-e4N" id="hkg-ye-YKb"/>
                                             <outlet property="userSelectedCurrencyLabel" destination="EGI-aZ-2Dp" id="p8W-hh-K2J"/>
-                                            <outletCollection property="onePixelConstraints" destination="rCS-TY-aQN" collectionClass="NSMutableArray" id="IrB-kP-T0Q"/>
-                                            <outletCollection property="onePixelConstraints" destination="xJr-cX-3GV" collectionClass="NSMutableArray" id="575-kI-9pO"/>
-                                            <outletCollection property="onePixelConstraints" destination="LrR-ub-NnR" collectionClass="NSMutableArray" id="ffF-8c-1dU"/>
                                             <segue destination="sHo-Rf-yPg" kind="show" id="ppw-qI-A3A"/>
                                         </connections>
                                     </tableViewCell>
@@ -371,8 +368,6 @@
                                         <connections>
                                             <outlet property="iconImageView" destination="nJf-Xq-wqY" id="tR0-P7-yyQ"/>
                                             <outlet property="titleLabel" destination="3W4-2g-Y8O" id="gaY-Ou-sQz"/>
-                                            <outletCollection property="onePixelConstraints" destination="bTZ-OX-ham" collectionClass="NSMutableArray" id="FUC-oV-q8Q"/>
-                                            <outletCollection property="onePixelConstraints" destination="r0F-cW-Wpm" collectionClass="NSMutableArray" id="bSD-h4-MqL"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardInputTableViewCell" rowHeight="190" id="w9J-dN-6b9" customClass="CardInputTableViewCell" customModule="goSellSDK">
@@ -645,10 +640,6 @@
                                             <outlet property="iconsTableView" destination="C6J-CB-2eI" id="m3p-4a-pi1"/>
                                             <outlet property="nameOnCardTextField" destination="0vU-Qw-UrK" id="KbC-HB-Qjf"/>
                                             <outlet property="saveCardSwitch" destination="NiA-4S-Cdj" id="GdI-Wv-3tv"/>
-                                            <outletCollection property="onePixelConstraints" destination="3wH-DC-BjO" collectionClass="NSMutableArray" id="pxA-1A-NlN"/>
-                                            <outletCollection property="onePixelConstraints" destination="kbf-N1-ZOX" collectionClass="NSMutableArray" id="KAu-K0-K4d"/>
-                                            <outletCollection property="onePixelConstraints" destination="B9J-si-MnJ" collectionClass="NSMutableArray" id="N6A-jZ-hxN"/>
-                                            <outletCollection property="onePixelConstraints" destination="B44-9B-inx" collectionClass="NSMutableArray" id="san-0m-efg"/>
                                             <outletCollection property="controls" destination="iu4-UQ-Hrl" collectionClass="NSMutableArray" id="C2B-WY-liB"/>
                                             <outletCollection property="controls" destination="9Sx-WS-ola" collectionClass="NSMutableArray" id="nuN-F5-xQW"/>
                                             <outletCollection property="controls" destination="MwW-w6-rAQ" collectionClass="NSMutableArray" id="ovd-b7-Ss6"/>

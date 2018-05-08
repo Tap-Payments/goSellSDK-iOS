@@ -41,7 +41,7 @@ internal class PaymentOptionsViewController: UIViewController {
             
             self.paymentOptionsTableView?.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
             self.paymentOptionsTableView?.rowHeight = UITableViewAutomaticDimension
-            self.paymentOptionsTableView?.estimatedRowHeight = UITableViewAutomaticDimension
+            self.paymentOptionsTableView?.estimatedRowHeight = 100.0
         }
     }
     

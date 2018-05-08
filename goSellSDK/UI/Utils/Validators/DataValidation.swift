@@ -5,8 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import protocol TapAdditionsKit.ClassProtocol
+
 /// Data validation protocol.
-internal protocol DataValidation where Self: CardValidator {
+internal protocol DataValidation: ClassProtocol {
     
     var validationType: ValidationType { get }
     

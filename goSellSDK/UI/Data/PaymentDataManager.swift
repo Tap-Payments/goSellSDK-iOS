@@ -16,6 +16,7 @@ internal class PaymentDataManager {
         
         didSet {
             
+            self.removePaymentOptionSelectionIfCellNotVisible()
             NotificationCenter.default.post(name: .paymentOptionsModelsUpdated, object: nil)
         }
     }
@@ -61,12 +62,22 @@ internal class PaymentDataManager {
     
     internal func paymentOptionViewModel(at indexPath: IndexPath) -> CellViewModel {
         
-        guard let model = (self.paymentOptionCellViewModels.filter { $0.indexPath == indexPath }).first else {
+        guard let model = (self.paymentOptionCellViewModels.first { $0.indexPath == indexPath }) else {
             
             fatalError("Data source is corrupted")
         }
         
         return model
+    }
+    
+    internal func cellModels<ModelType>(of type: ModelType.Type) -> [ModelType] {
+        
+        guard let result = (self.allPaymentOptionCellViewModels.filter { $0 is ModelType }) as? [ModelType] else {
+            
+            fatalError("Data source is corrupted")
+        }
+        
+        return result
     }
     
     // MARK: - Private -
@@ -98,7 +109,7 @@ internal class PaymentDataManager {
         
         let currency = nonnullPaymentOptionsResponse.currency
         
-        guard let amountedCurrency = (self.paymentOptionsResponse?.supportedCurrenciesAmounts.filter { $0.currency == currency })?.first else {
+        guard let amountedCurrency = (self.paymentOptionsResponse?.supportedCurrenciesAmounts.first { $0.currency == currency }) else {
             
             fatalError("Transaction currency is not a supported currency?!")
         }
@@ -285,15 +296,5 @@ internal class PaymentDataManager {
         }
         
         fatalError("Data source is corrupted")
-    }
-    
-    private func cellModels<ModelType>(of type: ModelType.Type) -> [ModelType] {
-        
-        guard let result = (self.allPaymentOptionCellViewModels.filter { $0 is ModelType }) as? [ModelType] else {
-            
-            fatalError("Data source is corrupted")
-        }
-        
-        return result
     }
 }

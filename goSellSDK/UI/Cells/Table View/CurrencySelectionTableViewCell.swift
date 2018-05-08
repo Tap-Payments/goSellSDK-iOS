@@ -16,15 +16,6 @@ internal class CurrencySelectionTableViewCell: BaseTableViewCell {
     // MARK: - Private -
     // MARK: Properties
     
-    @IBOutlet private var onePixelConstraints: [NSLayoutConstraint]? {
-        
-        didSet {
-            
-            let value = UIScreen.main.numberOfPointsInOnePixel
-            self.onePixelConstraints?.forEach { $0.constant = value }
-        }
-    }
-    
     @IBOutlet private weak var transactionCurrencyLabel: UILabel?
     @IBOutlet private weak var userSelectedCurrencyLabel: UILabel?
 }
@@ -37,7 +28,4 @@ extension CurrencySelectionTableViewCell: LoadingWithModelCell {
         self.transactionCurrencyLabel?.text = self.model?.displayedTransactionCurrencyText
         self.userSelectedCurrencyLabel?.text = self.model?.displayedUserCurrencyText
     }
-    
-    
-    
 }
