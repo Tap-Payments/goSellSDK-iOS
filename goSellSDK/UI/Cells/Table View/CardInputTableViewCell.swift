@@ -25,28 +25,28 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     // MARK: - Internal -
     // MARK: Methods
     
-//    internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-//        
-//        if self.isSelected {
-//            
-//            return super.hitTest(point, with: event)
-//        }
-//        
-//        self.enableUserInteractionAndUpdateToolbarInAllControls()
-//        
-//        self.model?.manuallySelectCellAndCallTableViewDelegate()
-//        
-//        return super.hitTest(point, with: event)
-//    }
+    internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        
+        if self.isSelected {
+            
+            return super.hitTest(point, with: event)
+        }
+        
+        self.enableUserInteractionAndUpdateToolbarInAllControls()
+        
+        self.model?.manuallySelectCellAndCallTableViewDelegate()
+        
+        return super.hitTest(point, with: event)
+    }
     
     internal override func setSelected(_ selected: Bool, animated: Bool) {
         
-        if selected {
-            
-            self.enableUserInteractionAndUpdateToolbarInAllControls()
-            self.model?.manuallySelectCellAndCallTableViewDelegate()
-        }
-        else {
+//        if selected {
+//
+//            self.enableUserInteractionAndUpdateToolbarInAllControls()
+//            self.model?.manuallySelectCellAndCallTableViewDelegate()
+//        }
+        if !selected {
             
             self.firstResponder?.resignFirstResponder()
             self.controls?.forEach { $0.isUserInteractionEnabled = false }
@@ -66,15 +66,6 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     }
     
     // MARK: Properties
-    
-    @IBOutlet private var onePixelConstraints: [NSLayoutConstraint]? {
-        
-        didSet {
-            
-            let value = UIScreen.main.numberOfPointsInOnePixel
-            self.onePixelConstraints?.forEach { $0.constant = value }
-        }
-    }
     
     @IBOutlet private weak var iconsTableView: UITableView?
     
@@ -113,6 +104,8 @@ extension CardInputTableViewCell: LoadingWithModelCell {
     internal func updateContent(animated: Bool) {
 
         self.updateCollectionViewContent(animated)
+        
+        self.setGlowing(self.model?.isSelected ?? false)
     }
 
     private func updateCollectionViewContent(_ animated: Bool) {

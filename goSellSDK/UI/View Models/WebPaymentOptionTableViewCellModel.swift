@@ -8,7 +8,7 @@
 import class TapNetworkManager.TapImageLoader
 import class UIKit.UIImage.UIImage
 
-internal class WebPaymentOptionTableViewCellModel: CellViewModel {
+internal class WebPaymentOptionTableViewCellModel: PaymentOptionCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -25,11 +25,6 @@ internal class WebPaymentOptionTableViewCellModel: CellViewModel {
             
             self.loadImageAndUpdateCell()
         }
-    }
-    
-    internal override var indexPathOfCellToSelect: IndexPath? {
-        
-        return self.indexPath
     }
     
     // MARK: Methods

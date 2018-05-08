@@ -18,7 +18,13 @@ internal class ExpirationDateValidator: CardValidator {
     // MARK: Properties
     
     /// Expiration date.
-    internal private(set) var expirationDate: ExpirationDate?
+    internal private(set) var expirationDate: ExpirationDate? {
+        
+        didSet {
+            
+            self.delegate?.cardValidator(self, inputDataChanged: self.expirationDate)
+        }
+    }
     
     internal override var isValid: Bool {
         
@@ -52,6 +58,20 @@ internal class ExpirationDateValidator: CardValidator {
         super.init(validationType: .expirationDate)
         
         self.setupEditableView()
+    }
+    
+    internal override func update(with inputData: Any?) {
+        
+        if let date = inputData as? ExpirationDate {
+            
+            self.expirationDate = date
+        }
+        else {
+            
+            self.expirationDate = nil
+        }
+        
+        self.updateTextFieldText(shouldClear: inputData == nil)
     }
     
     // MARK: - Private -

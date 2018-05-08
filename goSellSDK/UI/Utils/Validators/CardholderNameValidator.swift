@@ -31,6 +31,21 @@ internal class CardholderNameValidator: CardValidator {
         self.setupTextField()
     }
     
+    internal override func update(with inputData: Any?) {
+        
+        if let text = inputData as? String {
+            
+            self.textField.text = text
+        }
+        else {
+            
+            self.textField.text = nil
+        }
+        
+        self.updateInputFieldAttributes()
+        self.validate()
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
@@ -62,6 +77,8 @@ internal class CardholderNameValidator: CardValidator {
     @objc private func textFieldEditingChanged(_ sender: Any) {
         
         self.validate()
+        
+        self.delegate?.cardValidator(self, inputDataChanged: self.cardholderName)
     }
 }
 

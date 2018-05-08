@@ -12,9 +12,7 @@ internal extension PaymentDataManager {
     
     internal var currencyCellViewModel: CurrencySelectionTableViewCellViewModel {
         
-        let allViewModels = self.allPaymentOptionCellViewModels
-        let filteredViewModels = allViewModels.filter { $0 is CurrencySelectionTableViewCellViewModel }
-        guard let result = filteredViewModels.first as? CurrencySelectionTableViewCellViewModel else {
+        guard let result = (self.allPaymentOptionCellViewModels.first { $0 is CurrencySelectionTableViewCellViewModel }) as? CurrencySelectionTableViewCellViewModel else {
             
             fatalError("Payment data manager is corrupted.")
         }

@@ -30,34 +30,27 @@ internal class CardValidator {
     internal init(validationType: ValidationType) {
         
         self.validationType = validationType
-        
-        self.checkProtocolConformancesAndPresetup()
     }
     
     internal func validate() {
         
-        let isValid = self.isDataValid
-        if self.wasDataValidOnPreviousValidationCall != isValid {
+        let valid = self.isDataValid
+        if self.wasDataValidOnPreviousValidationCall != valid {
             
-            self.wasDataValidOnPreviousValidationCall = isValid
-            self.delegate?.validationStateChanged(to: isValid, on: self.validationType)
+            self.wasDataValidOnPreviousValidationCall = valid
+            self.delegate?.validationStateChanged(to: valid, on: self.validationType)
         }
+    }
+    
+    internal func update(with inputData: Any?) {
+        
+        fatalError("Should be implemented in subclasses")
     }
     
     // MARK: - Private -
     // MARK: Properties
     
     private var wasDataValidOnPreviousValidationCall = false
-    
-    // MARK: Methods
-    
-    private func checkProtocolConformancesAndPresetup() {
-        
-//        if let textFieldValidator = self as? TextInputDataValidation {
-//
-//            textFieldValidator.updateInputFieldAttributes()
-//        }
-    }
 }
 
 // MARK: - DataValidation

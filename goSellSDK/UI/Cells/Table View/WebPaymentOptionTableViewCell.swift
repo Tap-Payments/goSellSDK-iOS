@@ -25,15 +25,6 @@ internal class WebPaymentOptionTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var titleLabel: UILabel?
     
     @IBOutlet private weak var iconImageView: UIImageView?
-    
-    @IBOutlet private var onePixelConstraints: [NSLayoutConstraint]? {
-        
-        didSet {
-            
-            let value = UIScreen.main.numberOfPointsInOnePixel
-            self.onePixelConstraints?.forEach { $0.constant = value }
-        }
-    }
 }
 
 // MARK: - LoadingWithModelCell
@@ -43,6 +34,8 @@ extension WebPaymentOptionTableViewCell: LoadingWithModelCell {
         
         self.titleLabel?.text = self.model?.title
         self.iconImageView?.image = self.model?.iconImage
+        
+        self.setGlowing(self.model?.isSelected ?? false)
     }
 }
 

@@ -39,6 +39,20 @@ internal class CVVValidator: CardValidator {
         self.setupTextField()
     }
     
+    internal override func update(with inputData: Any?) {
+        
+        if let text = inputData as? String {
+            
+            self.textField.text = text
+        }
+        else {
+            
+            self.textField.text = nil
+        }
+        
+        self.updateInputFieldAttributes()
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -64,20 +78,17 @@ internal class CVVValidator: CardValidator {
         }
         
         self.textField.keyboardAppearance = Theme.current.settings.keyboardStyle
+        
         self.textField.delegate = self.textFieldDelegate
         self.textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
-//        self.setupPlaceholder()
     }
     
     @objc private func textFieldEditingChanged(_ sender: Any) {
         
         self.validate()
+        
+        self.delegate?.cardValidator(self, inputDataChanged: self.cvv)
     }
-    
-//    private func setupPlaceholder() {
-//
-//        self.textField.attributedPlaceholder = NSAttributedString(string: "CVV", attributes: Theme.current.settings.cardInputFieldsSettings.placeholder.asStringAttributes)
-//    }
 }
 
 // MARK: - TextInputDataValidation

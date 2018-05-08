@@ -7,7 +7,7 @@
 
 import struct TapCardValidator.DefinedCardBrand
 
-internal class CardInputTableViewCellModel: CellViewModel {
+internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -42,10 +42,7 @@ internal class CardInputTableViewCellModel: CellViewModel {
     
     internal var definedCardBrand: DefinedCardBrand?
     
-    internal override var indexPathOfCellToSelect: IndexPath? {
-        
-        return self.indexPath
-    }
+    internal lazy var inputData: [ValidationType: Any?] = [:]
     
     // MARK: Methods
     

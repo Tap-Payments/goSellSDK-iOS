@@ -26,33 +26,12 @@ internal class CellViewModel: ViewModel {
         self.indexPath = indexPath
     }
     
-    internal func tableViewDidSelectCell(_ sender: UITableView) {
-        
-        if let glowingCell = sender.cellForRow(at: self.indexPath) as? GlowingCell {
-            
-            glowingCell.startGlowing()
-        }
-    }
+    internal func tableViewDidSelectCell(_ sender: UITableView) { }
     
-    internal func tableViewDidDeselectCell(_ sender: UITableView) {
-        
-        if let glowingCell = sender.cellForRow(at: self.indexPath) as? GlowingCell {
-            
-            glowingCell.stopGlowing()
-        }
-    }
+    internal func tableViewDidDeselectCell(_ sender: UITableView) { }
     
     internal func manuallySelectCellAndCallTableViewDelegate() {
         
-        guard let nonnullTableView = self.tableView else { return }
-        
-        if let alreadySelectedIndexPath = nonnullTableView.indexPathForSelectedRow, alreadySelectedIndexPath != self.indexPath {
-            
-            nonnullTableView.deselectRow(at: alreadySelectedIndexPath, animated: true)
-            nonnullTableView.delegate?.tableView?(nonnullTableView, didDeselectRowAt: alreadySelectedIndexPath)
-        }
-        
-        nonnullTableView.selectRow(at: self.indexPath, animated: true, scrollPosition: .none)
-        nonnullTableView.delegate?.tableView?(nonnullTableView, didSelectRowAt: self.indexPath)
+        self.tableView?.selectRow(at: self.indexPath, animated: true, scrollPosition: .none, callDelegate: true)
     }
 }
