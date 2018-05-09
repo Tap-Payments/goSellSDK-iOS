@@ -1,4 +1,5 @@
 PODS:
+  - CardIODynamic (5.4.1)
   - EditableTextInsetsTextField (1.0):
     - TapAdditionsKit/Foundation/Locale
     - TapAdditionsKit/UIKit/UIView
@@ -64,7 +65,7 @@ PODS:
   - TapAdditionsKit/UIKit/UIWindow (1.0.5):
     - TapAdditionsKit/UIKit/UIWindowLevel
   - TapAdditionsKit/UIKit/UIWindowLevel (1.0.5)
-  - TapApplication (1.0.2):
+  - TapApplication (1.0.3):
     - TapAdditionsKit/SwiftStandartLibrary/String
     - TapAdditionsKit/Tap/ClassProtocol
     - TapAdditionsKit/UIKit/UIViewController
@@ -107,6 +108,7 @@ PODS:
     - TapNibView
 
 DEPENDENCIES:
+  - CardIODynamic
   - EditableTextInsetsTextField
   - TapAdditionsKit/Foundation/Bundle
   - TapAdditionsKit/Foundation/Locale
@@ -130,6 +132,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - CardIODynamic
     - EditableTextInsetsTextField
     - SDWebImage
     - TapAdditionsKit
@@ -144,10 +147,11 @@ SPEC REPOS:
     - TapVisualEffectView
 
 SPEC CHECKSUMS:
+  CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextField: be73bcc31de6a83d457851deeb807c46b1cbb16e
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   TapAdditionsKit: 3960b5693ebb5b3732734f4b6b1e8c2ecd54f7f8
-  TapApplication: b80d643d3b0ae89a79a5edc417ab462ed2da0fd6
+  TapApplication: 3ba1ef06b929427582e6b750c1060c66b973ce22
   TapCardValidator: 74a8a1da11846e069e324a5fb83aa8b3f0b84de5
   TapEditableView: 37adeacb5a91e9d230856a39c6f2441d828f7611
   TapGLKit: 5dc9e08f3a0789b9b00c07052a57ee02abd96190
@@ -157,6 +161,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: dfc8a6fc03cbb7313cad63d293c589d02566ca37
   TapVisualEffectView: d69ad714fef55a5c728069de51a3aa16607db164
 
-PODFILE CHECKSUM: 9927c2c4af2076ff6e24474d1c9bee2ca8ffe742
+PODFILE CHECKSUM: 8e80814a4aaa68652dd9810ceeedd2d23b5b12a1
 
 COCOAPODS: 1.5.0

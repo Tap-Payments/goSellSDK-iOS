@@ -53,8 +53,14 @@ internal class CurrencySelectionViewController: BaseViewController {
     // MARK: - Private -
     // MARK: Properties
     
-    @IBOutlet private weak var headerIconImageView: UIImageView?
-    @IBOutlet private weak var headerTitleLabel: UILabel?
+    @IBOutlet private weak var navigationView: TapNavigationView? {
+        
+        didSet {
+            
+            self.navigationView?.delegate = self
+        }
+    }
+    
     @IBOutlet private weak var tableView: UITableView? {
         
         didSet {
@@ -66,16 +72,6 @@ internal class CurrencySelectionViewController: BaseViewController {
     private var dataManager: CurrencyCodesDataManager?
     
     // MARK: Methods
-    
-    @IBAction private func backButtonTouchUpInside(_ sender: Any) {
-        
-        self.notifyDelegateIfCurrencyChanged()
-        
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.navigationController?.popViewController(animated: true)
-        }
-    }
     
     private func selectCurrentSelectedCell() {
         
@@ -131,5 +127,19 @@ extension CurrencySelectionViewController: UITableViewDelegate {
         
         let model = self.model(at: indexPath)
         model.tableViewDidDeselectCell(tableView)
+    }
+}
+
+// MARK: - TapNavigationViewDelegate
+extension CurrencySelectionViewController: TapNavigationViewDelegate {
+    
+    internal func navigationViewBackButtonClicked(_ navigationView: TapNavigationView) {
+        
+        self.notifyDelegateIfCurrencyChanged()
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 }

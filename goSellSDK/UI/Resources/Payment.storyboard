@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -120,6 +119,7 @@
                     <navigationItem key="navigationItem" id="aG3-A1-a3g"/>
                     <connections>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="VUE-MO-wtp" id="oST-dU-gwm"/>
+                        <segue destination="0Dn-DZ-WvX" kind="show" identifier="CardScannerViewControllerSegue" id="lSQ-XR-yVt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zzc-mA-vpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -432,8 +432,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r43-l7-vVt" userLabel="Card Number Container">
                                                     <rect key="frame" x="72" y="0.0" width="299" height="44"/>
                                                     <subviews>
-                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Sx-WS-ola" customClass="EditableTextInsetsTextField" customModule="EditableTextInsetsTextField">
-                                                            <rect key="frame" x="0.0" y="0.0" width="239" height="44"/>
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" adjustsFontSizeToFit="NO" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9Sx-WS-ola" customClass="EditableTextInsetsTextField" customModule="EditableTextInsetsTextField">
+                                                            <rect key="frame" x="0.0" y="0.0" width="289" height="44"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="cc-number"/>
@@ -442,11 +442,14 @@
                                                             </connections>
                                                         </textField>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iu4-UQ-Hrl">
-                                                            <rect key="frame" x="249" y="0.0" width="44" height="44"/>
+                                                            <rect key="frame" x="299" y="0.0" width="44" height="44"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="iu4-UQ-Hrl" secondAttribute="height" id="m9c-3X-9aZ"/>
                                                             </constraints>
                                                             <state key="normal" title="Scan"/>
+                                                            <connections>
+                                                                <action selector="cardScannerButtonTouchUpInside:" destination="w9J-dN-6b9" eventType="touchUpInside" id="NSO-hD-f0w"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -456,10 +459,16 @@
                                                         <constraint firstAttribute="bottom" secondItem="9Sx-WS-ola" secondAttribute="bottom" id="Juy-Ew-SxU"/>
                                                         <constraint firstItem="iu4-UQ-Hrl" firstAttribute="top" secondItem="r43-l7-vVt" secondAttribute="top" id="KR6-bc-6tn"/>
                                                         <constraint firstItem="9Sx-WS-ola" firstAttribute="top" secondItem="r43-l7-vVt" secondAttribute="top" id="MAu-Z6-F5n"/>
+                                                        <constraint firstAttribute="trailing" secondItem="iu4-UQ-Hrl" secondAttribute="leading" id="Uv4-nA-Wir"/>
                                                         <constraint firstAttribute="height" constant="44" id="f1i-cx-1MS"/>
                                                         <constraint firstAttribute="trailing" secondItem="iu4-UQ-Hrl" secondAttribute="trailing" constant="6" id="mXp-DU-Mun"/>
                                                         <constraint firstAttribute="bottom" secondItem="iu4-UQ-Hrl" secondAttribute="bottom" id="upZ-WY-PA2"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="mXp-DU-Mun"/>
+                                                        </mask>
+                                                    </variation>
                                                 </view>
                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rjs-lS-KxU" userLabel="Separator">
                                                     <rect key="frame" x="72" y="44" width="299" height="1"/>
@@ -469,16 +478,16 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aVv-8N-zEN" userLabel="Expiration Date Container">
-                                                    <rect key="frame" x="72" y="45" width="119.5" height="44"/>
+                                                    <rect key="frame" x="72" y="45" width="144.5" height="44"/>
                                                     <subviews>
                                                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MM/YY" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwd-i2-Em7" customClass="EditableTextInsetsTextField" customModule="EditableTextInsetsTextField">
-                                                            <rect key="frame" x="0.0" y="0.0" width="119.5" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="144.5" height="44"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                         </textField>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8oj-LN-ysY" customClass="TapEditableView" customModule="TapEditableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="119.5" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="144.5" height="44"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <connections>
                                                                 <outlet property="nextField" destination="MwW-w6-rAQ" id="Cvw-7L-uyc"/>
@@ -499,17 +508,17 @@
                                                     </constraints>
                                                 </view>
                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cA-Nv-YcA" userLabel="Separator">
-                                                    <rect key="frame" x="192" y="47" width="1" height="42"/>
+                                                    <rect key="frame" x="217" y="47" width="1" height="42"/>
                                                     <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="kbf-N1-ZOX"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1L5-zl-8qQ" userLabel="CVV Container">
-                                                    <rect key="frame" x="193" y="45" width="178" height="44"/>
+                                                    <rect key="frame" x="218" y="45" width="153" height="44"/>
                                                     <subviews>
-                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MwW-w6-rAQ" customClass="EditableTextInsetsTextField" customModule="EditableTextInsetsTextField">
-                                                            <rect key="frame" x="0.0" y="0.0" width="178" height="44"/>
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MwW-w6-rAQ" customClass="EditableTextInsetsTextField" customModule="EditableTextInsetsTextField">
+                                                            <rect key="frame" x="0.0" y="0.0" width="153" height="44"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
@@ -537,7 +546,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hD-qh-RSb" userLabel="Cardholder Name Container">
                                                     <rect key="frame" x="72" y="90" width="299" height="44"/>
                                                     <subviews>
-                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name on Card" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0vU-Qw-UrK" customClass="EditableTextInsetsTextField" customModule="EditableTextInsetsTextField">
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name on Card" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0vU-Qw-UrK" customClass="EditableTextInsetsTextField" customModule="EditableTextInsetsTextField">
                                                             <rect key="frame" x="0.0" y="0.0" width="299" height="44"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -647,6 +656,8 @@
                                             <outletCollection property="controls" destination="0vU-Qw-UrK" collectionClass="NSMutableArray" id="xkw-8g-iH4"/>
                                             <outletCollection property="controls" destination="NiA-4S-Cdj" collectionClass="NSMutableArray" id="Qx7-o2-7pW"/>
                                             <outletCollection property="controls" destination="C6J-CB-2eI" collectionClass="NSMutableArray" id="W0J-2i-p0k"/>
+                                            <outletCollection property="constraintsToDisableWhenCardScanningAvailable" destination="Uv4-nA-Wir" collectionClass="NSMutableArray" id="kM8-gS-1Sd"/>
+                                            <outletCollection property="constraintsToEnableWhenCardScanningAvailable" destination="mXp-DU-Mun" collectionClass="NSMutableArray" id="pZh-Zq-HPx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -674,7 +685,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LzQ-2a-D6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="-38"/>
+            <point key="canvasLocation" x="1402" y="629"/>
         </scene>
         <!--Currency Selection View Controller-->
         <scene sceneID="mvA-db-B24">
@@ -688,55 +699,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izm-39-sh1" userLabel="Header Container View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izm-39-sh1" customClass="TapNavigationView" customModule="goSellSDK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCV-vY-sOA">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="66"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYf-Yw-1AY">
-                                                <rect key="frame" x="45" y="13" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="nYf-Yw-1AY" secondAttribute="height" id="5Zs-K1-s8U"/>
-                                                    <constraint firstAttribute="height" constant="40" id="uAs-HX-sd9"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4U5-47-Xbw">
-                                                <rect key="frame" x="95" y="21" width="46.5" height="23"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTT-z8-Wi4">
-                                                <rect key="frame" x="0.0" y="0.0" width="45" height="66"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="45" id="WRE-Qr-FBX"/>
-                                                </constraints>
-                                                <state key="normal" title="Back"/>
-                                                <connections>
-                                                    <action selector="backButtonTouchUpInside:" destination="sHo-Rf-yPg" eventType="touchUpInside" id="gjh-ij-0wP"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="66" id="MIr-JG-qxe"/>
-                                            <constraint firstItem="NTT-z8-Wi4" firstAttribute="top" secondItem="wCV-vY-sOA" secondAttribute="top" id="OcC-xt-mkZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="NTT-z8-Wi4" secondAttribute="bottom" id="U1r-WP-s6Y"/>
-                                            <constraint firstItem="4U5-47-Xbw" firstAttribute="centerY" secondItem="wCV-vY-sOA" secondAttribute="centerY" id="eTh-AR-RPn"/>
-                                            <constraint firstItem="nYf-Yw-1AY" firstAttribute="centerY" secondItem="wCV-vY-sOA" secondAttribute="centerY" id="ezi-cq-o3A"/>
-                                            <constraint firstItem="nYf-Yw-1AY" firstAttribute="leading" secondItem="NTT-z8-Wi4" secondAttribute="trailing" id="gPc-Gc-3gR"/>
-                                            <constraint firstItem="4U5-47-Xbw" firstAttribute="leading" secondItem="nYf-Yw-1AY" secondAttribute="trailing" constant="10" id="gZ0-tA-6uU"/>
-                                            <constraint firstItem="NTT-z8-Wi4" firstAttribute="leading" secondItem="wCV-vY-sOA" secondAttribute="leading" id="i7y-OW-IR6"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="wCV-vY-sOA" secondAttribute="bottom" id="3pE-ni-K99"/>
-                                    <constraint firstAttribute="trailing" secondItem="wCV-vY-sOA" secondAttribute="trailing" id="5oJ-wH-DJN"/>
-                                    <constraint firstItem="wCV-vY-sOA" firstAttribute="leading" secondItem="Izm-39-sh1" secondAttribute="leading" id="gkb-Cy-Agf"/>
-                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ley-Dk-vza">
                                 <rect key="frame" x="0.0" y="86" width="375" height="495"/>
@@ -848,14 +813,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="headerIconImageView" destination="nYf-Yw-1AY" id="NTL-uQ-gRw"/>
-                        <outlet property="headerTitleLabel" destination="4U5-47-Xbw" id="xvY-BG-POj"/>
+                        <outlet property="navigationView" destination="Izm-39-sh1" id="xPC-5K-Stb"/>
                         <outlet property="tableView" destination="Ley-Dk-vza" id="v3G-hm-0tu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPH-eh-Avp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2697" y="-38"/>
+            <point key="canvasLocation" x="2718" y="610"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4vL-di-S09">
@@ -871,6 +835,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9rM-Df-PiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="199" y="-118"/>
+        </scene>
+        <!--Card Scanner View Controller-->
+        <scene sceneID="GwU-yV-lsw">
+            <objects>
+                <viewController id="0Dn-DZ-WvX" customClass="CardScannerViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3cP-JY-oW1"/>
+                        <viewControllerLayoutGuide type="bottom" id="5fc-OZ-iIR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vrW-ef-f5Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tex-ci-kaS" customClass="TapNavigationView" customModule="goSellSDK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-fy-Zeg" customClass="CardIOView">
+                                <rect key="frame" x="0.0" y="86" width="375" height="581"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iam-fy-Zeg" firstAttribute="top" secondItem="tex-ci-kaS" secondAttribute="bottom" id="2h0-Aa-Zb7"/>
+                            <constraint firstAttribute="trailing" secondItem="tex-ci-kaS" secondAttribute="trailing" id="ExD-NK-Pb7"/>
+                            <constraint firstItem="iam-fy-Zeg" firstAttribute="leading" secondItem="vrW-ef-f5Z" secondAttribute="leading" id="LO8-FN-kP9"/>
+                            <constraint firstAttribute="trailing" secondItem="iam-fy-Zeg" secondAttribute="trailing" id="OJU-rK-JcR"/>
+                            <constraint firstItem="5fc-OZ-iIR" firstAttribute="top" secondItem="iam-fy-Zeg" secondAttribute="bottom" id="WMF-b1-jFA"/>
+                            <constraint firstItem="tex-ci-kaS" firstAttribute="top" secondItem="vrW-ef-f5Z" secondAttribute="top" id="f8z-MI-DaH"/>
+                            <constraint firstItem="tex-ci-kaS" firstAttribute="bottom" secondItem="3cP-JY-oW1" secondAttribute="bottom" constant="66" id="fTb-7w-saQ"/>
+                            <constraint firstItem="tex-ci-kaS" firstAttribute="leading" secondItem="vrW-ef-f5Z" secondAttribute="leading" id="w6H-tW-bod"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navigationView" destination="tex-ci-kaS" id="Lb4-Io-jp2"/>
+                        <outlet property="scannerView" destination="iam-fy-Zeg" id="uYW-F9-mpp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xK0-Tf-Lrt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2052" y="-879"/>
         </scene>
         <!--Web Payment View Controller-->
         <scene sceneID="v34-Ns-eGR">
@@ -898,7 +904,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDK-tN-NjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1102" y="744"/>
+            <point key="canvasLocation" x="1791" y="1322"/>
         </scene>
         <!--Merchant Information Header View Controller-->
         <scene sceneID="YAF-wo-AZg">
@@ -975,7 +981,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7T3-Cq-jxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="-380"/>
+            <point key="canvasLocation" x="791" y="406"/>
         </scene>
     </scenes>
 </document>

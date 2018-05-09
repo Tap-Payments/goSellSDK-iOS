@@ -72,6 +72,8 @@ internal class CardNumberValidator: CardValidator {
             self.textField.text = nil
         }
         
+        self.compareNewRecognizedBrandToPrevoiusAndCallDelegate(self.recognizedCardType)
+        
         self.updateInputFieldAttributes()
     }
     

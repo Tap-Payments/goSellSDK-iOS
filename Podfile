@@ -5,6 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 def shared_pods
     
+    pod 'CardIODynamic'
     pod 'EditableTextInsetsTextField'
     pod 'TapAdditionsKit/Foundation/Bundle'
     pod 'TapAdditionsKit/Foundation/Locale'
