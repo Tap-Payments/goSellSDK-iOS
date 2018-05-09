@@ -68,6 +68,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     private struct Constants {
         
         fileprivate static let cvvFieldInsets = UIEdgeInsets(top: 0.0, left: 26.0, bottom: 0.0, right: 0.0)
+        fileprivate static let scanButtonAppearanceAnimationDuration: TimeInterval = 0.25
         
         @available(*, unavailable) private init() {}
     }
@@ -78,6 +79,9 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     
     @IBOutlet private weak var cardNumberTextField: EditableTextInsetsTextField?
     @IBOutlet private weak var cardScannerButton: UIButton?
+    
+    @IBOutlet private var constraintsToDisableWhenCardScanningAvailable: [NSLayoutConstraint]?
+    @IBOutlet private var constraintsToEnableWhenCardScanningAvailable: [NSLayoutConstraint]?
     
     @IBOutlet private weak var expirationDateTextField: EditableTextInsetsTextField?
     @IBOutlet private weak var expirationDateEditableView: TapEditableView?
@@ -98,10 +102,39 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     
     // MARK: Methods
     
+    @IBAction private func cardScannerButtonTouchUpInside(_ sender: Any) {
+        
+        self.firstResponder?.resignFirstResponder()
+        self.model?.cellCardScannerButtonClicked()
+    }
+    
     private func enableUserInteractionAndUpdateToolbarInAllControls() {
         
         self.controls?.forEach { $0.isUserInteractionEnabled = true }
         self.controls?.forEach { $0.updateToolbarButtonsState() }
+    }
+    
+    private func updateCardScannerButtonVisibility(animated: Bool) {
+        
+        guard
+            
+            let nonnullModel = self.model,
+            let nonnullConstraintsToDeactivateIfScanningEnabled = self.constraintsToDisableWhenCardScanningAvailable,
+            let nonnullConstraintsToActivateIfScanningEnabled = self.constraintsToEnableWhenCardScanningAvailable
+        
+        else { return }
+        
+        let scanButtonAlphaAnimation: TypeAlias.ArgumentlessClosure = {
+            
+            self.cardScannerButton?.alpha = nonnullModel.scanButtonVisible ? 1.0 : 0.0
+        }
+        
+        NSLayoutConstraint.reactivate(inCaseIf: nonnullModel.scanButtonVisible,
+                                      constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfScanningEnabled,
+                                      constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfScanningEnabled,
+                                      viewToLayout: self,
+                                      animationDuration: animated ? Constants.scanButtonAppearanceAnimationDuration : 0.0,
+                                      additionalAnimations: scanButtonAlphaAnimation)
     }
 }
 
@@ -112,6 +145,7 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 
         self.updateCollectionViewContent(animated)
         
+        self.updateCardScannerButtonVisibility(animated: animated)
         self.setGlowing(self.model?.isSelected ?? false)
     }
 

@@ -16,8 +16,6 @@ import protocol goSellSDK.PaymentDataSource
 import class goSellSDK.PaymentItem
 import class UIKit.UIViewController.UIViewController
 
-import Foundation
-
 internal class ExampleViewController: UIViewController {
     
     // MARK: - Private -

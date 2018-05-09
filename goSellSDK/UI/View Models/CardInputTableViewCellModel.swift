@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class CardIO.CardIOUtilities.CardIOUtilities
+import class TapApplication.TapApplicationPlistInfo
 import struct TapCardValidator.DefinedCardBrand
 
 internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
@@ -21,6 +23,8 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
             self.updatePaymentOptions()
         }
     }
+    
+    internal let scanButtonVisible = CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
     
     internal var tableViewCellModels: [ImageTableViewCellModel]
     internal var displayedTableViewCellModels: [ImageTableViewCellModel] {
@@ -55,6 +59,11 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         super.init(indexPath: indexPath)
         
         self.paymentOptions = paymentOptions
+        
+        if self.scanButtonVisible {
+            
+            CardIOUtilities.preload()
+        }
     }
     
     internal func connectionFinished() {

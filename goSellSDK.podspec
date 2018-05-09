@@ -15,6 +15,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.source_files = 'goSellSDK/**/*.{swift}'
     goSellSDK.ios.resource_bundle = { 'goSellSDKResources' => 'goSellSDK/Resources/*.{xcassets,storyboard,xib}' }
     
+    goSellSDK.dependency 'CardIODynamic'
     goSellSDK.dependency 'EditableTextInsetsTextField'
     goSellSDK.dependency 'TapAdditionsKit/Foundation/Bundle'
     goSellSDK.dependency 'TapAdditionsKit/Foundation/Locale'

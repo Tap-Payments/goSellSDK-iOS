@@ -55,23 +55,11 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
             let nonnullConstraintsToEnableWhenSelected = self.constraintsToEnableWhenSelected
             
         else { return }
-        
-        var constraintsToDisable = nonnullModel.isSelected ? nonnullConstraintsToDisableWhenSelected : nonnullConstraintsToEnableWhenSelected
-        var constraintsToEnable = nonnullModel.isSelected ? nonnullConstraintsToEnableWhenSelected : nonnullConstraintsToDisableWhenSelected
-        
-        constraintsToDisable = constraintsToDisable.filter { $0.isActive }
-        constraintsToEnable = constraintsToEnable.filter { !$0.isActive }
-        
-        guard constraintsToDisable.count + constraintsToEnable.count > 0 else { return }
-        
-        let animations: TypeAlias.ArgumentlessClosure = {
-            
-            NSLayoutConstraint.deactivate(constraintsToDisable)
-            NSLayoutConstraint.activate(constraintsToEnable)
-            
-            self.layout()
-        }
-        
-        UIView.animate(withDuration: animated ? Constants.selectionAnimationDuration : 0.0, animations: animations)
+    
+        NSLayoutConstraint.reactivate(inCaseIf: nonnullModel.isSelected,
+                                      constraintsToDisableOnSuccess: nonnullConstraintsToDisableWhenSelected,
+                                      constraintsToEnableOnSuccess: nonnullConstraintsToEnableWhenSelected,
+                                      viewToLayout: self,
+                                      animationDuration: animated ? Constants.selectionAnimationDuration : 0.0)
     }
 }

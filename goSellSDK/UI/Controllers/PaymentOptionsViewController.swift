@@ -16,7 +16,7 @@ internal class PaymentOptionsViewController: UIViewController {
     internal override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.subscribePaymentOptionsUpdateNotification()
+        self.subscribeNotifications()
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -31,7 +31,7 @@ internal class PaymentOptionsViewController: UIViewController {
     
     deinit {
         
-        self.unsubscribePaymentOptionsUpdateNotification()
+        self.unsubscribeNotifications()
     }
     
     // MARK: - Private -
@@ -51,12 +51,12 @@ internal class PaymentOptionsViewController: UIViewController {
     
     // MARK: Methods
     
-    private func subscribePaymentOptionsUpdateNotification() {
+    private func subscribeNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(paymentOptionsUpdated(_:)), name: .paymentOptionsModelsUpdated, object: nil)
     }
     
-    private func unsubscribePaymentOptionsUpdateNotification() {
+    private func unsubscribeNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: .paymentOptionsModelsUpdated, object: nil)
     }

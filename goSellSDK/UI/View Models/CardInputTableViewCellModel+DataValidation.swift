@@ -90,15 +90,15 @@ internal extension CardInputTableViewCellModel {
             
             self.cardDataValidators.append(nonnullValidator)
             
-            if let data = self.inputData[nonnullValidator.validationType] {
-                
-                nonnullValidator.update(with: data)
-            }
+            self.updateValidatorWithInputData(nonnullValidator)
+        }
+    }
+    
+    internal func updateValidatorWithInputData(of type: ValidationType) {
+        
+        if let validator = self.validator(of: type) {
             
-            if let textFieldValidator = nonnullValidator as? TextInputDataValidation {
-                
-                textFieldValidator.updateInputFieldAttributes()
-            }
+            self.updateValidatorWithInputData(validator)
         }
     }
     
@@ -113,6 +113,26 @@ internal extension CardInputTableViewCellModel {
     private var preferredCardBrands: [CardBrand] {
         
         return self.paymentOptions.map { $0.name }
+    }
+    
+    // MARK: Methods
+    
+    private func updateValidatorWithInputData(_ validator: CardValidator) {
+        
+        if let data = self.inputData[validator.validationType] {
+            
+            validator.update(with: data)
+        }
+        
+        if let textFieldValidator = validator as? TextInputDataValidation {
+            
+            textFieldValidator.updateInputFieldAttributes()
+        }
+    }
+    
+    private func validator(of type: ValidationType) -> CardValidator? {
+        
+        return self.cardDataValidators.first { $0.validationType == type }
     }
 }
 

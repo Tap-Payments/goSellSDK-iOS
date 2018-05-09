@@ -164,6 +164,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks.sh",
+				"${PODS_ROOT}/CardIODynamic/Carthage/Build/iOS/CardIO.framework",
 				"${BUILT_PRODUCTS_DIR}/EditableTextInsetsTextField/EditableTextInsetsTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/TapAdditionsKit/TapAdditionsKit.framework",
@@ -180,6 +181,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CardIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EditableTextInsetsTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapAdditionsKit.framework",
