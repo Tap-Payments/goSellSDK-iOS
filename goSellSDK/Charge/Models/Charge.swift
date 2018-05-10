@@ -42,7 +42,7 @@ import struct Foundation.NSURL.URL
     /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public private(set) var currency: String?
 
-    /// Customer identifier.
+    /// ID of the customer this charge is for if one exists.
     public private(set) var customerIdentifier: String?
     
     /// An arbitrary string attached to the object. Often useful for displaying to users.
@@ -113,6 +113,7 @@ import struct Foundation.NSURL.URL
             "captured:             \(self.isCaptured)",
             "creation date:        \(self.creationDate?.description ?? "nil")",
             "currency:             \(self.currency?.description ?? "nil")",
+            "customer:             \(self.customerIdentifier?.description ?? "nil")",
             "description:          \(self.descriptionText?.description ?? "nil")",
             "failure code:         \(self.failureCode?.description ?? "nil")",
             "failure message:      \(self.failureMessage?.description ?? "nil")",
@@ -143,6 +144,7 @@ import struct Foundation.NSURL.URL
         case isCaptured = "captured"
         case creationDate = "created"
         case currency = "currency"
+        case customerIdentifier = "customer"
         case descriptionText = "description"
         case failureCode = "failure_code"
         case failureMessage = "failure_message"
@@ -203,10 +205,10 @@ import struct Foundation.NSURL.URL
     
     private enum CodingKeys: String, CodingKey {
         
-        case status = "status"
-        case url = "url"
-        case returnURL = "return_url"
-        case postURL = "post_url"
+        case status     = "status"
+        case url        = "url"
+        case returnURL  = "return_url"
+        case postURL    = "post_url"
     }
 }
 
@@ -265,10 +267,10 @@ import struct Foundation.NSURL.URL
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case object = "object"
-        case expirationMonth = "exp_month"
-        case expirationYear = "exp_year"
-        case lastFourDigits = "last4"
+        case identifier         = "id"
+        case object             = "object"
+        case expirationMonth    = "exp_month"
+        case expirationYear     = "exp_year"
+        case lastFourDigits     = "last4"
     }
 }

@@ -62,14 +62,14 @@ import class Foundation.NSObject.NSObject
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case object
-        case card
-        case type
-        case creationDate = "created"
-        case clientIP = "client_ip"
-        case isLiveMode = "livemode"
-        case isUsed = "used"
+        case identifier     = "id"
+        case object         = "object"
+        case card           = "card"
+        case type           = "type"
+        case creationDate   = "created"
+        case clientIP       = "client_ip"
+        case isLiveMode     = "livemode"
+        case isUsed         = "used"
     }
 }
 
@@ -152,19 +152,19 @@ import class Foundation.NSObject.NSObject
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case object
-        case lastFourDigits = "last4"
-        case expirationMonth = "exp_month"
-        case expirationYear = "exp_year"
-        case brand
-        case cardType = "funding"
-        case customer
-        case fingerprint
-        case addressLine1 = "address_line1"
-        case addressLine2 = "address_line2"
-        case addressCountry = "address_country"
-        case addressCity = "address_city"
-        case addressZip = "address_zip"
+        case identifier         = "id"
+        case object             = "object"
+        case lastFourDigits     = "last4"
+        case expirationMonth    = "exp_month"
+        case expirationYear     = "exp_year"
+        case brand              = "brand"
+        case cardType           = "funding"
+        case customer           = "customer"
+        case fingerprint        = "fingerprint"
+        case addressLine1       = "address_line1"
+        case addressLine2       = "address_line2"
+        case addressCountry     = "address_country"
+        case addressCity        = "address_city"
+        case addressZip         = "address_zip"
     }
 }

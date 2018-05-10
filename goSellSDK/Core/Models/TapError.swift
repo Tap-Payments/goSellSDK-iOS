@@ -241,7 +241,7 @@ extension TAPSDKErrorType: CustomStringConvertible {
     
     private enum CodingKeys: String, CodingKey {
         
-        case name = "fieldname"
-        case message
+        case name       = "fieldname"
+        case message    = "message"
     }
 }

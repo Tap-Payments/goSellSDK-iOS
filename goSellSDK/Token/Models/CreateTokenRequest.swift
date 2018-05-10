@@ -33,7 +33,7 @@ import class Foundation.NSObject.NSObject
     
     private enum CodingKeys: String, CodingKey {
         
-        case card
+        case card = "card"
     }
 }
 
@@ -202,13 +202,13 @@ import class Foundation.NSObject.NSObject
     
     private enum CodingKeys: String, CodingKey {
         
-        case secureData = "crypted_data"
-        case addressCity = "address_city"
+        case secureData     = "crypted_data"
+        case addressCity    = "address_city"
         case addressCountry = "address_country"
-        case addressLine1 = "address_line1"
-        case addressLine2 = "address_line2"
-        case addressState = "address_state"
-        case addressZip = "address_zip"
+        case addressLine1   = "address_line1"
+        case addressLine2   = "address_line2"
+        case addressState   = "address_state"
+        case addressZip     = "address_zip"
     }
     
     private struct CardSecureData: SecureEncodable {
@@ -230,11 +230,11 @@ import class Foundation.NSObject.NSObject
         
         private enum CodingKeys: String, CodingKey {
             
-            case number
-            case expirationMonth = "exp_month"
-            case expirationYear = "exp_year"
-            case cvc
-            case cardholderName = "name"
+            case number             = "number"
+            case expirationMonth    = "exp_month"
+            case expirationYear     = "exp_year"
+            case cvc                = "cvc"
+            case cardholderName     = "name"
         }
     }
     

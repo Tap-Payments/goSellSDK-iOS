@@ -23,6 +23,14 @@ import struct Foundation.NSURL.URL
     /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public var currency: String
     
+    /// Whether or not to immediately capture the charge.
+    /// When false, the charge issues an authorization (or pre-authorization), and will need to be captured later.
+    /// Uncaptured charges expire in 7 days.
+    /// For more information, see authorizing charges and settling later. optional, default is true
+    public var capture: Bool
+    
+    public var require3DSecure: Bool
+    
     /// Information related to the redirect.
     public var redirect: CreateChargeRedirect
     
@@ -31,6 +39,9 @@ import struct Foundation.NSURL.URL
     /// if source.id = "src_card" then Credit Card payment page link will be provided.
     /// if source.id = "Card Token ID or Card ID" then Credit Card payment processing page link will be provided.
     public var source: CreateChargeSource?
+    
+    /// The ID of an existing customer that will be charged in this request. (optional, either customer or source is required).
+    public var customerIdentifier: String?
     
     /// An arbitrary string to be displayed on your customer's credit card statement.
     /// This may be up to 22 characters.
@@ -78,7 +89,15 @@ import struct Foundation.NSURL.URL
         self.init(amount: amount,
                   currency: currency,
                   redirect: redirect,
-                  source: nil)
+                  capture: true,
+                  require3DSecure: true,
+                  source: nil,
+                  customerIdentifier: nil,
+                  statementDescriptor: nil,
+                  descriptionText: nil,
+                  metadata: nil,
+                  receiptSMS: nil,
+                  receiptEmail: nil)
     }
     
     /// Initializes charge request with a source object.
@@ -93,7 +112,33 @@ import struct Foundation.NSURL.URL
         self.init(amount: amount,
                   currency: currency,
                   redirect: redirect,
+                  capture: true,
+                  require3DSecure: true,
                   source: source,
+                  customerIdentifier: nil,
+                  statementDescriptor: nil,
+                  descriptionText: nil,
+                  metadata: nil,
+                  receiptSMS: nil,
+                  receiptEmail: nil)
+    }
+    
+    /// Initializes charge request with a source object.
+    ///
+    /// - Parameters:
+    ///   - amount: Amount.
+    ///   - currency: Currency.
+    ///   - redirect: Redirect object.
+    ///   - customerIdentifier: Customer identifier.
+    public convenience init(amount: Decimal, currency: String, redirect: CreateChargeRedirect, customerIdentifier: String?) {
+        
+        self.init(amount: amount,
+                  currency: currency,
+                  redirect: redirect,
+                  capture: true,
+                  require3DSecure: true,
+                  source: nil,
+                  customerIdentifier: customerIdentifier,
                   statementDescriptor: nil,
                   descriptionText: nil,
                   metadata: nil,
@@ -107,19 +152,36 @@ import struct Foundation.NSURL.URL
     ///   - amount: Amount.
     ///   - currency: Currency.
     ///   - redirect: Redirect object.
+    ///   - capture: Defines if the charge should be captured.
+    ///   - require3DSecure: Defines if 3DS is required.
     ///   - source: Source object.
+    ///   - customerIdentifier: Customer identifier.
     ///   - statementDescriptor: Statement descriptor.
     ///   - descriptionText: Description.
     ///   - metadata: Metadata.
     ///   - receiptSMS: Receipt SMS.
     ///   - receiptEmail: Receipt email.
-    public init(amount: Decimal, currency: String, redirect: CreateChargeRedirect, source: CreateChargeSource? = nil, statementDescriptor: String? = nil, descriptionText: String? = nil, metadata: [String: String]? = nil, receiptSMS: String?, receiptEmail: String?) {
+    public init(amount: Decimal,
+                currency: String,
+                redirect: CreateChargeRedirect,
+                capture: Bool = true,
+                require3DSecure: Bool = true,
+                source: CreateChargeSource? = nil,
+                customerIdentifier: String? = nil,
+                statementDescriptor: String? = nil,
+                descriptionText: String? = nil,
+                metadata: [String: String]? = nil,
+                receiptSMS: String?,
+                receiptEmail: String?) {
         
         self.amount = amount
         self.currency = currency
-        self.source = source
-        self.statementDescriptor = statementDescriptor
         self.redirect = redirect
+        self.capture = capture
+        self.require3DSecure = require3DSecure
+        self.source = source
+        self.customerIdentifier = customerIdentifier
+        self.statementDescriptor = statementDescriptor
         self.descriptionText = descriptionText
         self.metadata = metadata
         self.receiptSMS = receiptSMS
@@ -132,15 +194,18 @@ import struct Foundation.NSURL.URL
     
     private enum CodingKeys: String, CodingKey {
         
-        case amount
-        case currency
-        case source
-        case statementDescriptor = "statement_descriptor"
-        case redirect
-        case descriptionText = "description"
-        case metadata
-        case receiptSMS = "receipt_sms"
-        case receiptEmail = "receipt_email"
+        case amount                 = "amount"
+        case currency               = "currency"
+        case capture                = "capture"
+        case require3DSecure        = "threeds"
+        case source                 = "source"
+        case customerIdentifier     = "customer"
+        case statementDescriptor    = "statement_descriptor"
+        case redirect               = "redirect"
+        case descriptionText        = "description"
+        case metadata               = "metadata"
+        case receiptSMS             = "receipt_sms"
+        case receiptEmail           = "receipt_email"
     }
 }
 
@@ -186,8 +251,8 @@ import struct Foundation.NSURL.URL
     
     private enum CodingKeys: String, CodingKey {
         
-        case returnURL = "return_url"
-        case postURL = "post_url"
+        case returnURL  = "return_url"
+        case postURL    = "post_url"
     }
 }
 
@@ -336,19 +401,19 @@ import struct Foundation.NSURL.URL
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case object
-        case number
-        case expirationMonth = "exp_month"
-        case expirationYear = "exp_year"
-        case cvc
-        case cardholderName = "name"
-        case addressCity = "address_city"
-        case addressCountry = "address_country"
-        case addressLine1 = "address_line1"
-        case addressLine2 = "address_line2"
-        case addressState = "address_state"
-        case addressZip = "address_zip"
+        case identifier         = "id"
+        case object             = "object"
+        case number             = "number"
+        case expirationMonth    = "exp_month"
+        case expirationYear     = "exp_year"
+        case cvc                = "cvc"
+        case cardholderName     = "name"
+        case addressCity        = "address_city"
+        case addressCountry     = "address_country"
+        case addressLine1       = "address_line1"
+        case addressLine2       = "address_line2"
+        case addressState       = "address_state"
+        case addressZip         = "address_zip"
     }
     
     // MARK: Properties

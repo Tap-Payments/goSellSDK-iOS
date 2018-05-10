@@ -67,8 +67,8 @@ import class Foundation.NSObject.NSObject
     private enum CodingKeys: String, CodingKey {
         
         case metadata
-        case descriptionText = "description"
-        case receiptSMS = "receipt_sms"
-        case receiptEmail = "receipt_email"
+        case descriptionText    = "description"
+        case receiptSMS         = "receipt_sms"
+        case receiptEmail       = "receipt_email"
     }
 }
