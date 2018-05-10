@@ -40,6 +40,16 @@ internal class PaymentViewController: BaseViewController {
     }
     
     // MARK: - Private -
+    // MARK: Properties
+    
+    @IBOutlet private weak var payButtonUI: PayButtonUI? {
+        
+        didSet {
+            
+            self.payButtonUI?.delegate = PaymentDataManager.shared
+        }
+    }
+    
     // MARK: Methods
     
     private func subscribeOnNotifications() {

@@ -119,6 +119,7 @@
                     <navigationItem key="navigationItem" id="aG3-A1-a3g"/>
                     <connections>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="VUE-MO-wtp" id="oST-dU-gwm"/>
+                        <outlet property="payButtonUI" destination="NoP-JX-Gmp" id="u9b-Yx-RpZ"/>
                         <segue destination="0Dn-DZ-WvX" kind="show" identifier="CardScannerViewControllerSegue" id="lSQ-XR-yVt"/>
                     </connections>
                 </viewController>
@@ -947,7 +948,6 @@
                                         <state key="normal" title="Close"/>
                                         <connections>
                                             <action selector="closeButtonTouchUpInside:" destination="XgQ-HN-1pH" eventType="touchUpInside" id="ML4-HT-Cwu"/>
-                                            <action selector="closeButtonTouchUpInside:" destination="3RY-Jo-7bx" eventType="touchUpInside" id="O5p-vu-nfI"/>
                                         </connections>
                                     </button>
                                 </subviews>

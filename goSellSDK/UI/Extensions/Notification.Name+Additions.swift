@@ -9,4 +9,5 @@ internal extension Notification.Name {
     
     internal static let paymentOptionsModelsUpdated = Notification.Name("TapPaymentOptionsUpdatedNotification")
     internal static let cardScannerButtonClicked = Notification.Name("TapCardScannerButtonClickedNotification")
+    internal static let payButtonStateChanged = Notification.Name("TapPayButtonStateChangedNotification")
 }

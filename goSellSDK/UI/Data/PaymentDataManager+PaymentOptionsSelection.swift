@@ -8,12 +8,21 @@
 internal extension PaymentDataManager {
     
     // MARK: - Internal -
+    // MARK: Properties
+    
+    internal var selectedPaymentOptionCellViewModel: PaymentOptionCellViewModel? {
+        
+        return self.cellModels(of: PaymentOptionCellViewModel.self).first { $0.isSelected }
+    }
+    
     // MARK: Methods
     
     internal func deselectAllPaymentOptionsModels(except model: PaymentOptionCellViewModel) {
         
         let paymentOptionsModels = self.cellModels(of: PaymentOptionCellViewModel.self)
         paymentOptionsModels.forEach { $0.isSelected = $0 === model }
+        
+        self.updatePayButtonState()
     }
     
     internal func removePaymentOptionSelectionIfCellNotVisible() {
@@ -24,13 +33,5 @@ internal extension PaymentDataManager {
             
             selectedOption.isSelected = false
         }
-    }
-    
-    // MARK: - Private -
-    // MARK: Properties
-    
-    private var selectedPaymentOptionCellViewModel: PaymentOptionCellViewModel? {
-     
-        return self.cellModels(of: PaymentOptionCellViewModel.self).first { $0.isSelected }
     }
 }
