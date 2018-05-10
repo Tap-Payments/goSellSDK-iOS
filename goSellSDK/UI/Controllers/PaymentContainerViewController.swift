@@ -16,7 +16,11 @@ import class UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
+/// Payment Container View Controller.
 public class PaymentContainerViewController: UIViewController {
+    
+    // MARK: - Public -
+    // MARK: Methods
     
     public override func viewDidAppear(_ animated: Bool) {
         
@@ -24,7 +28,6 @@ public class PaymentContainerViewController: UIViewController {
         
         if !self.hasShownPaymentController {
             
-            self.obtainPayButtonFrame()
             self.showPaymentController()
         }
     }
@@ -58,18 +61,9 @@ public class PaymentContainerViewController: UIViewController {
     
     private var hasShownPaymentController = false
     
-    private var payButtonFrame: CGRect = .zero
-    
     private lazy var animationsHandler = TransitionAnimationsHandler()
     
     // MARK: Methods
-    
-    private func obtainPayButtonFrame() {
-        
-        guard let button = self.payButton?.view, let containingView = self.presentingViewController?.view else { return }
-        
-        self.payButtonFrame = containingView.convert(button.bounds, from: button)
-    }
     
     private func showPaymentController() {
         

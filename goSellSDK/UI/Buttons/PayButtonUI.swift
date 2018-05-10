@@ -8,6 +8,7 @@
 import class TapNibView.TapNibView
 import class TapGLKit.TapActivityIndicatorView
 import class UIKit.UIButton.UIButton
+import class UIKit.UIView
 
 internal class PayButtonUI: TapNibView {
     
@@ -25,6 +26,7 @@ internal class PayButtonUI: TapNibView {
         didSet {
             
             self.internalButton?.isEnabled = self.isEnabled
+            self.updateAlpha()
         }
     }
     
@@ -63,9 +65,23 @@ internal class PayButtonUI: TapNibView {
         }
     }
     
-    @IBOutlet private weak var internalButton: UIButton?
+    @IBOutlet private weak var internalButton: UIButton? {
+        
+        didSet {
+            
+            self.internalButton?.isEnabled = self.isEnabled
+        }
+    }
     
     @IBOutlet private weak var securityButton: UIButton?
+    
+    @IBOutlet private weak var internalButtonContainerView: UIView? {
+        
+        didSet {
+            
+            self.updateAlpha()
+        }
+    }
     
     // MARK: Methods
     
@@ -77,5 +93,10 @@ internal class PayButtonUI: TapNibView {
     @IBAction private func securityButtonTouchUpInside(_ sender: Any) {
         
         self.delegate?.securityButtonTouchUpInside()
+    }
+    
+    private func updateAlpha() {
+        
+        self.internalButtonContainerView?.alpha = self.isEnabled ? 1.0 : 0.5
     }
 }

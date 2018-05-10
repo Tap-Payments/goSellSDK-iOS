@@ -26,6 +26,8 @@
 		A42758B020A3618200D214EE /* CardScannerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42758AC20A3618200D214EE /* CardScannerViewControllerDelegate.swift */; };
 		A42758B220A361B500D214EE /* PaymentDataManager+CardScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42758B120A361B400D214EE /* PaymentDataManager+CardScanning.swift */; };
 		A42758B320A361B500D214EE /* PaymentDataManager+CardScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42758B120A361B400D214EE /* PaymentDataManager+CardScanning.swift */; };
+		A42758B720A48CE400D214EE /* PaymentDataManager+PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42758B620A48CE400D214EE /* PaymentDataManager+PayButton.swift */; };
+		A42758B820A48CE400D214EE /* PaymentDataManager+PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42758B620A48CE400D214EE /* PaymentDataManager+PayButton.swift */; };
 		A43ED4232080BD250028C542 /* PayButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ED4222080BD250028C542 /* PayButtonProtocol.swift */; };
 		A43ED4272080CEDD0028C542 /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ED4262080CEDD0028C542 /* PayButton.swift */; };
 		A43ED42A2080CF870028C542 /* PayButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43ED4292080CF870028C542 /* PayButton.xib */; };
@@ -307,6 +309,7 @@
 		A42758AB20A3618200D214EE /* CardScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScannerViewController.swift; sourceTree = "<group>"; };
 		A42758AC20A3618200D214EE /* CardScannerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScannerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A42758B120A361B400D214EE /* PaymentDataManager+CardScanning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaymentDataManager+CardScanning.swift"; sourceTree = "<group>"; };
+		A42758B620A48CE400D214EE /* PaymentDataManager+PayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaymentDataManager+PayButton.swift"; sourceTree = "<group>"; };
 		A43ED4222080BD250028C542 /* PayButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButtonProtocol.swift; sourceTree = "<group>"; };
 		A43ED4262080CEDD0028C542 /* PayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButton.swift; sourceTree = "<group>"; };
 		A43ED4292080CF870028C542 /* PayButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayButton.xib; sourceTree = "<group>"; };
@@ -797,6 +800,7 @@
 				A4C0FC55208CE50C00C5FBC6 /* PaymentDataManager.swift */,
 				A42758B120A361B400D214EE /* PaymentDataManager+CardScanning.swift */,
 				A4BD8D1E20A1F48B00EFF2CE /* PaymentDataManager+Currency.swift */,
+				A42758B620A48CE400D214EE /* PaymentDataManager+PayButton.swift */,
 				A4BD8D1C20A1F48B00EFF2CE /* PaymentDataManager+PaymentOptionsSelection.swift */,
 			);
 			path = Data;
@@ -1060,6 +1064,7 @@
 				A4C0FC63208CED0C00C5FBC6 /* WebPaymentOptionTableViewCellModel.swift in Sources */,
 				A4BD8CAA20A1EF0300EFF2CE /* CardInputFieldsThemeSettings.swift in Sources */,
 				A48810E920A2E92E00CDF5D4 /* LoadingImageViewState.swift in Sources */,
+				A42758B720A48CE400D214EE /* PaymentDataManager+PayButton.swift in Sources */,
 				A4BD8CF620A1F0B300EFF2CE /* BatchUpdates.swift in Sources */,
 				A479F7232099DB2100556E10 /* Merchant.swift in Sources */,
 				A4752A3D208EFF5C003118DB /* GroupTableViewCell.swift in Sources */,
@@ -1200,6 +1205,7 @@
 				A4BD8D6B20A1FB3D00EFF2CE /* Redirect.swift in Sources */,
 				A4BD8D6C20A1FB3D00EFF2CE /* SDKSettings.swift in Sources */,
 				A48810EA20A2E92E00CDF5D4 /* LoadingImageViewState.swift in Sources */,
+				A42758B820A48CE400D214EE /* PaymentDataManager+PayButton.swift in Sources */,
 				A4BD8D6D20A1FB3D00EFF2CE /* SDKSettingsData.swift in Sources */,
 				A4BD8D6E20A1FB3D00EFF2CE /* Source.swift in Sources */,
 				A4BD8D6F20A1FB3D00EFF2CE /* UpdateChargeRequest.swift in Sources */,
