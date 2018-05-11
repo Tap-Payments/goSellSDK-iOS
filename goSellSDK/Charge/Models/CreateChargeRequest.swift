@@ -29,6 +29,7 @@ import struct Foundation.NSURL.URL
     /// For more information, see authorizing charges and settling later. optional, default is true
     public var capture: Bool
     
+    /// Defines if 3DS is required.
     public var require3DSecure: Bool
     
     /// Information related to the redirect.

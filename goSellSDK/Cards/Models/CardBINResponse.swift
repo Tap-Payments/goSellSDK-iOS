@@ -2,7 +2,6 @@
 //  CardBINResponse.swift
 //  goSellSDK
 //
-//  Created by Dennis Pashkov on 5/11/18.
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
@@ -12,22 +11,31 @@
     // MARK: - Public -
     // MARK: Properties
     
+    /// Card BIN number.
     public private(set) var binNumber: String?
     
+    /// Card issuer bank.
     public private(set) var bank: String?
     
+    /// Card brand.
     public private(set) var cardBrand: String?
     
+    /// Card type.
     public private(set) var cardType: String?
     
+    /// Card category.
     public private(set) var cardCategory: String?
     
+    /// Card issuing country.
     public private(set) var country: String?
     
+    /// Country code.
     public private(set) var countryCode: String?
     
+    /// Website.
     public private(set) var website: String?
     
+    /// Phone number.
     public private(set) var phone: String?
     
     // MARK: - Private -
