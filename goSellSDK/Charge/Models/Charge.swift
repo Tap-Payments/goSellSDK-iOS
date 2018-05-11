@@ -34,6 +34,8 @@ import struct Foundation.NSURL.URL
     /// Amount refunded (can be less than the amount attribute on the charge if a partial refund was issued).
     public private(set) var refundedAmount: Decimal = 0.0
     
+    /// If the charge was created without capturing,
+    /// this Boolean represents whether it is still uncaptured or has since been captured.
     public private(set) var isCaptured: Bool = false
     
     /// Time at which the object was created. Measured in seconds since the Unix epoch.
