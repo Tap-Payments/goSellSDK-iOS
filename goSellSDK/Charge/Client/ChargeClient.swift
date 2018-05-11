@@ -73,6 +73,26 @@ import enum TapNetworkManager.TapURLModel
         self.performRequest(operation, completion: completion)
     }
     
+    /// Captures the charge with a given identifier, request parameters and calls completion when request finishes.
+    ///
+    /// - Parameters:
+    ///   - identifier: Charge identifier.
+    ///   - request: Request parameters.
+    ///   - completion: Completion that will be called when request finishes.
+    ///   - charge: Updated charge in case of success.
+    ///   - error: Error in case of failure.
+    public static func captureCharge(with identifier: String, request: CaptureChargeRequest, completion: @escaping (_ charge: Charge?, _ error: TapSDKError?) -> Void) {
+        
+        let urlModel = TapURLModel.array(parameters: [identifier, "capture"])
+        
+        guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
+        let bodyModel = TapBodyModel(body: bodyDictionary)
+        
+        let operation = TapNetworkRequestOperation(path: self.path, method: .POST, headers: self.authorizationHeaders, urlModel: urlModel, bodyModel: bodyModel, responseType: .json)
+        
+        self.performRequest(operation, completion: completion)
+    }
+    
     // MARK: - Internal -
     // MARK: Properties
     

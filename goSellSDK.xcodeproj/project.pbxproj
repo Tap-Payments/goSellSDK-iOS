@@ -46,6 +46,8 @@
 		A4D1B0D2203C1A98007E7711 /* Crypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0B4203C1A98007E7711 /* Crypter.swift */; };
 		A4D1B0D4203C1A98007E7711 /* SecureEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0B6203C1A98007E7711 /* SecureEncodable.swift */; };
 		A4D1B0D9203C3FB7007E7711 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0D8203C3FB7007E7711 /* Response.swift */; };
+		A4F0AFD720A5813B0051A264 /* CaptureChargeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFD620A5813B0051A264 /* CaptureChargeRequest.swift */; };
+		A4F0AFD820A5813B0051A264 /* CaptureChargeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFD620A5813B0051A264 /* CaptureChargeRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,7 @@
 		A4D1B0B4203C1A98007E7711 /* Crypter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypter.swift; sourceTree = "<group>"; };
 		A4D1B0B6203C1A98007E7711 /* SecureEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureEncodable.swift; sourceTree = "<group>"; };
 		A4D1B0D8203C3FB7007E7711 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		A4F0AFD620A5813B0051A264 /* CaptureChargeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureChargeRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,8 +184,9 @@
 		A4D1B08C203C1A97007E7711 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A4D1B08D203C1A97007E7711 /* CreateChargeRequest.swift */,
+				A4F0AFD620A5813B0051A264 /* CaptureChargeRequest.swift */,
 				A4D1B08E203C1A97007E7711 /* Charge.swift */,
+				A4D1B08D203C1A97007E7711 /* CreateChargeRequest.swift */,
 				A4D1B08F203C1A97007E7711 /* UpdateChargeRequest.swift */,
 			);
 			path = Models;
@@ -400,6 +404,7 @@
 				A4D1B0BC203C1A98007E7711 /* UpdateChargeRequest.swift in Sources */,
 				A46403BE2089BCD8002F3A21 /* RSAUtils.swift in Sources */,
 				A4D1B0D9203C3FB7007E7711 /* Response.swift in Sources */,
+				A4F0AFD720A5813B0051A264 /* CaptureChargeRequest.swift in Sources */,
 				A4D1B0D0203C1A98007E7711 /* Client.swift in Sources */,
 				A4D1B0BB203C1A98007E7711 /* Charge.swift in Sources */,
 				A4D1B0BD203C1A98007E7711 /* ChargeClient.swift in Sources */,
@@ -425,6 +430,7 @@
 				A46CDF1C2042ABEE00EA38A5 /* UpdateChargeRequest.swift in Sources */,
 				A46CDF1D2042ABEE00EA38A5 /* Response.swift in Sources */,
 				A46CDF1E2042ABEE00EA38A5 /* Client.swift in Sources */,
+				A4F0AFD820A5813B0051A264 /* CaptureChargeRequest.swift in Sources */,
 				A46CDF1F2042ABEE00EA38A5 /* Charge.swift in Sources */,
 				A46CDF202042ABEE00EA38A5 /* ChargeClient.swift in Sources */,
 				A46403BF2089BE41002F3A21 /* CustomStringConvertible+goSellSDK.swift in Sources */,
