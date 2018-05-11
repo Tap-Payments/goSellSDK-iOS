@@ -13,6 +13,9 @@ import class Foundation.NSObject.NSObject
     // MARK: - Public -
     // MARK: Properties
     
+    /// The ID of an existing customer that will be charged in this request. (optional, either customer or source is required).
+    public var customerIdentifier: String?
+    
     /// Set of key/value pairs that you can attach to an object.
     /// It can be useful for storing additional information about the object in a structured format.
     /// Individual keys can be unset by posting an empty value to them.
@@ -48,14 +51,16 @@ import class Foundation.NSObject.NSObject
     /// Creates request to update the charge with metadata, description, receipt SMS and receipt email.
     ///
     /// - Parameters:
+    ///   - customerIdentifier: Customer identifier.
     ///   - metadata: Updated metadata.
     ///   - descriptionText: Updated description.
     ///   - receiptSMS: Updated receipt SMS.
     ///   - receiptEmail: Updated receipt email.
-    public convenience init(metadata: [String: String]?, descriptionText: String?, receiptSMS: String?, receiptEmail: String?) {
+    public convenience init(customerIdentifier: String?, metadata: [String: String]?, descriptionText: String?, receiptSMS: String?, receiptEmail: String?) {
         
         self.init()
         
+        self.customerIdentifier = customerIdentifier
         self.metadata = metadata
         self.descriptionText = descriptionText
         self.receiptSMS = receiptSMS
@@ -66,7 +71,8 @@ import class Foundation.NSObject.NSObject
     
     private enum CodingKeys: String, CodingKey {
         
-        case metadata
+        case customerIdentifier = "customer"
+        case metadata           = "metadata"
         case descriptionText    = "description"
         case receiptSMS         = "receipt_sms"
         case receiptEmail       = "receipt_email"

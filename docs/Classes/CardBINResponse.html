@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ChargeRedirect Class Reference</title>
+    <title>CardBINResponse Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/ChargeRedirect" class="dashAnchor"></a>
-    <a title="ChargeRedirect Class Reference"></a>
+    <a name="//apple_ref/swift/Class/CardBINResponse" class="dashAnchor"></a>
+    <a title="CardBINResponse Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">goSellSDK Docs</a> (94% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">goSellSDK Reference</a>
         <img id="carat" src="../img/carat.png" />
-        ChargeRedirect Class Reference
+        CardBINResponse Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -128,15 +128,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ChargeRedirect</h1>
+            <h1>CardBINResponse</h1>
               <div class="declaration">
                 <div class="language">
                   <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">ChargeRedirect</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">CardBINResponse</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
 
                 </div>
               </div>
-            <p>Redirect model.</p>
+            <p>Card BIN Response model.</p>
 
           </section>
           <section class="section task-group-section">
@@ -152,9 +152,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)status"></a>
-                    <a name="//apple_ref/swift/Property/status" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)status">status</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)binNumber"></a>
+                    <a name="//apple_ref/swift/Property/binNumber" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)binNumber">binNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -162,14 +162,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The status of the payment is either succeeded, pending, or failed.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">status</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">binNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -179,9 +179,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)url"></a>
-                    <a name="//apple_ref/swift/Property/url" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)url">url</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)bank"></a>
+                    <a name="//apple_ref/swift/Property/bank" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)bank">bank</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -189,15 +189,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This is the payment URL that will be passed to you to forward it to your customer.
-This url, will contain a checkout page with all the details provided in the request&rsquo;s body.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">bank</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -207,9 +206,9 @@ This url, will contain a checkout page with all the details provided in the requ
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)returnURL"></a>
-                    <a name="//apple_ref/swift/Property/returnURL" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)returnURL">returnURL</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)cardBrand"></a>
+                    <a name="//apple_ref/swift/Property/cardBrand" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)cardBrand">cardBrand</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -217,16 +216,14 @@ This url, will contain a checkout page with all the details provided in the requ
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The URL you provide to redirect the customer to after they completed their payment.
-The status of the payment is either succeeded, pending, or failed.
-Also <q>payload</q> (charge response) will be posted to the return_url</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">returnURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">cardBrand</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -236,9 +233,9 @@ Also <q>payload</q> (charge response) will be posted to the return_url</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)postURL"></a>
-                    <a name="//apple_ref/swift/Property/postURL" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)postURL">postURL</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)cardType"></a>
+                    <a name="//apple_ref/swift/Property/cardType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)cardType">cardType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -246,15 +243,14 @@ Also <q>payload</q> (charge response) will be posted to the return_url</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The URL you provide to post the charge response after completion of payment.
-The status of the payment is either succeeded, pending, or failed</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">postURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">cardType</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -264,9 +260,9 @@ The status of the payment is either succeeded, pending, or failed</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)description"></a>
-                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)ChargeRedirect(py)description">description</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)cardCategory"></a>
+                    <a name="//apple_ref/swift/Property/cardCategory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)cardCategory">cardCategory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -274,14 +270,122 @@ The status of the payment is either succeeded, pending, or failed</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Pretty printed description of the ChargeRedirect object.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">cardCategory</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)country"></a>
+                    <a name="//apple_ref/swift/Property/country" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)country">country</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">country</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)countryCode"></a>
+                    <a name="//apple_ref/swift/Property/countryCode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)countryCode">countryCode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">countryCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)website"></a>
+                    <a name="//apple_ref/swift/Property/website" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)website">website</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">website</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CardBINResponse(py)phone"></a>
+                    <a name="//apple_ref/swift/Property/phone" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CardBINResponse(py)phone">phone</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">phone</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
