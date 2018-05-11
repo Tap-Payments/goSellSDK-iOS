@@ -48,10 +48,10 @@
 		A4D1B0D9203C3FB7007E7711 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0D8203C3FB7007E7711 /* Response.swift */; };
 		A4F0AFD720A5813B0051A264 /* CaptureChargeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFD620A5813B0051A264 /* CaptureChargeRequest.swift */; };
 		A4F0AFD820A5813B0051A264 /* CaptureChargeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFD620A5813B0051A264 /* CaptureChargeRequest.swift */; };
-		A4F0AFDC20A593B00051A264 /* CardsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDB20A593B00051A264 /* CardsClient.swift */; };
-		A4F0AFDD20A593B00051A264 /* CardsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDB20A593B00051A264 /* CardsClient.swift */; };
-		A4F0AFE020A594DD0051A264 /* CardBINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDF20A594DD0051A264 /* CardBINResponse.swift */; };
-		A4F0AFE120A594DD0051A264 /* CardBINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDF20A594DD0051A264 /* CardBINResponse.swift */; };
+		A4F0AFDC20A593B00051A264 /* BINClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDB20A593B00051A264 /* BINClient.swift */; };
+		A4F0AFDD20A593B00051A264 /* BINClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDB20A593B00051A264 /* BINClient.swift */; };
+		A4F0AFE020A594DD0051A264 /* BINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDF20A594DD0051A264 /* BINResponse.swift */; };
+		A4F0AFE120A594DD0051A264 /* BINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0AFDF20A594DD0051A264 /* BINResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,8 +85,8 @@
 		A4D1B0B6203C1A98007E7711 /* SecureEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureEncodable.swift; sourceTree = "<group>"; };
 		A4D1B0D8203C3FB7007E7711 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		A4F0AFD620A5813B0051A264 /* CaptureChargeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureChargeRequest.swift; sourceTree = "<group>"; };
-		A4F0AFDB20A593B00051A264 /* CardsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsClient.swift; sourceTree = "<group>"; };
-		A4F0AFDF20A594DD0051A264 /* CardBINResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBINResponse.swift; sourceTree = "<group>"; };
+		A4F0AFDB20A593B00051A264 /* BINClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BINClient.swift; sourceTree = "<group>"; };
+		A4F0AFDF20A594DD0051A264 /* BINResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BINResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 				A40D32192031E6DE0030FDDE /* goSellSDK.h */,
 				A40D321A2031E6DE0030FDDE /* Info.plist */,
 				A4D1B0A9203C1A98007E7711 /* Core */,
-				A4F0AFD920A5913D0051A264 /* Cards */,
+				A4F0AFD920A5913D0051A264 /* BIN */,
 				A4D1B08B203C1A97007E7711 /* Charge */,
 				A4D1B0B3203C1A98007E7711 /* Crypter */,
 				A4D1B085203C1A97007E7711 /* Token */,
@@ -256,19 +256,19 @@
 			path = Crypter;
 			sourceTree = "<group>";
 		};
-		A4F0AFD920A5913D0051A264 /* Cards */ = {
+		A4F0AFD920A5913D0051A264 /* BIN */ = {
 			isa = PBXGroup;
 			children = (
 				A4F0AFDA20A592740051A264 /* Client */,
 				A4F0AFDE20A594A80051A264 /* Models */,
 			);
-			path = Cards;
+			path = BIN;
 			sourceTree = "<group>";
 		};
 		A4F0AFDA20A592740051A264 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				A4F0AFDB20A593B00051A264 /* CardsClient.swift */,
+				A4F0AFDB20A593B00051A264 /* BINClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 		A4F0AFDE20A594A80051A264 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A4F0AFDF20A594DD0051A264 /* CardBINResponse.swift */,
+				A4F0AFDF20A594DD0051A264 /* BINResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -439,11 +439,11 @@
 				A4F0AFD720A5813B0051A264 /* CaptureChargeRequest.swift in Sources */,
 				A4D1B0D0203C1A98007E7711 /* Client.swift in Sources */,
 				A4D1B0BB203C1A98007E7711 /* Charge.swift in Sources */,
-				A4F0AFE020A594DD0051A264 /* CardBINResponse.swift in Sources */,
+				A4F0AFE020A594DD0051A264 /* BINResponse.swift in Sources */,
 				A4D1B0BD203C1A98007E7711 /* ChargeClient.swift in Sources */,
 				A4D1B0D4203C1A98007E7711 /* SecureEncodable.swift in Sources */,
 				A4D1B0CE203C1A98007E7711 /* Encodable+goSellSDK.swift in Sources */,
-				A4F0AFDC20A593B00051A264 /* CardsClient.swift in Sources */,
+				A4F0AFDC20A593B00051A264 /* BINClient.swift in Sources */,
 				A4D1B0CC203C1A98007E7711 /* goSellSDK.swift in Sources */,
 				A4D1B0B9203C1A98007E7711 /* TokenClient.swift in Sources */,
 				A4D1B0BA203C1A98007E7711 /* CreateChargeRequest.swift in Sources */,
@@ -467,11 +467,11 @@
 				A4F0AFD820A5813B0051A264 /* CaptureChargeRequest.swift in Sources */,
 				A46CDF1F2042ABEE00EA38A5 /* Charge.swift in Sources */,
 				A46CDF202042ABEE00EA38A5 /* ChargeClient.swift in Sources */,
-				A4F0AFE120A594DD0051A264 /* CardBINResponse.swift in Sources */,
+				A4F0AFE120A594DD0051A264 /* BINResponse.swift in Sources */,
 				A46403BF2089BE41002F3A21 /* CustomStringConvertible+goSellSDK.swift in Sources */,
 				A46CDF212042ABEE00EA38A5 /* SecureEncodable.swift in Sources */,
 				A46CDF222042ABEE00EA38A5 /* Encodable+goSellSDK.swift in Sources */,
-				A4F0AFDD20A593B00051A264 /* CardsClient.swift in Sources */,
+				A4F0AFDD20A593B00051A264 /* BINClient.swift in Sources */,
 				A46CDF232042ABEE00EA38A5 /* goSellSDK.swift in Sources */,
 				A46CDF242042ABEE00EA38A5 /* TokenClient.swift in Sources */,
 				A46CDF252042ABEE00EA38A5 /* CreateChargeRequest.swift in Sources */,
