@@ -67,3 +67,4 @@ fastlane/screenshots
 fastlane/test_output
 Pods
 goSellSDK.png
+Carthage
