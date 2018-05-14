@@ -31,6 +31,11 @@ internal class CurrencySelectionTableViewCellViewModel: CellViewModel {
         return Theme.current.settings.billIcon
     }
     
+    internal var arrowImage: UIImage {
+        
+        return Theme.current.settings.generalImages.arrowRight
+    }
+    
     internal weak var cell: CurrencySelectionTableViewCell?
     
     internal private(set) var displayedTransactionCurrencyText: String?

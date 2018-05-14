@@ -34,7 +34,7 @@ internal extension PaymentDataManager {
 // MARK: - CurrencySelectionViewControllerDelegate
 extension PaymentDataManager: CurrencySelectionViewControllerDelegate {
     
-    internal func currencySelectionViewControllerDidFinish(with currency: AmountedCurrency) {
+    internal func currencySelectionViewControllerDidFinish(with currency: AmountedCurrency, changed: Bool) {
         
         self.currencyCellViewModel.userSelectedCurrency = currency
         self.userSelectedCurrency = currency

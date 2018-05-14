@@ -18,7 +18,14 @@ internal class CVVValidator: CardValidator {
     // MARK: Properties
     
     /// Card brand.
-    internal var cardBrand: CardBrand?
+    internal var cardBrand: CardBrand? {
+        
+        didSet {
+            
+            self.delegate?.cardValidator(self, inputDataChanged: (self.cvv, self.cardBrand))
+            self.updateInputFieldAttributes()
+        }
+    }
     
     /// CVV code.
     internal var cvv: String {
@@ -43,13 +50,15 @@ internal class CVVValidator: CardValidator {
     
     internal override func update(with inputData: Any?) {
         
-        if let text = inputData as? String {
+        if let data = inputData as? (String?, CardBrand?) {
             
-            self.textField.text = text
+            self.textField.text = data.0
+            self.cardBrand = data.1
         }
         else {
             
             self.textField.text = nil
+            self.cardBrand = nil
         }
         
         self.updateInputFieldAttributes()
@@ -89,7 +98,7 @@ internal class CVVValidator: CardValidator {
         
         self.validate()
         
-        self.delegate?.cardValidator(self, inputDataChanged: self.cvv)
+        self.delegate?.cardValidator(self, inputDataChanged: (self.cvv, self.cardBrand))
     }
 }
 

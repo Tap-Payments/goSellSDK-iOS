@@ -38,12 +38,11 @@
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-AJ-EsN">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-AJ-EsN">
                             <rect key="frame" x="0.0" y="0.0" width="45" height="66"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="bqJ-Sa-gh0"/>
                             </constraints>
-                            <state key="normal" title="Back"/>
                             <connections>
                                 <action selector="backButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="DYI-Ao-Ukx"/>
                             </connections>

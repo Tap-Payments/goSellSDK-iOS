@@ -27,6 +27,11 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionCellViewModel {
         }
     }
     
+    internal var arrowImage: UIImage {
+        
+        return Theme.current.settings.generalImages.arrowRight
+    }
+    
     internal override var isReadyForPayment: Bool {
         
         return true

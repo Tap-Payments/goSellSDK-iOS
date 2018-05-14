@@ -24,8 +24,8 @@ internal class WebPaymentOptionTableViewCell: BaseTableViewCell {
     // MARK: Properties
     
     @IBOutlet private weak var titleLabel: UILabel?
-    
     @IBOutlet private weak var iconImageView: UIImageView?
+    @IBOutlet private weak var arrowImageView: UIImageView?
 }
 
 // MARK: - LoadingWithModelCell
@@ -35,6 +35,7 @@ extension WebPaymentOptionTableViewCell: LoadingWithModelCell {
         
         self.titleLabel?.text = self.model?.title
         self.iconImageView?.image = self.model?.iconImage
+        self.arrowImageView?.image = self.model?.arrowImage
         
         self.setGlowing(self.model?.isSelected ?? false)
     }

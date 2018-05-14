@@ -5,18 +5,12 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import protocol TapAdditionsKit.ClassProtocol
 import class UIKit.UIImageView.UIImageView
 import class UIKit.UILabel.UILabel
 import class UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
 import class UIKit.UITableViewCell.UITableViewCell
-
-internal protocol CurrencySelectionViewControllerDelegate: ClassProtocol {
-    
-    func currencySelectionViewControllerDidFinish(with currency: AmountedCurrency)
-}
 
 internal class CurrencySelectionViewController: BaseViewController {
     
@@ -83,9 +77,9 @@ internal class CurrencySelectionViewController: BaseViewController {
     
     private func notifyDelegateIfCurrencyChanged() {
         
-        guard let manager = self.dataManager, manager.hasCurrencyChanged else { return }
+        guard let manager = self.dataManager else { return }
         
-        self.delegate?.currencySelectionViewControllerDidFinish(with: manager.selectedCurrency)
+        self.delegate?.currencySelectionViewControllerDidFinish(with: manager.selectedCurrency, changed: manager.hasCurrencyChanged)
     }
 }
 

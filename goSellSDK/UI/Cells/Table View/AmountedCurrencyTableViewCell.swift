@@ -7,6 +7,7 @@
 
 import struct TapAdditionsKit.TypeAlias
 import class UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class UIKit.UIImageView.UIImageView
 import class UIKit.UILabel.UILabel
 import class UIKit.UIView.UIView
 
@@ -30,6 +31,7 @@ internal class AmountedCurrencyTableViewCell: BaseTableViewCell {
     
     @IBOutlet private weak var currencyNameLabel: UILabel?
     @IBOutlet private weak var amountLabel: UILabel?
+    @IBOutlet private weak var checkmarkImageView: UIImageView?
     
     @IBOutlet private var constraintsToDisableWhenSelected: [NSLayoutConstraint]?
     @IBOutlet private var constraintsToEnableWhenSelected: [NSLayoutConstraint]?
@@ -42,6 +44,7 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
         
         self.currencyNameLabel?.text = self.model?.currencyNameText
         self.amountLabel?.text = self.model?.amountText
+        self.checkmarkImageView?.image = self.model?.checkmarkImage
         
         self.updateSelectionState(animated: animated)
     }

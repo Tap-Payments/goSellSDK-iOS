@@ -159,12 +159,12 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
         
         NSLog("Current recognized brand: \(definedCardBrand.cardBrand?.rawValue ?? "nil")")
         
-        self.updateDisplayedCollectionViewCellModels()
-        
         if let cvvValidator = (self.cardDataValidators.first { $0.validationType == .cvv }) as? CVVValidator {
             
             cvvValidator.cardBrand = definedCardBrand.cardBrand
         }
+        
+        self.updateDisplayedCollectionViewCellModels()
     }
     
     internal func updateDisplayedCollectionViewCellModels() {
