@@ -25,6 +25,7 @@ internal class MerchantInformationHeaderViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.loadTheme()
         self.updateMerchantTitleLabel()
         self.loadMerchantLogo()
     }
@@ -78,5 +79,16 @@ internal class MerchantInformationHeaderViewController: UIViewController {
                 strongSelf.iconView?.loadingState = .notLoaded
             }
         }
+    }
+    
+    private func loadTheme() {
+        
+        let headerSettings = Theme.current.settings.headerSettings
+        
+        self.view.backgroundColor = headerSettings.backgroundColor
+        self.iconView?.placeholderImage = headerSettings.placeholderLogo
+        self.iconView?.loaderColor = headerSettings.logoLoaderColor
+        self.titleLabel?.textColor = headerSettings.textColor
+        self.closeButton?.setImage(headerSettings.closeImage, for: .normal)
     }
 }

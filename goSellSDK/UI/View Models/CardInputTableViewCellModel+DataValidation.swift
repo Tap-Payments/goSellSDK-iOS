@@ -144,9 +144,9 @@ extension CardInputTableViewCellModel: CardValidatorDelegate {
         self.inputData[validator.validationType] = data
     }
     
-    
     internal func validationStateChanged(to valid: Bool, on type: ValidationType) {
         
+        PaymentDataManager.shared.updatePayButtonState()
     }
 }
 

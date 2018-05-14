@@ -27,6 +27,11 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionCellViewModel {
         }
     }
     
+    internal override var isReadyForPayment: Bool {
+        
+        return true
+    }
+    
     // MARK: Methods
     
     internal init(indexPath: IndexPath, title: String, iconImageURL: URL) {

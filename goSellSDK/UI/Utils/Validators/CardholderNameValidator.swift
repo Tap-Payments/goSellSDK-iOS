@@ -82,6 +82,7 @@ internal class CardholderNameValidator: CardValidator {
         self.validate()
         
         self.delegate?.cardValidator(self, inputDataChanged: self.cardholderName)
+        self.delegate?.validationStateChanged(to: self.isDataValid, on: .nameOnCard)
     }
 }
 
@@ -149,6 +150,8 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
                 
                 textField.selectedTextRange = textField.textRange(from: rangeStart, to: rangeEnd)
             }
+            
+            textField.sendActions(for: .editingChanged)
         }
         
         return false

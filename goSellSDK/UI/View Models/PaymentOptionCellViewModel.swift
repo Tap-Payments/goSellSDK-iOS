@@ -26,12 +26,23 @@ internal class PaymentOptionCellViewModel: CellViewModel {
         return self.indexPath
     }
     
+    internal var isReadyForPayment: Bool {
+        
+        return false
+    }
+    
     // MARK: Methods
     
     internal override func tableViewDidSelectCell(_ sender: UITableView) {
         
         super.tableViewDidSelectCell(sender)
         PaymentDataManager.shared.deselectAllPaymentOptionsModels(except: self)
+    }
+    
+    internal override func tableViewDidDeselectCell(_ sender: UITableView) {
+        
+        super.tableViewDidDeselectCell(sender)
+        PaymentDataManager.shared.deselectPaymentOption(self)
     }
     
     // MARK: - Private -

@@ -125,6 +125,7 @@ internal class CardNumberValidator: CardValidator {
             
             self.delegate?.cardValidator(self, inputDataChanged: self.cardNumber)
             self.compareNewRecognizedBrandToPrevoiusAndCallDelegate(recognizedType)
+            self.delegate?.validationStateChanged(to: self.isDataValid, on: .cardNumber)
         }
         
         let cardBrand = recognizedType.cardBrand

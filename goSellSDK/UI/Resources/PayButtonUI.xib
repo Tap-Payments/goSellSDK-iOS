@@ -12,10 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PayButtonUI" customModule="goSellSDK">
             <connections>
-                <outlet property="internalButton" destination="lvG-Io-jsH" id="gF6-te-tb7"/>
-                <outlet property="internalButtonContainerView" destination="R2Q-JK-MjG" id="jK8-v8-uyg"/>
-                <outlet property="loader" destination="U9w-fM-nx4" id="KNp-qY-8sq"/>
-                <outlet property="securityButton" destination="x1F-hy-quL" id="nPz-Kr-YLX"/>
+                <outlet property="internalButton" destination="7lX-ev-Iua" id="PV1-Rh-28j"/>
+                <outlet property="loader" destination="3GO-M7-fHX" id="hb5-Pc-ZCe"/>
+                <outlet property="securityButton" destination="bid-OO-UHN" id="Hx0-Fr-f3h"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -23,58 +22,67 @@
             <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2Q-JK-MjG">
-                    <rect key="frame" x="0.0" y="0.0" width="315" height="44"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wfo-7c-2ys">
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvG-Io-jsH">
-                            <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
-                            <state key="normal" title="PAY"/>
-                            <connections>
-                                <action selector="internalButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="Ezj-m8-OZs"/>
-                            </connections>
-                        </button>
-                        <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9w-fM-nx4" customClass="TapActivityIndicatorView" customModule="TapGLKit">
-                            <rect key="frame" x="7" y="7" width="30" height="30"/>
+                        <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GO-M7-fHX" customClass="TapActivityIndicatorView" customModule="TapGLKit">
+                            <rect key="frame" x="9" y="9" width="26" height="26"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="U9w-fM-nx4" secondAttribute="height" id="59U-2d-oX0"/>
-                                <constraint firstAttribute="height" constant="30" id="Kw9-uF-RlE"/>
+                                <constraint firstAttribute="height" constant="26" id="6Rt-9G-hhW"/>
+                                <constraint firstAttribute="width" secondItem="3GO-M7-fHX" secondAttribute="height" multiplier="1:1" id="XpD-wT-Fcq"/>
                             </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="isAnimating" value="NO"/>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="NO"/>
-                            </userDefinedRuntimeAttributes>
                         </glkView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="lvG-Io-jsH" firstAttribute="top" secondItem="R2Q-JK-MjG" secondAttribute="top" id="IUU-ZK-cVY"/>
-                        <constraint firstAttribute="bottom" secondItem="lvG-Io-jsH" secondAttribute="bottom" id="SV2-ST-sle"/>
-                        <constraint firstItem="U9w-fM-nx4" firstAttribute="centerY" secondItem="R2Q-JK-MjG" secondAttribute="centerY" id="bjl-an-6VV"/>
-                        <constraint firstItem="lvG-Io-jsH" firstAttribute="leading" secondItem="R2Q-JK-MjG" secondAttribute="leading" id="mqm-58-fWJ"/>
-                        <constraint firstItem="U9w-fM-nx4" firstAttribute="leading" secondItem="R2Q-JK-MjG" secondAttribute="leading" constant="7" id="s4p-1B-zSp"/>
+                        <constraint firstItem="3GO-M7-fHX" firstAttribute="centerY" secondItem="Wfo-7c-2ys" secondAttribute="centerY" id="WMZ-Yp-IGB"/>
+                        <constraint firstItem="3GO-M7-fHX" firstAttribute="centerX" secondItem="Wfo-7c-2ys" secondAttribute="centerX" id="aEj-BY-TYI"/>
+                        <constraint firstAttribute="width" secondItem="Wfo-7c-2ys" secondAttribute="height" multiplier="1:1" id="rmJ-Hq-T4N"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1F-hy-quL">
-                    <rect key="frame" x="315" y="0.0" width="44" height="44"/>
-                    <color key="backgroundColor" red="0.36238234487775378" green="0.67995262837185355" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="x1F-hy-quL" secondAttribute="height" id="6Pu-go-93g"/>
-                    </constraints>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7lX-ev-Iua">
+                    <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                     <connections>
-                        <action selector="securityButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="0Gv-On-6jM"/>
+                        <action selector="internalButtonHighlighted:" destination="-1" eventType="touchDown" id="YMA-IR-rpJ"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchUpInside" id="2dK-JR-U9z"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchDragExit" id="390-rh-ta4"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchUpOutside" id="XLH-pa-SeJ"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchCancel" id="bCb-4a-t7V"/>
+                        <action selector="internalButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="BcX-Xd-scp"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFO-I3-J8f">
+                    <rect key="frame" x="315" y="0.0" width="44" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bid-OO-UHN">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                            <connections>
+                                <action selector="securityButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="wfp-NO-Er0"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="bid-OO-UHN" secondAttribute="trailing" id="HyH-PY-LgA"/>
+                        <constraint firstItem="bid-OO-UHN" firstAttribute="leading" secondItem="mFO-I3-J8f" secondAttribute="leading" id="JDP-jc-NB4"/>
+                        <constraint firstAttribute="bottom" secondItem="bid-OO-UHN" secondAttribute="bottom" id="NhU-qo-oaL"/>
+                        <constraint firstItem="bid-OO-UHN" firstAttribute="top" secondItem="mFO-I3-J8f" secondAttribute="top" id="PHl-ma-zCk"/>
+                        <constraint firstAttribute="width" secondItem="mFO-I3-J8f" secondAttribute="height" multiplier="1:1" id="ZyR-Xf-vaQ"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="0.28830542570000001" green="1" blue="0.34090738390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="x1F-hy-quL" secondAttribute="bottom" id="Bho-kv-cQa"/>
-                <constraint firstItem="R2Q-JK-MjG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Boh-59-jdd"/>
-                <constraint firstAttribute="trailing" secondItem="x1F-hy-quL" secondAttribute="trailing" id="HC7-3d-3nc"/>
-                <constraint firstItem="R2Q-JK-MjG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="I87-bg-fhc"/>
-                <constraint firstItem="lvG-Io-jsH" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="V5S-hr-XJq"/>
-                <constraint firstItem="x1F-hy-quL" firstAttribute="leading" secondItem="R2Q-JK-MjG" secondAttribute="trailing" id="b9g-M2-Yfy"/>
-                <constraint firstItem="x1F-hy-quL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="h8K-EB-STW"/>
-                <constraint firstAttribute="bottom" secondItem="R2Q-JK-MjG" secondAttribute="bottom" id="p8I-P8-JtQ"/>
+                <constraint firstAttribute="bottom" secondItem="mFO-I3-J8f" secondAttribute="bottom" id="2Vb-RK-qyr"/>
+                <constraint firstItem="mFO-I3-J8f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Fa-ql-QXc"/>
+                <constraint firstItem="Wfo-7c-2ys" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FY1-aR-aUD"/>
+                <constraint firstItem="Wfo-7c-2ys" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KQj-YU-yXq"/>
+                <constraint firstAttribute="trailing" secondItem="7lX-ev-Iua" secondAttribute="trailing" id="LLC-KR-r8P"/>
+                <constraint firstAttribute="trailing" secondItem="mFO-I3-J8f" secondAttribute="trailing" id="VDy-mG-pyj"/>
+                <constraint firstItem="7lX-ev-Iua" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WU2-ck-6eM"/>
+                <constraint firstItem="7lX-ev-Iua" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Wrd-Qi-DO7"/>
+                <constraint firstAttribute="bottom" secondItem="7lX-ev-Iua" secondAttribute="bottom" id="ghM-2Z-mUr"/>
+                <constraint firstAttribute="bottom" secondItem="Wfo-7c-2ys" secondAttribute="bottom" id="tAC-Kr-Jes"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <userDefinedRuntimeAttributes>
