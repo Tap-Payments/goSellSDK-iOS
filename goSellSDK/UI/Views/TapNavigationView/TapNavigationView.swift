@@ -71,7 +71,13 @@ internal class TapNavigationView: TapNibView {
     
     // MARK: Properties
     
-    @IBOutlet private weak var backButton: UIButton?
+    @IBOutlet private weak var backButton: UIButton? {
+        
+        didSet {
+            
+            self.backButton?.setImage(Theme.current.settings.generalImages.arrowLeft, for: .normal)
+        }
+    }
     
     @IBOutlet private weak var iconImageView: UIImageView?
     

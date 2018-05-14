@@ -16,7 +16,7 @@ internal class PaymentDataManager {
         
         didSet {
             
-            self.removePaymentOptionSelectionIfCellNotVisible()
+            self.restorePaymentOptionSelection()
             NotificationCenter.default.post(name: .paymentOptionsModelsUpdated, object: nil)
         }
     }
@@ -45,6 +45,8 @@ internal class PaymentDataManager {
             self.payButtonUI?.delegate = self
         }
     }
+    
+    internal var lastSelectedPaymentOption: PaymentOptionCellViewModel?
     
     // MARK: Methods
     

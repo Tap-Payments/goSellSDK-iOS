@@ -22,6 +22,8 @@ internal extension PaymentDataManager {
         let paymentOptionsModels = self.cellModels(of: PaymentOptionCellViewModel.self)
         paymentOptionsModels.forEach { $0.isSelected = $0 === model }
         
+        self.lastSelectedPaymentOption = model
+        
         self.updatePayButtonState()
     }
     
@@ -31,13 +33,16 @@ internal extension PaymentDataManager {
         self.updatePayButtonState()
     }
     
-    internal func removePaymentOptionSelectionIfCellNotVisible() {
+    internal func restorePaymentOptionSelection() {
         
-        guard let selectedOption = self.selectedPaymentOptionCellViewModel else { return }
-        
-        if !self.paymentOptionCellViewModels.contains { $0 === selectedOption } {
+        if let nonnullLastSelectedPaymentOption = self.lastSelectedPaymentOption {
             
-            selectedOption.isSelected = false
+            self.deselectAllPaymentOptionsModels(except: nonnullLastSelectedPaymentOption)
+        }
+        else {
+            
+            let paymentOptionsModels = self.cellModels(of: PaymentOptionCellViewModel.self)
+            paymentOptionsModels.forEach { $0.isSelected = false }
         }
     }
 }

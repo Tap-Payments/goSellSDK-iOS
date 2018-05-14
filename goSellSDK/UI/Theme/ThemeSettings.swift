@@ -24,6 +24,8 @@ internal struct ThemeSettings {
     internal let backgroundBlurStyle: TapBlurEffectStyle
     
     internal let cardInputFieldsSettings: CardInputFieldsThemeSettings
+    
+    internal let generalImages: GeneralImages
 }
 
 internal extension Theme {
@@ -85,12 +87,17 @@ internal extension Theme {
                                                 backgroundColor: .hex("#B5B5B5A8"),
                                                 closeImage: .named("ic_close", in: .goSellSDKResources)!)
             
+            let generalImages = GeneralImages(arrowRight: .named("ic_arrow_right", in: .goSellSDKResources)!,
+                                              arrowLeft: .named("ic_arrow_left", in: .goSellSDKResources)!,
+                                              checkmarkImage: .named("ic_checkmark", in: .goSellSDKResources)!)
+            
             let result = ThemeSettings(headerSettings: headerSettings,
                                        payButtonSettings: payButtonSettings,
                                        billIcon: .named("ic_bill", in: .goSellSDKResources)!,
                                        keyboardStyle: keyboardStyle,
                                        backgroundBlurStyle: backgroundBlurStyle,
-                                       cardInputFieldsSettings: cardInputSettings)
+                                       cardInputFieldsSettings: cardInputSettings,
+                                       generalImages: generalImages)
             
             return result
         }()

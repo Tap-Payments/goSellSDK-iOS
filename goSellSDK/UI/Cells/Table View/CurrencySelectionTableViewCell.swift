@@ -22,6 +22,7 @@ internal class CurrencySelectionTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var transactionCurrencyLabel: UILabel?
     @IBOutlet private weak var userSelectedCurrencyLabel: UILabel?
     @IBOutlet private weak var billImageView: UIImageView?
+    @IBOutlet private weak var arrowImageView: UIImageView?
 }
 
 // MARK: - LoadingWithModelCell
@@ -32,5 +33,6 @@ extension CurrencySelectionTableViewCell: LoadingWithModelCell {
         self.transactionCurrencyLabel?.text = self.model?.displayedTransactionCurrencyText
         self.userSelectedCurrencyLabel?.text = self.model?.displayedUserCurrencyText
         self.billImageView?.image = self.model?.billImage
+        self.arrowImageView?.image = self.model?.arrowImage
     }
 }
