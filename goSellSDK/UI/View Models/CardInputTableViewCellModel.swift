@@ -8,6 +8,7 @@
 import class CardIO.CardIOUtilities.CardIOUtilities
 import class TapApplication.TapApplicationPlistInfo
 import struct TapCardValidator.DefinedCardBrand
+import class UIKit.UIImage.UIImage
 
 internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     
@@ -25,6 +26,11 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     }
     
     internal let scanButtonVisible = CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
+    
+    internal var scanButtonImage: UIImage {
+        
+        return Theme.current.settings.cardInputFieldsSettings.scanIcon
+    }
     
     internal var tableViewCellModels: [ImageTableViewCellModel]
     internal var displayedTableViewCellModels: [ImageTableViewCellModel] {
@@ -47,6 +53,11 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     internal var definedCardBrand: DefinedCardBrand?
     
     internal lazy var inputData: [ValidationType: Any?] = [:]
+    
+    internal override var isReadyForPayment: Bool {
+        
+        return (self.cardDataValidators.filter { !$0.isDataValid }).count == 0
+    }
     
     // MARK: Methods
     

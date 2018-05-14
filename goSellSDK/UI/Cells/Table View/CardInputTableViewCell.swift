@@ -39,9 +39,11 @@ internal class CardInputTableViewCell: BaseTableViewCell {
             return super.hitTest(point, with: event)
         }
         
-        self.enableUserInteractionAndUpdateToolbarInAllControls()
-        
-        self.model?.manuallySelectCellAndCallTableViewDelegate()
+        if self.bounds.contains(point) {
+            
+            self.enableUserInteractionAndUpdateToolbarInAllControls()
+            self.model?.manuallySelectCellAndCallTableViewDelegate()
+        }
         
         return super.hitTest(point, with: event)
     }
@@ -147,6 +149,7 @@ extension CardInputTableViewCell: LoadingWithModelCell {
         
         self.updateCardScannerButtonVisibility(animated: animated)
         self.setGlowing(self.model?.isSelected ?? false)
+        self.cardScannerButton?.setImage(self.model?.scanButtonImage, for: .normal)
     }
 
     private func updateCollectionViewContent(_ animated: Bool) {

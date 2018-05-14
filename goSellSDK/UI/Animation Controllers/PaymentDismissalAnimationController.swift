@@ -8,6 +8,7 @@
 import struct TapAdditionsKit.TypeAlias
 import class TapVisualEffectView.TapVisualEffectView
 import class UIKit.UIView.UIView
+import struct UIKit.UIView.UIViewAnimationOptions
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
 
@@ -17,7 +18,7 @@ internal class PaymentDismissalAnimationController: NSObject {
     
     private struct Constants {
         
-        fileprivate static let animationDuration: TimeInterval = 2.0
+        fileprivate static let animationDuration: TimeInterval = 0.4
         
         @available(*, unavailable) private init() {}
     }
@@ -58,7 +59,8 @@ extension PaymentDismissalAnimationController: UIViewControllerAnimatedTransitio
             blurView?.style = .none
         }
         
-        UIView.animate(withDuration: Constants.animationDuration, animations: animations) { _ in
+        let options: UIViewAnimationOptions = [.beginFromCurrentState, .curveEaseIn]
+        UIView.animate(withDuration: Constants.animationDuration, delay: 0.0, options: options, animations: animations) { _ in
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }

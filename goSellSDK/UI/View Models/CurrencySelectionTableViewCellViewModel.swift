@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UIImage.UIImage
 import class UIKit.UITableView.UITableView
 
 /// View model for currency selection
@@ -23,6 +24,11 @@ internal class CurrencySelectionTableViewCellViewModel: CellViewModel {
             
             self.updateDisplayedTexts(updateContent: true)
         }
+    }
+    
+    internal var billImage: UIImage {
+        
+        return Theme.current.settings.billIcon
     }
     
     internal weak var cell: CurrencySelectionTableViewCell?

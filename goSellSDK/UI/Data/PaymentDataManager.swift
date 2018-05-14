@@ -36,9 +36,21 @@ internal class PaymentDataManager {
         }
     }
     
+    internal private(set) lazy var allPaymentOptionCellViewModels: [CellViewModel] = []
+    
+    internal weak var payButtonUI: PayButtonUI? {
+        
+        didSet {
+            
+            self.payButtonUI?.delegate = self
+        }
+    }
+    
     // MARK: Methods
     
     internal func startOver(with caller: PayButtonInternalImplementation) {
+        
+        guard !self.isLoadingPaymentOptions else { return }
         
         guard let nonnullDataSource = caller.uiElement?.dataSource else {
             
@@ -49,10 +61,13 @@ internal class PaymentDataManager {
                                                    currency: nonnullDataSource.currency,
                                                    customer: nonnullDataSource.customer)
         
+        self.isLoadingPaymentOptions = true
+        
         caller.paymentDataManagerDidStartLoadingPaymentOptions()
         
         APIClient.shared.getPaymentOptions(with: paymentRequest) { [weak self, weak caller] (response, error) in
             
+            self?.isLoadingPaymentOptions = false
             self?.paymentOptionsResponse = response
             self?.currentTheme = caller?.theme ?? .light
             
@@ -92,6 +107,8 @@ internal class PaymentDataManager {
     
     // MARK: Properties
     
+    private var isLoadingPaymentOptions = false
+    
     private var paymentOptionsResponse: PaymentOptionsResponse? {
         
         didSet {
@@ -116,8 +133,6 @@ internal class PaymentDataManager {
         
         return amountedCurrency
     }
-    
-    internal private(set) lazy var allPaymentOptionCellViewModels: [CellViewModel] = []
     
     private var cardPaymentOptionsCellModel: CardInputTableViewCellModel {
         

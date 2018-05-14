@@ -131,7 +131,7 @@ DEPENDENCIES:
   - TapVisualEffectView
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - CardIODynamic
     - EditableTextInsetsTextField
     - SDWebImage
@@ -163,4 +163,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8e80814a4aaa68652dd9810ceeedd2d23b5b12a1
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

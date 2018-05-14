@@ -25,6 +25,12 @@ internal extension PaymentDataManager {
         self.updatePayButtonState()
     }
     
+    internal func deselectPaymentOption(_ model: PaymentOptionCellViewModel) {
+        
+        model.isSelected = false
+        self.updatePayButtonState()
+    }
+    
     internal func removePaymentOptionSelectionIfCellNotVisible() {
         
         guard let selectedOption = self.selectedPaymentOptionCellViewModel else { return }

@@ -46,7 +46,10 @@ internal class PaymentViewController: BaseViewController {
         
         didSet {
             
-            self.payButtonUI?.delegate = PaymentDataManager.shared
+            if let nonnullPayButton = self.payButtonUI {
+                
+                PaymentDataManager.shared.linkWith(nonnullPayButton)
+            }
         }
     }
     

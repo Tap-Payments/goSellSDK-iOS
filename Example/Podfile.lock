@@ -133,7 +133,7 @@ DEPENDENCIES:
   - goSellSDK (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - CardIODynamic
     - EditableTextInsetsTextField
     - SDWebImage
@@ -170,4 +170,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e8b4fa2a04ab5dc1a39812ea55ed4751d506db28
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
