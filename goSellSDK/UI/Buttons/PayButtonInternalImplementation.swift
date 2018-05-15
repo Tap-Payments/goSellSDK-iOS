@@ -49,11 +49,11 @@ internal extension PayButtonInternalImplementation {
     // MARK: - Private -
     // MARK: Methods
     
-    private func instantiatePaymentContainerController() -> PaymentContainerViewController {
+    private func instantiatePaymentContainerController() -> PaymentViewController {
         
-        guard let controller = UIStoryboard.goSellSDKPayment.instantiateInitialViewController() as? PaymentContainerViewController else {
+        guard let controller = UIStoryboard.goSellSDKPayment.instantiateInitialViewController() as? PaymentViewController else {
             
-            fatalError("Failed to instantiate \(PaymentContainerViewController.self) from storyboard.")
+            fatalError("Failed to instantiate \(PaymentViewController.self) from storyboard.")
         }
         
         return controller

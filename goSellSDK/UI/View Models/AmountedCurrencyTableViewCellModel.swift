@@ -45,15 +45,14 @@ internal class AmountedCurrencyTableViewCellModel: CellViewModel {
         
         super.init(indexPath: indexPath)
     }
+}
+
+// MARK: - Filterable
+extension AmountedCurrencyTableViewCellModel: Filterable {
     
-    internal override func tableViewDidSelectCell(_ sender: UITableView) {
+    internal func matchesFilter(_ filterText: String) -> Bool {
         
-        self.isSelected = true
-    }
-    
-    internal override func tableViewDidDeselectCell(_ sender: UITableView) {
-        
-        self.isSelected = false
+        return self.currencyNameText.containsIgnoringCase(filterText) || self.amountedCurrency.currency.isoCode.containsIgnoringCase(filterText)
     }
 }
 

@@ -1,103 +1,106 @@
 //
-//  PaymentViewController.swift
+//  PaymentContainerViewController.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct CoreGraphics.CGGeometry.CGRect
 import class TapVisualEffectView.TapVisualEffectView
+import class UIKit.UINavigationController.UINavigationController
+import protocol UIKit.UINavigationController.UINavigationControllerDelegate
+import enum UIKit.UINavigationController.UINavigationControllerOperation
 import class UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class UIKit.UIView.UIView
 import class UIKit.UIViewController.UIViewController
+import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
+import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
-internal class PaymentViewController: BaseViewController {
+/// Payment View Controller.
+public class PaymentViewController: UIViewController {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Methods
     
-    internal override func viewDidLoad() {
+    public override func viewDidAppear(_ animated: Bool) {
         
-        super.viewDidLoad()
-        self.subscribeOnNotifications()
+        super.viewDidAppear(animated)
+        
+        if !self.hasShownPaymentController {
+            
+            self.showPaymentController()
+        }
     }
     
-    internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
         
-        if let merchantHeaderController = segue.destination as? MerchantInformationHeaderViewController {
+        if let navigationController = segue.destination as? UINavigationController, navigationController.rootViewController is PaymentContentViewController {
             
-            merchantHeaderController.delegate = self
-        }
-        else if let cardScannerController = segue.destination as? CardScannerViewController {
-            
-            PaymentDataManager.shared.prepareCardScannerController(cardScannerController)
+            navigationController.delegate = self.animationsHandler
+            navigationController.transitioningDelegate = self.animationsHandler
         }
     }
     
-    deinit {
-        
-        self.unsubscribeFromNotifications()
-    }
+    // MARK: - Internal -
+    // MARK: Properties
+    
+    internal weak var payButton: (PayButtonProtocol & UIView)?
     
     // MARK: - Private -
     // MARK: Properties
     
-    @IBOutlet private weak var payButtonUI: PayButtonUI? {
+    @IBOutlet private weak var blurView: TapVisualEffectView? {
         
         didSet {
             
-            if let nonnullPayButton = self.payButtonUI {
-                
-                PaymentDataManager.shared.linkWith(nonnullPayButton)
-            }
+            self.blurView?.style = .none
         }
     }
+    
+    private var hasShownPaymentController = false
+    
+    private lazy var animationsHandler = TransitionAnimationsHandler()
     
     // MARK: Methods
     
-    private func subscribeOnNotifications() {
+    private func showPaymentController() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(cardScannerButtonClicked(_:)), name: .cardScannerButtonClicked, object: nil)
-    }
-    
-    private func unsubscribeFromNotifications() {
-        
-        NotificationCenter.default.removeObserver(self, name: .cardScannerButtonClicked, object: nil)
-    }
-    
-    @objc private func cardScannerButtonClicked(_ notification: Notification) {
-        
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             
-            self.performSegue(withIdentifier: "\(CardScannerViewController.className)Segue", sender: self)
+            self.performSegue(withIdentifier: "\(PaymentContentViewController.className)Segue", sender: self)
         }
+        
+        self.hasShownPaymentController = true
     }
 }
 
-// MARK: - MerchantInformationHeaderViewControllerDelegate
-extension PaymentViewController: MerchantInformationHeaderViewControllerDelegate {
+// MARK: - TransitionAnimationsHandler
+extension PaymentViewController {
     
-    internal func merchantInformationHeaderViewControllerCloseButtonClicked(_ controller: MerchantInformationHeaderViewController) {
+    fileprivate class TransitionAnimationsHandler: NSObject {}
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension PaymentViewController.TransitionAnimationsHandler: UIViewControllerTransitioningDelegate {
+    
+    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        DispatchQueue.main.async {
-            
-            let dismissalClosure = {
-                
-                let presentingController = self.presentingViewController
-                self.dismiss(animated: true) {
-                    
-                    presentingController?.dismiss(animated: false)
-                }
-            }
-            
-            if let firstResponder = self.view.firstResponder {
-                
-                firstResponder.resignFirstResponder(dismissalClosure)
-            }
-            else {
-                
-                dismissalClosure()
-            }
-        }
+        return PaymentPresentationAnimationController()
+    }
+    
+    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return PaymentDismissalAnimationController()
+    }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension PaymentViewController.TransitionAnimationsHandler: UINavigationControllerDelegate {
+    
+    fileprivate func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return UINavigationControllerSideAnimationController(operation: operation)
     }
 }

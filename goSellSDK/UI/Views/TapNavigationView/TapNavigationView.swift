@@ -60,6 +60,13 @@ internal class TapNavigationView: TapNibView {
         return CGSize(width: screen.bounds.width, height: Constants.height)
     }
     
+    // MARK: Methods
+    
+    internal override func sizeThatFits(_ size: CGSize) -> CGSize {
+        
+        return self.intrinsicContentSize
+    }
+    
     // MARK: - Private -
     
     private struct Constants {

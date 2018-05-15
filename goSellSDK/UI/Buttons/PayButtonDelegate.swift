@@ -10,5 +10,5 @@
     /// Asks the delegate to show payment view controller modally.
     ///
     /// - Parameter controller: Payment view controller.
-    func showPaymentController(_ controller: PaymentContainerViewController)
+    func showPaymentController(_ controller: PaymentViewController)
 }

@@ -13,19 +13,13 @@ internal class CurrencyCodesDataManager {
     // MARK: - Internal -
     // MARK: Propeties
     
-    internal var filterQuery: String? {
-        
-        didSet {
-            
-            self.updateFilter()
-        }
-    }
+    internal var filterQuery: String?
     
     internal var selectedModelIndexPath: IndexPath? {
         
         let selectedModel = self.selectedViewModel
         
-        if let index = self.displayedViewModels.index(where: { $0.indexPath == selectedModel.indexPath }) {
+        if let index = self.filteredData.index(where: { $0.indexPath == selectedModel.indexPath }) {
         
             return IndexPath(row: index, section: 0)
         }
@@ -45,7 +39,15 @@ internal class CurrencyCodesDataManager {
         return self.preselectedCurrency != self.selectedCurrency
     }
     
-    internal private(set) var displayedViewModels: [AmountedCurrencyTableViewCellModel] = []
+    internal var filteredData: [AmountedCurrencyTableViewCellModel] = [] {
+        
+        didSet {
+            
+            self.reloadDataClosure()
+        }
+    }
+    
+    internal private(set) var allData: [AmountedCurrencyTableViewCellModel] = []
     
     // MARK: Methods
     
@@ -58,6 +60,11 @@ internal class CurrencyCodesDataManager {
         self.generateCellsViewModels()
     }
     
+    internal func selectViewModel(_ model: AmountedCurrencyTableViewCellModel) {
+        
+        self.allData.forEach { $0.isSelected = $0 === model }
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -65,13 +72,9 @@ internal class CurrencyCodesDataManager {
     private let preselectedCurrency: AmountedCurrency
     private let reloadDataClosure: TypeAlias.ArgumentlessClosure
     
-    private var allCellsViewModels: [AmountedCurrencyTableViewCellModel] = []
-    
     private var selectedViewModel: AmountedCurrencyTableViewCellModel {
         
-        
-        
-        guard let result = (self.allCellsViewModels.first { $0.isSelected }) else {
+        guard let result = (self.allData.first { $0.isSelected }) else {
             
             fatalError("Currency code data manager is corrupted.")
         }
@@ -94,21 +97,8 @@ internal class CurrencyCodesDataManager {
             result.append(model)
         }
         
-        self.allCellsViewModels = result
-        self.updateFilter()
-    }
-    
-    private func updateFilter() {
-        
-        guard let filter = self.filterQuery, filter.length > 0 else {
-            
-            self.displayedViewModels = self.allCellsViewModels
-            return
-        }
-        
-        self.displayedViewModels = self.allCellsViewModels.filter { $0.currencyNameText.contains(filter) }
-        
-        self.reloadDataClosure()
+        self.allData = result
+        self.setFilter(nil)
     }
     
     @inline(__always) private func nextIndexPath(for temporaryResult: [Any]) -> IndexPath {
@@ -116,3 +106,6 @@ internal class CurrencyCodesDataManager {
         return IndexPath(row: temporaryResult.count, section: 0)
     }
 }
+
+// MARK: - DataManagerWithFilteredData
+extension CurrencyCodesDataManager: DataManagerWithFilteredData {}

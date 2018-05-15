@@ -12,7 +12,7 @@ import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
 import class UIKit.UITableViewCell.UITableViewCell
 
-internal class CurrencySelectionViewController: BaseViewController {
+internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWithSearch {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -31,12 +31,29 @@ internal class CurrencySelectionViewController: BaseViewController {
         self.selectCurrentSelectedCell()
     }
     
+    internal override func backButtonClicked() {
+        
+        self.notifyDelegateIfCurrencyChanged()
+    }
+    
+    internal override func tableViewLoaded(_ aTableView: UITableView) {
+        
+        super.tableViewLoaded(aTableView)
+        self.selectCurrentSelectedCell()
+    }
+    
+    internal override func searchBarTextChanged(_ text: String) {
+        
+        super.searchBarTextChanged(text)
+        self.dataManager?.setFilter(text)
+    }
+    
     // MARK: - Fileprivate -
     // MARK: Methods
     
     fileprivate func model(at indexPath: IndexPath) -> AmountedCurrencyTableViewCellModel {
         
-        guard let model = self.dataManager?.displayedViewModels[indexPath.row] else {
+        guard let model = self.dataManager?.filteredData[indexPath.row] else {
             
             fatalError("Data source is corrupted.")
         }
@@ -46,22 +63,6 @@ internal class CurrencySelectionViewController: BaseViewController {
     
     // MARK: - Private -
     // MARK: Properties
-    
-    @IBOutlet private weak var navigationView: TapNavigationView? {
-        
-        didSet {
-            
-            self.navigationView?.delegate = self
-        }
-    }
-    
-    @IBOutlet private weak var tableView: UITableView? {
-        
-        didSet {
-            
-            self.selectCurrentSelectedCell()
-        }
-    }
     
     private var dataManager: CurrencyCodesDataManager?
     
@@ -88,7 +89,7 @@ extension CurrencySelectionViewController: UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.dataManager?.displayedViewModels.count ?? 0
+        return self.dataManager?.filteredData.count ?? 0
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,26 +115,6 @@ extension CurrencySelectionViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let model = self.model(at: indexPath)
-        model.tableViewDidSelectCell(tableView)
-    }
-    
-    internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-        let model = self.model(at: indexPath)
-        model.tableViewDidDeselectCell(tableView)
-    }
-}
-
-// MARK: - TapNavigationViewDelegate
-extension CurrencySelectionViewController: TapNavigationViewDelegate {
-    
-    internal func navigationViewBackButtonClicked(_ navigationView: TapNavigationView) {
-        
-        self.notifyDelegateIfCurrencyChanged()
-        
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.navigationController?.popViewController(animated: true)
-        }
+        self.dataManager?.selectViewModel(model)
     }
 }
