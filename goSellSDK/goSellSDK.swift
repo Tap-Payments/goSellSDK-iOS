@@ -18,7 +18,7 @@
     public static var localeIdentifier: String = Locale.current.identifier
     
     /// Customer. Set this value at any time before user presses Pay button.
-    public static var customer: Customer?
+    public static var customer: CustomerInfo?
     
     // MARK: - Private -
     // MARK: Methods

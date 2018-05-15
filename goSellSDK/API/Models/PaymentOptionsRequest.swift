@@ -17,11 +17,11 @@ internal struct PaymentOptionsRequest: Encodable {
     internal let currency: Currency
     
     /// Customer (payer).
-    internal let customer: Customer
+    internal let customer: CustomerInfo
     
     // MARK: Methods
     
-    internal init(items: [PaymentItem], currency: Currency, customer: Customer) {
+    internal init(items: [PaymentItem], currency: Currency, customer: CustomerInfo) {
         
         self.items = items
         self.currency = currency

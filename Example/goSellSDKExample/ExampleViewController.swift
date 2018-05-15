@@ -7,11 +7,11 @@
 
 import class Dispatch.DispatchQueue
 import class goSellSDK.Currency
-import class goSellSDK.Customer
+import class goSellSDK.CustomerInfo
 import class goSellSDK.EmailAddress
 import class goSellSDK.PayButton
 import protocol goSellSDK.PayButtonDelegate
-import class goSellSDK.PaymentContainerViewController
+import class goSellSDK.PaymentViewController
 import protocol goSellSDK.PaymentDataSource
 import class goSellSDK.PaymentItem
 import class UIKit.UIViewController.UIViewController
@@ -26,9 +26,9 @@ internal class ExampleViewController: UIViewController {
 
 extension ExampleViewController: PaymentDataSource {
     
-    internal var customer: Customer {
+    internal var customer: CustomerInfo {
         
-        return try! Customer(emailAddress: EmailAddress("tap_customer@tap.company"),
+        return try! CustomerInfo(emailAddress: EmailAddress("tap_customer@tap.company"),
                              phoneNumber: "+96500000000",
                              firstName: "Tap",
                              lastName: "Customer")
@@ -50,7 +50,7 @@ extension ExampleViewController: PaymentDataSource {
 
 extension ExampleViewController: PayButtonDelegate {
     
-    internal func showPaymentController(_ controller: PaymentContainerViewController) {
+    internal func showPaymentController(_ controller: PaymentViewController) {
         
         DispatchQueue.main.async { [weak self] in
             

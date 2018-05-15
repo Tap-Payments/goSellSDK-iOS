@@ -23,9 +23,9 @@ internal class PaymentOptionsViewController: UIViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if let currenciesController = segue.destination as? CurrencySelectionViewController {
+        if let currencySelectionController = segue.destination as? CurrencySelectionViewController {
             
-            PaymentDataManager.shared.prepareCurrencySelectionController(currenciesController)
+            PaymentDataManager.shared.prepareCurrencySelectionController(currencySelectionController)
         }
     }
     

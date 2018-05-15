@@ -9,7 +9,7 @@
 @objc public protocol PaymentDataSource: class, NSObjectProtocol {
     
     /// Details of the person who pays.
-    var customer: Customer { get }
+    var customer: CustomerInfo { get }
     
     /// Items to pay for.
     var items: [PaymentItem] { get }

@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Payment Container View Controller-->
+        <!--Payment View Controller-->
         <scene sceneID="x15-8f-r2u">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="wPo-3k-AO1" customClass="PaymentContainerViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="wPo-3k-AO1" customClass="PaymentViewController" customModule="goSellSDK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t9V-Ui-QNG"/>
                         <viewControllerLayoutGuide type="bottom" id="z90-Ab-ZW2"/>
@@ -38,17 +38,17 @@
                     </view>
                     <connections>
                         <outlet property="blurView" destination="O64-xJ-5Na" id="xG9-o9-Vmq"/>
-                        <segue destination="V7x-AH-OD3" kind="show" identifier="PaymentViewControllerSegue" id="7R3-JG-rS1"/>
+                        <segue destination="V7x-AH-OD3" kind="show" identifier="PaymentContentViewControllerSegue" id="7R3-JG-rS1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vt0-ad-XYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-674" y="-118"/>
         </scene>
-        <!--Payment View Controller-->
+        <!--Payment Content View Controller-->
         <scene sceneID="dnA-gb-3IH">
             <objects>
-                <viewController id="3RY-Jo-7bx" customClass="PaymentViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                <viewController id="3RY-Jo-7bx" customClass="PaymentContentViewController" customModule="goSellSDK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0hf-mb-iOV"/>
                         <viewControllerLayoutGuide type="bottom" id="L0E-Nd-yE1"/>
@@ -240,7 +240,7 @@
                                             <outlet property="billImageView" destination="6H4-rV-chJ" id="Y5G-Op-eH8"/>
                                             <outlet property="transactionCurrencyLabel" destination="V2d-AB-e4N" id="hkg-ye-YKb"/>
                                             <outlet property="userSelectedCurrencyLabel" destination="EGI-aZ-2Dp" id="p8W-hh-K2J"/>
-                                            <segue destination="sHo-Rf-yPg" kind="show" id="ppw-qI-A3A"/>
+                                            <segue destination="sHo-Rf-yPg" kind="show" id="Fp8-MW-fC6"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyTableViewCell" rowHeight="19" id="0cC-xr-BG2" customClass="EmptyTableViewCell" customModule="goSellSDK">
@@ -712,7 +712,7 @@
         <!--Currency Selection View Controller-->
         <scene sceneID="mvA-db-B24">
             <objects>
-                <viewController id="sHo-Rf-yPg" customClass="CurrencySelectionViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sHo-Rf-yPg" customClass="CurrencySelectionViewController" customModule="goSellSDK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WKE-Op-cCz"/>
                         <viewControllerLayoutGuide type="bottom" id="PP4-1A-r0F"/>
@@ -721,10 +721,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izm-39-sh1" customClass="TapNavigationView" customModule="goSellSDK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ley-Dk-vza">
                                 <rect key="frame" x="0.0" y="86" width="375" height="495"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -822,27 +818,43 @@
                                     <outlet property="delegate" destination="sHo-Rf-yPg" id="faX-wz-2mP"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1H-Lr-YOI" customClass="TapNavigationView" customModule="goSellSDK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="96y-OR-xhh">
+                                <rect key="frame" x="0.0" y="86" width="375" height="56"/>
+                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Izm-39-sh1" firstAttribute="leading" secondItem="0fC-Iy-KcF" secondAttribute="leading" id="0wH-eM-S1i"/>
-                            <constraint firstItem="Ley-Dk-vza" firstAttribute="top" secondItem="Izm-39-sh1" secondAttribute="bottom" id="2fz-eP-Ovx"/>
-                            <constraint firstItem="Izm-39-sh1" firstAttribute="top" secondItem="0fC-Iy-KcF" secondAttribute="top" id="Faw-hf-Teb"/>
                             <constraint firstItem="PP4-1A-r0F" firstAttribute="top" secondItem="Ley-Dk-vza" secondAttribute="bottom" id="Fw6-Tf-Xb7"/>
-                            <constraint firstItem="Izm-39-sh1" firstAttribute="bottom" secondItem="WKE-Op-cCz" secondAttribute="bottom" constant="66" id="U3E-nt-SA3"/>
+                            <constraint firstItem="s1H-Lr-YOI" firstAttribute="leading" secondItem="0fC-Iy-KcF" secondAttribute="leading" id="HQZ-YA-cmx"/>
+                            <constraint firstItem="s1H-Lr-YOI" firstAttribute="bottom" secondItem="WKE-Op-cCz" secondAttribute="bottom" constant="66" id="O3E-F3-ovJ"/>
+                            <constraint firstAttribute="trailing" secondItem="s1H-Lr-YOI" secondAttribute="trailing" id="VEr-tW-khr"/>
+                            <constraint firstItem="96y-OR-xhh" firstAttribute="top" secondItem="s1H-Lr-YOI" secondAttribute="bottom" id="WNm-db-tqF"/>
+                            <constraint firstAttribute="trailing" secondItem="96y-OR-xhh" secondAttribute="trailing" id="XGp-8t-Bsg"/>
                             <constraint firstAttribute="trailing" secondItem="Ley-Dk-vza" secondAttribute="trailing" id="deT-Kr-5db"/>
+                            <constraint firstItem="s1H-Lr-YOI" firstAttribute="top" secondItem="0fC-Iy-KcF" secondAttribute="top" id="klE-PP-F9t"/>
+                            <constraint firstItem="Ley-Dk-vza" firstAttribute="top" secondItem="s1H-Lr-YOI" secondAttribute="bottom" id="oWV-XB-tFw"/>
                             <constraint firstItem="Ley-Dk-vza" firstAttribute="leading" secondItem="0fC-Iy-KcF" secondAttribute="leading" id="pCh-JV-3Fc"/>
-                            <constraint firstAttribute="trailing" secondItem="Izm-39-sh1" secondAttribute="trailing" id="sVd-PK-Kdf"/>
+                            <constraint firstItem="96y-OR-xhh" firstAttribute="leading" secondItem="0fC-Iy-KcF" secondAttribute="leading" id="u7Q-Bk-xE0"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="navigationView" destination="Izm-39-sh1" id="xPC-5K-Stb"/>
+                        <outlet property="bottomKeyboardOffsetConstraint" destination="Fw6-Tf-Xb7" id="DK8-uC-ej2"/>
+                        <outlet property="headerNavigationView" destination="s1H-Lr-YOI" id="lB0-Xi-tHN"/>
+                        <outlet property="searchBar" destination="96y-OR-xhh" id="JAo-FG-sgb"/>
                         <outlet property="tableView" destination="Ley-Dk-vza" id="v3G-hm-0tu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPH-eh-Avp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2718" y="610"/>
+            <point key="canvasLocation" x="2631" y="628"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4vL-di-S09">

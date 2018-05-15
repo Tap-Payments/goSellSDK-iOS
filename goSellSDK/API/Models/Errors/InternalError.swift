@@ -7,7 +7,9 @@
 
 internal enum InternalError: Int {
     
-    case invalidCurrency = 1
+    case invalidCountryCode = 1
+    case invalidCurrency
+    case invalidCustomerInfo
     case invalidEmail
     case invalidUnitOfMeasurement
 }

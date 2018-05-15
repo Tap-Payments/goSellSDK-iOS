@@ -9,7 +9,7 @@ internal extension Bundle {
     
     internal static let goSellSDKResources: Bundle = {
         
-        guard let result = Bundle(for: PaymentViewController.self).childBundle(named: Constants.goSellSDKResourcesBundleName) else {
+        guard let result = Bundle(for: PaymentContentViewController.self).childBundle(named: Constants.goSellSDKResourcesBundleName) else {
             
             fatalError("There is no \(Constants.goSellSDKResourcesBundleName) bundle.")
         }
