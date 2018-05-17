@@ -8,15 +8,13 @@
 import func TapSwiftFixes.synchronized
 
 /// Settings data manager.
-internal class SettingsDataManager {
+internal final class SettingsDataManager {
     
     // MARK: - Internal -
     
     internal typealias OptionalErrorClosure = (TapSDKError?) -> Void
     
     // MARK: Properties
-    
-    internal static let shared = SettingsDataManager()
     
     /// SDK settings.
     internal var settings: SDKSettingsData?
@@ -58,9 +56,14 @@ internal class SettingsDataManager {
     
     private var pendingCompletions: [OptionalErrorClosure] = []
     
+    private static var storage: SettingsDataManager?
+    
     // MARK: Methods
     
-    private init() { }
+    private init() {
+        
+        KnownSingletonTypes.add(SettingsDataManager.self)
+    }
     
     private func append(_ completion: @escaping OptionalErrorClosure) {
         
@@ -93,3 +96,26 @@ internal class SettingsDataManager {
         }
     }
 }
+
+// MARK: - Singleton
+extension SettingsDataManager: Singleton {
+    
+    internal static var shared: SettingsDataManager {
+        
+        if let nonnullStorage = self.storage {
+            
+            return nonnullStorage
+        }
+        
+        let instance = SettingsDataManager()
+        self.storage = instance
+        
+        return instance
+    }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
+    }
+}
+

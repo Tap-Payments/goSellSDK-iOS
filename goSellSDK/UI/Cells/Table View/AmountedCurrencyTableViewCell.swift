@@ -31,7 +31,6 @@ internal class AmountedCurrencyTableViewCell: BaseTableViewCell {
     
     @IBOutlet private weak var currencyNameLabel: UILabel?
     @IBOutlet private weak var amountLabel: UILabel?
-    @IBOutlet private weak var checkmarkImageView: UIImageView?
     
     @IBOutlet private var constraintsToDisableWhenSelected: [NSLayoutConstraint]?
     @IBOutlet private var constraintsToEnableWhenSelected: [NSLayoutConstraint]?
@@ -44,7 +43,6 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
         
         self.currencyNameLabel?.text = self.model?.currencyNameText
         self.amountLabel?.text = self.model?.amountText
-        self.checkmarkImageView?.image = self.model?.checkmarkImage
         
         self.updateSelectionState(animated: animated)
     }

@@ -8,6 +8,7 @@ PODS:
     - EditableTextInsetsTextField
     - TapAdditionsKit/Foundation/Bundle
     - TapAdditionsKit/Foundation/Locale
+    - TapAdditionsKit/SwiftStandartLibrary/Comparable
     - TapAdditionsKit/SwiftStandartLibrary/Dictionary
     - TapAdditionsKit/SwiftStandartLibrary/OptionSet
     - TapAdditionsKit/SwiftStandartLibrary/String
@@ -23,6 +24,7 @@ PODS:
     - TapNetworkManager/ImageLoading
     - TapNibView
     - TapResponderChainInputView
+    - TapSearchView
     - TapSwiftFixes/Threading
     - TapVisualEffectView
   - SDWebImage/Core (4.3.3)
@@ -120,6 +122,11 @@ PODS:
     - TapAdditionsKit/Foundation/Bundle
     - TapAdditionsKit/Tap/ClassProtocol
     - TapNibView
+  - TapSearchView (1.0):
+    - TapAdditionsKit/Foundation/Bundle
+    - TapAdditionsKit/SwiftStandartLibrary/Comparable
+    - TapAdditionsKit/Tap/ClassProtocol
+    - TapNibView
   - TapSwiftFixes/Threading (1.0.1)
   - TapVisualEffectView (1.0):
     - TapAdditionsKit/Foundation/Bundle
@@ -145,6 +152,7 @@ SPEC REPOS:
     - TapNetworkManager
     - TapNibView
     - TapResponderChainInputView
+    - TapSearchView
     - TapSwiftFixes
     - TapVisualEffectView
 
@@ -155,7 +163,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextField: be73bcc31de6a83d457851deeb807c46b1cbb16e
-  goSellSDK: e5e33d7ea6f97939aed59eb9b0731ec2302e2723
+  goSellSDK: b82b5a1c7aa0de3fc1943aad2addced32768866a
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   TapAdditionsKit: 3960b5693ebb5b3732734f4b6b1e8c2ecd54f7f8
   TapApplication: 3ba1ef06b929427582e6b750c1060c66b973ce22
@@ -165,9 +173,10 @@ SPEC CHECKSUMS:
   TapNetworkManager: 47f7e1b6400cfe44be4be246619d021ef0e58f62
   TapNibView: 4ddaf1cd09ec3b1ff1315f54c6b7713faa0e3706
   TapResponderChainInputView: d9285cdc13f513a7f063238bb2b07190aed48b57
+  TapSearchView: c9c884a8b630ffb7a4d904e37822a14054cca1b5
   TapSwiftFixes: dfc8a6fc03cbb7313cad63d293c589d02566ca37
   TapVisualEffectView: d69ad714fef55a5c728069de51a3aa16607db164
 
-PODFILE CHECKSUM: e8b4fa2a04ab5dc1a39812ea55ed4751d506db28
+PODFILE CHECKSUM: e8ee4dd06b1071f76e50c605b5b31a237aaba647
 
 COCOAPODS: 1.5.2

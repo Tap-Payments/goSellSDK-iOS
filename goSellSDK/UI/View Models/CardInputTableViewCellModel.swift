@@ -32,6 +32,11 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         return Theme.current.settings.cardInputFieldsSettings.scanIcon
     }
     
+    internal var displaysAddressFields: Bool {
+        
+        return self.binData?.isAddressRequired ?? false
+    }
+    
     internal var tableViewCellModels: [ImageTableViewCellModel]
     internal var displayedTableViewCellModels: [ImageTableViewCellModel] {
         
@@ -58,6 +63,8 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         
         return (self.cardDataValidators.filter { !$0.isDataValid }).count == 0
     }
+    
+    internal var binData: BINResponse?
     
     // MARK: Methods
     

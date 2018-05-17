@@ -5,9 +5,14 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct CoreGraphics.CGBase.CGFloat
+import struct CoreGraphics.CGGeometry.CGSize
+import func TapAdditionsKit.clamp
 import class TapNetworkManager.TapImageLoader
 import class UIKit.UIButton.UIButton
+import class UIKit.UIColor.UIColor
 import class UIKit.UILabel.UILabel
+import class UIKit.UIView.UIView
 import class UIKit.UIViewController.UIViewController
 
 /// Merchant information header view controller.
@@ -28,6 +33,16 @@ internal class MerchantInformationHeaderViewController: UIViewController {
         self.loadTheme()
         self.updateMerchantTitleLabel()
         self.loadMerchantLogo()
+        self.setupShadow()
+    }
+    
+    internal func updateBackgroundOpacityBasedOnScrollContentOverlapping(_ overlapping: CGFloat) {
+        
+        let opacity = clamp(value: 2.0 * overlapping / self.view.bounds.height, low: 0.0, high: 1.0)
+//        let shadowOpacity = Float(1.0 - opacity)
+        
+        self.backgroundOpacity = opacity
+        self.view.layer.shadowOpacity = Float(opacity)
     }
     
     // MARK: - Private -
@@ -39,9 +54,23 @@ internal class MerchantInformationHeaderViewController: UIViewController {
     
     @IBOutlet private weak var closeButton: UIButton?
     
+    @IBOutlet private weak var backgroundView: UIView?
+    
     private var merchant: Merchant? {
         
         return SettingsDataManager.shared.settings?.merchant
+    }
+    
+    private var backgroundOpacity: CGFloat {
+        
+        get {
+            
+            return self.backgroundView?.alpha ?? 0.0
+        }
+        set {
+            
+            self.backgroundView?.alpha = newValue
+        }
     }
     
     // MARK: Methods
@@ -85,10 +114,18 @@ internal class MerchantInformationHeaderViewController: UIViewController {
         
         let headerSettings = Theme.current.settings.headerSettings
         
-        self.view.backgroundColor = headerSettings.backgroundColor
+        self.backgroundView?.backgroundColor = headerSettings.backgroundColor
         self.iconView?.placeholderImage = headerSettings.placeholderLogo
         self.iconView?.loaderColor = headerSettings.logoLoaderColor
         self.titleLabel?.textColor = headerSettings.textColor
         self.closeButton?.setImage(headerSettings.closeImage, for: .normal)
+    }
+    
+    private func setupShadow() {
+        
+        self.view.layer.shadowOpacity = 0.0
+        self.view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.view.layer.shadowRadius = 1.0
+        self.view.layer.shadowColor = UIColor.lightGray.cgColor
     }
 }

@@ -84,7 +84,7 @@ internal extension Theme {
             let headerSettings = HeaderSettings(placeholderLogo: .named("ic_merchant_logo_placeholder", in: .goSellSDKResources)!,
                                                 logoLoaderColor: .hex("#535353"),
                                                 textColor: .hex("#535353"),
-                                                backgroundColor: .hex("#B5B5B5A8"),
+                                                backgroundColor: .hex("#F7F7F7"),
                                                 closeImage: .named("ic_close", in: .goSellSDKResources)!)
             
             let generalImages = GeneralImages(arrowRight: .named("ic_arrow_right", in: .goSellSDKResources)!,

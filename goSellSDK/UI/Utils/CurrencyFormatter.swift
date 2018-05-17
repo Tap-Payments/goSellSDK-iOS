@@ -8,14 +8,9 @@
 import func TapSwiftFixes.synchronized
 
 /// Currency Formatter utility class.
-internal class CurrencyFormatter {
+internal final class CurrencyFormatter {
     
     // MARK: - Internal -
-    // MARK: Properties
-    
-    /// Shared instance.
-    internal static let shared = CurrencyFormatter()
-    
     // MARK: Methods
     
     /// Formats amounted currency into readable string in specified locale.
@@ -74,9 +69,14 @@ internal class CurrencyFormatter {
         return formatter
     }()
     
+    private static var storage: CurrencyFormatter?
+    
     // MARK: Methods
     
-    private init() {}
+    private init() {
+        
+        KnownSingletonTypes.add(CurrencyFormatter.self)
+    }
     
     private func localizedCurrencySymbol(for currencyCode: String, locale: Locale = .enUS) -> String {
         
@@ -99,5 +99,27 @@ internal class CurrencyFormatter {
             currencySymbol = correctValue
             break
         }
+    }
+}
+
+// MARK: - Singleton
+extension CurrencyFormatter: Singleton {
+    
+    internal static var shared: CurrencyFormatter {
+        
+        if let nonnullStorage = self.storage {
+            
+            return nonnullStorage
+        }
+        
+        let instance = CurrencyFormatter()
+        self.storage = instance
+        
+        return instance
+    }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
     }
 }

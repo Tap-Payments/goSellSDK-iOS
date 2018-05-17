@@ -98,6 +98,11 @@ PODS:
     - TapAdditionsKit/Foundation/Bundle
     - TapAdditionsKit/Tap/ClassProtocol
     - TapNibView
+  - TapSearchView (1.0):
+    - TapAdditionsKit/Foundation/Bundle
+    - TapAdditionsKit/SwiftStandartLibrary/Comparable
+    - TapAdditionsKit/Tap/ClassProtocol
+    - TapNibView
   - TapSwiftFixes/Threading (1.0.1)
   - TapVisualEffectView (1.0):
     - TapAdditionsKit/Foundation/Bundle
@@ -112,6 +117,7 @@ DEPENDENCIES:
   - EditableTextInsetsTextField
   - TapAdditionsKit/Foundation/Bundle
   - TapAdditionsKit/Foundation/Locale
+  - TapAdditionsKit/SwiftStandartLibrary/Comparable
   - TapAdditionsKit/SwiftStandartLibrary/Dictionary
   - TapAdditionsKit/SwiftStandartLibrary/OptionSet
   - TapAdditionsKit/SwiftStandartLibrary/String
@@ -127,6 +133,7 @@ DEPENDENCIES:
   - TapNetworkManager/ImageLoading
   - TapNibView
   - TapResponderChainInputView
+  - TapSearchView
   - TapSwiftFixes/Threading
   - TapVisualEffectView
 
@@ -143,6 +150,7 @@ SPEC REPOS:
     - TapNetworkManager
     - TapNibView
     - TapResponderChainInputView
+    - TapSearchView
     - TapSwiftFixes
     - TapVisualEffectView
 
@@ -158,9 +166,10 @@ SPEC CHECKSUMS:
   TapNetworkManager: 47f7e1b6400cfe44be4be246619d021ef0e58f62
   TapNibView: 4ddaf1cd09ec3b1ff1315f54c6b7713faa0e3706
   TapResponderChainInputView: d9285cdc13f513a7f063238bb2b07190aed48b57
+  TapSearchView: c9c884a8b630ffb7a4d904e37822a14054cca1b5
   TapSwiftFixes: dfc8a6fc03cbb7313cad63d293c589d02566ca37
   TapVisualEffectView: d69ad714fef55a5c728069de51a3aa16607db164
 
-PODFILE CHECKSUM: 8e80814a4aaa68652dd9810ceeedd2d23b5b12a1
+PODFILE CHECKSUM: c2d29729ad3162468b5f9679e2832fc2576bf35c
 
 COCOAPODS: 1.5.2
