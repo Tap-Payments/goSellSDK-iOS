@@ -38,6 +38,12 @@ import struct Foundation.NSURL.URL
     /// this Boolean represents whether it is still uncaptured or has since been captured.
     public private(set) var isCaptured: Bool = false
     
+    /// Defines if 3DS is required.
+    public private(set) var require3DSecure: Bool = false
+    
+    /// Merchant Reference number to track the payment status and payment attempts.
+    public private(set) var referenceNumber: String?
+    
     /// Time at which the object was created. Measured in seconds since the Unix epoch.
     public private(set) var creationDate: Date?
     
@@ -46,6 +52,12 @@ import struct Foundation.NSURL.URL
 
     /// ID of the customer this charge is for if one exists.
     public private(set) var customerIdentifier: String?
+    
+    /// Customer's first name. If customer identifier is provided, then it is not required.
+    public private(set) var firstName: String?
+    
+    /// Customer's last name. If customer identifier is provided, then it is not required.
+    public private(set) var lastName: String?
     
     /// An arbitrary string attached to the object. Often useful for displaying to users.
     public private(set) var descriptionText: String?
@@ -113,9 +125,13 @@ import struct Foundation.NSURL.URL
             "amount:               \(self.amount)",
             "refunded amount:      \(self.refundedAmount)",
             "captured:             \(self.isCaptured)",
+            "requires 3D secure:   \(self.require3DSecure)",
+            "reference number:     \(self.referenceNumber?.description ?? "nil")",
             "creation date:        \(self.creationDate?.description ?? "nil")",
             "currency:             \(self.currency?.description ?? "nil")",
             "customer:             \(self.customerIdentifier?.description ?? "nil")",
+            "first name:           \(self.firstName?.description ?? "nil")",
+            "last name:            \(self.lastName?.description ?? "nil")",
             "description:          \(self.descriptionText?.description ?? "nil")",
             "failure code:         \(self.failureCode?.description ?? "nil")",
             "failure message:      \(self.failureMessage?.description ?? "nil")",
@@ -139,28 +155,32 @@ import struct Foundation.NSURL.URL
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case object = "object"
-        case amount = "amount"
-        case refundedAmount = "amount_refunded"
-        case isCaptured = "captured"
-        case creationDate = "created"
-        case currency = "currency"
-        case customerIdentifier = "customer"
-        case descriptionText = "description"
-        case failureCode = "failure_code"
-        case failureMessage = "failure_message"
-        case isLiveMode = "livemode"
-        case metadata = "metadata"
-        case isPaid = "paid"
-        case receiptEmail = "receipt_email"
-        case receiptSMS = "receipt_sms"
-        case receiptNumber = "receipt_number"
-        case isRefunded = "refunded"
-        case source = "source"
-        case statementDescriptor = "statement_descriptor"
-        case status = "status"
-        case redirect = "redirect"
+        case identifier             = "id"
+        case object                 = "object"
+        case amount                 = "amount"
+        case refundedAmount         = "amount_refunded"
+        case isCaptured             = "captured"
+        case require3DSecure        = "threeds"
+        case referenceNumber        = "reference"
+        case creationDate           = "created"
+        case currency               = "currency"
+        case customerIdentifier     = "customer"
+        case firstName              = "first_name"
+        case lastName               = "last_name"
+        case descriptionText        = "description"
+        case failureCode            = "failure_code"
+        case failureMessage         = "failure_message"
+        case isLiveMode             = "livemode"
+        case metadata               = "metadata"
+        case isPaid                 = "paid"
+        case receiptEmail           = "receipt_email"
+        case receiptSMS             = "receipt_sms"
+        case receiptNumber          = "receipt_number"
+        case isRefunded             = "refunded"
+        case source                 = "source"
+        case statementDescriptor    = "statement_descriptor"
+        case status                 = "status"
+        case redirect               = "redirect"
     }
 }
 
@@ -246,6 +266,9 @@ import struct Foundation.NSURL.URL
     /// Card brand.
     public private(set) var brand: String?
     
+    /// Card BIN number.
+    public private(set) var binNumber: String?
+    
     /// Pretty printed description of the ChargeSource object.
     public override var description: String {
         
@@ -259,7 +282,8 @@ import struct Foundation.NSURL.URL
             "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")",
             "address city:     \(self.addressCity?.description ?? "nil")",
             "address country:  \(self.addressCountry?.description ?? "nil")",
-            "brand:            \(self.brand?.description ?? "nil")"
+            "brand:            \(self.brand?.description ?? "nil")",
+            "bin:              \(self.binNumber?.description ?? "nil")"
         ]
         
         return "\n" + lines.joined(separator: "\n\t")
@@ -274,5 +298,9 @@ import struct Foundation.NSURL.URL
         case expirationMonth    = "exp_month"
         case expirationYear     = "exp_year"
         case lastFourDigits     = "last4"
+        case addressCity        = "address_city"
+        case addressCountry     = "address_country"
+        case brand              = "brand"
+        case binNumber          = "bin"
     }
 }

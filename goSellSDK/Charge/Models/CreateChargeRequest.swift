@@ -32,6 +32,9 @@ import struct Foundation.NSURL.URL
     /// Defines if 3DS is required.
     public var require3DSecure: Bool
     
+    /// Merchant Reference number to track the payment status and payment attempts.
+    public var referenceNumber: String?
+    
     /// Information related to the redirect.
     public var redirect: CreateChargeRedirect
     
@@ -60,6 +63,12 @@ import struct Foundation.NSURL.URL
     /// Individual keys can be unset by posting an empty value to them.
     /// All keys can be unset by posting an empty value to metadata.
     public var metadata: [String: String]?
+    
+    /// Customer's first name. If customer identifier is provided, then it is not required.
+    public var firstName: String?
+    
+    /// Customer's last name. If customer identifier is provided, then it is not required.
+    public var lastName: String?
     
     /// The mobile number to send this charge's receipt to.
     /// The receipt will not be sent until the charge is paid.
@@ -92,11 +101,14 @@ import struct Foundation.NSURL.URL
                   redirect: redirect,
                   capture: true,
                   require3DSecure: true,
+                  referenceNumber: nil,
                   source: nil,
                   customerIdentifier: nil,
                   statementDescriptor: nil,
                   descriptionText: nil,
                   metadata: nil,
+                  firstName: nil,
+                  lastName: nil,
                   receiptSMS: nil,
                   receiptEmail: nil)
     }
@@ -115,11 +127,41 @@ import struct Foundation.NSURL.URL
                   redirect: redirect,
                   capture: true,
                   require3DSecure: true,
+                  referenceNumber: nil,
                   source: source,
                   customerIdentifier: nil,
                   statementDescriptor: nil,
                   descriptionText: nil,
                   metadata: nil,
+                  firstName: nil,
+                  lastName: nil,
+                  receiptSMS: nil,
+                  receiptEmail: nil)
+    }
+    
+    /// Initializes charge request with a source object.
+    ///
+    /// - Parameters:
+    ///   - amount: Amount.
+    ///   - currency: Currency.
+    ///   - redirect: Redirect object.
+    ///   - source: Source object.
+    ///   - referenceNumber: Reference number.
+    public convenience init(amount: Decimal, currency: String, redirect: CreateChargeRedirect, source: CreateChargeSource?, referenceNumber: String?) {
+        
+        self.init(amount: amount,
+                  currency: currency,
+                  redirect: redirect,
+                  capture: true,
+                  require3DSecure: true,
+                  referenceNumber: referenceNumber,
+                  source: source,
+                  customerIdentifier: nil,
+                  statementDescriptor: nil,
+                  descriptionText: nil,
+                  metadata: nil,
+                  firstName: nil,
+                  lastName: nil,
                   receiptSMS: nil,
                   receiptEmail: nil)
     }
@@ -138,11 +180,41 @@ import struct Foundation.NSURL.URL
                   redirect: redirect,
                   capture: true,
                   require3DSecure: true,
+                  referenceNumber: nil,
                   source: nil,
                   customerIdentifier: customerIdentifier,
                   statementDescriptor: nil,
                   descriptionText: nil,
                   metadata: nil,
+                  firstName: nil,
+                  lastName: nil,
+                  receiptSMS: nil,
+                  receiptEmail: nil)
+    }
+    
+    /// Initializes charge request with a source object.
+    ///
+    /// - Parameters:
+    ///   - amount: Amount.
+    ///   - currency: Currency.
+    ///   - redirect: Redirect object.
+    ///   - firstName: Customer first name.
+    ///   - lastName: Customer last name.
+    public convenience init(amount: Decimal, currency: String, redirect: CreateChargeRedirect, firstName: String?, lastName: String?) {
+        
+        self.init(amount: amount,
+                  currency: currency,
+                  redirect: redirect,
+                  capture: true,
+                  require3DSecure: true,
+                  referenceNumber: nil,
+                  source: nil,
+                  customerIdentifier: nil,
+                  statementDescriptor: nil,
+                  descriptionText: nil,
+                  metadata: nil,
+                  firstName: firstName,
+                  lastName: lastName,
                   receiptSMS: nil,
                   receiptEmail: nil)
     }
@@ -155,11 +227,14 @@ import struct Foundation.NSURL.URL
     ///   - redirect: Redirect object.
     ///   - capture: Defines if the charge should be captured.
     ///   - require3DSecure: Defines if 3DS is required.
+    ///   - referenceNumber: Merchant Reference number to track the payment status and payment attempts.
     ///   - source: Source object.
     ///   - customerIdentifier: Customer identifier.
     ///   - statementDescriptor: Statement descriptor.
     ///   - descriptionText: Description.
     ///   - metadata: Metadata.
+    ///   - firstName: Customer first name.
+    ///   - lastName: Customer last name.
     ///   - receiptSMS: Receipt SMS.
     ///   - receiptEmail: Receipt email.
     public init(amount: Decimal,
@@ -167,11 +242,14 @@ import struct Foundation.NSURL.URL
                 redirect: CreateChargeRedirect,
                 capture: Bool = true,
                 require3DSecure: Bool = true,
+                referenceNumber: String?,
                 source: CreateChargeSource? = nil,
                 customerIdentifier: String? = nil,
                 statementDescriptor: String? = nil,
                 descriptionText: String? = nil,
                 metadata: [String: String]? = nil,
+                firstName: String?,
+                lastName: String?,
                 receiptSMS: String?,
                 receiptEmail: String?) {
         
@@ -180,11 +258,14 @@ import struct Foundation.NSURL.URL
         self.redirect = redirect
         self.capture = capture
         self.require3DSecure = require3DSecure
+        self.referenceNumber = referenceNumber
         self.source = source
         self.customerIdentifier = customerIdentifier
         self.statementDescriptor = statementDescriptor
         self.descriptionText = descriptionText
         self.metadata = metadata
+        self.firstName = firstName
+        self.lastName = lastName
         self.receiptSMS = receiptSMS
         self.receiptEmail = receiptEmail
         
@@ -199,12 +280,15 @@ import struct Foundation.NSURL.URL
         case currency               = "currency"
         case capture                = "capture"
         case require3DSecure        = "threeds"
+        case referenceNumber        = "reference"
         case source                 = "source"
         case customerIdentifier     = "customer"
         case statementDescriptor    = "statement_descriptor"
         case redirect               = "redirect"
         case descriptionText        = "description"
         case metadata               = "metadata"
+        case firstName              = "first_name"
+        case lastName               = "last_name"
         case receiptSMS             = "receipt_sms"
         case receiptEmail           = "receipt_email"
     }
