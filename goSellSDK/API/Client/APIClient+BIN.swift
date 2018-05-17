@@ -2,7 +2,7 @@
 //  APIClient+BIN.swift
 //  goSellSDK
 //
-//  Created by Dennis Pashkov on 5/14/18.
+//  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
 import class TapNetworkManager.TapNetworkRequestOperation

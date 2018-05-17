@@ -5,12 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal class PaymentDataManager {
+internal final class PaymentDataManager {
     
     // MARK: - Internal -
     // MARK: Properties
-    
-    internal static let shared = PaymentDataManager()
     
     internal private(set) var paymentOptionCellViewModels: [CellViewModel] = [] {
         
@@ -97,6 +95,11 @@ internal class PaymentDataManager {
         return result
     }
     
+    internal static func userDidClosePayment() {
+        
+        KnownSingletonTypes.destroyAll()
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
@@ -148,9 +151,14 @@ internal class PaymentDataManager {
         return cardModels[0]
     }
     
+    private static var storage: PaymentDataManager?
+    
     // MARK: Methods
     
-    private init() { }
+    private init() {
+        
+        KnownSingletonTypes.add(PaymentDataManager.self)
+    }
     
     private func nextIndexPath(for temporaryCellModels: [CellViewModel]) -> IndexPath {
         
@@ -313,5 +321,27 @@ internal class PaymentDataManager {
         }
         
         fatalError("Data source is corrupted")
+    }
+}
+
+// MARK: - Singleton
+extension PaymentDataManager: Singleton {
+    
+    internal static var shared: PaymentDataManager {
+        
+        if let nonnullStorage = self.storage {
+            
+            return nonnullStorage
+        }
+        
+        let instance = PaymentDataManager()
+        self.storage = instance
+        
+        return instance
+    }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
     }
 }

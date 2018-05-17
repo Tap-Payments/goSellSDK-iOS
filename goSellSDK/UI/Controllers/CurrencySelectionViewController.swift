@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class UIKit.UIButton.UIButton
 import class UIKit.UIImageView.UIImageView
 import class UIKit.UILabel.UILabel
 import class UIKit.UITableView.UITableView
@@ -42,10 +43,18 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         self.selectCurrentSelectedCell()
     }
     
-    internal override func searchBarTextChanged(_ text: String) {
+    internal override func searchViewTextChanged(_ text: String) {
         
-        super.searchBarTextChanged(text)
+        super.searchViewTextChanged(text)
         self.dataManager?.setFilter(text)
+    }
+    
+    internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
+        
+        super.headerNavigationViewLoaded(headerView)
+        
+        headerView.title = "Select Currency"
+        self.addCheckmarkButtonToTheHeader()
     }
     
     // MARK: - Fileprivate -
@@ -81,6 +90,23 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         guard let manager = self.dataManager else { return }
         
         self.delegate?.currencySelectionViewControllerDidFinish(with: manager.selectedCurrency, changed: manager.hasCurrencyChanged)
+    }
+    
+    private func addCheckmarkButtonToTheHeader() {
+        
+        let doneButton = UIButton(type: .custom)
+        doneButton.setImage(Theme.current.settings.generalImages.checkmarkImage, for: .normal)
+        doneButton.addTarget(self, action: #selector(doneButtonTouchUpInside(_:)), for: .touchUpInside)
+        doneButton.widthConstraint.constant = 45.0
+        doneButton.heightConstraint.constant = 66.0
+        
+        self.headerNavigationView?.customRightView = doneButton
+    }
+    
+    @objc private func doneButtonTouchUpInside(_ sender: Any) {
+        
+        self.notifyDelegateIfCurrencyChanged()
+        self.pop()
     }
 }
 

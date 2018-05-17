@@ -29,11 +29,6 @@ internal class AmountedCurrencyTableViewCellModel: CellViewModel {
         }
     }
     
-    internal var checkmarkImage: UIImage {
-        
-        return Theme.current.settings.generalImages.checkmarkImage
-    }
-    
     // MARK: - Internal -
     // MARK: Methods
     

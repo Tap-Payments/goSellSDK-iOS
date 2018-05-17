@@ -9,6 +9,7 @@ def shared_pods
     pod 'EditableTextInsetsTextField'
     pod 'TapAdditionsKit/Foundation/Bundle'
     pod 'TapAdditionsKit/Foundation/Locale'
+    pod 'TapAdditionsKit/SwiftStandartLibrary/Comparable'
     pod 'TapAdditionsKit/SwiftStandartLibrary/Dictionary'
     pod 'TapAdditionsKit/SwiftStandartLibrary/OptionSet'
     pod 'TapAdditionsKit/SwiftStandartLibrary/String'
@@ -24,6 +25,7 @@ def shared_pods
     pod 'TapNetworkManager/ImageLoading'
     pod 'TapNibView'
     pod 'TapResponderChainInputView'
+    pod 'TapSearchView'
     pod 'TapSwiftFixes/Threading'
     pod 'TapVisualEffectView'
     

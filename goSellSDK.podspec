@@ -13,12 +13,13 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.homepage = 'https://github.com/Tap-Payments/goSellSDK-iOS'
     goSellSDK.source = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
     goSellSDK.source_files = 'goSellSDK/**/*.{swift}'
-    goSellSDK.ios.resource_bundle = { 'goSellSDKResources' => 'goSellSDK/Resources/*.{xcassets,storyboard,xib}' }
+    goSellSDK.ios.resource_bundle = { 'goSellSDKResources' => 'goSellSDK/UI/Resources/*.{xcassets,storyboard,xib}' }
     
     goSellSDK.dependency 'CardIODynamic'
     goSellSDK.dependency 'EditableTextInsetsTextField'
     goSellSDK.dependency 'TapAdditionsKit/Foundation/Bundle'
     goSellSDK.dependency 'TapAdditionsKit/Foundation/Locale'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Comparable'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Dictionary'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/OptionSet'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/String'
@@ -34,6 +35,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.dependency 'TapNetworkManager/ImageLoading'
     goSellSDK.dependency 'TapNibView'
     goSellSDK.dependency 'TapResponderChainInputView'
+    goSellSDK.dependency 'TapSearchView'
     goSellSDK.dependency 'TapSwiftFixes/Threading'
     goSellSDK.dependency 'TapVisualEffectView'
     

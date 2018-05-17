@@ -30,6 +30,14 @@ internal class HeaderNavigatedViewController: BaseViewController {
     }
     
     internal func backButtonClicked() { }
+    
+    internal func pop() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
 }
 
 // MARK: - TapNavigationViewDelegate
@@ -38,10 +46,6 @@ extension HeaderNavigatedViewController: TapNavigationViewDelegate {
     internal func navigationViewBackButtonClicked(_ navigationView: TapNavigationView) {
         
         self.backButtonClicked()
-        
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.navigationController?.popViewController(animated: true)
-        }
+        self.pop()
     }
 }

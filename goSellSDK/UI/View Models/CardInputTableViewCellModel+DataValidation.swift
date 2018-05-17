@@ -103,6 +103,14 @@ internal extension CardInputTableViewCellModel {
     }
     
     // MARK: - Private -
+    
+    private struct Constants {
+        
+        fileprivate static let binNumberLength = 6
+        
+        @available(*, unavailable) private init() {}
+    }
+    
     // MARK: Properties
     
     private var availableCardBrands: [CardBrand] {
@@ -134,6 +142,14 @@ internal extension CardInputTableViewCellModel {
         
         return self.cardDataValidators.first { $0.validationType == type }
     }
+    
+    private func actualBinDataUpdated(_ newBINData: BINResponse?) {
+        
+        if self.binData != newBINData {
+            
+            self.binData = newBINData
+        }
+    }
 }
 
 // MARK: - CardValidatorDelegate
@@ -152,6 +168,27 @@ extension CardInputTableViewCellModel: CardValidatorDelegate {
 
 // MARK: - CardBrandChangeReporting
 extension CardInputTableViewCellModel: CardBrandChangeReporting {
+    
+    internal func cardNumberValidator(_ validator: CardNumberValidator, cardNumberInputChanged cardNumber: String) {
+        
+        if cardNumber.length < Constants.binNumberLength {
+            
+            self.actualBinDataUpdated(nil)
+            return
+        }
+        
+        BINDataManager.shared.retrieveBINData(for: cardNumber.substring(to: Constants.binNumberLength)) { (response) in
+            
+            let inputCardNumber = validator.cardNumber
+            let outputBINNumber = response.binNumber ?? .empty
+            let inputTrimmedTo6Characters = inputCardNumber.length < Constants.binNumberLength ? .empty : inputCardNumber.substring(to: Constants.binNumberLength)
+            let outputTrimmedTo6Characters = outputBINNumber.length < Constants.binNumberLength ? .empty : outputBINNumber.substring(to: Constants.binNumberLength)
+            if inputTrimmedTo6Characters == outputTrimmedTo6Characters {
+                
+                self.actualBinDataUpdated(response)
+            }
+        }
+    }
     
     internal func recognizedCardBrandChanged(_ definedCardBrand: DefinedCardBrand) {
         

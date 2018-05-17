@@ -14,15 +14,13 @@ import class TapNetworkManager.TapNetworkRequestOperation
 import class UIKit.UIDevice.UIDevice
 
 /// API client.
-internal class APIClient {
+internal final class APIClient {
     
     // MARK: - Internal -
     
     internal typealias Completion<Response> = (Response?, TapSDKError?) -> Void
     
     // MARK: Properties
-    
-    internal static let shared = APIClient()
     
     /// Static HTTP headers sent with each request.
     internal var staticHTTPHeaders: [String: String] {
@@ -159,6 +157,8 @@ internal class APIClient {
     
     private let networkManager = TapNetworkManager(baseURL: Constants.baseURL)
     
+    private static var storage: APIClient?
+    
     private let applicationStaticDetails: [String: Any] = {
         
         guard let bundleID = TapApplicationPlistInfo.shared.bundleIdentifier, !bundleID.isEmpty else {
@@ -202,7 +202,10 @@ internal class APIClient {
     
     // MARK: Methods
     
-    private init() {}
+    private init() {
+        
+        KnownSingletonTypes.add(APIClient.self)
+    }
     
     private func handleResponse<Response>(_ response: Any?, error: Error?, in dataTask: URLSessionDataTask?, using decoder: JSONDecoder, completion: @escaping Completion<Response>) where Response: Decodable {
         
@@ -283,5 +286,27 @@ internal class APIClient {
             
             return
         }
+    }
+}
+
+// MARK: - Singleton
+extension APIClient: Singleton {
+    
+    internal static var shared: APIClient {
+        
+        if let nonnullStorage = self.storage {
+            
+            return nonnullStorage
+        }
+        
+        let instance = APIClient()
+        self.storage = instance
+        
+        return instance
+    }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
     }
 }

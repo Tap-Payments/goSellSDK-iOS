@@ -13,11 +13,6 @@ import class UIKit.UITextField.UITextField
 import protocol UIKit.UITextField.UITextFieldDelegate
 import class UIKit.UIView.UIView
 
-internal protocol CardBrandChangeReporting: ClassProtocol {
-    
-    func recognizedCardBrandChanged(_ definedCardBrand: DefinedCardBrand)
-}
-
 /// Card Number Validator class.
 internal class CardNumberValidator: CardValidator {
     
@@ -72,7 +67,7 @@ internal class CardNumberValidator: CardValidator {
             self.textField.text = nil
         }
         
-        self.compareNewRecognizedBrandToPrevoiusAndCallDelegate(self.recognizedCardType)
+        self.compareNewRecognizedBrandToPreviousAndCallDelegate(self.recognizedCardType, number: self.cardNumber)
         
         self.updateInputFieldAttributes()
     }
@@ -81,7 +76,7 @@ internal class CardNumberValidator: CardValidator {
         
         let recognizedBrand = self.recognizedCardType
         
-        self.compareNewRecognizedBrandToPrevoiusAndCallDelegate(recognizedBrand)
+        self.compareNewRecognizedBrandToPreviousAndCallDelegate(recognizedBrand, number: self.cardNumber)
         
         self.updateInputFieldAttributes()
         
@@ -99,6 +94,7 @@ internal class CardNumberValidator: CardValidator {
     private var preferredCardBrands: [CardBrand]
     
     private var previousRecognizedType: DefinedCardBrand?
+    private var previousCardNumber: String?
     
     // MARK: Methods
     
@@ -124,7 +120,7 @@ internal class CardNumberValidator: CardValidator {
         defer {
             
             self.delegate?.cardValidator(self, inputDataChanged: self.cardNumber)
-            self.compareNewRecognizedBrandToPrevoiusAndCallDelegate(recognizedType)
+            self.compareNewRecognizedBrandToPreviousAndCallDelegate(recognizedType, number: self.cardNumber)
             self.delegate?.validationStateChanged(to: self.isDataValid, on: .cardNumber)
         }
         
@@ -132,27 +128,39 @@ internal class CardNumberValidator: CardValidator {
         self.setupSpacings(for: cardBrand)
     }
     
-    private func compareNewRecognizedBrandToPrevoiusAndCallDelegate(_ type: DefinedCardBrand) {
+    private func compareNewRecognizedBrandToPreviousAndCallDelegate(_ type: DefinedCardBrand, number: String) {
         
-        defer {
-            
-            self.previousRecognizedType = type
-        }
-        
-        var shouldCallDelegate: Bool
+        var shouldCallDelegateWithNewType: Bool
         
         if let nonnullPreviousType = self.previousRecognizedType {
             
-            shouldCallDelegate = nonnullPreviousType != type
+            shouldCallDelegateWithNewType = nonnullPreviousType != type
         }
         else {
             
-            shouldCallDelegate = true
+            shouldCallDelegateWithNewType = true
         }
 
-        if shouldCallDelegate {
+        if shouldCallDelegateWithNewType {
             
+            self.previousRecognizedType = type
             self.brandReporting?.recognizedCardBrandChanged(type)
+        }
+        
+        var shouldCallDelegateWithNewCardNumber: Bool
+        if let nonnullPreviousNumber = self.previousCardNumber {
+            
+            shouldCallDelegateWithNewCardNumber = nonnullPreviousNumber != number
+        }
+        else {
+            
+            shouldCallDelegateWithNewCardNumber = true
+        }
+        
+        if shouldCallDelegateWithNewCardNumber {
+            
+            self.previousCardNumber = number
+            self.brandReporting?.cardNumberValidator(self, cardNumberInputChanged: number)
         }
     }
     

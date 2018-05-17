@@ -19,6 +19,10 @@ extension PaymentOptionsViewController: UIScrollViewDelegate {
         
         self.view.firstResponder?.resignFirstResponder()
     }
+    
+    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
+    }
 }
 
 // MARK: - UITableViewDataSource
