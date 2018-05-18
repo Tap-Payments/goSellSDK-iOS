@@ -20,10 +20,16 @@ internal extension NSLayoutConstraint {
     ///   - condition: Condition.
     ///   - constraintsToDisableOnSuccess: Constraints that will be deactivated if `condition` is `true`, otherwise they will be activated.
     ///   - constraintsToEnableOnSuccess: Constraints that will be activated if `condition` is `true`, otherwise they will be deactivated.
-    ///   - viewToLayout: View that will require layout after reactivation.
+    ///   - viewToLayout: View that will require layout after reactivation. Layout will not happen if view is nil and animation will not happen.
     ///   - animationDuration: Set `> 0` if reactivation should happen with animation.
     ///   - additionalAnimations: Additional animations.
-    internal static func reactivate(inCaseIf condition: Bool, constraintsToDisableOnSuccess: [NSLayoutConstraint], constraintsToEnableOnSuccess: [NSLayoutConstraint], viewToLayout: UIView, animationDuration: TimeInterval, additionalAnimations: TypeAlias.ArgumentlessClosure? = nil) {
+    /// - Returns: Boolean value that determines whether layout should happen.
+    @discardableResult internal static func reactivate(inCaseIf condition: Bool,
+                                                       constraintsToDisableOnSuccess: [NSLayoutConstraint],
+                                                       constraintsToEnableOnSuccess: [NSLayoutConstraint],
+                                                       viewToLayout: UIView?,
+                                                       animationDuration: TimeInterval,
+                                                       additionalAnimations: TypeAlias.ArgumentlessClosure? = nil) -> Bool {
         
         var constraintsToDeactivate = condition ? constraintsToDisableOnSuccess : constraintsToEnableOnSuccess
         var constraintsToActivate = condition ? constraintsToEnableOnSuccess : constraintsToDisableOnSuccess
@@ -34,9 +40,9 @@ internal extension NSLayoutConstraint {
         let hasConstraintsToDeactivate = constraintsToDeactivate.count > 0
         let hasConstraintsToActivate = constraintsToActivate.count > 0
         
-        guard hasConstraintsToDeactivate || hasConstraintsToActivate else { return }
+        guard hasConstraintsToDeactivate || hasConstraintsToActivate else { return false }
         
-        let reactivationClosure: TypeAlias.ArgumentlessClosure = {
+        let closure: TypeAlias.ArgumentlessClosure = {
             
             if hasConstraintsToDeactivate {
                 
@@ -48,18 +54,19 @@ internal extension NSLayoutConstraint {
                 self.activate(constraintsToActivate)
             }
             
-            viewToLayout.layout()
-            
+            viewToLayout?.layout()
             additionalAnimations?()
         }
         
-        if animationDuration > 0.0 {
+        if animationDuration > 0.0 && viewToLayout != nil {
             
-            UIView.animate(withDuration: animationDuration, animations: reactivationClosure)
+            UIView.animate(withDuration: animationDuration, animations: closure)
         }
         else {
             
-            UIView.performWithoutAnimation(reactivationClosure)
+            UIView.performWithoutAnimation(closure)
         }
+        
+        return true
     }
 }

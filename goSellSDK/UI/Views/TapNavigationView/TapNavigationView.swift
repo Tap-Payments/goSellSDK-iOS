@@ -7,6 +7,7 @@
 
 import struct CoreGraphics.CGBase.CGFloat
 import struct CoreGraphics.CGGeometry.CGSize
+import struct TapAdditionsKit.TypeAlias
 import class TapNibView.TapNibView
 import class UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class UIKit.UIButton.UIButton
@@ -17,7 +18,7 @@ import class UIKit.UIScreen.UIScreen
 import class UIKit.UIView.UIView
 
 /// Tap Navigation View
-internal class TapNavigationView: TapNibView {
+internal final class TapNavigationView: TapNibView {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -35,7 +36,7 @@ internal class TapNavigationView: TapNibView {
         set {
             
             self.iconImageView?.image = newValue
-            self.updateLayout()
+            self.updateIconLayout()
         }
     }
     
@@ -72,6 +73,8 @@ internal class TapNavigationView: TapNibView {
                 
                 nonnullHolder.addSubviewWithConstraints(newRightView)
             }
+            
+            self.updateRightViewLayout()
         }
     }
     
@@ -88,18 +91,23 @@ internal class TapNavigationView: TapNibView {
     
     // MARK: Methods
     
+    internal override func setup() {
+        
+        super.setup()
+        self.updateRightViewLayout()
+        self.updateIconLayout()
+    }
+    
     internal override func sizeThatFits(_ size: CGSize) -> CGSize {
         
         return self.intrinsicContentSize
     }
     
-    internal override func didMoveToSuperview() {
+    internal override func layoutSubviews() {
         
-        super.didMoveToSuperview()
-        if self.superview != nil {
-            
-            self.updateLayout()
-        }
+        super.layoutSubviews()
+        self.updateIconLayout()
+        self.updateRightViewLayout()
     }
     
     // MARK: - Private -
@@ -126,28 +134,55 @@ internal class TapNavigationView: TapNibView {
     @IBOutlet private weak var titleLabel: UILabel?
     
     @IBOutlet private weak var rightViewHolder: UIView?
+    @IBOutlet private var constraintsToDeactivateWhenRightViewAvailable: [NSLayoutConstraint]?
     
-    @IBOutlet private var iconHolderWidthConstraintWhenIconAvailable: NSLayoutConstraint?
-    @IBOutlet private var iconHolderWidthConstraintWhenIconUnavailable: NSLayoutConstraint?
+    @IBOutlet private weak var iconViewHolder: UIView?
+    @IBOutlet private var constraintsToDeactivateWhenIconAvailable: [NSLayoutConstraint]?
+    @IBOutlet private var constraintsToActivateWhenIconAvailable: [NSLayoutConstraint]?
     
     // MARK: Methods
     
-    private func updateLayout() {
+    private func updateIconLayout() {
         
         guard
             
-            let nonnullSuccessConstraint = self.iconHolderWidthConstraintWhenIconAvailable,
-            let nonnullFailureConstraint = self.iconHolderWidthConstraintWhenIconUnavailable
+            let nonnullSuccessConstraints = self.constraintsToActivateWhenIconAvailable,
+            let nonnullFailureConstraints = self.constraintsToDeactivateWhenIconAvailable
         
         else { return }
         
         let iconVisible = self.iconImageView?.image != nil
         
+        let additionalAnimation: TypeAlias.ArgumentlessClosure = {
+            
+            self.rightViewHolder?.isHidden = !iconVisible
+        }
+        
         NSLayoutConstraint.reactivate(inCaseIf: iconVisible,
-                                      constraintsToDisableOnSuccess: [nonnullFailureConstraint],
-                                      constraintsToEnableOnSuccess: [nonnullSuccessConstraint],
+                                      constraintsToDisableOnSuccess: nonnullFailureConstraints,
+                                      constraintsToEnableOnSuccess: nonnullSuccessConstraints,
                                       viewToLayout: self,
-                                      animationDuration: 0.0)
+                                      animationDuration: 0.0,
+                                      additionalAnimations: additionalAnimation)
+    }
+    
+    private func updateRightViewLayout() {
+        
+        guard let constraintsToDisableIfRightViewAvailable = self.constraintsToDeactivateWhenRightViewAvailable else { return }
+        
+        let rightViewAvailable = (self.rightViewHolder?.subviews.count ?? 0) > 0
+        
+        let additionalAnimation: TypeAlias.ArgumentlessClosure = {
+            
+            self.rightViewHolder?.isHidden = !rightViewAvailable
+        }
+        
+        NSLayoutConstraint.reactivate(inCaseIf: rightViewAvailable,
+                                      constraintsToDisableOnSuccess: constraintsToDisableIfRightViewAvailable,
+                                      constraintsToEnableOnSuccess: [],
+                                      viewToLayout: self,
+                                      animationDuration: 0.0,
+                                      additionalAnimations: additionalAnimation)
     }
     
     @IBAction private func backButtonTouchUpInside(_ sender: Any) {

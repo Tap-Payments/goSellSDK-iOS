@@ -15,12 +15,6 @@ internal class PaymentContentViewController: BaseViewController {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        self.subscribeOnNotifications()
-    }
-    
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -29,15 +23,6 @@ internal class PaymentContentViewController: BaseViewController {
             
             merchantHeaderController.delegate = self
         }
-        else if let cardScannerController = segue.destination as? CardScannerViewController {
-            
-            PaymentDataManager.shared.prepareCardScannerController(cardScannerController)
-        }
-    }
-    
-    deinit {
-        
-        self.unsubscribeFromNotifications()
     }
     
     // MARK: - Private -
@@ -51,26 +36,6 @@ internal class PaymentContentViewController: BaseViewController {
                 
                 PaymentDataManager.shared.linkWith(nonnullPayButton)
             }
-        }
-    }
-    
-    // MARK: Methods
-    
-    private func subscribeOnNotifications() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(cardScannerButtonClicked(_:)), name: .cardScannerButtonClicked, object: nil)
-    }
-    
-    private func unsubscribeFromNotifications() {
-        
-        NotificationCenter.default.removeObserver(self, name: .cardScannerButtonClicked, object: nil)
-    }
-    
-    @objc private func cardScannerButtonClicked(_ notification: Notification) {
-        
-        DispatchQueue.main.async {
-            
-            self.performSegue(withIdentifier: "\(CardScannerViewController.className)Segue", sender: self)
         }
     }
 }

@@ -121,7 +121,6 @@
                     <connections>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="VUE-MO-wtp" id="oST-dU-gwm"/>
                         <outlet property="payButtonUI" destination="NoP-JX-Gmp" id="u9b-Yx-RpZ"/>
-                        <segue destination="0Dn-DZ-WvX" kind="show" identifier="CardScannerViewControllerSegue" id="lSQ-XR-yVt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zzc-mA-vpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,11 +392,11 @@
                                             <outlet property="titleLabel" destination="3W4-2g-Y8O" id="gaY-Ou-sQz"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardInputTableViewCell" rowHeight="190" id="w9J-dN-6b9" customClass="CardInputTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="171" width="375" height="190"/>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardInputTableViewCell" rowHeight="241" id="w9J-dN-6b9" customClass="CardInputTableViewCell" customModule="goSellSDK">
+                                        <rect key="frame" x="0.0" y="171" width="375" height="241"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w9J-dN-6b9" id="fFx-GN-gMp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HH-rh-q46" userLabel="Table Container View">
@@ -446,7 +445,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hys-BD-z3e" userLabel="Trailing Space View">
-                                                    <rect key="frame" x="371" y="0.0" width="4" height="190"/>
+                                                    <rect key="frame" x="371" y="0.0" width="4" height="241"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="4" id="c7e-ip-a8G"/>
@@ -470,7 +469,7 @@
                                                                 <constraint firstAttribute="width" secondItem="iu4-UQ-Hrl" secondAttribute="height" id="m9c-3X-9aZ"/>
                                                             </constraints>
                                                             <connections>
-                                                                <action selector="cardScannerButtonTouchUpInside:" destination="w9J-dN-6b9" eventType="touchUpInside" id="NSO-hD-f0w"/>
+                                                                <segue destination="0Dn-DZ-WvX" kind="show" id="TVg-Fe-b4z"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -593,8 +592,76 @@
                                                         <constraint firstAttribute="height" constant="1" id="B44-9B-inx"/>
                                                     </constraints>
                                                 </view>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77u-um-4VN" userLabel="Address On Card Container">
+                                                    <rect key="frame" x="72" y="135" width="299" height="51"/>
+                                                    <subviews>
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YvA-NV-dBD" userLabel="Separator">
+                                                            <rect key="frame" x="0.0" y="50" width="299" height="1"/>
+                                                            <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1" id="q4j-hh-Jjx"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHh-E0-GbA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="299" height="50"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dvd-Ob-vqW">
+                                                                    <rect key="frame" x="274" y="18" width="7" height="14"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="14" id="7NG-fF-hxQ"/>
+                                                                        <constraint firstAttribute="width" constant="7" id="q21-1e-wIp"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address on Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-8l-hv1">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="gTc-Up-vQr"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <color key="textColor" red="0.69411764705882351" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="AVq-8l-hv1" firstAttribute="leading" secondItem="DHh-E0-GbA" secondAttribute="leading" id="CtL-TF-dBc"/>
+                                                                <constraint firstItem="dvd-Ob-vqW" firstAttribute="leading" secondItem="AVq-8l-hv1" secondAttribute="trailing" constant="18" id="K17-7d-vxT"/>
+                                                                <constraint firstItem="AVq-8l-hv1" firstAttribute="top" secondItem="DHh-E0-GbA" secondAttribute="top" id="Ogr-mB-e3H"/>
+                                                                <constraint firstItem="dvd-Ob-vqW" firstAttribute="centerY" secondItem="DHh-E0-GbA" secondAttribute="centerY" id="YRe-Q8-hZV"/>
+                                                                <constraint firstAttribute="bottom" secondItem="AVq-8l-hv1" secondAttribute="bottom" id="oj9-9F-Ohl"/>
+                                                                <constraint firstAttribute="trailing" secondItem="dvd-Ob-vqW" secondAttribute="trailing" constant="18" id="rCe-5t-3NY"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Il-dr-6rZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="299" height="50"/>
+                                                            <connections>
+                                                                <segue destination="BoK-ZE-FKj" kind="show" id="897-FD-aem"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="YvA-NV-dBD" firstAttribute="top" secondItem="DHh-E0-GbA" secondAttribute="bottom" id="PEy-yA-wJr"/>
+                                                        <constraint firstItem="1Il-dr-6rZ" firstAttribute="leading" secondItem="77u-um-4VN" secondAttribute="leading" id="SH5-c6-XSN"/>
+                                                        <constraint firstItem="YvA-NV-dBD" firstAttribute="top" secondItem="1Il-dr-6rZ" secondAttribute="bottom" id="auY-up-hvh"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YvA-NV-dBD" secondAttribute="trailing" id="b8Y-Iy-Wwb"/>
+                                                        <constraint firstItem="1Il-dr-6rZ" firstAttribute="top" secondItem="77u-um-4VN" secondAttribute="top" id="drW-sv-7qV"/>
+                                                        <constraint firstItem="YvA-NV-dBD" firstAttribute="leading" secondItem="77u-um-4VN" secondAttribute="leading" id="gXX-ZZ-IsI"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1Il-dr-6rZ" secondAttribute="trailing" id="h1z-17-VZv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="YvA-NV-dBD" secondAttribute="bottom" id="hRL-2Y-I3h"/>
+                                                        <constraint firstItem="DHh-E0-GbA" firstAttribute="leading" secondItem="77u-um-4VN" secondAttribute="leading" id="lOU-gE-5tL"/>
+                                                        <constraint firstAttribute="height" id="rOX-0n-9HG"/>
+                                                        <constraint firstAttribute="trailing" secondItem="DHh-E0-GbA" secondAttribute="trailing" id="zdf-Sr-ARB"/>
+                                                        <constraint firstItem="DHh-E0-GbA" firstAttribute="top" secondItem="77u-um-4VN" secondAttribute="top" id="ziF-Wt-lNq"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="rOX-0n-9HG"/>
+                                                        </mask>
+                                                    </variation>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qf-OG-XOx" userLabel="Save Card Container">
-                                                    <rect key="frame" x="72" y="135" width="299" height="55"/>
+                                                    <rect key="frame" x="72" y="186" width="299" height="55"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For faster and more secure checkout, please save your card" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue4-OR-hXI">
                                                             <rect key="frame" x="0.0" y="13" width="228" height="29"/>
@@ -624,13 +691,13 @@
                                             <constraints>
                                                 <constraint firstItem="r43-l7-vVt" firstAttribute="leading" secondItem="4HH-rh-q46" secondAttribute="trailing" id="0Mt-w3-Y06"/>
                                                 <constraint firstItem="r43-l7-vVt" firstAttribute="top" secondItem="fFx-GN-gMp" secondAttribute="top" id="0NG-s7-U4Z"/>
-                                                <constraint firstItem="9qf-OG-XOx" firstAttribute="top" secondItem="lbV-8H-vl6" secondAttribute="bottom" id="4tr-nc-iTE"/>
                                                 <constraint firstItem="Hys-BD-z3e" firstAttribute="leading" secondItem="lbV-8H-vl6" secondAttribute="trailing" id="9Ah-MQ-dbt"/>
                                                 <constraint firstAttribute="trailing" secondItem="Rjs-lS-KxU" secondAttribute="trailing" constant="4" id="A5V-Mc-6TZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="9qf-OG-XOx" secondAttribute="bottom" id="AUD-jm-24G"/>
                                                 <constraint firstItem="DXv-O4-0Aj" firstAttribute="leading" secondItem="4HH-rh-q46" secondAttribute="trailing" id="BBl-JM-lYp"/>
                                                 <constraint firstItem="DXv-O4-0Aj" firstAttribute="top" secondItem="1L5-zl-8qQ" secondAttribute="bottom" id="BgG-sQ-GSe"/>
                                                 <constraint firstItem="Hys-BD-z3e" firstAttribute="leading" secondItem="2hD-qh-RSb" secondAttribute="trailing" id="Dhk-0w-wmN"/>
+                                                <constraint firstItem="Hys-BD-z3e" firstAttribute="leading" secondItem="77u-um-4VN" secondAttribute="trailing" id="E6P-Bg-gmg"/>
                                                 <constraint firstItem="4HH-rh-q46" firstAttribute="leading" secondItem="fFx-GN-gMp" secondAttribute="leading" id="Eze-Mm-hEh"/>
                                                 <constraint firstItem="Rjs-lS-KxU" firstAttribute="leading" secondItem="4HH-rh-q46" secondAttribute="trailing" id="GMk-sC-2sN"/>
                                                 <constraint firstItem="2hD-qh-RSb" firstAttribute="leading" secondItem="4HH-rh-q46" secondAttribute="trailing" id="HKJ-99-ZcX"/>
@@ -652,10 +719,13 @@
                                                 <constraint firstItem="1L5-zl-8qQ" firstAttribute="top" secondItem="Rjs-lS-KxU" secondAttribute="bottom" id="iTK-E5-0Md"/>
                                                 <constraint firstItem="DXv-O4-0Aj" firstAttribute="top" secondItem="7cA-Nv-YcA" secondAttribute="bottom" id="jN1-7t-B9Z"/>
                                                 <constraint firstItem="7cA-Nv-YcA" firstAttribute="leading" secondItem="aVv-8N-zEN" secondAttribute="trailing" id="kPt-Gh-dR8"/>
+                                                <constraint firstItem="77u-um-4VN" firstAttribute="top" secondItem="lbV-8H-vl6" secondAttribute="bottom" id="m5f-7g-9Li"/>
                                                 <constraint firstItem="Hys-BD-z3e" firstAttribute="leading" secondItem="DXv-O4-0Aj" secondAttribute="trailing" id="pHG-gA-iH6"/>
                                                 <constraint firstItem="1L5-zl-8qQ" firstAttribute="leading" secondItem="7cA-Nv-YcA" secondAttribute="trailing" id="paz-3G-F6g"/>
+                                                <constraint firstItem="77u-um-4VN" firstAttribute="leading" secondItem="2hD-qh-RSb" secondAttribute="leading" id="qQj-7w-2Cd"/>
                                                 <constraint firstItem="9Sx-WS-ola" firstAttribute="width" secondItem="aVv-8N-zEN" secondAttribute="width" multiplier="2" id="rfD-hx-tmw"/>
                                                 <constraint firstItem="2hD-qh-RSb" firstAttribute="height" secondItem="r43-l7-vVt" secondAttribute="height" id="sEH-6j-4sR"/>
+                                                <constraint firstItem="9qf-OG-XOx" firstAttribute="top" secondItem="77u-um-4VN" secondAttribute="bottom" id="sLn-1X-87d"/>
                                                 <constraint firstItem="Hys-BD-z3e" firstAttribute="leading" secondItem="1L5-zl-8qQ" secondAttribute="trailing" id="t6G-xg-YxT"/>
                                                 <constraint firstItem="DXv-O4-0Aj" firstAttribute="top" secondItem="aVv-8N-zEN" secondAttribute="bottom" id="v33-Kz-9Gu"/>
                                                 <constraint firstItem="2hD-qh-RSb" firstAttribute="bottom" secondItem="4HH-rh-q46" secondAttribute="bottom" id="z8J-tl-opr"/>
@@ -663,6 +733,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="addressOnCardArrowImageView" destination="dvd-Ob-vqW" id="scE-F3-6WV"/>
+                                            <outlet property="addressOnCardLabel" destination="AVq-8l-hv1" id="Y8c-al-YmN"/>
                                             <outlet property="cardNumberTextField" destination="9Sx-WS-ola" id="QHJ-k7-FMi"/>
                                             <outlet property="cardScannerButton" destination="iu4-UQ-Hrl" id="QSL-oc-FbQ"/>
                                             <outlet property="cvvTextField" destination="MwW-w6-rAQ" id="amz-hd-8Xg"/>
@@ -680,6 +752,9 @@
                                             <outletCollection property="controls" destination="C6J-CB-2eI" collectionClass="NSMutableArray" id="W0J-2i-p0k"/>
                                             <outletCollection property="constraintsToDisableWhenCardScanningAvailable" destination="Uv4-nA-Wir" collectionClass="NSMutableArray" id="kM8-gS-1Sd"/>
                                             <outletCollection property="constraintsToEnableWhenCardScanningAvailable" destination="mXp-DU-Mun" collectionClass="NSMutableArray" id="pZh-Zq-HPx"/>
+                                            <outletCollection property="constraintsToDisableWhenAddressOnCardRequired" destination="rOX-0n-9HG" collectionClass="NSMutableArray" id="KJH-JM-8Wk"/>
+                                            <outletCollection property="constraintsToEnableWhenAddressOnCardRequired" destination="hRL-2Y-I3h" collectionClass="NSMutableArray" id="RkQ-Pt-OSz"/>
+                                            <outletCollection property="controls" destination="1Il-dr-6rZ" collectionClass="NSMutableArray" id="6e3-fy-0mg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -708,6 +783,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LzQ-2a-D6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1402" y="629"/>
+        </scene>
+        <!--Address Input View Controller-->
+        <scene sceneID="DQx-BL-CFr">
+            <objects>
+                <viewController id="BoK-ZE-FKj" customClass="AddressInputViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UfW-6G-3Vh"/>
+                        <viewControllerLayoutGuide type="bottom" id="ic4-0k-AyT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hIP-c7-hKt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUV-3M-oFa" customClass="TapNavigationView" customModule="goSellSDK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KUV-3M-oFa" firstAttribute="top" secondItem="hIP-c7-hKt" secondAttribute="top" id="1Y8-o3-nmt"/>
+                            <constraint firstItem="KUV-3M-oFa" firstAttribute="bottom" secondItem="UfW-6G-3Vh" secondAttribute="bottom" constant="66" id="5V0-UO-ceH"/>
+                            <constraint firstAttribute="trailing" secondItem="KUV-3M-oFa" secondAttribute="trailing" id="83q-oE-q6N"/>
+                            <constraint firstItem="KUV-3M-oFa" firstAttribute="leading" secondItem="hIP-c7-hKt" secondAttribute="leading" id="Qo1-wy-ZjX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerNavigationView" destination="KUV-3M-oFa" id="b6V-js-KUc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FF8-91-8hK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2958" y="1110"/>
         </scene>
         <!--Currency Selection View Controller-->
         <scene sceneID="mvA-db-B24">
@@ -846,7 +954,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPH-eh-Avp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2631" y="628"/>
+            <point key="canvasLocation" x="2958" y="-170"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4vL-di-S09">
@@ -872,15 +980,15 @@
                         <viewControllerLayoutGuide type="bottom" id="5fc-OZ-iIR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vrW-ef-f5Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tex-ci-kaS" customClass="TapNavigationView" customModule="goSellSDK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-fy-Zeg" customClass="CardIOView">
-                                <rect key="frame" x="0.0" y="86" width="375" height="581"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="495"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -897,13 +1005,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="navigationView" destination="tex-ci-kaS" id="Lb4-Io-jp2"/>
+                        <outlet property="headerNavigationView" destination="tex-ci-kaS" id="Lb4-Io-jp2"/>
                         <outlet property="scannerView" destination="iam-fy-Zeg" id="uYW-F9-mpp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xK0-Tf-Lrt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2052" y="-879"/>
+            <point key="canvasLocation" x="2958" y="460"/>
         </scene>
         <!--Web Payment View Controller-->
         <scene sceneID="v34-Ns-eGR">
@@ -931,7 +1039,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDK-tN-NjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1791" y="1322"/>
+            <point key="canvasLocation" x="1401" y="1344"/>
         </scene>
         <!--Merchant Information Header View Controller-->
         <scene sceneID="YAF-wo-AZg">

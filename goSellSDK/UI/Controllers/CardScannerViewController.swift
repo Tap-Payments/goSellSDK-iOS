@@ -10,7 +10,7 @@ import class CardIO.CardIOView.CardIOView
 import protocol CardIO.CardIOViewDelegate.CardIOViewDelegate
 import class UIKit.UIViewController.UIViewController
 
-internal class CardScannerViewController: UIViewController {
+internal class CardScannerViewController: HeaderNavigatedViewController {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -18,16 +18,18 @@ internal class CardScannerViewController: UIViewController {
     /// Delegate.
     internal weak var delegate: CardScannerViewControllerDelegate?
     
+    // MARK: Methods
+    
+    internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
+        
+        super.headerNavigationViewLoaded(headerView)
+        
+        headerView.iconImage = Theme.current.settings.cardInputFieldsSettings.scanIcon
+        headerView.title = "Scanning Card"
+    }
+    
     // MARK: - Private -
     // MARK: Properties
-    
-    @IBOutlet private weak var navigationView: TapNavigationView? {
-        
-        didSet {
-            
-            self.navigationView?.delegate = self
-        }
-    }
     
     @IBOutlet private weak var scannerView: CardIOView? {
         
@@ -40,25 +42,6 @@ internal class CardScannerViewController: UIViewController {
             self.scannerView?.detectionMode = .cardImageAndNumber
             self.scannerView?.allowFreelyRotatingCardGuide = true
         }
-    }
-    
-    // MARK: Methods
-    
-    private func dismiss() {
-        
-        DispatchQueue.main.async { [weak self] in
-            
-            self?.navigationController?.popViewController(animated: true)
-        }
-    }
-}
-
-// MARK: - TapNavigationViewDelegate
-extension CardScannerViewController: TapNavigationViewDelegate {
-    
-    internal func navigationViewBackButtonClicked(_ navigationView: TapNavigationView) {
-        
-        self.dismiss()
     }
 }
 
@@ -80,6 +63,6 @@ extension CardScannerViewController: CardIOViewDelegate {
         
         self.delegate?.cardScannerController(self, didScan: cardNumber, expirationDate: expirationDate, cvv: cardInfo.cvv, cardholderName: cardInfo.cardholderName)
         
-        self.dismiss()
+        self.pop()
     }
 }
