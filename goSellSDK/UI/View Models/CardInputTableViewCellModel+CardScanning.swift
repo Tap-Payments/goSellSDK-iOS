@@ -10,11 +10,6 @@ internal extension CardInputTableViewCellModel {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func cellCardScannerButtonClicked() {
-        
-        NotificationCenter.default.post(name: .cardScannerButtonClicked, object: nil)
-    }
-    
     internal func update(withScanned cardNumber: String?, expirationDate: ExpirationDate?, cvv: String?, cardholderName: String?) {
         
         if let nonnullCardNumber = cardNumber {

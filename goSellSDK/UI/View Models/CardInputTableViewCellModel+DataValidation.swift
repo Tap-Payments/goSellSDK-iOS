@@ -8,6 +8,7 @@
 import enum TapCardValidator.CardBrand
 import struct TapCardValidator.DefinedCardBrand
 import class TapEditableView.TapEditableView
+import class UIKit.UILabel.UILabel
 import class UIKit.UIResponder.UIResponder
 import class UIKit.UITextField.UITextField
 
@@ -16,7 +17,7 @@ internal extension CardInputTableViewCellModel {
     // MARK: - Internal -
     // MARK: Methods
 
-    internal func bind(_ inputField: UIResponder, editableView: TapEditableView? = nil, for validation: ValidationType) {
+    internal func bind(_ inputField: UIResponder?, displayLabel: UILabel?, editableView: TapEditableView? = nil, for validation: ValidationType) {
         
         var validator: CardValidator?
         
@@ -79,6 +80,18 @@ internal extension CardInputTableViewCellModel {
             v.delegate = self
             
             validator = v
+            
+        case .addressOnCard:
+            
+            guard let label = displayLabel else {
+                
+                fatalError("Address on Card requires a display label.")
+            }
+            
+            let v = CardAddressValidator(displayLabel: label)
+            v.delegate = self
+            
+            validator = v
         }
         
         if let existingValidatorIndex = self.cardDataValidators.index(where: { $0.validationType == validation }) {
@@ -100,6 +113,11 @@ internal extension CardInputTableViewCellModel {
             
             self.updateValidatorWithInputData(validator)
         }
+    }
+    
+    internal func validator(of type: ValidationType) -> CardValidator? {
+        
+        return self.cardDataValidators.first { $0.validationType == type }
     }
     
     // MARK: - Private -
@@ -136,11 +154,6 @@ internal extension CardInputTableViewCellModel {
             
             textFieldValidator.updateInputFieldAttributes()
         }
-    }
-    
-    private func validator(of type: ValidationType) -> CardValidator? {
-        
-        return self.cardDataValidators.first { $0.validationType == type }
     }
     
     private func actualBinDataUpdated(_ newBINData: BINResponse?) {

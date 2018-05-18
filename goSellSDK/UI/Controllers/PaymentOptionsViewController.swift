@@ -27,6 +27,14 @@ internal class PaymentOptionsViewController: UIViewController {
             
             PaymentDataManager.shared.prepareCurrencySelectionController(currencySelectionController)
         }
+        else if let cardScannerController = segue.destination as? CardScannerViewController {
+            
+            PaymentDataManager.shared.prepareCardScannerController(cardScannerController)
+        }
+        else if let addressInputController = segue.destination as? AddressInputViewController {
+            
+            PaymentDataManager.shared.prepareAddressInputController(addressInputController)
+        }
     }
     
     deinit {

@@ -11,4 +11,5 @@ internal enum ValidationType {
     case expirationDate
     case cvv
     case nameOnCard
+    case addressOnCard
 }

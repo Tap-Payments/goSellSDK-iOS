@@ -8,6 +8,8 @@
 import class CardIO.CardIOUtilities.CardIOUtilities
 import class TapApplication.TapApplicationPlistInfo
 import struct TapCardValidator.DefinedCardBrand
+import class UIKit.UIColor.UIColor
+import class UIKit.UIFont.UIFont
 import class UIKit.UIImage.UIImage
 
 internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
@@ -37,6 +39,50 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         return self.binData?.isAddressRequired ?? false
     }
     
+    internal var addressOnCardText: String {
+        
+        let hasInputData = self.cardAddressValidatorHasInputData
+        
+        if hasInputData {
+            
+            let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
+            return addressValidator?.displayText ?? "Address on Card"
+        }
+        else {
+            
+            return "Address on Card"
+        }
+    }
+    
+    internal var addressOnCardTextColor: UIColor {
+        
+        let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
+        let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
+        let valid = addressValidator?.isDataValid ?? false
+        
+        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
+        
+        let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
+        return settings.color
+    }
+    
+    internal var addressOnCardTextFont: UIFont {
+        
+        let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
+        let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
+        let valid = addressValidator?.isDataValid ?? false
+        
+        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
+        
+        let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
+        return settings.font
+    }
+    
+    internal var addressOnCardArrowImage: UIImage {
+        
+        return Theme.current.settings.generalImages.arrowRight
+    }
+    
     internal var tableViewCellModels: [ImageTableViewCellModel]
     internal var displayedTableViewCellModels: [ImageTableViewCellModel] {
         
@@ -64,7 +110,13 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         return (self.cardDataValidators.filter { !$0.isDataValid }).count == 0
     }
     
-    internal var binData: BINResponse?
+    internal var binData: BINResponse? {
+        
+        didSet {
+            
+            self.updateCell(animated: true)
+        }
+    }
     
     // MARK: Methods
     
@@ -90,6 +142,16 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     }
     
     // MARK: - Private -
+    // MARK: Properties
+    
+    private var cardAddressValidatorHasInputData: Bool {
+        
+        let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
+        let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
+        
+        return hasInputData
+    }
+    
     // MARK: Methods
     
     private func updatePaymentOptions() {
