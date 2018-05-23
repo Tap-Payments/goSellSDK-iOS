@@ -591,7 +591,7 @@
                                                         <constraint firstAttribute="height" constant="1" id="B44-9B-inx"/>
                                                     </constraints>
                                                 </view>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77u-um-4VN" userLabel="Address On Card Container">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77u-um-4VN" userLabel="Address On Card Container">
                                                     <rect key="frame" x="72" y="135" width="299" height="0.0"/>
                                                     <subviews>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvA-NV-dBD" userLabel="Separator">
@@ -601,7 +601,7 @@
                                                                 <constraint firstAttribute="height" constant="1" id="q4j-hh-Jjx"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHh-E0-GbA">
+                                                        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHh-E0-GbA">
                                                             <rect key="frame" x="0.0" y="0.0" width="299" height="50"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvd-Ob-vqW">
@@ -611,10 +611,10 @@
                                                                         <constraint firstAttribute="width" constant="7" id="q21-1e-wIp"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" text="Address on Card" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-8l-hv1">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" text="Address on Card" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-8l-hv1">
                                                                     <rect key="frame" x="0.0" y="16" width="256" height="18"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="VIf-uO-XhP"/>
+                                                                        <constraint firstAttribute="height" constant="18" id="VIf-uO-XhP"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.69411764705882351" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
@@ -734,6 +734,7 @@
                                         <connections>
                                             <outlet property="addressOnCardArrowImageView" destination="dvd-Ob-vqW" id="scE-F3-6WV"/>
                                             <outlet property="addressOnCardLabel" destination="AVq-8l-hv1" id="Y8c-al-YmN"/>
+                                            <outlet property="addressOnCardLabelHeightConstraint" destination="VIf-uO-XhP" id="SBj-tf-9He"/>
                                             <outlet property="cardNumberTextField" destination="9Sx-WS-ola" id="QHJ-k7-FMi"/>
                                             <outlet property="cardScannerButton" destination="iu4-UQ-Hrl" id="QSL-oc-FbQ"/>
                                             <outlet property="cvvTextField" destination="MwW-w6-rAQ" id="amz-hd-8Xg"/>

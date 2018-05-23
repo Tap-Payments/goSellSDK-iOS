@@ -175,6 +175,11 @@ extension CardInputTableViewCellModel: CardValidatorDelegate {
     internal func cardValidator(_ validator: CardValidator, inputDataChanged data: Any?) {
         
         self.inputData[validator.validationType] = data
+        
+        if validator is TextLabelInputDataValidation {
+            
+            self.updateCell(animated: true)
+        }
     }
     
     internal func validationStateChanged(to valid: Bool, on type: ValidationType) {

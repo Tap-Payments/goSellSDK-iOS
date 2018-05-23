@@ -25,8 +25,6 @@ extension AddressFieldsDataManager: CountrySelectionViewControllerDelegate {
     
     internal func countriesSelectionViewControllerDidFinish(with country: Country, changed: Bool) {
         
-        self.validator.country = country
-        
         let countryModel: AddressDropdownFieldTableViewCellModel? = self.firstExisingCellModel(with: Constants.countryPlaceholder)
         countryModel?.preselectedValue = country
     }

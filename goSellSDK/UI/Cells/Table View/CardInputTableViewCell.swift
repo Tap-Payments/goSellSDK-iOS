@@ -63,7 +63,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     
     internal override func updateConstraints() {
         
-        self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true)
+        self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true, forceLayout: false)
         super.updateConstraints()
     }
     
@@ -73,6 +73,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         
         fileprivate static let cvvFieldInsets = UIEdgeInsets(top: 0.0, left: 26.0, bottom: 0.0, right: 0.0)
         fileprivate static let layoutAnimationDuration: TimeInterval = 0.25
+        fileprivate static let extraAddressHeight: CGFloat = 2.0
         
         @available(*, unavailable) private init() {}
     }
@@ -105,6 +106,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     @IBOutlet private var controls: [UIView]?
     
     @IBOutlet private weak var addressOnCardLabel: UILabel?
+    @IBOutlet private weak var addressOnCardLabelHeightConstraint: NSLayoutConstraint?
     @IBOutlet private weak var addressOnCardArrowImageView: UIImageView?
     
     @IBOutlet private var constraintsToDisableWhenAddressOnCardRequired: [NSLayoutConstraint]?
@@ -164,14 +166,24 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 
         self.updateTableViewContent(animated)
         
+        var shouldForceLayout = false
+        
         if let nonnullModel = self.model, nonnullModel.displaysAddressFields {
             
             self.addressOnCardLabel?.font = nonnullModel.addressOnCardTextFont
-            self.addressOnCardLabel?.text = nonnullModel.addressOnCardText
+            
+            if self.addressOnCardLabel?.text != nonnullModel.addressOnCardText {
+                
+                self.addressOnCardLabel?.text = nonnullModel.addressOnCardText
+                
+                shouldForceLayout = true
+            }
+            
             self.addressOnCardLabel?.textColor = nonnullModel.addressOnCardTextColor
         }
         
-        self.updateSectionsVisibility(animated: animated, updateConstraintsOnly: false)
+        self.updateAddressOnCardLabelHeightConstraint()
+        self.updateSectionsVisibility(animated: animated, updateConstraintsOnly: false, forceLayout: shouldForceLayout)
         
         self.setGlowing(self.model?.isSelected ?? false)
         
@@ -189,6 +201,23 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 
             self.iconsTableView?.reloadData()
         }
+    }
+    
+    private func updateAddressOnCardLabelHeightConstraint() {
+        
+        guard let label = self.addressOnCardLabel, let constraint = self.addressOnCardLabelHeightConstraint else {
+            
+            self.addressOnCardLabelHeightConstraint?.constant = 0.0
+            return
+        }
+        
+        let constraintSize = CGSize(width: label.bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let text = label.attributedText ?? NSAttributedString()
+        let boundingRect = text.boundingRect(with: constraintSize, options: [.usesLineFragmentOrigin, .usesDeviceMetrics], context: nil)
+        
+        let height = ceil(boundingRect.height + Constants.extraAddressHeight)
+        
+        constraint.constant = height
     }
 }
 
@@ -225,10 +254,10 @@ extension CardInputTableViewCell: BindingWithModelCell {
             self.model?.bind(nil, displayLabel: addressLabel, for: .addressOnCard)
         }
         
-        self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true)
+        self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true, forceLayout: false)
     }
     
-    private func updateSectionsVisibility(animated: Bool, updateConstraintsOnly: Bool = false) {
+    private func updateSectionsVisibility(animated: Bool, updateConstraintsOnly: Bool = false, forceLayout: Bool) {
         
         if updateConstraintsOnly {
             
@@ -256,7 +285,7 @@ extension CardInputTableViewCell: BindingWithModelCell {
         else {
             
             let requiresLayout = closureThatPossiblyRequiresLayout()
-            if requiresLayout {
+            if requiresLayout || forceLayout {
                 
                 let animations: TypeAlias.ArgumentlessClosure = {
                     

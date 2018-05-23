@@ -44,6 +44,16 @@ internal class AddressFieldsDataManager {
     
     internal var reloadClosure: TypeAlias.ArgumentlessClosure?
     
+    internal let countryAddressField: AddressField = {
+        
+        let field = AddressField(inputType: .dropdown,
+                                 placeholder: Constants.countryPlaceholder,
+                                 isRequired: true,
+                                 inputOrder: 0,
+                                 displayOrder: Int.max)
+        return field
+    }()
+    
     // MARK: Methods
     
     internal init(validator: CardAddressValidator) {
@@ -82,16 +92,6 @@ internal class AddressFieldsDataManager {
             self.filterVisibleCellViewModels()
         }
     }
-    
-    private let countryAddressField: AddressField = {
-       
-        let field = AddressField(inputType: .dropdown,
-                                 placeholder: Constants.countryPlaceholder,
-                                 isRequired: true,
-                                 inputOrder: 0,
-                                 displayOrder: Int.max)
-        return field
-    }()
     
     // MARK: Methods
     

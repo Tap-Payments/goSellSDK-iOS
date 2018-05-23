@@ -29,6 +29,7 @@ internal class AddressDropdownFieldTableViewCellModel: AddressFieldTableViewCell
         
         didSet {
             
+            self.inputListener?.inputChanged(in: self.addressField, to: self.preselectedValue)
             self.updateCell()
         }
     }
