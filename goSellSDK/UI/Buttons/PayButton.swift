@@ -41,9 +41,6 @@ public class PayButton: TapNibView {
         }
     }
     
-    /// Delegate.
-    @IBOutlet public weak var delegate: PayButtonDelegate?
-    
     public var amount: Decimal = 0.0
     public var currency: String = "KWD"
     

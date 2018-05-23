@@ -17,7 +17,7 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTran
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
 /// Payment View Controller.
-public class PaymentViewController: UIViewController {
+internal class PaymentViewController: BaseViewController {
     
     // MARK: - Public -
     // MARK: Methods

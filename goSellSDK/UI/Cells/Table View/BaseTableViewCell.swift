@@ -14,6 +14,11 @@ internal class BaseTableViewCell: UITableViewCell {
         
         super.awakeFromNib()
         
+        self.selectionStyle = .none
+        
+        self.translatesAutoresizingMaskIntoConstraints = true
+        self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         if let glowingCell = self as? GlowingCell {
             
             glowingCell.prepareForGlowing()

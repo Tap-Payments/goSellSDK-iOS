@@ -25,7 +25,7 @@ internal struct KnownSingletonTypes {
         self.knownSingletonTypes.append(type)
     }
     
-    internal static func destroyAll() {
+    internal static func destroyAllInstances() {
         
         self.knownSingletonTypes.forEach { $0.destroyInstance() }
     }

@@ -150,9 +150,13 @@ internal extension CardInputTableViewCellModel {
             validator.update(with: data)
         }
         
-        if let textFieldValidator = validator as? TextInputDataValidation {
+        if let textFieldValidator = validator as? TextFieldInputDataValidation {
             
-            textFieldValidator.updateInputFieldAttributes()
+            textFieldValidator.updateInputFieldTextAndAttributes()
+        }
+        else if let labelValidator = validator as? TextLabelInputDataValidation {
+            
+            labelValidator.updateInputFieldTextAndAttributes()
         }
     }
     

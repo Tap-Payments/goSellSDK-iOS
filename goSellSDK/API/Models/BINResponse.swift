@@ -31,6 +31,9 @@ internal struct BINResponse: Decodable {
     /// Defines if address is required
     internal let isAddressRequired: Bool?
     
+    /// Address format.
+    internal let addressFormat: [AddressField]?
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -41,6 +44,7 @@ internal struct BINResponse: Decodable {
         case country            = "country_code"
         case bankLogoURL        = "bank_logo"
         case isAddressRequired  = "address_required"
+        case addressFormat      = "address_format"
     }
 }
 
@@ -52,19 +56,3 @@ extension BINResponse: Equatable {
         return lhs.binNumber == rhs.binNumber
     }
 }
-
-/*
- {
- "bin":"411111",
- "bank":"JPMORGAN CHASE BANK, N.A.",
- "card_brand":"VISA",
- "card_type":"CREDIT",
- "card_category":"",
- "country":"UNITED STATES",
- "country_code":"US",
- "website":"HTTP://WWW.JPMORGANCHASE.COM",
- "phone":"1-212-270-6000",
- "bank_logo":null,
- "address_required":false
- }
- */

@@ -23,12 +23,18 @@ internal extension UIFont {
         return .with(name: Constants.helveticaNeueMediumFontName, size: size)
     }
     
+    internal static func helveticaNeueRegular(_ size: CGFloat) -> UIFont {
+        
+        return .with(name: Constants.helveticaNeueRegularFontName, size: size)
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
         
         fileprivate static let helveticaNeueLightFontName = "HelveticaNeue-Light"
         fileprivate static let helveticaNeueMediumFontName = "HelveticaNeue-Medium"
+        fileprivate static let helveticaNeueRegularFontName = "HelveticaNeue"
         
         @available(*, unavailable) private init() {}
     }

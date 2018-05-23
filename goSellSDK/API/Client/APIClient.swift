@@ -204,6 +204,7 @@ internal final class APIClient {
     
     private init() {
         
+        TapNetworkManager.isRequestLoggingEnabled = true
         KnownSingletonTypes.add(APIClient.self)
     }
     

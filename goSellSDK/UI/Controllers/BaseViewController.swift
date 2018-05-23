@@ -6,6 +6,8 @@
 //
 
 import func TapSwiftFixes.performOnMainThread
+import enum UIKit.UIApplication.UIInterfaceOrientation
+import struct UIKit.UIApplication.UIInterfaceOrientationMask
 import class UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class UIKit.UIView.UIView
 import struct UIKit.UIView.UIViewAnimationOptions
@@ -17,6 +19,23 @@ import var UIKit.UIWindow.UIKeyboardFrameEndUserInfoKey
 internal class BaseViewController: UIViewController {
     
     // MARK: - Internal -
+    // MARK: Properties
+    
+    internal override var shouldAutorotate: Bool {
+        
+        return false
+    }
+    
+    internal override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        
+        return .portrait
+    }
+    
+    internal override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        
+        return .portrait
+    }
+    
     // MARK: Methods
     
     internal override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +56,8 @@ internal class BaseViewController: UIViewController {
         }
         super.viewDidDisappear(animated)
     }
+    
+    internal func performAdditionalAnimationsAfterKeyboardLayoutFinished() { }
     
     // MARK: - Private -
     // MARK: Properties
@@ -93,6 +114,8 @@ internal class BaseViewController: UIViewController {
                 strongerSelf.bottomKeyboardOffsetConstraint?.constant = offset
                 
                 strongerSelf.view.layout()
+                
+                strongerSelf.performAdditionalAnimationsAfterKeyboardLayoutFinished()
             }
             
             UIView.animate(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)

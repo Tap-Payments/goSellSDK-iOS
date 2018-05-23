@@ -88,7 +88,7 @@ internal class CurrencyCodesDataManager {
         
         var result: [AmountedCurrencyTableViewCellModel] = []
         
-        for currency in currencies {
+        for currency in self.currencies {
             
             let indexPath = self.nextIndexPath(for: result)
             let model = AmountedCurrencyTableViewCellModel(indexPath: indexPath, amountedCurrency: currency)
