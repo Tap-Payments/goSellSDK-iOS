@@ -26,7 +26,17 @@ internal class CardAddressValidator: CardValidator {
     }
     
     /// User selected country (or initially preselected)
-    internal var country: Country?
+    internal var country: Country? {
+        
+        get {
+            
+            return self.inputData[AddressFieldsDataManager.Constants.countryPlaceholder] as? Country
+        }
+        set {
+            
+            self.inputData[AddressFieldsDataManager.Constants.countryPlaceholder] = newValue
+        }
+    }
     
     /// Address display text.
     internal var displayText: String {
@@ -35,6 +45,7 @@ internal class CardAddressValidator: CardValidator {
             
             let orderedDisplayData = self.binInformation?.addressFormat?.sorted { $0.displayOrder < $1.displayOrder }
             var filledFields = orderedDisplayData?.compactMap { self.inputData[$0.placeholder] as? String }
+            filledFields = filledFields?.filter { $0.length > 0 }
             
             if (filledFields?.count ?? 0) == 0 {
                 
@@ -48,7 +59,7 @@ internal class CardAddressValidator: CardValidator {
             
             if let nonnullFields = filledFields, nonnullFields.count > 0 {
                 
-                return nonnullFields.joined(separator: ", ")
+                return nonnullFields.joined(separator: Constants.addressFieldsDisplaySeparatorText)
             }
             else {
                 
@@ -100,6 +111,7 @@ internal class CardAddressValidator: CardValidator {
     private struct Constants {
         
         fileprivate static let placeholderDisplayText = "Address on Card"
+        fileprivate static let addressFieldsDisplaySeparatorText = ", "
         
         @available(*, unavailable) private init() {}
     }
@@ -113,6 +125,8 @@ internal class CardAddressValidator: CardValidator {
         didSet {
             
             self.updateDisplayTextAndCallDelegateIfValidationStateChanged()
+            
+            self.delegate?.cardValidator(self, inputDataChanged: self.inputData)
         }
     }
     

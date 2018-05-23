@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PaymentItem Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/PaymentItem" class="dashAnchor"></a>
+    <a title="PaymentItem Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">goSellSDK Docs</a> (50% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">goSellSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        PaymentItem Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/APIError.html">APIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CustomerInfo.html">CustomerInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EmailAddress.html">EmailAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PayButton.html">PayButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PaymentItem.html">PaymentItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Quantity.html">Quantity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKAPIError.html">TapSDKAPIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKError.html">TapSDKError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKKnownError.html">TapSDKKnownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKUnknownError.html">TapSDKUnknownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/goSellSDK.html">goSellSDK</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Measurement.html">Measurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MeasurementArea.html">MeasurementArea</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MeasurementLength.html">MeasurementLength</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MeasurementMass.html">MeasurementMass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MeasurementUnit.html">MeasurementUnit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PayButtonState.html">PayButtonState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Theme.html">Theme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/CardBrand.html">CardBrand</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Charge.html">Charge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Country.html">Country</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PaymentDataSource.html">PaymentDataSource</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PaymentItem</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">PaymentItem</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Payment item model.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)title"></a>
+                    <a name="//apple_ref/swift/Property/title" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)title">title</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Payment item title.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)itemDescription"></a>
+                    <a name="//apple_ref/swift/Property/itemDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)itemDescription">itemDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Payment item description.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">itemDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)quantity"></a>
+                    <a name="//apple_ref/swift/Property/quantity" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)quantity">quantity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Quantity of payment item(s).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)amountPerUnit"></a>
+                    <a name="//apple_ref/swift/Property/amountPerUnit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)amountPerUnit">amountPerUnit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Amount per a single unit of quantity.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9goSellSDK11PaymentItemCACSS5title_SC7DecimalV8quantityAA11MeasurementO07unitsOfI0AF13amountPerUnittcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(title:quantity:unitsOfMeasurement:amountPerUnit:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9goSellSDK11PaymentItemCACSS5title_SC7DecimalV8quantityAA11MeasurementO07unitsOfI0AF13amountPerUnittcfc">init(title:quantity:unitsOfMeasurement:amountPerUnit:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes payment item with title, quantity, units of measurement and amount per unit.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">unitsOfMeasurement</span><span class="p">:</span> <span class="kt"><a href="../Enums/Measurement.html">Measurement</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>unitsOfMeasurement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Units of measurement.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9goSellSDK11PaymentItemCACSS5title_SSSg11descriptionSC7DecimalV8quantityAA11MeasurementO07unitsOfJ0AH13amountPerUnittcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(title:description:quantity:unitsOfMeasurement:amountPerUnit:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9goSellSDK11PaymentItemCACSS5title_SSSg11descriptionSC7DecimalV8quantityAA11MeasurementO07unitsOfJ0AH13amountPerUnittcfc">init(title:description:quantity:unitsOfMeasurement:amountPerUnit:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes payment item with title, quantity, units of measurement and amount per unit.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">unitsOfMeasurement</span><span class="p">:</span> <span class="kt"><a href="../Enums/Measurement.html">Measurement</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>unitsOfMeasurement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Units of measurement.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

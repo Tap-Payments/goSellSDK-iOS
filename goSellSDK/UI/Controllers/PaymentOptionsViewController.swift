@@ -23,6 +23,8 @@ internal class PaymentOptionsViewController: BaseViewController {
         
         super.prepare(for: segue, sender: sender)
         
+        self.view.endEditing(true)
+        
         if let currencySelectionController = segue.destination as? CurrencySelectionViewController {
             
             PaymentDataManager.shared.prepareCurrencySelectionController(currencySelectionController)

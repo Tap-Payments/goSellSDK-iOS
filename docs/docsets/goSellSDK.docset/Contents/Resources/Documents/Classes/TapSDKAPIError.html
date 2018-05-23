@@ -14,7 +14,7 @@
     <a title="TapSDKAPIError Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
+        <p><a href="../index.html">goSellSDK Docs</a> (50% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,34 +34,25 @@
                 <a href="../Classes/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Charge.html">Charge</a>
+                <a href="../Classes/Currency.html">Currency</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/ChargeClient.html">ChargeClient</a>
+                <a href="../Classes/CustomerInfo.html">CustomerInfo</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/ChargeRedirect.html">ChargeRedirect</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/ChargeSource.html">ChargeSource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CreateChargeRequest.html">CreateChargeRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CreateChargeSource.html">CreateChargeSource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CreateTokenCard.html">CreateTokenCard</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CreateTokenRequest.html">CreateTokenRequest</a>
+                <a href="../Classes/EmailAddress.html">EmailAddress</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PayButton.html">PayButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PaymentItem.html">PaymentItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Quantity.html">Quantity</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TapSDKAPIError.html">TapSDKAPIError</a>
@@ -76,18 +67,6 @@
                 <a href="../Classes/TapSDKUnknownError.html">TapSDKUnknownError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Token.html">Token</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/TokenCard.html">TokenCard</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/TokenClient.html">TokenClient</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/UpdateChargeRequest.html">UpdateChargeRequest</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/goSellSDK.html">goSellSDK</a>
               </li>
             </ul>
@@ -96,13 +75,45 @@
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/SourceIdentifier.html">SourceIdentifier</a>
+                <a href="../Enums/Measurement.html">Measurement</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/TAPSDKErrorType.html">TAPSDKErrorType</a>
+                <a href="../Enums/MeasurementArea.html">MeasurementArea</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MeasurementLength.html">MeasurementLength</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MeasurementMass.html">MeasurementMass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MeasurementUnit.html">MeasurementUnit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PayButtonState.html">PayButtonState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Theme.html">Theme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/CardBrand.html">CardBrand</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Charge.html">Charge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Country.html">Country</a>
               </li>
             </ul>
           </li>
@@ -110,15 +121,10 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/Identifiable.html">Identifiable</a>
+                <a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:9goSellSDK8Responsea">Response</a>
+                <a href="../Protocols/PaymentDataSource.html">PaymentDataSource</a>
               </li>
             </ul>
           </li>
@@ -130,7 +136,8 @@
             <h1>TapSDKAPIError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">TapSDKAPIError</span><span class="p">:</span> <span class="kt"><a href="../Classes/TapSDKError.html">TapSDKError</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">TapSDKAPIError</span> <span class="p">:</span> <span class="kt"><a href="../Classes/TapSDKError.html">TapSDKError</a></span></code></pre>
 
                 </div>
               </div>
@@ -139,6 +146,13 @@
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -214,7 +228,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -226,8 +240,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-02-27)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
