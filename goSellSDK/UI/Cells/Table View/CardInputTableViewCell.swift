@@ -31,7 +31,6 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     
     internal weak var model: CardInputTableViewCellModel?
     
-    // MARK: - Internal -
     // MARK: Methods
     
     internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -62,6 +61,12 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    internal override func updateConstraints() {
+        
+        self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true)
+        super.updateConstraints()
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
@@ -88,7 +93,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var cvvTextField: EditableTextInsetsTextField? {
         
         didSet {
-            
+        
             self.cvvTextField?.textInsets = Constants.cvvFieldInsets
         }
     }
@@ -113,11 +118,10 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         self.controls?.forEach { $0.updateToolbarButtonsState() }
     }
     
-    private func updateCardScannerButtonVisibility(animated: Bool, layout: Bool) -> Bool {
+    @discardableResult private func updateCardScannerButtonVisibility(animated: Bool, layout: Bool) -> Bool {
         
         guard
             
-            let nonnullModel = self.model,
             let nonnullConstraintsToDeactivateIfScanningEnabled = self.constraintsToDisableWhenCardScanningAvailable,
             let nonnullConstraintsToActivateIfScanningEnabled = self.constraintsToEnableWhenCardScanningAvailable
         
@@ -125,32 +129,31 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         
         let scanButtonAlphaAnimation: TypeAlias.ArgumentlessClosure = {
             
-            self.cardScannerButton?.alpha = nonnullModel.scanButtonVisible ? 1.0 : 0.0
+            self.cardScannerButton?.alpha = (self.model?.scanButtonVisible ?? false) ? 1.0 : 0.0
         }
         
-        return NSLayoutConstraint.reactivate(inCaseIf: nonnullModel.scanButtonVisible,
+        return NSLayoutConstraint.reactivate(inCaseIf: self.model?.scanButtonVisible ?? false,
                                              constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfScanningEnabled,
                                              constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfScanningEnabled,
-                                             viewToLayout: layout ? self : nil,
-                                             animationDuration: animated ? Constants.layoutAnimationDuration : 0.0,
+                                             viewToLayout: layout ? self.contentView : nil,
+                                             animationDuration: animated ? self.contentView.layer.longestAnimationDuration : 0.0,
                                              additionalAnimations: scanButtonAlphaAnimation)
     }
     
-    private func updateAddressOnCardFieldVisibility(animated: Bool, layout: Bool) -> Bool {
+    @discardableResult private func updateAddressOnCardFieldVisibility(animated: Bool, layout: Bool) -> Bool {
         
         guard
         
-            let nonnullModel = self.model,
             let nonnullConstraintsToDeactivateIfAddressRequired = self.constraintsToDisableWhenAddressOnCardRequired,
             let nonnullConstraintsToActivateIfAddressRequired = self.constraintsToEnableWhenAddressOnCardRequired
         
         else { return false }
         
-        return NSLayoutConstraint.reactivate(inCaseIf: nonnullModel.displaysAddressFields,
+        return NSLayoutConstraint.reactivate(inCaseIf: self.model?.displaysAddressFields ?? false,
                                              constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfAddressRequired,
                                              constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfAddressRequired,
-                                             viewToLayout: layout ? self : nil,
-                                             animationDuration: animated ? Constants.layoutAnimationDuration : 0.0)
+                                             viewToLayout: layout ? self.contentView : nil,
+                                             animationDuration: animated ? self.contentView.layer.longestAnimationDuration : 0.0)
     }
 }
 
@@ -159,33 +162,16 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 
     internal func updateContent(animated: Bool) {
 
-        self.updateCollectionViewContent(animated)
+        self.updateTableViewContent(animated)
         
-        self.addressOnCardLabel?.font = self.model?.addressOnCardTextFont
-        self.addressOnCardLabel?.text = self.model?.addressOnCardText
-        self.addressOnCardLabel?.textColor = self.model?.addressOnCardTextColor
-        
-        let needScannerButtonLayout = self.updateCardScannerButtonVisibility(animated: animated, layout: false)
-        let needAddressOnCardLayout = self.updateAddressOnCardFieldVisibility(animated: animated, layout: false)
-        if needScannerButtonLayout || needAddressOnCardLayout {
+        if let nonnullModel = self.model, nonnullModel.displaysAddressFields {
             
-            let animations: TypeAlias.ArgumentlessClosure = {
-                
-                self.layout()
-            }
-            
-            if animated {
-                
-                UIView.animate(withDuration: Constants.layoutAnimationDuration, animations: animations)
-            }
-            else {
-                
-                UIView.performWithoutAnimation {
-                    
-                    animations()
-                }
-            }
+            self.addressOnCardLabel?.font = nonnullModel.addressOnCardTextFont
+            self.addressOnCardLabel?.text = nonnullModel.addressOnCardText
+            self.addressOnCardLabel?.textColor = nonnullModel.addressOnCardTextColor
         }
+        
+        self.updateSectionsVisibility(animated: animated, updateConstraintsOnly: false)
         
         self.setGlowing(self.model?.isSelected ?? false)
         
@@ -193,7 +179,7 @@ extension CardInputTableViewCell: LoadingWithModelCell {
         self.cardScannerButton?.setImage(self.model?.scanButtonImage, for: .normal)
     }
 
-    private func updateCollectionViewContent(_ animated: Bool) {
+    private func updateTableViewContent(_ animated: Bool) {
 
         if animated {
 
@@ -237,6 +223,58 @@ extension CardInputTableViewCell: BindingWithModelCell {
         if let addressLabel = self.addressOnCardLabel {
             
             self.model?.bind(nil, displayLabel: addressLabel, for: .addressOnCard)
+        }
+        
+        self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true)
+    }
+    
+    private func updateSectionsVisibility(animated: Bool, updateConstraintsOnly: Bool = false) {
+        
+        if updateConstraintsOnly {
+            
+            self.updateCardScannerButtonVisibility(animated: animated, layout: false)
+            self.updateAddressOnCardFieldVisibility(animated: animated, layout: false)
+            
+            return
+        }
+        
+        let closureThatPossiblyRequiresLayout: () -> Bool = {
+            
+            let needScannerButtonLayout = self.updateCardScannerButtonVisibility(animated: animated, layout: true)
+            let needAddressOnCardLayout = self.updateAddressOnCardFieldVisibility(animated: animated, layout: true)
+            
+            return needScannerButtonLayout || needAddressOnCardLayout
+        }
+        
+        if let nonnullModel = self.model {
+            
+            nonnullModel.updateCellLayout(animated: animated) {
+                
+                _ = closureThatPossiblyRequiresLayout()
+            }
+        }
+        else {
+            
+            let requiresLayout = closureThatPossiblyRequiresLayout()
+            if requiresLayout {
+                
+                let animations: TypeAlias.ArgumentlessClosure = {
+                    
+                    self.layout()
+                }
+                
+                if animated {
+                    
+                    UIView.animate(withDuration: Constants.layoutAnimationDuration, animations: animations)
+                }
+                else {
+                    
+                    UIView.performWithoutAnimation {
+                        
+                        animations()
+                    }
+                }
+            }
         }
     }
 }

@@ -45,7 +45,7 @@ internal class CardholderNameValidator: CardValidator {
             self.textField.text = nil
         }
         
-        self.updateInputFieldAttributes()
+        self.updateInputFieldTextAndAttributes()
         self.validate()
     }
     
@@ -86,8 +86,8 @@ internal class CardholderNameValidator: CardValidator {
     }
 }
 
-// MARK: - TextInputDataValidation
-extension CardholderNameValidator: TextInputDataValidation {
+// MARK: - TextFieldInputDataValidation
+extension CardholderNameValidator: TextFieldInputDataValidation {
     
     internal var textInputField: UITextField {
         
@@ -159,13 +159,13 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        self.validator.updateInputFieldAttributes()
+        self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
     }
     
     fileprivate func textFieldDidEndEditing(_ textField: UITextField) {
         
-        self.validator.updateInputFieldAttributes()
+        self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
     }
 }

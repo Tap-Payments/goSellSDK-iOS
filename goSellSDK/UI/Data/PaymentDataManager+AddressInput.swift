@@ -12,6 +12,9 @@ internal extension PaymentDataManager {
     
     internal func prepareAddressInputController(_ addressInputController: AddressInputViewController) {
         
+        guard let cardInputCellViewModel = self.cellModels(of: CardInputTableViewCellModel.self).first else { return }
+        guard let validator = cardInputCellViewModel.validator(of: .addressOnCard) as? CardAddressValidator else { return }
         
+        addressInputController.setValidator(validator)
     }
 }

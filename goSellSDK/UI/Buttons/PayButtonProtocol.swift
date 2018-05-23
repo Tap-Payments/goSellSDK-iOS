@@ -15,8 +15,6 @@ public protocol PayButtonProtocol: ClassProtocol {
     
     var amount: Decimal { get set }
     var currency: String { get set }
-    
-    var delegate: PayButtonDelegate? { get set }
 }
 
 internal extension PayButtonProtocol where Self: UIView {

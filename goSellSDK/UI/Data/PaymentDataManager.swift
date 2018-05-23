@@ -48,7 +48,7 @@ internal final class PaymentDataManager {
     
     // MARK: Methods
     
-    internal func startOver(with caller: PayButtonInternalImplementation) {
+    internal func start(with caller: PayButtonInternalImplementation) {
         
         guard !self.isLoadingPaymentOptions else { return }
         
@@ -95,9 +95,16 @@ internal final class PaymentDataManager {
         return result
     }
     
+    internal func paymentOptionsControllerKeyboardLayoutFinished() {
+        
+        guard let selectedModel = self.selectedPaymentOptionCellViewModel, selectedModel.isSelected else { return }
+        
+        selectedModel.tableView?.scrollToRow(at: selectedModel.indexPath, at: .none, animated: false)
+    }
+    
     internal static func userDidClosePayment() {
         
-        KnownSingletonTypes.destroyAll()
+        KnownSingletonTypes.destroyAllInstances()
     }
     
     // MARK: - Private -

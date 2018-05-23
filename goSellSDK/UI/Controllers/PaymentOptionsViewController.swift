@@ -11,14 +11,14 @@ import class UIKit.UITableView.UITableView
 import let UIKit.UITableView.UITableViewAutomaticDimension
 import class UIKit.UIViewController.UIViewController
 
-internal class PaymentOptionsViewController: UIViewController {
+internal class PaymentOptionsViewController: BaseViewController {
     
     internal override func viewDidLoad() {
         
         super.viewDidLoad()
         self.subscribeNotifications()
     }
-    
+
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -37,6 +37,11 @@ internal class PaymentOptionsViewController: UIViewController {
         }
     }
     
+    internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
+        
+        PaymentDataManager.shared.paymentOptionsControllerKeyboardLayoutFinished()
+    }
+    
     deinit {
         
         self.unsubscribeNotifications()
@@ -52,8 +57,6 @@ internal class PaymentOptionsViewController: UIViewController {
             PaymentDataManager.shared.paymentOptionCellViewModels.forEach { $0.tableView = self.paymentOptionsTableView }
             
             self.paymentOptionsTableView?.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
-            self.paymentOptionsTableView?.rowHeight = UITableViewAutomaticDimension
-            self.paymentOptionsTableView?.estimatedRowHeight = 100.0
         }
     }
     

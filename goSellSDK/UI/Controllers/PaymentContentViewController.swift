@@ -23,6 +23,15 @@ internal class PaymentContentViewController: BaseViewController {
             
             merchantHeaderController.delegate = self
         }
+        else if let paymentOptionsController = segue.destination as? PaymentOptionsViewController {
+            
+            self.paymentOptionsViewController = paymentOptionsController
+        }
+    }
+    
+    internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
+        
+        self.paymentOptionsViewController?.performAdditionalAnimationsAfterKeyboardLayoutFinished()
     }
     
     // MARK: - Private -
@@ -38,6 +47,8 @@ internal class PaymentContentViewController: BaseViewController {
             }
         }
     }
+    
+    private weak var paymentOptionsViewController: PaymentOptionsViewController?
 }
 
 // MARK: - MerchantInformationHeaderViewControllerDelegate

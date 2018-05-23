@@ -22,7 +22,7 @@ internal extension PayButtonInternalImplementation {
     
     internal func payButtonTouchUpInside() {
         
-        PaymentDataManager.shared.startOver(with: self)
+        PaymentDataManager.shared.start(with: self)
     }
     
     internal func paymentDataManagerDidStartLoadingPaymentOptions() {
@@ -43,7 +43,14 @@ internal extension PayButtonInternalImplementation {
             controller.payButton = selfAsView
         }
         
-        self.delegate?.showPaymentController(controller)
+        controller.showOnSeparateWindow { [unowned controller] (rootController) in
+            
+            rootController.allowedInterfaceOrientations = .portrait
+            rootController.preferredInterfaceOrientation = .portrait
+            rootController.canAutorotate = false
+            
+            rootController.present(controller, animated: false, completion: nil)
+        }
     }
     
     // MARK: - Private -

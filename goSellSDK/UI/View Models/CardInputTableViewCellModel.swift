@@ -114,6 +114,7 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         
         didSet {
             
+            (self.validator(of: .addressOnCard) as? CardAddressValidator)?.binInformation = self.binData
             self.updateCell(animated: true)
         }
     }
@@ -164,3 +165,6 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
 
 // MARK: - SingleCellModel
 extension CardInputTableViewCellModel: SingleCellModel {}
+
+// MARK: - DynamicLayoutCellModel
+extension CardInputTableViewCellModel: DynamicLayoutCellModel {}

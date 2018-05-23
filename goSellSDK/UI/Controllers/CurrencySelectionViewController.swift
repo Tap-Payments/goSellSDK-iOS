@@ -35,6 +35,8 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
     internal override func backButtonClicked() {
         
         self.notifyDelegateIfCurrencyChanged()
+        
+        super.backButtonClicked()
     }
     
     internal override func tableViewLoaded(_ aTableView: UITableView) {

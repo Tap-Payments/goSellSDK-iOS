@@ -13,77 +13,67 @@ internal class CardAddressValidator: CardValidator {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal override var isValid: Bool {
+    /// BIN information.
+    internal var binInformation: BINResponse? {
         
-        let address = self.addressOnCard
-        
-        switch self.addressFormat {
+        didSet {
             
-        case .us:
-            
-            return
+            if self.country == nil {
                 
-                ( address.country != nil                                        &&
-                  !(address.city ?? .empty).isEmpty                             &&
-                  !(address.state ?? .empty).isEmpty                            &&
-                  !(address.zipCode ?? .empty).isEmpty                          &&
-                  (address.zipCode ?? .empty).containsOnlyInternationalDigits   &&
-                  !(address.line1 ?? .empty).isEmpty )
+                self.country = self.binInformation?.country
+            }
         }
     }
     
-    internal var displayText: String? {
+    /// User selected country (or initially preselected)
+    internal var country: Country?
+    
+    /// Address display text.
+    internal var displayText: String {
         
-        let address = self.addressOnCard
-        
-        switch self.addressFormat {
+        if self.hasInputDataForCurrentAddressFormat {
             
-        case .us:
+            let orderedDisplayData = self.binInformation?.addressFormat?.sorted { $0.displayOrder < $1.displayOrder }
+            var filledFields = orderedDisplayData?.compactMap { self.inputData[$0.placeholder] as? String }
             
-            let parts = [
+            if (filledFields?.count ?? 0) == 0 {
                 
-                [address.line1, address.line2].compactMap { $0 },
-                [address.city, address.state, address.zipCode].compactMap { $0 },
-                [address.country?.displayName].compactMap { $0 }
-            ]
+                return Constants.placeholderDisplayText
+            }
             
-            let lines = parts.map { $0.joined(separator: ", ") }
-            let result = lines.joined(separator: "\n")
+            if let country = self.country {
+                
+                filledFields?.append(country.displayValue)
+            }
             
-            return result
+            if let nonnullFields = filledFields, nonnullFields.count > 0 {
+                
+                return nonnullFields.joined(separator: ", ")
+            }
+            else {
+                
+                return Constants.placeholderDisplayText
+            }
+        }
+        else {
+            
+            return Constants.placeholderDisplayText
         }
     }
     
+    /// Defines if current address format has any input data.
     internal var hasInputDataForCurrentAddressFormat: Bool {
         
-        let address = self.addressOnCard
+        guard let nonnullAddressFormat = self.binInformation?.addressFormat else { return false }
         
-        switch self.addressFormat {
-            
-        case .us:
-            
-            return
-            
-                ( address.country != nil                &&
-                  !(address.city ?? .empty).isEmpty     &&
-                  !(address.state ?? .empty).isEmpty    &&
-                  !(address.zipCode ?? .empty).isEmpty  &&
-                  !(address.line1 ?? .empty).isEmpty )
-        }
+        return nonnullAddressFormat.first(where: { self.inputData[$0.placeholder] != nil }) != nil
     }
     
-    /// Address on card.
-    internal var addressOnCard: AddressOnCard {
+    internal override var isValid: Bool {
         
-        return AddressOnCard(country: self.inputData[.country] as? Country,
-                             city: self.inputData[.city] as? String,
-                             state: self.inputData[.state] as? String,
-                             zipCode: self.inputData[.zip] as? String,
-                             line1: self.inputData[.line1] as? String,
-                             line2: self.inputData[.line2] as? String)
+        guard let addressFormat = self.binInformation?.addressFormat else { return true }
+        return addressFormat.first(where: { !$0.canBeFilled(with: self.inputData[$0.placeholder]) }) == nil
     }
-    
-    internal var addressFormat: AddressFormat = .us
     
     // MARK: Methods
     
@@ -95,7 +85,7 @@ internal class CardAddressValidator: CardValidator {
     
     internal override func update(with inputData: Any?) {
         
-        if let correctInputData = inputData as? [AddressField: Any] {
+        if let correctInputData = inputData as? [String: Any] {
             
             self.inputData = correctInputData
         }
@@ -106,11 +96,42 @@ internal class CardAddressValidator: CardValidator {
     }
     
     // MARK: - Private -
+    
+    private struct Constants {
+        
+        fileprivate static let placeholderDisplayText = "Address on Card"
+        
+        @available(*, unavailable) private init() {}
+    }
+    
     // MARK: Properties
     
     private unowned var displayLabel: UILabel
     
-    private lazy var inputData: [AddressField: Any] = [:]
+    private var inputData: [String: Any] = [:] {
+        
+        didSet {
+            
+            self.updateDisplayTextAndCallDelegateIfValidationStateChanged()
+        }
+    }
+    
+    // MARK: Methods
+    
+    private func updateDisplayTextAndCallDelegateIfValidationStateChanged() {
+        
+        self.updateInputFieldTextAndAttributes()
+        self.validate()
+    }
+}
+
+// MARK: - CardAddressDataStorage
+extension CardAddressValidator: CardAddressDataStorage {
+    
+    internal func cardInputData(for field: AddressField) -> Any? {
+        
+        return self.inputData[field.placeholder]
+    }
 }
 
 // MARK: - CardAddressInputListener
@@ -118,6 +139,22 @@ extension CardAddressValidator: CardAddressInputListener {
     
     internal func inputChanged(in field: AddressField, to value: Any?) {
         
-        self.inputData[field] = value
+        self.inputData[field.placeholder] = value
     }
+}
+
+// MARK: - TextLabelInputDataValidation
+extension CardAddressValidator: TextLabelInputDataValidation {
+    
+    internal var labelField: UILabel {
+        
+        return self.displayLabel
+    }
+    
+    internal var textInputFieldText: String {
+        
+        return self.displayText
+    }
+    
+    internal func updateSpecificInputFieldAttributes() {}
 }

@@ -16,7 +16,7 @@ import class UIKit.UIView.UIView
 import class UIKit.UIViewController.UIViewController
 
 /// Merchant information header view controller.
-internal class MerchantInformationHeaderViewController: UIViewController {
+internal class MerchantInformationHeaderViewController: BaseViewController {
     
     // MARK: - Internal -
     // MARK: Properties

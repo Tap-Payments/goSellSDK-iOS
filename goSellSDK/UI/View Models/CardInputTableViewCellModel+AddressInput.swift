@@ -2,7 +2,7 @@
 //  CardInputTableViewCellModel+AddressInput.swift
 //  goSellSDK
 //
-//  Created by Dennis Pashkov on 5/17/18.
+//  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
 internal extension CardInputTableViewCellModel {

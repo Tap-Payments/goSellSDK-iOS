@@ -23,7 +23,7 @@ internal class CVVValidator: CardValidator {
         didSet {
             
             self.delegate?.cardValidator(self, inputDataChanged: (self.cvv, self.cardBrand))
-            self.updateInputFieldAttributes()
+            self.updateInputFieldTextAndAttributes()
         }
     }
     
@@ -61,7 +61,7 @@ internal class CVVValidator: CardValidator {
             self.cardBrand = nil
         }
         
-        self.updateInputFieldAttributes()
+        self.updateInputFieldTextAndAttributes()
     }
     
     // MARK: - Private -
@@ -102,8 +102,8 @@ internal class CVVValidator: CardValidator {
     }
 }
 
-// MARK: - TextInputDataValidation
-extension CVVValidator: TextInputDataValidation {
+// MARK: - TextFieldInputDataValidation
+extension CVVValidator: TextFieldInputDataValidation {
     
     internal var textInputField: UITextField {
         
@@ -151,13 +151,13 @@ extension CVVValidator.CVVTextFieldDelegate: UITextFieldDelegate {
         
         textField.attributedText = NSAttributedString(string: .empty, attributes: Theme.current.settings.cardInputFieldsSettings.valid.asStringAttributes)
         
-        self.validator.updateInputFieldAttributes()
+        self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
     }
     
     fileprivate func textFieldDidEndEditing(_ textField: UITextField) {
         
-        self.validator.updateInputFieldAttributes()
+        self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
     }
 }

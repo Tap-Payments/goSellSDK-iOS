@@ -21,6 +21,14 @@ internal struct AmountedCurrency: Decodable {
         self.currency = currency
         self.amount = amount
     }
+    
+    // MARK: - Private -
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case currency   = "currency"
+        case amount     = "amount"
+    }
 }
 
 // MARK: - Equatable

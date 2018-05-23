@@ -69,7 +69,7 @@ internal class CardNumberValidator: CardValidator {
         
         self.compareNewRecognizedBrandToPreviousAndCallDelegate(self.recognizedCardType, number: self.cardNumber)
         
-        self.updateInputFieldAttributes()
+        self.updateInputFieldTextAndAttributes()
     }
     
     internal override func validate() {
@@ -78,7 +78,7 @@ internal class CardNumberValidator: CardValidator {
         
         self.compareNewRecognizedBrandToPreviousAndCallDelegate(recognizedBrand, number: self.cardNumber)
         
-        self.updateInputFieldAttributes()
+        self.updateInputFieldTextAndAttributes()
         
         super.validate()
     }
@@ -200,8 +200,8 @@ internal class CardNumberValidator: CardValidator {
     }
 }
 
-// MARK: - TextInputDataValidation
-extension CardNumberValidator: TextInputDataValidation {
+// MARK: - TextFieldInputDataValidation
+extension CardNumberValidator: TextFieldInputDataValidation {
     
     internal var textInputField: UITextField {
         
@@ -254,13 +254,13 @@ extension CardNumberValidator.CardNumberTextFieldDelegate: UITextFieldDelegate {
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        self.validator.updateInputFieldAttributes()
+        self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
     }
     
     fileprivate func textFieldDidEndEditing(_ textField: UITextField) {
         
-        self.validator.updateInputFieldAttributes()
+        self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
     }
 }
