@@ -6,30 +6,39 @@
 //
 
 /// Extra Fee Model.
-internal struct ExtraFee: Decodable {
+internal final class ExtraFee: AmountModificator {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    /// Merchant identifier.
-    internal private(set) var merchantIdentifier: String
-    
-    /// Fee value (either percents or amount based on 'fee_type').
-    internal private(set) var fee: Decimal
-    
-    /// Fee type.
-    internal private(set) var type: FeeType
-    
     /// Currency code.
-    internal private(set) var currency: Currency
+    internal let currency: Currency
     
+    // MARK: Methods
+    
+    internal required init(type: AmountModificatorType, value: Decimal, currency: Currency) {
+        
+        self.currency = currency
+        super.init(type: type, value: value)
+    }
+    
+    internal required convenience init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let type = try container.decode(AmountModificatorType.self, forKey: .type)
+        let value = try container.decode(Decimal.self, forKey: .value)
+        let currency = try container.decode(Currency.self, forKey: .currency)
+        
+        self.init(type: type, value: value, currency: currency)
+    }
+
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case merchantIdentifier = "merchant_id"
-        case fee = "fee"
-        case type = "fee_type"
-        case currency = "currency_code"
+        case type       = "type"
+        case value      = "value"
+        case currency   = "currency_code"
     }
 }

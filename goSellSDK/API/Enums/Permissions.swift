@@ -14,8 +14,8 @@ internal struct Permissions: OptionSet, Decodable {
     
     // MARK: Properties
     
-    internal static let hasPCIDSS = Permissions(rawValue: Set<String>([Constants.hasPCIDSSKey]))
-    internal static let cardWalletEnabled = Permissions(rawValue: Set<String>([Constants.cardWalletEnabledKey]))
+    internal static let pci                 = Permissions(rawValue: Set<String>([Constants.pciKey]))
+    internal static let merchantCheckout    = Permissions(rawValue: Set<String>([Constants.merchantCheckoutKey]))
     
     // MARK: Methods
     
@@ -66,15 +66,15 @@ internal struct Permissions: OptionSet, Decodable {
     
     private struct Constants {
         
-        fileprivate static let hasPCIDSSKey = "has_pci_dss"
-        fileprivate static let cardWalletEnabledKey = "card_wallet_enabled"
+        fileprivate static let pciKey               = "pci"
+        fileprivate static let merchantCheckoutKey  = "merchant_checkout"
         
         fileprivate static let availableOptions: [String] = {
             
             return [
                 
-                Constants.hasPCIDSSKey,
-                Constants.cardWalletEnabledKey
+                Constants.pciKey,
+                Constants.merchantCheckoutKey
             ]
         }()
         

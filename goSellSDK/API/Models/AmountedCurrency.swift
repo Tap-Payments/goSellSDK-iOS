@@ -11,23 +11,31 @@ internal struct AmountedCurrency: Decodable {
     // MARK: - Internal -
     // MARK: Properties
     
+    /// Currency.
     internal let currency: Currency
+    
+    /// Amount.
     internal let amount: Decimal
+    
+    /// Currency symbol.
+    internal let currencySymbol: String
     
     // MARK: Methods
     
-    internal init(_ currency: Currency, _ amount: Decimal) {
+    internal init(_ currency: Currency, _ amount: Decimal, currencySymbol: String) {
         
-        self.currency = currency
-        self.amount = amount
+        self.currency       = currency
+        self.amount         = amount
+        self.currencySymbol = currencySymbol
     }
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case currency   = "currency"
-        case amount     = "amount"
+        case currency       = "currency_code"
+        case amount         = "amount"
+        case currencySymbol = "symbol"
     }
 }
 

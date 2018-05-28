@@ -6,7 +6,7 @@
 //
 
 /// API error.
-@objcMembers public class TapSDKAPIError: TapSDKError {
+@objcMembers public final class TapSDKAPIError: TapSDKError {
     
     // MARK: - Public -
     // MARK: Properties

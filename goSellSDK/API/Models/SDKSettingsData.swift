@@ -18,8 +18,10 @@ internal struct SDKSettingsData: Decodable {
     internal let permissions: Permissions = .none
     
     /// Encryption key.
-    // FIXME: Remove optionality here.
-    internal private(set) var encryptionKey: String? = .empty
+    internal let encryptionKey: String
+    
+    /// Unique device ID.
+    internal let deviceID: String?
     
     /// Merchant information.
     internal let merchant: Merchant
@@ -34,6 +36,7 @@ internal struct SDKSettingsData: Decodable {
         case isLiveMode = "livemode"
         case permissions = "permissions"
         case encryptionKey = "encryption_key"
+        case deviceID = "device_id"
         case merchant = "merchant"
         case internalSettings = "sdk_settings"
     }

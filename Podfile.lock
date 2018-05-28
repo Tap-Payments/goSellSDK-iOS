@@ -85,6 +85,7 @@ PODS:
     - TapAdditionsKit/UIKit/UIView
   - TapGLKit/TapActivityIndicatorView (1.0):
     - TapGLKit/AnimatedView
+  - TapKeychain (1.0)
   - TapNetworkManager/Core (1.1.2)
   - TapNetworkManager/ImageLoading (1.1.2):
     - SDWebImage/Core
@@ -129,6 +130,7 @@ DEPENDENCIES:
   - TapCardValidator
   - TapEditableView
   - TapGLKit/TapActivityIndicatorView
+  - TapKeychain
   - TapNetworkManager/Core
   - TapNetworkManager/ImageLoading
   - TapNibView
@@ -147,6 +149,7 @@ SPEC REPOS:
     - TapCardValidator
     - TapEditableView
     - TapGLKit
+    - TapKeychain
     - TapNetworkManager
     - TapNibView
     - TapResponderChainInputView
@@ -163,6 +166,7 @@ SPEC CHECKSUMS:
   TapCardValidator: 74a8a1da11846e069e324a5fb83aa8b3f0b84de5
   TapEditableView: 37adeacb5a91e9d230856a39c6f2441d828f7611
   TapGLKit: 5dc9e08f3a0789b9b00c07052a57ee02abd96190
+  TapKeychain: 5483ac1930d6f548e05e0f458e302fa7aee78c3b
   TapNetworkManager: 71a438f203e09f92f0e851b1d24bec332c96bb8f
   TapNibView: 4ddaf1cd09ec3b1ff1315f54c6b7713faa0e3706
   TapResponderChainInputView: d9285cdc13f513a7f063238bb2b07190aed48b57
@@ -170,6 +174,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: 77af9d91c385dc42d9ee53d0f50958e5aef2d8fa
   TapVisualEffectView: d69ad714fef55a5c728069de51a3aa16607db164
 
-PODFILE CHECKSUM: c2d29729ad3162468b5f9679e2832fc2576bf35c
+PODFILE CHECKSUM: 2a905f1c02735d33d42ff6dffcd638186fe8979c
 
 COCOAPODS: 1.5.2

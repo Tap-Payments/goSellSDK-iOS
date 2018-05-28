@@ -17,19 +17,11 @@ internal struct Merchant: Decodable {
     /// Merchant logo URL
     internal let logoURL: URL
     
-    /// List of currencies supported by merchant.
-    internal let supportedCurrencies: [Currency]
-    
-    /// Default currency of the merchant.
-    internal let defaultCurrency: Currency
-    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
 
-        case name = "name"
-        case logoURL = "logo"
-        case supportedCurrencies = "supported_currencies"
-        case defaultCurrency = "currency_code"
+        case name       = "name"
+        case logoURL    = "logo"
     }
 }

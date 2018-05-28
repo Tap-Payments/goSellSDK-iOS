@@ -11,21 +11,21 @@ internal struct InternalSDKSettings: Decodable {
     // MARK: - Internal -
     // MARK: Properties
     
-    /// Visibility duration of payment status popup.
-    internal let statusPopupVisibilityDuration: TimeInterval
+    /// Visibility duration of payment status.
+    internal let statusDisplayDuration: TimeInterval
     
     /// Time interval between OTP resends.
-    internal let resendOTPTimeInterval: TimeInterval
+    internal let otpResendInterval: TimeInterval
     
     /// Number of attempts to resend OTP.
-    internal let resendOTPAttemptsCount: Int
+    internal let otpResendAttempts: Int
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case statusPopupVisibilityDuration = "status_popup_duration"
-        case resendOTPTimeInterval = "resend_interval"
-        case resendOTPAttemptsCount = "resend_number_attempts"
+        case statusDisplayDuration  = "status_display_duration"
+        case otpResendInterval      = "otp_resend_interval"
+        case otpResendAttempts      = "otp_resend_attempts"
     }
 }

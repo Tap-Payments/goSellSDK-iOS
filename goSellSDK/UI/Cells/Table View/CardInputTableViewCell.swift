@@ -7,6 +7,7 @@
 
 import struct CoreGraphics.CGBase.CGFloat
 import struct CoreGraphics.CGGeometry.CGPoint
+import struct CoreGraphics.CGGeometry.CGSize
 import class EditableTextInsetsTextField.EditableTextInsetsTextField
 import struct TapAdditionsKit.TypeAlias
 import class TapEditableView.TapEditableView

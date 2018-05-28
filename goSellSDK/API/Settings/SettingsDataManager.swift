@@ -17,7 +17,16 @@ internal final class SettingsDataManager {
     // MARK: Properties
     
     /// SDK settings.
-    internal var settings: SDKSettingsData?
+    internal private(set) var settings: SDKSettingsData? {
+        
+        didSet {
+            
+            if let deviceID = self.settings?.deviceID {
+                
+                KeychainManager.deviceID = deviceID
+            }
+        }
+    }
     
     // MARK: Methods
     

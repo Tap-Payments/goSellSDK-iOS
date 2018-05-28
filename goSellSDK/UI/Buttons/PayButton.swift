@@ -8,6 +8,7 @@
 import class TapNibView.TapNibView
 import class UIKit.UIButton.UIButton
 
+/// Pay button.
 public class PayButton: TapNibView {
     
     // MARK: - Public -
@@ -26,9 +27,6 @@ public class PayButton: TapNibView {
         }
     }
     
-    /// State of the receiver.
-    public var state: PayButtonState = .enabled
-    
     /// Theme of the payment controller. Default is light.
     public var controllerTheme: Theme = .light
     
@@ -41,12 +39,16 @@ public class PayButton: TapNibView {
         }
     }
     
-    public var amount: Decimal = 0.0
-    public var currency: String = "KWD"
-    
     public override class var bundle: Bundle {
         
         return .goSellSDKResources
+    }
+    
+    // MARK: Methods
+    
+    public func updateDisplayedAmount() {
+        
+        self.ui?.updateDisplayedAmount()
     }
     
     // MARK: - Private -
@@ -62,13 +64,16 @@ public class PayButton: TapNibView {
     }
 }
 
+// MARK: - PayButtonUIDelegate
 extension PayButton: PayButtonUIDelegate {
     
     internal func securityButtonTouchUpInside() {
         
+        
     }
 }
 
+// MARK: - PayButtonInternalImplementation
 extension PayButton: PayButtonInternalImplementation {
     
     internal var theme: Theme {

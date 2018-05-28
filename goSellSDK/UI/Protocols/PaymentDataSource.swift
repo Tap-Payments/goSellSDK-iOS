@@ -8,12 +8,14 @@
 /// Payment data source.
 @objc public protocol PaymentDataSource: class, NSObjectProtocol {
     
+    /// Items currency code.
+    @objc var currency: Currency { get }
+    
     /// Details of the person who pays.
-    var customer: CustomerInfo { get }
+    @objc var customer: CustomerInfo { get }
     
     /// Items to pay for.
-    var items: [PaymentItem] { get }
+    @objc var items: [PaymentItem] { get }
     
-    /// Items currency code.
-    var currency: Currency { get }
+    @objc optional var shipping: [Shipping]? { get }
 }

@@ -6,7 +6,7 @@
 //
 
 /// Known error. Either network or serialization error.
-@objcMembers public class TapSDKKnownError: TapSDKError {
+@objcMembers public final class TapSDKKnownError: TapSDKError {
     
     // MARK: - Public -
     // MARK: Properties

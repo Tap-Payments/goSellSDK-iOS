@@ -6,7 +6,7 @@
 //
 
 /// Structure representing API error.
-@objcMembers public class APIError: NSObject, Decodable {
+@objcMembers public final class APIError: NSObject, Decodable {
     
     // MARK: - Public -
     // MARK: Properties

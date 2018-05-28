@@ -63,6 +63,11 @@ internal class PayButtonUI: TapNibView {
         self.internalButton?.setTitle("PAY", for: .normal)
     }
     
+    internal func updateDisplayedAmount() {
+        
+        
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
