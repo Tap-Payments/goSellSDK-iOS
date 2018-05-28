@@ -8,6 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		8E197292A213A9AC83C5B789 /* Pods_goSellSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */; };
+		A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */; };
+		A408C03720BAB577005E74AD /* Measurement+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03620BAB577005E74AD /* Measurement+Additions.swift */; };
+		A408C03A20BAC2EE005E74AD /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03920BAC2EE005E74AD /* Serializer.swift */; };
+		A408C03C20BAC58A005E74AD /* Encodable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */; };
+		A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03D20BAC710005E74AD /* Decodable+Additions.swift */; };
+		A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */; };
+		A4CFAF2F20B82A5700B5D83B /* PaymentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */; };
+		A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */; };
+		A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3220B83E3300B5D83B /* PaymentItemTableViewCell.swift */; };
+		A4CFAF3920B849F400B5D83B /* TaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3820B849F400B5D83B /* TaxViewController.swift */; };
+		A4CFAF3B20B84A9500B5D83B /* ModalNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3A20B84A9500B5D83B /* ModalNavigationTableViewController.swift */; };
+		A4CFAF3F20B96E1500B5D83B /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3E20B96E1500B5D83B /* TitleTableViewCell.swift */; };
+		A4CFAF4120B96EE000B5D83B /* CaseSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF4020B96EE000B5D83B /* CaseSelectionTableViewController.swift */; };
+		A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF4720B9A80500B5D83B /* TaxViewControllerDelegate.swift */; };
+		A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF4820B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift */; };
 		A4D5FE532083235E007D52F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D5FE522083235E007D52F5 /* AppDelegate.swift */; };
 		A4D5FE582083235E007D52F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D5FE562083235E007D52F5 /* Main.storyboard */; };
 		A4D5FE5A2083235F007D52F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4D5FE592083235F007D52F5 /* Assets.xcassets */; };
@@ -18,6 +33,21 @@
 /* Begin PBXFileReference section */
 		0D556C088C774FC337DECC2B /* Pods-goSellSDKExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.debug.xcconfig"; sourceTree = "<group>"; };
 		3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.release.xcconfig"; sourceTree = "<group>"; };
+		A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A408C03620BAB577005E74AD /* Measurement+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Measurement+Additions.swift"; sourceTree = "<group>"; };
+		A408C03920BAC2EE005E74AD /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
+		A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Additions.swift"; sourceTree = "<group>"; };
+		A408C03D20BAC710005E74AD /* Decodable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Additions.swift"; sourceTree = "<group>"; };
+		A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExampleViewController+UITableView.swift"; sourceTree = "<group>"; };
+		A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewController.swift; sourceTree = "<group>"; };
+		A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxTableViewCell.swift; sourceTree = "<group>"; };
+		A4CFAF3220B83E3300B5D83B /* PaymentItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemTableViewCell.swift; sourceTree = "<group>"; };
+		A4CFAF3820B849F400B5D83B /* TaxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxViewController.swift; sourceTree = "<group>"; };
+		A4CFAF3A20B84A9500B5D83B /* ModalNavigationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationTableViewController.swift; sourceTree = "<group>"; };
+		A4CFAF3E20B96E1500B5D83B /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		A4CFAF4020B96EE000B5D83B /* CaseSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseSelectionTableViewController.swift; sourceTree = "<group>"; };
+		A4CFAF4720B9A80500B5D83B /* TaxViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A4CFAF4820B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseSelectionTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A4D5FE4F2083235E007D52F5 /* goSellSDKExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goSellSDKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D5FE522083235E007D52F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4D5FE572083235E007D52F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +78,76 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A408C03520BAB567005E74AD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A408C03620BAB577005E74AD /* Measurement+Additions.swift */,
+				A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */,
+				A408C03D20BAC710005E74AD /* Decodable+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A408C03820BAC2CC005E74AD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A408C03920BAC2EE005E74AD /* Serializer.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A4CFAF3420B83F8300B5D83B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A4D5FE522083235E007D52F5 /* AppDelegate.swift */,
+				A4D5FE5E2083235F007D52F5 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A4CFAF3520B83F8C00B5D83B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4D5FE592083235F007D52F5 /* Assets.xcassets */,
+				A4D5FE5B2083235F007D52F5 /* LaunchScreen.storyboard */,
+				A4D5FE562083235E007D52F5 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A4CFAF3620B83FAF00B5D83B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A4CFAF3220B83E3300B5D83B /* PaymentItemTableViewCell.swift */,
+				A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */,
+				A4CFAF3E20B96E1500B5D83B /* TitleTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A4CFAF3720B83FBB00B5D83B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4CFAF4020B96EE000B5D83B /* CaseSelectionTableViewController.swift */,
+				A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */,
+				A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */,
+				A4CFAF3A20B84A9500B5D83B /* ModalNavigationTableViewController.swift */,
+				A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */,
+				A4CFAF3820B849F400B5D83B /* TaxViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A4CFAF4620B9A7C700B5D83B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A4CFAF4820B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift */,
+				A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */,
+				A4CFAF4720B9A80500B5D83B /* TaxViewControllerDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		A4D5FE462083235E007D52F5 = {
 			isa = PBXGroup;
 			children = (
@@ -69,12 +169,13 @@
 		A4D5FE512083235E007D52F5 /* goSellSDKExample */ = {
 			isa = PBXGroup;
 			children = (
-				A4D5FE522083235E007D52F5 /* AppDelegate.swift */,
-				A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */,
-				A4D5FE562083235E007D52F5 /* Main.storyboard */,
-				A4D5FE592083235F007D52F5 /* Assets.xcassets */,
-				A4D5FE5B2083235F007D52F5 /* LaunchScreen.storyboard */,
-				A4D5FE5E2083235F007D52F5 /* Info.plist */,
+				A4CFAF3620B83FAF00B5D83B /* Cells */,
+				A4CFAF3720B83FBB00B5D83B /* Controllers */,
+				A408C03520BAB567005E74AD /* Extensions */,
+				A4CFAF4620B9A7C700B5D83B /* Protocols */,
+				A4CFAF3520B83F8C00B5D83B /* Resources */,
+				A4CFAF3420B83F8300B5D83B /* Supporting Files */,
+				A408C03820BAC2CC005E74AD /* Utils */,
 			);
 			path = goSellSDKExample;
 			sourceTree = "<group>";
@@ -172,6 +273,7 @@
 				"${BUILT_PRODUCTS_DIR}/TapCardValidator/TapCardValidator.framework",
 				"${BUILT_PRODUCTS_DIR}/TapEditableView/TapEditableView.framework",
 				"${BUILT_PRODUCTS_DIR}/TapGLKit/TapGLKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TapKeychain/TapKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/TapNetworkManager/TapNetworkManager.framework",
 				"${BUILT_PRODUCTS_DIR}/TapNibView/TapNibView.framework",
 				"${BUILT_PRODUCTS_DIR}/TapResponderChainInputView/TapResponderChainInputView.framework",
@@ -190,6 +292,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapCardValidator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapEditableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapGLKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapNetworkManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapNibView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapResponderChainInputView.framework",
@@ -228,8 +331,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CFAF3F20B96E1500B5D83B /* TitleTableViewCell.swift in Sources */,
+				A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */,
+				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
+				A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */,
+				A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */,
+				A4CFAF3920B849F400B5D83B /* TaxViewController.swift in Sources */,
+				A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */,
+				A408C03720BAB577005E74AD /* Measurement+Additions.swift in Sources */,
+				A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
+				A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */,
 				A4D5FE532083235E007D52F5 /* AppDelegate.swift in Sources */,
+				A4CFAF4120B96EE000B5D83B /* CaseSelectionTableViewController.swift in Sources */,
+				A408C03C20BAC58A005E74AD /* Encodable+Additions.swift in Sources */,
+				A4CFAF2F20B82A5700B5D83B /* PaymentItemViewController.swift in Sources */,
+				A408C03A20BAC2EE005E74AD /* Serializer.swift in Sources */,
 				A4D5FE65208323FB007D52F5 /* ExampleViewController.swift in Sources */,
+				A4CFAF3B20B84A9500B5D83B /* ModalNavigationTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,9 +494,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G46S76PUH4;
-				INFOPLIST_FILE = goSellSDKExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/goSellSDKExample/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -393,9 +514,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G46S76PUH4;
-				INFOPLIST_FILE = goSellSDKExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/goSellSDKExample/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

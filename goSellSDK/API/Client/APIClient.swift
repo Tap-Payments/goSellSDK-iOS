@@ -136,13 +136,14 @@ internal final class APIClient {
         
         fileprivate struct HTTPHeaderValueKey {
             
-            fileprivate static let appID = "app_id"
-            fileprivate static let requirer = "requirer"
-            fileprivate static let requirerValue = "SDK"
-            fileprivate static let requirerVersion = "requirer_version"
-            fileprivate static let requirerOS = "requirer_os"
-            fileprivate static let requirerOSVersion = "requirer_os_version"
-            fileprivate static let appLocale = "app_locale"
+            fileprivate static let appID                = "app_id"
+            fileprivate static let appLocale            = "app_locale"
+            fileprivate static let deviceID             = "device_id"
+            fileprivate static let requirer             = "requirer"
+            fileprivate static let requirerOS           = "requirer_os"
+            fileprivate static let requirerOSVersion    = "requirer_os_version"
+            fileprivate static let requirerValue        = "SDK"
+            fileprivate static let requirerVersion      = "requirer_version"
             
             @available(*, unavailable) private init() { }
         }
@@ -194,6 +195,11 @@ internal final class APIClient {
         
         let localeIdentifier = goSellSDK.localeIdentifier
         applicationDetails[Constants.HTTPHeaderValueKey.appLocale] = localeIdentifier
+        
+        if let deviceID = KeychainManager.deviceID {
+            
+            applicationDetails[Constants.HTTPHeaderValueKey.deviceID] = deviceID
+        }
         
         let result = (applicationDetails.map { "\($0.key)=\($0.value)" }).joined(separator: "|")
         

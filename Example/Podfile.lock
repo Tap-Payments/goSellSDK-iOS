@@ -20,6 +20,7 @@ PODS:
     - TapCardValidator
     - TapEditableView
     - TapGLKit/TapActivityIndicatorView
+    - TapKeychain
     - TapNetworkManager/Core
     - TapNetworkManager/ImageLoading
     - TapNibView
@@ -109,6 +110,7 @@ PODS:
     - TapAdditionsKit/UIKit/UIView
   - TapGLKit/TapActivityIndicatorView (1.0):
     - TapGLKit/AnimatedView
+  - TapKeychain (1.0)
   - TapNetworkManager/Core (1.1.2)
   - TapNetworkManager/ImageLoading (1.1.2):
     - SDWebImage/Core
@@ -149,6 +151,7 @@ SPEC REPOS:
     - TapCardValidator
     - TapEditableView
     - TapGLKit
+    - TapKeychain
     - TapNetworkManager
     - TapNibView
     - TapResponderChainInputView
@@ -163,13 +166,14 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextField: be73bcc31de6a83d457851deeb807c46b1cbb16e
-  goSellSDK: b82b5a1c7aa0de3fc1943aad2addced32768866a
+  goSellSDK: eac90162c6d53c989fcea32e91f4c942a470801c
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   TapAdditionsKit: c720d8294e494f83becef26730846de59ab7dcdf
   TapApplication: 3ba1ef06b929427582e6b750c1060c66b973ce22
   TapCardValidator: 74a8a1da11846e069e324a5fb83aa8b3f0b84de5
   TapEditableView: 37adeacb5a91e9d230856a39c6f2441d828f7611
   TapGLKit: 5dc9e08f3a0789b9b00c07052a57ee02abd96190
+  TapKeychain: 5483ac1930d6f548e05e0f458e302fa7aee78c3b
   TapNetworkManager: 71a438f203e09f92f0e851b1d24bec332c96bb8f
   TapNibView: 4ddaf1cd09ec3b1ff1315f54c6b7713faa0e3706
   TapResponderChainInputView: d9285cdc13f513a7f063238bb2b07190aed48b57

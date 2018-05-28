@@ -6,7 +6,7 @@
 //
 
 /// Base settings class for goSell SDK.
-@objcMembers public class goSellSDK: NSObject {
+@objcMembers public final class goSellSDK: NSObject {
     
     // MARK: - Public -
     // MARK: Properties

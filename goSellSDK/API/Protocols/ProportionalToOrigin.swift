@@ -9,3 +9,11 @@ internal protocol ProportionalToOrigin {
     
     var inUnitsOfOrigin: Decimal { get }
 }
+
+internal extension ProportionalToOrigin {
+    
+    internal func `in`(_ another: Self) -> Decimal {
+        
+        return another.inUnitsOfOrigin / self.inUnitsOfOrigin
+    }
+}

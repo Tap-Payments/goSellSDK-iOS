@@ -82,7 +82,7 @@ internal class BaseViewController: UIViewController {
                                                   object: nil)
     }
     
-    @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
         
         performOnMainThread { [weak self] in
             

@@ -11,10 +11,6 @@ import class UIKit.UIView.UIView
 public protocol PayButtonProtocol: ClassProtocol {
     
     var isEnabled: Bool { get set }
-    var state: PayButtonState { get }
-    
-    var amount: Decimal { get set }
-    var currency: String { get set }
 }
 
 internal extension PayButtonProtocol where Self: UIView {

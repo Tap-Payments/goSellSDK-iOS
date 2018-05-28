@@ -6,7 +6,7 @@
 //
 
 /// Error detail model.
-@objcMembers public class ErrorDetail: NSObject, Decodable {
+@objcMembers public final class ErrorDetail: NSObject, Decodable {
     
     // MARK: - Public -
     // MARK: Properties

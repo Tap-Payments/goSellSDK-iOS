@@ -13,17 +13,21 @@ internal struct PaymentOptionsRequest: Encodable {
     /// Items to pay for.
     internal let items: [PaymentItem]
     
+    /// Items shippings.
+    internal var shipping: [Shipping]?
+    
     /// Items currency.
     internal let currency: Currency
     
     /// Customer (payer).
-    internal let customer: CustomerInfo
+    internal var customer: String?
     
     // MARK: Methods
     
-    internal init(items: [PaymentItem], currency: Currency, customer: CustomerInfo) {
+    internal init(items: [PaymentItem], shipping: [Shipping]?, currency: Currency, customer: String?) {
         
         self.items = items
+        self.shipping = shipping
         self.currency = currency
         self.customer = customer
         
@@ -34,10 +38,11 @@ internal struct PaymentOptionsRequest: Encodable {
     
     private enum CodingKeys: String, CodingKey {
         
-        case items = "items"
-        case currency = "currency_code"
-        case customer = "customer"
-        case totalAmount = "total_amount"
+        case items          = "items"
+        case shipping       = "shipping"
+        case currency       = "currency_code"
+        case customer       = "customer"
+        case totalAmount    = "total_amount"
     }
     
     // MARK: Properties

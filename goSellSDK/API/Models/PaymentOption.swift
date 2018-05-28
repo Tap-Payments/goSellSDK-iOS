@@ -25,9 +25,6 @@ internal struct PaymentOption: Decodable, Identifiable {
     /// Payment type.
     internal private(set) var paymentType: PaymentType
     
-    /// Gateway currency code.
-    internal private(set) var currency: Currency
-    
     /// Supported card brands.
     internal private(set) var supportedCardBrands: [CardBrand]
     
@@ -44,14 +41,13 @@ internal struct PaymentOption: Decodable, Identifiable {
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case name = "name"
-        case imageURL = "image"
-        case paymentType = "payment_type"
-        case currency = "currency_code"
-        case supportedCardBrands = "supported_card_brands"
-        case extraFees = "extra_fees"
-        case supportedCurrencies = "supported_currencies"
-        case orderBy = "order_by"
+        case identifier             = "id"
+        case name                   = "name"
+        case imageURL               = "image"
+        case paymentType            = "payment_type"
+        case supportedCardBrands    = "supported_card_brands"
+        case extraFees              = "extra_fees"
+        case supportedCurrencies    = "supported_currencies"
+        case orderBy                = "order_by"
     }
 }

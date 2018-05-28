@@ -6,7 +6,7 @@
 //
 
 /// Unknown or unhandled error.
-@objcMembers public class TapSDKUnknownError: TapSDKError {
+@objcMembers public final class TapSDKUnknownError: TapSDKError {
     
     // MARK: - Public -
     // MARK: Properties

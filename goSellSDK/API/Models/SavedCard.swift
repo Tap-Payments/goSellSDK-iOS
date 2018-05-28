@@ -1,5 +1,5 @@
 //
-//  Card.swift
+//  SavedCard.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
@@ -7,8 +7,8 @@
 
 import enum TapCardValidator.CardBrand
 
-/// Card model.
-internal struct Card: Decodable, Identifiable {
+/// Saved Card model.
+internal struct SavedCard: Decodable, Identifiable {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -37,17 +37,25 @@ internal struct Card: Decodable, Identifiable {
     /// BIN number.
     internal let binNumber: String
     
+    /// Currency.
+    internal let currency: Currency
+    
+    /// Order parameter
+    internal let orderBy: Int
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case object = "object"
-        case lastFourDigits = "last4"
-        case expirationMonth = "exp_month"
-        case expirationYear = "exp_year"
-        case brand = "brand"
-        case cardholderName = "name"
-        case binNumber = "bin"
+        case identifier         = "id"
+        case object             = "object"
+        case lastFourDigits     = "last4"
+        case expirationMonth    = "exp_month"
+        case expirationYear     = "exp_year"
+        case brand              = "brand"
+        case cardholderName     = "name"
+        case binNumber          = "bin"
+        case currency           = "currency"
+        case orderBy            = "order_by"
     }
 }

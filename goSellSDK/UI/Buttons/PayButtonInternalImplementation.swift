@@ -13,6 +13,8 @@ internal protocol PayButtonInternalImplementation: PayButtonProtocol {
     var uiElement: PayButtonUI? { get }
     
     var theme: Theme { get }
+    
+    func updateDisplayedAmount()
 }
 
 internal extension PayButtonInternalImplementation {

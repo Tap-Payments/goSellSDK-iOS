@@ -18,10 +18,20 @@ internal extension APIClient {
     /// - Parameter completion: Closure that will be called on completion.
     internal func initSDK(_ completion: @escaping Completion<SDKSettings>) {
         
+        var urlModel: TapURLModel?
+        if let deviceID = KeychainManager.deviceID {
+            
+            urlModel = .dictionary(parameters: [InitializationConstants.deviceIDKey: deviceID])
+        }
+        else {
+            
+            urlModel = nil
+        }
+        
         let operation = TapNetworkRequestOperation(path: self.initRoute.rawValue,
                                                    method: .GET,
                                                    headers: self.staticHTTPHeaders,
-                                                   urlModel: nil,
+                                                   urlModel: urlModel,
                                                    bodyModel: nil,
                                                    responseType: .json)
         
@@ -29,6 +39,12 @@ internal extension APIClient {
     }
     
     // MARK: - Private -
+    
+    private struct InitializationConstants {
+        
+        fileprivate static let deviceIDKey = "device_id"
+    }
+    
     // MARK: Properties
     
     private var initRoute: Route {

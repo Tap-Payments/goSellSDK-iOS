@@ -58,8 +58,9 @@ internal final class PaymentDataManager {
         }
         
         let paymentRequest = PaymentOptionsRequest(items: nonnullDataSource.items,
+                                                   shipping: nonnullDataSource.shipping ?? nil,
                                                    currency: nonnullDataSource.currency,
-                                                   customer: nonnullDataSource.customer)
+                                                   customer: nonnullDataSource.customer.identifier)
         
         self.isLoadingPaymentOptions = true
         
