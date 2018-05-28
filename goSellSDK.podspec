@@ -7,12 +7,12 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.name = 'goSellSDK'
     goSellSDK.summary = 'goSell SDK for iOS'
     goSellSDK.requires_arc = true
-    goSellSDK.version = '1.1.3'
+    goSellSDK.version = '1.1.4'
     goSellSDK.license = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage = 'https://github.com/Tap-Payments/goSellSDK-iOS'
     goSellSDK.source = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
-    goSellSDK.default_subspecs = 'BIN', 'Charge', 'Token'
+    goSellSDK.default_subspecs = 'BIN', 'Charge', 'Token', 'Card', 'Customers'
     
     goSellSDK.subspec 'Core' do |core|
     
@@ -33,6 +33,13 @@ Pod::Spec.new do |goSellSDK|
         charge.dependency 'goSellSDK/Core'
         charge.source_files = 'goSellSDK/Charge/**/*.swift'
         
+    end
+    
+    goSellSDK.subspec 'Card' do |card|
+    
+        card.dependency 'goSellSDK/Core'
+        card.source_files = 'goSellSDK/Card/**/*.swift'
+    
     end
     
     goSellSDK.subspec 'Crypter' do |crypter|
