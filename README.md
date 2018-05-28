@@ -171,6 +171,97 @@ func exampleCreateToken() {
 }
 ```
 
+### Customers
+
+To interact with the Customer APIs, please refer to the `CustomersClient` class inside the SDK.
+
+Example of **customer** creation:
+
+*Swift*:
+
+```swift
+func exampleCreateCustomer() {
+    
+    let request = CreateCustomerRequest(name: "CUSTOMER_NAME", phone: "PHONE_NUMBER", email: "EMAIL_ADDRESS")
+    CustomersClient.createCustomer(with: request) { (customer, error) in
+            
+        if let _ = customer {
+            
+            NSLog("Customer successfully created.")
+        }
+        else {
+            
+            NSLog("Failed to create customer with error: \(error!)")
+        }
+    }
+}
+```
+
+*Objective-C*:
+
+```objective-c
+- (void)exampleCreateCustomer {
+    
+    CreateCustomerRequest *request = [[CreateCustomerRequest alloc] initWithName:@"CUSTOMER_NAME" phone:@"PHONE_NUMBER" email:@"EMAIL_ADDRESS"];
+    [CustomersClient createCustomerWith:request completion:^(Customer * _Nullable customer, TapSDKError * _Nullable error) {
+       
+        if ( customer ) {
+        
+            NSLog(@"Customer successfully created.");
+        }
+        else {
+            
+            NSLog(@"Failed to create customer with error: %@", error);
+        }
+    }];
+}
+```
+
+### Cards
+
+To interact with the Cards APIs, please refer to the `CardClient` class inside the SDK.
+
+Example of **card** creation:
+
+*Swift*:
+
+```swift
+func exampleCreateCard() {
+    
+    let request = CreateCardRequest(tokenIdentifier: "tok_XXXXXXXXXXXXXXXXXXXXXXXX")
+    CardClient.createCard(for: "cus_XXXXXXXXXXXXXXXXXXXXXXX", with: request) { (card, error) in
+        
+        if let _ = card {
+        
+            NSLog("Successfully created card.")
+        }
+        else {
+        
+            NSLog("Failed to create card with error: \(error!)")
+        }
+    }
+}
+```
+
+*Objective-C*:
+
+```objective-c
++ (void)exampleCreateCard {
+    
+    CreateCardRequest *request = [[CreateCardRequest alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
+    [CardClient createCardFor:@"cus_XXXXXXXXXXXXXXXXXXXXXXX" with:request completion:^(Card * _Nullable card, TapSDKError * _Nullable error) {
+        
+        if ( card ) {
+        
+            NSLog(@"Successfully created card.");
+        }
+        else {
+        
+            NSLog(@"Failed to create card with error: %@", error);
+        }
+    }];
+}
+```
 
 ### Charges
 
@@ -241,8 +332,11 @@ func exampleCreateSource() {
     // with token identifier
     let tokenSource = CreateChargeSource(tokenIdentifier: "tok_XXXXXXXXXXXXXXXXXXXXXXXX")
     
-    // static source
+    // with static source
     let staticKNETSource = CreateChargeSource(staticIdentifier: .KNET)
+    
+    // with card identifier
+    let cardSource = CreateChargeSource(cardIdentifier: "card_XXXXXXXXXXXXXXXXXXXXXXXX")
     
     // with plain card data
     let plainSource = CreateChargeSource(cardNumber: "4111111111111111", expirationMonth: 10, expirationYear: 20, cvc: "123")
@@ -256,6 +350,9 @@ func exampleCreateSource() {
     
     // with token identifier
     CreateChargeSource *tokenSource = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
+    
+    /// with card identifier
+    CreateChargeSource *cardSource = [[CreateChargeSource alloc] initWithCardIdentifier:@"card_XXXXXXXXXXXXXXXXXXXXXXXX"];
     
     // static source
     CreateChargeSource *staticKNETSource = [[CreateChargeSource alloc] initWithStaticIdentifier:SourceIdentifierKNET];
@@ -290,6 +387,50 @@ func exampleCreateRedirect() {
     
     // with post url
     CreateChargeRedirect *redirectWithPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"] postURL:[NSURL URLWithString:@"your_post_url"]];
+}
+```
+
+### BIN Lookup
+
+To interact with the BIN API, please refer to the `BINClient` class inside the SDK.
+
+Usage example:
+
+*Swift*:
+
+```swift
+func exampleBINLookup() {
+
+    BINClient.getBINNumberDetails(for: "411111") { (response, error) in
+        
+        if let nonnullResponse = response {
+        
+            // do something with BIN response
+        }
+        else {
+        
+            NSLog("Error occured while retrieving BIN information: \(error!)")
+        }
+    }
+}
+```
+
+*Objective-C*:
+
+```objective-c
+- (void)exampleBINLookup {
+
+    [BINClient getBINNumberDetailsFor:@"411111" completion:^(BINResponse * _Nullable response, TapSDKError * _Nullable error) {
+        
+        if ( response ) {
+            
+            // do something with response
+        }
+        else {
+            
+            NSLog("Error occured while retrieving BIN information: %@", error);
+        }
+    }];
 }
 ```
 

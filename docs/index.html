@@ -42,6 +42,12 @@
                 <a href="Classes/CaptureChargeRequest.html">CaptureChargeRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Card.html">Card</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CardClient.html">CardClient</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Charge.html">Charge</a>
               </li>
               <li class="nav-group-task">
@@ -54,6 +60,9 @@
                 <a href="Classes/ChargeSource.html">ChargeSource</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CreateCardRequest.html">CreateCardRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CreateChargeRedirect.html">CreateChargeRedirect</a>
               </li>
               <li class="nav-group-task">
@@ -63,13 +72,31 @@
                 <a href="Classes/CreateChargeSource.html">CreateChargeSource</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CreateCustomerRequest.html">CreateCustomerRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CreateTokenCard.html">CreateTokenCard</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/CreateTokenRequest.html">CreateTokenRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Customer.html">Customer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CustomersClient.html">CustomersClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DeleteCardResponse.html">DeleteCardResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DeleteCustomerResponse.html">DeleteCustomerResponse</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/RetrieveCardsResponse.html">RetrieveCardsResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/TapSDKAPIError.html">TapSDKAPIError</a>
@@ -94,6 +121,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/UpdateChargeRequest.html">UpdateChargeRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/UpdateCustomerRequest.html">UpdateCustomerRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/goSellSDK.html">goSellSDK</a>
@@ -279,6 +309,88 @@
     }];
 }
 </code></pre>
+<h3 id='customers' class='heading'>Customers</h3>
+
+<p>To interact with the Customer APIs, please refer to the <code><a href="Classes/CustomersClient.html">CustomersClient</a></code> class inside the SDK.</p>
+
+<p>Example of <strong>customer</strong> creation:</p>
+
+<p><em>Swift</em>:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exampleCreateCustomer</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">CreateCustomerRequest</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"CUSTOMER_NAME"</span><span class="p">,</span> <span class="nv">phone</span><span class="p">:</span> <span class="s">"PHONE_NUMBER"</span><span class="p">,</span> <span class="nv">email</span><span class="p">:</span> <span class="s">"EMAIL_ADDRESS"</span><span class="p">)</span>
+    <span class="kt">CustomersClient</span><span class="o">.</span><span class="nf">createCustomer</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">_</span> <span class="o">=</span> <span class="n">customer</span> <span class="p">{</span>
+
+            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Customer successfully created."</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+
+            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Failed to create customer with error: </span><span class="se">\(</span><span class="n">error</span><span class="o">!</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>- (void)exampleCreateCustomer {
+
+    CreateCustomerRequest *request = [[CreateCustomerRequest alloc] initWithName:@"CUSTOMER_NAME" phone:@"PHONE_NUMBER" email:@"EMAIL_ADDRESS"];
+    [CustomersClient createCustomerWith:request completion:^(Customer * _Nullable customer, TapSDKError * _Nullable error) {
+
+        if ( customer ) {
+
+            NSLog(@"Customer successfully created.");
+        }
+        else {
+
+            NSLog(@"Failed to create customer with error: %@", error);
+        }
+    }];
+}
+</code></pre>
+<h3 id='cards' class='heading'>Cards</h3>
+
+<p>To interact with the Cards APIs, please refer to the <code><a href="Classes/CardClient.html">CardClient</a></code> class inside the SDK.</p>
+
+<p>Example of <strong>card</strong> creation:</p>
+
+<p><em>Swift</em>:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exampleCreateCard</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">CreateCardRequest</span><span class="p">(</span><span class="nv">tokenIdentifier</span><span class="p">:</span> <span class="s">"tok_XXXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">)</span>
+    <span class="kt">CardClient</span><span class="o">.</span><span class="nf">createCard</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"cus_XXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">card</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">_</span> <span class="o">=</span> <span class="n">card</span> <span class="p">{</span>
+
+            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Successfully created card."</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+
+            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Failed to create card with error: </span><span class="se">\(</span><span class="n">error</span><span class="o">!</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>+ (void)exampleCreateCard {
+
+    CreateCardRequest *request = [[CreateCardRequest alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
+    [CardClient createCardFor:@"cus_XXXXXXXXXXXXXXXXXXXXXXX" with:request completion:^(Card * _Nullable card, TapSDKError * _Nullable error) {
+
+        if ( card ) {
+
+            NSLog(@"Successfully created card.");
+        }
+        else {
+
+            NSLog(@"Failed to create card with error: %@", error);
+        }
+    }];
+}
+</code></pre>
 <h3 id='charges' class='heading'>Charges</h3>
 
 <p>To interact with the Charges APIs, please refer to the <code><a href="Classes/ChargeClient.html">ChargeClient</a></code> class inside the SDK.</p>
@@ -342,8 +454,11 @@
     <span class="c1">// with token identifier</span>
     <span class="k">let</span> <span class="nv">tokenSource</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">tokenIdentifier</span><span class="p">:</span> <span class="s">"tok_XXXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">)</span>
 
-    <span class="c1">// static source</span>
+    <span class="c1">// with static source</span>
     <span class="k">let</span> <span class="nv">staticKNETSource</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">staticIdentifier</span><span class="p">:</span> <span class="o">.</span><span class="kt">KNET</span><span class="p">)</span>
+
+    <span class="c1">// with card identifier</span>
+    <span class="k">let</span> <span class="nv">cardSource</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">cardIdentifier</span><span class="p">:</span> <span class="s">"card_XXXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">)</span>
 
     <span class="c1">// with plain card data</span>
     <span class="k">let</span> <span class="nv">plainSource</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">cardNumber</span><span class="p">:</span> <span class="s">"4111111111111111"</span><span class="p">,</span> <span class="nv">expirationMonth</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">expirationYear</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">cvc</span><span class="p">:</span> <span class="s">"123"</span><span class="p">)</span>
@@ -355,6 +470,9 @@
 
     // with token identifier
     CreateChargeSource *tokenSource = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
+
+    /// with card identifier
+    CreateChargeSource *cardSource = [[CreateChargeSource alloc] initWithCardIdentifier:@"card_XXXXXXXXXXXXXXXXXXXXXXXX"];
 
     // static source
     CreateChargeSource *staticKNETSource = [[CreateChargeSource alloc] initWithStaticIdentifier:SourceIdentifierKNET];
@@ -387,6 +505,45 @@
     CreateChargeRedirect *redirectWithPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"] postURL:[NSURL URLWithString:@"your_post_url"]];
 }
 </code></pre>
+<h3 id='bin-lookup' class='heading'>BIN Lookup</h3>
+
+<p>To interact with the BIN API, please refer to the <code><a href="Classes/BINClient.html">BINClient</a></code> class inside the SDK.</p>
+
+<p>Usage example:</p>
+
+<p><em>Swift</em>:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exampleBINLookup</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kt">BINClient</span><span class="o">.</span><span class="nf">getBINNumberDetails</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"411111"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">nonnullResponse</span> <span class="o">=</span> <span class="n">response</span> <span class="p">{</span>
+
+            <span class="c1">// do something with BIN response</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+
+            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Error occured while retrieving BIN information: </span><span class="se">\(</span><span class="n">error</span><span class="o">!</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>- (void)exampleBINLookup {
+
+    [BINClient getBINNumberDetailsFor:@"411111" completion:^(BINResponse * _Nullable response, TapSDKError * _Nullable error) {
+
+        if ( response ) {
+
+            // do something with response
+        }
+        else {
+
+            NSLog("Error occured while retrieving BIN information: %@", error);
+        }
+    }];
+}
+</code></pre>
 
 <hr>
 <h1 id='documentation' class='heading'>Documentation</h1>
@@ -397,7 +554,7 @@ Also documented sources are attached to the library.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-11)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

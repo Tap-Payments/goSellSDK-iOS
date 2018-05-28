@@ -96,13 +96,19 @@ import class Foundation.NSObject.NSObject
     /// Two or four digit number representing the card's expiration year.
     public private(set) var expirationYear: Int = 0
     
+    /// Card BIN number.
+    public private(set) var binNumber: String?
+    
     /// Card brand. Can be Visa, American Express, MasterCard, Discover, JCB, Diners Club, or Unknown.
     public private(set) var brand: String?
+    
+    /// Cardholder name.
+    public private(set) var cardholderName: String?
     
     /// Customer.
     public private(set) var customer: String?
     
-    /// Card type
+    /// Card type.
     public private(set) var cardType: String?
     
     /// Card fingerprint.
@@ -134,7 +140,9 @@ import class Foundation.NSObject.NSObject
             "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")",
             "expiration month: \(self.expirationMonth)",
             "expiration year:  \(self.expirationYear)",
+            "bin number:       \(self.binNumber ?? "nil")",
             "brand:            \(self.brand?.description ?? "nil")",
+            "cardholder name:  \(self.cardholderName ?? "nil")",
             "customer:         \(self.customer?.description ?? "nil")",
             "card type:        \(self.cardType?.description ?? "nil")",
             "fingerprint:      \(self.fingerprint?.description ?? "nil")",
@@ -157,8 +165,10 @@ import class Foundation.NSObject.NSObject
         case lastFourDigits     = "last4"
         case expirationMonth    = "exp_month"
         case expirationYear     = "exp_year"
+        case binNumber          = "bin"
         case brand              = "brand"
         case cardType           = "funding"
+        case cardholderName     = "name"
         case customer           = "customer"
         case fingerprint        = "fingerprint"
         case addressLine1       = "address_line1"
