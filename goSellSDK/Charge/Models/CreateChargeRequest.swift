@@ -415,6 +415,14 @@ import struct Foundation.NSURL.URL
         self.init(identifier: tokenIdentifier)
     }
     
+    /// Initializes the source with card identifier.
+    ///
+    /// - Parameter cardIdentifier: Card identifier.
+    public convenience init(cardIdentifier: String) {
+        
+        self.init(identifier: cardIdentifier)
+    }
+    
     /// Initializes the source with static identifier.
     ///
     /// - Parameter staticIdentifier: Static identifier.
@@ -461,7 +469,10 @@ import struct Foundation.NSURL.URL
     ///   - addressZip: Address zip code.
     public init(cardNumber: String, expirationMonth: Int, expirationYear: Int, cvc: String, cardholderName: String?, addressCity: String?, addressCountry: String?, addressState: String?, addressLine1: String?, addressLine2: String?, addressZip: Int) {
         
-        self.object = "card"
+        if !cardNumber.isEmpty {
+            
+            self.object = "card"
+        }
         
         self.number = cardNumber
         self.expirationMonth = expirationMonth

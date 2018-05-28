@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		003DD09521A3011E5BFC2066 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7098547858414DC9D21839CA /* Pods_goSellSDK.framework */; };
 		A40D32272031E6DE0030FDDE /* goSellSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A40D32192031E6DE0030FDDE /* goSellSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4361FFB20BC0C21002E102A /* DeleteCustomerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FF720BC0C21002E102A /* DeleteCustomerResponse.swift */; };
+		A4361FFC20BC0C21002E102A /* DeleteCustomerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FF720BC0C21002E102A /* DeleteCustomerResponse.swift */; };
+		A4361FFD20BC0C21002E102A /* UpdateCustomerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FF820BC0C21002E102A /* UpdateCustomerRequest.swift */; };
+		A4361FFE20BC0C21002E102A /* UpdateCustomerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FF820BC0C21002E102A /* UpdateCustomerRequest.swift */; };
+		A4361FFF20BC0C21002E102A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FF920BC0C21002E102A /* Customer.swift */; };
+		A436200020BC0C21002E102A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FF920BC0C21002E102A /* Customer.swift */; };
+		A436200120BC0C21002E102A /* CreateCustomerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FFA20BC0C21002E102A /* CreateCustomerRequest.swift */; };
+		A436200220BC0C21002E102A /* CreateCustomerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4361FFA20BC0C21002E102A /* CreateCustomerRequest.swift */; };
+		A436200420BC0C29002E102A /* CustomersClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436200320BC0C29002E102A /* CustomersClient.swift */; };
+		A436200520BC0C29002E102A /* CustomersClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436200320BC0C29002E102A /* CustomersClient.swift */; };
 		A45A5B9F204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5B9E204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift */; };
 		A46403BE2089BCD8002F3A21 /* RSAUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46403BD2089BCD8002F3A21 /* RSAUtils.swift */; };
 		A46403BF2089BE41002F3A21 /* CustomStringConvertible+goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5B9E204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift */; };
@@ -30,6 +40,16 @@
 		A46CDF282042ABEE00EA38A5 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0B2203C1A98007E7711 /* Identifiable.swift */; };
 		A46CDF292042ABEE00EA38A5 /* Decodable+goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B0AF203C1A98007E7711 /* Decodable+goSellSDK.swift */; };
 		A46CDF2E2042ABEE00EA38A5 /* goSellSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A40D32192031E6DE0030FDDE /* goSellSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4A3F65420BC38840094F529 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F64E20BC38830094F529 /* Card.swift */; };
+		A4A3F65520BC38840094F529 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F64E20BC38830094F529 /* Card.swift */; };
+		A4A3F65620BC38840094F529 /* RetrieveCardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F64F20BC38830094F529 /* RetrieveCardsResponse.swift */; };
+		A4A3F65720BC38840094F529 /* RetrieveCardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F64F20BC38830094F529 /* RetrieveCardsResponse.swift */; };
+		A4A3F65820BC38840094F529 /* CreateCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F65020BC38830094F529 /* CreateCardRequest.swift */; };
+		A4A3F65920BC38840094F529 /* CreateCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F65020BC38830094F529 /* CreateCardRequest.swift */; };
+		A4A3F65A20BC38840094F529 /* DeleteCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F65120BC38830094F529 /* DeleteCardResponse.swift */; };
+		A4A3F65B20BC38840094F529 /* DeleteCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F65120BC38830094F529 /* DeleteCardResponse.swift */; };
+		A4A3F65C20BC38840094F529 /* CardClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F65320BC38830094F529 /* CardClient.swift */; };
+		A4A3F65D20BC38840094F529 /* CardClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F65320BC38830094F529 /* CardClient.swift */; };
 		A4D1B0B7203C1A98007E7711 /* CreateTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B087203C1A97007E7711 /* CreateTokenRequest.swift */; };
 		A4D1B0B8203C1A98007E7711 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B088203C1A97007E7711 /* Token.swift */; };
 		A4D1B0B9203C1A98007E7711 /* TokenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B08A203C1A97007E7711 /* TokenClient.swift */; };
@@ -63,11 +83,21 @@
 		A40D32192031E6DE0030FDDE /* goSellSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = goSellSDK.h; sourceTree = "<group>"; };
 		A40D321A2031E6DE0030FDDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4118B82203AD845003415C2 /* goSellSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = goSellSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A4361FF720BC0C21002E102A /* DeleteCustomerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCustomerResponse.swift; sourceTree = "<group>"; };
+		A4361FF820BC0C21002E102A /* UpdateCustomerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCustomerRequest.swift; sourceTree = "<group>"; };
+		A4361FF920BC0C21002E102A /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		A4361FFA20BC0C21002E102A /* CreateCustomerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCustomerRequest.swift; sourceTree = "<group>"; };
+		A436200320BC0C29002E102A /* CustomersClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomersClient.swift; sourceTree = "<group>"; };
 		A45A5B9E204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomStringConvertible+goSellSDK.swift"; sourceTree = "<group>"; };
 		A46403BD2089BCD8002F3A21 /* RSAUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSAUtils.swift; sourceTree = "<group>"; };
 		A46403C12089BE8B002F3A21 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		A46CDF342042ABEE00EA38A5 /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46CDF362042BE6300EA38A5 /* TapNetworkManager_Carthage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapNetworkManager_Carthage.framework; path = Carthage/Build/iOS/TapNetworkManager_Carthage.framework; sourceTree = "<group>"; };
+		A4A3F64E20BC38830094F529 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		A4A3F64F20BC38830094F529 /* RetrieveCardsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveCardsResponse.swift; sourceTree = "<group>"; };
+		A4A3F65020BC38830094F529 /* CreateCardRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCardRequest.swift; sourceTree = "<group>"; };
+		A4A3F65120BC38830094F529 /* DeleteCardResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCardResponse.swift; sourceTree = "<group>"; };
+		A4A3F65320BC38830094F529 /* CardClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardClient.swift; sourceTree = "<group>"; };
 		A4D1B087203C1A97007E7711 /* CreateTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTokenRequest.swift; sourceTree = "<group>"; };
 		A4D1B088203C1A97007E7711 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		A4D1B08A203C1A97007E7711 /* TokenClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenClient.swift; sourceTree = "<group>"; };
@@ -146,11 +176,69 @@
 				A40D321A2031E6DE0030FDDE /* Info.plist */,
 				A4D1B0A9203C1A98007E7711 /* Core */,
 				A4F0AFD920A5913D0051A264 /* BIN */,
+				A4A3F64C20BC38830094F529 /* Card */,
 				A4D1B08B203C1A97007E7711 /* Charge */,
+				A4361FF420BC0BCE002E102A /* Customers */,
 				A4D1B0B3203C1A98007E7711 /* Crypter */,
 				A4D1B085203C1A97007E7711 /* Token */,
 			);
 			path = goSellSDK;
+			sourceTree = "<group>";
+		};
+		A4361FF420BC0BCE002E102A /* Customers */ = {
+			isa = PBXGroup;
+			children = (
+				A4361FF520BC0BDA002E102A /* Client */,
+				A4361FF620BC0BDF002E102A /* Models */,
+			);
+			path = Customers;
+			sourceTree = "<group>";
+		};
+		A4361FF520BC0BDA002E102A /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				A436200320BC0C29002E102A /* CustomersClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		A4361FF620BC0BDF002E102A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4361FFA20BC0C21002E102A /* CreateCustomerRequest.swift */,
+				A4361FF920BC0C21002E102A /* Customer.swift */,
+				A4361FF720BC0C21002E102A /* DeleteCustomerResponse.swift */,
+				A4361FF820BC0C21002E102A /* UpdateCustomerRequest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A4A3F64C20BC38830094F529 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				A4A3F65220BC38830094F529 /* Client */,
+				A4A3F64D20BC38830094F529 /* Models */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		A4A3F64D20BC38830094F529 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4A3F64E20BC38830094F529 /* Card.swift */,
+				A4A3F64F20BC38830094F529 /* RetrieveCardsResponse.swift */,
+				A4A3F65020BC38830094F529 /* CreateCardRequest.swift */,
+				A4A3F65120BC38830094F529 /* DeleteCardResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A4A3F65220BC38830094F529 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				A4A3F65320BC38830094F529 /* CardClient.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		A4D1B085203C1A97007E7711 /* Token */ = {
@@ -430,27 +518,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4361FFD20BC0C21002E102A /* UpdateCustomerRequest.swift in Sources */,
 				A4D1B0B7203C1A98007E7711 /* CreateTokenRequest.swift in Sources */,
 				A45A5B9F204545A5000D7805 /* CustomStringConvertible+goSellSDK.swift in Sources */,
+				A4361FFF20BC0C21002E102A /* Customer.swift in Sources */,
+				A4A3F65620BC38840094F529 /* RetrieveCardsResponse.swift in Sources */,
 				A4D1B0B8203C1A98007E7711 /* Token.swift in Sources */,
+				A4A3F65C20BC38840094F529 /* CardClient.swift in Sources */,
 				A4D1B0BC203C1A98007E7711 /* UpdateChargeRequest.swift in Sources */,
 				A46403BE2089BCD8002F3A21 /* RSAUtils.swift in Sources */,
 				A4D1B0D9203C3FB7007E7711 /* Response.swift in Sources */,
 				A4F0AFD720A5813B0051A264 /* CaptureChargeRequest.swift in Sources */,
 				A4D1B0D0203C1A98007E7711 /* Client.swift in Sources */,
+				A4A3F65420BC38840094F529 /* Card.swift in Sources */,
 				A4D1B0BB203C1A98007E7711 /* Charge.swift in Sources */,
+				A436200120BC0C21002E102A /* CreateCustomerRequest.swift in Sources */,
 				A4F0AFE020A594DD0051A264 /* BINResponse.swift in Sources */,
 				A4D1B0BD203C1A98007E7711 /* ChargeClient.swift in Sources */,
+				A4A3F65820BC38840094F529 /* CreateCardRequest.swift in Sources */,
 				A4D1B0D4203C1A98007E7711 /* SecureEncodable.swift in Sources */,
 				A4D1B0CE203C1A98007E7711 /* Encodable+goSellSDK.swift in Sources */,
+				A4A3F65A20BC38840094F529 /* DeleteCardResponse.swift in Sources */,
 				A4F0AFDC20A593B00051A264 /* BINClient.swift in Sources */,
 				A4D1B0CC203C1A98007E7711 /* goSellSDK.swift in Sources */,
+				A436200420BC0C29002E102A /* CustomersClient.swift in Sources */,
 				A4D1B0B9203C1A98007E7711 /* TokenClient.swift in Sources */,
 				A4D1B0BA203C1A98007E7711 /* CreateChargeRequest.swift in Sources */,
 				A4D1B0D2203C1A98007E7711 /* Crypter.swift in Sources */,
 				A4D1B0CD203C1A98007E7711 /* TapError.swift in Sources */,
 				A4D1B0D1203C1A98007E7711 /* Identifiable.swift in Sources */,
 				A4D1B0CF203C1A98007E7711 /* Decodable+goSellSDK.swift in Sources */,
+				A4361FFB20BC0C21002E102A /* DeleteCustomerResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,27 +556,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4361FFE20BC0C21002E102A /* UpdateCustomerRequest.swift in Sources */,
 				A46403C02089BE50002F3A21 /* RSAUtils.swift in Sources */,
 				A46CDF1A2042ABEE00EA38A5 /* CreateTokenRequest.swift in Sources */,
+				A436200020BC0C21002E102A /* Customer.swift in Sources */,
+				A4A3F65720BC38840094F529 /* RetrieveCardsResponse.swift in Sources */,
 				A46CDF1B2042ABEE00EA38A5 /* Token.swift in Sources */,
+				A4A3F65D20BC38840094F529 /* CardClient.swift in Sources */,
 				A46CDF1C2042ABEE00EA38A5 /* UpdateChargeRequest.swift in Sources */,
 				A46CDF1D2042ABEE00EA38A5 /* Response.swift in Sources */,
 				A46CDF1E2042ABEE00EA38A5 /* Client.swift in Sources */,
 				A4F0AFD820A5813B0051A264 /* CaptureChargeRequest.swift in Sources */,
 				A46CDF1F2042ABEE00EA38A5 /* Charge.swift in Sources */,
+				A4A3F65520BC38840094F529 /* Card.swift in Sources */,
 				A46CDF202042ABEE00EA38A5 /* ChargeClient.swift in Sources */,
+				A436200220BC0C21002E102A /* CreateCustomerRequest.swift in Sources */,
 				A4F0AFE120A594DD0051A264 /* BINResponse.swift in Sources */,
 				A46403BF2089BE41002F3A21 /* CustomStringConvertible+goSellSDK.swift in Sources */,
+				A4A3F65920BC38840094F529 /* CreateCardRequest.swift in Sources */,
 				A46CDF212042ABEE00EA38A5 /* SecureEncodable.swift in Sources */,
 				A46CDF222042ABEE00EA38A5 /* Encodable+goSellSDK.swift in Sources */,
+				A4A3F65B20BC38840094F529 /* DeleteCardResponse.swift in Sources */,
 				A4F0AFDD20A593B00051A264 /* BINClient.swift in Sources */,
 				A46CDF232042ABEE00EA38A5 /* goSellSDK.swift in Sources */,
+				A436200520BC0C29002E102A /* CustomersClient.swift in Sources */,
 				A46CDF242042ABEE00EA38A5 /* TokenClient.swift in Sources */,
 				A46CDF252042ABEE00EA38A5 /* CreateChargeRequest.swift in Sources */,
 				A46CDF262042ABEE00EA38A5 /* Crypter.swift in Sources */,
 				A46CDF272042ABEE00EA38A5 /* TapError.swift in Sources */,
 				A46CDF282042ABEE00EA38A5 /* Identifiable.swift in Sources */,
 				A46CDF292042ABEE00EA38A5 /* Decodable+goSellSDK.swift in Sources */,
+				A4361FFC20BC0C21002E102A /* DeleteCustomerResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
