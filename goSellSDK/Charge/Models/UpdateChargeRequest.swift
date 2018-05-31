@@ -8,7 +8,7 @@
 import class Foundation.NSObject.NSObject
 
 /// Model to update the charge.
-@objcMembers public class UpdateChargeRequest: NSObject, Encodable {
+@objcMembers public final class UpdateChargeRequest: NSObject, Encodable {
     
     // MARK: - Public -
     // MARK: Properties

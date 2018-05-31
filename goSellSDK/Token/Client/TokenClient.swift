@@ -13,7 +13,7 @@ import class TapNetworkManager.TapNetworkRequestOperation
 import enum TapNetworkManager.TapURLModel
 
 /// Structure handling Token APIs.
-@objcMembers public class TokenClient: NSObject {
+@objcMembers public final class TokenClient: NSObject {
     
     // MARK: - Public -
     // MARK: Methods
@@ -69,7 +69,7 @@ import enum TapNetworkManager.TapURLModel
 
 extension TokenClient: Client {
     
-    internal static let baseURLString = "https://api.tap.company/v1/"
+    internal static let baseURLString = "https://api.tap.company/v1.1/"
     internal static let path = "token/"
     internal static let successStatusCodes = 200...299
     

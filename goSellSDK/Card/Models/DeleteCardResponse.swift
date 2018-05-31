@@ -6,7 +6,7 @@
 //
 
 /// Delete card response model.
-@objcMembers public class DeleteCardResponse: NSObject, Decodable, Identifiable {
+@objcMembers public final class DeleteCardResponse: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties

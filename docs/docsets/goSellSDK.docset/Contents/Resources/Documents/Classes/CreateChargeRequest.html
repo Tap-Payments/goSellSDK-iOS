@@ -40,9 +40,6 @@
                 <a href="../Classes/BINResponse.html">BINResponse</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CaptureChargeRequest.html">CaptureChargeRequest</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/Card.html">Card</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +52,12 @@
                 <a href="../Classes/ChargeClient.html">ChargeClient</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ChargeCustomer.html">ChargeCustomer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ChargeReceipt.html">ChargeReceipt</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ChargeRedirect.html">ChargeRedirect</a>
               </li>
               <li class="nav-group-task">
@@ -62,6 +65,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CreateCardRequest.html">CreateCardRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CreateChargeCustomer.html">CreateChargeCustomer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CreateChargeReceipt.html">CreateChargeReceipt</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a>
@@ -95,6 +104,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MessagedResponse.html">MessagedResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RetrieveCardsResponse.html">RetrieveCardsResponse</a>
@@ -135,6 +147,12 @@
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Enums/ChargeStatus.html">ChargeStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PaymentType.html">PaymentType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SourceIdentifier.html">SourceIdentifier</a>
               </li>
               <li class="nav-group-task">
@@ -162,7 +180,7 @@
               <div class="declaration">
                 <div class="language">
                   <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">CreateChargeRequest</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">CreateChargeRequest</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
 
                 </div>
               </div>
@@ -192,7 +210,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Amount.</p>
+                        <p>A positive decimal amount representing how much to charge.</p>
 
                       </div>
                       <div class="declaration">
@@ -236,36 +254,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)capture"></a>
-                    <a name="//apple_ref/swift/Property/capture" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)capture">capture</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether or not to immediately capture the charge.
-When false, the charge issues an authorization (or pre-authorization), and will need to be captured later.
-Uncaptured charges expire in 7 days.
-For more information, see authorizing charges and settling later. optional, default is true</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">capture</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)require3DSecure"></a>
                     <a name="//apple_ref/swift/Property/require3DSecure" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)require3DSecure">require3DSecure</a>
@@ -276,7 +264,8 @@ For more information, see authorizing charges and settling later. optional, defa
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Defines if 3DS is required.</p>
+                        <p>Whether 3DSecure applied for this transaction or not (can be dicided by business,
+however final decision will be taken by Tap)</p>
 
                       </div>
                       <div class="declaration">
@@ -293,9 +282,9 @@ For more information, see authorizing charges and settling later. optional, defa
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)referenceNumber"></a>
-                    <a name="//apple_ref/swift/Property/referenceNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)referenceNumber">referenceNumber</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)transactionReference"></a>
+                    <a name="//apple_ref/swift/Property/transactionReference" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)transactionReference">transactionReference</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -303,14 +292,14 @@ For more information, see authorizing charges and settling later. optional, defa
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Merchant Reference number to track the payment status and payment attempts.</p>
+                        <p>Merchant transaction reference number.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">referenceNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">transactionReference</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -320,9 +309,9 @@ For more information, see authorizing charges and settling later. optional, defa
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)redirect"></a>
-                    <a name="//apple_ref/swift/Property/redirect" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)redirect">redirect</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)orderReference"></a>
+                    <a name="//apple_ref/swift/Property/orderReference" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)orderReference">orderReference</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -330,71 +319,14 @@ For more information, see authorizing charges and settling later. optional, defa
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Information related to the redirect.</p>
+                        <p>Merchant order reference number.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)source"></a>
-                    <a name="//apple_ref/swift/Property/source" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)source">source</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>If source is null then, default Tap payment page link will be provided.
-if source.id = <q>src_kw.knet</q> then KNET payment page link will be provided.
-if source.id = <q>src_card</q> then Credit Card payment page link will be provided.
-if source.id = <q>Card Token ID or Card ID</q> then Credit Card payment processing page link will be provided.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeSource.html">CreateChargeSource</a></span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)customerIdentifier"></a>
-                    <a name="//apple_ref/swift/Property/customerIdentifier" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)customerIdentifier">customerIdentifier</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The ID of an existing customer that will be charged in this request. (optional, either customer or source is required).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">customerIdentifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">orderReference</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -436,6 +368,117 @@ While most banks and card issuers display this information consistently, some ma
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)receipt"></a>
+                    <a name="//apple_ref/swift/Property/receipt" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)receipt">receipt</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether Receipt email and sms need to be sent or not, default will be true (if customer email and phone info available, then receipt will be sent)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">receipt</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeReceipt.html">CreateChargeReceipt</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)customer"></a>
+                    <a name="//apple_ref/swift/Property/customer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)customer">customer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Customer model.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">customer</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeCustomer.html">CreateChargeCustomer</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)source"></a>
+                    <a name="//apple_ref/swift/Property/source" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)source">source</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A payment source to be charged, such as a credit card.
+If you also pass a customer ID, the source must be the ID of a source belonging to the customer (e.g., a saved card).
+Otherwise, if you do not pass a customer ID, the source you provide must either be a token or a dictionary containing a user&rsquo;s credit card details,
+with the options described below. Although not all information is required, the extra info helps prevent fraud.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeSource.html">CreateChargeSource</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)redirect"></a>
+                    <a name="//apple_ref/swift/Property/redirect" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)redirect">redirect</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Information related to the redirect.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)descriptionText"></a>
                     <a name="//apple_ref/swift/Property/descriptionText" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)descriptionText">descriptionText</a>
@@ -446,7 +489,8 @@ While most banks and card issuers display this information consistently, some ma
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An arbitrary string which you can attach to a Charge object. It is displayed when in the web interface alongside the charge.</p>
+                        <p>An arbitrary string which you can attach to a Charge object.
+It is displayed when in the web interface alongside the charge.</p>
 
                       </div>
                       <div class="declaration">
@@ -490,124 +534,6 @@ All keys can be unset by posting an empty value to metadata.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)firstName"></a>
-                    <a name="//apple_ref/swift/Property/firstName" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)firstName">firstName</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Customer&rsquo;s first name. If customer identifier is provided, then it is not required.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)lastName"></a>
-                    <a name="//apple_ref/swift/Property/lastName" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)lastName">lastName</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Customer&rsquo;s last name. If customer identifier is provided, then it is not required.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)receiptSMS"></a>
-                    <a name="//apple_ref/swift/Property/receiptSMS" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)receiptSMS">receiptSMS</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The mobile number to send this charge&rsquo;s receipt to.
-The receipt will not be sent until the charge is paid.
-If this charge is for a customer, the mobile number specified here will override the customer&rsquo;s mobile number.
-Receipts will not be sent for test mode charges.
-If receipt_sms is specified for a charge in live mode, a receipt will be sent regardless of your sms settings.
-(optional, either receipt_sms or receipt_email is required if customer is not available)</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">receiptSMS</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)receiptEmail"></a>
-                    <a name="//apple_ref/swift/Property/receiptEmail" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(py)receiptEmail">receiptEmail</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The email address to send this charge&rsquo;s receipt to.
-The receipt will not be sent until the charge is paid.
-If this charge is for a customer, the email address specified here will override the customer&rsquo;s email address.
-Receipts will not be sent for test mode charges.
-If receipt_email is specified for a charge in live mode, a receipt will be sent regardless of your email settings.
-(optional, either receipt_sms or receipt_email is required if customer is not available)</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">receiptEmail</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -622,9 +548,9 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:"></a>
-                    <a name="//apple_ref/swift/Method/init(amount:currency:redirect:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:">init(amount:currency:redirect:)</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:"></a>
+                    <a name="//apple_ref/swift/Method/init(amount:currency:customer:redirect:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:">init(amount:currency:customer:redirect:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -639,7 +565,7 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">customer</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeCustomer.html">CreateChargeCustomer</a></span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -668,6 +594,18 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                               <td>
                                 <div>
                                   <p>Currency.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>customer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Customer object.</p>
                                 </div>
                               </td>
                             </tr>
@@ -692,9 +630,9 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:source:"></a>
-                    <a name="//apple_ref/swift/Method/init(amount:currency:redirect:source:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:source:">init(amount:currency:redirect:source:)</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:source:"></a>
+                    <a name="//apple_ref/swift/Method/init(amount:currency:customer:redirect:source:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:source:">init(amount:currency:customer:redirect:source:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -709,7 +647,7 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">,</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeSource.html">CreateChargeSource</a></span><span class="p">?)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">customer</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeCustomer.html">CreateChargeCustomer</a></span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">,</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeSource.html">CreateChargeSource</a></span><span class="p">?)</span></code></pre>
 
                         </div>
                       </div>
@@ -738,6 +676,18 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                               <td>
                                 <div>
                                   <p>Currency.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>customer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Customer object.</p>
                                 </div>
                               </td>
                             </tr>
@@ -774,9 +724,9 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:source:referenceNumber:"></a>
-                    <a name="//apple_ref/swift/Method/init(amount:currency:redirect:source:referenceNumber:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:source:referenceNumber:">init(amount:currency:redirect:source:referenceNumber:)</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:source:transactionReference:orderReference:"></a>
+                    <a name="//apple_ref/swift/Method/init(amount:currency:customer:redirect:source:transactionReference:orderReference:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:source:transactionReference:orderReference:">init(amount:currency:customer:redirect:source:transactionReference:orderReference:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -791,7 +741,7 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">,</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeSource.html">CreateChargeSource</a></span><span class="p">?,</span> <span class="nv">referenceNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">customer</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeCustomer.html">CreateChargeCustomer</a></span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">,</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeSource.html">CreateChargeSource</a></span><span class="p">?,</span> <span class="nv">transactionReference</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">orderReference</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
 
                         </div>
                       </div>
@@ -820,6 +770,18 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                               <td>
                                 <div>
                                   <p>Currency.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>customer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Customer object.</p>
                                 </div>
                               </td>
                             </tr>
@@ -850,12 +812,24 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                             <tr>
                               <td>
                                 <code>
-                                <em>referenceNumber</em>
+                                <em>transactionReference</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Reference number.</p>
+                                  <p>Merchant transaction reference number.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>orderReference</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Merchant order reference number.</p>
                                 </div>
                               </td>
                             </tr>
@@ -868,185 +842,9 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:customerIdentifier:"></a>
-                    <a name="//apple_ref/swift/Method/init(amount:currency:redirect:customerIdentifier:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:customerIdentifier:">init(amount:currency:redirect:customerIdentifier:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes charge request with a source object.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">,</span> <span class="nv">customerIdentifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>amount</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Amount.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>currency</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Currency.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>redirect</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Redirect object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>customerIdentifier</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Customer identifier.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:firstName:lastName:"></a>
-                    <a name="//apple_ref/swift/Method/init(amount:currency:redirect:firstName:lastName:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:firstName:lastName:">init(amount:currency:redirect:firstName:lastName:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes charge request with a source object.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">,</span> <span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>amount</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Amount.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>currency</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Currency.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>redirect</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Redirect object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>firstName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Customer first name.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>lastName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Customer last name.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:capture:require3DSecure:referenceNumber:source:customerIdentifier:statementDescriptor:descriptionText:metadata:firstName:lastName:receiptSMS:receiptEmail:"></a>
-                    <a name="//apple_ref/swift/Method/init(amount:currency:redirect:capture:require3DSecure:referenceNumber:source:customerIdentifier:statementDescriptor:descriptionText:metadata:firstName:lastName:receiptSMS:receiptEmail:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:redirect:capture:require3DSecure:referenceNumber:source:customerIdentifier:statementDescriptor:descriptionText:metadata:firstName:lastName:receiptSMS:receiptEmail:">init(amount:currency:redirect:capture:require3DSecure:referenceNumber:source:customerIdentifier:statementDescriptor:descriptionText:metadata:firstName:lastName:receiptSMS:receiptEmail:)</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:source:transactionReference:orderReference:statementDescriptor:require3DSecure:receipt:descriptionText:metadata:"></a>
+                    <a name="//apple_ref/swift/Method/init(amount:currency:customer:redirect:source:transactionReference:orderReference:statementDescriptor:require3DSecure:receipt:descriptionText:metadata:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeRequest(im)initWithAmount:currency:customer:redirect:source:transactionReference:orderReference:statementDescriptor:require3DSecure:receipt:descriptionText:metadata:">init(amount:currency:customer:redirect:source:transactionReference:orderReference:statementDescriptor:require3DSecure:receipt:descriptionText:metadata:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1063,19 +861,16 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span>
             <span class="nv">currency</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+            <span class="nv">customer</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeCustomer.html">CreateChargeCustomer</a></span><span class="p">,</span>
             <span class="nv">redirect</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a></span><span class="p">,</span>
-            <span class="nv">capture</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="nv">require3DSecure</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="nv">referenceNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
             <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeSource.html">CreateChargeSource</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-            <span class="nv">customerIdentifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+            <span class="nv">transactionReference</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+            <span class="nv">orderReference</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
             <span class="nv">statementDescriptor</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+            <span class="nv">require3DSecure</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nv">receipt</span><span class="p">:</span> <span class="kt"><a href="../Classes/CreateChargeReceipt.html">CreateChargeReceipt</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
             <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-            <span class="nv">metadata</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-            <span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
-            <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
-            <span class="nv">receiptSMS</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
-            <span class="nv">receiptEmail</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+            <span class="nv">metadata</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1110,6 +905,18 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                             <tr>
                               <td>
                                 <code>
+                                <em>customer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Customer identifier.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>redirect</em>
                                 </code>
                               </td>
@@ -1122,12 +929,48 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                             <tr>
                               <td>
                                 <code>
-                                <em>capture</em>
+                                <em>source</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Defines if the charge should be captured.</p>
+                                  <p>Source object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transactionReference</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Merchant transaction reference number.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>orderReference</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Merchant order reference number.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>statementDescriptor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Statement descriptor.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1146,48 +989,12 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                             <tr>
                               <td>
                                 <code>
-                                <em>referenceNumber</em>
+                                <em>receipt</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Merchant Reference number to track the payment status and payment attempts.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>source</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Source object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>customerIdentifier</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Customer identifier.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>statementDescriptor</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Statement descriptor.</p>
+                                  <p>Controls receipt dispatch settings.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1215,54 +1022,6 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>firstName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Customer first name.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>lastName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Customer last name.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>receiptSMS</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Receipt SMS.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>receiptEmail</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Receipt email.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -1274,7 +1033,7 @@ If receipt_email is specified for a charge in live mode, a receipt will be sent 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-28)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-31)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -40,9 +40,6 @@
                 <a href="Classes/BINResponse.html">BINResponse</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/CaptureChargeRequest.html">CaptureChargeRequest</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/Card.html">Card</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +52,12 @@
                 <a href="Classes/ChargeClient.html">ChargeClient</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/ChargeCustomer.html">ChargeCustomer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ChargeReceipt.html">ChargeReceipt</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/ChargeRedirect.html">ChargeRedirect</a>
               </li>
               <li class="nav-group-task">
@@ -62,6 +65,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/CreateCardRequest.html">CreateCardRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CreateChargeCustomer.html">CreateChargeCustomer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CreateChargeReceipt.html">CreateChargeReceipt</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/CreateChargeRedirect.html">CreateChargeRedirect</a>
@@ -95,6 +104,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MessagedResponse.html">MessagedResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/RetrieveCardsResponse.html">RetrieveCardsResponse</a>
@@ -135,6 +147,12 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Enums/ChargeStatus.html">ChargeStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/PaymentType.html">PaymentType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/SourceIdentifier.html">SourceIdentifier</a>
               </li>
               <li class="nav-group-task">
@@ -163,6 +181,104 @@
 
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/ChargeStatus"></a>
+                <a name="//apple_ref/swift/Section/ChargeStatus" class="dashAnchor"></a>
+                <a href="#/ChargeStatus">
+                  <h3 class="section-name">ChargeStatus</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@E@ChargeStatus"></a>
+                    <a name="//apple_ref/swift/Enum/ChargeStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ChargeStatus">ChargeStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Charge status enum.</p>
+
+<ul>
+<li>initiated: Charge is initiated.</li>
+<li>inProgress: Charge is in progress and is waiting for user action (3d secure, OTP etc.)</li>
+<li>cancelled: Charge cancelled.</li>
+<li>failed: Charge failed.</li>
+<li>declined: Charge declined.</li>
+<li>restricted: Charge restricted.</li>
+<li>captured: Charge captured.</li>
+<li>void: Charge voided.</li>
+</ul>
+
+                        <a href="Enums/ChargeStatus.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ChargeStatus</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/PaymentType"></a>
+                <a name="//apple_ref/swift/Section/PaymentType" class="dashAnchor"></a>
+                <a href="#/PaymentType">
+                  <h3 class="section-name">PaymentType</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@E@PaymentType"></a>
+                    <a name="//apple_ref/swift/Enum/PaymentType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@PaymentType">PaymentType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Payment type enum.</p>
+
+<ul>
+<li>debitCard: DEBIT card.</li>
+<li>creditCard: CREDIT card.</li>
+<li>prepaidCard: PREPAID card.</li>
+<li>prepaidWallet: Prepaid wallet.</li>
+</ul>
+
+                        <a href="Enums/PaymentType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PaymentType</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/SourceIdentifier"></a>
@@ -302,7 +418,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-28)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-31)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

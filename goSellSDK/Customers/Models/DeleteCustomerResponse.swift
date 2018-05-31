@@ -6,7 +6,7 @@
 //
 
 /// Response model for delete customer request.
-@objcMembers public class DeleteCustomerResponse: NSObject, Decodable, Identifiable {
+@objcMembers public final class DeleteCustomerResponse: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties

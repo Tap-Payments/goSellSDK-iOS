@@ -6,7 +6,7 @@
 //
 
 /// Model to update the customer.
-@objcMembers public class UpdateCustomerRequest: NSObject, Encodable {
+@objcMembers public final class UpdateCustomerRequest: NSObject, Encodable {
     
     // MARK: - Public -
     // MARK: Properties

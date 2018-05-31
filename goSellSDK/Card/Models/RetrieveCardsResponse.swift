@@ -6,7 +6,7 @@
 //
 
 /// Retrieve cards response model.
-@objcMembers public class RetrieveCardsResponse: NSObject, Decodable {
+@objcMembers public final class RetrieveCardsResponse: NSObject, Decodable {
     
     // MARK: - Public -
     // MARK: Properties

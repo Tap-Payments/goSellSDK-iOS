@@ -108,7 +108,7 @@ extension TAPSDKErrorType: CustomStringConvertible {
 // MARK: - TapSDKKnownError -
 
 /// Known error. Either network or serialization error.
-@objcMembers public class TapSDKKnownError: TapSDKError {
+@objcMembers public final class TapSDKKnownError: TapSDKError {
     
     /// URL response (if received) which will help the developer to understand the issue.
     public private(set) var urlResponse: URLResponse?
@@ -141,7 +141,7 @@ extension TAPSDKErrorType: CustomStringConvertible {
 // MARK: - TapSDKAPIError -
 
 /// API error.
-@objcMembers public class TapSDKAPIError: TapSDKError {
+@objcMembers public final class TapSDKAPIError: TapSDKError {
     
     /// Underlying API error (parsed error from the backend).
     public private(set) var error: APIError
@@ -172,7 +172,7 @@ extension TAPSDKErrorType: CustomStringConvertible {
 // MARK: - TapSDKUnknownError -
 
 /// Unknown or unhandled error.
-@objcMembers public class TapSDKUnknownError: TapSDKError {
+@objcMembers public final class TapSDKUnknownError: TapSDKError {
     
     /// Data task to understand what is going on. If data task is nil that means that request hasn't even started.
     public private(set) var dataTask: URLSessionDataTask?
@@ -197,7 +197,7 @@ extension TAPSDKErrorType: CustomStringConvertible {
 // MARK: - APIError -
 
 /// Structure representing API error.
-@objcMembers public class APIError: NSObject, Decodable {
+@objcMembers public final class APIError: NSObject, Decodable {
     
     /// Error details.
     public var details: [ErrorDetail] = []
@@ -231,7 +231,7 @@ extension TAPSDKErrorType: CustomStringConvertible {
 // MARK: - ErrorDetail -
 
 /// Error detail model.
-@objcMembers public class ErrorDetail: NSObject, Decodable {
+@objcMembers public final class ErrorDetail: NSObject, Decodable {
     
     /// Error name.
     public private(set) var name: String = ""

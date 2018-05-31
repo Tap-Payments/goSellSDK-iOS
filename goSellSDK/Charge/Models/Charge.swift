@@ -16,7 +16,7 @@ import struct Foundation.NSURL.URL
 /// To charge a credit or a debit card, you create a charge object.
 /// You can retrieve and refund individual charges as well as list all charges.
 /// Charges are identified by a unique random ID.
-@objcMembers public class Charge: NSObject, Decodable, Identifiable {
+@objcMembers public final class Charge: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties
@@ -24,78 +24,64 @@ import struct Foundation.NSURL.URL
     /// Unique identifier for the object.
     public private(set) var identifier: String?
     
-    /// Objects of the same type share the same value
+    /// String representing the object’s type. Objects of the same type share the same value. (value is "charge")
     public private(set) var object: String?
     
-    /// Amount.
-    /// The minimum amount is $0.50 US or equivalent in charge currency.
-    public private(set) var amount: Decimal = 0.0
+    /// Flag indicating whether the object exists in live mode or test mode.
+    public private(set) var isLiveMode: Bool = false
     
-    /// Amount refunded (can be less than the amount attribute on the charge if a partial refund was issued).
-    public private(set) var refundedAmount: Decimal = 0.0
+    /// Charge status.
+    public private(set) var status: ChargeStatus = .failed
     
-    /// If the charge was created without capturing,
-    /// this Boolean represents whether it is still uncaptured or has since been captured.
-    public private(set) var isCaptured: Bool = false
+    /// Terminal ID (Virtual terminal ID or Physical Terminal ID (POS))
+    public private(set) var terminalID: String?
+    
+    /// Transaction Authorization ID issued by Gateway
+    public private(set) var authID: String?
+    
+    /// Tap response.
+    public private(set) var response: MessagedResponse?
+    
+    /// Acquirer response.
+    public private(set) var acquirerResponse: MessagedResponse?
     
     /// Defines if 3DS is required.
-    public private(set) var require3DSecure: Bool = false
+    public private(set) var requires3DSecure: Bool = false
     
-    /// Merchant Reference number to track the payment status and payment attempts.
-    public private(set) var referenceNumber: String?
+    /// Merchant transaction reference number.
+    public private(set) var transactionReference: String?
+    
+    /// Merchant order reference number.
+    public private(set) var orderReference: String?
+    
+    /// Timezone of the charge.
+    public private(set) var timezone: String?
     
     /// Time at which the object was created. Measured in seconds since the Unix epoch.
     public private(set) var creationDate: Date?
     
+    /// Time at which the object was posted into the business statememnt. Measured in seconds since the Unix epoch.
+    public private(set) var postDate: Date?
+    
+    /// A positive integer in the smallest currency unit representing how much to charge.
+    public private(set) var amount: Decimal = 0.0
+    
     /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public private(set) var currency: String?
 
+    /// Extra information about a charge.
+    /// This will appear on your customer’s credit card statement.
+    /// It must contain at least one letter.
+    public private(set) var statementDescriptor: String?
+    
+    /// Whether chargeback applied or not.
+    public private(set) var chargeback: Bool = false
+    
+    /// Whether Receipt email and sms need to be sent or not, default will be true (if customer emil and phone info available, then receipt will be sent)
+    public private(set) var receipt: ChargeReceipt?
+    
     /// ID of the customer this charge is for if one exists.
-    public private(set) var customerIdentifier: String?
-    
-    /// Customer's first name. If customer identifier is provided, then it is not required.
-    public private(set) var firstName: String?
-    
-    /// Customer's last name. If customer identifier is provided, then it is not required.
-    public private(set) var lastName: String?
-    
-    /// An arbitrary string attached to the object. Often useful for displaying to users.
-    public private(set) var descriptionText: String?
-    
-    /// Error code explaining reason for charge failure if available (see the errors section for a list of codes).
-    public private(set) var failureCode: String?
-    
-    /// Message to user further explaining reason for charge failure if available.
-    public private(set) var failureMessage: String?
-    
-    ///Flag indicating whether the object exists in live mode or test mode.
-    public private(set) var isLiveMode: Bool = false
-    
-    /// Set of key/value pairs that you can attach to an object.
-    /// It can be useful for storing additional information about the object in a structured format.
-    public private(set) var metadata: [String: String]?
-    
-    /// true if the charge succeeded, or was successfully authorized for later capture.
-    public private(set) var isPaid: Bool = false
-    
-    /// This is the email address that the receipt for this charge was sent to.
-    public private(set) var receiptEmail: String?
-    
-    /// The mobile number to send this charge's receipt to.
-    /// The receipt will not be sent until the charge is paid.
-    /// If this charge is for a customer, the mobile number specified here will override the customer's mobile number.
-    /// Receipts will not be sent for test mode charges.
-    /// If receipt_sms is specified for a charge in live mode, a receipt will be sent regardless of your sms settings.
-    /// (optional, either receipt_sms or receipt_email is required if customer is not available)
-    public private(set) var receiptSMS: String?
-    
-    /// This is the transaction number that appears on email receipts sent for this charge.
-    /// This attribute will be null until a receipt has been sent.
-    public private(set) var receiptNumber: String?
-    
-    /// Whether the charge has been fully refunded.
-    /// If the charge is only partially refunded, this attribute will still be false.
-    public private(set) var isRefunded: Bool = false
+    public private(set) var customer: ChargeCustomer?
     
     /// The source of every charge is a credit or debit card. This hash is then the card object describing that card.
     /// If source is null then, default Tap payment page link will be provided.
@@ -103,16 +89,15 @@ import struct Foundation.NSURL.URL
     /// if source.id = "src_visamastercard" then Credit Card payment page link will be provided.
     public private(set) var source: ChargeSource?
     
-    /// Extra information about a charge.
-    /// This will appear on your customer’s credit card statement.
-    /// It must contain at least one letter.
-    public private(set) var statementDescriptor: String?
-    
-    /// The status of the payment is either succeeded, pending, or failed.
-    public private(set) var status: String?
-    
     /// Information related to the payment page redirect.
     public private(set) var redirect: ChargeRedirect?
+    
+    /// An arbitrary string attached to the object. Often useful for displaying to users.
+    public private(set) var descriptionText: String?
+    
+    /// Set of key/value pairs that you can attach to an object.
+    /// It can be useful for storing additional information about the object in a structured format.
+    public private(set) var metadata: [String: String]?
     
     /// Pretty printed description of the Charge object.
     public override var description: String {
@@ -120,32 +105,30 @@ import struct Foundation.NSURL.URL
         let lines: [String] = [
         
             "Charge",
-            "identifier:           \(self.identifier?.description ?? "nil")",
-            "object:               \(self.object?.description ?? "nil")",
-            "amount:               \(self.amount)",
-            "refunded amount:      \(self.refundedAmount)",
-            "captured:             \(self.isCaptured)",
-            "requires 3D secure:   \(self.require3DSecure)",
-            "reference number:     \(self.referenceNumber?.description ?? "nil")",
-            "creation date:        \(self.creationDate?.description ?? "nil")",
-            "currency:             \(self.currency?.description ?? "nil")",
-            "customer:             \(self.customerIdentifier?.description ?? "nil")",
-            "first name:           \(self.firstName?.description ?? "nil")",
-            "last name:            \(self.lastName?.description ?? "nil")",
-            "description:          \(self.descriptionText?.description ?? "nil")",
-            "failure code:         \(self.failureCode?.description ?? "nil")",
-            "failure message:      \(self.failureMessage?.description ?? "nil")",
-            "live mode:            \(self.isLiveMode)",
-            "metadata:             \(self.metadata?.description ?? "nil")",
-            "paid:                 \(self.isPaid)",
-            "receipt email:        \(self.receiptEmail?.description ?? "nil")",
-            "receipt sms:          \(self.receiptSMS?.description ?? "nil")",
-            "receipt number:       \(self.receiptNumber?.description ?? "nil")",
-            "refunded:             \(self.isRefunded)",
-            "statement descriptor: \(self.statementDescriptor ?? "nil")",
-            "status:               \(self.status?.description ?? "nil")",
-            "source:               \(self.source?.description(with: 26) ?? "nil")",
-            "redirect:             \(self.redirect?.description(with: 26) ?? "nil")"
+            "identifier:                \(self.identifier?.description ?? "nil")",
+            "object:                    \(self.object?.description ?? "nil")",
+            "live mode:                 \(self.isLiveMode)",
+            "status:                    \(self.status.stringValue)",
+            "terminal ID:               \(self.terminalID ?? "nil")",
+            "auth ID:                   \(self.authID ?? "nil")",
+            "requires 3D secure:        \(self.requires3DSecure)",
+            "transaction reference:     \(self.transactionReference ?? "nil")",
+            "order reference:           \(self.orderReference ?? "nil")",
+            "time zone:                 \(self.timezone ?? "nil")",
+            "creation date:             \(self.creationDate?.description ?? "nil")",
+            "post time:                 \(self.postDate?.description ?? "nil")",
+            "amount:                    \(self.amount)",
+            "currency:                  \(self.currency?.description ?? "nil")",
+            "statement descriptor:      \(self.statementDescriptor ?? "nil")",
+            "chargeback:                \(self.chargeback)",
+            "description:               \(self.descriptionText?.description ?? "nil")",
+            "metadata:                  \(self.metadata?.description ?? "nil")",
+            "response:                  \(self.response?.description(with: 31) ?? "nil")",
+            "acquirer response:         \(self.acquirerResponse?.description(with: 31) ?? "nil")",
+            "receipt:                   \(self.receipt?.description(with: 31) ?? "nil")",
+            "customer:                  \(self.customer?.description(with: 31) ?? "nil")",
+            "source:                    \(self.source?.description(with: 31) ?? "nil")",
+            "redirect:                  \(self.redirect?.description(with: 31) ?? "nil")"
         ]
         
         return "\n" + lines.joined(separator: "\n\t")
@@ -157,37 +140,281 @@ import struct Foundation.NSURL.URL
         
         case identifier             = "id"
         case object                 = "object"
-        case amount                 = "amount"
-        case refundedAmount         = "amount_refunded"
-        case isCaptured             = "captured"
-        case require3DSecure        = "threeds"
-        case referenceNumber        = "reference"
-        case creationDate           = "created"
-        case currency               = "currency"
-        case customerIdentifier     = "customer"
-        case firstName              = "first_name"
-        case lastName               = "last_name"
-        case descriptionText        = "description"
-        case failureCode            = "failure_code"
-        case failureMessage         = "failure_message"
-        case isLiveMode             = "livemode"
-        case metadata               = "metadata"
-        case isPaid                 = "paid"
-        case receiptEmail           = "receipt_email"
-        case receiptSMS             = "receipt_sms"
-        case receiptNumber          = "receipt_number"
-        case isRefunded             = "refunded"
-        case source                 = "source"
-        case statementDescriptor    = "statement_descriptor"
+        case isLiveMode             = "live_mode"
         case status                 = "status"
+        case terminalID             = "terminal_id"
+        case authID                 = "auth_id"
+        case requires3DSecure       = "threeDSecure"
+        case transactionReference   = "transaction_reference"
+        case orderReference         = "order_reference"
+        case timezone               = "timezone"
+        case creationDate           = "created"
+        case postDate               = "post"
+        case amount                 = "amount"
+        case currency               = "currency"
+        case statementDescriptor    = "statement_descriptor"
+        case chargeback             = "chargeback"
+        case response               = "response"
+        case acquirerResponse       = "acquirer"
+        case receipt                = "receipt"
+        case customer               = "customer"
+        case source                 = "source"
         case redirect               = "redirect"
+        case descriptionText        = "description"
+        case metadata               = "metadata"
+    }
+}
+
+// MARK: - MessagedResponse -
+
+/// A model that contains response code and a message.
+@objcMembers public final class MessagedResponse: NSObject, Decodable {
+    
+    // MARK: - Public -
+    // MARK: Properties
+    
+    /// Response code.
+    public private(set) var code: String = ""
+    
+    /// Response message.
+    public private(set) var message: String = ""
+    
+    /// Pretty printed object description.
+    public override var description: String {
+        
+        let lines: [String] = [
+        
+            "Messaged Response",
+            "code:             \(self.code)",
+            "message:          \(self.message)"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
+    
+    // MARK: - Private -
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case code       = "code"
+        case message    = "message"
+    }
+}
+
+// MARK: - ChargeReceipt -
+
+/// Charge receipt settings model.
+@objcMembers public final class ChargeReceipt: CreateChargeReceipt, Identifiable, Decodable {
+    
+    // MARK: - Public -
+    // MARK: Properties
+    
+    public let identifier: String?
+    
+    /// Pretty printed object description.
+    public override var description: String {
+        
+        let lines: [String] = [
+        
+            "Receipt",
+            "identifier: \(self.identifier ?? "nil")",
+            "email:      \(self.email)",
+            "sms:        \(self.sms)"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
+    
+    // MARK: Methods
+    
+    public convenience init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let id = try container.decode(String?.self, forKey: .identifier)
+        let sms = try container.decode(Bool.self, forKey: .sms)
+        let email = try container.decode(Bool.self, forKey: .email)
+        
+        self.init(id: id, email: email, sms: sms)
+    }
+    
+    // MARK: - Private -
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case email      = "email"
+        case sms        = "sms"
+        case identifier = "id"
+    }
+    
+    // MARK: Methods
+    
+    private init(id: String?, email: Bool, sms: Bool) {
+        
+        self.identifier = id
+        super.init(email: email, sms: sms)
+    }
+}
+
+// MARK: - ChargeCustomer -
+
+/// Customer charge model.
+@objcMembers public final class ChargeCustomer: CreateChargeCustomer, Decodable {
+    
+    // MARK: - Public -
+    // MARK: Properties
+    
+    /// Object type.
+    public private(set) var object: String?
+    
+    /// Pretty printed object description.
+    public override var description: String {
+        
+        let lines: [String] = [
+        
+            "Customer",
+            "identifier: \(self.identifier ?? "nil")",
+            "object:     \(self.object ?? "nil")",
+            "first name: \(self.firstName ?? "nil")",
+            "last name:  \(self.lastName ?? "nil")",
+            "email:      \(self.email ?? "nil")",
+            "phone:      \(self.phone ?? "nil")"
+        ]
+        
+        return "\n" + lines.joined(separator: "\n\t")
+    }
+    
+    // MARK: Methods
+    
+    public init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+        let identifier  = container.contains(.identifier)   ? try container.decode(String?.self, forKey: .identifier)   : nil
+        let object      = container.contains(.object)       ? try container.decode(String?.self, forKey: .object)       : nil
+        let firstName   = container.contains(.firstName)    ? try container.decode(String?.self, forKey: .firstName)    : nil
+        let lastName    = container.contains(.lastName)     ? try container.decode(String?.self, forKey: .lastName)     : nil
+        let email       = container.contains(.email)        ? try container.decode(String?.self, forKey: .email)        : nil
+        let phone       = container.contains(.phone)        ? try container.decode(String?.self, forKey: .phone)        : nil
+        
+        self.object = object
+        super.init(identifier: identifier, firstName: firstName, lastName: lastName, email: email, phone: phone)
+    }
+    
+    // MARK: - Private -
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case identifier = "id"
+        case firstName  = "first_name"
+        case lastName   = "last_name"
+        case email      = "email"
+        case phone      = "phone"
+        case object     = "object"
+    }
+}
+
+// MARK: - ChargeStatus -
+
+/// Charge status enum.
+///
+/// - initiated: Charge is initiated.
+/// - inProgress: Charge is in progress and is waiting for user action (3d secure, OTP etc.)
+/// - cancelled: Charge cancelled.
+/// - failed: Charge failed.
+/// - declined: Charge declined.
+/// - restricted: Charge restricted.
+/// - captured: Charge captured.
+/// - void: Charge voided.
+@objc public enum ChargeStatus: Int, Decodable {
+    
+    /// Charge is initiated.
+    case initiated
+    
+    /// Charge is in progress and is waiting for user action (3d secure, OTP etc.)
+    case inProgress
+    
+    /// Charge cancelled.
+    case cancelled
+    
+    /// Charge failed.
+    case failed
+    
+    /// Charge declined.
+    case declined
+    
+    /// Charge restricted.
+    case restricted
+    
+    /// Charge captured.
+    case captured
+    
+    /// Charge voided.
+    case void
+    
+    // MARK: - Public -
+    // MARK: Methods
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let stringValue = try container.decode(String.self)
+        
+        switch stringValue {
+            
+        case StringValues.initiated     : self = .initiated
+        case StringValues.inProgress    : self = .inProgress
+        case StringValues.cancelled     : self = .cancelled
+        case StringValues.failed        : self = .failed
+        case StringValues.declined      : self = .declined
+        case StringValues.restricted    : self = .restricted
+        case StringValues.captured      : self = .captured
+        case StringValues.void          : self = .void
+            
+        default                         : self = .failed
+
+        }
+    }
+    
+    // MARK: - Internal -
+    // MARK: Properties
+    
+    internal var stringValue: String {
+        
+        switch self {
+            
+        case .initiated : return StringValues.initiated
+        case .inProgress: return StringValues.inProgress
+        case .cancelled : return StringValues.cancelled
+        case .failed    : return StringValues.failed
+        case .declined  : return StringValues.declined
+        case .restricted: return StringValues.restricted
+        case .captured  : return StringValues.captured
+        case .void      : return StringValues.void
+            
+        }
+    }
+    
+    // MARK: - Private -
+    
+    private struct StringValues {
+        
+        fileprivate static let initiated    = "INITIATED"
+        fileprivate static let inProgress   = "IN_PROGRESS"
+        fileprivate static let cancelled    = "CANCELLED"
+        fileprivate static let failed       = "FAILED"
+        fileprivate static let declined     = "DECLINED"
+        fileprivate static let restricted   = "RESTRICTED"
+        fileprivate static let captured     = "CAPTURED"
+        fileprivate static let void         = "VOID"
+        
+        @available(*, unavailable) private init() {}
     }
 }
 
 // MARK: - ChargeRedirect -
 
 /// Redirect model.
-@objcMembers public class ChargeRedirect: NSObject, Decodable {
+@objcMembers public final class ChargeRedirect: NSObject, Decodable {
     
     // MARK: - Public -
     // MARK: Properties
@@ -234,10 +461,88 @@ import struct Foundation.NSURL.URL
     }
 }
 
+// MARK: - PaymentType -
+
+/// Payment type enum.
+///
+/// - debitCard: DEBIT card.
+/// - creditCard: CREDIT card.
+/// - prepaidCard: PREPAID card.
+/// - prepaidWallet: Prepaid wallet.
+@objc public enum PaymentType: Int, Decodable {
+    
+    /// DEBIT card.
+    case debitCard
+    
+    /// CREDIT card.
+    case creditCard
+    
+    /// PREPAID card.
+    case prepaidCard
+    
+    /// Prepaid wallet.
+    case prepaidWallet
+    
+    // MARK: - Public -
+    // MARK: Methods
+    
+    /// Initializes payment type value from its string representation.
+    ///
+    /// - Parameter stringValue: String representation of `PaymentType` enum.
+    public init(stringValue: String) {
+        
+        switch stringValue {
+            
+        case StringValues.debitCard     : self = .debitCard
+        case StringValues.creditCard    : self = .creditCard
+        case StringValues.prepaidCard   : self = .prepaidCard
+        case StringValues.prepaidWallet : self = .prepaidWallet
+            
+        default                         : self = .creditCard
+
+        }
+    }
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let stringValue = try container.decode(String.self)
+        
+        self.init(stringValue: stringValue)
+    }
+    
+    // MARK: - Internal -
+    // MARK: Properties
+    
+    internal var stringValue: String {
+        
+        switch self {
+            
+        case .creditCard    : return StringValues.creditCard
+        case .debitCard     : return StringValues.debitCard
+        case .prepaidCard   : return StringValues.prepaidWallet
+        case .prepaidWallet : return StringValues.prepaidWallet
+
+        }
+    }
+    
+    // MARK: - Private -
+    
+    private struct StringValues {
+        
+        fileprivate static let debitCard        = "DEBIT_CARD"
+        fileprivate static let creditCard       = "CREDIT_CARD"
+        fileprivate static let prepaidCard      = "PREPAID_CARD"
+        fileprivate static let prepaidWallet    = "PREPAID_WALLET"
+        
+        @available(*, unavailable) private init() {}
+    }
+}
+
 // MARK: - ChargeSource -
 
 /// Source model.
-@objcMembers public class ChargeSource: NSObject, Decodable, Identifiable {
+@objcMembers public final class ChargeSource: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties
@@ -248,26 +553,11 @@ import struct Foundation.NSURL.URL
     /// String representing the object’s type. Objects of the same type share the same value.
     public private(set) var object: String?
     
-    /// Two digit number representing the card's expiration month.
-    public private(set) var expirationMonth: String?
-    
-    /// Two or four digit number representing the card's expiration year.
-    public private(set) var expirationYear: String?
-    
     /// The last 4 digits of the card.
     public private(set) var lastFourDigits: String?
     
-    /// Adress city.
-    public private(set) var addressCity: String?
-    
-    /// Address country.
-    public private(set) var addressCountry: String?
-    
-    /// Card brand.
-    public private(set) var brand: String?
-    
-    /// Card BIN number.
-    public private(set) var binNumber: String?
+    /// Card type.
+    public private(set) var paymentType: PaymentType = .creditCard
     
     /// Pretty printed description of the ChargeSource object.
     public override var description: String {
@@ -277,13 +567,8 @@ import struct Foundation.NSURL.URL
             "Source",
             "identifier:       \(self.identifier?.description ?? "nil")",
             "object:           \(self.object?.description ?? "nil")",
-            "expiration month: \(self.expirationMonth?.description ?? "nil")",
-            "expiration year:  \(self.expirationYear?.description ?? "nil")",
             "last 4 digits:    \(self.lastFourDigits?.description ?? "nil")",
-            "address city:     \(self.addressCity?.description ?? "nil")",
-            "address country:  \(self.addressCountry?.description ?? "nil")",
-            "brand:            \(self.brand?.description ?? "nil")",
-            "bin:              \(self.binNumber?.description ?? "nil")"
+            "payment type:     \(self.paymentType.stringValue)"
         ]
         
         return "\n" + lines.joined(separator: "\n\t")
@@ -295,12 +580,7 @@ import struct Foundation.NSURL.URL
         
         case identifier         = "id"
         case object             = "object"
-        case expirationMonth    = "exp_month"
-        case expirationYear     = "exp_year"
-        case lastFourDigits     = "last4"
-        case addressCity        = "address_city"
-        case addressCountry     = "address_country"
-        case brand              = "brand"
-        case binNumber          = "bin"
+        case lastFourDigits     = "card_last4"
+        case paymentType        = "payment_type"
     }
 }

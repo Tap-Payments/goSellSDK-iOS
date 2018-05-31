@@ -9,7 +9,7 @@ import struct Foundation.NSDate.Date
 import class Foundation.NSObject.NSObject
 
 /// Token model.
-@objcMembers public class Token: NSObject, Decodable, Identifiable {
+@objcMembers public final class Token: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties
@@ -76,7 +76,7 @@ import class Foundation.NSObject.NSObject
 // MARK: - TokenCard -
 
 /// Token card.
-@objcMembers public class TokenCard: NSObject, Decodable, Identifiable {
+@objcMembers public final class TokenCard: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties

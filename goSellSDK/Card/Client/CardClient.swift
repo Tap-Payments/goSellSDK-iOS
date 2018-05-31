@@ -11,7 +11,7 @@ import class TapNetworkManager.TapNetworkRequestOperation
 import enum TapNetworkManager.TapURLModel
 
 /// Structure handling Card APIs.
-@objcMembers public class CardClient: NSObject {
+@objcMembers public final class CardClient: NSObject {
     
     // MARK: - Public -
     // MARK: Methods
@@ -100,7 +100,7 @@ import enum TapNetworkManager.TapURLModel
 // MARK: Conformance to Client protocol.
 extension CardClient: Client {
     
-    internal static let baseURLString = "https://api.tap.company/v1/"
+    internal static let baseURLString = "https://api.tap.company/v1.1/"
     internal static let path = "card/"
     internal static let successStatusCodes = 200...299
     

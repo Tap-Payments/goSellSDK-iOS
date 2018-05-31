@@ -8,7 +8,7 @@
 // MARK: - Customer -
 
 /// Customer model.
-@objcMembers public class Customer: NSObject, Decodable, Identifiable {
+@objcMembers public final class Customer: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties

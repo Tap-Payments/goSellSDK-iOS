@@ -6,7 +6,7 @@
 //
 
 /// Card model.
-@objcMembers public class Card: NSObject, Decodable, Identifiable {
+@objcMembers public final class Card: NSObject, Decodable, Identifiable {
     
     // MARK: - Public -
     // MARK: Properties
