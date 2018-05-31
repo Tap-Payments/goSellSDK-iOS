@@ -11,7 +11,7 @@ import class TapNetworkManager.TapNetworkRequestOperation
 import enum TapNetworkManager.TapURLModel
 
 /// Structure handling Customer APIs.
-@objcMembers public class CustomersClient: NSObject {
+@objcMembers public final class CustomersClient: NSObject {
     
     // MARK: - Public -
     // MARK: Methods
@@ -99,7 +99,7 @@ import enum TapNetworkManager.TapURLModel
 
 extension CustomersClient: Client {
     
-    internal static let baseURLString = "https://api.tap.company/v1/"
+    internal static let baseURLString = "https://api.tap.company/v1.1/"
     internal static let path = "customers/"
     internal static let successStatusCodes = 200...299
     

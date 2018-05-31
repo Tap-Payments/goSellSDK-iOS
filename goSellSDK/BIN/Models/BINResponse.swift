@@ -6,7 +6,7 @@
 //
 
 /// BIN Response model.
-@objcMembers public class BINResponse: NSObject, Decodable {
+@objcMembers public final class BINResponse: NSObject, Decodable {
     
     // MARK: - Public -
     // MARK: Properties

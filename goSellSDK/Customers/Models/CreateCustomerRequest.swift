@@ -6,7 +6,7 @@
 //
 
 /// Model to create customer.
-@objcMembers public class CreateCustomerRequest: NSObject, Encodable {
+@objcMembers public final class CreateCustomerRequest: NSObject, Encodable {
     
     // MARK: - Public -
     // MARK: Properties

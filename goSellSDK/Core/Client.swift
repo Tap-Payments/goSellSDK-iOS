@@ -63,6 +63,7 @@ internal extension Client {
         
         return [
             
+            "merchant_id": "1014",
             "Authorization": "Bearer \(authKey)"
         ]
     }

@@ -10,7 +10,7 @@ import class TapNetworkManager.TapNetworkRequestOperation
 import enum TapNetworkManager.TapURLModel
 
 /// BIN API client.
-@objcMembers public class BINClient: NSObject {
+@objcMembers public final class BINClient: NSObject {
     
     // MARK: - Public -
     // MARK: Methods
@@ -47,7 +47,7 @@ import enum TapNetworkManager.TapURLModel
 // MARK: - Client
 extension BINClient: Client {
     
-    internal static let baseURLString = "https://api.tap.company/v1/"
+    internal static let baseURLString = "https://api.tap.company/v1.1/"
     internal static let path = "bin/"
     internal static let successStatusCodes = 200...299
     internal static let decoder = JSONDecoder()

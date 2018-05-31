@@ -40,9 +40,6 @@
                 <a href="../Classes/BINResponse.html">BINResponse</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CaptureChargeRequest.html">CaptureChargeRequest</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/Card.html">Card</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +52,12 @@
                 <a href="../Classes/ChargeClient.html">ChargeClient</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ChargeCustomer.html">ChargeCustomer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ChargeReceipt.html">ChargeReceipt</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ChargeRedirect.html">ChargeRedirect</a>
               </li>
               <li class="nav-group-task">
@@ -62,6 +65,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CreateCardRequest.html">CreateCardRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CreateChargeCustomer.html">CreateChargeCustomer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CreateChargeReceipt.html">CreateChargeReceipt</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CreateChargeRedirect.html">CreateChargeRedirect</a>
@@ -95,6 +104,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MessagedResponse.html">MessagedResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RetrieveCardsResponse.html">RetrieveCardsResponse</a>
@@ -135,6 +147,12 @@
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Enums/ChargeStatus.html">ChargeStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PaymentType.html">PaymentType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SourceIdentifier.html">SourceIdentifier</a>
               </li>
               <li class="nav-group-task">
@@ -162,7 +180,7 @@
               <div class="declaration">
                 <div class="language">
                   <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">CreateChargeSource</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">CreateChargeSource</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
 
                 </div>
               </div>
@@ -317,260 +335,12 @@
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeSource(im)initWithCardNumber:expirationMonth:expirationYear:cvc:"></a>
-                    <a name="//apple_ref/swift/Method/init(cardNumber:expirationMonth:expirationYear:cvc:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeSource(im)initWithCardNumber:expirationMonth:expirationYear:cvc:">init(cardNumber:expirationMonth:expirationYear:cvc:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes the source with card number, expiration month, expiration year and CVC code.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cardNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">expirationMonth</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">expirationYear</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">cvc</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>cardNumber</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Card number.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>expirationMonth</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Expiration month.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>expirationYear</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Expiration year.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>cvc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>CVC code.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)CreateChargeSource(im)initWithCardNumber:expirationMonth:expirationYear:cvc:cardholderName:addressCity:addressCountry:addressState:addressLine1:addressLine2:addressZip:"></a>
-                    <a name="//apple_ref/swift/Method/init(cardNumber:expirationMonth:expirationYear:cvc:cardholderName:addressCity:addressCountry:addressState:addressLine1:addressLine2:addressZip:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)CreateChargeSource(im)initWithCardNumber:expirationMonth:expirationYear:cvc:cardholderName:addressCity:addressCountry:addressState:addressLine1:addressLine2:addressZip:">init(cardNumber:expirationMonth:expirationYear:cvc:cardholderName:addressCity:addressCountry:addressState:addressLine1:addressLine2:addressZip:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes the source with full card data.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">cardNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">expirationMonth</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">expirationYear</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">cvc</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">cardholderName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">addressCity</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">addressCountry</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">addressState</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">addressLine1</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">addressLine2</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">addressZip</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>cardNumber</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Card number.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>expirationMonth</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Expiration month.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>expirationYear</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Expiration year.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>cvc</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>CVC code.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>cardholderName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Cardholder name.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>addressCity</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Address city.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>addressCountry</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Address country.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>addressState</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Address state.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>addressLine1</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Address line 1.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>addressLine2</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Address line 2.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>addressZip</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Address zip code.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-28)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-31)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -10,7 +10,7 @@ import class Foundation.NSObject.NSObject
 // MARK: - CreateTokenRequest -
 
 /// Create token request model.
-@objcMembers public class CreateTokenRequest: NSObject, Encodable {
+@objcMembers public final class CreateTokenRequest: NSObject, Encodable {
     
     // MARK: - Public -
     // MARK: Properties
@@ -40,7 +40,7 @@ import class Foundation.NSObject.NSObject
 // MARK: - CreateTokenCard -
 
 /// Card model for token creation.
-@objcMembers public class CreateTokenCard: NSObject, Encodable {
+@objcMembers public final class CreateTokenCard: NSObject, Encodable {
     
     // MARK: - Public -
     // MARK: Properties

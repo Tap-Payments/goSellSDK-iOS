@@ -6,7 +6,7 @@
 //
 
 /// Create card request model.
-@objcMembers public class CreateCardRequest: NSObject, Encodable {
+@objcMembers public final class CreateCardRequest: NSObject, Encodable {
     
     // MARK: - Public -
     // MARK: Properties
