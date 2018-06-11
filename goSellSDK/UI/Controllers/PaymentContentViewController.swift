@@ -63,7 +63,7 @@ extension PaymentContentViewController: MerchantInformationHeaderViewControllerD
                 let presentingController = self.presentingViewController
                 self.dismiss(animated: true) {
                     
-                    presentingController?.dismiss(animated: false) {
+                    presentingController?.dismissFromSeparateWindow(false) {
                         
                         PaymentDataManager.userDidClosePayment()
                     }

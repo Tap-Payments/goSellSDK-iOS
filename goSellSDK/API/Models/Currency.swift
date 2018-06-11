@@ -14,6 +14,27 @@
     /// Lowercased 3-letters currency ISO code.
     public let isoCode: String
     
+    /// Localized currency symbol.
+    public var localizedSymbol: String {
+        
+        return CurrencyFormatter.shared.localizedCurrencySymbol(for: self.isoCode)
+    }
+    
+    /// Pretty printed object description.
+    public override var description: String {
+        
+        let locale = Locale(identifier: goSellSDK.localeIdentifier)
+        let currencyName = locale.localizedString(forCurrencyCode: self.isoCode)
+        if let nonnullCurrencyName = currencyName {
+            
+            return "\(CurrencyFormatter.shared.localizedCurrencySymbol(for: self.isoCode)) " + "(\(nonnullCurrencyName))"
+        }
+        else {
+            
+            return CurrencyFormatter.shared.localizedCurrencySymbol(for: self.isoCode)
+        }
+    }
+    
     // MARK: Methods
     
     /// Initializes currency with 3-lettered ISO code.
@@ -51,6 +72,12 @@
     // MARK: Properties
     
     private static let allISOCodes = Locale.isoCurrencyCodes.map { $0.lowercased() }
+}
+
+// MARK: - CountableCasesEnum
+extension Currency: CountableCasesEnum {
+    
+    public static let all: [Currency] = Currency.allISOCodes.compactMap { try? Currency(isoCode: $0) }
 }
 
 // MARK: - Encodable

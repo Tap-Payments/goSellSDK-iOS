@@ -56,6 +56,14 @@ internal final class CurrencyFormatter {
         }
     }
     
+    internal func localizedCurrencySymbol(for currencyCode: String, locale: Locale = .enUS) -> String {
+        
+        var currencySymbol = (locale as NSLocale).displayName(forKey: .currencySymbol, value: currencyCode) ?? currencyCode
+        self.optionallyHardcodeCurrencySymbol(&currencySymbol)
+        
+        return currencySymbol
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -76,14 +84,6 @@ internal final class CurrencyFormatter {
     private init() {
         
         KnownSingletonTypes.add(CurrencyFormatter.self)
-    }
-    
-    private func localizedCurrencySymbol(for currencyCode: String, locale: Locale = .enUS) -> String {
-        
-        var currencySymbol = (locale as NSLocale).displayName(forKey: .currencySymbol, value: currencyCode) ?? currencyCode
-        self.optionallyHardcodeCurrencySymbol(&currencySymbol)
-        
-        return currencySymbol
     }
     
     private func optionallyHardcodeCurrencySymbol(_ currencySymbol: inout String) {

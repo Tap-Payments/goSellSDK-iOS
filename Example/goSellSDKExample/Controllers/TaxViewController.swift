@@ -2,21 +2,21 @@
 //  TaxViewController.swift
 //  goSellSDKExample
 //
-//  Created by Dennis Pashkov on 5/25/18.
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class Dispatch.DispatchQueue
-import class Foundation.NSNotification.NotificationCenter
-import struct Foundation.NSNotification.Notification
-import class goSellSDK.AmountModificator
-import enum goSellSDK.AmountModificatorType
-import class goSellSDK.Tax
-import class UIKit.UILabel.UILabel
-import class UIKit.UIStoryboardSegue.UIStoryboardSegue
-import class UIKit.UITableViewController.UITableViewController
-import class UIKit.UITextField.UITextField
-import class UIKit.UITextView.UITextView
+import class    Dispatch.DispatchQueue
+
+import struct   Foundation.NSNotification.Notification
+import class    goSellSDK.AmountModificator
+import enum     goSellSDK.AmountModificatorType
+import class    goSellSDK.Tax
+import class    UIKit.UILabel.UILabel
+import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class    UIKit.UITableViewController.UITableViewController
+import class    UIKit.UITextField.UITextField
+import class    UIKit.UITextView.UITextView
+import class    UIKit.UIView.UIView
 
 internal class TaxViewController: ModalNavigationTableViewController {
     
@@ -48,9 +48,12 @@ internal class TaxViewController: ModalNavigationTableViewController {
     internal override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.addInputFieldTextChangeObserver()
         self.updateTitle()
         self.updateWithCurrentTaxInfo()
+        
+        self.tableView.tableFooterView = UIView()
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -92,8 +95,6 @@ internal class TaxViewController: ModalNavigationTableViewController {
             self.updateWithCurrentTaxInfo()
         }
     }
-    
-    private var textChanged = false
     
     // MARK: Methods
     
@@ -139,20 +140,12 @@ internal class TaxViewController: ModalNavigationTableViewController {
         self.amountTypeLabel?.text = self.currentTax.amount.type.description
         self.valueTextField?.text = "\(self.currentTax.amount.value)"
     }
-    
-    private func addInputFieldTextChangeObserver() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: .UITextFieldTextDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: .UITextViewTextDidChange, object: nil)
-    }
-    
-    private func removeInputFieldTextChangeObserver() {
-        
-        NotificationCenter.default.removeObserver(self, name: .UITextFieldTextDidChange, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidChange, object: nil)
-    }
-    
-    @objc private func inputFieldTextChanged(_ notification: Notification) {
+}
+
+// MARK: - InputFieldObserver
+extension TaxViewController: InputFieldObserver {
+
+    internal func inputFieldTextChanged(_ notification: Notification) {
         
         self.updateCurrentTaxInfoFromInputFields()
         self.updateDoneButtonState()

@@ -5,32 +5,32 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGBase.CGFloat
-import class Dispatch.DispatchQueue
-import struct Foundation.NSIndexPath.IndexPath
-import class Foundation.NSNotification.NotificationCenter
-import struct Foundation.NSNotification.Notification
-import class goSellSDK.AmountModificator
-import enum goSellSDK.AmountModificatorType
-import enum goSellSDK.Measurement
-import class goSellSDK.PaymentItem
-import class goSellSDK.Quantity
-import class goSellSDK.Tax
-import class ObjectiveC.NSObject.NSObject
-import class UIKit.UIBarButtonItem.UIBarButtonItem
-import class UIKit.UILabel.UILabel
-import class UIKit.UINavigationController.UINavigationController
-import class UIKit.UIStoryboardSegue.UIStoryboardSegue
-import class UIKit.UITableView.UITableView
-import var UIKit.UITableView.UITableViewAutomaticDimension
+import struct   CoreGraphics.CGBase.CGFloat
+import class    Dispatch.DispatchQueue
+import struct   Foundation.NSIndexPath.IndexPath
+import class    Foundation.NSNotification.NotificationCenter
+import struct   Foundation.NSNotification.Notification
+import class    goSellSDK.AmountModificator
+import enum     goSellSDK.AmountModificatorType
+import enum     goSellSDK.Measurement
+import class    goSellSDK.PaymentItem
+import class    goSellSDK.Quantity
+import class    goSellSDK.Tax
+import class    ObjectiveC.NSObject.NSObject
+import class    UIKit.UIBarButtonItem.UIBarButtonItem
+import class    UIKit.UILabel.UILabel
+import class    UIKit.UINavigationController.UINavigationController
+import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class    UIKit.UITableView.UITableView
+import var      UIKit.UITableView.UITableViewAutomaticDimension
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
-import class UIKit.UITableViewCell.UITableViewCell
-import class UIKit.UITableViewController.UITableViewController
-import class UIKit.UITextField.UITextField
-import class UIKit.UITextView.UITextView
-import class UIKit.UIView.UIView
-import class UIKit.UIViewController.UIViewController
+import class    UIKit.UITableViewCell.UITableViewCell
+import class    UIKit.UITableViewController.UITableViewController
+import class    UIKit.UITextField.UITextField
+import class    UIKit.UITextView.UITextView
+import class    UIKit.UIView.UIView
+import class    UIKit.UIViewController.UIViewController
 
 internal class PaymentItemViewController: ModalNavigationTableViewController {
     
@@ -144,9 +144,9 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
     
     internal override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if tableView.cellForRow(at: indexPath)?.reuseIdentifier == "TaxListTableViewCell" {
+        if tableView.cellForRow(at: indexPath)?.reuseIdentifier == Constants.taxListCellReuseIdentifier {
             
-            return 100.0 * CGFloat( self.currentPaymentItem.taxes?.count ?? 0 )
+            return max(100.0 * CGFloat( self.currentPaymentItem.taxes?.count ?? 0 ), 1.0)
         }
         else {
             
@@ -202,8 +202,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
     
     fileprivate func showDetails(of existingTax: Tax) {
         
-        self.selectedTax = existingTax
-        self.showTaxController()
+        self.showTaxController(with: existingTax)
     }
     
     // MARK: - Private -
@@ -213,6 +212,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         fileprivate static let measurementCategoryCellReuseIdentifier   = "measurement_category_cell"
         fileprivate static let measurementUnitCellReuseIdentifier       = "measurement_unit_cell"
         fileprivate static let discountTypeCellReuseIdentifier          = "discount_type_cell"
+        fileprivate static let taxListCellReuseIdentifier               = "tax_list_cell"
         
         @available(*, unavailable) private init() {}
     }
@@ -266,24 +266,6 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
             
             self.title = "Edit Payment Item"
         }
-    }
-    
-    private func addInputFieldTextChangeObserver() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: .UITextFieldTextDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: .UITextViewTextDidChange, object: nil)
-    }
-    
-    private func removeInputFieldTextChangeObserver() {
-        
-        NotificationCenter.default.removeObserver(self, name: .UITextFieldTextDidChange, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidChange, object: nil)
-    }
-    
-    @objc private func inputFieldTextChanged(_ notification: Notification) {
-        
-        self.updateCurrentPaymentItemInfoFromInputFields()
-        self.updateDoneButtonState()
     }
     
     private func updateCurrentPaymentItemInfoFromInputFields() {
@@ -360,13 +342,15 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         self.selectedCellReuseIdentifier = cellReuseIdentifier
         self.show(CaseSelectionTableViewController.self)
     }
+}
+
+// MARK: - InputFieldObserver
+extension PaymentItemViewController: InputFieldObserver {
     
-    private func show(_ controller: UIViewController.Type) {
+    internal func inputFieldTextChanged(_ notification: Notification) {
         
-        DispatchQueue.main.async {
-            
-            self.performSegue(withIdentifier: "\(controller.className)Segue", sender: self)
-        }
+        self.updateCurrentPaymentItemInfoFromInputFields()
+        self.updateDoneButtonState()
     }
 }
 
@@ -453,6 +437,9 @@ extension PaymentItemViewController: CaseSelectionTableViewControllerDelegate {
         }
     }
 }
+
+// MARK: - SeguePresenter
+extension PaymentItemViewController: SeguePresenter {}
 
 // MARK: - UITableViewDataSource
 extension PaymentItemViewController.TaxesTableViewHandler: UITableViewDataSource {

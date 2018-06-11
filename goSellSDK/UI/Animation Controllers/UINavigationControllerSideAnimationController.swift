@@ -5,8 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import enum UIKit.UINavigationController.UINavigationControllerOperation
-import class UIKit.UIView.UIView
+import enum     UIKit.UINavigationController.UINavigationControllerOperation
+import class    UIKit.UIView.UIView
+import struct   UIKit.UIView.UIViewAnimationOptions
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
 
@@ -83,7 +84,8 @@ extension UINavigationControllerSideAnimationController: UIViewControllerAnimate
             strongToView.frame = toFrame2
         }
         
-        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: animations) { (finished) in
+        let animationOptions: UIViewAnimationOptions = [.beginFromCurrentState, .curveEaseInOut]
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0.0, options: animationOptions, animations: animations) { (finished) in
             
             transitionContext.completeTransition(finished && !transitionContext.transitionWasCancelled)
         }

@@ -14,7 +14,7 @@
     <a title="Enumerations  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">goSellSDK Docs</a> (50% documented)</p>
+        <p><a href="index.html">goSellSDK Docs</a> (49% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -32,6 +32,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/APIError.html">APIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AmountModificator.html">AmountModificator</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Currency.html">Currency</a>
@@ -55,6 +58,9 @@
                 <a href="Classes/Quantity.html">Quantity</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Shipping.html">Shipping</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/TapSDKAPIError.html">TapSDKAPIError</a>
               </li>
               <li class="nav-group-task">
@@ -67,6 +73,9 @@
                 <a href="Classes/TapSDKUnknownError.html">TapSDKUnknownError</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Tax.html">Tax</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/goSellSDK.html">goSellSDK</a>
               </li>
             </ul>
@@ -75,22 +84,31 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Enums/AmountModificatorType.html">AmountModificatorType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/Measurement.html">Measurement</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/MeasurementArea.html">MeasurementArea</a>
+                <a href="Enums/Measurement/Area.html">– Area</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/MeasurementLength.html">MeasurementLength</a>
+                <a href="Enums/Measurement/Duration.html">– Duration</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/MeasurementMass.html">MeasurementMass</a>
+                <a href="Enums/Measurement/ElectricCharge.html">– ElectricCharge</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/MeasurementUnit.html">MeasurementUnit</a>
+                <a href="Enums/Measurement/ElectricCurrent.html">– ElectricCurrent</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/PayButtonState.html">PayButtonState</a>
+                <a href="Enums/Measurement/Energy.html">– Energy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Measurement/Length.html">– Length</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Measurement/Mass.html">– Mass</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/TapSDKErrorType.html">TapSDKErrorType</a>
@@ -121,6 +139,9 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/CountableCasesEnum.html">CountableCasesEnum</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/PayButtonProtocol.html">PayButtonProtocol</a>
               </li>
               <li class="nav-group-task">
@@ -138,6 +159,44 @@
 
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@E@AmountModificatorType"></a>
+                    <a name="//apple_ref/swift/Enum/AmountModificatorType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@AmountModificatorType">AmountModificatorType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Amount modificator type.</p>
+
+<ul>
+<li>percentBased: Percent-based modification.</li>
+<li>fixedAmount: Fixed amount modification.</li>
+</ul>
+
+                        <a href="Enums/AmountModificatorType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AmountModificatorType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <ul>
                 <li class="item">
@@ -162,135 +221,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Measurement</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK15MeasurementAreaO"></a>
-                    <a name="//apple_ref/swift/Enum/MeasurementArea" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK15MeasurementAreaO">MeasurementArea</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/MeasurementArea.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MeasurementArea</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK17MeasurementLengthO"></a>
-                    <a name="//apple_ref/swift/Enum/MeasurementLength" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK17MeasurementLengthO">MeasurementLength</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/MeasurementLength.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MeasurementLength</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK15MeasurementMassO"></a>
-                    <a name="//apple_ref/swift/Enum/MeasurementMass" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK15MeasurementMassO">MeasurementMass</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/MeasurementMass.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MeasurementMass</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@E@MeasurementUnit"></a>
-                    <a name="//apple_ref/swift/Enum/MeasurementUnit" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@E@MeasurementUnit">MeasurementUnit</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/MeasurementUnit.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MeasurementUnit</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -379,38 +309,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK14PayButtonStateO"></a>
-                    <a name="//apple_ref/swift/Enum/PayButtonState" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK14PayButtonStateO">PayButtonState</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/PayButtonState.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PayButtonState</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:9goSellSDK5ThemeO"></a>
                     <a name="//apple_ref/swift/Enum/Theme" class="dashAnchor"></a>
                     <a class="token" href="#/s:9goSellSDK5ThemeO">Theme</a>
@@ -441,7 +339,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-05-23)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-06-11)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

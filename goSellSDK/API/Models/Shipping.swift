@@ -6,7 +6,7 @@
 //
 
 /// Shipping data model class.
-@objcMembers public class Shipping: NSObject, Encodable {
+@objcMembers public class Shipping: NSObject, Codable {
     
     // MARK: - Public -
     // MARK: Properties
@@ -45,5 +45,23 @@
         self.amount = amount
         
         super.init()
+    }
+    
+    // MARK: - Private -
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case name               = "name"
+        case descriptionText    = "description"
+        case amount             = "amount"
+    }
+}
+
+// MARK: - NSCopying
+extension Shipping: NSCopying {
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        
+        return Shipping(name: self.name, descriptionText: self.descriptionText, amount: self.amount)
     }
 }

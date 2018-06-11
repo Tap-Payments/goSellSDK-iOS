@@ -2,15 +2,15 @@
 //  ExampleViewController+UITableView.swift
 //  goSellSDKExample
 //
-//  Created by Dennis Pashkov on 5/25/18.
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct Foundation.NSIndexPath.IndexPath
-import class UIKit.UITableView.UITableView
+import struct   Foundation.NSIndexPath.IndexPath
+import class    UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
-import class UIKit.UITableViewCell.UITableViewCell
+import class    UIKit.UITableView.UITableViewRowAction
+import class    UIKit.UITableViewCell.UITableViewCell
 
 extension ExampleViewController: UITableViewDataSource {
     
@@ -42,6 +42,10 @@ extension ExampleViewController: UITableViewDelegate {
         
         let item = self.paymentItems[indexPath.row]
         
+        let selected = self.selectedPaymentItems.contains(item)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        itemCell.setSelected(selected, animated: false)
+        
         let itemTitle = item.title
         let quantityValue = "\(item.quantity.value)"
         let quantityMeasurement = item.quantity.measurementUnit
@@ -61,9 +65,44 @@ extension ExampleViewController: UITableViewDelegate {
                           total: total)
     }
     
-    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         
         let item = self.paymentItems[indexPath.row]
         self.showPaymentItemViewController(with: item)
+    }
+    
+    internal func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, cellIndexPath) in
+            
+            self.paymentItems.remove(at: cellIndexPath.row)
+            tableView.deleteRows(at: [cellIndexPath], with: .automatic)
+        }
+        
+        return [deleteAction]
+    }
+    
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let item = self.paymentItems[indexPath.row]
+        self.selectedPaymentItems.append(item)
+        
+        self.updatePayButtonStateAndAmount()
+    }
+    
+    internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        let item = self.paymentItems[indexPath.row]
+        if let index = self.selectedPaymentItems.index(of: item) {
+            
+            self.selectedPaymentItems.remove(at: index)
+        }
+        
+        self.updatePayButtonStateAndAmount()
+    }
+    
+    private func tableViewSelectionChanged() {
+        
+        self.updatePayButtonStateAndAmount()
     }
 }

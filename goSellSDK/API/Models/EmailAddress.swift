@@ -33,6 +33,18 @@
         
         super.init()
     }
+    
+    public override func isEqual(_ object: Any?) -> Bool {
+        
+        guard let otherEmailAddress = object as? EmailAddress else { return false }
+        
+        return self.value == otherEmailAddress.value
+    }
+    
+    public static func == (lhs: EmailAddress, rhs: EmailAddress) -> Bool {
+        
+        return lhs.isEqual(rhs)
+    }
 }
 
 // MARK: - Encodable
@@ -54,5 +66,14 @@ extension EmailAddress: Decodable {
         let value = try container.decode(String.self)
         
         try self.init(value)
+    }
+}
+
+// MARK: - NSCopying
+extension EmailAddress: NSCopying {
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        
+        return try! EmailAddress(self.value)
     }
 }

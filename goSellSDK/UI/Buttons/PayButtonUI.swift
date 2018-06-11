@@ -60,12 +60,32 @@ internal class PayButtonUI: TapNibView {
         self.cornerRadius = 0.5 * min(self.bounds.width, self.bounds.height)
         self.updateTheme(animated: false)
         
-        self.internalButton?.setTitle("PAY", for: .normal)
+        self.updateDisplayedStateAndAmount()
     }
     
-    internal func updateDisplayedAmount() {
+    internal func updateDisplayedStateAndAmount() {
         
+        guard let currency = self.dataSource?.currency else {
+            
+            self.internalButton?.setTitle("PAY", for: .normal)
+            self.isEnabled = false
+            return
+        }
         
+        let items = self.dataSource?.items ?? []
+        
+        let amount = AmountCalculator.totalAmount(of: self.dataSource?.items ?? [], with: self.dataSource?.taxes ?? nil, and: self.dataSource?.shipping ?? nil)
+        guard amount > 0.0 && items.count > 0 else {
+            
+            self.internalButton?.setTitle("PAY", for: .normal)
+            self.isEnabled = false
+            return
+        }
+        
+        let amountText = "PAY " + CurrencyFormatter.shared.format(AmountedCurrency(currency, amount, currencySymbol: ""))
+        
+        self.internalButton?.setTitle(amountText, for: .normal)
+        self.isEnabled = true
     }
     
     // MARK: - Private -
