@@ -5,24 +5,29 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class Dispatch.DispatchQueue
-import class goSellSDK.Currency
-import class goSellSDK.CustomerInfo
-import class goSellSDK.EmailAddress
-import class goSellSDK.PayButton
+import class    Dispatch.DispatchQueue
+import class    goSellSDK.Currency
+import class    goSellSDK.CustomerInfo
+import class    goSellSDK.EmailAddress
+import class    goSellSDK.PayButton
 import protocol goSellSDK.PaymentDataSource
-import class goSellSDK.PaymentItem
-import class UIKit.UINavigationController.UINavigationController
-import class UIKit.UIStoryboardSegue.UIStoryboardSegue
-import class UIKit.UITableView.UITableView
-import class UIKit.UIViewController.UIViewController
+import class    goSellSDK.PaymentItem
+import class    goSellSDK.Shipping
+import class    goSellSDK.Tax
+import class    UIKit.UINavigationController.UINavigationController
+import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class    UIKit.UITableView.UITableView
+import class    UIKit.UIView.UIView
+import class    UIKit.UIViewController.UIViewController
 
 internal class ExampleViewController: UIViewController {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var paymentItems: [PaymentItem] = Serializer.deserializeItems()
+    internal var paymentItems: [PaymentItem] = Serializer.deserialize()
+    
+    internal var selectedPaymentItems: [PaymentItem] = []
     
     // MARK: Methods
     
@@ -30,6 +35,12 @@ internal class ExampleViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "goSell SDK Example"
+    }
+    
+    internal override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        self.updatePayButtonStateAndAmount()
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,6 +51,11 @@ internal class ExampleViewController: UIViewController {
             
             paymentController.delegate = self
             paymentController.paymentItem = self.selectedPaymentItem
+        }
+        else if let settingsController = (segue.destination as? UINavigationController)?.rootViewController as? SettingsTableViewController {
+            
+            settingsController.delegate = self
+            settingsController.settings = self.paymentSettings
         }
     }
     
@@ -53,10 +69,24 @@ internal class ExampleViewController: UIViewController {
         }
     }
     
+    internal func updatePayButtonStateAndAmount() {
+        
+        self.payButton?.updateDisplayedStateAndAmount()
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     
-    @IBOutlet private weak var itemsTableView: UITableView?
+    private var paymentSettings: Settings = Serializer.deserialize() ?? .default
+    
+    @IBOutlet private weak var itemsTableView: UITableView? {
+        
+        didSet {
+            
+            self.itemsTableView?.tableFooterView = UIView()
+        }
+    }
+    
     @IBOutlet private weak var payButton: PayButton?
     
     internal var selectedPaymentItem: PaymentItem?
@@ -78,6 +108,12 @@ extension ExampleViewController: PaymentItemViewControllerDelegate {
             
             if let index = self.paymentItems.index(of: nonnullSelectedItem) {
                 
+                if let selectedIndex = self.selectedPaymentItems.index(of: nonnullSelectedItem) {
+                    
+                    self.selectedPaymentItems.remove(at: selectedIndex)
+                    self.selectedPaymentItems.append(item)
+                }
+                
                 self.paymentItems.remove(at: index)
                 self.paymentItems.insert(item, at: index)
             }
@@ -97,24 +133,41 @@ extension ExampleViewController: PaymentItemViewControllerDelegate {
     }
 }
 
+// MARK: - SettingsTableViewControlerDelegate
+extension ExampleViewController: SettingsTableViewControlerDelegate {
+    
+    internal func settingsViewController(_ controller: SettingsTableViewController, didFinishWith settings: Settings) {
+        
+        self.paymentSettings = settings
+        Serializer.serialize(settings)
+    }
+}
+
 // MARK: - PaymentDataSource
 extension ExampleViewController: PaymentDataSource {
     
-    internal var customer: CustomerInfo {
+    internal var customer: CustomerInfo? {
         
-        return try! CustomerInfo(emailAddress:  EmailAddress("tap_customer@tap.company"),
-                                 phoneNumber:   "+96500000000",
-                                 firstName:     "Tap",
-                                 lastName:      "Customer")
+        return self.paymentSettings.customer
     }
     
     internal var items: [PaymentItem] {
         
-        return self.paymentItems
+        return self.selectedPaymentItems
     }
     
-    internal var currency: Currency {
+    internal var currency: Currency? {
         
-        return try! Currency(isoCode: "KWD")
+        return self.paymentSettings.currency
+    }
+    
+    internal var shipping: [Shipping]? {
+        
+        return self.paymentSettings.shippingList
+    }
+    
+    internal var taxes: [Tax]? {
+        
+        return self.paymentSettings.taxes
     }
 }

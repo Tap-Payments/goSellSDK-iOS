@@ -13,6 +13,15 @@
 		A408C03A20BAC2EE005E74AD /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03920BAC2EE005E74AD /* Serializer.swift */; };
 		A408C03C20BAC58A005E74AD /* Encodable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */; };
 		A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03D20BAC710005E74AD /* Decodable+Additions.swift */; };
+		A412AE0F20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */; };
+		A412AE1120C95703002BFCDD /* SettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */; };
+		A4B35FE020C59FCF00847031 /* ShippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FDF20C59FCF00847031 /* ShippingTableViewCell.swift */; };
+		A4B35FE220C7D39A00847031 /* ShippingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE120C7D39A00847031 /* ShippingViewController.swift */; };
+		A4B35FE420C7D5D100847031 /* ShippingViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE320C7D5D100847031 /* ShippingViewControllerDelegate.swift */; };
+		A4B35FE620C7DE7800847031 /* InputFieldObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE520C7DE7800847031 /* InputFieldObserver.swift */; };
+		A4B35FE820C7F8B900847031 /* CustomersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */; };
+		A4B35FEA20C7F9A000847031 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE920C7F9A000847031 /* CustomerViewController.swift */; };
+		A4B35FEC20C814E100847031 /* CustomerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */; };
 		A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */; };
 		A4CFAF2F20B82A5700B5D83B /* PaymentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */; };
 		A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */; };
@@ -28,6 +37,10 @@
 		A4D5FE5A2083235F007D52F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4D5FE592083235F007D52F5 /* Assets.xcassets */; };
 		A4D5FE5D2083235F007D52F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4D5FE5B2083235F007D52F5 /* LaunchScreen.storyboard */; };
 		A4D5FE65208323FB007D52F5 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */; };
+		A4DF066020C03659006F59D8 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF065F20C03659006F59D8 /* SettingsTableViewController.swift */; };
+		A4DF066320C03778006F59D8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066220C03778006F59D8 /* Settings.swift */; };
+		A4DF066520C038C9006F59D8 /* SeguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066420C038C9006F59D8 /* SeguePresenter.swift */; };
+		A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +51,15 @@
 		A408C03920BAC2EE005E74AD /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Additions.swift"; sourceTree = "<group>"; };
 		A408C03D20BAC710005E74AD /* Decodable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Additions.swift"; sourceTree = "<group>"; };
+		A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersListViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A4B35FDF20C59FCF00847031 /* ShippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingTableViewCell.swift; sourceTree = "<group>"; };
+		A4B35FE120C7D39A00847031 /* ShippingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingViewController.swift; sourceTree = "<group>"; };
+		A4B35FE320C7D5D100847031 /* ShippingViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A4B35FE520C7DE7800847031 /* InputFieldObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldObserver.swift; sourceTree = "<group>"; };
+		A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersListViewController.swift; sourceTree = "<group>"; };
+		A4B35FE920C7F9A000847031 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
+		A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExampleViewController+UITableView.swift"; sourceTree = "<group>"; };
 		A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewController.swift; sourceTree = "<group>"; };
 		A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxTableViewCell.swift; sourceTree = "<group>"; };
@@ -55,6 +77,10 @@
 		A4D5FE5C2083235F007D52F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4D5FE5E2083235F007D52F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		A4DF065F20C03659006F59D8 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		A4DF066220C03778006F59D8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		A4DF066420C038C9006F59D8 /* SeguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeguePresenter.swift; sourceTree = "<group>"; };
+		A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
 		CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,7 +144,9 @@
 		A4CFAF3620B83FAF00B5D83B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */,
 				A4CFAF3220B83E3300B5D83B /* PaymentItemTableViewCell.swift */,
+				A4B35FDF20C59FCF00847031 /* ShippingTableViewCell.swift */,
 				A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */,
 				A4CFAF3E20B96E1500B5D83B /* TitleTableViewCell.swift */,
 			);
@@ -129,10 +157,14 @@
 			isa = PBXGroup;
 			children = (
 				A4CFAF4020B96EE000B5D83B /* CaseSelectionTableViewController.swift */,
+				A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */,
+				A4B35FE920C7F9A000847031 /* CustomerViewController.swift */,
 				A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */,
 				A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */,
 				A4CFAF3A20B84A9500B5D83B /* ModalNavigationTableViewController.swift */,
 				A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */,
+				A4DF065F20C03659006F59D8 /* SettingsTableViewController.swift */,
+				A4B35FE120C7D39A00847031 /* ShippingViewController.swift */,
 				A4CFAF3820B849F400B5D83B /* TaxViewController.swift */,
 			);
 			path = Controllers;
@@ -142,8 +174,14 @@
 			isa = PBXGroup;
 			children = (
 				A4CFAF4820B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift */,
+				A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */,
+				A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */,
+				A4B35FE520C7DE7800847031 /* InputFieldObserver.swift */,
 				A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */,
+				A4DF066420C038C9006F59D8 /* SeguePresenter.swift */,
+				A4B35FE320C7D5D100847031 /* ShippingViewControllerDelegate.swift */,
 				A4CFAF4720B9A80500B5D83B /* TaxViewControllerDelegate.swift */,
+				A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -172,12 +210,21 @@
 				A4CFAF3620B83FAF00B5D83B /* Cells */,
 				A4CFAF3720B83FBB00B5D83B /* Controllers */,
 				A408C03520BAB567005E74AD /* Extensions */,
+				A4DF066120C0376D006F59D8 /* Models */,
 				A4CFAF4620B9A7C700B5D83B /* Protocols */,
 				A4CFAF3520B83F8C00B5D83B /* Resources */,
 				A4CFAF3420B83F8300B5D83B /* Supporting Files */,
 				A408C03820BAC2CC005E74AD /* Utils */,
 			);
 			path = goSellSDKExample;
+			sourceTree = "<group>";
+		};
+		A4DF066120C0376D006F59D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4DF066220C03778006F59D8 /* Settings.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FA37CABE97025B08BE0384F3 /* Pods */ = {
@@ -331,23 +378,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4DF066520C038C9006F59D8 /* SeguePresenter.swift in Sources */,
 				A4CFAF3F20B96E1500B5D83B /* TitleTableViewCell.swift in Sources */,
 				A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */,
+				A4B35FEA20C7F9A000847031 /* CustomerViewController.swift in Sources */,
 				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
 				A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */,
 				A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */,
 				A4CFAF3920B849F400B5D83B /* TaxViewController.swift in Sources */,
 				A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */,
+				A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */,
 				A408C03720BAB577005E74AD /* Measurement+Additions.swift in Sources */,
+				A4DF066020C03659006F59D8 /* SettingsTableViewController.swift in Sources */,
+				A412AE1120C95703002BFCDD /* SettingsTableViewControllerDelegate.swift in Sources */,
+				A4B35FE420C7D5D100847031 /* ShippingViewControllerDelegate.swift in Sources */,
+				A4B35FE820C7F8B900847031 /* CustomersListViewController.swift in Sources */,
+				A4B35FE220C7D39A00847031 /* ShippingViewController.swift in Sources */,
+				A4B35FE020C59FCF00847031 /* ShippingTableViewCell.swift in Sources */,
 				A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
 				A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */,
 				A4D5FE532083235E007D52F5 /* AppDelegate.swift in Sources */,
 				A4CFAF4120B96EE000B5D83B /* CaseSelectionTableViewController.swift in Sources */,
+				A412AE0F20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift in Sources */,
 				A408C03C20BAC58A005E74AD /* Encodable+Additions.swift in Sources */,
 				A4CFAF2F20B82A5700B5D83B /* PaymentItemViewController.swift in Sources */,
 				A408C03A20BAC2EE005E74AD /* Serializer.swift in Sources */,
+				A4B35FEC20C814E100847031 /* CustomerViewControllerDelegate.swift in Sources */,
+				A4B35FE620C7DE7800847031 /* InputFieldObserver.swift in Sources */,
 				A4D5FE65208323FB007D52F5 /* ExampleViewController.swift in Sources */,
 				A4CFAF3B20B84A9500B5D83B /* ModalNavigationTableViewController.swift in Sources */,
+				A4DF066320C03778006F59D8 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

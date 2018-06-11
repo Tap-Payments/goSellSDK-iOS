@@ -57,10 +57,21 @@ internal final class PaymentDataManager {
             fatalError("Pay button data source is not set.")
         }
         
-        let paymentRequest = PaymentOptionsRequest(items: nonnullDataSource.items,
-                                                   shipping: nonnullDataSource.shipping ?? nil,
-                                                   currency: nonnullDataSource.currency,
-                                                   customer: nonnullDataSource.customer.identifier)
+        guard let currency = nonnullDataSource.currency else {
+            
+            fatalError("Payment data source currency is nil.")
+        }
+        
+        guard let customer = nonnullDataSource.customer else {
+            
+            fatalError("Payment data source customer is nil.")
+        }
+        
+        let paymentRequest = PaymentOptionsRequest(items:       nonnullDataSource.items,
+                                                   shipping:    nonnullDataSource.shipping ?? nil,
+                                                   taxes:       nonnullDataSource.taxes ?? nil,
+                                                   currency:    currency,
+                                                   customer:    customer.identifier)
         
         self.isLoadingPaymentOptions = true
         

@@ -6,7 +6,7 @@
 //
 
 /// Payment item model.
-@objcMembers public final class PaymentItem: NSObject, Codable {
+@objcMembers public final class PaymentItem: NSObject {
     
     // MARK: - Public -
     // MARK: Properties
@@ -18,40 +18,16 @@
     public var descriptionText: String?
     
     /// Quantity of payment item(s).
-    public var quantity: Quantity {
-        
-        didSet {
-            
-            self.updateTotalAmount()
-        }
-    }
+    public var quantity: Quantity
     
     /// Amount per a single unit of quantity.
-    public var amountPerUnit: Decimal {
-        
-        didSet {
-            
-            self.updateTotalAmount()
-        }
-    }
+    public var amountPerUnit: Decimal
     
     /// Item(s) discount.
-    public var discount: AmountModificator? {
-        
-        didSet {
-            
-            self.updateTotalAmount()
-        }
-    }
+    public var discount: AmountModificator?
     
     /// Items(s) taxes.
-    public var taxes: [Tax]? {
-        
-        didSet {
-            
-            self.updateTotalAmount()
-        }
-    }
+    public var taxes: [Tax]?
     
     // MARK: Methods
     
@@ -98,15 +74,9 @@
         self.amountPerUnit = amountPerUnit
         self.discount = discount
         self.taxes = taxes
-        self.totalAmount = PaymentItem.calculateTotalAmount(with: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes)
         
         super.init()
     }
-    
-    // MARK: - Internal -
-    // MARK: Properties
-    
-    internal private(set) var totalAmount: Decimal
     
     // MARK: - Private -
     
@@ -120,17 +90,51 @@
         case taxes              = "taxes"
         case totalAmount        = "total_amount"
     }
+}
+
+// MARK: - Encodable
+extension PaymentItem: Encodable {
     
-    // MARK: Methods
-    
-    private static func calculateTotalAmount(with quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?) -> Decimal {
+    public func encode(to encoder: Encoder) throws {
         
-        return 0.0
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encodeIfPresent(self.title            , forKey: .title            )
+        
+        if self.descriptionText?.length ?? 0 > 0 {
+            
+            try container.encodeIfPresent(self.descriptionText, forKey: .descriptionText)
+        }
+        
+        try container.encodeIfPresent(self.quantity         , forKey: .quantity         )
+        try container.encodeIfPresent(self.amountPerUnit    , forKey: .amountPerUnit    )
+        
+        try container.encodeIfPresent(self.discount         , forKey: .discount         )
+        
+        if self.taxes?.count ?? 0 > 0 {
+            
+            try container.encodeIfPresent(self.taxes        , forKey: .taxes            )
+        }
+        
+        try container.encodeIfPresent(self.totalItemAmount  , forKey: .totalAmount      )
     }
+}
+
+// MARK: - Decodable
+extension PaymentItem: Decodable {
     
-    private func updateTotalAmount() {
+    public convenience init(from decoder: Decoder) throws {
         
-        self.totalAmount = PaymentItem.calculateTotalAmount(with: self.quantity, amountPerUnit: self.amountPerUnit, discount: self.discount, taxes: self.taxes)
+        let container       = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let title           = try container.decode          (String.self            , forKey: .title            )
+        let descriptionText = try container.decodeIfPresent (String.self            , forKey: .descriptionText  )
+        let quantity        = try container.decode          (Quantity.self          , forKey: .quantity         )
+        let amountPerUnit   = try container.decode          (Decimal.self           , forKey: .amountPerUnit    )
+        let discount        = try container.decodeIfPresent (AmountModificator.self , forKey: .discount         )
+        let taxes           = try container.decodeIfPresent ([Tax].self             , forKey: .taxes            )
+        
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes)
     }
 }
 

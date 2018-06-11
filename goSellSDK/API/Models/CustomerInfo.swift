@@ -6,25 +6,25 @@
 //
 
 /// Customer model.
-@objcMembers public final class CustomerInfo: NSObject, Encodable {
+@objcMembers public final class CustomerInfo: NSObject, Codable {
     
     // MARK: - Public -
     // MARK: Properties
     
     /// Customer identifier (if you know it).
-    public private(set) var identifier: String?
+    public var identifier: String?
     
     /// Customer's email address.
-    public private(set) var emailAddress: EmailAddress?
+    public var emailAddress: EmailAddress?
     
     /// Customer's phone number.
-    public private(set) var phoneNumber: String?
+    public var phoneNumber: String?
     
     /// Customer's first name.
-    public private(set) var firstName: String?
+    public var firstName: String?
     
     /// Customer's last name.
-    public private(set) var lastName: String?
+    public var lastName: String?
     
     // MARK: Methods
     
@@ -58,15 +58,37 @@
         try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, lastName: nil)
     }
     
+    public override func isEqual(_ object: Any?) -> Bool {
+        
+        guard let otherCustomer = object as? CustomerInfo else { return false }
+        
+        if let firstIdentifier = self.identifier, let otherIdentifier = otherCustomer.identifier, firstIdentifier.length > 0, otherIdentifier.length > 0 {
+            
+            return firstIdentifier == otherIdentifier
+        }
+        
+        return
+            
+            self.firstName      == otherCustomer.firstName      &&
+            self.lastName       == otherCustomer.lastName       &&
+            self.emailAddress   == otherCustomer.emailAddress   &&
+            self.phoneNumber    == otherCustomer.phoneNumber
+    }
+    
+    public static func == (lhs: CustomerInfo, rhs: CustomerInfo) -> Bool {
+        
+        return lhs.isEqual(rhs)
+    }
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier = "id"
-        case emailAddress = "email_address"
-        case phoneNumber = "phone_number"
-        case firstName = "first_name"
-        case lastName = "last_name"
+        case identifier     = "id"
+        case emailAddress   = "email_address"
+        case phoneNumber    = "phone_number"
+        case firstName      = "first_name"
+        case lastName       = "last_name"
     }
     
     // MARK: Methods
@@ -89,5 +111,15 @@
         self.lastName = lastName?.trimmingCharacters(in: .whitespacesAndNewlines)
         
         super.init()
+    }
+}
+
+// MARK: - NSCopying
+extension CustomerInfo: NSCopying {
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        
+        let emailAddressCopy = self.emailAddress?.copy() as? EmailAddress
+        return try! CustomerInfo(identifier: self.identifier, emailAddress: emailAddressCopy, phoneNumber: self.phoneNumber, firstName: self.firstName, lastName: self.lastName)
     }
 }

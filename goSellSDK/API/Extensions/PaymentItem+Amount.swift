@@ -2,7 +2,7 @@
 //  PaymentItem+Amount.swift
 //  goSellSDK
 //
-//  Created by Dennis Pashkov on 5/26/18.
+//  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
 public extension PaymentItem {
@@ -29,26 +29,11 @@ public extension PaymentItem {
     
     public var taxesAmount: Decimal {
         
-        guard let nonnullTaxes = self.taxes?.map({ $0.amount }), nonnullTaxes.count > 0 else { return 0.0 }
-        
-        let amountToCalculateTaxesOn = self.plainAmount - self.discountAmount
-        
-        var result: Decimal = 0.0
-        nonnullTaxes.forEach { tax in
-            
-            switch tax.type {
-                
-            case .percentBased: result += amountToCalculateTaxesOn * tax.normalizedValue
-            case .fixedAmount:  result += tax.value
-
-            }
-        }
-        
-        return result
+        return AmountCalculator.taxes(on: self.plainAmount - self.discountAmount, with: self.taxes ?? [])
     }
     
     public var totalItemAmount: Decimal {
         
-        return self.plainAmount - self.discountAmount + self.taxesAmount
+        return AmountCalculator.totalAmount(of: self)
     }
 }

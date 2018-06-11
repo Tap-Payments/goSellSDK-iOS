@@ -46,9 +46,9 @@ public class PayButton: TapNibView {
     
     // MARK: Methods
     
-    public func updateDisplayedAmount() {
+    public func updateDisplayedStateAndAmount() {
         
-        self.ui?.updateDisplayedAmount()
+        self.ui?.updateDisplayedStateAndAmount()
     }
     
     // MARK: - Private -
