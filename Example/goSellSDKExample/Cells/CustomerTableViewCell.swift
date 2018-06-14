@@ -20,22 +20,26 @@ internal class CustomerTableViewCell: UITableViewCell {
         self.checkmarkImageView?.isHidden = !selected
     }
     
-    internal func fill(with name: String?, surname: String?, email: String?, phone: String?, id: String?) {
+    internal func fill(with firstName: String?, middleName: String?, lastName: String?, email: String?, phoneISDNumber: String?, phoneNumber: String?, id: String?) {
         
-        self.nameLabel?.text = name
-        self.surnameLabel?.text = surname
-        self.emailLabel?.text = email
-        self.phoneLabel?.text = phone
+        self.firstNameLabel?.text       = firstName
+        self.middleNameLabel?.text      = middleName
+        self.lastNameLabel?.text        = lastName
+        self.emailLabel?.text           = email
+        self.phoneISDNumberLabel?.text  = phoneISDNumber
+        self.phoneNumberLabel?.text     = phoneNumber
         self.idLabel?.text = id
     }
     
     // MARK: - Private -
     // MARK: Properties
     
-    @IBOutlet private weak var nameLabel: UILabel?
-    @IBOutlet private weak var surnameLabel: UILabel?
+    @IBOutlet private weak var firstNameLabel: UILabel?
+    @IBOutlet private weak var middleNameLabel: UILabel?
+    @IBOutlet private weak var lastNameLabel: UILabel?
     @IBOutlet private weak var emailLabel: UILabel?
-    @IBOutlet private weak var phoneLabel: UILabel?
+    @IBOutlet private weak var phoneISDNumberLabel: UILabel?
+    @IBOutlet private weak var phoneNumberLabel: UILabel?
     @IBOutlet private weak var idLabel: UILabel?
     @IBOutlet private weak var checkmarkImageView: UIImageView?
 }

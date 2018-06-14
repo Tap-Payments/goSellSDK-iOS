@@ -23,6 +23,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Dictionary'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/OptionSet'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/String'
+    goSellSDK.dependency 'TapAdditionsKit/Tap/TypeAlias'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UINavigationController'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UIResponder'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UIScreen'

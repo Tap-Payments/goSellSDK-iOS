@@ -18,10 +18,13 @@
     public var emailAddress: EmailAddress?
     
     /// Customer's phone number.
-    public var phoneNumber: String?
+    public var phoneNumber: PhoneNumber?
     
     /// Customer's first name.
     public var firstName: String?
+    
+    /// Customer's middle name.
+    public var middleName: String?
     
     /// Customer's last name.
     public var lastName: String?
@@ -34,9 +37,9 @@
     ///   - emailAddress: Email address.
     ///   - phoneNumber: Phone number.
     ///   - name: Name
-    public convenience init(emailAddress: EmailAddress, phoneNumber: String, name: String) throws {
+    public convenience init(emailAddress: EmailAddress, phoneNumber: PhoneNumber, name: String) throws {
         
-        try self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: name, lastName: nil)
+        try self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: name, middleName: nil, lastName: nil)
     }
     /// Initializes the customer with email address, phone number, first name and last name.
     ///
@@ -45,9 +48,9 @@
     ///   - phoneNumber: Phone number.
     ///   - firstName: First name.
     ///   - lastName: Last name.
-    public convenience init(emailAddress: EmailAddress, phoneNumber: String, firstName: String, lastName: String?) throws {
+    public convenience init(emailAddress: EmailAddress, phoneNumber: PhoneNumber, firstName: String, middleName: String?, lastName: String?) throws {
         
-        try self.init(identifier: nil, emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName)
+        try self.init(identifier: nil, emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName)
     }
     
     /// Initializes the customer with the customer identifier.
@@ -55,7 +58,7 @@
     /// - Parameter identifier: Customer identifier.
     public convenience init(identifier: String) throws {
         
-        try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, lastName: nil)
+        try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, middleName: nil, lastName: nil)
     }
     
     public override func isEqual(_ object: Any?) -> Bool {
@@ -70,6 +73,7 @@
         return
             
             self.firstName      == otherCustomer.firstName      &&
+            self.middleName     == otherCustomer.middleName     &&
             self.lastName       == otherCustomer.lastName       &&
             self.emailAddress   == otherCustomer.emailAddress   &&
             self.phoneNumber    == otherCustomer.phoneNumber
@@ -88,6 +92,7 @@
         case emailAddress   = "email_address"
         case phoneNumber    = "phone_number"
         case firstName      = "first_name"
+        case middleName     = "middle_name"
         case lastName       = "last_name"
     }
     
@@ -95,7 +100,7 @@
     
     @available(*, unavailable) private override init() { super.init() }
     
-    private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: String?, firstName: String?, lastName: String?) throws {
+    private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String?, middleName: String?, lastName: String?) throws {
         
         guard (identifier != nil) || (emailAddress != nil && phoneNumber != nil && firstName != nil) else {
             
@@ -104,11 +109,12 @@
             throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil)
         }
         
-        self.identifier = identifier
-        self.emailAddress = emailAddress
-        self.phoneNumber = phoneNumber
-        self.firstName = firstName?.trimmingCharacters(in: .whitespacesAndNewlines)
-        self.lastName = lastName?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.identifier     = identifier
+        self.emailAddress   = emailAddress
+        self.phoneNumber    = phoneNumber
+        self.firstName      = firstName?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.middleName     = middleName?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.lastName       = lastName?.trimmingCharacters(in: .whitespacesAndNewlines)
         
         super.init()
     }
@@ -120,6 +126,6 @@ extension CustomerInfo: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         
         let emailAddressCopy = self.emailAddress?.copy() as? EmailAddress
-        return try! CustomerInfo(identifier: self.identifier, emailAddress: emailAddressCopy, phoneNumber: self.phoneNumber, firstName: self.firstName, lastName: self.lastName)
+        return try! CustomerInfo(identifier: self.identifier, emailAddress: emailAddressCopy, phoneNumber: self.phoneNumber, firstName: self.firstName, middleName: self.middleName, lastName: self.lastName)
     }
 }

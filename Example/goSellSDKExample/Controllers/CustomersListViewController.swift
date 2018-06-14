@@ -79,7 +79,14 @@ internal class CustomersListViewController: UITableViewController {
         }
         
         let customer = self.customers[indexPath.row]
-        customerCell.fill(with: customer.firstName, surname: customer.lastName, email: customer.emailAddress?.value, phone: customer.phoneNumber, id: customer.identifier)
+        
+        customerCell.fill(with: customer.firstName,
+                          middleName: customer.middleName,
+                          lastName: customer.lastName,
+                          email: customer.emailAddress?.value,
+                          phoneISDNumber: customer.phoneNumber?.isdNumber,
+                          phoneNumber: customer.phoneNumber?.phoneNumber,
+                          id: customer.identifier)
     }
     
     internal override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {

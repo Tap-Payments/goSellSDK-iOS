@@ -33,11 +33,11 @@ internal struct SDKSettingsData: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         
-        case isLiveMode = "livemode"
-        case permissions = "permissions"
-        case encryptionKey = "encryption_key"
-        case deviceID = "device_id"
-        case merchant = "merchant"
-        case internalSettings = "sdk_settings"
+        case isLiveMode         = "live_mode"
+        case permissions        = "permissions"
+        case encryptionKey      = "encryption_key"
+        case deviceID           = "device_id"
+        case merchant           = "merchant"
+        case internalSettings   = "sdk_settings"
     }
 }

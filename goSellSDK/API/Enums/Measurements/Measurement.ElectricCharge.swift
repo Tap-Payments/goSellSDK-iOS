@@ -91,10 +91,10 @@ extension Measurement.ElectricCharge: ProportionalToOrigin {
         
         switch self {
             
-        case .coulombs          : return              1
-        case .megaampereHours   : return  3_600_000_000
-        case .kiloampereHours   : return      3_600_000
-        case .ampereHours       : return          3_600
+        case .coulombs          : return              1.0
+        case .megaampereHours   : return  3_600_000_000.0
+        case .kiloampereHours   : return      3_600_000.0
+        case .ampereHours       : return          3_600.0
         case .milliampereHours  : return              3.6
         case .microampereHours  : return              0.0036
             

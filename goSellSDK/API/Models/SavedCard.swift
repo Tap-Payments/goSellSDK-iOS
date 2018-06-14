@@ -49,12 +49,12 @@ internal struct SavedCard: Decodable, Identifiable {
         
         case identifier         = "id"
         case object             = "object"
-        case lastFourDigits     = "last4"
+        case lastFourDigits     = "last_four"
         case expirationMonth    = "exp_month"
         case expirationYear     = "exp_year"
         case brand              = "brand"
         case cardholderName     = "name"
-        case binNumber          = "bin"
+        case binNumber          = "first_six"
         case currency           = "currency"
         case orderBy            = "order_by"
     }

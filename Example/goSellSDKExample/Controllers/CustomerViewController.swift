@@ -8,8 +8,10 @@
 import struct   Foundation.NSNotification.Notification
 import class    goSellSDK.CustomerInfo
 import class    goSellSDK.EmailAddress
+import class    goSellSDK.PhoneNumber
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UITextField.UITextField
+import class    UIKit.UIView.UIView
 
 internal class CustomerViewController: ModalNavigationTableViewController {
     
@@ -37,7 +39,7 @@ internal class CustomerViewController: ModalNavigationTableViewController {
         
         if self.currentCustomer.firstName?.isEmpty ?? true { return false }
         if self.currentCustomer.emailAddress == nil { return false }
-        if self.currentCustomer.phoneNumber?.isEmpty ?? true { return false }
+        if self.currentCustomer.phoneNumber == nil { return false }
         
         return true
     }
@@ -51,6 +53,8 @@ internal class CustomerViewController: ModalNavigationTableViewController {
         self.addInputFieldTextChangeObserver()
         self.updateTitle()
         self.updateWithCurrentCustomerInfo()
+        
+        self.tableView.tableFooterView = UIView()
     }
     
     internal override func doneButtonClicked() {
@@ -68,8 +72,10 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     
     @IBOutlet private weak var idLabel: UILabel?
     @IBOutlet private weak var firstNameTextField: UITextField?
+    @IBOutlet private weak var middleNameTextField: UITextField?
     @IBOutlet private weak var lastNameTextField: UITextField?
     @IBOutlet private weak var emailAddressTextField: UITextField?
+    @IBOutlet private weak var phoneISDNumberTextField: UITextField?
     @IBOutlet private weak var phoneNumberTextField: UITextField?
     
     private var currentCustomer: CustomerInfo = try! CustomerInfo(identifier: "") {
@@ -99,7 +105,7 @@ internal class CustomerViewController: ModalNavigationTableViewController {
         self.currentCustomer.firstName = self.firstNameTextField?.text
         self.currentCustomer.lastName = self.lastNameTextField?.text
         self.currentCustomer.emailAddress = try? EmailAddress(self.emailAddressTextField?.text ?? "")
-        self.currentCustomer.phoneNumber = self.phoneNumberTextField?.text
+        self.currentCustomer.phoneNumber = try? PhoneNumber(isdNumber: self.phoneISDNumberTextField?.text ?? "", phoneNumber: self.phoneNumberTextField?.text ?? "")
     }
     
     private func updateWithCurrentCustomerInfo() {
@@ -108,7 +114,8 @@ internal class CustomerViewController: ModalNavigationTableViewController {
         self.firstNameTextField?.text = self.currentCustomer.firstName
         self.lastNameTextField?.text = self.currentCustomer.lastName
         self.emailAddressTextField?.text = self.currentCustomer.emailAddress?.value
-        self.phoneNumberTextField?.text = self.currentCustomer.phoneNumber
+        self.phoneISDNumberTextField?.text = self.currentCustomer.phoneNumber?.isdNumber
+        self.phoneNumberTextField?.text = self.currentCustomer.phoneNumber?.phoneNumber
     }
 }
 

@@ -12,6 +12,8 @@ internal enum InternalError: Int {
     case invalidCurrency
     case invalidCustomerInfo
     case invalidEmail
+    case invalidISDNumber
+    case invalidPhoneNumber
     case invalidUnitOfMeasurement
     case invalidMeasurement
 }

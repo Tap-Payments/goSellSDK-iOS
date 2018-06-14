@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import enum TapCardValidator.CardBrand
+
 internal final class PaymentDataManager {
     
     // MARK: - Internal -
@@ -219,7 +221,7 @@ internal final class PaymentDataManager {
         webPaymentOptions.forEach {
             
             let webOptionCellModel = WebPaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                        title: $0.name.rawValue,
+                                                                        title: $0.title,
                                                                         iconImageURL: $0.imageURL)
             result.append(webOptionCellModel)
         }
@@ -271,7 +273,7 @@ internal final class PaymentDataManager {
         
         webPaymentOptions.forEach {
             
-            let webModel = self.webPaymentCellModel(with: $0.name.rawValue)
+            let webModel = self.webPaymentCellModel(with: $0.title)
             webModel.indexPath = self.nextIndexPath(for: result)
             
             result.append(webModel)
