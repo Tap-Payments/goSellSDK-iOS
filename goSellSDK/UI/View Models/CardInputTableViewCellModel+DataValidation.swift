@@ -138,7 +138,7 @@ internal extension CardInputTableViewCellModel {
     
     private var preferredCardBrands: [CardBrand] {
         
-        return self.paymentOptions.map { $0.name }
+        return self.paymentOptions.map { $0.brand }
     }
     
     // MARK: Methods
@@ -216,8 +216,6 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
         
         self.definedCardBrand = definedCardBrand
         
-        NSLog("Current recognized brand: \(definedCardBrand.cardBrand?.rawValue ?? "nil")")
-        
         if let cvvValidator = (self.cardDataValidators.first { $0.validationType == .cvv }) as? CVVValidator {
             
             cvvValidator.cardBrand = definedCardBrand.cardBrand
@@ -232,7 +230,7 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
             
             let possiblePaymentOptions = self.paymentOptions.filter {
                 
-                var allCardBrands: [CardBrand] = [$0.name]
+                var allCardBrands: [CardBrand] = [$0.brand]
                 allCardBrands.append(contentsOf: $0.supportedCardBrands)
                 allCardBrands = Array(Set(allCardBrands))
                 

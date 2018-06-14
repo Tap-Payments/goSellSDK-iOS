@@ -5,18 +5,27 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal final class Country {
+/// Country model.
+internal struct Country {
     
     // MARK: - Internal -
     // MARK: Properties
     
+    /// Two-letters iso code.
     internal let isoCode: String
     
     // MARK: Methods
     
-    internal required init(_ code: String) throws {
+    internal init(_ isoCode: String) throws {
         
-        guard type(of: self).isoCodes.contains(code) else {
+        try self.init(isoCode: isoCode)
+    }
+    
+    internal init(isoCode: String) throws {
+        
+        let code = isoCode.uppercased()
+        
+        guard Country.allISOCodes.contains(code) else {
             
             let userInfo = [ErrorConstants.UserInfoKeys.countryCode: code]
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidCountryCode.rawValue, userInfo: userInfo)
@@ -27,9 +36,8 @@ internal final class Country {
     }
     
     // MARK: - Private -
-    // MARK: Properties
     
-    private static let isoCodes = Locale.isoRegionCodes
+    private static let allISOCodes = Locale.isoRegionCodes.map { $0.uppercased() }
 }
 
 // MARK: - Encodable
@@ -45,11 +53,11 @@ extension Country: Encodable {
 // MARK: - Decodable
 extension Country: Decodable {
     
-    public convenience init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         
         let container = try decoder.singleValueContainer()
         let code = try container.decode(String.self)
         
-        try self.init(code)
+        try self.init(isoCode: code)
     }
 }

@@ -8,11 +8,11 @@
 /// Route enum.
 internal enum Route: String {
     
-    case bin = "bin/"
-    case charges = "charges/"
+    case bin            = "bin/"
+    case charges        = "charges/"
     case initialization = "init"
     case paymentOptions = "payment/types/"
-    case token = "token/"
+    case token          = "token/"
     
     internal var decoder: JSONDecoder {
         

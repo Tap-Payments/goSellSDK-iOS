@@ -1,5 +1,5 @@
 //
-//  SavedCard.swift
+//  TokenizedCard.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
@@ -7,41 +7,46 @@
 
 import enum TapCardValidator.CardBrand
 
-/// Saved Card model.
-internal struct SavedCard: Decodable, Identifiable {
+/// Tokenized card model.
+internal struct TokenizedCard: Identifiable, Decodable {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    /// Identifier.
-    internal let identifier: String?
+    internal private(set) var identifier: String?
     
     /// Object type.
     internal let object: String
     
-    /// Last 4 digits of card number.
+    /// Last four digits.
     internal let lastFourDigits: String
     
     /// Expiration month.
-    internal let expirationMonth: String
+    internal let expirationMonth: Int
     
     /// Expiration year.
-    internal let expirationYear: String
-    
-    /// Card brand.
-    internal let brand: CardBrand
-    
-    /// Cardholder name.
-    internal let cardholderName: String
+    internal let expirationYear: Int
     
     /// BIN number.
     internal let binNumber: String
     
-    /// Currency.
-    internal let currency: Currency
+    /// Card brand.
+    internal let brand: CardBrand
     
-    /// Order parameter
-    internal let orderBy: Int
+    /// Card funding.
+    internal let funding: String
+    
+    /// Cardholder name.
+    internal let cardholderName: String
+    
+    /// Customer identifier.
+    internal let customerIdentifier: String?
+    
+    /// Card fingerprint.
+    internal let fingerprint: String
+    
+    /// Address on card.
+    internal private(set) var address: Address?
     
     // MARK: - Private -
     
@@ -52,10 +57,12 @@ internal struct SavedCard: Decodable, Identifiable {
         case lastFourDigits     = "last_four"
         case expirationMonth    = "exp_month"
         case expirationYear     = "exp_year"
-        case brand              = "brand"
-        case cardholderName     = "name"
         case binNumber          = "first_six"
-        case currency           = "currency"
-        case orderBy            = "order_by"
+        case brand              = "brand"
+        case funding            = "funding"
+        case cardholderName     = "name"
+        case customerIdentifier = "customer"
+        case fingerprint        = "fingerprint"
+        case address            = "address"
     }
 }

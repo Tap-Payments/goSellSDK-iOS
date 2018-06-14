@@ -131,9 +131,9 @@ extension Measurement.Area: ProportionalToOrigin {
         
         switch self {
             
-        case .squareMegameters  : return 1_000_000_000_000
-        case .squareKilometers  : return         1_000_000
-        case .squareMeters      : return                 1
+        case .squareMegameters  : return 1_000_000_000_000.0
+        case .squareKilometers  : return         1_000_000.0
+        case .squareMeters      : return                 1.0
         case .squareCentimeters : return                 0.0001
         case .squareMillimeters : return                 0.000001
         case .squareMicrometers : return                 0.000000000001
@@ -143,8 +143,8 @@ extension Measurement.Area: ProportionalToOrigin {
         case .squareYards       : return                 0.83612736
         case .squareMiles       : return         2_589_988.110336
         case .acres             : return             4_046.8564224
-        case .ares              : return               100
-        case .hectares          : return            10_000
+        case .ares              : return               100.0
+        case .hectares          : return            10_000.0
         }
     }
 }

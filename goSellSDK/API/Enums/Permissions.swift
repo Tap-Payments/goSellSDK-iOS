@@ -29,17 +29,7 @@ internal struct Permissions: OptionSet, Decodable {
     
     internal init(rawValue: Set<String>) {
 
-        var optionsStorage: Set<String> = Set<String>()
-
-        rawValue.forEach { option in
-            
-            if Constants.availableOptions.contains(option) {
-                
-                optionsStorage.insert(option)
-            }
-        }
-        
-        self.rawValue = optionsStorage
+        self.rawValue = rawValue.filter { Constants.availableOptions.contains($0) }
     }
     
     internal init() {
@@ -80,8 +70,4 @@ internal struct Permissions: OptionSet, Decodable {
         
         @available(*, unavailable) private init() {}
     }
-    
-    // MARK: Properties
-    
-    
 }
