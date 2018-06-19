@@ -31,6 +31,16 @@ internal class PaymentOptionCellViewModel: CellViewModel {
         return false
     }
     
+    internal var affectsPayButtonState: Bool {
+        
+        return false
+    }
+    
+    internal var initiatesPaymentOnSelection: Bool {
+        
+        return false
+    }
+    
     // MARK: Methods
     
     internal override func tableViewDidSelectCell(_ sender: UITableView) {

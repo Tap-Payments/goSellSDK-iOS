@@ -24,7 +24,8 @@ internal extension PaymentDataManager {
             return
         }
         
-        self.makePayButtonEnabled(selectedPaymentViewModel.isReadyForPayment)
+        let payButtonEnabled = selectedPaymentViewModel.affectsPayButtonState && selectedPaymentViewModel.isReadyForPayment
+        self.makePayButtonEnabled(payButtonEnabled)
     }
     
     // MARK: - Private -
@@ -41,6 +42,9 @@ extension PaymentDataManager: PayButtonUIDelegate {
     
     internal func payButtonTouchUpInside() {
         
+        guard let selectedPaymentViewModel = self.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment else { return }
+        
+        self.startPaymentProcess(with: selectedPaymentViewModel)
     }
     
     internal func securityButtonTouchUpInside() {

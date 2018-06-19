@@ -34,6 +34,24 @@ internal struct Source: Identifiable, Codable {
     /// Source channel.
     internal private(set) var channel: SourceChannel?
     
+    // MARK: Methods
+    
+    /// Initializes source object with static identifier.
+    ///
+    /// - Parameter identifier: Static source identifier.
+    internal init(identifier: SourceIdentifier) {
+        
+        self.identifier = identifier.stringValue
+    }
+    
+    /// Initializes source object with token.
+    ///
+    /// - Parameter token: Token to initialize source with.
+    internal init(token: Token) {
+        
+        self.identifier = token.identifier
+    }
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {

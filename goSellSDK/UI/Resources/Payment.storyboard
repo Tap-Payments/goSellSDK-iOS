@@ -45,6 +45,71 @@
             </objects>
             <point key="canvasLocation" x="-674" y="-118"/>
         </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="3tm-bK-QVM">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" id="2Jf-E7-DFx" customClass="LoadingViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WWi-7K-Br5"/>
+                        <viewControllerLayoutGuide type="bottom" id="XVP-og-2yF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LxR-IZ-ABe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DW1-gM-Jcg" customClass="TapVisualEffectView" customModule="TapVisualEffectView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1K-8o-yVO">
+                                <rect key="frame" x="25" y="356.33333333333331" width="325" height="100.33333333333331"/>
+                                <subviews>
+                                    <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcP-FW-hun" customClass="TapActivityIndicatorView" customModule="TapGLKit">
+                                        <rect key="frame" x="130" y="0.0" width="65" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="bcP-FW-hun" secondAttribute="height" multiplier="1:1" id="Oj5-if-CWx"/>
+                                            <constraint firstAttribute="width" constant="65" id="qYV-H7-Nvh"/>
+                                        </constraints>
+                                    </glkView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHG-wi-dsd">
+                                        <rect key="frame" x="0.0" y="85" width="325" height="15.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                        <color key="textColor" red="0.61568627450980395" green="0.62352941176470589" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jHG-wi-dsd" secondAttribute="bottom" id="20J-Vf-lqM"/>
+                                    <constraint firstItem="bcP-FW-hun" firstAttribute="top" secondItem="F1K-8o-yVO" secondAttribute="top" id="6j0-uk-Ull"/>
+                                    <constraint firstAttribute="trailing" secondItem="jHG-wi-dsd" secondAttribute="trailing" id="QEf-ds-jvn"/>
+                                    <constraint firstItem="jHG-wi-dsd" firstAttribute="leading" secondItem="F1K-8o-yVO" secondAttribute="leading" id="QOt-xQ-CsY"/>
+                                    <constraint firstItem="jHG-wi-dsd" firstAttribute="top" secondItem="bcP-FW-hun" secondAttribute="bottom" constant="20" id="SWP-ig-HIP"/>
+                                    <constraint firstItem="bcP-FW-hun" firstAttribute="centerX" secondItem="F1K-8o-yVO" secondAttribute="centerX" id="sqv-Ro-kPn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DW1-gM-Jcg" secondAttribute="trailing" id="4zd-1g-dp2"/>
+                            <constraint firstAttribute="trailing" secondItem="F1K-8o-yVO" secondAttribute="trailing" constant="25" id="5K0-aX-d0f"/>
+                            <constraint firstItem="F1K-8o-yVO" firstAttribute="centerY" secondItem="LxR-IZ-ABe" secondAttribute="centerY" id="RgQ-aH-dlz"/>
+                            <constraint firstAttribute="bottom" secondItem="DW1-gM-Jcg" secondAttribute="bottom" id="Xb7-BC-PKB"/>
+                            <constraint firstItem="DW1-gM-Jcg" firstAttribute="top" secondItem="LxR-IZ-ABe" secondAttribute="top" id="g6Q-lv-QiM"/>
+                            <constraint firstItem="DW1-gM-Jcg" firstAttribute="leading" secondItem="LxR-IZ-ABe" secondAttribute="leading" id="seL-Bx-uRj"/>
+                            <constraint firstItem="F1K-8o-yVO" firstAttribute="leading" secondItem="LxR-IZ-ABe" secondAttribute="leading" constant="25" id="uWX-Il-p3J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundBlurView" destination="DW1-gM-Jcg" id="s2d-gl-hkI"/>
+                        <outlet property="descriptionLabel" destination="jHG-wi-dsd" id="Ovm-sV-ZlS"/>
+                        <outlet property="loader" destination="bcP-FW-hun" id="2vY-9y-mb4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFc-Vj-scq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1097" y="-865"/>
+        </scene>
         <!--Payment Content View Controller-->
         <scene sceneID="dnA-gb-3IH">
             <objects>
@@ -121,6 +186,7 @@
                     <connections>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="VUE-MO-wtp" id="oST-dU-gwm"/>
                         <outlet property="payButtonUI" destination="NoP-JX-Gmp" id="u9b-Yx-RpZ"/>
+                        <outlet property="paymentOptionsContainerView" destination="Q54-VW-1wv" id="kbI-2O-C01"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zzc-mA-vpd" userLabel="First Responder" sceneMemberID="firstResponder"/>

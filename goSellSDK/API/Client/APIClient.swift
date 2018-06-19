@@ -128,8 +128,8 @@ internal final class APIClient {
         
         fileprivate struct HTTPHeaderKey {
             
-            fileprivate static let authorization = "Authorization"
-            fileprivate static let application = "application"
+            fileprivate static let authorization    = "Authorization"
+            fileprivate static let application      = "application"
             
             @available(*, unavailable) private init() { }
         }

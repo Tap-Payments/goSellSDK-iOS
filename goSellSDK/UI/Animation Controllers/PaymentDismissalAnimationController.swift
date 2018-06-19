@@ -12,7 +12,7 @@ import struct UIKit.UIView.UIViewAnimationOptions
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
 
-internal class PaymentDismissalAnimationController: NSObject {
+internal final class PaymentDismissalAnimationController: NSObject {
     
     // MARK: - Private -
     

@@ -25,6 +25,11 @@ internal extension PaymentDataManager {
         self.lastSelectedPaymentOption = model
         
         self.updatePayButtonState()
+        
+        if model.initiatesPaymentOnSelection {
+            
+            self.startPaymentProcess(with: model)
+        }
     }
     
     internal func deselectPaymentOption(_ model: PaymentOptionCellViewModel) {

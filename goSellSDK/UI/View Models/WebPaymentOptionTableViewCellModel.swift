@@ -18,7 +18,9 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionCellViewModel {
     
     internal let iconImageURL: URL
     
-    internal var iconImage: UIImage?
+    internal let paymentOption: PaymentOption
+    
+    internal private(set) var iconImage: UIImage?
     
     internal weak var cell: WebPaymentOptionTableViewCell? {
         
@@ -38,12 +40,24 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionCellViewModel {
         return true
     }
     
+    internal override var affectsPayButtonState: Bool {
+        
+        return false
+    }
+    
+    internal override var initiatesPaymentOnSelection: Bool {
+        
+        return true
+    }
+    
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, title: String, iconImageURL: URL) {
+    internal init(indexPath: IndexPath, title: String, iconImageURL: URL, paymentOption: PaymentOption) {
         
         self.title = title
         self.iconImageURL = iconImageURL
+        self.paymentOption = paymentOption
+        
         super.init(indexPath: indexPath)
     }
     

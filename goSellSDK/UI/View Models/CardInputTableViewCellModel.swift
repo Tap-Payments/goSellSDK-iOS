@@ -5,12 +5,13 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class CardIO.CardIOUtilities.CardIOUtilities
-import class TapApplication.TapApplicationPlistInfo
-import struct TapCardValidator.DefinedCardBrand
-import class UIKit.UIColor.UIColor
-import class UIKit.UIFont.UIFont
-import class UIKit.UIImage.UIImage
+import class    CardIO.CardIOUtilities.CardIOUtilities
+import class    TapApplication.TapApplicationPlistInfo
+import enum     TapCardValidator.CardBrand
+import struct   TapCardValidator.DefinedCardBrand
+import class    UIKit.UIColor.UIColor
+import class    UIKit.UIFont.UIFont
+import class    UIKit.UIImage.UIImage
 
 internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     
@@ -110,6 +111,16 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         return (self.cardDataValidators.filter { !$0.isDataValid }).count == 0
     }
     
+    internal override var affectsPayButtonState: Bool {
+        
+        return true
+    }
+    
+    internal override var initiatesPaymentOnSelection: Bool {
+        
+        return false
+    }
+    
     internal var binData: BINResponse? {
         
         didSet {
@@ -117,6 +128,50 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
             (self.validator(of: .addressOnCard) as? CardAddressValidator)?.binInformation = self.binData
             self.updateCell(animated: true)
         }
+    }
+    
+    internal var card: CreateTokenCard? {
+        
+        guard
+            
+            let number          = self.inputData[.cardNumber]       as? String,
+            let expirationDate  = self.inputData[.expirationDate]   as? ExpirationDate,
+            let cvv             = self.inputData[.cvv]              as? (String, CardBrand),
+            let name            = self.inputData[.nameOnCard]       as? String
+        
+        else { return nil }
+        
+        var address: Address?
+        if self.displaysAddressFields {
+            
+            guard let storedAddress = self.inputData[.addressOnCard] as? Address else { return nil }
+            
+            address = storedAddress
+        }
+        
+        let result = CreateTokenCard(number:            number,
+                                     expirationMonth:   expirationDate.monthString,
+                                     expirationYear:    expirationDate.yearString,
+                                     cvc:               cvv.0,
+                                     cardholderName:    name,
+                                     address:           address)
+        
+        return result
+    }
+    
+    internal var shouldSaveCard: Bool {
+        
+        return (self.inputData[.saveCard] as? Bool) ?? false
+    }
+    
+    internal var selectedPaymentOption: PaymentOption? {
+        
+        guard let cardBrand = (self.inputData[.cvv] as? (String, CardBrand))?.1 else { return nil }
+        
+        let possibleOptions = self.possiblePaymentOptions
+        
+        let result = possibleOptions.first { $0.supportedCardBrands.contains(cardBrand) }
+        return result
     }
     
     // MARK: Methods

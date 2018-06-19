@@ -5,16 +5,40 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import enum TapCardValidator.CardBrand
-import struct TapCardValidator.DefinedCardBrand
-import class TapEditableView.TapEditableView
-import class UIKit.UILabel.UILabel
-import class UIKit.UIResponder.UIResponder
-import class UIKit.UITextField.UITextField
+import enum     TapCardValidator.CardBrand
+import struct   TapCardValidator.DefinedCardBrand
+import class    TapEditableView.TapEditableView
+import class    UIKit.UILabel.UILabel
+import class    UIKit.UIResponder.UIResponder
+import class    UIKit.UISwitch.UISwitch
+import class    UIKit.UITextField.UITextField
 
 internal extension CardInputTableViewCellModel {
     
     // MARK: - Internal -
+    // MARK: Properties
+    
+    internal var possiblePaymentOptions: [PaymentOption] {
+        
+        if let existingBrand = self.definedCardBrand?.cardBrand {
+            
+            let possiblePaymentOptions = self.paymentOptions.filter {
+                
+                var allCardBrands: [CardBrand] = [$0.brand]
+                allCardBrands.append(contentsOf: $0.supportedCardBrands)
+                allCardBrands = Array(Set(allCardBrands))
+                
+                return allCardBrands.contains(existingBrand)
+            }
+            
+            return possiblePaymentOptions
+        }
+        else {
+            
+            return self.paymentOptions
+        }
+    }
+    
     // MARK: Methods
 
     internal func bind(_ inputField: UIResponder?, displayLabel: UILabel?, editableView: TapEditableView? = nil, for validation: ValidationType) {
@@ -89,6 +113,19 @@ internal extension CardInputTableViewCellModel {
             }
             
             let v = CardAddressValidator(displayLabel: label)
+            v.delegate = self
+            
+            validator = v
+            
+            
+        case .saveCard:
+            
+            guard let saveCardSwitch = inputField as? UISwitch else {
+                
+                fatalError("Save card input field should be a switch.")
+            }
+            
+            let v = SaveCardValidator(switch: saveCardSwitch)
             v.delegate = self
             
             validator = v
@@ -226,25 +263,9 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
     
     internal func updateDisplayedCollectionViewCellModels() {
         
-        if let existingBrand = self.definedCardBrand?.cardBrand {
-            
-            let possiblePaymentOptions = self.paymentOptions.filter {
-                
-                var allCardBrands: [CardBrand] = [$0.brand]
-                allCardBrands.append(contentsOf: $0.supportedCardBrands)
-                allCardBrands = Array(Set(allCardBrands))
-                
-                return allCardBrands.contains(existingBrand)
-            }
-            
-            let possibleImageURLs = possiblePaymentOptions.map { $0.imageURL }
-            let toBeDisplayedCellModels = self.tableViewCellModels.filter { possibleImageURLs.contains($0.imageURL) }
-            
-            self.displayedTableViewCellModels = toBeDisplayedCellModels
-        }
-        else {
-            
-            self.displayedTableViewCellModels = self.tableViewCellModels
-        }
+        let visiblePaymentOptions = self.possiblePaymentOptions
+        let possibleImageURLs = visiblePaymentOptions.map { $0.imageURL }
+        let toBeDisplayedCellModels = self.tableViewCellModels.filter { possibleImageURLs.contains($0.imageURL) }
+        self.displayedTableViewCellModels = toBeDisplayedCellModels
     }
 }

@@ -14,6 +14,7 @@ public enum Measurement {
     case energy(Energy)
     case length(Length)
     case mass(Mass)
+    case power(Power)
     case units
     
     // MARK: - Internal -
@@ -58,6 +59,11 @@ public enum Measurement {
             guard let nonnullUnit = unit, let measurementUnit = Mass(string: nonnullUnit) else { return nil }
             self = .mass(measurementUnit)
             
+        case Constants.power:
+            
+            guard let nonnullUnit = unit, let measurementUnit = Power(string: nonnullUnit) else { return nil }
+            self = .power(measurementUnit)
+            
         case Constants.units:
             
             self = .units
@@ -79,6 +85,7 @@ public enum Measurement {
         fileprivate static let energy           = "energy"
         fileprivate static let length           = "length"
         fileprivate static let mass             = "mass"
+        fileprivate static let power            = "power"
         fileprivate static let units            = "units"
         
         @available(*, unavailable) private init() {}
@@ -99,6 +106,7 @@ extension Measurement: CustomStringConvertible {
         case .energy(_)         : return Constants.energy
         case .length(_)         : return Constants.length
         case .mass(_)           : return Constants.mass
+        case .power(_)          : return Constants.power
         case .units             : return Constants.units
 
         }
@@ -119,6 +127,7 @@ extension Measurement: CountableCasesEnum {
         Measurement.Energy.all.forEach          { result.append(.energy($0))            }
         Measurement.Length.all.forEach          { result.append(.length($0))            }
         Measurement.Mass.all.forEach            { result.append(.mass($0))              }
+        Measurement.Power.all.forEach           { result.append(.power($0))             }
         
         result.append(.units)
         
@@ -141,6 +150,7 @@ extension Measurement: Equatable {
         case (.energy           (let lhsUnit), .energy          (let rhsUnit))  : return lhsUnit == rhsUnit
         case (.length           (let lhsUnit), .length          (let rhsUnit))  : return lhsUnit == rhsUnit
         case (.mass             (let lhsUnit), .mass            (let rhsUnit))  : return lhsUnit == rhsUnit
+        case (.power            (let lhsUnit), .power           (let rhsUnit))  : return lhsUnit == rhsUnit
         case (.units                         , .units)                          : return true
             
         default: return false
