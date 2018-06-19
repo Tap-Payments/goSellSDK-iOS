@@ -5,14 +5,34 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct CoreGraphics.CGGeometry.CGRect
 import class TapVisualEffectView.TapVisualEffectView
 import class UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class UIKit.UIView.UIView
 import class UIKit.UIViewController.UIViewController
 
 /// Payment Content View Controller.
 internal class PaymentContentViewController: BaseViewController {
     
     // MARK: - Internal -
+    // MARK: Properties
+    
+    internal var paymentOptionsContainerFrame: CGRect {
+        
+        if let frame = self.paymentOptionsContainerView?.frame {
+            
+            var result = frame
+            result.origin.y += 1.0
+            result.size.height -= 1.0
+            
+            return result
+        }
+        else {
+            
+            return .zero
+        }
+    }
+    
     // MARK: Methods
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,6 +56,8 @@ internal class PaymentContentViewController: BaseViewController {
     
     // MARK: - Private -
     // MARK: Properties
+    
+    @IBOutlet private weak var paymentOptionsContainerView: UIView?
     
     @IBOutlet private weak var payButtonUI: PayButtonUI? {
         

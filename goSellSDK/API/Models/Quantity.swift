@@ -77,6 +77,7 @@
         case .energy            (let unit): return unit.description
         case .length            (let unit): return unit.description
         case .mass              (let unit): return unit.description
+        case .power             (let unit): return unit.description
         case .units                       : return ""
             
         }
@@ -105,9 +106,9 @@ extension Quantity: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let group = try container.decode(String.self, forKey: .apiMeasurementGroup)
-        let unit = try container.decode(String?.self, forKey: .apiMeasurementUnit)
-        let value = try container.decode(Decimal.self, forKey: .value)
+        let group   = try container.decode(String.self  , forKey: .apiMeasurementGroup)
+        let unit    = try container.decode(String?.self , forKey: .apiMeasurementUnit)
+        let value   = try container.decode(Decimal.self , forKey: .value)
         
         guard let measurement = Measurement(category: group, unit: unit) else {
             

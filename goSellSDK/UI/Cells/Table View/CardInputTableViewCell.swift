@@ -255,6 +255,11 @@ extension CardInputTableViewCell: BindingWithModelCell {
             self.model?.bind(nil, displayLabel: addressLabel, for: .addressOnCard)
         }
         
+        if let saveCardSwitch = self.saveCardSwitch {
+            
+            self.model?.bind(saveCardSwitch, displayLabel: nil, for: .saveCard)
+        }
+        
         self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true, forceLayout: false)
     }
     

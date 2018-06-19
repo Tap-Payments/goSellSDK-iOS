@@ -49,10 +49,10 @@ internal enum SourceIdentifier {
     
     private struct Constants {
         
-        fileprivate static let knetIdentifier = "src_kw.knet"
-        fileprivate static let benefitIdentifier = "src_bh.benefit"
-        fileprivate static let sadadIdentifier = "src_sa.sadad"
-        fileprivate static let fawryIdentifier = "src_eg.fawry"
+        fileprivate static let knetIdentifier       = "src_kw.knet"
+        fileprivate static let benefitIdentifier    = "src_bh.benefit"
+        fileprivate static let sadadIdentifier      = "src_sa.sadad"
+        fileprivate static let fawryIdentifier      = "src_eg.fawry"
         
         @available(*, unavailable) private init() {
             

@@ -47,8 +47,8 @@ internal struct CreateChargeRequest: Encodable {
     /// Merchant reference object.
     internal private(set) var reference: Reference?
     
-    /// Card saving options.
-    internal private(set) var cardSavingOptions: CardSavingOptions?
+    /// Defines whether the card should be saved.
+    internal private(set) var shouldSaveCard: Bool
     
     /// An arbitrary string to be displayed on your customer's credit card statement.
     /// This may be up to 22 characters.
@@ -79,11 +79,11 @@ internal struct CreateChargeRequest: Encodable {
     ///   - descriptionText: Description text.
     ///   - metadata: Metadata.
     ///   - reference: Reference.
-    ///   - cardSavingOptions: Card saving options.
+    ///   - shouldSaveCard: Defines if the card should be saved.
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-    internal init(amount: Decimal, currency: Currency, customer: CustomerInfo, fee: Decimal, order: Order, redirect: Redirect, source: Source, descriptionText: String?, metadata: [String: String]?, reference: Reference?, cardSavingOptions: CardSavingOptions?, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
+    internal init(amount: Decimal, currency: Currency, customer: CustomerInfo, fee: Decimal, order: Order, redirect: Redirect, source: Source, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
         
         self.amount                 = amount
         self.currency               = currency
@@ -95,7 +95,7 @@ internal struct CreateChargeRequest: Encodable {
         self.descriptionText        = descriptionText
         self.metadata               = metadata
         self.reference              = reference
-        self.cardSavingOptions      = cardSavingOptions
+        self.shouldSaveCard         = shouldSaveCard
         self.statementDescriptor    = statementDescriptor
         self.requires3DSecure       = requires3DSecure
         self.receipt                = receipt
@@ -115,7 +115,7 @@ internal struct CreateChargeRequest: Encodable {
         case descriptionText        = "description"
         case metadata               = "metadata"
         case reference              = "reference"
-        case cardSavingOptions      = "save_card"
+        case shouldSaveCard         = "save_card"
         case statementDescriptor    = "statement_descriptor"
         case requires3DSecure       = "threeDSecure"
         case receipt                = "receipt"

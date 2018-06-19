@@ -37,14 +37,7 @@
             fatalError("normalizedValue should never be called on \(AmountModificator.className) if it's type is not percentBased")
         }
         
-        if self.value > 1.0 {
-            
-            return 0.01 * self.value
-        }
-        else {
-            
-            return self.value
-        }
+        return 0.01 * self.value
     }
     
     // MARK: - Private -

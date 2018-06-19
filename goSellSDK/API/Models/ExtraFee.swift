@@ -39,6 +39,6 @@ internal final class ExtraFee: AmountModificator {
         
         case type       = "type"
         case value      = "value"
-        case currency   = "currency_code"
+        case currency   = "currency"
     }
 }

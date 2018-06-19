@@ -33,7 +33,7 @@ internal struct AmountedCurrency: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         
-        case currency       = "currency_code"
+        case currency       = "currency"
         case amount         = "amount"
         case currencySymbol = "symbol"
     }

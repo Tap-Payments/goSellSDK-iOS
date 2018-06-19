@@ -18,6 +18,16 @@ internal struct ExpirationDate {
         return ExpirationDate(month: currentDate.month, year: currentDate.year % 100)
     }
     
+    internal var monthString: String {
+        
+        return String(format: "%02d", locale: Locale.enUS, arguments: [self.month])
+    }
+    
+    internal var yearString: String {
+        
+        return String(format: "%02d", locale: Locale.enUS, arguments: [self.year])
+    }
+    
     /// Month.
     internal var month: Int
     
@@ -43,18 +53,5 @@ internal struct ExpirationDate {
         
         self.month = month
         self.year = year
-    }
-    
-    // MARK: - Private -
-    // MARK: Properties
-    
-    private var monthString: String {
-        
-        return String(format: "%02d", locale: Locale.enUS, arguments: [self.month])
-    }
-    
-    private var yearString: String {
-        
-        return String(format: "%02d", locale: Locale.enUS, arguments: [self.year])
     }
 }

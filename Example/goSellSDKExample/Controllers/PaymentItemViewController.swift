@@ -118,6 +118,11 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                     caseSelectionController.allValues = type(of: measurement).all
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
+                case .power(let measurement):
+                    
+                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    
                 default:
                     
                     break
@@ -299,8 +304,9 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
             self.currentPaymentItem.amountPerUnit = 0.0
         }
         
-        if let discountValue = self.discountValueTextField?.text?.decimalValue, let discountType = self.currentPaymentItem.discount?.type, discountValue > 0.0 {
+        if let discountType = self.currentPaymentItem.discount?.type {
             
+            let discountValue = self.discountValueTextField?.text?.decimalValue ?? 0.0
             self.currentPaymentItem.discount = AmountModificator(type: discountType, value: discountValue)
         }
         else {
@@ -421,15 +427,24 @@ extension PaymentItemViewController: CaseSelectionTableViewControllerDelegate {
                 
                 self.currentPaymentItem.quantity.unitOfMeasurement = .mass(massUnit)
             }
+            else if let powerUnit = value as? Measurement.Power {
+                
+                self.currentPaymentItem.quantity.unitOfMeasurement = .power(powerUnit)
+            }
             
         case Constants.discountTypeCellReuseIdentifier:
             
             guard let type = value as? AmountModificatorType else { return }
             
-            let discount = self.currentPaymentItem.discount ?? AmountModificator(type: type, value: 0.0)
-            discount.type = type
-            
-            self.currentPaymentItem.discount = discount
+            if let existingDiscount = self.currentPaymentItem.discount {
+                
+                existingDiscount.type = type
+            }
+            else {
+                
+                let discountValue = self.discountValueTextField?.text?.decimalValue ?? 0.0
+                self.currentPaymentItem.discount = AmountModificator(type: type, value: discountValue)
+            }
             
         default:
             

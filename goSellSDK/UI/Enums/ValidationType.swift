@@ -12,4 +12,5 @@ internal enum ValidationType {
     case cvv
     case nameOnCard
     case addressOnCard
+    case saveCard
 }

@@ -6,7 +6,7 @@
 //
 
 /// Customer model.
-@objcMembers public final class CustomerInfo: NSObject, Codable {
+@objcMembers public final class CustomerInfo: NSObject, Decodable {
     
     // MARK: - Public -
     // MARK: Properties
@@ -118,6 +118,29 @@
         
         super.init()
     }
+    
+    private func validateFields() {
+        
+        if let identifier = self.identifier, identifier.length == 0 {
+            
+            self.identifier = nil
+        }
+        
+        if let trimmedFirstName = self.firstName?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            
+            self.firstName = trimmedFirstName.length > 0 ? trimmedFirstName : nil
+        }
+        
+        if let trimmedMiddleName = self.middleName?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            
+            self.middleName = trimmedMiddleName.length > 0 ? trimmedMiddleName : nil
+        }
+        
+        if let trimmedLastName = self.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            
+            self.lastName = trimmedLastName.length > 0 ? trimmedLastName : nil
+        }
+    }
 }
 
 // MARK: - NSCopying
@@ -127,5 +150,23 @@ extension CustomerInfo: NSCopying {
         
         let emailAddressCopy = self.emailAddress?.copy() as? EmailAddress
         return try! CustomerInfo(identifier: self.identifier, emailAddress: emailAddressCopy, phoneNumber: self.phoneNumber, firstName: self.firstName, middleName: self.middleName, lastName: self.lastName)
+    }
+}
+
+// MARK: - Encodable
+extension CustomerInfo: Encodable {
+    
+    public func encode(to encoder: Encoder) throws {
+        
+        self.validateFields()
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encodeIfPresent(self.identifier,      forKey: .identifier)
+        try container.encodeIfPresent(self.emailAddress,    forKey: .emailAddress)
+        try container.encodeIfPresent(self.phoneNumber,     forKey: .phoneNumber)
+        try container.encodeIfPresent(self.firstName,       forKey: .firstName)
+        try container.encodeIfPresent(self.middleName,      forKey: .middleName)
+        try container.encodeIfPresent(self.lastName,        forKey: .lastName)
     }
 }

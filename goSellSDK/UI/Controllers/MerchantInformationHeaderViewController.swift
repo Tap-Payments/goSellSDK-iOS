@@ -39,7 +39,6 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
     internal func updateBackgroundOpacityBasedOnScrollContentOverlapping(_ overlapping: CGFloat) {
         
         let opacity = clamp(value: 2.0 * overlapping / self.view.bounds.height, low: 0.0, high: 1.0)
-//        let shadowOpacity = Float(1.0 - opacity)
         
         self.backgroundOpacity = opacity
         self.view.layer.shadowOpacity = Float(opacity)

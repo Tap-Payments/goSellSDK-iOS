@@ -17,6 +17,7 @@ internal extension Measurement {
             .duration(.seconds),
             .length(.meters),
             .mass(.kilograms),
+            .power(.watts),
             .units
         ]
     }

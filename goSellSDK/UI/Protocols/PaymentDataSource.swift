@@ -22,4 +22,25 @@
     
     /// Shipping options.
     @objc optional var shipping: [Shipping]? { get }
+    
+    /// Post URL. The URL that will be called by Tap system notifying that payment has succeed or failed.
+    @objc optional var postURL: URL? { get }
+    
+    /// Description of the payment.
+    @objc optional var paymentDescription: String? { get }
+    
+    /// Additional information you would like to pass along with the transaction.
+    @objc optional var paymentMetadata: [String: String]? { get }
+    
+    /// Payment reference. Implement this property to keep a reference to the transaction on your backend.
+    @objc optional var paymentReference: Reference? { get }
+    
+    /// Payment statement descriptor.
+    @objc optional var paymentStatementDescriptor: String? { get }
+    
+    /// Defines if 3D secure check is required.
+    @objc optional var require3DSecure: Bool { get }
+    
+    /// Receipt dispatch settings.
+    @objc optional var receiptSettings: Receipt? { get }
 }

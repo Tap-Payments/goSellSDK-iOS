@@ -48,6 +48,30 @@ internal final class PaymentDataManager {
     
     internal var lastSelectedPaymentOption: PaymentOptionCellViewModel?
     
+    internal private(set) var externalDataSource: PaymentDataSource?
+    
+    internal var orderIdentifier: String? {
+        
+        return self.paymentOptionsResponse?.orderIdentifier
+    }
+    
+    internal var transactionCurrency: AmountedCurrency {
+        
+        guard let nonnullPaymentOptionsResponse = self.paymentOptionsResponse else {
+            
+            fatalError("Should never reach this place.")
+        }
+        
+        let currency = nonnullPaymentOptionsResponse.currency
+        
+        guard let amountedCurrency = (self.paymentOptionsResponse?.supportedCurrenciesAmounts.first { $0.currency == currency }) else {
+            
+            fatalError("Transaction currency is not a supported currency?!")
+        }
+        
+        return amountedCurrency
+    }
+    
     // MARK: Methods
     
     internal func start(with caller: PayButtonInternalImplementation) {
@@ -58,6 +82,8 @@ internal final class PaymentDataManager {
             
             fatalError("Pay button data source is not set.")
         }
+        
+        self.externalDataSource = nonnullDataSource
         
         guard let currency = nonnullDataSource.currency else {
             
@@ -143,23 +169,6 @@ internal final class PaymentDataManager {
         }
     }
     
-    private var transactionCurrency: AmountedCurrency {
-        
-        guard let nonnullPaymentOptionsResponse = self.paymentOptionsResponse else {
-            
-            fatalError("Should never reach this place.")
-        }
-        
-        let currency = nonnullPaymentOptionsResponse.currency
-        
-        guard let amountedCurrency = (self.paymentOptionsResponse?.supportedCurrenciesAmounts.first { $0.currency == currency }) else {
-            
-            fatalError("Transaction currency is not a supported currency?!")
-        }
-        
-        return amountedCurrency
-    }
-    
     private var cardPaymentOptionsCellModel: CardInputTableViewCellModel {
         
         let cardModels = self.cellModels(of: CardInputTableViewCellModel.self)
@@ -222,7 +231,8 @@ internal final class PaymentDataManager {
             
             let webOptionCellModel = WebPaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
                                                                         title: $0.title,
-                                                                        iconImageURL: $0.imageURL)
+                                                                        iconImageURL: $0.imageURL,
+                                                                        paymentOption: $0)
             result.append(webOptionCellModel)
         }
         

@@ -103,15 +103,18 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     private func updateCurrentCustomerInfoFromInputFields() {
         
         self.currentCustomer.firstName = self.firstNameTextField?.text
+        self.currentCustomer.middleName = self.middleNameTextField?.text
         self.currentCustomer.lastName = self.lastNameTextField?.text
         self.currentCustomer.emailAddress = try? EmailAddress(self.emailAddressTextField?.text ?? "")
-        self.currentCustomer.phoneNumber = try? PhoneNumber(isdNumber: self.phoneISDNumberTextField?.text ?? "", phoneNumber: self.phoneNumberTextField?.text ?? "")
+        self.currentCustomer.phoneNumber = try? PhoneNumber(isdNumber: self.phoneISDNumberTextField?.text ?? "",
+                                                            phoneNumber: self.phoneNumberTextField?.text ?? "")
     }
     
     private func updateWithCurrentCustomerInfo() {
         
         self.idLabel?.text = self.currentCustomer.identifier
         self.firstNameTextField?.text = self.currentCustomer.firstName
+        self.middleNameTextField?.text = self.currentCustomer.middleName
         self.lastNameTextField?.text = self.currentCustomer.lastName
         self.emailAddressTextField?.text = self.currentCustomer.emailAddress?.value
         self.phoneISDNumberTextField?.text = self.currentCustomer.phoneNumber?.isdNumber
