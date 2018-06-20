@@ -843,7 +843,7 @@
                     </view>
                     <connections>
                         <outlet property="paymentOptionsTableView" destination="5UF-ah-N5p" id="Kii-gi-Y6q"/>
-                        <segue destination="vWe-pD-xt1" kind="presentation" identifier="WebPaymentViewControllerSegue" modalPresentationStyle="formSheet" id="v2t-Dx-278"/>
+                        <segue destination="vWe-pD-xt1" kind="show" identifier="WebPaymentViewControllerSegue" id="v2t-Dx-278"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LzQ-2a-D6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1377,21 +1377,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWf-9Q-Kmj">
-                                <rect key="frame" x="144" y="153" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Close"/>
-                                <connections>
-                                    <action selector="closeButtonTouchUpInside:" destination="vWe-pD-xt1" eventType="touchUpInside" id="L0K-q3-Gnn"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wka-gk-Q4b">
+                                <rect key="frame" x="0.0" y="110" width="375" height="592"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-xZ-fUC" customClass="WebViewProgressBar" customModule="goSellSDK">
+                                <rect key="frame" x="0.0" y="110" width="375" height="3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="WP5-h0-o9M"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsFullProgress" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                                        <color key="value" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hv5-Vi-uK6" customClass="TapNavigationView" customModule="goSellSDK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.081321229716778021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Hv5-Vi-uK6" firstAttribute="bottom" secondItem="tMf-mL-ha7" secondAttribute="bottom" constant="66" id="11B-uw-zoF"/>
+                            <constraint firstItem="Hv5-Vi-uK6" firstAttribute="leading" secondItem="b2g-2N-ZiD" secondAttribute="leading" id="3jT-dt-TtS"/>
+                            <constraint firstAttribute="bottom" secondItem="wka-gk-Q4b" secondAttribute="bottom" id="5JQ-tN-9Ug"/>
+                            <constraint firstItem="Hv5-Vi-uK6" firstAttribute="top" secondItem="b2g-2N-ZiD" secondAttribute="top" id="DNZ-bh-Xf2"/>
+                            <constraint firstAttribute="trailing" secondItem="Jhb-xZ-fUC" secondAttribute="trailing" id="FCu-hn-hJv"/>
+                            <constraint firstItem="wka-gk-Q4b" firstAttribute="top" secondItem="Hv5-Vi-uK6" secondAttribute="bottom" id="GQw-iF-vHQ"/>
+                            <constraint firstItem="Jhb-xZ-fUC" firstAttribute="leading" secondItem="b2g-2N-ZiD" secondAttribute="leading" id="JFW-Pz-Ctg"/>
+                            <constraint firstItem="Jhb-xZ-fUC" firstAttribute="top" secondItem="Hv5-Vi-uK6" secondAttribute="bottom" id="aGH-3Q-ovK"/>
+                            <constraint firstItem="wka-gk-Q4b" firstAttribute="leading" secondItem="b2g-2N-ZiD" secondAttribute="leading" id="dum-lk-L9z"/>
+                            <constraint firstAttribute="trailing" secondItem="wka-gk-Q4b" secondAttribute="trailing" id="mNk-Zu-upB"/>
+                            <constraint firstAttribute="trailing" secondItem="Hv5-Vi-uK6" secondAttribute="trailing" id="tS3-az-LXs"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="headerNavigationView" destination="Hv5-Vi-uK6" id="a2f-GS-Qh9"/>
+                        <outlet property="progressBar" destination="Jhb-xZ-fUC" id="8tl-66-lFG"/>
+                        <outlet property="webViewContainer" destination="wka-gk-Q4b" id="Fe5-UW-8Ho"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDK-tN-NjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1401" y="1344"/>
+            <point key="canvasLocation" x="1401" y="1315"/>
         </scene>
         <!--Merchant Information Header View Controller-->
         <scene sceneID="YAF-wo-AZg">

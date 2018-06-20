@@ -72,6 +72,10 @@ internal final class PaymentDataManager {
         return amountedCurrency
     }
     
+    internal var paymentOptionThatRequiresWebPaymentController: PaymentOption?
+    internal var urlToLoadInWebPaymentController: URL?
+    internal var currentCharge: Charge?
+    
     // MARK: Methods
     
     internal func start(with caller: PayButtonInternalImplementation) {

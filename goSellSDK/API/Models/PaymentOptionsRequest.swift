@@ -44,7 +44,7 @@ internal struct PaymentOptionsRequest {
         case items          = "items"
         case shipping       = "shipping"
         case taxes          = "taxes"
-        case currency       = "currency_code"
+        case currency       = "currency"
         case customer       = "customer"
         case totalAmount    = "total_amount"
     }
