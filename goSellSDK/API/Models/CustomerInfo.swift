@@ -89,8 +89,8 @@
     private enum CodingKeys: String, CodingKey {
         
         case identifier     = "id"
-        case emailAddress   = "email_address"
-        case phoneNumber    = "phone_number"
+        case emailAddress   = "email"
+        case phoneNumber    = "phone"
         case firstName      = "first_name"
         case middleName     = "middle_name"
         case lastName       = "last_name"

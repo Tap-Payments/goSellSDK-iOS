@@ -37,11 +37,23 @@ internal class PaymentOptionsViewController: BaseViewController {
             
             PaymentDataManager.shared.prepareAddressInputController(addressInputController)
         }
+        else if let webPaymentController = segue.destination as? WebPaymentViewController {
+            
+            PaymentDataManager.shared.prepareWebPaymentController(webPaymentController)
+        }
     }
     
     internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
         
         PaymentDataManager.shared.paymentOptionsControllerKeyboardLayoutFinished()
+    }
+    
+    internal func showWebPaymentViewController() {
+        
+        DispatchQueue.main.async {
+            
+            self.performSegue(withIdentifier: "\(WebPaymentViewController.className)Segue", sender: self)
+        }
     }
     
     deinit {

@@ -119,11 +119,11 @@ extension Measurement.Power: ProportionalToOrigin {
      
         switch self {
             
-        case .terawatts             : return 1_000_000_000_000
-        case .gigawatts             : return     1_000_000_000
-        case .megawatts             : return         1_000_000
-        case .kilowatts             : return             1_000
-        case .watts                 : return                 1
+        case .terawatts             : return 1_000_000_000_000.0
+        case .gigawatts             : return     1_000_000_000.0
+        case .megawatts             : return         1_000_000.0
+        case .kilowatts             : return             1_000.0
+        case .watts                 : return                 1.0
         case .milliwatts            : return                 0.001
         case .microwatts            : return                 0.000001
         case .nanowatts             : return                 0.000000001

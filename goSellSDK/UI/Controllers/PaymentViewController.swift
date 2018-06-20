@@ -38,6 +38,7 @@ internal class PaymentViewController: BaseViewController {
         
         if let navigationController = segue.destination as? UINavigationController, navigationController.rootViewController is PaymentContentViewController {
             
+            navigationController.interactivePopGestureRecognizer?.delegate = nil
             navigationController.delegate = self.animationsHandler
             navigationController.transitioningDelegate = self.animationsHandler
         }

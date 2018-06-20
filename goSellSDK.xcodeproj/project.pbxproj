@@ -89,6 +89,12 @@
 		A43A0A5920D93E19006B39F1 /* FadeAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A0A5720D93E18006B39F1 /* FadeAnimationController.swift */; };
 		A43A0A5B20D93E3F006B39F1 /* ViewControllerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A0A5A20D93E3F006B39F1 /* ViewControllerOperation.swift */; };
 		A43A0A5C20D93E3F006B39F1 /* ViewControllerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A0A5A20D93E3F006B39F1 /* ViewControllerOperation.swift */; };
+		A43A0A6720DA4A82006B39F1 /* WebPaymentURLDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A0A6620DA4A82006B39F1 /* WebPaymentURLDecision.swift */; };
+		A43A0A6820DA4A82006B39F1 /* WebPaymentURLDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A0A6620DA4A82006B39F1 /* WebPaymentURLDecision.swift */; };
+		A43A0A6B20DA4AAD006B39F1 /* WebViewProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A0A6A20DA4AAC006B39F1 /* WebViewProgressBar.swift */; };
+		A43A0A6C20DA4AAD006B39F1 /* WebViewProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A0A6A20DA4AAC006B39F1 /* WebViewProgressBar.swift */; };
+		A43A0A7020DA4B0A006B39F1 /* WebViewProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A0A6F20DA4B0A006B39F1 /* WebViewProgressBar.xib */; };
+		A43A0A7120DA4B0A006B39F1 /* WebViewProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A0A6F20DA4B0A006B39F1 /* WebViewProgressBar.xib */; };
 		A43ED4232080BD250028C542 /* PayButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ED4222080BD250028C542 /* PayButtonProtocol.swift */; };
 		A43ED4272080CEDD0028C542 /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ED4262080CEDD0028C542 /* PayButton.swift */; };
 		A43ED42A2080CF870028C542 /* PayButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43ED4292080CF870028C542 /* PayButton.xib */; };
@@ -524,6 +530,9 @@
 		A43A0A5420D93D5F006B39F1 /* SaveCardValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveCardValidator.swift; sourceTree = "<group>"; };
 		A43A0A5720D93E18006B39F1 /* FadeAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeAnimationController.swift; sourceTree = "<group>"; };
 		A43A0A5A20D93E3F006B39F1 /* ViewControllerOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerOperation.swift; sourceTree = "<group>"; };
+		A43A0A6620DA4A82006B39F1 /* WebPaymentURLDecision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPaymentURLDecision.swift; sourceTree = "<group>"; };
+		A43A0A6A20DA4AAC006B39F1 /* WebViewProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewProgressBar.swift; sourceTree = "<group>"; };
+		A43A0A6F20DA4B0A006B39F1 /* WebViewProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewProgressBar.xib; sourceTree = "<group>"; };
 		A43ED4222080BD250028C542 /* PayButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButtonProtocol.swift; sourceTree = "<group>"; };
 		A43ED4262080CEDD0028C542 /* PayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButton.swift; sourceTree = "<group>"; };
 		A43ED4292080CF870028C542 /* PayButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayButton.xib; sourceTree = "<group>"; };
@@ -809,6 +818,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		A43A0A6920DA4AAC006B39F1 /* WebViewProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				A43A0A6A20DA4AAC006B39F1 /* WebViewProgressBar.swift */,
+			);
+			path = WebViewProgressBar;
+			sourceTree = "<group>";
+		};
 		A43ED4202080BC380028C542 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -845,11 +862,12 @@
 			isa = PBXGroup;
 			children = (
 				A456717F20AD6C300057A504 /* Images.xcassets */,
-				A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */,
 				A479F7282099DB5E00556E10 /* LoadingImageView.xib */,
-				A479F7272099DB5D00556E10 /* PayButtonUI.xib */,
 				A43ED4292080CF870028C542 /* PayButton.xib */,
+				A479F7272099DB5D00556E10 /* PayButtonUI.xib */,
 				A4D5FE1820830ECB007D52F5 /* Payment.storyboard */,
+				A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */,
+				A43A0A6F20DA4B0A006B39F1 /* WebViewProgressBar.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1113,6 +1131,7 @@
 			children = (
 				A48810E220A2E92E00CDF5D4 /* LoadingImageView */,
 				A48810DF20A2E92E00CDF5D4 /* TapNavigationView */,
+				A43A0A6920DA4AAC006B39F1 /* WebViewProgressBar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1133,6 +1152,7 @@
 				A42758B620A48CE400D214EE /* PaymentDataManager+PayButton.swift */,
 				A4BD8D1C20A1F48B00EFF2CE /* PaymentDataManager+PaymentOptionsSelection.swift */,
 				A43A0A4820D93C4A006B39F1 /* PaymentDataManager+PaymentProcess.swift */,
+				A43A0A6620DA4A82006B39F1 /* WebPaymentURLDecision.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1364,6 +1384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43A0A7020DA4B0A006B39F1 /* WebViewProgressBar.xib in Resources */,
 				A48810EE20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */,
 				A43ED42A2080CF870028C542 /* PayButton.xib in Resources */,
 				A479F72B2099DB5E00556E10 /* LoadingImageView.xib in Resources */,
@@ -1378,6 +1399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A479F72A2099DB5E00556E10 /* PayButtonUI.xib in Resources */,
+				A43A0A7120DA4B0A006B39F1 /* WebViewProgressBar.xib in Resources */,
 				A456718120AD6C300057A504 /* Images.xcassets in Resources */,
 				A479F72C2099DB5E00556E10 /* LoadingImageView.xib in Resources */,
 				A48810EF20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */,
@@ -1415,6 +1437,7 @@
 				A4B6E43D20860CD800078072 /* Permissions.swift in Sources */,
 				A4B6E4422086279900078072 /* InitializationStatus.swift in Sources */,
 				A4F7103620B550AD0064FE4B /* AddressFieldsDataManager.swift in Sources */,
+				A43A0A6720DA4A82006B39F1 /* WebPaymentURLDecision.swift in Sources */,
 				A4A9829720D2B32000770690 /* TransactionDetails.swift in Sources */,
 				A4C0FC8D208DFA2200C5FBC6 /* SingleCellModel.swift in Sources */,
 				A4A9829A20D2B33D00770690 /* APIClient+Token.swift in Sources */,
@@ -1577,6 +1600,7 @@
 				A482F7662085DB1300AA76A4 /* TapSDKUnknownError.swift in Sources */,
 				A4BE547620A9D4DB004E979E /* CurrencySelectionViewControllerDelegate.swift in Sources */,
 				A456717D20AD6AA30057A504 /* APIClient+BIN.swift in Sources */,
+				A43A0A6B20DA4AAD006B39F1 /* WebViewProgressBar.swift in Sources */,
 				A4A9828B20D2B32000770690 /* Receipt.swift in Sources */,
 				A4F7105E20B553AF0064FE4B /* AddressDropdownFieldTableViewCell.swift in Sources */,
 				A4F7106D20B554480064FE4B /* TextInputType.swift in Sources */,
@@ -1664,6 +1688,7 @@
 				A4BD8D9120A1FB5500EFF2CE /* PaymentDataManager.swift in Sources */,
 				A408C06820BC05B9005E74AD /* InitializableWithString.swift in Sources */,
 				A4BD8D9220A1FB5500EFF2CE /* Bundle+Additions.swift in Sources */,
+				A43A0A6820DA4A82006B39F1 /* WebPaymentURLDecision.swift in Sources */,
 				A4BD8D9320A1FB5500EFF2CE /* UIStoryboard+Additions.swift in Sources */,
 				A4BD8D9420A1FB5500EFF2CE /* LoadingWithModelCell.swift in Sources */,
 				A4444BFA20AB53C7005D9E87 /* PaymentContentViewController.swift in Sources */,
@@ -1738,6 +1763,7 @@
 				A4F7107120B5546A0064FE4B /* AddressFieldInputType.swift in Sources */,
 				A43A0A5320D93CCE006B39F1 /* PaymentOption+Additions.swift in Sources */,
 				A413DB3820AEE0E700C29C6B /* Country+Additions.swift in Sources */,
+				A43A0A6C20DA4AAD006B39F1 /* WebViewProgressBar.swift in Sources */,
 				A4F7105720B553670064FE4B /* AddressTextInputFieldTableViewCellModel.swift in Sources */,
 				A4A982AE20D2B34F00770690 /* ChargeStatus.swift in Sources */,
 				A4F7104820B553260064FE4B /* AddressInputViewController+UITableView.swift in Sources */,
