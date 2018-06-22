@@ -5,11 +5,12 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGGeometry.CGRect
-import class TapVisualEffectView.TapVisualEffectView
-import class UIKit.UIStoryboardSegue.UIStoryboardSegue
-import class UIKit.UIView.UIView
-import class UIKit.UIViewController.UIViewController
+import struct   CoreGraphics.CGGeometry.CGRect
+import struct   TapAdditionsKit.TypeAlias
+import class    TapVisualEffectView.TapVisualEffectView
+import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class    UIKit.UIView.UIView
+import class    UIKit.UIViewController.UIViewController
 
 /// Payment Content View Controller.
 internal class PaymentContentViewController: BaseViewController {
@@ -54,6 +55,21 @@ internal class PaymentContentViewController: BaseViewController {
         self.paymentOptionsViewController?.performAdditionalAnimationsAfterKeyboardLayoutFinished()
     }
     
+    internal func hide(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
+        
+        DispatchQueue.main.async {
+            
+            self.view.resignFirstResponder {
+                
+                let presentingController = self.presentingViewController as? PaymentViewController
+                self.dismiss(animated: true) {
+                    
+                    presentingController?.hide(animated: false, completion: completion)
+                }
+            }
+        }
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -78,28 +94,11 @@ extension PaymentContentViewController: MerchantInformationHeaderViewControllerD
     
     internal func merchantInformationHeaderViewControllerCloseButtonClicked(_ controller: MerchantInformationHeaderViewController) {
         
-        DispatchQueue.main.async {
+        LoadingViewController.destroyInstance()
+        
+        self.hide {
             
-            let dismissalClosure = {
-                
-                let presentingController = self.presentingViewController
-                self.dismiss(animated: true) {
-                    
-                    presentingController?.dismissFromSeparateWindow(false) {
-                        
-                        PaymentDataManager.userDidClosePayment()
-                    }
-                }
-            }
-            
-            if let firstResponder = self.view.firstResponder {
-                
-                firstResponder.resignFirstResponder(dismissalClosure)
-            }
-            else {
-                
-                dismissalClosure()
-            }
+            PaymentDataManager.userDidClosePayment()
         }
     }
 }

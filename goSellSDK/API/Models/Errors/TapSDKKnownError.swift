@@ -20,9 +20,13 @@
     /// Readable description of the error.
     public override var description: String {
         
-        let errorDescription = self.error == nil ? "nil" : "\(self.error!.localizedDescription)"
-        let urlResponseDescription = self.urlResponse?.description ?? "nil"
-        return "\(super.description)\nUnderlying error: \(errorDescription)\nURL response: \(urlResponseDescription)"
+        let firstLine   = super.description
+        let secondLine  = "Underlying error: " + self.errorDescription
+        let thirdLine   = "URL response: " + self.urlResponseDescription
+        
+        let lines: [String] = [firstLine, secondLine, thirdLine]
+        
+        return lines.joined(separator: "\n")
     }
     
     // MARK: - Internal -
@@ -39,6 +43,33 @@
         super.init(type: type)
         self.error = error
         self.urlResponse = response
+    }
+    
+    // MARK: - Private -
+    // MARK: Properties
+    
+    private var errorDescription: String {
+        
+        if let nonnullError = self.error {
+            
+            return nonnullError.localizedDescription
+        }
+        else {
+            
+            return "nil"
+        }
+    }
+    
+    private var urlResponseDescription: String {
+        
+        if let nonnullResponse = self.urlResponse {
+            
+            return nonnullResponse.description
+        }
+        else {
+            
+            return "nil"
+        }
     }
 }
 

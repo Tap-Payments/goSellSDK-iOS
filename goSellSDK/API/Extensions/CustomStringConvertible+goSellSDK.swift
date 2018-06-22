@@ -7,24 +7,46 @@
 
 internal extension CustomStringConvertible {
     
+    // MARK: - Internal -
     // MARK: Methods
     
     internal func description(with extraSpaces: Int) -> String {
         
-        let separator = "\n\(String(repeatElement(" ", count: extraSpaces)))"
+        let spaces = String(repeating: CustomStringConvertibleConstants.spaceString, count: extraSpaces)
+        let separator = CustomStringConvertibleConstants.newlineString.appending(spaces)
         let originalDescription = self.description
         
-        var desc: String
-        if originalDescription.hasPrefix("\n") {
+        let newLineTabulation = CustomStringConvertibleConstants.newlineString.appending(CustomStringConvertibleConstants.tabulationString)
+        
+        if originalDescription.hasPrefix(CustomStringConvertibleConstants.newlineString) {
             
-            let index = originalDescription.index(after: originalDescription.index(of: "\n")!)
-            desc = "\n\t" + String(originalDescription.suffix(from: index))
+            let suffix = originalDescription.dropFirst(CustomStringConvertibleConstants.newlineString.length)
+            let suffixString = String(suffix)
+            
+            let desc = newLineTabulation.appending(suffixString)
+            return desc.replacingOccurrences(of: newLineTabulation, with: separator)
         }
         else {
             
-            desc = originalDescription
+            return originalDescription.replacingOccurrences(of: newLineTabulation, with: separator)
         }
-        
-        return desc.replacingOccurrences(of: "\n\t", with: separator)
     }
+    
+    // MARK: - Private -
+    // MARK: Methods
+    
+    
+}
+
+private struct CustomStringConvertibleConstants {
+    
+    fileprivate static let spaceString      = " "
+    
+    fileprivate static let newlineString    = "\n"
+    fileprivate static let newline          = Character(CustomStringConvertibleConstants.newlineString)
+    
+    fileprivate static let tabulationString = "\t"
+    
+    
+    @available(*, unavailable) private init() {}
 }

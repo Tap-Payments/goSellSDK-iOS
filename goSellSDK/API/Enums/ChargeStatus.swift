@@ -16,4 +16,24 @@ internal enum ChargeStatus: String, Decodable {
     case restricted     = "RESTRICTED"
     case captured       = "CAPTURED"
     case void           = "VOID"
+    
+    // MARK: - Internal -
+    // MARK: Properties
+    
+    internal var localizedDescription: String {
+        
+        switch self {
+            
+        case .initiated:    return "Initiated"
+        case .otpRequired:  return "OTP code required"
+        case .inProgress:   return "In Progress"
+        case .cancelled:    return "Cancelled"
+        case .failed:       return "Failed"
+        case .declined:     return "Declined"
+        case .restricted:   return "Restricted"
+        case .captured:     return "Captured"
+        case .void:         return "Void"
+
+        }
+    }
 }

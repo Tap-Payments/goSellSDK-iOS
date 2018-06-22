@@ -94,6 +94,13 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         self.delegate?.currencySelectionViewControllerDidFinish(with: manager.selectedCurrency, changed: manager.hasCurrencyChanged)
     }
     
+    private func revertDelegateCurrencyToPreselected() {
+        
+        guard let manager = self.dataManager else { return }
+        
+        self.delegate?.currencySelectionViewControllerDidFinish(with: manager.preselectedCurrency, changed: false)
+    }
+    
     private func addCheckmarkButtonToTheHeader() {
         
         let doneButton = UIButton(type: .custom)
@@ -144,5 +151,19 @@ extension CurrencySelectionViewController: UITableViewDelegate {
         
         let model = self.model(at: indexPath)
         self.dataManager?.selectViewModel(model)
+    }
+}
+
+// MARK: - InteractivePopViewControllerStatusReporting
+extension CurrencySelectionViewController: InteractivePopViewControllerStatusReporting {
+    
+    internal func interactiveTransitionDidBegin() {
+        
+        self.notifyDelegateIfCurrencyChanged()
+    }
+    
+    internal func interactiveTransitionDidCancel() {
+        
+        self.revertDelegateCurrencyToPreselected()
     }
 }

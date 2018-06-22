@@ -12,7 +12,7 @@ internal extension PaymentOption {
     
     internal var sourceIdentifier: SourceIdentifier {
         
-        guard self.paymentType == .web else {
+        if self.paymentType != .web {
             
             fatalError("sourceIdentifier should not be called on non-web payment type.")
         }

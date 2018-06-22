@@ -119,7 +119,7 @@ extension FadeAnimationController: UIViewControllerAnimatedTransitioning {
             viewToFade.alpha = finalAlpha
         }
         
-        let animationDuration = transitionContext.isAnimated ? Constants.animationDuration : 0.0
+        let animationDuration = self.transitionDuration(using: transitionContext)
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations) { (finished) in
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

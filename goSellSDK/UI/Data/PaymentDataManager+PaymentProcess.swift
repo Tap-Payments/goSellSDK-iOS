@@ -61,7 +61,7 @@ internal extension PaymentDataManager {
     
     private struct PaymentProcessConstants {
         
-        fileprivate static let returnURL = URL(string: "goSellSDK://return_url")!
+        fileprivate static let returnURL = URL(string: "gosellsdk://return_url")!
         
         @available(*, unavailable) private init() {}
     }
@@ -164,12 +164,14 @@ internal extension PaymentDataManager {
             
         case .inProgress, .cancelled, .failed, .declined, .restricted, .void:
             
-            self.paymentFailed()
+            self.paymentFailed(with: nonnullCharge.status)
             
         case .captured:
             
-            self.paymentSucceed()
-            
+            if let receiptNumber = charge?.receiptSettings?.identifier {
+                
+                self.paymentSucceed(with: receiptNumber)
+            }
         }
     }
     
@@ -192,14 +194,46 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func paymentFailed() {
+    private func paymentFailed(with status: ChargeStatus) {
         
-        NSLog("Not implemented yet")
+        let disappearanceTime = SettingsDataManager.shared.settings?.internalSettings.statusDisplayDuration
+        
+        PaymentContentViewController.findInHierarchy()?.hide {
+            
+            let popup = StatusPopupViewController.instantiate()
+            popup.titleText     = status.localizedDescription
+            popup.subtitleText  = nil
+            popup.iconImage     = .named("ic_x_red", in: .goSellSDKResources)
+            
+            popup.display { [weak popup] in
+                
+                if let nonnullDisappearanceTime = disappearanceTime {
+                    
+                    popup?.idleDisappearanceTimeInterval = nonnullDisappearanceTime
+                }
+            }
+        }
     }
     
-    private func paymentSucceed() {
+    private func paymentSucceed(with receiptNumber: String) {
         
-        NSLog("Not implemented yet")
+        let disappearanceTime = SettingsDataManager.shared.settings?.internalSettings.statusDisplayDuration
+        
+        PaymentContentViewController.findInHierarchy()?.hide {
+            
+            let popup = StatusPopupViewController.instantiate()
+            popup.titleText     = "Successful"
+            popup.subtitleText  = receiptNumber
+            popup.iconImage     = .named("ic_checkmark_green", in: .goSellSDKResources)
+            
+            popup.display { [weak popup] in
+                
+                if let nonnullDisappearanceTime = disappearanceTime {
+                    
+                    popup?.idleDisappearanceTimeInterval = nonnullDisappearanceTime
+                }
+            }
+        }
     }
     
     private func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {

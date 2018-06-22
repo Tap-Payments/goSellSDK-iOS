@@ -164,6 +164,11 @@ internal final class TapNavigationView: TapNibView {
                                       viewToLayout: self,
                                       animationDuration: 0.0,
                                       additionalAnimations: additionalAnimation)
+        
+        if let nonnullImage = self.iconImageView?.image, let size = self.iconImageView?.bounds.size {
+            
+            self.iconImageView?.contentMode = nonnullImage.bestContentMode(toFit: size)
+        }
     }
     
     private func updateRightViewLayout() {

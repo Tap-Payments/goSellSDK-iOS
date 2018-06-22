@@ -362,6 +362,11 @@ internal final class PaymentDataManager {
 // MARK: - Singleton
 extension PaymentDataManager: Singleton {
     
+    internal static var hasAliveInstance: Bool {
+        
+        return self.storage != nil
+    }
+    
     internal static var shared: PaymentDataManager {
         
         if let nonnullStorage = self.storage {

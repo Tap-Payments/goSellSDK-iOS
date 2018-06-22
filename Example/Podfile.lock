@@ -112,8 +112,8 @@ PODS:
   - TapGLKit/TapActivityIndicatorView (1.0):
     - TapGLKit/AnimatedView
   - TapKeychain (1.0)
-  - TapNetworkManager/Core (1.1.2)
-  - TapNetworkManager/ImageLoading (1.1.2):
+  - TapNetworkManager/Core (1.1.4)
+  - TapNetworkManager/ImageLoading (1.1.4):
     - SDWebImage/Core
     - TapAdditionsKit/Foundation/URLSession
     - TapNetworkManager/Core
@@ -175,7 +175,7 @@ SPEC CHECKSUMS:
   TapEditableView: 37adeacb5a91e9d230856a39c6f2441d828f7611
   TapGLKit: 5dc9e08f3a0789b9b00c07052a57ee02abd96190
   TapKeychain: 5483ac1930d6f548e05e0f458e302fa7aee78c3b
-  TapNetworkManager: 71a438f203e09f92f0e851b1d24bec332c96bb8f
+  TapNetworkManager: c769a11a6ada0fef622353fd9963e657cd01c314
   TapNibView: 4ddaf1cd09ec3b1ff1315f54c6b7713faa0e3706
   TapResponderChainInputView: d9285cdc13f513a7f063238bb2b07190aed48b57
   TapSearchView: c9c884a8b630ffb7a4d904e37822a14054cca1b5
