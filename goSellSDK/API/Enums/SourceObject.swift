@@ -7,7 +7,6 @@
 
 internal enum SourceObject: String, Codable {
     
-    case card   = "CARD"
     case token  = "TOKEN"
     case source = "SOURCE"
 }

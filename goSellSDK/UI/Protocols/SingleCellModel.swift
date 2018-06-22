@@ -6,11 +6,11 @@
 //
 
 import protocol TapAdditionsKit.ClassProtocol
-import class UIKit.UICollectionView.UICollectionView
-import class UIKit.UICollectionViewCell.UICollectionViewCell
-import class UIKit.UITableView.UITableView
-import class UIKit.UITableViewCell.UITableViewCell
-import class UIKit.UIView.UIView
+import class    UIKit.UICollectionView.UICollectionView
+import class    UIKit.UICollectionViewCell.UICollectionViewCell
+import class    UIKit.UITableView.UITableView
+import class    UIKit.UITableViewCell.UITableViewCell
+import class    UIKit.UIView.UIView
 
 internal protocol SingleCellModel: ClassProtocol {
     
@@ -41,14 +41,18 @@ internal extension SingleCellModel where CellClass: UITableViewCell {
     
     internal func dequeueCell(from tableView: UITableView) -> CellClass {
         
-        guard let loadedCell = tableView.dequeueReusableCell(withIdentifier: CellClass.className) as? CellClass else {
+        let reuseIdentifier = CellClass.className
+        
+        if let loadedCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CellClass {
             
-            fatalError("Failed to load cell of class \(CellClass.className) with reuse identifier: \(CellClass.className)")
+            self.connect(with: loadedCell)
+            
+            return loadedCell
         }
-        
-        self.connect(with: loadedCell)
-        
-        return loadedCell
+        else {
+            
+            fatalError("Failed to load cell of class \(reuseIdentifier) with reuse identifier: \(reuseIdentifier)")
+        }
     }
 }
 
@@ -56,13 +60,17 @@ internal extension SingleCellModel where CellClass: UICollectionViewCell {
     
     internal func dequeueCell(from collectionView: UICollectionView, for indexPath: IndexPath) -> CellClass {
         
-        guard let loadedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CellClass.className, for: indexPath) as? CellClass else {
+        let reuseIdentifier = CellClass.className
+        
+        if let loadedCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CellClass {
             
-            fatalError("Failed to load cell of class \(CellClass.className) with reuse identifier: \(CellClass.className)")
+            self.connect(with: loadedCell)
+            
+            return loadedCell
         }
-        
-        self.connect(with: loadedCell)
-        
-        return loadedCell
+        else {
+            
+            fatalError("Failed to load cell of class \(reuseIdentifier) with reuse identifier: \(reuseIdentifier)")
+        }
     }
 }

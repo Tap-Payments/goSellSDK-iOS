@@ -14,10 +14,11 @@ import class UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class UIKit.UIView.UIView
 import class UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
+import protocol UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
 /// Payment View Controller.
-internal class PaymentViewController: BaseViewController {
+internal class PaymentViewController: SeparateWindowViewController {
     
     // MARK: - Public -
     // MARK: Methods
@@ -38,7 +39,6 @@ internal class PaymentViewController: BaseViewController {
         
         if let navigationController = segue.destination as? UINavigationController, navigationController.rootViewController is PaymentContentViewController {
             
-            navigationController.interactivePopGestureRecognizer?.delegate = nil
             navigationController.delegate = self.animationsHandler
             navigationController.transitioningDelegate = self.animationsHandler
         }
@@ -102,6 +102,33 @@ extension PaymentViewController.TransitionAnimationsHandler: UINavigationControl
     
     fileprivate func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return UINavigationControllerSideAnimationController(operation: operation)
+        if operation == .push {
+            
+            if let headerController = toVC as? HeaderNavigatedViewController {
+                
+                let interactivePopTransition = UINavigationControllerPopInteractiveTransition(viewController: headerController)
+                headerController.interactivePopTransition = interactivePopTransition
+            }
+        }
+        
+        return UINavigationControllerSideAnimationController(operation: operation, from: fromVC, to: toVC)
+    }
+    
+    fileprivate func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+        if
+            let sideAnimationController     = animationController as? UINavigationControllerSideAnimationController,
+            let interactiveViewController   = sideAnimationController.fromViewController as? InteractivePopViewController,
+            let interactiveTransition       = interactiveViewController.interactivePopTransition,
+            
+            interactiveTransition.isInteracting,
+            sideAnimationController.operation == .pop {
+            
+            return interactiveTransition
+        }
+        else {
+            
+            return nil
+        }
     }
 }

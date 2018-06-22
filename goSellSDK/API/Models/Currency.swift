@@ -14,12 +14,6 @@
     /// Lowercased 3-letters currency ISO code.
     public let isoCode: String
     
-    /// Localized currency symbol.
-    public var localizedSymbol: String {
-        
-        return CurrencyFormatter.shared.localizedCurrencySymbol(for: self.isoCode)
-    }
-    
     /// Pretty printed object description.
     public override var description: String {
         

@@ -69,6 +69,11 @@ internal final class BINDataManager {
 // MARK: - Singleton
 extension BINDataManager: Singleton {
     
+    internal static var hasAliveInstance: Bool {
+        
+        return self.storage != nil
+    }
+    
     internal static var shared: BINDataManager {
         
         if let nonnullStorage = self.storage {

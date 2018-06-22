@@ -15,6 +15,15 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTrans
 
 internal final class PaymentPresentationAnimationController: NSObject {
     
+    // MARK: - Internal -
+    // MARK: Methods
+    
+    internal init(animateBlur: Bool = true) {
+        
+        self.animatesBlur = animateBlur
+        super.init()
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
@@ -23,6 +32,10 @@ internal final class PaymentPresentationAnimationController: NSObject {
         
         @available(*, unavailable) private init() {}
     }
+    
+    // MARK: Properties
+    
+    private let animatesBlur: Bool
 }
 
 extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransitioning {
@@ -55,7 +68,7 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
         
         toView.frame = startFrame
         
-        let blurView = fromView.subview(ofClass: TapVisualEffectView.self)
+        let blurView = self.animatesBlur ? fromView.subview(ofClass: TapVisualEffectView.self) : nil
         blurView?.style = .none
         
         let animations: TypeAlias.ArgumentlessClosure = {

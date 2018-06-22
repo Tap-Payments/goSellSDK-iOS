@@ -31,11 +31,7 @@ internal final class CurrencyFormatter {
             let positiveFormat = self.currencyFormatter.positiveFormat
             let negativeFormat = self.currencyFormatter.negativeFormat
             
-            var currencySymbol = String.empty
-            if displayCurrency {
-                
-                currencySymbol = self.localizedCurrencySymbol(for: amountedCurrency.currency.isoCode, locale: locale)
-            }
+            let currencySymbol = displayCurrency ? amountedCurrency.currencySymbol : String.empty
             
             self.currencyFormatter.locale = Locale.enUS
             
@@ -104,6 +100,11 @@ internal final class CurrencyFormatter {
 
 // MARK: - Singleton
 extension CurrencyFormatter: Singleton {
+    
+    internal static var hasAliveInstance: Bool {
+        
+        return self.storage != nil
+    }
     
     internal static var shared: CurrencyFormatter {
         

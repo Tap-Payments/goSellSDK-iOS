@@ -6,6 +6,8 @@
 //
 
 import struct   CoreGraphics.CGGeometry.CGRect
+import class    TapAdditionsKit.SeparateWindowRootViewController
+import struct   TapAdditionsKit.TypeAlias
 import class    TapGLKit.TapActivityIndicatorView
 import class    TapVisualEffectView.TapVisualEffectView
 import class    UIKit.UILabel.UILabel
@@ -15,33 +17,33 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
-internal final class LoadingViewController: BaseViewController {
+internal final class LoadingViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
     // MARK: Methods
     
     internal static func show(with text: String? = nil, frame: CGRect = UIScreen.main.bounds) -> LoadingViewController {
         
-        let controller = self.instantiate()
+        let controller = self.createAndSetupController()
+        
         controller.text = text
         
-        controller.showOnSeparateWindow { [unowned controller] (rootController) in
+        let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
             
             rootController.view.window?.frame = frame
-            
-            rootController.present(controller, animated: true, completion: nil)
-            
-            NSLog("delegate: \(String(describing: controller.transitioningDelegate))")
         }
+        
+        controller.show(parentControllerSetupClosure: parentControllerSetupClosure)
         
         return controller
     }
-    
-    internal func hide() {
+
+    internal override func hide(animated: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        DispatchQueue.main.async { [weak self] in
+        super.hide(animated: animated) {
             
-            self?.dismissFromSeparateWindow(true, completion: nil)
+            LoadingViewController.destroyInstance()
+            completion?()
         }
     }
     
@@ -56,6 +58,7 @@ internal final class LoadingViewController: BaseViewController {
     
     fileprivate final class Transitioning: NSObject {
         
+        fileprivate var shouldUseFadeAnimation = true
         fileprivate static var storage: Transitioning?
         
         private override init() {
@@ -91,24 +94,69 @@ internal final class LoadingViewController: BaseViewController {
     
     private var text: String?
     
+    private static var storage: LoadingViewController?
+    
     // MARK: Methods
     
-    private static func instantiate() -> LoadingViewController {
+    private static func createAndSetupController() -> LoadingViewController {
         
-        guard let result = UIStoryboard.goSellSDKPayment.instantiateViewController(withIdentifier: self.className) as? LoadingViewController else {
+        KnownSingletonTypes.add(LoadingViewController.self)
+        
+        let controller = self.shared
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = Transitioning.shared
+        
+        return controller
+    }
+}
+
+// MARK: - InstantiatableFromStoryboard
+extension LoadingViewController: InstantiatableFromStoryboard {
+    
+    internal static var hostingStoryboard: UIStoryboard {
+        
+        return .goSellSDKPopups
+    }
+}
+
+// MARK: - Singleton
+extension LoadingViewController: Singleton {
+    
+    internal static var hasAliveInstance: Bool {
+        
+        return self.storage != nil
+    }
+    
+    internal static var shared: LoadingViewController {
+        
+        if let nonnullStorage = self.storage {
             
-            fatalError("Failed to load \(self.className) from storyboard.")
+            return nonnullStorage
         }
         
-        result.modalPresentationStyle = .custom
-        result.transitioningDelegate = Transitioning.shared
+        let instance = LoadingViewController.instantiate()
+        self.storage = instance
         
-        return result
+        Transitioning.shared.shouldUseFadeAnimation = true
+        
+        return instance
+    }
+    
+    internal static func destroyInstance() {
+        
+        Transitioning.shared.shouldUseFadeAnimation = false
+        self.storage?.hide(animated: true)
+        self.storage = nil
     }
 }
 
 // MARK: - Singleton
 extension LoadingViewController.Transitioning: Singleton {
+    
+    fileprivate static var hasAliveInstance: Bool {
+        
+        return self.storage != nil
+    }
     
     fileprivate static var shared: LoadingViewController.Transitioning {
         
@@ -134,11 +182,11 @@ extension LoadingViewController.Transitioning: UIViewControllerTransitioningDele
     
     fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return FadeAnimationController(operation: .presentation)
+        return self.shouldUseFadeAnimation ? FadeAnimationController(operation: .presentation) : PaymentPresentationAnimationController(animateBlur: false)
     }
     
     fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return FadeAnimationController(operation: .dismissal)
+        return self.shouldUseFadeAnimation ? FadeAnimationController(operation: .dismissal) : PaymentDismissalAnimationController(animateBlur: false)
     }
 }

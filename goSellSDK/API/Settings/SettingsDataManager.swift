@@ -109,6 +109,11 @@ internal final class SettingsDataManager {
 // MARK: - Singleton
 extension SettingsDataManager: Singleton {
     
+    internal static var hasAliveInstance: Bool {
+        
+        return self.storage != nil
+    }
+    
     internal static var shared: SettingsDataManager {
         
         if let nonnullStorage = self.storage {

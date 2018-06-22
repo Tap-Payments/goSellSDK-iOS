@@ -43,104 +43,32 @@ internal extension CardInputTableViewCellModel {
 
     internal func bind(_ inputField: UIResponder?, displayLabel: UILabel?, editableView: TapEditableView? = nil, for validation: ValidationType) {
         
-        var validator: CardValidator?
-        
         switch validation {
             
         case .cardNumber:
             
-            guard let textField = inputField as? UITextField else {
-                
-                fatalError("Card input field should be a text field.")
-            }
-            
-            let v = CardNumberValidator(textField: textField,
-                                        availableCardBrands: self.availableCardBrands,
-                                        preferredCardBrands: self.preferredCardBrands)
-            v.delegate = self
-            v.brandReporting = self
-            
-            validator = v
+            self.prepareCardNumberValidator(with: inputField)
             
         case .expirationDate:
             
-            guard let textField = inputField as? UITextField else {
-                
-                fatalError("Expiration date input field should be a text field.")
-            }
-            
-            guard let nonnullEditableView = editableView else {
-                
-                fatalError("Expiration date input field should have editable view on top.")
-            }
-            
-            let v = ExpirationDateValidator(editableView: nonnullEditableView,
-                                            textField: textField)
-            
-            v.delegate = self
-            
-            validator = v
+            self.prepareExpirationDateValidator(with: inputField, editableView: editableView)
         
         case .cvv:
             
-            guard let textField = inputField as? UITextField else {
-                
-                fatalError("CVV input field should be a text field.")
-            }
-            
-            let v = CVVValidator(textField: textField)
-            v.delegate = self
-            
-            validator = v
+            self.prepareCVVValidator(with: inputField)
             
         case .nameOnCard:
             
-            guard let textField = inputField as? UITextField else {
-                
-                fatalError("Name on Card input field should be a text field.")
-            }
-            
-            let v = CardholderNameValidator(textField: textField)
-            v.delegate = self
-            
-            validator = v
+            self.prepareNameOnCardValidator(with: inputField)
             
         case .addressOnCard:
             
-            guard let label = displayLabel else {
-                
-                fatalError("Address on Card requires a display label.")
-            }
-            
-            let v = CardAddressValidator(displayLabel: label)
-            v.delegate = self
-            
-            validator = v
-            
+            self.prepareAddressOnCardValidator(with: displayLabel)
             
         case .saveCard:
             
-            guard let saveCardSwitch = inputField as? UISwitch else {
-                
-                fatalError("Save card input field should be a switch.")
-            }
-            
-            let v = SaveCardValidator(switch: saveCardSwitch)
-            v.delegate = self
-            
-            validator = v
-        }
-        
-        if let existingValidatorIndex = self.cardDataValidators.index(where: { $0.validationType == validation }) {
-            
-            self.cardDataValidators.remove(at: existingValidatorIndex)
-        }
-        
-        if let nonnullValidator = validator {
-            
-            self.cardDataValidators.append(nonnullValidator)
-            
-            self.updateValidatorWithInputData(nonnullValidator)
+            self.prepareSaveCardValidator(with: inputField)
+
         }
     }
     
@@ -179,6 +107,101 @@ internal extension CardInputTableViewCellModel {
     }
     
     // MARK: Methods
+    
+    private func prepareCardNumberValidator(with inputField: UIResponder?) {
+        
+        guard let textField = inputField as? UITextField else {
+            
+            fatalError("Card input field should be a text field.")
+        }
+        
+        let validator = CardNumberValidator(textField: textField,
+                                            availableCardBrands: self.availableCardBrands,
+                                            preferredCardBrands: self.preferredCardBrands)
+        
+        validator.brandReporting = self
+        
+        self.finishSettingUp(validator)
+    }
+    
+    private func prepareExpirationDateValidator(with inputField: UIResponder?, editableView: TapEditableView?) {
+        
+        guard let textField = inputField as? UITextField else {
+            
+            fatalError("Expiration date input field should be a text field.")
+        }
+        
+        guard let nonnullEditableView = editableView else {
+            
+            fatalError("Expiration date input field should have editable view on top.")
+        }
+        
+        let validator = ExpirationDateValidator(editableView: nonnullEditableView,
+                                                textField: textField)
+        
+        self.finishSettingUp(validator)
+    }
+    
+    private func prepareCVVValidator(with inputField: UIResponder?) {
+        
+        guard let textField = inputField as? UITextField else {
+            
+            fatalError("CVV input field should be a text field.")
+        }
+        
+        let validator = CVVValidator(textField: textField)
+        
+        self.finishSettingUp(validator)
+    }
+    
+    private func prepareNameOnCardValidator(with inputField: UIResponder?) {
+        
+        guard let textField = inputField as? UITextField else {
+            
+            fatalError("Name on Card input field should be a text field.")
+        }
+        
+        let validator = CardholderNameValidator(textField: textField)
+       
+        self.finishSettingUp(validator)
+    }
+    
+    private func prepareAddressOnCardValidator(with displayLabel: UILabel?) {
+        
+        guard let label = displayLabel else {
+            
+            fatalError("Address on Card requires a display label.")
+        }
+        
+        let validator = CardAddressValidator(displayLabel: label)
+        
+        self.finishSettingUp(validator)
+    }
+    
+    private func prepareSaveCardValidator(with inputField: UIResponder?) {
+        
+        guard let saveCardSwitch = inputField as? UISwitch else {
+            
+            fatalError("Save card input field should be a switch.")
+        }
+        
+        let validator = SaveCardValidator(switch: saveCardSwitch)
+        
+        self.finishSettingUp(validator)
+    }
+    
+    private func finishSettingUp(_ validator: CardValidator) {
+        
+        validator.delegate = self
+        
+        if let existingValidatorIndex = self.cardDataValidators.index(where: { $0.validationType == validator.validationType }) {
+            
+            self.cardDataValidators.remove(at: existingValidatorIndex)
+        }
+        
+        self.cardDataValidators.append(validator)
+        self.updateValidatorWithInputData(validator)
+    }
     
     private func updateValidatorWithInputData(_ validator: CardValidator) {
         

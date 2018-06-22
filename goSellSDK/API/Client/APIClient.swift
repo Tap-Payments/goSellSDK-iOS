@@ -124,6 +124,9 @@ internal final class APIClient {
             return result
         }()
         
+        fileprivate static let timeoutInterval: TimeInterval            = 60.0
+        fileprivate static let cachePolicy:     URLRequest.CachePolicy  = .reloadIgnoringCacheData
+        
         fileprivate static let successStatusCodes = 200...299
         
         fileprivate struct HTTPHeaderKey {
@@ -156,7 +159,17 @@ internal final class APIClient {
     
     // MARK: Properties
     
-    private let networkManager = TapNetworkManager(baseURL: Constants.baseURL)
+    private let networkManager: TapNetworkManager = {
+        
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.timeoutIntervalForRequest = Constants.timeoutInterval
+        configuration.requestCachePolicy = Constants.cachePolicy
+        
+        let manager = TapNetworkManager(baseURL: Constants.baseURL, configuration: configuration)
+        manager.isRequestLoggingEnabled = true
+
+        return manager
+    }()
     
     private static var storage: APIClient?
     
@@ -210,7 +223,6 @@ internal final class APIClient {
     
     private init() {
         
-        TapNetworkManager.isRequestLoggingEnabled = true
         KnownSingletonTypes.add(APIClient.self)
     }
     
@@ -298,6 +310,11 @@ internal final class APIClient {
 
 // MARK: - Singleton
 extension APIClient: Singleton {
+    
+    internal static var hasAliveInstance: Bool {
+        
+        return self.storage != nil
+    }
     
     internal static var shared: APIClient {
         

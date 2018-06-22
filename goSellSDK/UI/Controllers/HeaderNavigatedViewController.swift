@@ -22,6 +22,8 @@ internal class HeaderNavigatedViewController: BaseViewController {
         }
     }
     
+    internal var interactivePopTransition: UINavigationControllerPopInteractiveTransition?
+    
     // MARK: Methods
     
     internal func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
@@ -49,3 +51,6 @@ extension HeaderNavigatedViewController: TapNavigationViewDelegate {
         self.pop()
     }
 }
+
+// MARK: - InteractivePopViewController
+extension HeaderNavigatedViewController: InteractivePopViewController {}

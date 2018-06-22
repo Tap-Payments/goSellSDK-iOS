@@ -17,18 +17,22 @@
     /// Readable description of the error.
     public override var description: String {
         
-        guard self.details.count > 0 else {
+        if self.details.count == 0 {
             
             return "Backend responded with empty response."
         }
         
         var result = "\nErrors detected on the backend:\n"
-        let longestErrorTitleLength = (self.details.map { $0.name.count }).max()!
         
         for error in self.details {
             
-            let extraWhitespaces = String(repeating: " ", count: longestErrorTitleLength - error.name.count)
-            result += error.name + ": " + extraWhitespaces + error.message + "\n"
+            let whitespacesCount = longestErrorTitleLength - error.name.length
+            let extraWhitespaces = String(repeating: " ", count: whitespacesCount)
+            result += error.name
+            result += ": "
+            result += extraWhitespaces
+            result += error.message
+            result += "\n"
         }
         
         return result
@@ -39,5 +43,15 @@
     private enum CodingKeys: String, CodingKey {
         
         case details = "errors"
+    }
+    
+    // MARK: Properties
+    
+    private var longestErrorTitleLength: Int {
+        
+        let lengths = self.details.map { $0.name.length }
+        let result = lengths.max() ?? 0
+        
+        return result
     }
 }

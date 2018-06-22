@@ -29,6 +29,8 @@ internal class CurrencyCodesDataManager {
         }
     }
     
+    internal let preselectedCurrency: AmountedCurrency
+    
     internal var selectedCurrency: AmountedCurrency {
         
         return self.selectedViewModel.amountedCurrency
@@ -69,7 +71,6 @@ internal class CurrencyCodesDataManager {
     // MARK: Properties
     
     private let currencies: [AmountedCurrency]
-    private let preselectedCurrency: AmountedCurrency
     private let reloadDataClosure: TypeAlias.ArgumentlessClosure
     
     private var selectedViewModel: AmountedCurrencyTableViewCellModel {
