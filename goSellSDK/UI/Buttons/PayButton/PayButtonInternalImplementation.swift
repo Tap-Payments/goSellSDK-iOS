@@ -22,7 +22,7 @@ internal extension PayButtonInternalImplementation {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func payButtonTouchUpInside() {
+    internal func buttonTouchUpInside() {
         
         PaymentDataManager.shared.start(with: self)
     }

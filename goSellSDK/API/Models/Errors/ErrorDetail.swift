@@ -26,7 +26,7 @@
     
     private enum CodingKeys: String, CodingKey {
         
-        case name = "fieldname"
-        case message = "message"
+        case name       = "fieldname"
+        case message    = "message"
     }
 }

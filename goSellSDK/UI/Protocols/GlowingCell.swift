@@ -27,7 +27,7 @@ internal extension GlowingCell {
         
         self.glowingView.layer.shadowColor = UIColor(hex: "#2ACE00FF")?.cgColor
         self.glowingView.layer.shadowOffset = .zero
-        self.glowingView.layer.shadowRadius = 4.0
+        self.glowingView.layer.shadowRadius = 3.0
         self.glowingView.layer.shadowOpacity = 0.0
     }
     

@@ -42,7 +42,7 @@ extension PaymentDismissalAnimationController: UIViewControllerAnimatedTransitio
     
     internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         
-        return Constants.animationDuration
+        return transitionContext?.isAnimated ?? true ? Constants.animationDuration : 0.0
     }
     
     internal func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

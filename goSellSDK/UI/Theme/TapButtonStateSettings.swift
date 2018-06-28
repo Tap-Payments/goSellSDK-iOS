@@ -9,7 +9,7 @@ import class UIKit.UIColor.UIColor
 import class UIKit.UIFont.UIFont
 import class UIKit.UIImage.UIImage
 
-internal struct PayButtonStateSettings {
+internal struct TapButtonStateSettings {
     
     // MARK: - Internal -
     // MARK: Properties

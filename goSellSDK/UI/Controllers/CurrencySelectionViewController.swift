@@ -155,7 +155,7 @@ extension CurrencySelectionViewController: UITableViewDelegate {
 }
 
 // MARK: - InteractivePopViewControllerStatusReporting
-extension CurrencySelectionViewController: InteractivePopViewControllerStatusReporting {
+extension CurrencySelectionViewController: InteractiveTransitionControllerStatusReporting {
     
     internal func interactiveTransitionDidBegin() {
         

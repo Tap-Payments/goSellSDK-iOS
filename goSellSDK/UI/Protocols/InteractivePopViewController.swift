@@ -7,6 +7,6 @@
 
 @objc internal protocol InteractivePopViewController {
     
-    var interactivePopTransition: UINavigationControllerPopInteractiveTransition? { get }
+    var interactivePopTransition: UINavigationControllerPopInteractionController? { get }
 }
 

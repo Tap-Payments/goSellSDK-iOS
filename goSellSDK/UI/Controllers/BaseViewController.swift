@@ -5,15 +5,17 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import func TapSwiftFixes.performOnMainThread
-import enum UIKit.UIApplication.UIInterfaceOrientation
-import struct UIKit.UIApplication.UIInterfaceOrientationMask
-import class UIKit.NSLayoutConstraint.NSLayoutConstraint
-import class UIKit.UIView.UIView
-import struct UIKit.UIView.UIViewAnimationOptions
-import class UIKit.UIViewController.UIViewController
-import var UIKit.UIWindow.UIKeyboardAnimationDurationUserInfoKey
-import var UIKit.UIWindow.UIKeyboardFrameEndUserInfoKey
+import func     TapSwiftFixes.performOnMainThread
+import enum     UIKit.UIApplication.UIInterfaceOrientation
+import struct   UIKit.UIApplication.UIInterfaceOrientationMask
+import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class    UIKit.UIView.UIView
+import enum     UIKit.UIView.UIViewAnimationCurve
+import struct   UIKit.UIView.UIViewAnimationOptions
+import class    UIKit.UIViewController.UIViewController
+import var      UIKit.UIWindow.UIKeyboardAnimationCurveUserInfoKey
+import var      UIKit.UIWindow.UIKeyboardAnimationDurationUserInfoKey
+import var      UIKit.UIWindow.UIKeyboardFrameEndUserInfoKey
 
 /// Base View Controller.
 internal class BaseViewController: UIViewController {
@@ -100,10 +102,21 @@ internal class BaseViewController: UIViewController {
             let offset = keyboardIsShown ? endKeyboardFrame.size.height : 0.0
             
             let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
+            var animationCurve: UIViewAnimationOptions
+            if let animationCurveRawValue = ((userInfo[UIKeyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue,
+               let curve = UIViewAnimationCurve(rawValue: animationCurveRawValue) {
+                
+                animationCurve = UIViewAnimationOptions(curve)
+            }
+            else {
+                
+                animationCurve = keyboardIsShown ? .curveEaseOut : .curveEaseIn
+            }
+            
             let animationOptions: UIViewAnimationOptions = [
                 
                 .beginFromCurrentState,
-                keyboardIsShown ? .curveEaseOut : .curveEaseIn
+                animationCurve
             ]
             
             let animations = { [weak strongSelf] in

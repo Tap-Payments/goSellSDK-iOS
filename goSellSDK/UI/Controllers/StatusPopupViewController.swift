@@ -79,10 +79,10 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
         self.show(parentControllerSetupClosure: parentControllerSetupClosure, completion: completion)
     }
     
-    internal override func hide(animated: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal override func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         self.cancelPreviousDismissalRequest()
-        super.hide(animated: animated, completion: completion)
+        super.hide(animated: animated, async: async, completion: completion)
     }
     
     // MARK: - Private -

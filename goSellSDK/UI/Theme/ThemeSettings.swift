@@ -17,7 +17,9 @@ internal struct ThemeSettings {
     
     internal let headerSettings: HeaderSettings
     
-    internal let payButtonSettings: PayButtonSettings
+    internal let payButtonSettings: TapButtonSettings
+    internal let otpConfirmationButtonSettings: TapButtonSettings
+    
     internal let billIcon: UIImage
     
     internal let keyboardStyle: UIKeyboardAppearance
@@ -61,25 +63,45 @@ internal extension Theme {
             let keyboardStyle = UIKeyboardAppearance.light
             let backgroundBlurStyle = TapBlurEffectStyle.extraLight
             
-            let enabledPayButtonSettings = PayButtonStateSettings(backgroundColor: .hex("#2ACE00"),
+            let enabledPayButtonSettings = TapButtonStateSettings(backgroundColor: .hex("#2ACE00"),
                                                                   loaderColor: .hex("#FFFFFF"),
                                                                   textFont: .helveticaNeueMedium(17.0),
                                                                   textColor: .hex("#FFFFFF"),
                                                                   securityIcon: .named("btn_security", in: .goSellSDKResources)!)
-            let disabledPayButtonSettings = PayButtonStateSettings(backgroundColor: .hex("#C9C9C9"),
+            let disabledPayButtonSettings = TapButtonStateSettings(backgroundColor: .hex("#C9C9C9"),
                                                                    loaderColor: .hex("FFFFFF"),
                                                                    textFont: .helveticaNeueMedium(17.0),
                                                                    textColor: .hex("#FFFFFF"),
                                                                    securityIcon: UIImage.named("btn_security", in: .goSellSDKResources)!)
-            let highlightedPayButtonSettings = PayButtonStateSettings(backgroundColor: .hex("#1E9A00"),
+            let highlightedPayButtonSettings = TapButtonStateSettings(backgroundColor: .hex("#1E9A00"),
                                                                   loaderColor: .hex("#FFFFFF"),
                                                                   textFont: .helveticaNeueMedium(17.0),
                                                                   textColor: .hex("#FFFFFF"),
                                                                   securityIcon: .named("btn_security", in: .goSellSDKResources)!)
             
-            let payButtonSettings = PayButtonSettings(enabled: enabledPayButtonSettings,
+            let payButtonSettings = TapButtonSettings(enabled: enabledPayButtonSettings,
                                                       disabled: disabledPayButtonSettings,
                                                       highlighted: highlightedPayButtonSettings)
+            
+            let enabledOTPButtonSettings = TapButtonStateSettings(backgroundColor: .hex("#009AFF"),
+                                                                  loaderColor: .hex("#FFFFFF"),
+                                                                  textFont: .helveticaNeueMedium(17.0),
+                                                                  textColor: .hex("#FFFFFF"),
+                                                                  securityIcon: .named("btn_security", in: .goSellSDKResources)!)
+            let disabledOTPButtonSettings = TapButtonStateSettings(backgroundColor: .hex("#C9C9C9"),
+                                                                   loaderColor: .hex("FFFFFF"),
+                                                                   textFont: .helveticaNeueMedium(17.0),
+                                                                   textColor: .hex("#FFFFFF"),
+                                                                   securityIcon: UIImage.named("btn_security", in: .goSellSDKResources)!)
+            let highlightedOTPButtonSettings = TapButtonStateSettings(backgroundColor: .hex("#007AC9"),
+                                                                      loaderColor: .hex("#FFFFFF"),
+                                                                      textFont: .helveticaNeueMedium(17.0),
+                                                                      textColor: .hex("#FFFFFF"),
+                                                                      securityIcon: .named("btn_security", in: .goSellSDKResources)!)
+            
+            let otpButtonSettings = TapButtonSettings(enabled: enabledOTPButtonSettings,
+                                                      disabled: disabledOTPButtonSettings,
+                                                      highlighted: highlightedOTPButtonSettings)
             
             let headerSettings = HeaderSettings(placeholderLogo: .named("ic_merchant_logo_placeholder", in: .goSellSDKResources)!,
                                                 logoLoaderColor: .hex("#535353"),
@@ -93,6 +115,7 @@ internal extension Theme {
             
             let result = ThemeSettings(headerSettings: headerSettings,
                                        payButtonSettings: payButtonSettings,
+                                       otpConfirmationButtonSettings: otpButtonSettings,
                                        billIcon: .named("ic_bill", in: .goSellSDKResources)!,
                                        keyboardStyle: keyboardStyle,
                                        backgroundBlurStyle: backgroundBlurStyle,

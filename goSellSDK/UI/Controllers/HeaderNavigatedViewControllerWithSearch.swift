@@ -5,20 +5,21 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGAffineTransform.CGAffineTransform
-import struct CoreGraphics.CGBase.CGFloat
-import struct CoreGraphics.CGGeometry.CGPoint
-import struct CoreGraphics.CGGeometry.CGSize
+import struct   CoreGraphics.CGAffineTransform.CGAffineTransform
+import struct   CoreGraphics.CGBase.CGFloat
+import struct   CoreGraphics.CGGeometry.CGPoint
+import struct   CoreGraphics.CGGeometry.CGSize
+import func     TapAdditionsKit.clamp
 import protocol TapSearchView.TapSearchUpdating
-import class TapSearchView.TapSearchView
-import class UIKit.NSLayoutConstraint.NSLayoutConstraint
-import class UIKit.UIColor.UIColor
-import struct UIKit.UIGeometry.UIEdgeInsets
-import class UIKit.UIScrollView.UIScrollView
+import class    TapSearchView.TapSearchView
+import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class    UIKit.UIColor.UIColor
+import struct   UIKit.UIGeometry.UIEdgeInsets
+import class    UIKit.UIScrollView.UIScrollView
 import protocol UIKit.UIScrollView.UIScrollViewDelegate
-import class UIKit.UISearchBar.UISearchBar
+import class    UIKit.UISearchBar.UISearchBar
 import protocol UIKit.UISearchBar.UISearchBarDelegate
-import class UIKit.UITableView.UITableView
+import class    UIKit.UITableView.UITableView
 
 internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewController {
     
@@ -112,7 +113,9 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         guard let nonnullTableView = self.tableView else { return }
         guard let searchHeight = self.searchView?.intrinsicContentSize.height else { return }
         
-        let desiredInset = UIEdgeInsets(top: searchHeight - Constants.headerViewAndSearchBarOverlapping, left: 0.0, bottom: 0.0, right: 0.0)
+        let topInset = searchHeight - Constants.headerViewAndSearchBarOverlapping
+        
+        let desiredInset = UIEdgeInsets(top: topInset, left: 0.0, bottom: 0.0, right: 0.0)
         if nonnullTableView.contentInset != desiredInset {
             
             nonnullTableView.contentInset = desiredInset
@@ -126,7 +129,8 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
     
     private func updateSearchViewShadowOpacity(for searchViewRelativeSize: CGFloat) {
         
-        let shadowOpacity = searchViewRelativeSize > 0.5 ? 0.0 : 1.0 - 2.0 * searchViewRelativeSize
+        let desiredOpacity = 1.0 - 2.0 * searchViewRelativeSize
+        let shadowOpacity = searchViewRelativeSize > 0.5 ? 0.0 : desiredOpacity
         self.searchView?.layer.shadowOpacity = Float(shadowOpacity)
     }
 }
@@ -138,8 +142,13 @@ extension HeaderNavigatedViewControllerWithSearch: UIScrollViewDelegate {
         
         guard scrollView === self.tableView else { return }
         guard let height = self.searchView?.intrinsicContentSize.height else { return }
-        let visibleSearchViewPart = max(Constants.headerViewAndSearchBarOverlapping + Constants.shadowHeight,
-                                        height - max(0.0, min(height, scrollView.contentInset.top + scrollView.contentOffset.y)))
+        
+        let maximalVisiblePart = Constants.headerViewAndSearchBarOverlapping + Constants.shadowHeight
+        let realHiddenSearchViewHeight = scrollView.contentInset.top + scrollView.contentOffset.y
+        let desiredHiddenHeight: CGFloat = clamp(value: realHiddenSearchViewHeight, low: 0.0, high: height)
+        let desiredVisibleHeight = height - desiredHiddenHeight
+        
+        let visibleSearchViewPart = max(maximalVisiblePart, desiredVisibleHeight)
         self.searchViewHeightConstraint?.constant = visibleSearchViewPart
         
         let scaleY = visibleSearchViewPart / height
