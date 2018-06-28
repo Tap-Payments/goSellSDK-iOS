@@ -106,7 +106,7 @@ extension PaymentViewController.TransitionAnimationsHandler: UINavigationControl
             
             if let headerController = toVC as? HeaderNavigatedViewController {
                 
-                let interactivePopTransition = UINavigationControllerPopInteractiveTransition(viewController: headerController)
+                let interactivePopTransition = UINavigationControllerPopInteractionController(viewController: headerController)
                 headerController.interactivePopTransition = interactivePopTransition
             }
         }

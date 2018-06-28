@@ -114,7 +114,7 @@ extension PopupAnimationController: UIViewControllerAnimatedTransitioning {
         
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations) { (finished) in
             
-            transitionContext.completeTransition(finished)
+            transitionContext.completeTransition(finished && !transitionContext.transitionWasCancelled)
         }
     }
     

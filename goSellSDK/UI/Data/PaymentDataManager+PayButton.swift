@@ -37,10 +37,10 @@ internal extension PaymentDataManager {
     }
 }
 
-// MARK: - PayButtonUIDelegate
-extension PaymentDataManager: PayButtonUIDelegate {
+// MARK: - TapButtonDelegate
+extension PaymentDataManager: TapButtonDelegate {
     
-    internal func payButtonTouchUpInside() {
+    internal func buttonTouchUpInside() {
         
         guard let selectedPaymentViewModel = self.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment else { return }
         

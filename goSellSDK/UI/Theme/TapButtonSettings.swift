@@ -6,17 +6,17 @@
 //
 
 /// Pay Button Theme Settings.
-internal struct PayButtonSettings {
+internal struct TapButtonSettings {
     
     // MARK: - Internal -
     // MARK: Properties
     
     /// Enabled Pay Button Settings.
-    internal let enabled: PayButtonStateSettings
+    internal let enabled: TapButtonStateSettings
     
     /// Disabled Pay Button Settings
-    internal let disabled: PayButtonStateSettings
+    internal let disabled: TapButtonStateSettings
     
     /// Highlighted Pay Button Settings
-    internal let highlighted: PayButtonStateSettings
+    internal let highlighted: TapButtonStateSettings
 }

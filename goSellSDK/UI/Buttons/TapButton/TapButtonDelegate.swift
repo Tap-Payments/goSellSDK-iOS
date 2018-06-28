@@ -1,5 +1,5 @@
 //
-//  PayButtonUIDelegate.swift
+//  TapButtonDelegate.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
@@ -7,11 +7,11 @@
 
 import protocol TapAdditionsKit.ClassProtocol
 
-internal protocol PayButtonUIDelegate: ClassProtocol {
+internal protocol TapButtonDelegate: ClassProtocol {
     
     // MARK: Methods
     
-    func payButtonTouchUpInside()
+    func buttonTouchUpInside()
     
     func securityButtonTouchUpInside()
 }

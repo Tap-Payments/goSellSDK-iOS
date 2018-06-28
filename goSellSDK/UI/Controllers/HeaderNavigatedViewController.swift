@@ -22,7 +22,7 @@ internal class HeaderNavigatedViewController: BaseViewController {
         }
     }
     
-    internal var interactivePopTransition: UINavigationControllerPopInteractiveTransition?
+    internal var interactivePopTransition: UINavigationControllerPopInteractionController?
     
     // MARK: Methods
     

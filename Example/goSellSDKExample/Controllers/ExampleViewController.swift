@@ -170,4 +170,9 @@ extension ExampleViewController: PaymentDataSource {
         
         return self.paymentSettings.taxes
     }
+    
+    internal var require3DSecure: Bool {
+        
+        return true
+    }
 }

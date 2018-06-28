@@ -22,7 +22,7 @@ internal final class LoadingViewController: SeparateWindowViewController {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func show(with text: String? = nil, frame: CGRect = UIScreen.main.bounds) -> LoadingViewController {
+    internal static func show(with text: String? = nil, in frame: CGRect = UIScreen.main.bounds) -> LoadingViewController {
         
         let controller = self.createAndSetupController()
         
@@ -38,9 +38,9 @@ internal final class LoadingViewController: SeparateWindowViewController {
         return controller
     }
 
-    internal override func hide(animated: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal override func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        super.hide(animated: animated) {
+        super.hide(animated: animated, async: async) {
             
             LoadingViewController.destroyInstance()
             completion?()

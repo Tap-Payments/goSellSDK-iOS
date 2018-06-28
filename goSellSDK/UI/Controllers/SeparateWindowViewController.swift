@@ -22,14 +22,23 @@ internal class SeparateWindowViewController: BaseViewController {
         }
     }
     
-    internal func hide(animated: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        DispatchQueue.main.async { [weak self] in
+        let closure: TypeAlias.ArgumentlessClosure = { [weak self] in
             
-            self?.view.resignFirstResponder {
-            
+            self?.hideKeyboard {
+                
                 self?.dismissFromSeparateWindow(animated, completion: completion)
             }
+        }
+        
+        if async {
+            
+            DispatchQueue.main.async(execute: closure)
+        }
+        else {
+            
+            closure()
         }
     }
 }

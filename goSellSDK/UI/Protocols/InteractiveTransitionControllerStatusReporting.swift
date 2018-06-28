@@ -7,7 +7,7 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 
-@objc internal protocol InteractivePopViewControllerStatusReporting: NSObjectProtocol, InteractivePopViewController {
+@objc internal protocol InteractiveTransitionControllerStatusReporting: NSObjectProtocol {
     
     @objc optional func interactiveTransitionWillBegin()
     @objc optional func interactiveTransitionDidBegin()

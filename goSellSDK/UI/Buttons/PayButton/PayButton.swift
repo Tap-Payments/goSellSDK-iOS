@@ -64,12 +64,12 @@ public class PayButton: TapNibView {
     }
 }
 
-// MARK: - PayButtonUIDelegate
-extension PayButton: PayButtonUIDelegate {
+// MARK: - TapButtonDelegate
+extension PayButton: TapButtonDelegate {
     
     internal func securityButtonTouchUpInside() {
         
-        
+        self.buttonTouchUpInside()
     }
 }
 

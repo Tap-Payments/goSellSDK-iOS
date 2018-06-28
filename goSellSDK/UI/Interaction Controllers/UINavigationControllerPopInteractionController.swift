@@ -1,5 +1,5 @@
 //
-//  UINavigationControllerPopInteractiveTransition.swift
+//  UINavigationControllerPopInteractionController.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
@@ -11,12 +11,22 @@ import class    UIKit.UIScreenEdgePanGestureRecognizer.UIScreenEdgePanGestureRec
 import class    UIKit.UIViewController.UIViewController
 import class    UIKit.UIViewControllerTransitioning.UIPercentDrivenInteractiveTransition
 
-internal final class UINavigationControllerPopInteractiveTransition: UIPercentDrivenInteractiveTransition {
+internal final class UINavigationControllerPopInteractionController: BaseInteractionController {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    internal private(set) var isInteracting: Bool = false
+    internal override var statusListener: InteractiveTransitionControllerStatusReporting? {
+        
+        get {
+            
+            return self.manualStatusListener ?? self.defaultStatusListener
+        }
+        set {
+            
+            self.manualStatusListener = newValue
+        }
+    }
     
     // MARK: Methods
     
@@ -29,46 +39,9 @@ internal final class UINavigationControllerPopInteractiveTransition: UIPercentDr
         self.setupGestureRecognizer()
     }
     
-    internal func begin() {
+    internal override func callDismissOrPop(_ animated: Bool) {
         
-        DispatchQueue.main.async {
-            
-            self.statusListener?.interactiveTransitionWillBegin?()
-            self.isInteracting = true
-            self.viewController.navigationController?.popViewController(animated: true)
-            self.statusListener?.interactiveTransitionDidBegin?()
-        }
-    }
-    
-    internal override func update(_ percentComplete: CGFloat) {
-        
-        self.statusListener?.interactiveTransitionWillChangeProgress?(percentComplete)
-        super.update(percentComplete)
-        self.statusListener?.interactiveTransitionDidChangeProgress?(percentComplete)
-    }
-    
-    @available(iOS 10.0, *)
-    internal override func pause() {
-        
-        self.statusListener?.interactiveTransitionWillPause?()
-        super.pause()
-        self.statusListener?.interactiveTransitionDidPause?()
-    }
-    
-    internal override func finish() {
-        
-        self.statusListener?.interactiveTransitionWillFinish?()
-        self.isInteracting = false
-        super.finish()
-        self.statusListener?.interactiveTransitionDidFinish?()
-    }
-    
-    internal override func cancel() {
-        
-        self.statusListener?.interactiveTransitionWillCancel?()
-        self.isInteracting = false
-        super.cancel()
-        self.statusListener?.interactiveTransitionDidCancel?()
+        self.viewController.navigationController?.popViewController(animated: animated)
     }
     
     // MARK: - Private -
@@ -82,23 +55,23 @@ internal final class UINavigationControllerPopInteractiveTransition: UIPercentDr
     
     // MARK: Properties
     
+    private weak var manualStatusListener: InteractiveTransitionControllerStatusReporting?
+    
+    private var defaultStatusListener: InteractiveTransitionControllerStatusReporting? {
+        
+        return self.viewController as? InteractiveTransitionControllerStatusReporting
+    }
+    
     private var shouldCompleteTransitionOnGestureFinish: Bool = false
     
     private unowned let viewController: UIViewController & InteractivePopViewController
-    
-    private var statusListener: InteractivePopViewControllerStatusReporting? {
-        
-        return self.viewController as? InteractivePopViewControllerStatusReporting
-    }
     
     // MARK: Methods
     
     private func setupGestureRecognizer() {
         
         let recognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgePanDetected(_:)))
-        
-        // FIXME: Add RTL support.
-        recognizer.edges = .left
+        recognizer.edges = SettingsDataManager.shared.layoutDirection == .leftToRight ? .left : .right
         
         self.viewController.view.addGestureRecognizer(recognizer)
     }

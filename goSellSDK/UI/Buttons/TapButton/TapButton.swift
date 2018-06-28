@@ -1,28 +1,26 @@
 //
-//  PayButtonUI.swift
+//  TapButton.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import func TapSwiftFixes.performOnMainThread
-import struct TapAdditionsKit.TypeAlias
-import class TapNibView.TapNibView
-import class TapGLKit.TapActivityIndicatorView
-import class UIKit.UIButton.UIButton
-import class UIKit.UIView
+import struct   TapAdditionsKit.TypeAlias
+import class    TapGLKit.TapActivityIndicatorView
+import class    TapNibView.TapNibView
+import func     TapSwiftFixes.performOnMainThread
+import class    UIKit.UIButton.UIButton
+import class    UIKit.UIView.UIView
 
-internal class PayButtonUI: TapNibView {
+internal class TapButton: TapNibView {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    /// Payment data source.
-    internal weak var dataSource: PaymentDataSource?
-    
     /// Delegate.
-    internal weak var delegate: PayButtonUIDelegate?
+    internal weak var delegate: TapButtonDelegate?
     
+    /// Defines if the receiver is enabled.
     internal var isEnabled: Bool = true {
         
         didSet {
@@ -34,6 +32,14 @@ internal class PayButtonUI: TapNibView {
     internal override class var bundle: Bundle {
         
         return .goSellSDKResources
+    }
+    
+    internal var themeSettings: TapButtonSettings = Theme.current.settings.payButtonSettings {
+        
+        didSet {
+            
+            self.updateTheme(animated: true)
+        }
     }
     
     // MARK: Methods
@@ -57,35 +63,15 @@ internal class PayButtonUI: TapNibView {
     
     internal override func setup() {
         
+        super.setup()
+        
         self.cornerRadius = 0.5 * min(self.bounds.width, self.bounds.height)
         self.updateTheme(animated: false)
-        
-        self.updateDisplayedStateAndAmount()
     }
     
-    internal func updateDisplayedStateAndAmount() {
+    internal func setTitle(_ title: String) {
         
-        guard let currency = self.dataSource?.currency else {
-            
-            self.internalButton?.setTitle("PAY", for: .normal)
-            self.isEnabled = false
-            return
-        }
-        
-        let items = self.dataSource?.items ?? []
-        
-        let amount = AmountCalculator.totalAmount(of: self.dataSource?.items ?? [], with: self.dataSource?.taxes ?? nil, and: self.dataSource?.shipping ?? nil)
-        guard amount > 0.0 && items.count > 0 else {
-            
-            self.internalButton?.setTitle("PAY", for: .normal)
-            self.isEnabled = false
-            return
-        }
-        
-        let amountText = "PAY " + CurrencyFormatter.shared.format(AmountedCurrency(currency, amount, currencySymbol: ""))
-        
-        self.internalButton?.setTitle(amountText, for: .normal)
-        self.isEnabled = true
+        self.internalButton?.setTitle(title, for: .normal)
     }
     
     // MARK: - Private -
@@ -135,7 +121,7 @@ internal class PayButtonUI: TapNibView {
     
     @IBAction private func internalButtonTouchUpInside(_ sender: Any) {
         
-        self.delegate?.payButtonTouchUpInside()
+        self.delegate?.buttonTouchUpInside()
     }
     
     @IBAction private func securityButtonTouchUpInside(_ sender: Any) {
@@ -157,7 +143,7 @@ internal class PayButtonUI: TapNibView {
                 
                 guard let strongSelf = self else { return }
                 
-                let settings = Theme.current.settings.payButtonSettings
+                let settings = strongSelf.themeSettings
                 let stateSettings = strongSelf.isEnabled ? (strongSelf.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
                 
                 strongSelf.layer.backgroundColor = stateSettings.backgroundColor.cgColor

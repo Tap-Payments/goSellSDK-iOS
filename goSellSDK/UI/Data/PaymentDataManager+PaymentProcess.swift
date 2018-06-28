@@ -52,7 +52,7 @@ internal extension PaymentDataManager {
         guard let paymentOption = self.paymentOptionThatRequiresWebPaymentController else { return }
         
         let loaderFrame = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerFrame ?? UIScreen.main.bounds
-        let loader = LoadingViewController.show(frame: loaderFrame)
+        let loader = LoadingViewController.show(in: loaderFrame)
         
         self.continuePaymentWithCurrentCharge(paymentOption, loader: loader)
     }
@@ -73,7 +73,7 @@ internal extension PaymentDataManager {
         let source = Source(identifier: paymentOption.sourceIdentifier)
         
         let loaderFrame = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerFrame ?? UIScreen.main.bounds
-        let loader = LoadingViewController.show(frame: loaderFrame)
+        let loader = LoadingViewController.show(in: loaderFrame)
         
         self.callChargeAPI(with: source, paymentOption: paymentOption, loader: loader)
     }
@@ -159,8 +159,7 @@ internal extension PaymentDataManager {
             
         case .otpRequired:
             
-            NSLog("Not implemented yet.")
-            break
+            self.openOTPScreen()
             
         case .inProgress, .cancelled, .failed, .declined, .restricted, .void:
             
@@ -181,6 +180,12 @@ internal extension PaymentDataManager {
         self.urlToLoadInWebPaymentController = url
         
         PaymentOptionsViewController.findInHierarchy()?.showWebPaymentViewController()
+    }
+    
+    private func openOTPScreen() {
+        
+        let otpControllerFrame = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerFrame ?? UIScreen.main.bounds
+        OTPViewController.show(in: otpControllerFrame)
     }
     
     private func continuePaymentWithCurrentCharge(_ paymentOption: PaymentOption, loader: LoadingViewController? = nil) {

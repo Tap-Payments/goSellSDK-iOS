@@ -23,9 +23,9 @@ internal class WebPaymentOptionTableViewCell: BaseTableViewCell {
     // MARK: - Private -
     // MARK: Properties
     
-    @IBOutlet private weak var titleLabel: UILabel?
-    @IBOutlet private weak var iconImageView: UIImageView?
-    @IBOutlet private weak var arrowImageView: UIImageView?
+    @IBOutlet private weak var titleLabel:      UILabel?
+    @IBOutlet private weak var iconImageView:   UIImageView?
+    @IBOutlet private weak var arrowImageView:  UIImageView?
 }
 
 // MARK: - LoadingWithModelCell
@@ -33,16 +33,8 @@ extension WebPaymentOptionTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
         
-        self.titleLabel?.text = self.model?.title
-        self.iconImageView?.image = self.model?.iconImage
-        self.arrowImageView?.image = self.model?.arrowImage
-        
-        self.setGlowing(self.model?.isSelected ?? false)
+        self.titleLabel?.text       = self.model?.title
+        self.iconImageView?.image   = self.model?.iconImage
+        self.arrowImageView?.image  = self.model?.arrowImage
     }
-}
-
-// MARK: - GlowingCell
-extension WebPaymentOptionTableViewCell: GlowingCell {
-    
-    internal var glowingView: UIView { return self }
 }
