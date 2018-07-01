@@ -10,6 +10,8 @@ import class UIKit.UIView.UIView
 
 internal protocol PayButtonInternalImplementation: PayButtonProtocol {
     
+    var dataSource: PaymentDataSource? { get }
+    
     var uiElement: PayButtonUI? { get }
     
     var theme: Theme { get }
@@ -20,7 +22,33 @@ internal protocol PayButtonInternalImplementation: PayButtonProtocol {
 internal extension PayButtonInternalImplementation {
     
     // MARK: - Internal -
+    // MARK: Properties
+    
+    internal var canBeHighlighted: Bool {
+        
+        return !PaymentDataManager.shared.isExecutingAPICalls
+    }
+    
     // MARK: Methods
+    
+    internal func calculateDisplayedAmount() {
+        
+        self.isEnabled = true
+        
+        let items = self.dataSource?.items ?? []
+        let taxes = self.dataSource?.taxes ?? nil
+        let shipping = self.dataSource?.shipping ?? nil
+        
+        let amount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
+        
+        guard let currency = self.dataSource?.currency, amount > 0.0, items.count > 0 else {
+            
+            self.uiElement?.amount = nil
+            return
+        }
+        
+        self.uiElement?.amount = AmountedCurrency(currency, amount)
+    }
     
     internal func buttonTouchUpInside() {
         

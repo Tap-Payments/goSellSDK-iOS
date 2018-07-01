@@ -51,11 +51,21 @@
         super.init()
     }
     
+    /// Checks if 2 objects are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: First object.
+    ///   - rhs: Second object.
+    /// - Returns: `true` if 2 objects are equal, `fale` otherwise.
     public static func == (lhs: Currency, rhs: Currency) -> Bool {
         
         return lhs.isoCode == rhs.isoCode
     }
     
+    /// Checks if the receiver is equal to `object.`
+    ///
+    /// - Parameter object: Object to test equality with.
+    /// - Returns: `true` if the receiver is equal to `object`, `false` otherwise.
     public override func isEqual(_ object: Any?) -> Bool {
         
         guard let other = object as? Currency else { return false }

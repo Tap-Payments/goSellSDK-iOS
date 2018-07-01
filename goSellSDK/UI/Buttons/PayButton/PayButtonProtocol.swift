@@ -8,8 +8,10 @@
 import protocol TapAdditionsKit.ClassProtocol
 import class UIKit.UIView.UIView
 
+/// Pay Button Protocol.
 public protocol PayButtonProtocol: ClassProtocol {
     
+    /// Controls enabled state of the receiver. Final decision is taken by internal logic.
     var isEnabled: Bool { get set }
 }
 

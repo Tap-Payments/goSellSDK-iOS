@@ -60,6 +60,10 @@
 // MARK: - NSCopying
 extension Shipping: NSCopying {
     
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
         return Shipping(name: self.name, descriptionText: self.descriptionText, amount: self.amount)

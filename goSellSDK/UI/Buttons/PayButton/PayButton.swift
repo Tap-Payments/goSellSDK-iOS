@@ -39,6 +39,7 @@ public class PayButton: TapNibView {
         }
     }
     
+    /// Bundle to load nib from.
     public override class var bundle: Bundle {
         
         return .goSellSDKResources
@@ -46,9 +47,10 @@ public class PayButton: TapNibView {
     
     // MARK: Methods
     
+    /// Updates displayed state and amount.
     public func updateDisplayedStateAndAmount() {
         
-        self.ui?.updateDisplayedStateAndAmount()
+        self.calculateDisplayedAmount()
     }
     
     // MARK: - Private -

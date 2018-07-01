@@ -54,19 +54,19 @@ internal class UpdateChargeRequest: Encodable {
         
         self.init()
         
-        self.metadata = metadata
-        self.descriptionText = descriptionText
-        self.receiptSMS = receiptSMS
-        self.receiptEmail = receiptEmail
+        self.metadata           = metadata
+        self.descriptionText    = descriptionText
+        self.receiptSMS         = receiptSMS
+        self.receiptEmail       = receiptEmail
     }
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case metadata = "metadata"
-        case descriptionText = "description"
-        case receiptSMS = "receipt_sms"
-        case receiptEmail = "receipt_email"
+        case metadata           = "metadata"
+        case descriptionText    = "description"
+        case receiptSMS         = "receipt_sms"
+        case receiptEmail       = "receipt_email"
     }
 }

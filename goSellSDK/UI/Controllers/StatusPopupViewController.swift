@@ -87,6 +87,7 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     
     // MARK: - Private -
     
+    /// Transitions handler for Status Popup View Controller.
     fileprivate final class Transitioning: NSObject {
         
         fileprivate static var storage: Transitioning?
@@ -211,10 +212,7 @@ extension StatusPopupViewController: Singleton {
         return instance
     }
     
-    internal static func destroyInstance() {
-        
-        
-    }
+    internal static func destroyInstance() { }
 }
 
 // MARK: - Singleton

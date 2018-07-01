@@ -18,6 +18,14 @@ internal class PayButtonUI: TapButton {
         return TapButton.className
     }
     
+    internal var amount: AmountedCurrency? {
+        
+        didSet {
+            
+            self.updateDisplayedStateAndAmount()
+        }
+    }
+    
     // MARK: Methods
     
     internal override func setup() {
@@ -29,24 +37,16 @@ internal class PayButtonUI: TapButton {
     
     internal func updateDisplayedStateAndAmount() {
         
-        guard let currency = self.dataSource?.currency else {
+        guard let displayedAmount = self.amount, displayedAmount.amount > 0.0 else {
             
             self.setTitle(Constants.genericTitle, enabled: false)
             return
         }
         
-        let items = self.dataSource?.items ?? []
+        let amountString = CurrencyFormatter.shared.format(displayedAmount)
+        let amountText = "PAY " + amountString
         
-        let amount = AmountCalculator.totalAmount(of: self.dataSource?.items ?? [], with: self.dataSource?.taxes ?? nil, and: self.dataSource?.shipping ?? nil)
-        guard amount > 0.0 && items.count > 0 else {
-            
-            self.setTitle(Constants.genericTitle, enabled: false)
-            return
-        }
-        
-        let amountText = "PAY " + CurrencyFormatter.shared.format(AmountedCurrency(currency, amount, currencySymbol: ""))
-        
-        self.setTitle(amountText, enabled: true)
+        self.setTitle(amountText, enabled: self.isEnabled)
     }
     
     // MARK: - Private -

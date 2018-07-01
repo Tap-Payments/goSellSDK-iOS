@@ -50,6 +50,10 @@
         super.init()
     }
     
+    /// Checks if the receiver is equal to `object.`
+    ///
+    /// - Parameter object: Object to test equality with.
+    /// - Returns: `true` if the receiver is equal to `object`, `false` otherwise.
     public override func isEqual(_ object: Any?) -> Bool {
         
         guard let otherPhoneNumber = object as? PhoneNumber else { return false }
@@ -57,6 +61,12 @@
         return self.isdNumber == otherPhoneNumber.isdNumber && self.phoneNumber == otherPhoneNumber.phoneNumber
     }
     
+    /// Checks if 2 objects are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: First object.
+    ///   - rhs: Second object.
+    /// - Returns: `true` if 2 objects are equal, `fale` otherwise.
     public static func == (lhs: PhoneNumber, rhs: PhoneNumber) -> Bool {
         
         return lhs.isEqual(rhs)

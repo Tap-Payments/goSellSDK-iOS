@@ -5,25 +5,36 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Electric current extension to Measurement.
 public extension Measurement {
     
+    /// Electric current mesurement unit.
     public enum ElectricCurrent {
         
+        /// Megaamperes.
         case megaamperes
+        
+        /// Kiloamperes.
         case kiloamperes
+        
+        /// Amperes.
         case amperes
+        
+        /// Milliamperes.
         case milliamperes
+        
+        /// Microamperes.
         case microamperes
         
         // MARK: - Private -
         
         private struct Constants {
             
-            fileprivate static let megaamperes  = "mega_amperes"
-            fileprivate static let kiloamperes  = "kilo_amperes"
+            fileprivate static let megaamperes  = "megaamperes"
+            fileprivate static let kiloamperes  = "kiloamperes"
             fileprivate static let amperes      = "amperes"
-            fileprivate static let milliamperes = "milli_amperes"
-            fileprivate static let microamperes = "micro_amperes"
+            fileprivate static let milliamperes = "milliamperes"
+            fileprivate static let microamperes = "microamperes"
             
             @available(*, unavailable) private init() {}
         }

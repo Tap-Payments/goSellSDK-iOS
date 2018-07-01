@@ -24,7 +24,7 @@ internal extension PaymentDataManager {
         
         self.lastSelectedPaymentOption = model
         
-        self.updatePayButtonState()
+        self.updatePayButtonStateAndAmount()
         
         if model.initiatesPaymentOnSelection {
             
@@ -39,7 +39,7 @@ internal extension PaymentDataManager {
         
         model.isSelected = false
         
-        self.updatePayButtonState()
+        self.updatePayButtonStateAndAmount()
     }
     
     internal func restorePaymentOptionSelection() {

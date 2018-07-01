@@ -41,49 +41,61 @@ internal class CardAddressValidator: CardValidator {
     /// Address display text.
     internal var displayText: String {
         
-        if self.hasInputDataForCurrentAddressFormat {
-            
-            let orderedDisplayData = self.binInformation?.addressFormat?.sorted { $0.displayOrder < $1.displayOrder }
-            var filledFields = orderedDisplayData?.compactMap { self.inputData[$0.placeholder] as? String }
-            filledFields = filledFields?.filter { $0.length > 0 }
-            
-            if (filledFields?.count ?? 0) == 0 {
-                
-                return Constants.placeholderDisplayText
-            }
-            
-            if let country = self.country {
-                
-                filledFields?.append(country.displayValue)
-            }
-            
-            if let nonnullFields = filledFields, nonnullFields.count > 0 {
-                
-                return nonnullFields.joined(separator: Constants.addressFieldsDisplaySeparatorText)
-            }
-            else {
-                
-                return Constants.placeholderDisplayText
-            }
-        }
-        else {
-            
-            return Constants.placeholderDisplayText
-        }
+        return Constants.placeholderDisplayText
+        
+        // TODO: Apply real logic when Address Format API is ready.
+        
+//        if self.hasInputDataForCurrentAddressFormat {
+//
+//            let orderedDisplayData = self.binInformation?.addressFormat?.sorted { $0.displayOrder < $1.displayOrder }
+//            var filledFields = orderedDisplayData?.compactMap { self.inputData[$0.placeholder] as? String }
+//            filledFields = filledFields?.filter { $0.length > 0 }
+//
+//            if (filledFields?.count ?? 0) == 0 {
+//
+//                return Constants.placeholderDisplayText
+//            }
+//
+//            if let country = self.country {
+//
+//                filledFields?.append(country.displayValue)
+//            }
+//
+//            if let nonnullFields = filledFields, nonnullFields.count > 0 {
+//
+//                return nonnullFields.joined(separator: Constants.addressFieldsDisplaySeparatorText)
+//            }
+//            else {
+//
+//                return Constants.placeholderDisplayText
+//            }
+//        }
+//        else {
+//
+//            return Constants.placeholderDisplayText
+//        }
     }
     
     /// Defines if current address format has any input data.
     internal var hasInputDataForCurrentAddressFormat: Bool {
         
-        guard let nonnullAddressFormat = self.binInformation?.addressFormat else { return false }
+        return false
+
+        // TODO: Apply real logic when Address Format API is ready.
         
-        return nonnullAddressFormat.first(where: { self.inputData[$0.placeholder] != nil }) != nil
+//        guard let nonnullAddressFormat = self.binInformation?.addressFormat else { return false }
+//
+//        return nonnullAddressFormat.first(where: { self.inputData[$0.placeholder] != nil }) != nil
     }
     
     internal override var isValid: Bool {
+
+        return false
         
-        guard let addressFormat = self.binInformation?.addressFormat else { return true }
-        return addressFormat.first(where: { !$0.canBeFilled(with: self.inputData[$0.placeholder]) }) == nil
+        // TODO: Apply real logic when Address Format API is ready.
+        
+//        guard let addressFormat = self.binInformation?.addressFormat else { return true }
+//        return addressFormat.first(where: { !$0.canBeFilled(with: self.inputData[$0.placeholder]) }) == nil
     }
     
     // MARK: Methods

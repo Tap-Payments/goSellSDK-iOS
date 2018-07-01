@@ -5,7 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class UIKit.UIScreen.UIScreen
+import struct   CoreGraphics.CGGeometry.CGRect
+import class    UIKit.UIScreen.UIScreen
 
 internal extension PaymentDataManager {
     
@@ -51,10 +52,38 @@ internal extension PaymentDataManager {
         
         guard let paymentOption = self.paymentOptionThatRequiresWebPaymentController else { return }
         
-        let loaderFrame = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerFrame ?? UIScreen.main.bounds
+        let loaderFrame = self.loadingControllerFrame()
         let loader = LoadingViewController.show(in: loaderFrame)
         
         self.continuePaymentWithCurrentCharge(paymentOption, loader: loader)
+    }
+    
+    internal func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
+        
+        var result: Decimal = 0.0
+        
+        extraFees.forEach { fee in
+            
+            switch fee.type {
+                
+            case .fixedAmount:
+                
+                if let feeAmountedCurrency = self.supportedCurrencies.first(where: { $0.currency == fee.currency }) {
+                    
+                    result += currency.amount * fee.value / feeAmountedCurrency.amount
+                }
+                else {
+                    
+                    fatalError("Currency \(fee.currency) is not a supported currency!")
+                }
+                
+            case .percentBased:
+                
+                result += currency.amount * fee.normalizedValue
+            }
+        }
+        
+        return result
     }
     
     // MARK: - Private -
@@ -65,6 +94,18 @@ internal extension PaymentDataManager {
         
         @available(*, unavailable) private init() {}
     }
+    // MARK: Properties
+    
+    private func loadingControllerFrame(coveringHeader: Bool = false) -> CGRect {
+    
+        let topOffset = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerTopOffset ?? 0.0
+        let screenBounds = UIScreen.main.bounds
+        var result = screenBounds
+        result.origin.y += topOffset
+        result.size.height -= topOffset
+        
+        return result
+    }
     
     // MARK: Methods
     
@@ -72,7 +113,9 @@ internal extension PaymentDataManager {
     
         let source = Source(identifier: paymentOption.sourceIdentifier)
         
-        let loaderFrame = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerFrame ?? UIScreen.main.bounds
+        self.isExecutingAPICalls = true
+        
+        let loaderFrame = self.loadingControllerFrame()
         let loader = LoadingViewController.show(in: loaderFrame)
         
         self.callChargeAPI(with: source, paymentOption: paymentOption, loader: loader)
@@ -80,7 +123,11 @@ internal extension PaymentDataManager {
     
     private func startPaymentProcess(with card: CreateTokenCard, paymentOption: PaymentOption, saveCard: Bool) {
         
-        let loader = LoadingViewController.show()
+        UIResponder.current?.resignFirstResponder()
+        
+        self.isExecutingAPICalls = true
+        
+        self.payButtonUI?.startLoader()
         
         let request = CreateTokenWithCardDataRequest(card: card)
         APIClient.shared.createToken(with: request) { [weak self] (token, error) in
@@ -88,7 +135,13 @@ internal extension PaymentDataManager {
             if let nonnullToken = token {
                 
                 let source = Source(token: nonnullToken)
-                self?.callChargeAPI(with: source, paymentOption: paymentOption, saveCard: saveCard, loader: loader)
+                self?.callChargeAPI(with: source, paymentOption: paymentOption, saveCard: saveCard)
+            }
+            else {
+                
+                self?.payButtonUI?.stopLoader()
+                
+                self?.isExecutingAPICalls = false
             }
         }
     }
@@ -133,6 +186,10 @@ internal extension PaymentDataManager {
         APIClient.shared.createCharge(with: chargeRequest) { [weak self] (charge, error) in
             
             loader?.hide()
+            self?.payButtonUI?.stopLoader()
+            
+            self?.isExecutingAPICalls = false
+            
             self?.handleChargeResponse(charge, error: error, paymentOption: paymentOption)
         }
     }
@@ -184,7 +241,7 @@ internal extension PaymentDataManager {
     
     private func openOTPScreen() {
         
-        let otpControllerFrame = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerFrame ?? UIScreen.main.bounds
+        let otpControllerFrame = self.loadingControllerFrame()
         OTPViewController.show(in: otpControllerFrame)
     }
     
@@ -239,33 +296,5 @@ internal extension PaymentDataManager {
                 }
             }
         }
-    }
-    
-    private func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
-        
-        var result: Decimal = 0.0
-        
-        extraFees.forEach { fee in
-            
-            switch fee.type {
-                
-            case .fixedAmount:
-                
-                if let feeAmountedCurrency = self.supportedCurrencies.first(where: { $0.currency == fee.currency }) {
-                    
-                    result += currency.amount * fee.value / feeAmountedCurrency.amount
-                }
-                else {
-                    
-                    fatalError("Currency \(fee.currency) is not a supported currency!")
-                }
-                
-            case .percentBased:
-                
-                result += currency.amount * fee.normalizedValue
-            }
-        }
-        
-        return result
     }
 }

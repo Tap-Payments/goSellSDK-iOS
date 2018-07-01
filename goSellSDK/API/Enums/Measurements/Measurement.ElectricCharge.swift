@@ -5,15 +5,28 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Electric charge extension to Measurement.
 public extension Measurement {
     
+    /// Electric charge measurement unit.
     public enum ElectricCharge {
         
+        /// Coulombs.
         case coulombs
+        
+        /// Megaampere hours.
         case megaampereHours
+        
+        /// Kiloampere hours.
         case kiloampereHours
+        
+        /// Ampere hours.
         case ampereHours
+        
+        /// Milliampere hours.
         case milliampereHours
+        
+        /// Micorampere hours.
         case microampereHours
         
         // MARK: - Private -

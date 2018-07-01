@@ -22,6 +22,12 @@ internal struct AmountedCurrency: Decodable {
     
     // MARK: Methods
     
+    internal init(_ currency: Currency, _ amount: Decimal) {
+        
+        let symbol = CurrencyFormatter.shared.localizedCurrencySymbol(for: currency.isoCode)
+        self.init(currency, amount, currencySymbol: symbol)
+    }
+    
     internal init(_ currency: Currency, _ amount: Decimal, currencySymbol: String) {
         
         self.currency       = currency

@@ -17,6 +17,7 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
+/// View controller that is showing loading process.
 internal final class LoadingViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
@@ -56,6 +57,7 @@ internal final class LoadingViewController: SeparateWindowViewController {
     
     // MARK: - Fileprivate -
     
+    /// Loading view controller transitioning handler.
     fileprivate final class Transitioning: NSObject {
         
         fileprivate var shouldUseFadeAnimation = true

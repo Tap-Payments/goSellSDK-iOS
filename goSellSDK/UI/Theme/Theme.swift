@@ -5,8 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Theme.
 public enum Theme {
     
+    /// Light theme.
     case light
     
     // MARK: - Internal -

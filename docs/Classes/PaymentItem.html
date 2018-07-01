@@ -14,7 +14,7 @@
     <a title="PaymentItem Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">goSellSDK Docs</a> (49% documented)</p>
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -55,7 +55,16 @@
                 <a href="../Classes/PaymentItem.html">PaymentItem</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/PhoneNumber.html">PhoneNumber</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Quantity.html">Quantity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Receipt.html">Receipt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reference.html">Reference</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Shipping.html">Shipping</a>
@@ -111,6 +120,12 @@
                 <a href="../Enums/Measurement/Mass.html">– Mass</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/Measurement/Power.html">– Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Measurement/Volume.html">– Volume</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
@@ -124,12 +139,6 @@
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Extensions/CardBrand.html">CardBrand</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Charge.html">Charge</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Country.html">Country</a>
               </li>
@@ -436,7 +445,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes payment item with title, quantity, units of measurement and amount per unit.</p>
+                        <p>Initializes payment item with title, description, quantity and amount per unit.</p>
 <div class="aside aside-attention">
     <p class="aside-title">Attention</p>
     Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value</code>
@@ -523,7 +532,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes payment item with title, description, quantity, amount per unit and discount.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value - discount</code>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -533,6 +547,73 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">discount</span><span class="p">:</span> <span class="kt"><a href="../Classes/AmountModificator.html">AmountModificator</a></span><span class="p">?)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>discount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s discount.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -550,7 +631,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes payment item with title, description, quantity, amount per unit and taxes.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value + taxes</code>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -560,6 +646,73 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">taxes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Tax.html">Tax</a></span><span class="p">]?)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>taxes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s taxes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -577,7 +730,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes payment item with title, description, quantity, amount per unit, discount and taxes.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value - discount + taxes</code>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -587,6 +745,85 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">discount</span><span class="p">:</span> <span class="kt"><a href="../Classes/AmountModificator.html">AmountModificator</a></span><span class="p">?,</span> <span class="nv">taxes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Tax.html">Tax</a></span><span class="p">]?)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>discount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s discount.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>taxes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s taxes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -615,7 +852,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Plain amount.</p>
 
                       </div>
                       <div class="declaration">
@@ -642,7 +879,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Discount amount.</p>
 
                       </div>
                       <div class="declaration">
@@ -669,7 +906,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Taxes amount.</p>
 
                       </div>
                       <div class="declaration">
@@ -696,7 +933,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Total item amount.</p>
 
                       </div>
                       <div class="declaration">
@@ -808,7 +1045,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Copies the receiver.</p>
 
                       </div>
                       <div class="declaration">
@@ -819,6 +1056,29 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>zone</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Zone.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Copy of the receiver.</p>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -827,7 +1087,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-06-11)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-07-01)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

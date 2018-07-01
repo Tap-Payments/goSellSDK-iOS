@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Quantity model.
 @objcMembers public final class Quantity: NSObject, Encodable {
     
     // MARK: - Public -
@@ -22,11 +23,13 @@
     /// Value.
     public var value: Decimal
     
+    /// Measurement group.
     public var measurementGroup: String {
         
         return self.unitOfMeasurement.description
     }
     
+    /// Measurement unit.
     public var measurementUnit: String {
         
         return Quantity.measurementUnitDescription(from: self.unitOfMeasurement)
@@ -78,6 +81,7 @@
         case .length            (let unit): return unit.description
         case .mass              (let unit): return unit.description
         case .power             (let unit): return unit.description
+        case .volume            (let unit): return unit.description
         case .units                       : return ""
             
         }
@@ -93,6 +97,10 @@
 // MARK: - NSCopying
 extension Quantity: NSCopying {
     
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
         return Quantity(value: self.value, unitOfMeasurement: self.unitOfMeasurement)

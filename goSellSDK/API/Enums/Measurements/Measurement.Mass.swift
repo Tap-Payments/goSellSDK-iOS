@@ -5,25 +5,58 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Mass extension to Measurement.
 public extension Measurement {
     
+    /// Mass measurement unit.
     public enum Mass {
         
+        /// Kilograms.
         case kilograms
+        
+        /// Grams.
         case grams
+        
+        /// Decigrams.
         case decigrams
+        
+        /// Centigrams.
         case centigrams
+        
+        /// Milligrams.
         case milligrams
+        
+        /// Micrograms.
         case micrograms
+        
+        /// Nanograms.
         case nanograms
+        
+        /// Picograms.
         case picograms
+        
+        /// Ounces.
         case ounces
+        
+        /// Pounds.
         case pounds
+        
+        /// Stones.
         case stones
+        
+        /// Metric tons.
         case metricTons
+        
+        /// Short tons.
         case shortTons
+        
+        /// Carats.
         case carats
+        
+        /// Ounces troy.
         case ouncesTroy
+        
+        /// Slugs.
         case slugs
         
         // MARK: - Private -

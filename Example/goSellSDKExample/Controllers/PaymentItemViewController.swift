@@ -123,6 +123,11 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                     caseSelectionController.allValues = type(of: measurement).all
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
+                case .volume(let measurement):
+                    
+                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    
                 default:
                     
                     break

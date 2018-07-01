@@ -17,6 +17,7 @@
     /// Error message.
     public private(set) var message: String = ""
     
+    /// Error description.
     public override var description: String {
         
         return "\(self.name): \(self.message)"

@@ -43,7 +43,7 @@
         self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit)
     }
     
-    /// Initializes payment item with title, quantity, units of measurement and amount per unit.
+    /// Initializes payment item with title, description, quantity and amount per unit.
     ///
     /// - Parameters:
     ///   - title: Payment item's title.
@@ -56,16 +56,44 @@
         self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil)
     }
     
+    /// Initializes payment item with title, description, quantity, amount per unit and discount.
+    ///
+    /// - Parameters:
+    ///   - title: Payment item's title.
+    ///   - descriptionText: Item description.
+    ///   - quantity: Payment item's quantity.
+    ///   - amountPerUnit: Amount per a single unit of quantity.
+    ///   - discount: Payment item's discount.
+    /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount`
     public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?) {
         
         self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil)
     }
     
+    /// Initializes payment item with title, description, quantity, amount per unit and taxes.
+    ///
+    /// - Parameters:
+    ///   - title: Payment item's title.
+    ///   - descriptionText: Item description.
+    ///   - quantity: Payment item's quantity.
+    ///   - amountPerUnit: Amount per a single unit of quantity.
+    ///   - taxes: Payment item's taxes.
+    /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value + taxes`
     public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?) {
         
         self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes)
     }
     
+    /// Initializes payment item with title, description, quantity, amount per unit, discount and taxes.
+    ///
+    /// - Parameters:
+    ///   - title: Payment item's title.
+    ///   - descriptionText: Item description.
+    ///   - quantity: Payment item's quantity.
+    ///   - amountPerUnit: Amount per a single unit of quantity.
+    ///   - discount: Payment item's discount.
+    ///   - taxes: Payment item's taxes.
+    /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount + taxes`
     public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?) {
         
         self.title = title
@@ -141,6 +169,10 @@ extension PaymentItem: Decodable {
 // MARK: - NSCopying
 extension PaymentItem: NSCopying {
     
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
         let quantityCopy = self.quantity.copy() as! Quantity

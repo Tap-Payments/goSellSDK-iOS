@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGRect
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
@@ -18,19 +19,15 @@ internal class PaymentContentViewController: BaseViewController {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var paymentOptionsContainerFrame: CGRect {
+    internal var paymentOptionsContainerTopOffset: CGFloat {
         
         if let frame = self.paymentOptionsContainerView?.frame {
             
-            var result = frame
-            result.origin.y += 1.0
-            result.size.height -= 1.0
-            
-            return result
+            return frame.origin.y + 3.0
         }
         else {
             
-            return .zero
+            return 0.0
         }
     }
     

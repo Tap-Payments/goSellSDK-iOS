@@ -5,21 +5,46 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Power extension to Measurement.
 public extension Measurement {
     
+    /// Power measurement unit.
     public enum Power {
         
+        /// Terawatts.
         case terawatts
+        
+        /// Gigawatts.
         case gigawatts
+        
+        /// Megawatts.
         case megawatts
+        
+        /// Kilowatts.
         case kilowatts
+        
+        /// Watts.
         case watts
+        
+        /// Milliwatts.
         case milliwatts
+        
+        /// Microwatts.
         case microwatts
+        
+        /// Nanowatts.
         case nanowatts
+        
+        /// Picowatts.
         case picowatts
+        
+        /// Femtowatts.
         case femtowatts
+        
+        /// Mechanical horsepower.
         case mechanicalHorsepower
+        
+        /// Metric horsepower.
         case metricHorsepower
         
         private struct Constants {

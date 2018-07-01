@@ -244,7 +244,7 @@ extension CardInputTableViewCellModel: CardValidatorDelegate {
     
     internal func validationStateChanged(to valid: Bool, on type: ValidationType) {
         
-        PaymentDataManager.shared.updatePayButtonState()
+        PaymentDataManager.shared.updatePayButtonStateAndAmount()
     }
 }
 
@@ -262,7 +262,7 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
         BINDataManager.shared.retrieveBINData(for: cardNumber.substring(to: Constants.binNumberLength)) { (response) in
             
             let inputCardNumber = validator.cardNumber
-            let outputBINNumber = response.binNumber ?? .empty
+            let outputBINNumber = response.binNumber
             let inputTrimmedTo6Characters = inputCardNumber.length < Constants.binNumberLength ? .empty : inputCardNumber.substring(to: Constants.binNumberLength)
             let outputTrimmedTo6Characters = outputBINNumber.length < Constants.binNumberLength ? .empty : outputBINNumber.substring(to: Constants.binNumberLength)
             if inputTrimmedTo6Characters == outputTrimmedTo6Characters {

@@ -5,15 +5,35 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Duration extension to measurement.
 public extension Measurement {
     
+    /// Duration measurement unit.
     public enum Duration {
         
+        /// Seconds.
         case seconds
+        
+        /// Minutes.
         case minutes
+        
+        /// Hours.
         case hours
+        
+        /// Days.
         case days
+        
+        /// Weeks.
         case weeks
+        
+        /// Months.
+        case months
+        
+        /// Quarters.
+        case quarters
+        
+        /// Years.
+        case years
         
         // MARK: - Private -
         
@@ -24,6 +44,9 @@ public extension Measurement {
             fileprivate static let hours    = "hours"
             fileprivate static let days     = "days"
             fileprivate static let weeks    = "weeks"
+            fileprivate static let months   = "months"
+            fileprivate static let quarters = "quarters"
+            fileprivate static let years    = "years"
             
             @available(*, unavailable) private init() {}
         }
@@ -42,6 +65,9 @@ extension Measurement.Duration: InitializableWithString {
         case Constants.hours    : self = .hours
         case Constants.days     : self = .days
         case Constants.weeks    : self = .weeks
+        case Constants.months   : self = .months
+        case Constants.quarters : self = .quarters
+        case Constants.years    : self = .years
             
         default: return nil
 
@@ -58,7 +84,10 @@ extension Measurement.Duration: CountableCasesEnum {
         .minutes,
         .hours,
         .days,
-        .weeks
+        .weeks,
+        .months,
+        .quarters,
+        .years
     ]
 }
 
@@ -74,6 +103,9 @@ extension Measurement.Duration: CustomStringConvertible {
         case .hours     : return Constants.hours
         case .days      : return Constants.days
         case .weeks     : return Constants.weeks
+        case .months    : return Constants.months
+        case .quarters  : return Constants.quarters
+        case .years     : return Constants.years
             
         }
     }
@@ -86,12 +118,15 @@ extension Measurement.Duration: ProportionalToOrigin {
         
         switch self {
             
-        case .seconds   : return       1
-        case .minutes   : return      60
-        case .hours     : return   3_600
-        case .days      : return  86_400
-        case .weeks     : return 604_800
-            
+        case .seconds   : return            1.0
+        case .minutes   : return           60.0
+        case .hours     : return        3_600.0
+        case .days      : return       86_400.0
+        case .weeks     : return      604_800.0
+        case .months    : return    2_592_000.0 // 1 months is considered as 30 days.
+        case .quarters  : return    7_776_000.0 // 1 quarter is considered as 3 months.
+        case .years     : return   31_536_000.0 // 1 year is considered as 365 days.
+
         }
     }
 }

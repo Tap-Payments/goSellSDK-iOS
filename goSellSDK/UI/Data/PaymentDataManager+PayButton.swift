@@ -13,10 +13,12 @@ internal extension PaymentDataManager {
     internal func linkWith(_ payButton: PayButtonUI) {
         
         self.payButtonUI = payButton
-        self.updatePayButtonState()
+        self.updatePayButtonStateAndAmount()
     }
     
-    internal func updatePayButtonState() {
+    internal func updatePayButtonStateAndAmount() {
+        
+        self.updatePayButtonAmount()
         
         guard let selectedPaymentViewModel = self.selectedPaymentOptionCellViewModel else {
             
@@ -31,6 +33,26 @@ internal extension PaymentDataManager {
     // MARK: - Private -
     // MARK: Methods
     
+    private func updatePayButtonAmount() {
+        
+        let amountedCurrency = self.userSelectedCurrency ?? self.transactionCurrency
+        
+        if let paymentOption = (self.selectedPaymentOptionCellViewModel as? CardInputTableViewCellModel)?.selectedPaymentOption {
+            
+            let extraFeeAmount = self.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
+            
+            let amount = AmountedCurrency(amountedCurrency.currency,
+                                          amountedCurrency.amount + extraFeeAmount,
+                                          currencySymbol: amountedCurrency.currencySymbol)
+            
+            self.payButtonUI?.amount = amount
+        }
+        else {
+            
+            self.payButtonUI?.amount = amountedCurrency
+        }
+    }
+    
     private func makePayButtonEnabled(_ enabled: Bool) {
         
         self.payButtonUI?.isEnabled = enabled
@@ -40,14 +62,20 @@ internal extension PaymentDataManager {
 // MARK: - TapButtonDelegate
 extension PaymentDataManager: TapButtonDelegate {
     
+    internal var canBeHighlighted: Bool {
+        
+        return !self.isExecutingAPICalls
+    }
+    
     internal func buttonTouchUpInside() {
         
-        guard let selectedPaymentViewModel = self.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment else { return }
+        guard let selectedPaymentViewModel = self.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment, !self.isExecutingAPICalls else { return }
         
         self.startPaymentProcess(with: selectedPaymentViewModel)
     }
     
     internal func securityButtonTouchUpInside() {
         
+        self.buttonTouchUpInside()
     }
 }
