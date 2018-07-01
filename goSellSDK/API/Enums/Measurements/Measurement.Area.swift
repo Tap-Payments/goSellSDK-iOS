@@ -5,23 +5,52 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Area extension to Measurement.
 public extension Measurement {
     
+    /// Area measurement unit.
     public enum Area {
         
+        /// Square megameters.
         case squareMegameters
+        
+        /// Square kilometers.
         case squareKilometers
+        
+        /// Square meters.
         case squareMeters
+        
+        /// Square centimeters.
         case squareCentimeters
+        
+        /// Square millimeters.
         case squareMillimeters
+        
+        /// Square micrometers.
         case squareMicrometers
+        
+        /// Square nanometers.
         case squareNanometers
+        
+        /// Square inches.
         case squareInches
+        
+        /// Square feet.
         case squareFeet
+        
+        /// Square yards.
         case squareYards
+        
+        /// Square miles.
         case squareMiles
+        
+        /// Acres.
         case acres
+        
+        /// Ares.
         case ares
+        
+        /// Hectares.
         case hectares
         
         // MARK: - Private -

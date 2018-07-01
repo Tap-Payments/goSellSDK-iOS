@@ -11,7 +11,10 @@
 /// - fixedAmount: Fixed amount modification.
 @objc public enum AmountModificatorType: Int {
     
+    /// Percent-based modification.
     case percentBased
+    
+    /// Fixed amount modification.
     case fixedAmount
     
     // MARK: - Private -

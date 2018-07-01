@@ -19,6 +19,11 @@
     
     // MARK: Methods
     
+    /// Initializes amount modificator with modification type and value.
+    ///
+    /// - Parameters:
+    ///   - type: Modification type.
+    ///   - value: Modification value.
     public init(type: AmountModificatorType, value: Decimal) {
         
         self.type = type
@@ -52,6 +57,10 @@
 // MARK: - NSCopying
 extension AmountModificator: NSCopying {
     
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
         return AmountModificator(type: self.type, value: self.value)

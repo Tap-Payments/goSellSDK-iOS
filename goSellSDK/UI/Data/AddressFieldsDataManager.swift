@@ -101,23 +101,25 @@ internal class AddressFieldsDataManager {
         
         self.generateStaticTopAddressFields(fillingInto: &result)
         
-        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
-            
-            self.allCellViewModels = result
-            return
-        }
+        // TODO: Apply real address format logic when Address Format API is ready.
         
-        addressFormat.forEach { addressField in
-            
-            if let _: AddressTextInputFieldTableViewCellModel = self.firstExisingCellModel(with: addressField.placeholder) { } else {
-                
-                let fieldCellModel = AddressTextInputFieldTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                             addressField: addressField,
-                                                                             inputListener: self.validator,
-                                                                             dataStorage: self.validator)
-                result.append(fieldCellModel)
-            }
-        }
+//        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
+//
+//            self.allCellViewModels = result
+//            return
+//        }
+//
+//        addressFormat.forEach { addressField in
+//
+//            if let _: AddressTextInputFieldTableViewCellModel = self.firstExisingCellModel(with: addressField.placeholder) { } else {
+//
+//                let fieldCellModel = AddressTextInputFieldTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+//                                                                             addressField: addressField,
+//                                                                             inputListener: self.validator,
+//                                                                             dataStorage: self.validator)
+//                result.append(fieldCellModel)
+//            }
+//        }
         
         self.allCellViewModels = result
     }
@@ -176,23 +178,25 @@ internal class AddressFieldsDataManager {
             bottomEmptyCellModelAfterCountry.indexPath = self.nextIndexPath(for: result)
             result.append(bottomEmptyCellModelAfterCountry)
         }
+
+        // TODO: Apply real logic when Address Format API is ready.
         
-        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
-            
-            self.visibleCellViewModels = result
-            return
-        }
-        
-        let sortedAddressFormat = addressFormat.sorted { $0.inputOrder < $1.inputOrder }
-        
-        sortedAddressFormat.forEach { addressField in
-            
-            if let addressCellViewModel: AddressTextInputFieldTableViewCellModel = self.firstExisingCellModel(with: addressField.placeholder) {
-                
-                addressCellViewModel.indexPath = self.nextIndexPath(for: result)
-                result.append(addressCellViewModel)
-            }
-        }
+//        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
+//
+//            self.visibleCellViewModels = result
+//            return
+//        }
+//
+//        let sortedAddressFormat = addressFormat.sorted { $0.inputOrder < $1.inputOrder }
+//
+//        sortedAddressFormat.forEach { addressField in
+//
+//            if let addressCellViewModel: AddressTextInputFieldTableViewCellModel = self.firstExisingCellModel(with: addressField.placeholder) {
+//
+//                addressCellViewModel.indexPath = self.nextIndexPath(for: result)
+//                result.append(addressCellViewModel)
+//            }
+//        }
         
         self.visibleCellViewModels = result
     }

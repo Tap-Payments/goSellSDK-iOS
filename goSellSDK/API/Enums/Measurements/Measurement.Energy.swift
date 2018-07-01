@@ -5,23 +5,34 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Energy extension to Measurement.
 public extension Measurement {
     
+    /// Energy measurement unit.
     public enum Energy {
         
+        /// Kilojoules.
         case kilojoules
+        
+        /// Joules.
         case joules
+        
+        /// Kilocalories.
         case kilocalories
+        
+        /// Calories.
         case calories
+        
+        /// Kilowatt-hours.
         case kilowattHours
         
         // MARK: - Private -
         
         private struct Constants {
             
-            fileprivate static let kilojoules       = "kilo_joules"
+            fileprivate static let kilojoules       = "kilojoules"
             fileprivate static let joules           = "joules"
-            fileprivate static let kilocalories     = "kilo_calories"
+            fileprivate static let kilocalories     = "kilocalories"
             fileprivate static let calories         = "calories"
             fileprivate static let kilowattHours    = "kilowatt_hours"
             

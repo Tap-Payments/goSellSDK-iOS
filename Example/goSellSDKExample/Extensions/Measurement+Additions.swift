@@ -18,6 +18,7 @@ internal extension Measurement {
             .length(.meters),
             .mass(.kilograms),
             .power(.watts),
+            .volume(.cubicMeters),
             .units
         ]
     }

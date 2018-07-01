@@ -34,6 +34,10 @@
         super.init()
     }
     
+    /// Checks if the receiver is equal to `object.`
+    ///
+    /// - Parameter object: Object to test equality with.
+    /// - Returns: `true` if the receiver is equal to `object`, `false` otherwise.
     public override func isEqual(_ object: Any?) -> Bool {
         
         guard let otherEmailAddress = object as? EmailAddress else { return false }
@@ -41,6 +45,12 @@
         return self.value == otherEmailAddress.value
     }
     
+    /// Checks if 2 objects are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: First object.
+    ///   - rhs: Second object.
+    /// - Returns: `true` if 2 objects are equal, `fale` otherwise.
     public static func == (lhs: EmailAddress, rhs: EmailAddress) -> Bool {
         
         return lhs.isEqual(rhs)
@@ -72,6 +82,10 @@ extension EmailAddress: Decodable {
 // MARK: - NSCopying
 extension EmailAddress: NSCopying {
     
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
         return try! EmailAddress(self.value)

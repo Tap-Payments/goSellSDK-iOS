@@ -109,7 +109,7 @@ internal class TapButton: TapNibView {
     
     @IBAction private func internalButtonHighlighted(_ sender: Any) {
         
-        self.isHighlighted = true
+        self.isHighlighted = self.delegate?.canBeHighlighted ?? true
         self.updateTheme(animated: true)
     }
     

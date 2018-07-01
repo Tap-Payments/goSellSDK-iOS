@@ -7,6 +7,7 @@
 
 import enum TapCardValidator.CardBrand
 
+/// Payment data manager.
 internal final class PaymentDataManager {
     
     // MARK: - Internal -
@@ -54,6 +55,8 @@ internal final class PaymentDataManager {
         
         return self.paymentOptionsResponse?.orderIdentifier
     }
+    
+    internal var isExecutingAPICalls = false
     
     internal var transactionCurrency: AmountedCurrency {
         

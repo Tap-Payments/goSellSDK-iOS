@@ -27,6 +27,7 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitionin
 import class UIKit.UIAlertController.UIAlertAction
 import class UIKit.UIAlertController.UIAlertController
 
+/// View controller that handles Tap OTP input.
 internal final class OTPViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
@@ -76,6 +77,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     // MARK: - Fileprivate -
     
+    /// Transition handler for OTP view controller.
     fileprivate final class Transitioning: NSObject {
         
         fileprivate var shouldUseDefaultOTPAnimation = true
@@ -313,6 +315,11 @@ extension OTPViewController: Singleton {
 
 // MARK: - TapButtonDelegate
 extension OTPViewController: TapButtonDelegate {
+    
+    internal var canBeHighlighted: Bool {
+        
+        return true
+    }
     
     internal func buttonTouchUpInside() {
         

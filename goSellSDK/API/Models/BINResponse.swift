@@ -13,38 +13,34 @@ internal struct BINResponse: Decodable {
     // MARK: - Internal -
     // MARK: Properties
     
-    /// Card BIN number.
-    internal let binNumber: String?
+    /// Defines if address is required
+    internal let isAddressRequired: Bool
     
     /// Card issuer bank.
-    internal let bank: String?
+    internal let bank: String
+    
+    /// Bank logo URL.
+    internal let bankLogoURL: URL?
+    
+    /// Card BIN number.
+    internal let binNumber: String
     
     /// Card brand.
     internal let cardBrand: CardBrand?
     
     /// Card issuing country.
-    internal let country: Country?
-    
-    /// Bank logo URL.
-    internal let bankLogoURL: URL?
-    
-    /// Defines if address is required
-    internal let isAddressRequired: Bool?
-    
-    /// Address format.
-    internal let addressFormat: [AddressField]?
+    internal let country: Country
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case binNumber          = "bin"
-        case bank               = "bank"
-        case cardBrand          = "card_brand"
-        case country            = "country_code"
-        case bankLogoURL        = "bank_logo"
         case isAddressRequired  = "address_required"
-        case addressFormat      = "address_format"
+        case bank               = "bank"
+        case bankLogoURL        = "bank_logo"
+        case binNumber          = "bin"
+        case cardBrand          = "card_brand"
+        case country            = "country"
     }
 }
 

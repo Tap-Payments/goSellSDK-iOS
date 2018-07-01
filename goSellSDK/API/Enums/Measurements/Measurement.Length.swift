@@ -5,31 +5,76 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Length extension to Measurement.
 public extension Measurement {
     
+    /// Length measurement unit.
     public enum Length {
         
+        /// Megameters.
         case megameters
+        
+        /// Kilometers.
         case kilometers
+        
+        /// Hectometers.
         case hectometers
+        
+        /// Decameters.
         case decameters
+        
+        /// Meters.
         case meters
+        
+        /// Decimeters.
         case decimeters
+        
+        /// Centimeters.
         case centimeters
+        
+        /// Millimeters.
         case millimeters
+        
+        /// Micrometers.
         case micrometers
+        
+        /// Nanometers.
         case nanometers
+        
+        /// Picometers.
         case picometers
+        
+        /// Inches.
         case inches
+        
+        /// Feet.
         case feet
+        
+        /// Yards.
         case yards
+        
+        /// Miles.
         case miles
+        
+        /// Scandinavian miles.
         case scandinavianMiles
+        
+        /// Light years.
         case lightYears
+        
+        /// Nautical miles.
         case nauticalMiles
+        
+        /// Fathoms.
         case fathoms
+        
+        /// Furlongs.
         case furlongs
+        
+        /// Astronomical units.
         case astronomicalUnits
+        
+        /// Parsecs.
         case parsecs
         
         // MARK: - Private -

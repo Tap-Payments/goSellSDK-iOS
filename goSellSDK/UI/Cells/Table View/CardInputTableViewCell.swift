@@ -5,32 +5,32 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGBase.CGFloat
-import struct CoreGraphics.CGGeometry.CGPoint
-import struct CoreGraphics.CGGeometry.CGSize
-import class EditableTextInsetsTextField.EditableTextInsetsTextField
-import struct TapAdditionsKit.TypeAlias
-import class TapEditableView.TapEditableView
-import class UIKit.NSLayoutConstraint.NSLayoutConstraint
-import class UIKit.UIButton.UIButton
-import class UIKit.UICollectionView.UICollectionView
-import class UIKit.UIEvent.UIEvent
-import struct UIKit.UIGeometry.UIEdgeInsets
-import class UIKit.UIImageView.UIImageView
-import class UIKit.UILabel.UILabel
-import class UIKit.UIScreen.UIScreen
-import class UIKit.UISwitch.UISwitch
-import class UIKit.UITableView.UITableView
-import var UIKit.UITableView.UITableViewAutomaticDimension
-import class UIKit.UITableViewCell.UITableViewCell
-import class UIKit.UIView.UIView
+import struct   CoreGraphics.CGBase.CGFloat
+import struct   CoreGraphics.CGGeometry.CGPoint
+import struct   CoreGraphics.CGGeometry.CGSize
+import class    EditableTextInsetsTextField.EditableTextInsetsTextField
+import struct   TapAdditionsKit.TypeAlias
+import class    TapEditableView.TapEditableView
+import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class    UIKit.UIButton.UIButton
+import class    UIKit.UICollectionView.UICollectionView
+import class    UIKit.UIEvent.UIEvent
+import struct   UIKit.UIGeometry.UIEdgeInsets
+import class    UIKit.UIImageView.UIImageView
+import class    UIKit.UILabel.UILabel
+import class    UIKit.UIScreen.UIScreen
+import class    UIKit.UISwitch.UISwitch
+import class    UIKit.UITableView.UITableView
+import var      UIKit.UITableView.UITableViewAutomaticDimension
+import class    UIKit.UITableViewCell.UITableViewCell
+import class    UIKit.UIView.UIView
 
 internal class CardInputTableViewCell: BaseTableViewCell {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    internal weak var model: CardInputTableViewCellModel?
+    internal weak var model: (CardInputTableViewCellModel & CardInputTableViewCellLoading)?
     
     // MARK: Methods
     
@@ -132,10 +132,10 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         
         let scanButtonAlphaAnimation: TypeAlias.ArgumentlessClosure = {
             
-            self.cardScannerButton?.alpha = (self.model?.scanButtonVisible ?? false) ? 1.0 : 0.0
+            self.cardScannerButton?.alpha = (self.model?.isScanButtonVisible ?? false) ? 1.0 : 0.0
         }
         
-        return NSLayoutConstraint.reactivate(inCaseIf: self.model?.scanButtonVisible ?? false,
+        return NSLayoutConstraint.reactivate(inCaseIf: self.model?.isScanButtonVisible ?? false,
                                              constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfScanningEnabled,
                                              constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfScanningEnabled,
                                              viewToLayout: layout ? self.contentView : nil,

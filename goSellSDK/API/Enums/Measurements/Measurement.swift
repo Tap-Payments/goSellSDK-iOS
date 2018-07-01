@@ -5,16 +5,37 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Measurement enum.
 public enum Measurement {
     
+    /// Area.
     case area(Area)
+    
+    /// Duration.
     case duration(Duration)
+    
+    /// Electric charge.
     case electricCharge(ElectricCharge)
+    
+    /// Electric current.
     case electricCurrent(ElectricCurrent)
+    
+    /// Energy.
     case energy(Energy)
+    
+    /// Length.
     case length(Length)
+    
+    /// Mass.
     case mass(Mass)
+    
+    /// Power.
     case power(Power)
+    
+    /// Volume.
+    case volume(Volume)
+    
+    /// Units.
     case units
     
     // MARK: - Internal -
@@ -86,6 +107,7 @@ public enum Measurement {
         fileprivate static let length           = "length"
         fileprivate static let mass             = "mass"
         fileprivate static let power            = "power"
+        fileprivate static let volume           = "volume"
         fileprivate static let units            = "units"
         
         @available(*, unavailable) private init() {}
@@ -107,6 +129,7 @@ extension Measurement: CustomStringConvertible {
         case .length(_)         : return Constants.length
         case .mass(_)           : return Constants.mass
         case .power(_)          : return Constants.power
+        case .volume(_)         : return Constants.volume
         case .units             : return Constants.units
 
         }
@@ -128,6 +151,7 @@ extension Measurement: CountableCasesEnum {
         Measurement.Length.all.forEach          { result.append(.length($0))            }
         Measurement.Mass.all.forEach            { result.append(.mass($0))              }
         Measurement.Power.all.forEach           { result.append(.power($0))             }
+        Measurement.Volume.all.forEach          { result.append(.volume($0))            }
         
         result.append(.units)
         
@@ -151,6 +175,7 @@ extension Measurement: Equatable {
         case (.length           (let lhsUnit), .length          (let rhsUnit))  : return lhsUnit == rhsUnit
         case (.mass             (let lhsUnit), .mass            (let rhsUnit))  : return lhsUnit == rhsUnit
         case (.power            (let lhsUnit), .power           (let rhsUnit))  : return lhsUnit == rhsUnit
+        case (.volume           (let lhsUnit), .volume          (let rhsUnit))  : return lhsUnit == rhsUnit
         case (.units                         , .units)                          : return true
             
         default: return false

@@ -17,6 +17,7 @@ internal struct Address: Decodable {
     /// Address type.
     internal var type: AddressType?
     
+    /// Country.
     internal var country: Country
     
     /// Address line 1.

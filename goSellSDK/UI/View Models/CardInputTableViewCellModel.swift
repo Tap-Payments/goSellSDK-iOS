@@ -12,7 +12,10 @@ import struct   TapCardValidator.DefinedCardBrand
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIFont.UIFont
 import class    UIKit.UIImage.UIImage
+import protocol UIKit.UITableView.UITableViewDataSource
+import protocol UIKit.UITableView.UITableViewDelegate
 
+/// View model that handles manual card input table view cell.
 internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     
     // MARK: - Internal -
@@ -26,62 +29,6 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
             
             self.updatePaymentOptions()
         }
-    }
-    
-    internal let scanButtonVisible = CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
-    
-    internal var scanButtonImage: UIImage {
-        
-        return Theme.current.settings.cardInputFieldsSettings.scanIcon
-    }
-    
-    internal var displaysAddressFields: Bool {
-        
-        return self.binData?.isAddressRequired ?? false
-    }
-    
-    internal var addressOnCardText: String {
-        
-        let hasInputData = self.cardAddressValidatorHasInputData
-        
-        if hasInputData {
-            
-            let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
-            return addressValidator?.displayText ?? "Address on Card"
-        }
-        else {
-            
-            return "Address on Card"
-        }
-    }
-    
-    internal var addressOnCardTextColor: UIColor {
-        
-        let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
-        let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
-        let valid = addressValidator?.isDataValid ?? false
-        
-        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
-        
-        let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
-        return settings.color
-    }
-    
-    internal var addressOnCardTextFont: UIFont {
-        
-        let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
-        let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
-        let valid = addressValidator?.isDataValid ?? false
-        
-        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
-        
-        let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
-        return settings.font
-    }
-    
-    internal var addressOnCardArrowImage: UIImage {
-        
-        return Theme.current.settings.generalImages.arrowRight
     }
     
     internal var tableViewCellModels: [ImageTableViewCellModel]
@@ -98,8 +45,6 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         }
     }
     
-    internal lazy var tableViewHandler: CardInputTableViewCellModelTableViewHandler = CardInputTableViewCellModelTableViewHandler(model: self)
-    
     internal lazy var cardDataValidators: [CardValidator] = []
     
     internal var definedCardBrand: DefinedCardBrand?
@@ -108,7 +53,7 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     
     internal override var isReadyForPayment: Bool {
         
-        return (self.cardDataValidators.filter { !$0.isDataValid }).count == 0
+        return (self.requiredCardDataValidators.filter { !$0.isDataValid }).count == 0
     }
     
     internal override var affectsPayButtonState: Bool {
@@ -186,7 +131,7 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         
         self.paymentOptions = paymentOptions
         
-        if self.scanButtonVisible {
+        if self.isScanButtonVisible {
             
             CardIOUtilities.preload()
         }
@@ -200,6 +145,18 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
     // MARK: - Private -
     // MARK: Properties
     
+    private var requiredCardDataValidators: [CardValidator] {
+        
+        if self.displaysAddressFields {
+            
+            return self.cardDataValidators
+        }
+        else {
+            
+            return self.cardDataValidators.filter { $0.validationType != .addressOnCard }
+        }
+    }
+    
     private var cardAddressValidatorHasInputData: Bool {
         
         let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
@@ -207,6 +164,8 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         
         return hasInputData
     }
+    
+    private lazy var iconsTableViewHandler: CardInputTableViewCellModelTableViewHandler = CardInputTableViewCellModelTableViewHandler(model: self)
     
     // MARK: Methods
     
@@ -223,3 +182,71 @@ extension CardInputTableViewCellModel: SingleCellModel {}
 
 // MARK: - DynamicLayoutCellModel
 extension CardInputTableViewCellModel: DynamicLayoutCellModel {}
+
+// MARK: - CardInputTableViewCellLoading
+extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
+    
+    internal var displaysAddressFields: Bool {
+        
+        return self.binData?.isAddressRequired ?? false
+    }
+    
+    internal var addressOnCardTextColor: UIColor {
+        
+        let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
+        let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
+        let valid = addressValidator?.isDataValid ?? false
+        
+        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
+        
+        let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
+        return settings.color
+    }
+    
+    internal var addressOnCardTextFont: UIFont {
+        
+        let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
+        let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
+        let valid = addressValidator?.isDataValid ?? false
+        
+        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
+        
+        let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
+        return settings.font
+    }
+    
+    internal var addressOnCardText: String {
+        
+        let hasInputData = self.cardAddressValidatorHasInputData
+        
+        if hasInputData {
+            
+            let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
+            return addressValidator?.displayText ?? "Address on Card"
+        }
+        else {
+            
+            return "Address on Card"
+        }
+    }
+    
+    internal var addressOnCardArrowImage: UIImage {
+        
+        return Theme.current.settings.generalImages.arrowRight
+    }
+    
+    internal var scanButtonImage: UIImage {
+        
+        return Theme.current.settings.cardInputFieldsSettings.scanIcon
+    }
+    
+    internal var isScanButtonVisible: Bool {
+        
+        return CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
+    }
+    
+    internal var tableViewHandler: UITableViewDataSource & UITableViewDelegate {
+        
+        return self.iconsTableViewHandler
+    }
+}

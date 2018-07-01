@@ -60,6 +60,10 @@
 // MARK: - NSCopying
 extension Tax: NSCopying {
     
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
         let amountCopy = self.amount.copy() as! AmountModificator

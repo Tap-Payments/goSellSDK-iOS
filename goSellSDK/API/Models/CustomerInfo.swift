@@ -61,6 +61,10 @@
         try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, middleName: nil, lastName: nil)
     }
     
+    /// Checks if the receiver is equal to `object.`
+    ///
+    /// - Parameter object: Object to test equality with.
+    /// - Returns: `true` if the receiver is equal to `object`, `false` otherwise.
     public override func isEqual(_ object: Any?) -> Bool {
         
         guard let otherCustomer = object as? CustomerInfo else { return false }
@@ -79,6 +83,12 @@
             self.phoneNumber    == otherCustomer.phoneNumber
     }
     
+    /// Checks if 2 objects are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: First object.
+    ///   - rhs: Second object.
+    /// - Returns: `true` if 2 objects are equal, `fale` otherwise.
     public static func == (lhs: CustomerInfo, rhs: CustomerInfo) -> Bool {
         
         return lhs.isEqual(rhs)
@@ -146,6 +156,10 @@
 // MARK: - NSCopying
 extension CustomerInfo: NSCopying {
     
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
         let emailAddressCopy = self.emailAddress?.copy() as? EmailAddress

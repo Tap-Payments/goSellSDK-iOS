@@ -7,6 +7,7 @@
 
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
+import class    UIKit.UIResponder.UIResponder
 
 internal class SeparateWindowViewController: BaseViewController {
     
@@ -15,10 +16,22 @@ internal class SeparateWindowViewController: BaseViewController {
     
     internal func show(animated: Bool = true, parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController>? = nil, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        self.showOnSeparateWindow { [unowned self] (rootController) in
+        let showClosure: TypeAlias.ArgumentlessClosure = {
             
-            parentControllerSetupClosure?(rootController)
-            rootController.present(self, animated: animated, completion: completion)
+            self.showOnSeparateWindow { [unowned self] (rootController) in
+                
+                parentControllerSetupClosure?(rootController)
+                rootController.present(self, animated: animated, completion: completion)
+            }
+        }
+        
+        if let firstResponder = UIResponder.current {
+            
+            firstResponder.resignFirstResponder(showClosure)
+        }
+        else {
+            
+            showClosure()
         }
     }
     
