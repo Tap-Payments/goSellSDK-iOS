@@ -24,9 +24,6 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTran
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
-import class UIKit.UIAlertController.UIAlertAction
-import class UIKit.UIAlertController.UIAlertController
-
 /// View controller that handles Tap OTP input.
 internal final class OTPViewController: SeparateWindowViewController {
     
@@ -42,16 +39,25 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     // MARK: Methods
     
-    internal static func show(in frame: CGRect) {
+    internal static func show(in frame: CGRect, with phoneNumber: String, delegate: OTPViewControllerDelegate) {
         
         let controller = self.createAndSetupController()
+        controller.delegate = delegate
+        controller.phoneNumber = phoneNumber
         
-        let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
+        if controller.presentingViewController == nil {
             
-            rootController.view.window?.frame = frame
+            let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
+                
+                rootController.view.window?.frame = frame
+            }
+            
+            controller.show(parentControllerSetupClosure: parentControllerSetupClosure)
         }
-        
-        controller.show(parentControllerSetupClosure: parentControllerSetupClosure)
+        else {
+            
+            controller.startAnotherAttempt()
+        }
     }
     
     internal func addInteractiveDismissalRecognizer(_ recognizer: UIGestureRecognizer) {
@@ -71,8 +77,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     internal override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.otpInputView?.becomeFirstResponder()
-        self.startAttempt()
+        self.startAnotherAttempt()
     }
     
     // MARK: - Fileprivate -
@@ -85,8 +90,8 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         private override init() {
             
-            super.init()
             KnownSingletonTypes.add(Transitioning.self)
+            super.init()
         }
     }
     
@@ -171,6 +176,16 @@ internal final class OTPViewController: SeparateWindowViewController {
         return formatter
     }()
     
+    private var phoneNumber: String = .empty {
+        
+        didSet {
+            
+            self.updateDescriptionLabelText()
+        }
+    }
+    
+    private weak var delegate: OTPViewControllerDelegate?
+    
     // MARK: Methods
     
     private static func createAndSetupController() -> OTPViewController {
@@ -186,7 +201,8 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     private func updateDescriptionLabelText() {
         
-        let maskedNumber = "+965 00●●●●00"
+        guard let nonnullLabel = self.descriptionLabel, self.phoneNumber.length > 0 else { return }
+        
         let descriptionText = "Please enter the OTP that has been sent to "
         
         let descriptionAttributes: [NSAttributedStringKey: Any] = [
@@ -202,11 +218,11 @@ internal final class OTPViewController: SeparateWindowViewController {
         ]
         
         let attributedDescriptionText = NSAttributedString(string: descriptionText, attributes: descriptionAttributes)
-        let attributedMaskedNumberText = NSAttributedString(string: maskedNumber, attributes: numberAttributes)
+        let attributedMaskedNumberText = NSAttributedString(string: self.phoneNumber, attributes: numberAttributes)
         let result = NSMutableAttributedString(attributedString: attributedDescriptionText)
         result.append(attributedMaskedNumberText)
         
-        self.descriptionLabel?.attributedText = NSAttributedString(attributedString: result)
+        nonnullLabel.attributedText = NSAttributedString(attributedString: result)
     }
     
     private func updateConfirmationButtonState() {
@@ -257,9 +273,15 @@ internal final class OTPViewController: SeparateWindowViewController {
         }
     }
     
+    private func startAnotherAttempt() {
+        
+        self.otpInputView?.startEditing()
+        self.startAttempt()
+    }
+    
     @IBAction private func resendButtonTouchUpInside(_ sender: Any) {
         
-        self.startAttempt()
+        self.resendOTPCode()
     }
     
     @IBAction private func dismissalViewTapDetected(_ recognizer: UITapGestureRecognizer) {
@@ -270,6 +292,18 @@ internal final class OTPViewController: SeparateWindowViewController {
         }
         
         self.hide(animated: true)
+    }
+    
+    private func resendOTPCode() {
+        
+        self.delegate?.otpViewControllerResendButtonTouchUpInside(self)
+    }
+    
+    private func confirmOTPCode() {
+        
+        guard let code = self.otpInputView?.otp else { return }
+        
+        self.delegate?.otpViewController(self, didEnter: code)
     }
 }
 
@@ -323,15 +357,7 @@ extension OTPViewController: TapButtonDelegate {
     
     internal func buttonTouchUpInside() {
         
-        let alert = UIAlertController(title: "Not implemented", message: "This action is not implemented yet.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { [weak alert] (action) in
-            
-            alert?.dismiss(animated: true, completion: nil)
-        }
-        
-        alert.addAction(okAction)
-        
-        self.show(alert, sender: self)
+        self.confirmOTPCode()
     }
     
     internal func securityButtonTouchUpInside() {

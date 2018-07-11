@@ -14,8 +14,9 @@ internal struct Permissions: OptionSet, Decodable {
     
     // MARK: Properties
     
-    internal static let pci                 = Permissions(rawValue: Set<String>([Constants.pciKey]))
-    internal static let merchantCheckout    = Permissions(rawValue: Set<String>([Constants.merchantCheckoutKey]))
+    internal static let pci                     = Permissions(rawValue: Set<String>([Constants.pciKey]))
+    internal static let merchantCheckout        = Permissions(rawValue: Set<String>([Constants.merchantCheckoutKey]))
+    internal static let non3DSecureTransactions = Permissions(rawValue: Set<String>([Constants.threeDSecureDisabledKey]))
     
     // MARK: Methods
     
@@ -56,15 +57,17 @@ internal struct Permissions: OptionSet, Decodable {
     
     private struct Constants {
         
-        fileprivate static let pciKey               = "pci"
-        fileprivate static let merchantCheckoutKey  = "merchant_checkout"
+        fileprivate static let pciKey                   = "pci"
+        fileprivate static let merchantCheckoutKey      = "merchant_checkout"
+        fileprivate static let threeDSecureDisabledKey  = "threeDSecure_disabled"
         
         fileprivate static let availableOptions: [String] = {
             
             return [
                 
                 Constants.pciKey,
-                Constants.merchantCheckoutKey
+                Constants.merchantCheckoutKey,
+                Constants.threeDSecureDisabledKey
             ]
         }()
         

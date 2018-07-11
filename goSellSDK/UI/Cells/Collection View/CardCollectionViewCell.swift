@@ -17,6 +17,14 @@ internal class CardCollectionViewCell: BaseCollectionViewCell {
     internal weak var model: CardCollectionViewCellLoading?
     
     // MARK: - Private -
+    
+    private struct Constants {
+        
+        fileprivate static let animationDuration: TimeInterval = 0.3
+        
+        @available(*, unavailable) private init() {}
+    }
+    
     // MARK: Properties
     
     @IBOutlet private weak var cardBackgroundView:  UIView?
@@ -32,10 +40,27 @@ extension CardCollectionViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
         
-        self.smallIconImageView?.image  = self.model?.smallImage
-        self.bigIconImageView?.image    = self.model?.bigImage
         self.currencyLabel?.text        = self.model?.currencyLabelText
         self.cardNumberLabel?.text      = self.model?.cardNumberText
+        self.checkmarkImageView?.image  = self.model?.checkmarkImage
+        
+        if let smallImageView = self.smallIconImageView, let smallImage = self.model?.smallImage {
+            
+            smallImageView.image = smallImage
+            smallImageView.contentMode = smallImage.bestContentMode(toFit: smallImageView.bounds.size)
+        }
+        
+        if let bigImageView = self.bigIconImageView, let bigImage = self.model?.bigImage {
+            
+            bigImageView.image = bigImage
+            bigImageView.contentMode = bigImage.bestContentMode(toFit: bigImageView.bounds.size)
+        }
+        
+        UIView.animate(withDuration: animated ? Constants.animationDuration : 0.0) {
+            
+            let selected = self.model?.isSelected ?? false
+            self.checkmarkImageView?.alpha = selected ? 1.0 : 0.0
+        }
     }
 }
 

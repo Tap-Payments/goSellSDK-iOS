@@ -12,15 +12,17 @@ internal extension PaymentDataManager {
     
     internal var selectedPaymentOptionCellViewModel: PaymentOptionCellViewModel? {
         
-        return self.cellModels(of: PaymentOptionCellViewModel.self).first { $0.isSelected }
+        return self.ableToBeSelectedPaymentOptionCellModels.first { $0.isSelected }
     }
     
     // MARK: Methods
     
     internal func deselectAllPaymentOptionsModels(except model: PaymentOptionCellViewModel) {
         
-        let paymentOptionsModels = self.cellModels(of: PaymentOptionCellViewModel.self)
-        paymentOptionsModels.forEach { $0.isSelected = $0 === model }
+        let allModels = self.ableToBeSelectedPaymentOptionCellModels
+        
+    
+        allModels.forEach { $0.isSelected = $0 === model }
         
         self.lastSelectedPaymentOption = model
         
@@ -36,7 +38,6 @@ internal extension PaymentDataManager {
     internal func deselectPaymentOption(_ model: PaymentOptionCellViewModel) {
         
         self.lastSelectedPaymentOption = nil
-        
         model.isSelected = false
         
         self.updatePayButtonStateAndAmount()
@@ -50,8 +51,19 @@ internal extension PaymentDataManager {
         }
         else {
             
-            let paymentOptionsModels = self.cellModels(of: PaymentOptionCellViewModel.self)
+            let paymentOptionsModels = self.cellModels(of: PaymentOptionTableCellViewModel.self)
             paymentOptionsModels.forEach { $0.isSelected = false }
         }
+    }
+    
+    // MARK: - Private -
+    // MARK: Properties
+    
+    private var ableToBeSelectedPaymentOptionCellModels: [PaymentOptionCellViewModel] {
+        
+        let topLevelModels = (self.paymentOptionsScreenCellViewModels.filter { $0 is PaymentOptionCellViewModel } as? [PaymentOptionCellViewModel]) ?? []
+        let savedCardsModels = self.cellModels(of: CardsContainerTableViewCellModel.self).first?.collectionViewCellModels ?? []
+        
+        return topLevelModels + savedCardsModels
     }
 }

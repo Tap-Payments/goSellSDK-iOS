@@ -34,7 +34,7 @@ internal final class LoadingViewController: SeparateWindowViewController {
             rootController.view.window?.frame = frame
         }
         
-        controller.show(parentControllerSetupClosure: parentControllerSetupClosure)
+        controller.show(userInteractionEnabled: false, parentControllerSetupClosure: parentControllerSetupClosure)
         
         return controller
     }

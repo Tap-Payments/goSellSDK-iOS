@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class    Crashlytics.Crashlytics
+import class    Fabric.Fabric
 import class    goSellSDK.goSellSDK
 import class    UIKit.UIApplication.UIApplication
 import protocol UIKit.UIApplication.UIApplicationDelegate
@@ -18,6 +20,7 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internal func applicationDidFinishLaunching(_ application: UIApplication) {
         
+        Fabric.with([Crashlytics.self])
         goSellSDK.secretKey = "YOUR_SANDBOX_SECRET_KEY"
     }
 }

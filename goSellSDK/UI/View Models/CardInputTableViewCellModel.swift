@@ -16,7 +16,7 @@ import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
 
 /// View model that handles manual card input table view cell.
-internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
+internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -104,6 +104,15 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
         return result
     }
     
+    internal var showsSaveCardSection: Bool {
+        
+        guard let permissions = SettingsDataManager.shared.settings?.permissions else {
+            
+            fatalError("Should never reach here, because settings are not loaded and SDK not initialized.")
+        }
+        return permissions.contains(.merchantCheckout)
+    }
+    
     internal var shouldSaveCard: Bool {
         
         return (self.inputData[.saveCard] as? Bool) ?? false
@@ -181,7 +190,7 @@ internal class CardInputTableViewCellModel: PaymentOptionCellViewModel {
 extension CardInputTableViewCellModel: SingleCellModel {}
 
 // MARK: - DynamicLayoutCellModel
-extension CardInputTableViewCellModel: DynamicLayoutCellModel {}
+extension CardInputTableViewCellModel: DynamicLayoutTableViewCellModel {}
 
 // MARK: - CardInputTableViewCellLoading
 extension CardInputTableViewCellModel: CardInputTableViewCellLoading {

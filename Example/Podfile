@@ -6,6 +6,9 @@ source 'https://github.com/Tap-Payments/PodSpecs.git'
 
 target 'goSellSDKExample' do
     
+    pod 'Crashlytics'
+    pod 'Fabric'
+    
     pod 'goSellSDK', :path => '../'
 
 end

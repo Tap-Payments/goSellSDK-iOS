@@ -35,7 +35,16 @@ public class PayButton: TapNibView {
         
         didSet {
             
-            self.ui?.dataSource = self.dataSource
+            self.ui?.paymentDataSource = self.dataSource
+        }
+    }
+    
+    /// Payment delegate.
+    @IBOutlet public weak var delegate: PaymentDelegate? {
+     
+        didSet {
+            
+            self.ui?.paymentDelegate = self.delegate
         }
     }
     
@@ -61,7 +70,7 @@ public class PayButton: TapNibView {
         didSet {
             
             self.ui?.delegate = self
-            self.ui?.dataSource = self.dataSource
+            self.ui?.paymentDataSource = self.dataSource
         }
     }
 }

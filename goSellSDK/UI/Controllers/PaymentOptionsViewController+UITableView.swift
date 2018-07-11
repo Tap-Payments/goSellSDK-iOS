@@ -53,6 +53,12 @@ extension PaymentOptionsViewController: UITableViewDataSource {
             let cell = groupCellModel.dequeueCell(from: tableView)
             return cell
         }
+        else if let cardsContainerCellModel = model as? CardsContainerTableViewCellModel {
+            
+            let cell = cardsContainerCellModel.dequeueCell(from: tableView)
+            cell.bindContent()
+            return cell
+        }
         else if let webCellModel = model as? WebPaymentOptionTableViewCellModel {
             
             let cell = webCellModel.dequeueCell(from: tableView)
@@ -86,6 +92,10 @@ extension PaymentOptionsViewController: UITableViewDelegate {
             
             groupModel.updateCell()
         }
+        else if let cardsContainerCellModel = model as? CardsContainerTableViewCellModel {
+            
+            cardsContainerCellModel.updateCell()
+        }
         else if let webCellModel = model as? WebPaymentOptionTableViewCellModel {
             
             webCellModel.updateCell()
@@ -98,19 +108,27 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
-        return model.indexPathOfCellToSelect
+        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel
+        return model?.indexPathOfCellToSelect
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
+        guard let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else {
+            
+            fatalError("Datasource is corrupted")
+        }
+        
         model.tableViewDidSelectCell(tableView)
     }
     
     internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
+        guard let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else {
+            
+            fatalError("Datasource is corrupted")
+        }
+        
         model.tableViewDidDeselectCell(tableView)
     }
 }

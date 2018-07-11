@@ -5,7 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal class EmptyTableViewCellModel: CellViewModel {
+internal class EmptyTableViewCellModel: TableViewCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties

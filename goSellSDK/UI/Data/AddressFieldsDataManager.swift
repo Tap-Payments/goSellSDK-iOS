@@ -63,7 +63,7 @@ internal class AddressFieldsDataManager {
         self.generateCellViewModels()
     }
     
-    internal func tableViewWillDisplayCell(connectedTo model: CellViewModel) {
+    internal func tableViewWillDisplayCell(connectedTo model: TableViewCellViewModel) {
         
         if let inputFieldModel = model as? AddressTextInputFieldTableViewCellModel {
             
@@ -101,7 +101,7 @@ internal class AddressFieldsDataManager {
         
         self.generateStaticTopAddressFields(fillingInto: &result)
         
-        // TODO: Apply real address format logic when Address Format API is ready.
+        // FIXME: Apply real address format logic when Address Format API is ready.
         
 //        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
 //
@@ -179,7 +179,7 @@ internal class AddressFieldsDataManager {
             result.append(bottomEmptyCellModelAfterCountry)
         }
 
-        // TODO: Apply real logic when Address Format API is ready.
+        // FIXME: Apply real logic when Address Format API is ready.
         
 //        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
 //
@@ -206,7 +206,7 @@ internal class AddressFieldsDataManager {
         return IndexPath(row: temporaryResult.count, section: 0)
     }
     
-    private func previousVisibleModelInputField(for model: CellViewModel) -> UIResponder? {
+    private func previousVisibleModelInputField(for model: TableViewCellViewModel) -> UIResponder? {
         
         guard let index = self.visibleCellViewModels.index(where: { $0.indexPath == model.indexPath }), index > 0 else { return nil }
         

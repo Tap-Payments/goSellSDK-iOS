@@ -8,8 +8,8 @@
 internal enum ChargeStatus: String, Decodable {
     
     case initiated      = "INITIATED"
-    case otpRequired    = "OTP_REQUIRED"
     case inProgress     = "IN_PROGRESS"
+    case abandoned      = "ABANDONED"
     case cancelled      = "CANCELLED"
     case failed         = "FAILED"
     case declined       = "DECLINED"
@@ -25,8 +25,8 @@ internal enum ChargeStatus: String, Decodable {
         switch self {
             
         case .initiated:    return "Initiated"
-        case .otpRequired:  return "OTP code required"
         case .inProgress:   return "In Progress"
+        case .abandoned:    return "Abandoned"
         case .cancelled:    return "Cancelled"
         case .failed:       return "Failed"
         case .declined:     return "Declined"

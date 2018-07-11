@@ -304,6 +304,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="6m7-Zc-Eqx"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="kWP-ds-mW2"/>
                                 </connections>
                             </view>
                         </subviews>

@@ -43,7 +43,7 @@ internal class CardAddressValidator: CardValidator {
         
         return Constants.placeholderDisplayText
         
-        // TODO: Apply real logic when Address Format API is ready.
+        // FIXME: Apply real logic when Address Format API is ready.
         
 //        if self.hasInputDataForCurrentAddressFormat {
 //
@@ -81,7 +81,7 @@ internal class CardAddressValidator: CardValidator {
         
         return false
 
-        // TODO: Apply real logic when Address Format API is ready.
+        // FIXME: Apply real logic when Address Format API is ready.
         
 //        guard let nonnullAddressFormat = self.binInformation?.addressFormat else { return false }
 //
@@ -92,7 +92,7 @@ internal class CardAddressValidator: CardValidator {
 
         return false
         
-        // TODO: Apply real logic when Address Format API is ready.
+        // FIXME: Apply real logic when Address Format API is ready.
         
 //        guard let addressFormat = self.binInformation?.addressFormat else { return true }
 //        return addressFormat.first(where: { !$0.canBeFilled(with: self.inputData[$0.placeholder]) }) == nil

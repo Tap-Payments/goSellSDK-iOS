@@ -15,6 +15,9 @@ internal extension Measurement {
         
             .area(.squareMeters),
             .duration(.seconds),
+            .electricCharge(.ampereHours),
+            .electricCurrent(.amperes),
+            .energy(.joules),
             .length(.meters),
             .mass(.kilograms),
             .power(.watts),

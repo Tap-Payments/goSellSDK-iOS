@@ -41,7 +41,7 @@ internal class AmountCalculator {
             
             switch tax.amount.type {
                 
-            case .percentBased: result += amount * tax.amount.normalizedValue
+            case .percents: result += amount * tax.amount.normalizedValue
             case .fixedAmount:  result += tax.amount.value
 
             }

@@ -37,7 +37,7 @@
     
     internal var normalizedValue: Decimal {
         
-        guard self.type == .percentBased else {
+        guard self.type == .percents else {
             
             fatalError("normalizedValue should never be called on \(AmountModificator.className) if it's type is not percentBased")
         }

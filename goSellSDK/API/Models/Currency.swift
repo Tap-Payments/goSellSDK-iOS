@@ -56,7 +56,7 @@
     /// - Parameters:
     ///   - lhs: First object.
     ///   - rhs: Second object.
-    /// - Returns: `true` if 2 objects are equal, `fale` otherwise.
+    /// - Returns: `true` if 2 objects are equal, `false` otherwise.
     public static func == (lhs: Currency, rhs: Currency) -> Bool {
         
         return lhs.isoCode == rhs.isoCode

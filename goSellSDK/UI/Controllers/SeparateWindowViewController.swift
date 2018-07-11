@@ -14,11 +14,11 @@ internal class SeparateWindowViewController: BaseViewController {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func show(animated: Bool = true, parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController>? = nil, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal func show(animated: Bool = true, userInteractionEnabled: Bool = true, parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController>? = nil, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         let showClosure: TypeAlias.ArgumentlessClosure = {
             
-            self.showOnSeparateWindow { [unowned self] (rootController) in
+            self.showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled) { [unowned self] (rootController) in
                 
                 parentControllerSetupClosure?(rootController)
                 rootController.present(self, animated: animated, completion: completion)

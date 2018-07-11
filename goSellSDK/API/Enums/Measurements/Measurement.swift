@@ -143,15 +143,15 @@ extension Measurement: CountableCasesEnum {
         
         var result: [Measurement] = []
         
-        Measurement.Area.all.forEach            { result.append(.area($0))              }
-        Measurement.Duration.all.forEach        { result.append(.duration($0))          }
-        Measurement.ElectricCharge.all.forEach  { result.append(.electricCharge($0))    }
-        Measurement.ElectricCurrent.all.forEach { result.append(.electricCurrent($0))   }
-        Measurement.Energy.all.forEach          { result.append(.energy($0))            }
-        Measurement.Length.all.forEach          { result.append(.length($0))            }
-        Measurement.Mass.all.forEach            { result.append(.mass($0))              }
-        Measurement.Power.all.forEach           { result.append(.power($0))             }
-        Measurement.Volume.all.forEach          { result.append(.volume($0))            }
+        Area.all.forEach            { result.append(.area($0))              }
+        Duration.all.forEach        { result.append(.duration($0))          }
+        ElectricCharge.all.forEach  { result.append(.electricCharge($0))    }
+        ElectricCurrent.all.forEach { result.append(.electricCurrent($0))   }
+        Energy.all.forEach          { result.append(.energy($0))            }
+        Length.all.forEach          { result.append(.length($0))            }
+        Mass.all.forEach            { result.append(.mass($0))              }
+        Power.all.forEach           { result.append(.power($0))             }
+        Volume.all.forEach          { result.append(.volume($0))            }
         
         result.append(.units)
         

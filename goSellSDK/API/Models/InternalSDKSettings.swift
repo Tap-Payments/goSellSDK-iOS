@@ -11,6 +11,8 @@ internal struct InternalSDKSettings: Decodable {
     // MARK: - Internal -
     // MARK: Properties
     
+    internal static let `default` = InternalSDKSettings(statusDisplayDuration: 5.0, otpResendInterval: 60.0, otpResendAttempts: 3)
+    
     /// Visibility duration of payment status.
     internal let statusDisplayDuration: TimeInterval
     

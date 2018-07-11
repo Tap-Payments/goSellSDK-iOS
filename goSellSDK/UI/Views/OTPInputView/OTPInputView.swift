@@ -41,6 +41,11 @@ internal final class OTPInputView: TapNibView {
         return true
     }
     
+    internal override var canResignFirstResponder: Bool {
+        
+        return true
+    }
+    
     internal var otp: String {
         
         get {
@@ -63,15 +68,32 @@ internal final class OTPInputView: TapNibView {
         self.otpLabels?.forEach { $0.transform = initialTextTransform }
     }
     
-    internal override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    internal func startEditing() {
         
-        guard !self.isFirstResponder else { return }
+        guard let nonnullWindow = self.window else { return }
+        
+        if !nonnullWindow.isKeyWindow {
+            
+            if nonnullWindow.isHidden {
+                
+                nonnullWindow.makeKeyAndVisible()
+            }
+            else {
+                
+                nonnullWindow.makeKey()
+            }
+        }
+        
+        self.becomeFirstResponder()
+    }
+    
+    internal override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         for touch in touches {
             
             if self.bounds.contains(touch.location(in: self)) {
                 
-                self.becomeFirstResponder()
+                self.startEditing()
                 break
             }
         }

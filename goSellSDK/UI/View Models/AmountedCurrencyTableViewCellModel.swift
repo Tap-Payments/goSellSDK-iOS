@@ -8,7 +8,7 @@
 import class UIKit.UIImage.UIImage
 import class UIKit.UITableView.UITableView
 
-internal class AmountedCurrencyTableViewCellModel: CellViewModel {
+internal class AmountedCurrencyTableViewCellModel: TableViewCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties

@@ -51,16 +51,13 @@ internal class OTPTimerDataManager {
         
         fileprivate static let tickDuration: TimeInterval = 1.0
         
-        fileprivate static let defaultResendAttemptsCount = 3
-        fileprivate static let defaultResendInterval: TimeInterval = 60.0
-        
         @available(*, unavailable) private init() {}
     }
     
     // MARK: Properties
     
-    private let attemptsCount = SettingsDataManager.shared.settings?.internalSettings.otpResendAttempts ?? Constants.defaultResendAttemptsCount
-    private let resendInterval = SettingsDataManager.shared.settings?.internalSettings.otpResendInterval ?? Constants.defaultResendInterval
+    private let attemptsCount = SettingsDataManager.shared.settings?.internalSettings.otpResendAttempts ?? InternalSDKSettings.default.otpResendAttempts
+    private let resendInterval = SettingsDataManager.shared.settings?.internalSettings.otpResendInterval ?? InternalSDKSettings.default.otpResendInterval
     
     private var remainingAttemptsCount: Int
     private var remainingTime: TimeInterval

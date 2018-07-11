@@ -6,6 +6,7 @@
 //
 
 import struct   CoreGraphics.CGGeometry.CGRect
+import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIScreen.UIScreen
 
 internal extension PaymentDataManager {
@@ -30,14 +31,28 @@ internal extension PaymentDataManager {
         }
     }
     
+    internal func showLoadingController(_ coveringHeader: Bool = false) -> LoadingViewController {
+        
+        let loaderFrame = self.loadingControllerFrame(coveringHeader: coveringHeader)
+        let loader = LoadingViewController.show(in: loaderFrame)
+        
+        return loader
+    }
+    
     internal func prepareWebPaymentController(_ controller: WebPaymentViewController) {
         
-        guard let url = self.urlToLoadInWebPaymentController, let paymentOption = self.paymentOptionThatRequiresWebPaymentController else {
+        guard let url = self.urlToLoadInWebPaymentController, let paymentOption = self.currentPaymentOption else {
             
             fatalError("This code should never be executed.")
         }
         
-        controller.setup(with: paymentOption, url: url)
+        var binInformation: BINResponse? = nil
+        if let binNumber = self.currentPaymentCardBINNumber {
+        
+            binInformation = BINDataManager.shared.cachedBINData(for: binNumber)
+        }
+        
+        controller.setup(with: paymentOption, url: url, binInformation: binInformation)
     }
     
     internal func decision(forWebPayment url: URL) -> WebPaymentURLDecision {
@@ -50,10 +65,9 @@ internal extension PaymentDataManager {
     
     internal func webPaymentProcessFinished() {
         
-        guard let paymentOption = self.paymentOptionThatRequiresWebPaymentController else { return }
+        guard let paymentOption = self.currentPaymentOption else { return }
         
-        let loaderFrame = self.loadingControllerFrame()
-        let loader = LoadingViewController.show(in: loaderFrame)
+        let loader = self.showLoadingController()
         
         self.continuePaymentWithCurrentCharge(paymentOption, loader: loader)
     }
@@ -77,13 +91,20 @@ internal extension PaymentDataManager {
                     fatalError("Currency \(fee.currency) is not a supported currency!")
                 }
                 
-            case .percentBased:
+            case .percents:
                 
                 result += currency.amount * fee.normalizedValue
             }
         }
         
         return result
+    }
+    
+    internal func handleChargeResponse(_ charge: Charge?, error: TapSDKError?) {
+        
+        guard let paymentOption = self.currentPaymentOption else { return }
+        
+        self.handleChargeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: self.currentPaymentCardBINNumber)
     }
     
     // MARK: - Private -
@@ -94,7 +115,22 @@ internal extension PaymentDataManager {
         
         @available(*, unavailable) private init() {}
     }
+    
     // MARK: Properties
+    
+    private var chargeRequires3DSecure: Bool {
+        
+        if let permissions = SettingsDataManager.shared.settings?.permissions {
+            
+            return !permissions.contains(.non3DSecureTransactions)
+        }
+        else {
+            
+            return true
+        }
+    }
+    
+    // MARK: Methods
     
     private func loadingControllerFrame(coveringHeader: Bool = false) -> CGRect {
     
@@ -107,17 +143,13 @@ internal extension PaymentDataManager {
         return result
     }
     
-    // MARK: Methods
-    
     private func startPaymentProcess(withWebPaymentOption paymentOption: PaymentOption) {
     
         let source = Source(identifier: paymentOption.sourceIdentifier)
         
         self.isExecutingAPICalls = true
         
-        let loaderFrame = self.loadingControllerFrame()
-        let loader = LoadingViewController.show(in: loaderFrame)
-        
+        let loader = self.showLoadingController()
         self.callChargeAPI(with: source, paymentOption: paymentOption, loader: loader)
     }
     
@@ -135,7 +167,7 @@ internal extension PaymentDataManager {
             if let nonnullToken = token {
                 
                 let source = Source(token: nonnullToken)
-                self?.callChargeAPI(with: source, paymentOption: paymentOption, saveCard: saveCard)
+                self?.callChargeAPI(with: source, paymentOption: paymentOption, cardBIN: nonnullToken.card.binNumber, saveCard: saveCard)
             }
             else {
                 
@@ -146,7 +178,7 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func callChargeAPI(with source: Source, paymentOption: PaymentOption, saveCard: Bool? = nil, loader: LoadingViewController? = nil) {
+    private func callChargeAPI(with source: Source, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil) {
         
         guard
             
@@ -165,8 +197,9 @@ internal extension PaymentDataManager {
         let reference           = self.externalDataSource?.paymentReference ?? nil
         let shouldSaveCard      = saveCard ?? false
         let statementDescriptor = self.externalDataSource?.paymentStatementDescriptor ?? nil
-        let requires3DSecure    = self.externalDataSource?.require3DSecure ?? false
         let receiptSettings     = self.externalDataSource?.receiptSettings ?? nil
+        
+        let requires3DSecure    = self.chargeRequires3DSecure || (self.externalDataSource?.require3DSecure ?? false)
         
         let chargeRequest = CreateChargeRequest(amount:                 amountedCurrency.amount,
                                                 currency:               amountedCurrency.currency,
@@ -190,11 +223,11 @@ internal extension PaymentDataManager {
             
             self?.isExecutingAPICalls = false
             
-            self?.handleChargeResponse(charge, error: error, paymentOption: paymentOption)
+            self?.handleChargeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: cardBIN)
         }
     }
     
-    private func handleChargeResponse(_ charge: Charge?, error: TapSDKError?, paymentOption: PaymentOption) {
+    private func handleChargeResponse(_ charge: Charge?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String? = nil) {
         
         guard let nonnullCharge = charge, error == nil else {
             
@@ -207,42 +240,52 @@ internal extension PaymentDataManager {
             
         case .initiated:
             
-            guard let url = nonnullCharge.redirect.paymentURL else {
+            if let authentication = nonnullCharge.authentication, authentication.status == .initiated {
                 
-                return
+                switch authentication.type {
+                    
+                case .biometrics:
+                    
+                    break
+                    
+                case .otp:
+                    
+                    self.openOTPScreen(with: authentication.value, for: paymentOption)
+                }
+            }
+            else if let url = nonnullCharge.redirect.paymentURL {
+                
+                self.openPaymentURL(url, for: paymentOption, binNumber: cardBIN)
             }
             
-            self.openPaymentURL(url, for: paymentOption)
+        case .inProgress, .abandoned, .cancelled, .failed, .declined, .restricted, .void:
             
-        case .otpRequired:
-            
-            self.openOTPScreen()
-            
-        case .inProgress, .cancelled, .failed, .declined, .restricted, .void:
-            
-            self.paymentFailed(with: nonnullCharge.status)
+            self.paymentFailure(with: nonnullCharge.status)
             
         case .captured:
             
-            if let receiptNumber = charge?.receiptSettings?.identifier {
+            if let receiptNumber = nonnullCharge.receiptSettings?.identifier, let customerID = nonnullCharge.customer.identifier {
                 
-                self.paymentSucceed(with: receiptNumber)
+                self.paymentSuccess(with: receiptNumber, customerID: customerID)
             }
         }
     }
     
-    private func openPaymentURL(_ url: URL, for paymentOption: PaymentOption) {
+    private func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String? = nil) {
         
-        self.paymentOptionThatRequiresWebPaymentController = paymentOption
+        self.currentPaymentOption = paymentOption
+        self.currentPaymentCardBINNumber = binNumber
         self.urlToLoadInWebPaymentController = url
         
         PaymentOptionsViewController.findInHierarchy()?.showWebPaymentViewController()
     }
     
-    private func openOTPScreen() {
+    private func openOTPScreen(with phoneNumber: String, for paymentOption: PaymentOption) {
+        
+        self.currentPaymentOption = paymentOption
         
         let otpControllerFrame = self.loadingControllerFrame()
-        OTPViewController.show(in: otpControllerFrame)
+        OTPViewController.show(in: otpControllerFrame, with: phoneNumber, delegate: self)
     }
     
     private func continuePaymentWithCurrentCharge(_ paymentOption: PaymentOption, loader: LoadingViewController? = nil) {
@@ -256,45 +299,53 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func paymentFailed(with status: ChargeStatus) {
+    private func paymentSuccess(with receiptNumber: String, customerID: String) {
         
-        let disappearanceTime = SettingsDataManager.shared.settings?.internalSettings.statusDisplayDuration
+        self.externalDelegate?.paymentSuccess(customerID)
         
-        PaymentContentViewController.findInHierarchy()?.hide {
+        PaymentDataManager.closePayment {
             
-            let popup = StatusPopupViewController.instantiate()
-            popup.titleText     = status.localizedDescription
-            popup.subtitleText  = nil
-            popup.iconImage     = .named("ic_x_red", in: .goSellSDKResources)
-            
-            popup.display { [weak popup] in
-                
-                if let nonnullDisappearanceTime = disappearanceTime {
-                    
-                    popup?.idleDisappearanceTimeInterval = nonnullDisappearanceTime
-                }
-            }
+            self.showPaymentSuccessPopup(with: receiptNumber)
         }
     }
     
-    private func paymentSucceed(with receiptNumber: String) {
+    private func paymentFailure(with status: ChargeStatus) {
         
-        let disappearanceTime = SettingsDataManager.shared.settings?.internalSettings.statusDisplayDuration
+        self.externalDelegate?.paymentFailure()
         
-        PaymentContentViewController.findInHierarchy()?.hide {
+        PaymentDataManager.closePayment {
             
-            let popup = StatusPopupViewController.instantiate()
-            popup.titleText     = "Successful"
-            popup.subtitleText  = receiptNumber
-            popup.iconImage     = .named("ic_checkmark_green", in: .goSellSDKResources)
+            self.showPaymentFailurePopup(with: status)
+        }
+    }
+    
+    private func showPaymentFailurePopup(with status: ChargeStatus) {
+        
+        let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
+        
+        let popup = StatusPopupViewController.instantiate()
+        popup.titleText     = status.localizedDescription
+        popup.subtitleText  = nil
+        popup.iconImage     = .named("ic_x_red", in: .goSellSDKResources)
+        
+        popup.display { [weak popup] in
             
-            popup.display { [weak popup] in
-                
-                if let nonnullDisappearanceTime = disappearanceTime {
-                    
-                    popup?.idleDisappearanceTimeInterval = nonnullDisappearanceTime
-                }
-            }
+            popup?.idleDisappearanceTimeInterval = disappearanceTime
+        }
+    }
+    
+    private func showPaymentSuccessPopup(with receiptNumber: String) {
+        
+        let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
+        
+        let popup = StatusPopupViewController.instantiate()
+        popup.titleText     = "Successful"
+        popup.subtitleText  = receiptNumber
+        popup.iconImage     = .named("ic_checkmark_green", in: .goSellSDKResources)
+        
+        popup.display { [weak popup] in
+            
+            popup?.idleDisappearanceTimeInterval = disappearanceTime
         }
     }
 }

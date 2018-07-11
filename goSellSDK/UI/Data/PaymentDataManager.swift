@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct TapAdditionsKit.TypeAlias
 import enum TapCardValidator.CardBrand
 
 /// Payment data manager.
@@ -37,7 +38,7 @@ internal final class PaymentDataManager {
         }
     }
     
-    internal private(set) lazy var allPaymentOptionCellViewModels: [CellViewModel] = []
+    internal private(set) lazy var paymentOptionsScreenCellViewModels: [CellViewModel] = []
     
     internal weak var payButtonUI: PayButtonUI? {
         
@@ -50,6 +51,7 @@ internal final class PaymentDataManager {
     internal var lastSelectedPaymentOption: PaymentOptionCellViewModel?
     
     internal private(set) var externalDataSource: PaymentDataSource?
+    internal private(set) var externalDelegate: PaymentDelegate?
     
     internal var orderIdentifier: String? {
         
@@ -75,9 +77,15 @@ internal final class PaymentDataManager {
         return amountedCurrency
     }
     
-    internal var paymentOptionThatRequiresWebPaymentController: PaymentOption?
+    internal var currentPaymentOption: PaymentOption?
+    internal var currentPaymentCardBINNumber: String?
     internal var urlToLoadInWebPaymentController: URL?
     internal var currentCharge: Charge?
+    
+    internal var paymentOptions: [PaymentOption] {
+        
+        return self.paymentOptionsResponse?.paymentOptions ?? []
+    }
     
     // MARK: Methods
     
@@ -85,12 +93,10 @@ internal final class PaymentDataManager {
         
         guard !self.isLoadingPaymentOptions else { return }
         
-        guard let nonnullDataSource = caller.uiElement?.dataSource else {
+        guard let nonnullDataSource = caller.uiElement?.paymentDataSource else {
             
             fatalError("Pay button data source is not set.")
         }
-        
-        self.externalDataSource = nonnullDataSource
         
         guard let currency = nonnullDataSource.currency else {
             
@@ -101,6 +107,9 @@ internal final class PaymentDataManager {
             
             fatalError("Payment data source customer is nil.")
         }
+        
+        self.externalDataSource = nonnullDataSource
+        self.externalDelegate = caller.uiElement?.paymentDelegate
         
         let paymentRequest = PaymentOptionsRequest(items:       nonnullDataSource.items,
                                                    shipping:    nonnullDataSource.shipping ?? nil,
@@ -134,7 +143,7 @@ internal final class PaymentDataManager {
     
     internal func cellModels<ModelType>(of type: ModelType.Type) -> [ModelType] {
         
-        guard let result = (self.allPaymentOptionCellViewModels.filter { $0 is ModelType }) as? [ModelType] else {
+        guard let result = (self.paymentOptionsScreenCellViewModels.filter { $0 is ModelType }) as? [ModelType] else {
             
             fatalError("Data source is corrupted")
         }
@@ -144,22 +153,40 @@ internal final class PaymentDataManager {
     
     internal func paymentOptionsControllerKeyboardLayoutFinished() {
         
-        guard let selectedModel = self.selectedPaymentOptionCellViewModel, selectedModel.isSelected else { return }
+        guard let selectedModel = self.selectedPaymentOptionCellViewModel as? PaymentOptionTableCellViewModel, selectedModel.isSelected else { return }
         
         selectedModel.tableView?.scrollToRow(at: selectedModel.indexPath, at: .none, animated: false)
     }
     
-    internal static func userDidClosePayment() {
+    internal static func closePayment(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        KnownSingletonTypes.destroyAllInstances()
+        LoadingViewController.destroyInstance()
+        OTPViewController.destroyInstance()
+        
+        if let paymentContentController = PaymentContentViewController.findInHierarchy() {
+            
+            paymentContentController.hide {
+                
+                PaymentDataManager.paymentClosed()
+                completion?()
+            }
+        }
+        else {
+            
+            PaymentDataManager.paymentClosed()
+            completion?()
+        }
     }
     
     // MARK: - Private -
     
     private struct Constants {
         
+        fileprivate static let recentGroupTitle = "RECENT"
         fileprivate static let othersGroupTitle = "OTHERS"
-        fileprivate static let spaceBetweenWebAndCardOptionsIdentifier = "space_between_web_and_card_options"
+        
+        fileprivate static let spaceBeforeWebPaymentOptionsIdentifier   = "space_before_web_payment_options"
+        fileprivate static let spaceBetweenWebAndCardOptionsIdentifier  = "space_between_web_and_card_options"
         
         @available(*, unavailable) private init() {}
     }
@@ -188,6 +215,23 @@ internal final class PaymentDataManager {
         return cardModels[0]
     }
     
+    private var cardsContainerCellModel: CardsContainerTableViewCellModel {
+        
+        let cardModels = self.cellModels(of: CardsContainerTableViewCellModel.self)
+        
+        guard cardModels.count == 1 else {
+            
+            fatalError("Data source is corrupted")
+        }
+        
+        return cardModels[0]
+    }
+    
+    private var recentCards: [SavedCard] {
+        
+        return self.paymentOptionsResponse?.savedCards ?? []
+    }
+    
     private static var storage: PaymentDataManager?
     
     // MARK: Methods
@@ -204,48 +248,74 @@ internal final class PaymentDataManager {
     
     private func paymentOptions(of type: PaymentType) -> [PaymentOption] {
         
-        return self.paymentOptionsResponse?.paymentOptions.filter { $0.paymentType == type } ?? []
+        return self.paymentOptions.filter { $0.paymentType == type }
     }
     
     private func generatePaymentOptionCellViewModels() {
         
         guard self.paymentOptionsResponse != nil else {
             
-            self.allPaymentOptionCellViewModels = []
+            self.paymentOptionsScreenCellViewModels = []
             return
         }
         
         var result: [CellViewModel] = []
-        
-        // currency model
         
         let currencyModel = CurrencySelectionTableViewCellViewModel(indexPath: self.nextIndexPath(for: result),
                                                                     transactionCurrency: self.transactionCurrency,
                                                                     userSelectedCurrency: self.transactionCurrency)
         result.append(currencyModel)
         
-        // web + card payment model
-        
+        let savedCards = self.recentCards
         let webPaymentOptions = self.paymentOptions(of: .web).sorted { $0.orderBy < $1.orderBy }
         let cardPaymentOptions = self.paymentOptions(of: .card).sorted { $0.orderBy < $1.orderBy }
         
-        if webPaymentOptions.count + cardPaymentOptions.count > 0 {
+        let hasSavedCards = savedCards.count > 0
+        let hasWebPaymentOptions = webPaymentOptions.count > 0
+        let hasCardPaymentOptions = cardPaymentOptions.count > 0
+        let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions
+        let displaysGroupTitles = hasSavedCards && hasOtherPaymentOptions
+        
+        if displaysGroupTitles {
             
-            result.append(GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), title: Constants.othersGroupTitle))
+            let recentGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), title: Constants.recentGroupTitle)
+            result.append(recentGroupModel)
         }
         
-        webPaymentOptions.forEach {
+        if hasSavedCards {
             
-            let webOptionCellModel = WebPaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                        title: $0.title,
-                                                                        iconImageURL: $0.imageURL,
-                                                                        paymentOption: $0)
-            result.append(webOptionCellModel)
+            let cardsContainerCellModel = CardsContainerTableViewCellModel(indexPath: self.nextIndexPath(for: result), cards: savedCards)
+            result.append(cardsContainerCellModel)
         }
         
-        if cardPaymentOptions.count > 0 {
+        if displaysGroupTitles {
             
-            if webPaymentOptions.count > 0 {
+            let othersGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), title: Constants.othersGroupTitle)
+            result.append(othersGroupModel)
+        }
+        
+        if hasWebPaymentOptions {
+            
+            if !hasSavedCards {
+                
+                let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                             identifier: Constants.spaceBeforeWebPaymentOptionsIdentifier)
+                result.append(emptyCellModel)
+            }
+            
+            webPaymentOptions.forEach {
+                
+                let webOptionCellModel = WebPaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                            title: $0.title,
+                                                                            iconImageURL: $0.imageURL,
+                                                                            paymentOption: $0)
+                result.append(webOptionCellModel)
+            }
+        }
+        
+        if hasCardPaymentOptions {
+            
+            if hasWebPaymentOptions {
                 
                 let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result), identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
                 result.append(emptyCellModel)
@@ -256,7 +326,7 @@ internal final class PaymentDataManager {
             result.append(cardOptionsCellModel)
         }
         
-        self.allPaymentOptionCellViewModels = result
+        self.paymentOptionsScreenCellViewModels = result
         
         self.filterPaymentOptionCellViewModels()
     }
@@ -278,27 +348,59 @@ internal final class PaymentDataManager {
             }
         }
         
+        let savedCards = self.recentCards
         let webPaymentOptions = self.paymentOptions(of: .web).filter(currenciesFilter).sorted { $0.orderBy < $1.orderBy }
         let cardPaymentOptions = self.paymentOptions(of: .card).filter(currenciesFilter).sorted { $0.orderBy < $1.orderBy }
         
-        if webPaymentOptions.count + cardPaymentOptions.count > 0 {
+        let hasSavedCards = savedCards.count > 0
+        let hasWebPaymentOptions = webPaymentOptions.count > 0
+        let hasCardPaymentOptions = cardPaymentOptions.count > 0
+        let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions
+        let displaysGroupTitles = hasSavedCards && hasOtherPaymentOptions
+        
+        if displaysGroupTitles {
+            
+            let recentGroupModel = self.groupCellModel(with: Constants.recentGroupTitle)
+            recentGroupModel.indexPath = self.nextIndexPath(for: result)
+            result.append(recentGroupModel)
+        }
+        
+        if hasSavedCards {
+            
+            let cardsContainerModel = self.cardsContainerCellModel
+            cardsContainerModel.indexPath = self.nextIndexPath(for: result)
+            result.append(cardsContainerModel)
+        }
+        
+        if displaysGroupTitles {
             
             let othersGroupModel = self.groupCellModel(with: Constants.othersGroupTitle)
             othersGroupModel.indexPath = self.nextIndexPath(for: result)
             result.append(othersGroupModel)
         }
         
-        webPaymentOptions.forEach {
+        if hasWebPaymentOptions {
             
-            let webModel = self.webPaymentCellModel(with: $0.title)
-            webModel.indexPath = self.nextIndexPath(for: result)
+            if !hasSavedCards {
+                
+                let emptyModel = self.emptyCellModel(with: Constants.spaceBeforeWebPaymentOptionsIdentifier)
+                emptyModel.indexPath = self.nextIndexPath(for: result)
+                
+                result.append(emptyModel)
+            }
             
-            result.append(webModel)
+            webPaymentOptions.forEach {
+                
+                let webModel = self.webPaymentCellModel(with: $0.title)
+                webModel.indexPath = self.nextIndexPath(for: result)
+                
+                result.append(webModel)
+            }
         }
         
-        if cardPaymentOptions.count > 0 {
+        if hasCardPaymentOptions {
             
-            if webPaymentOptions.count > 0 {
+            if hasWebPaymentOptions {
                 
                 let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenWebAndCardOptionsIdentifier)
                 emptyModel.indexPath = self.nextIndexPath(for: result)
@@ -359,6 +461,11 @@ internal final class PaymentDataManager {
         }
         
         fatalError("Data source is corrupted")
+    }
+    
+    private static func paymentClosed() {
+        
+        KnownSingletonTypes.destroyAllInstances()
     }
 }
 

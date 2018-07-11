@@ -12,15 +12,16 @@ internal struct SDKSettingsData: Decodable {
     // MARK: Properties
     
     /// Payments mode.
-    internal let isLiveMode: Bool = false
+    internal let isLiveMode: Bool
     
     /// Permissions.
-    internal let permissions: Permissions = .none
+    internal let permissions: Permissions
     
     /// Encryption key.
     internal let encryptionKey: String
     
     /// Unique device ID.
+    // FIXME: Remove optionality here once backend is ready.
     internal let deviceID: String?
     
     /// Merchant information.

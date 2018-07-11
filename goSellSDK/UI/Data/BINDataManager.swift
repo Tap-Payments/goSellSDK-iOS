@@ -18,7 +18,7 @@ internal final class BINDataManager {
     
     internal func retrieveBINData(for binNumber: String, success: @escaping BINResult) {
         
-        if let cachedResponse = self.cachedBINData[binNumber] {
+        if let cachedResponse = self.cachedBINData(for: binNumber) {
             
             self.callCompletion(success, with: cachedResponse)
             return
@@ -40,6 +40,11 @@ internal final class BINDataManager {
                 self?.callCompletion(success, with: nonnullResponse)
             }
         }
+    }
+    
+    internal func cachedBINData(for binNumber: String) -> BINResponse? {
+        
+        return self.cachedBINData[binNumber]
     }
     
     // MARK: - Private -

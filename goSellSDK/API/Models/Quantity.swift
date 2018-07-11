@@ -11,6 +11,19 @@
     // MARK: - Public -
     // MARK: Properties
     
+    @available(swift, obsoleted: 1.0)
+    @objc(unitOfMeasurement) public var measurement: _ObjCMeasurement {
+        
+        get {
+            
+            return _ObjCMeasurement.with(self.unitOfMeasurement)
+        }
+        set {
+            
+            self.unitOfMeasurement = newValue.swiftValue
+        }
+    }
+    
     /// Unit of measurement.
     public var unitOfMeasurement: Measurement {
         
@@ -51,6 +64,17 @@
         self.apiMeasurementUnit = Quantity.measurementUnitDescription(from: unitOfMeasurement)
         
         super.init()
+    }
+    
+    /// Inititalizes quantity with unit of measurement and the value.
+    ///
+    /// - Parameters:
+    ///   - value: Value.
+    ///   - unitOfMeasurement: Unit of measurement.
+    @available(swift, obsoleted: 1.0)
+    public convenience init(value: Decimal, unitOfMeasurement: _ObjCMeasurement) {
+        
+        self.init(value: value, unitOfMeasurement: unitOfMeasurement.swiftValue)
     }
     
     // MARK: - Private -

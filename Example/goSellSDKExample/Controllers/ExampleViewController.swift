@@ -11,6 +11,7 @@ import class    goSellSDK.CustomerInfo
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.PayButton
 import protocol goSellSDK.PaymentDataSource
+import protocol goSellSDK.PaymentDelegate
 import class    goSellSDK.PaymentItem
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
@@ -174,5 +175,26 @@ extension ExampleViewController: PaymentDataSource {
     internal var require3DSecure: Bool {
         
         return true
+    }
+}
+
+// MARK: - PaymentDelegate
+extension ExampleViewController: PaymentDelegate {
+    
+    internal func paymentSuccess(_ customerID: String) {
+        
+        if let nonnullCustomer = self.customer {
+            
+            SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
+        }
+    }
+    
+    internal func paymentFailure() {
+        
+    }
+    
+    internal func paymentCancel() {
+        
+        
     }
 }

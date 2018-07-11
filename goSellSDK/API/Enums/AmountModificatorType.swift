@@ -12,9 +12,11 @@
 @objc public enum AmountModificatorType: Int {
     
     /// Percent-based modification.
-    case percentBased
+    @objc(Percents)
+    case percents
     
     /// Fixed amount modification.
+    @objc(FixedAmount)
     case fixedAmount
     
     // MARK: - Private -
@@ -33,7 +35,7 @@
         
         switch self {
             
-        case .percentBased: return Constants.percentBasedKey
+        case .percents: return Constants.percentBasedKey
         case .fixedAmount:  return Constants.fixedAmountKey
             
         }
@@ -45,7 +47,7 @@
         
         switch string {
             
-        case Constants.percentBasedKey: self = .percentBased
+        case Constants.percentBasedKey: self = .percents
         case Constants.fixedAmountKey:  self = .fixedAmount
             
         default:
@@ -62,7 +64,7 @@ extension AmountModificatorType: CountableCasesEnum {
     
     public static var all: [AmountModificatorType] {
         
-        return [.percentBased, .fixedAmount]
+        return [.percents, .fixedAmount]
     }
 }
 
@@ -74,7 +76,7 @@ extension AmountModificatorType: CustomStringConvertible {
         switch self {
             
         case .fixedAmount: return "Fixed amount"
-        case .percentBased: return "Percents"
+        case .percents: return "Percents"
             
         }
     }

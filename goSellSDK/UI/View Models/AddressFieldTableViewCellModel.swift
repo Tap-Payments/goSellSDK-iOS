@@ -7,7 +7,7 @@
 
 import struct CoreGraphics.CGBase.CGFloat
 
-internal class AddressFieldTableViewCellModel: CellViewModel {
+internal class AddressFieldTableViewCellModel: TableViewCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties

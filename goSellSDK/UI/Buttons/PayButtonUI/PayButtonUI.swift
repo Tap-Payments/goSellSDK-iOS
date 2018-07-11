@@ -11,7 +11,10 @@ internal class PayButtonUI: TapButton {
     // MARK: Properties
     
     /// Payment data source.
-    internal weak var dataSource: PaymentDataSource?
+    internal weak var paymentDataSource: PaymentDataSource?
+    
+    /// Payment delegate.
+    internal weak var paymentDelegate: PaymentDelegate?
     
     internal override class var nibName: String {
         

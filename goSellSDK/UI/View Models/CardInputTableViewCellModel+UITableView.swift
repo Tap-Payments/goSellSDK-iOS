@@ -12,6 +12,8 @@ import class UIKit.UITableViewCell.UITableViewCell
 
 internal extension CardInputTableViewCellModel {
     
+    // MARK: - Internal -
+    
     internal class CardInputTableViewCellModelTableViewHandler: NSObject {
         
         fileprivate unowned let model: CardInputTableViewCellModel
@@ -22,24 +24,26 @@ internal extension CardInputTableViewCellModel {
             super.init()
         }
     }
-}
-
-internal extension CardInputTableViewCellModel {
+    
+    // MARK: Methods
     
     internal static func generateTableViewCellModels(with urls: [URL]) -> [ImageTableViewCellModel] {
         
         var result: [ImageTableViewCellModel] = []
         
-        for url in urls {
+        urls.forEach {
             
             let indexPath = self.nextImageTableViewCellIndexPath(for: result)
-            let model = ImageTableViewCellModel(indexPath: indexPath, imageURL: url)
+            let model = ImageTableViewCellModel(indexPath: indexPath, imageURL: $0)
             
             result.append(model)
         }
         
         return result
     }
+    
+    // MARK: - Private -
+    // MARK: Methods
     
     private static func nextImageTableViewCellIndexPath(for temporaryResult: [ImageTableViewCellModel]) -> IndexPath {
         

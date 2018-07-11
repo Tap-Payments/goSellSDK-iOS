@@ -12,7 +12,7 @@ internal extension PaymentDataManager {
     
     internal var currencyCellViewModel: CurrencySelectionTableViewCellViewModel {
         
-        guard let result = (self.allPaymentOptionCellViewModels.first { $0 is CurrencySelectionTableViewCellViewModel }) as? CurrencySelectionTableViewCellViewModel else {
+        guard let result = (self.paymentOptionsScreenCellViewModels.first { $0 is CurrencySelectionTableViewCellViewModel }) as? CurrencySelectionTableViewCellViewModel else {
             
             fatalError("Payment data manager is corrupted.")
         }
@@ -28,6 +28,18 @@ internal extension PaymentDataManager {
         
         let supportedCurrencies = self.supportedCurrencies
         controller.setCurrencies(supportedCurrencies, preselectedCurrency: self.currencyCellViewModel.userSelectedCurrency)
+    }
+    
+    internal func currencySymbol(for currency: Currency) -> String {
+        
+        if let amountedCurrency = self.supportedCurrencies.first(where: { $0.currency == currency }) {
+            
+            return amountedCurrency.currencySymbol
+        }
+        else {
+            
+            return CurrencyFormatter.shared.localizedCurrencySymbol(for: currency.isoCode)
+        }
     }
 }
 

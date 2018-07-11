@@ -88,7 +88,7 @@ internal class TaxViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var amountTypeLabel: UILabel?
     @IBOutlet private weak var valueTextField: UITextField?
     
-    private var currentTax: Tax = Tax(title: "", amount: AmountModificator(type: .percentBased, value: 0.0)) {
+    private var currentTax: Tax = Tax(title: "", amount: AmountModificator(type: .percents, value: 0.0)) {
         
         didSet {
             

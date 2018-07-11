@@ -23,6 +23,7 @@
 		A4B35FE820C7F8B900847031 /* CustomersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */; };
 		A4B35FEA20C7F9A000847031 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE920C7F9A000847031 /* CustomerViewController.swift */; };
 		A4B35FEC20C814E100847031 /* CustomerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */; };
+		A4C38F5F20EA36A300FE7C7B /* SerializationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C38F5E20EA36A300FE7C7B /* SerializationHelper.swift */; };
 		A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */; };
 		A4CFAF2F20B82A5700B5D83B /* PaymentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */; };
 		A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */; };
@@ -62,6 +63,7 @@
 		A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersListViewController.swift; sourceTree = "<group>"; };
 		A4B35FE920C7F9A000847031 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A4C38F5E20EA36A300FE7C7B /* SerializationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationHelper.swift; sourceTree = "<group>"; };
 		A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExampleViewController+UITableView.swift"; sourceTree = "<group>"; };
 		A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewController.swift; sourceTree = "<group>"; };
 		A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxTableViewCell.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				A408C03920BAC2EE005E74AD /* Serializer.swift */,
+				A4C38F5E20EA36A300FE7C7B /* SerializationHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -250,7 +253,9 @@
 				A4D5FE4B2083235E007D52F5 /* Sources */,
 				A4D5FE4C2083235E007D52F5 /* Frameworks */,
 				A4D5FE4D2083235E007D52F5 /* Resources */,
+				A499025420EA6A7F0062B3E9 /* Mark all FIXMEs as warning */,
 				6C2E03FD2AEB88150E9CC7A2 /* [CP] Embed Pods Frameworks */,
+				A4C0488B20EE635C007DA004 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -356,6 +361,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A499025420EA6A7F0062B3E9 /* Mark all FIXMEs as warning */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Mark all FIXMEs as warning";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
+		};
+		A4C0488B20EE635C007DA004 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 8bd8cf203548a5b7986799e05753f301310914f5 8ab0feed0d4d1e37af1b4673c96b9930b4cc2752ae9c899bcd07465969776904";
+		};
 		D532D58D8FA550BFFA027BE2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -399,6 +432,7 @@
 				A4B35FE220C7D39A00847031 /* ShippingViewController.swift in Sources */,
 				A4B35FE020C59FCF00847031 /* ShippingTableViewCell.swift in Sources */,
 				A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
+				A4C38F5F20EA36A300FE7C7B /* SerializationHelper.swift in Sources */,
 				A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */,
 				A4D5FE532083235E007D52F5 /* AppDelegate.swift in Sources */,
 				A4CFAF4120B96EE000B5D83B /* CaseSelectionTableViewController.swift in Sources */,
@@ -471,7 +505,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

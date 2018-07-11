@@ -9,7 +9,7 @@ import enum TapCardValidator.CardBrand
 import class TapNetworkManager.TapImageLoader
 import class UIKit.UIImage.UIImage
 
-internal class WebPaymentOptionTableViewCellModel: PaymentOptionCellViewModel {
+internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties

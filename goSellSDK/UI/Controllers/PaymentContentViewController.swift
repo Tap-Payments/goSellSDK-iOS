@@ -23,7 +23,7 @@ internal class PaymentContentViewController: BaseViewController {
         
         if let frame = self.paymentOptionsContainerView?.frame {
             
-            return frame.origin.y + 3.0
+            return frame.origin.y
         }
         else {
             
@@ -56,7 +56,7 @@ internal class PaymentContentViewController: BaseViewController {
         
         DispatchQueue.main.async {
             
-            self.view.resignFirstResponder {
+            self.hideKeyboard {
                 
                 let presentingController = self.presentingViewController as? PaymentViewController
                 self.dismiss(animated: true) {
@@ -91,11 +91,9 @@ extension PaymentContentViewController: MerchantInformationHeaderViewControllerD
     
     internal func merchantInformationHeaderViewControllerCloseButtonClicked(_ controller: MerchantInformationHeaderViewController) {
         
-        LoadingViewController.destroyInstance()
-        
-        self.hide {
+        PaymentDataManager.closePayment {
             
-            PaymentDataManager.userDidClosePayment()
+            PaymentDataManager.shared.externalDelegate?.paymentCancel()
         }
     }
 }

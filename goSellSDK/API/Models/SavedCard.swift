@@ -22,11 +22,8 @@ internal struct SavedCard: Decodable, Identifiable {
     /// Last 4 digits of card number.
     internal let lastFourDigits: String
     
-    /// Expiration month.
-    internal let expirationMonth: String
-    
-    /// Expiration year.
-    internal let expirationYear: String
+    /// Expiration date.
+    internal let expiry: ExpirationDate
     
     /// Card brand.
     internal let brand: CardBrand
@@ -34,8 +31,8 @@ internal struct SavedCard: Decodable, Identifiable {
     /// Cardholder name.
     internal let cardholderName: String
     
-    /// BIN number.
-    internal let binNumber: String
+    /// First six digits of card number.
+    internal let firstSixDigits: String
     
     /// Currency.
     internal let currency: Currency
@@ -50,11 +47,10 @@ internal struct SavedCard: Decodable, Identifiable {
         case identifier         = "id"
         case object             = "object"
         case lastFourDigits     = "last_four"
-        case expirationMonth    = "exp_month"
-        case expirationYear     = "exp_year"
+        case expiry             = "expiry"
         case brand              = "brand"
         case cardholderName     = "name"
-        case binNumber          = "first_six"
+        case firstSixDigits     = "first_six"
         case currency           = "currency"
         case orderBy            = "order_by"
     }

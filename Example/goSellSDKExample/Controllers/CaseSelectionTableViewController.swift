@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import ObjectiveC
+
 import class Dispatch.DispatchQueue
 import struct Foundation.NSIndexPath.IndexPath
 import class UIKit.UIBarButtonItem.UIBarButtonItem
