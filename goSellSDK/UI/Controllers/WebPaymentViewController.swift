@@ -115,7 +115,14 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     private func updateHeaderTitle() {
         
-        self.headerNavigationView?.title = self.binInformation?.bank ?? self.paymentOption?.title
+        if let bankName = self.binInformation?.bank, bankName.length > 0 {
+            
+            self.headerNavigationView?.title = bankName
+        }
+        else {
+            
+            self.headerNavigationView?.title = self.paymentOption?.title
+        }
     }
     
     private func addWebViewOnScreen() {

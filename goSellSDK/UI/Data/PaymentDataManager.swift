@@ -315,9 +315,10 @@ internal final class PaymentDataManager {
         
         if hasCardPaymentOptions {
             
-            if hasWebPaymentOptions {
+            if hasWebPaymentOptions || !displaysGroupTitles {
                 
-                let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result), identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
+                let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                             identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
                 result.append(emptyCellModel)
             }
             
@@ -400,7 +401,7 @@ internal final class PaymentDataManager {
         
         if hasCardPaymentOptions {
             
-            if hasWebPaymentOptions {
+            if hasWebPaymentOptions || !displaysGroupTitles {
                 
                 let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenWebAndCardOptionsIdentifier)
                 emptyModel.indexPath = self.nextIndexPath(for: result)

@@ -187,6 +187,8 @@ extension ExampleViewController: PaymentDelegate {
             
             SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
         }
+        
+        Serializer.serialize(self.paymentSettings)
     }
     
     internal func paymentFailure() {
