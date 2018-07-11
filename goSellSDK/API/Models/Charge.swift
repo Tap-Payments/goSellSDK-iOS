@@ -33,6 +33,9 @@ internal struct Charge: Decodable, Identifiable {
     /// Objects of the same type share the same value
     internal let object: String
     
+    /// Charge authentication if required.
+    internal private(set) var authentication: Authentication?
+    
     /// Information related to the payment page redirect.
     internal let redirect: Redirect
     
@@ -82,6 +85,7 @@ internal struct Charge: Decodable, Identifiable {
         case customer               = "customer"
         case isLiveMode             = "live_mode"
         case object                 = "object"
+        case authentication         = "authenticate"
         case redirect               = "redirect"
         case source                 = "source"
         case status                 = "status"

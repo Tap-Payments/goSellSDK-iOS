@@ -23,7 +23,7 @@ public extension PaymentItem {
         
         switch nonnullDiscount.type {
             
-        case .percentBased: return self.plainAmount * nonnullDiscount.normalizedValue
+        case .percents: return self.plainAmount * nonnullDiscount.normalizedValue
         case .fixedAmount:  return nonnullDiscount.value
 
         }

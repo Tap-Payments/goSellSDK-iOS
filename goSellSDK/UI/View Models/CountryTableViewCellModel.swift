@@ -7,7 +7,7 @@
 
 import class UIKit.UIImage.UIImage
 
-internal class CountryTableViewCellModel: CellViewModel {
+internal class CountryTableViewCellModel: TableViewCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties

@@ -75,6 +75,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         fileprivate static let cvvFieldInsets = UIEdgeInsets(top: 0.0, left: 26.0, bottom: 0.0, right: 0.0)
         fileprivate static let layoutAnimationDuration: TimeInterval = 0.25
         fileprivate static let extraAddressHeight: CGFloat = 2.0
+        fileprivate static let saveCardContainerViewHeight: CGFloat = 55.0
         
         @available(*, unavailable) private init() {}
     }
@@ -112,6 +113,9 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     
     @IBOutlet private var constraintsToDisableWhenAddressOnCardRequired: [NSLayoutConstraint]?
     @IBOutlet private var constraintsToEnableWhenAddressOnCardRequired: [NSLayoutConstraint]?
+    
+    @IBOutlet private weak var saveCardContainerView: UIView?
+    @IBOutlet private weak var saveCardContainerViewHeightConstraint: NSLayoutConstraint?
     
     // MARK: Methods
     
@@ -157,6 +161,35 @@ internal class CardInputTableViewCell: BaseTableViewCell {
                                              constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfAddressRequired,
                                              viewToLayout: layout ? self.contentView : nil,
                                              animationDuration: animated ? self.contentView.layer.longestAnimationDuration : 0.0)
+    }
+    
+    @discardableResult private func updateSaveCardSectionVisibility(animated: Bool, layout: Bool) -> Bool {
+        
+        guard
+            
+            let saveCardContainerHeightConstraint = self.saveCardContainerViewHeightConstraint,
+            let saveCardView = self.saveCardContainerView,
+            let showsSaveCardSection = self.model?.showsSaveCardSection else { return false }
+        
+        let containerHeight = showsSaveCardSection ? Constants.saveCardContainerViewHeight : 0.0
+        let alpha: CGFloat = showsSaveCardSection ? 1.0 : 0.0
+        
+        guard saveCardContainerHeightConstraint.constant != containerHeight else { return false }
+        
+        let animations: TypeAlias.ArgumentlessClosure = {
+            
+            saveCardView.alpha = alpha
+            saveCardContainerHeightConstraint.constant = containerHeight
+            if layout {
+                
+                self.layout()
+            }
+        }
+        
+        let animationDuration = animated ? self.contentView.layer.longestAnimationDuration : 0.0
+        UIView.animate(withDuration: animationDuration, animations: animations)
+        
+        return true
     }
 }
 
@@ -267,18 +300,20 @@ extension CardInputTableViewCell: BindingWithModelCell {
         
         if updateConstraintsOnly {
             
-            self.updateCardScannerButtonVisibility(animated: animated, layout: false)
-            self.updateAddressOnCardFieldVisibility(animated: animated, layout: false)
+            self.updateCardScannerButtonVisibility  (animated: animated, layout: false)
+            self.updateAddressOnCardFieldVisibility (animated: animated, layout: false)
+            self.updateSaveCardSectionVisibility    (animated: animated, layout: false)
             
             return
         }
         
         let closureThatPossiblyRequiresLayout: () -> Bool = {
             
-            let needScannerButtonLayout = self.updateCardScannerButtonVisibility(animated: animated, layout: true)
-            let needAddressOnCardLayout = self.updateAddressOnCardFieldVisibility(animated: animated, layout: true)
+            let needScannerButtonLayout = self.updateCardScannerButtonVisibility    (animated: animated, layout: true)
+            let needAddressOnCardLayout = self.updateAddressOnCardFieldVisibility   (animated: animated, layout: true)
+            let needSaveCardLayout      = self.updateSaveCardSectionVisibility      (animated: animated, layout: true)
             
-            return needScannerButtonLayout || needAddressOnCardLayout
+            return needScannerButtonLayout || needAddressOnCardLayout || needSaveCardLayout
         }
         
         if let nonnullModel = self.model {

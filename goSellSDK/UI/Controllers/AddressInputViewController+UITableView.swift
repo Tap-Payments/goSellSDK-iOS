@@ -42,9 +42,9 @@ extension AddressInputViewController: UITableViewDataSource {
         fatalError("Data source is corrupted.")
     }
     
-    private func model(at indexPath: IndexPath) -> CellViewModel {
+    private func model(at indexPath: IndexPath) -> TableViewCellViewModel {
         
-        guard let model = self.addressFieldsDataManager?.visibleCellViewModels.first(where: { $0.indexPath == indexPath }) else {
+        guard let model = self.addressFieldsDataManager?.visibleCellViewModels.first(where: { $0.indexPath == indexPath }) as? TableViewCellViewModel else {
             
             fatalError("Data source is corrupted.")
         }

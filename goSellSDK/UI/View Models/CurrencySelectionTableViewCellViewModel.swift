@@ -9,7 +9,7 @@ import class UIKit.UIImage.UIImage
 import class UIKit.UITableView.UITableView
 
 /// View model for currency selection
-internal class CurrencySelectionTableViewCellViewModel: CellViewModel {
+internal class CurrencySelectionTableViewCellViewModel: TableViewCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties

@@ -12,10 +12,19 @@ import class    Foundation.NSNotification.NotificationCenter
 import struct   Foundation.NSNotification.Notification
 import class    goSellSDK.AmountModificator
 import enum     goSellSDK.AmountModificatorType
+import enum     goSellSDK.Area
+import enum     goSellSDK.Duration
+import enum     goSellSDK.ElectricCharge
+import enum     goSellSDK.ElectricCurrent
+import enum     goSellSDK.Energy
+import enum     goSellSDK.Length
+import enum     goSellSDK.Mass
 import enum     goSellSDK.Measurement
 import class    goSellSDK.PaymentItem
+import enum     goSellSDK.Power
 import class    goSellSDK.Quantity
 import class    goSellSDK.Tax
+import enum     goSellSDK.Volume
 import class    ObjectiveC.NSObject.NSObject
 import class    UIKit.UIBarButtonItem.UIBarButtonItem
 import class    UIKit.UILabel.UILabel
@@ -108,6 +117,21 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                     caseSelectionController.allValues = type(of: measurement).all
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
+                case .electricCharge(let measurement):
+                    
+                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    
+                case .electricCurrent(let measurement):
+                    
+                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    
+                case .energy(let measurement):
+                    
+                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    
                 case .length(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).all
@@ -123,14 +147,14 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                     caseSelectionController.allValues = type(of: measurement).all
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
+                case .units:
+                    
+                    break
+                    
                 case .volume(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).all
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
-                    
-                default:
-                    
-                    break
                 }
                 
             case Constants.discountTypeCellReuseIdentifier:
@@ -416,23 +440,23 @@ extension PaymentItemViewController: CaseSelectionTableViewControllerDelegate {
             
         case Constants.measurementUnitCellReuseIdentifier:
             
-            if let areaUnit = value as? Measurement.Area {
+            if let areaUnit = value as? Area {
                 
                 self.currentPaymentItem.quantity.unitOfMeasurement = .area(areaUnit)
             }
-            else if let durationUnit = value as? Measurement.Duration {
+            else if let durationUnit = value as? Duration {
                 
                 self.currentPaymentItem.quantity.unitOfMeasurement = .duration(durationUnit)
             }
-            else if let lengthUnit = value as? Measurement.Length {
+            else if let lengthUnit = value as? Length {
                 
                 self.currentPaymentItem.quantity.unitOfMeasurement = .length(lengthUnit)
             }
-            else if let massUnit = value as? Measurement.Mass {
+            else if let massUnit = value as? Mass {
                 
                 self.currentPaymentItem.quantity.unitOfMeasurement = .mass(massUnit)
             }
-            else if let powerUnit = value as? Measurement.Power {
+            else if let powerUnit = value as? Power {
                 
                 self.currentPaymentItem.quantity.unitOfMeasurement = .power(powerUnit)
             }

@@ -21,10 +21,14 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func setup(with paymentOption: PaymentOption, url: URL) {
+    internal func setup(with paymentOption: PaymentOption, url: URL, binInformation: BINResponse?) {
         
-        self.paymentOption = paymentOption
-        self.url = url
+        self.paymentOption  = paymentOption
+        self.url            = url
+        self.binInformation = binInformation
+        
+        self.loadIcon()
+        self.updateHeaderTitle()
     }
     
     internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
@@ -81,14 +85,8 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         }
     }
     
-    private var paymentOption: PaymentOption? {
-        
-        didSet {
-            
-            self.loadIcon()
-            self.updateHeaderTitle()
-        }
-    }
+    private var paymentOption: PaymentOption?
+    private var binInformation: BINResponse?
     
     private var iconImage: UIImage? {
         
@@ -102,7 +100,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     private func loadIcon() {
         
-        guard let nonnullImageURL = self.paymentOption?.imageURL else { return }
+        guard let nonnullImageURL = self.binInformation?.bankLogoURL ?? self.paymentOption?.imageURL else { return }
         
         TapImageLoader.shared.downloadImage(from: nonnullImageURL) { (image, error) in
             
@@ -117,13 +115,13 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     private func updateHeaderTitle() {
         
-        self.headerNavigationView?.title = self.paymentOption?.title
+        self.headerNavigationView?.title = self.binInformation?.bank ?? self.paymentOption?.title
     }
     
     private func addWebViewOnScreen() {
         
         self.webView.navigationDelegate = self
-        
+
         self.webViewContainer?.addSubviewWithConstraints(self.webView)
     }
     

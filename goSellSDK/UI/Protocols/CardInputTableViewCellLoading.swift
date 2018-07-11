@@ -15,6 +15,7 @@ import protocol UIKit.UITableView.UITableViewDelegate
 internal protocol CardInputTableViewCellLoading where Self: CardInputTableViewCellModel {
     
     var displaysAddressFields:      Bool                                        { get }
+    var showsSaveCardSection:       Bool                                        { get }
     var addressOnCardTextColor:     UIColor                                     { get }
     var addressOnCardTextFont:      UIFont                                      { get }
     var addressOnCardText:          String                                      { get }

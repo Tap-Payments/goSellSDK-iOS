@@ -8,7 +8,7 @@
 import class TapNetworkManager.TapImageLoader
 import class UIKit.UIImage.UIImage
 
-internal class ImageTableViewCellModel: CellViewModel {
+internal class ImageTableViewCellModel: TableViewCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties

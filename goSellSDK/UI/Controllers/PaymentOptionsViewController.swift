@@ -68,8 +68,7 @@ internal class PaymentOptionsViewController: BaseViewController {
         
         didSet {
             
-            PaymentDataManager.shared.paymentOptionCellViewModels.forEach { $0.tableView = self.paymentOptionsTableView }
-            
+            PaymentDataManager.shared.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
             self.paymentOptionsTableView?.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
         }
     }
