@@ -50,10 +50,12 @@ extension CardScannerViewController: CardIOViewDelegate {
     
     internal func cardIOView(_ cardIOView: CardIOView!, didScanCard cardInfo: CardIOCreditCardInfo!) {
         
-        let cardNumber = cardInfo.cardNumber
+        guard let nonnullCardInfo = cardInfo else { return }
         
-        let expiryMonth = cardInfo.expiryMonth
-        let expiryYear = cardInfo.expiryYear % 100
+        let cardNumber = nonnullCardInfo.cardNumber
+        
+        let expiryMonth = nonnullCardInfo.expiryMonth
+        let expiryYear = nonnullCardInfo.expiryYear % 100
         
         var expirationDate: ExpirationDate? = nil
         if expiryMonth > 0 && expiryYear > 0 {
@@ -61,7 +63,11 @@ extension CardScannerViewController: CardIOViewDelegate {
             expirationDate = ExpirationDate(month: Int(expiryMonth), year: Int(expiryYear))
         }
         
-        self.delegate?.cardScannerController(self, didScan: cardNumber, expirationDate: expirationDate, cvv: cardInfo.cvv, cardholderName: cardInfo.cardholderName)
+        self.delegate?.cardScannerController(self,
+                                             didScan: cardNumber,
+                                             expirationDate: expirationDate,
+                                             cvv: nonnullCardInfo.cvv,
+                                             cardholderName: nonnullCardInfo.cardholderName)
         
         self.pop()
     }
