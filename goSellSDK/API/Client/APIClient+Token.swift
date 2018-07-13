@@ -23,20 +23,13 @@ internal extension APIClient {
         guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
         
         let body = TapBodyModel(body: bodyDictionary)
-        let operation = TapNetworkRequestOperation(path:            self.tokenRoute.rawValue,
+        let operation = TapNetworkRequestOperation(path:            request.route.rawValue,
                                                    method:          .POST,
                                                    headers:         self.staticHTTPHeaders,
                                                    urlModel:        nil,
                                                    bodyModel:       body,
                                                    responseType:    .json)
         
-        self.performRequest(operation, using: self.tokenRoute.decoder, completion: completion)
-    }
-    
-    // MARK: - Private -
-    
-    private var tokenRoute: Route {
-        
-        return .token
+        self.performRequest(operation, using: request.route.decoder, completion: completion)
     }
 }

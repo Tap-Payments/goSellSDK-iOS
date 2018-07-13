@@ -16,7 +16,13 @@ internal extension PaymentDataManager {
     
     internal func startPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {
         
-        if let webPaymentOption = paymentOption as? WebPaymentOptionTableViewCellModel {
+        if let savedCardPaymentOption = paymentOption as? CardCollectionViewCellModel {
+            
+            let card = savedCardPaymentOption.card
+            let paymentOption = self.paymentOption(for: card)
+            self.startPaymentProcess(with: card, paymentOption: paymentOption)
+        }
+        else if let webPaymentOption = paymentOption as? WebPaymentOptionTableViewCellModel {
             
             self.startPaymentProcess(withWebPaymentOption: webPaymentOption.paymentOption)
         }
@@ -141,6 +147,44 @@ internal extension PaymentDataManager {
         result.size.height -= topOffset
         
         return result
+    }
+    
+    private func paymentOption(for savedCard: SavedCard) -> PaymentOption {
+        
+        let options = self.paymentOptions.filter { $0.supportedCardBrands.contains(savedCard.brand) }
+        guard let firstAndOnlyOption = options.first, options.count == 1 else {
+            
+            fatalError("Cannot uniqely identify payment option.")
+        }
+        
+        return firstAndOnlyOption
+    }
+    
+    private func startPaymentProcess(with savedCard: SavedCard, paymentOption: PaymentOption) {
+        
+        guard let cardIdentifier = savedCard.identifier, let customerIdentifier = self.externalDataSource?.customer?.identifier else { return }
+        
+        self.isExecutingAPICalls = true
+        
+        self.payButtonUI?.startLoader()
+        
+        let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
+        let request = CreateTokenWithSavedCardRequest(savedCard: card)
+        
+        APIClient.shared.createToken(with: request) { [weak self] (token, error) in
+            
+            if let nonnullToken = token {
+                
+                let source = Source(token: nonnullToken)
+                self?.callChargeAPI(with: source, paymentOption: paymentOption)
+            }
+            else {
+                
+                self?.payButtonUI?.stopLoader()
+                
+                self?.isExecutingAPICalls = false
+            }
+        }
     }
     
     private func startPaymentProcess(withWebPaymentOption paymentOption: PaymentOption) {

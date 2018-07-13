@@ -14,6 +14,7 @@ internal enum Route: String {
     case initialization         = "init"
     case paymentOptions         = "payment/types/"
     case token                  = "token/"
+    case tokens                 = "tokens/"
     
     internal var decoder: JSONDecoder {
         
@@ -32,7 +33,7 @@ internal enum Route: String {
                 return Date(timeIntervalSince1970: double / 1000.0)
             }
             
-        case .token:
+        case .token, .tokens:
             
             decoder.dateDecodingStrategy = .secondsSince1970
             

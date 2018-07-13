@@ -14,6 +14,8 @@ internal struct CreateTokenWithSavedCardRequest: CreateTokenRequest {
     /// Saved card details.
     internal let savedCard: CreateTokenSavedCard
     
+    internal let route: Route = .tokens
+    
     // MARK: Methods
     
     /// Initializes the model with saved card.

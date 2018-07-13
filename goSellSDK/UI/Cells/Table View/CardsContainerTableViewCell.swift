@@ -41,6 +41,6 @@ extension CardsContainerTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
         
-        
+        self.cardsCollectionView?.reloadData()
     }
 }

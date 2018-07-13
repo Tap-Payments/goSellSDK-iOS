@@ -5,4 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal protocol CreateTokenRequest: Encodable {}
+internal protocol CreateTokenRequest: Encodable {
+    
+    var route: Route { get }
+}
