@@ -70,5 +70,4 @@ internal class PaymentOptionCollectionCellViewModel: CollectionViewCellViewModel
             glowingCell.stopGlowing()
         }
     }
-    
 }

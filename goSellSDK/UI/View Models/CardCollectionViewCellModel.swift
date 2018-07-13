@@ -15,6 +15,8 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     internal weak var cell: CardCollectionViewCell?
     
+    internal let card: SavedCard
+    
     internal override var isSelected: Bool {
         
         didSet {
@@ -52,8 +54,6 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     }
     
     // MARK: Properties
-    
-    private let card: SavedCard
     
     private var cardBrandImage: UIImage = UIImage() {
         

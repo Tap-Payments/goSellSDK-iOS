@@ -159,9 +159,14 @@ internal class CustomersListViewController: UITableViewController {
     
     private func notifyDelegateAboutCustomerSelection() {
         
-        guard let index = self.tableView.indexPathForSelectedRow?.row else { return }
-        
-        self.delegate?.customersListViewController(self, didFinishWith: self.customers[index])
+        if let index = self.tableView.indexPathForSelectedRow?.row {
+            
+            self.delegate?.customersListViewController(self, didFinishWith: self.customers[index])
+        }
+        else {
+            
+            self.delegate?.customersListViewController(self, didFinishWith: self.customers[0])
+        }
     }
 }
 

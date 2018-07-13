@@ -21,7 +21,6 @@ internal extension PaymentDataManager {
         
         let allModels = self.ableToBeSelectedPaymentOptionCellModels
         
-    
         allModels.forEach { $0.isSelected = $0 === model }
         
         self.lastSelectedPaymentOption = model
