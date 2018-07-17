@@ -21,7 +21,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func setup(with paymentOption: PaymentOption, url: URL, binInformation: BINResponse?) {
+    internal func setup(with paymentOption: PaymentOption, url: URL?, binInformation: BINResponse?) {
         
         self.paymentOption  = paymentOption
         self.url            = url
@@ -80,6 +80,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     private var url: URL? {
         
         didSet {
+            
             
             self.loadURLIfNotYetLoaded()
         }

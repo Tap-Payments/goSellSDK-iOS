@@ -47,7 +47,7 @@ internal extension PaymentDataManager {
     
     internal func prepareWebPaymentController(_ controller: WebPaymentViewController) {
         
-        guard let url = self.urlToLoadInWebPaymentController, let paymentOption = self.currentPaymentOption else {
+        guard let paymentOption = self.currentPaymentOption else {
             
             fatalError("This code should never be executed.")
         }
@@ -58,7 +58,7 @@ internal extension PaymentDataManager {
             binInformation = BINDataManager.shared.cachedBINData(for: binNumber)
         }
         
-        controller.setup(with: paymentOption, url: url, binInformation: binInformation)
+        controller.setup(with: paymentOption, url: self.urlToLoadInWebPaymentController, binInformation: binInformation)
     }
     
     internal func decision(forWebPayment url: URL) -> WebPaymentURLDecision {
@@ -191,6 +191,8 @@ internal extension PaymentDataManager {
     
         let source = Source(identifier: paymentOption.sourceIdentifier)
         
+        self.openWebPaymentScreen(for: paymentOption)
+        
         self.isExecutingAPICalls = true
         
         let loader = self.showLoadingController()
@@ -317,11 +319,23 @@ internal extension PaymentDataManager {
     
     private func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String? = nil) {
         
+        self.urlToLoadInWebPaymentController = url
+        self.openWebPaymentScreen(for: paymentOption, binNumber: binNumber)
+    }
+    
+    private func openWebPaymentScreen(for paymentOption: PaymentOption, binNumber: String? = nil) {
+        
         self.currentPaymentOption = paymentOption
         self.currentPaymentCardBINNumber = binNumber
-        self.urlToLoadInWebPaymentController = url
         
-        PaymentOptionsViewController.findInHierarchy()?.showWebPaymentViewController()
+        if let alreadyOpenedWebPaymentController = WebPaymentViewController.findInHierarchy() {
+            
+            self.prepareWebPaymentController(alreadyOpenedWebPaymentController)
+        }
+        else {
+        
+            PaymentOptionsViewController.findInHierarchy()?.showWebPaymentViewController()
+        }
     }
     
     private func openOTPScreen(with phoneNumber: String, for paymentOption: PaymentOption) {
