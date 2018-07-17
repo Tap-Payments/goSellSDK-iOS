@@ -62,3 +62,23 @@ extension Country: ListValue {
         return self.displayValue
     }
 }
+
+// MARK: - Transformable
+extension Country: Transformable {
+    
+    internal init?(untransformedValue: Any?) {
+        
+        if let country = untransformedValue as? Country {
+            
+            try? self.init(country.isoCode)
+        }
+        else if let string = untransformedValue as? String {
+            
+            try? self.init(string)
+        }
+        else {
+            
+            return nil
+        }
+    }
+}

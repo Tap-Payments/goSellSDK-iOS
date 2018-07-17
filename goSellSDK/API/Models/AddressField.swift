@@ -5,35 +5,27 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Address field model.
 internal struct AddressField: Decodable {
     
     // MARK: - Internal -
     // MARK: Properties
     
+    /// Field name.
+    internal let name: String
+    
     /// Field input type.
-    internal let inputType: AddressFieldInputType
+    internal let type: AddressFieldInputType
     
-    /// Field placeholder
+    /// Placeholder text.
     internal let placeholder: String
-    
-    
-    /// Defines if the field is required
-    internal let isRequired: Bool
-    
-    /// Field input order.
-    internal let inputOrder: Int
-    
-    /// Field display order.
-    internal let displayOrder: Int
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case inputType = "input_type"
-        case placeholder = "placeholder"
-        case isRequired = "required"
-        case inputOrder = "order_by"
-        case displayOrder = "display_order"
+        case name           = "name"
+        case type           = "type"
+        case placeholder    = "place_holder"
     }
 }

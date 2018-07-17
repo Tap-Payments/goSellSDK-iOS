@@ -5,17 +5,17 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class UIKit.UITableView.UITableView
+import class    UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
-import class UIKit.UITableViewCell.UITableViewCell
+import class    UIKit.UITableViewCell.UITableViewCell
 
 // MARK: - UITableViewDataSource
 extension AddressInputViewController: UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.addressFieldsDataManager?.visibleCellViewModels.count ?? 0
+        return self.addressFieldsDataManager?.cellViewModels.count ?? 0
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,7 +44,7 @@ extension AddressInputViewController: UITableViewDataSource {
     
     private func model(at indexPath: IndexPath) -> TableViewCellViewModel {
         
-        guard let model = self.addressFieldsDataManager?.visibleCellViewModels.first(where: { $0.indexPath == indexPath }) as? TableViewCellViewModel else {
+        guard let model = self.addressFieldsDataManager?.cellViewModels.first(where: { $0.indexPath == indexPath }) else {
             
             fatalError("Data source is corrupted.")
         }
@@ -74,5 +74,13 @@ extension AddressInputViewController: UITableViewDelegate {
         }
         
         self.addressFieldsDataManager?.tableViewWillDisplayCell(connectedTo: model)
+    }
+    
+    internal func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if let inputCell = cell as? AddressTextInputFieldTableViewCell {
+            
+            inputCell.unbindContent()
+        }
     }
 }

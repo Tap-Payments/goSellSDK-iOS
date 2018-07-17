@@ -61,3 +61,12 @@ extension Country: Decodable {
         try self.init(isoCode: code)
     }
 }
+
+// MARK: - Hashable
+extension Country: Hashable {
+    
+    internal var hashValue: Int {
+        
+        return self.isoCode.hashValue
+    }
+}

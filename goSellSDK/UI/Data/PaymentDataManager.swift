@@ -35,6 +35,7 @@ internal final class PaymentDataManager {
         didSet {
             
             self.filterPaymentOptionCellViewModels()
+            self.updatePayButtonStateAndAmount()
         }
     }
     

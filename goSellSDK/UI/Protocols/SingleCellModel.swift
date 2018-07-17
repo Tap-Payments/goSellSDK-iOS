@@ -45,6 +45,11 @@ internal extension SingleCellModel where CellClass: UITableViewCell {
         
         if let loadedCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CellClass {
             
+            if let tableViewCellModel = self as? TableViewCellViewModel {
+                
+                tableViewCellModel.tableView = tableView
+            }
+            
             self.connect(with: loadedCell)
             
             return loadedCell
@@ -63,6 +68,11 @@ internal extension SingleCellModel where CellClass: UICollectionViewCell {
         let reuseIdentifier = CellClass.className
         
         if let loadedCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CellClass {
+            
+            if let collectionViewCellModel = self as? CollectionViewCellViewModel {
+                
+                collectionViewCellModel.collectionView = collectionView
+            }
             
             self.connect(with: loadedCell)
             

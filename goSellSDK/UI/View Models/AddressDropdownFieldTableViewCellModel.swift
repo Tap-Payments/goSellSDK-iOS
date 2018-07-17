@@ -38,11 +38,12 @@ internal class AddressDropdownFieldTableViewCellModel: AddressFieldTableViewCell
     
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, field: AddressField, allValues: [ListValue], preselectedValue: ListValue?, inputListener: CardAddressInputListener, dataStorage: CardAddressDataStorage) {
+    internal init(indexPath: IndexPath, field: BillingAddressField, specification: AddressField, allValues: [ListValue], preselectedValue: ListValue?, inputListener: CardAddressInputListener, dataStorage: CardAddressDataStorage) {
         
-        self.allValues = allValues
-        self.preselectedValue = preselectedValue
-        super.init(indexPath: indexPath, addressField: field, inputListener: inputListener, dataStorage: dataStorage)
+        self.allValues          = allValues
+        self.preselectedValue   = preselectedValue
+        
+        super.init(indexPath: indexPath, addressField: field, specification: specification, inputListener: inputListener, dataStorage: dataStorage)
     }
 }
 

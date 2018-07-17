@@ -8,6 +8,7 @@
 /// Route enum.
 internal enum Route: String {
     
+    case billingAddress         = "billing_address/"
     case bin                    = "bin/"
     case charges                = "charges/"
     case chargeAuthentication   = "charges/authenticate/"

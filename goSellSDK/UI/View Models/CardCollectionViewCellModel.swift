@@ -25,6 +25,11 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         }
     }
     
+    internal override var paymentOption: PaymentOption? {
+        
+        return PaymentDataManager.shared.paymentOptions.first { $0.supportedCardBrands.contains(self.card.brand) }
+    }
+    
     // MARK: Methods
     
     internal init(indexPath: IndexPath, card: SavedCard) {

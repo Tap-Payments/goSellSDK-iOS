@@ -147,7 +147,7 @@ PODS:
     - TapAdditionsKit/ObjectiveC/NSObject
     - TapAdditionsKit/Tap/ClassProtocol
     - TapAdditionsKit/UIKit/UIView
-  - TapResponderChainInputView (1.0):
+  - TapResponderChainInputView (1.1):
     - TapAdditionsKit/Foundation/Bundle
     - TapAdditionsKit/Tap/ClassProtocol
     - TapNibView
@@ -210,7 +210,7 @@ SPEC CHECKSUMS:
   TapKeychain: 5483ac1930d6f548e05e0f458e302fa7aee78c3b
   TapNetworkManager: 2db04774f86554dbedc7d7ef887df4dcb1a8b190
   TapNibView: 4ddaf1cd09ec3b1ff1315f54c6b7713faa0e3706
-  TapResponderChainInputView: d9285cdc13f513a7f063238bb2b07190aed48b57
+  TapResponderChainInputView: 07e6e20980448583e2b52ebd811860492a076c37
   TapSearchView: c9c884a8b630ffb7a4d904e37822a14054cca1b5
   TapSwiftFixes: 77af9d91c385dc42d9ee53d0f50958e5aef2d8fa
   TapVisualEffectView: d69ad714fef55a5c728069de51a3aa16607db164

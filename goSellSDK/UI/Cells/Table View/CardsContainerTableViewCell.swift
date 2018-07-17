@@ -34,6 +34,13 @@ extension CardsContainerTableViewCell: BindingWithModelCell {
         self.cardsCollectionView?.delegate = self.model?.cardsCollectionViewHandler
         self.model?.collectionViewCellModels.forEach { $0.collectionView = self.cardsCollectionView }
     }
+    
+    internal func unbindContent() {
+        
+        self.cardsCollectionView?.dataSource = nil
+        self.cardsCollectionView?.delegate = nil
+        self.model?.collectionViewCellModels.forEach { $0.collectionView = nil }
+    }
 }
 
 // MARK: - LoadingWithModelCell

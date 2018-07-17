@@ -15,5 +15,5 @@ internal protocol CardAddressInputListener: ClassProtocol {
     /// - Parameters:
     ///   - field: Input field.
     ///   - value: Input value.
-    func inputChanged(in field: AddressField, to value: Any?)
+    func inputChanged(in field: BillingAddressField, to value: Any?)
 }

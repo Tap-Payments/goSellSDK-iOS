@@ -70,7 +70,11 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
         
         didSet {
             
-            (self.validator(of: .addressOnCard) as? CardAddressValidator)?.binInformation = self.binData
+            if let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator, let country = self.binData?.country, addressValidator.country == nil {
+                
+                addressValidator.country = country
+            }
+
             self.updateCell(animated: true)
         }
     }
@@ -86,13 +90,7 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
         
         else { return nil }
         
-        var address: Address?
-        if self.displaysAddressFields {
-            
-            guard let storedAddress = self.inputData[.addressOnCard] as? Address else { return nil }
-            
-            address = storedAddress
-        }
+        let address = self.displaysAddressFields ? (self.validator(of: .addressOnCard) as? CardAddressValidator)?.address : nil
         
         let result = CreateTokenCard(number:            number,
                                      expirationMonth:   expirationDate.monthString,
@@ -126,6 +124,11 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
         
         let result = possibleOptions.first { $0.supportedCardBrands.contains(cardBrand) }
         return result
+    }
+    
+    internal override var paymentOption: PaymentOption? {
+        
+        return self.selectedPaymentOption
     }
     
     // MARK: Methods
