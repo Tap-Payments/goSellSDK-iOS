@@ -13,15 +13,11 @@ internal class CardAddressValidator: CardValidator {
     // MARK: - Internal -
     // MARK: Properties
     
-    /// BIN information.
-    internal var binInformation: BINResponse? {
+    internal var selectedAddressFormat: BillingAddressFormat? {
         
         didSet {
             
-            if self.country == nil {
-                
-                self.country = self.binInformation?.country
-            }
+            self.updateDisplayTextAndCallDelegateIfValidationStateChanged()
         }
     }
     
@@ -30,72 +26,62 @@ internal class CardAddressValidator: CardValidator {
         
         get {
             
-            return self.inputData[AddressFieldsDataManager.Constants.countryPlaceholder] as? Country
+            return self.inputData[AddressFieldsDataManager.Constants.countryFieldName] as? Country
         }
         set {
             
-            self.inputData[AddressFieldsDataManager.Constants.countryPlaceholder] = newValue
+            self.inputData[AddressFieldsDataManager.Constants.countryFieldName] = newValue
         }
     }
     
     /// Address display text.
     internal var displayText: String {
         
-        return Constants.placeholderDisplayText
+        guard let format = self.selectedAddressFormat else {
+            
+            return Constants.placeholderDisplayText
+        }
         
-        // FIXME: Apply real logic when Address Format API is ready.
-        
-//        if self.hasInputDataForCurrentAddressFormat {
-//
-//            let orderedDisplayData = self.binInformation?.addressFormat?.sorted { $0.displayOrder < $1.displayOrder }
-//            var filledFields = orderedDisplayData?.compactMap { self.inputData[$0.placeholder] as? String }
-//            filledFields = filledFields?.filter { $0.length > 0 }
-//
-//            if (filledFields?.count ?? 0) == 0 {
-//
-//                return Constants.placeholderDisplayText
-//            }
-//
-//            if let country = self.country {
-//
-//                filledFields?.append(country.displayValue)
-//            }
-//
-//            if let nonnullFields = filledFields, nonnullFields.count > 0 {
-//
-//                return nonnullFields.joined(separator: Constants.addressFieldsDisplaySeparatorText)
-//            }
-//            else {
-//
-//                return Constants.placeholderDisplayText
-//            }
-//        }
-//        else {
-//
-//            return Constants.placeholderDisplayText
-//        }
+        if self.hasInputDataForCurrentAddressFormat {
+            
+            let orderedDisplayData = format.fields.sorted { $0.displayOrder < $1.displayOrder }
+            var filledFields = orderedDisplayData.compactMap { self.inputData[$0.name] as? String }
+            filledFields = filledFields.filter { $0.length > 0 }
+            
+            if filledFields.count == 0 { return Constants.placeholderDisplayText }
+            
+            if let country = self.country {
+                
+                filledFields.append(country.displayValue)
+            }
+            
+            return filledFields.joined(separator: Constants.addressFieldsDisplaySeparatorText)
+        }
+        else {
+            
+            return Constants.placeholderDisplayText
+        }
     }
     
     /// Defines if current address format has any input data.
     internal var hasInputDataForCurrentAddressFormat: Bool {
         
-        return false
-
-        // FIXME: Apply real logic when Address Format API is ready.
+        guard let format = self.selectedAddressFormat else { return false }
         
-//        guard let nonnullAddressFormat = self.binInformation?.addressFormat else { return false }
-//
-//        return nonnullAddressFormat.first(where: { self.inputData[$0.placeholder] != nil }) != nil
+        return format.fields.first(where: { self.inputData[$0.name] != nil }) != nil
     }
     
     internal override var isValid: Bool {
-
-        return false
         
-        // FIXME: Apply real logic when Address Format API is ready.
+        guard let format = self.selectedAddressFormat else { return false }
         
-//        guard let addressFormat = self.binInformation?.addressFormat else { return true }
-//        return addressFormat.first(where: { !$0.canBeFilled(with: self.inputData[$0.placeholder]) }) == nil
+        return format.fields.first(where: { !self.isDataValid(for: $0) }) == nil
+    }
+    
+    internal var address: Address? {
+        
+        guard let format = self.selectedAddressFormat else { return nil }
+        return Address(inputData: self.inputData, format: format)
     }
     
     // MARK: Methods
@@ -149,23 +135,31 @@ internal class CardAddressValidator: CardValidator {
         self.updateInputFieldTextAndAttributes()
         self.validate()
     }
+    
+    private func isDataValid(for field: BillingAddressField) -> Bool {
+        
+        let specification = AddressFieldsDataManager.fieldSpecification(for: field)
+        let data = self.inputData[field.name]
+        
+        return field.canBeFilled(with: data, considering: specification)
+    }
 }
 
 // MARK: - CardAddressDataStorage
 extension CardAddressValidator: CardAddressDataStorage {
     
-    internal func cardInputData(for field: AddressField) -> Any? {
+    internal func cardInputData(for field: BillingAddressField) -> Any? {
         
-        return self.inputData[field.placeholder]
+        return self.inputData[field.name]
     }
 }
 
 // MARK: - CardAddressInputListener
 extension CardAddressValidator: CardAddressInputListener {
     
-    internal func inputChanged(in field: AddressField, to value: Any?) {
+    internal func inputChanged(in field: BillingAddressField, to value: Any?) {
         
-        self.inputData[field.placeholder] = value
+        self.inputData[field.name] = value
     }
 }
 

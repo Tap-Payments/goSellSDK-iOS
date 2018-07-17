@@ -18,7 +18,10 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
     
     internal let iconImageURL: URL
     
-    internal let paymentOption: PaymentOption
+    internal override var paymentOption: PaymentOption {
+        
+        return self.storedPaymentOption
+    }
     
     internal private(set) var iconImage: UIImage?
     
@@ -56,13 +59,17 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
         
         self.title = title
         self.iconImageURL = iconImageURL
-        self.paymentOption = paymentOption
+        self.storedPaymentOption = paymentOption
         
         super.init(indexPath: indexPath)
     }
     
     // MARK: - Private -
     // MARK: Properties
+    
+    private let storedPaymentOption: PaymentOption
+    
+    // MARK: Methods
     
     private func loadImageAndUpdateCell() {
         

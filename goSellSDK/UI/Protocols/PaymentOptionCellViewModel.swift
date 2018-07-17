@@ -11,6 +11,8 @@ internal protocol PaymentOptionCellViewModel: ClassProtocol {
     
     // MARK: Properties
     
+    var paymentOption: PaymentOption? { get }
+    
     var isSelected: Bool { get set }
     
     var indexPathOfCellToSelect: IndexPath? { get }

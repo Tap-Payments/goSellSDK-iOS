@@ -40,6 +40,11 @@ internal class PaymentOptionCollectionCellViewModel: CollectionViewCellViewModel
         return false
     }
     
+    internal var paymentOption: PaymentOption? {
+        
+        return nil
+    }
+    
     // MARK: Methods
     
     internal override func collectionViewDidSelectCell(_ sender: UICollectionView) {

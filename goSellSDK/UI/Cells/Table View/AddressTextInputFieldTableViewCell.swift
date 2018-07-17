@@ -15,7 +15,7 @@ internal class AddressTextInputFieldTableViewCell: AddressFieldTableViewCell {
     
     internal weak var model: AddressTextInputFieldTableViewCellModel?
     
-    internal var inputField: UIResponder? {
+    internal var inputField: UITextField? {
         
         return self.inputTextField
     }
@@ -42,7 +42,7 @@ extension AddressTextInputFieldTableViewCell: LoadingWithModelCell {
         
         guard let nonnullModel = self.model else { return }
         
-        switch nonnullModel.addressField.inputType {
+        switch nonnullModel.fieldSpecification.type {
             
         case .textInput(let type):
             
@@ -81,5 +81,10 @@ extension AddressTextInputFieldTableViewCell: BindingWithModelCell {
             
             self.model?.bind(with: textField)
         }
+    }
+    
+    internal func unbindContent() {
+        
+        self.model?.unbindFromInputField()
     }
 }

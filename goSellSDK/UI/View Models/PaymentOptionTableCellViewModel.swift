@@ -41,6 +41,11 @@ internal class PaymentOptionTableCellViewModel: TableViewCellViewModel, PaymentO
         return false
     }
     
+    internal var paymentOption: PaymentOption? {
+        
+        return nil
+    }
+    
     // MARK: Methods
     
     internal override func tableViewDidSelectCell(_ sender: UITableView) {

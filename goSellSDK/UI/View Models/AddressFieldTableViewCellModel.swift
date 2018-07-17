@@ -12,25 +12,28 @@ internal class AddressFieldTableViewCellModel: TableViewCellViewModel {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal let addressField: AddressField
+    internal let addressField: BillingAddressField
+    internal let fieldSpecification: AddressField
     
     internal private(set) weak var inputListener: CardAddressInputListener?
     internal private(set) weak var dataStorage: CardAddressDataStorage?
     
     internal var descriptionText: String {
         
-        return self.addressField.placeholder
+        return self.fieldSpecification.placeholder
     }
     
     internal var descriptionWidth: CGFloat = 0.0
     
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, addressField: AddressField, inputListener: CardAddressInputListener, dataStorage: CardAddressDataStorage) {
+    internal init(indexPath: IndexPath, addressField: BillingAddressField, specification: AddressField, inputListener: CardAddressInputListener, dataStorage: CardAddressDataStorage) {
         
-        self.addressField = addressField
-        self.inputListener = inputListener
-        self.dataStorage = dataStorage
+        self.addressField       = addressField
+        self.fieldSpecification = specification
+        self.inputListener      = inputListener
+        self.dataStorage        = dataStorage
+        
         super.init(indexPath: indexPath)
     }
 }

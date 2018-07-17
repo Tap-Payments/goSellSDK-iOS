@@ -9,5 +9,5 @@ import protocol TapAdditionsKit.ClassProtocol
 
 internal protocol CardAddressDataStorage: ClassProtocol {
     
-    func cardInputData(for field: AddressField) -> Any?
+    func cardInputData(for field: BillingAddressField) -> Any?
 }

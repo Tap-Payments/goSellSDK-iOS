@@ -15,6 +15,14 @@ internal class AddressDropdownFieldTableViewCell: AddressFieldTableViewCell {
     
     internal weak var model: AddressDropdownFieldTableViewCellModel?
     
+    // MARK: Methods
+    
+    internal override func prepareForReuse() {
+        
+        super.prepareForReuse()
+        self.selectedValueLabel?.text = nil
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     

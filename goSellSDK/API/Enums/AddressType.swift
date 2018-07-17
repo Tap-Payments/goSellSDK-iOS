@@ -9,4 +9,12 @@ internal enum AddressType: String, Codable {
     
     case residential    = "RESIDENTIAL"
     case commercial     = "COMMERCIAL"
+    
+    // MARK: Methods
+    
+    internal init?(_ stringValue: String) {
+        
+        let uppercased = stringValue.uppercased()
+        self.init(rawValue: uppercased)
+    }
 }

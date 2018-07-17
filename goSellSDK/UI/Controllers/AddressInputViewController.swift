@@ -16,7 +16,7 @@ internal class AddressInputViewController: HeaderNavigatedViewController {
     
     internal func setValidator(_ validator: CardAddressValidator) {
         
-        self.addressFieldsDataManager = AddressFieldsDataManager(validator: validator)
+        self.addressFieldsDataManager = AddressFieldsDataManager(validator: validator, loadingListener: self)
         self.addressFieldsDataManager?.reloadClosure = {
             
             self.addressFieldsTableView?.reloadData()
@@ -46,4 +46,20 @@ internal class AddressInputViewController: HeaderNavigatedViewController {
     @IBOutlet private weak var addressFieldsTableView: UITableView?
     
     internal private(set) var addressFieldsDataManager: AddressFieldsDataManager?
+    
+    private weak var loader: LoadingViewController?
+}
+
+// MARK: - AddressFieldsDataManagerLoadingListener
+extension AddressInputViewController: AddressFieldsDataManagerLoadingListener {
+    
+    internal func addressFieldsDataManagerDidStartLoadingFormats() {
+        
+        self.loader = PaymentDataManager.shared.showLoadingController(false)
+    }
+    
+    internal func addressFieldsDataManagerDidStopLoadingFormats() {
+        
+        self.loader?.hide()
+    }
 }

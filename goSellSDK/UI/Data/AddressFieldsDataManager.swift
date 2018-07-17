@@ -5,23 +5,24 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGBase.CGFloat
-import struct CoreGraphics.CGGeometry.CGSize
-import struct TapAdditionsKit.TypeAlias
-import class UIKit.UIFont.UIFont
-import class UIKit.UIResponder.UIResponder
+import struct   CoreGraphics.CGBase.CGFloat
+import struct   CoreGraphics.CGGeometry.CGSize
+import struct   TapAdditionsKit.TypeAlias
+import func     TapSwiftFixes.performOnMainThread
+import class    UIKit.UIFont.UIFont
+import class    UIKit.UITextField.UITextField
 
-/// Data manager to manager address fields.
+/// Data manager to manage address fields.
 internal class AddressFieldsDataManager {
     
     // MARK: - Internal -
     
     internal struct Constants {
         
-        fileprivate static let countryTopEmptyCellModelIdentifier = "country_top_empty_cell_model"
-        fileprivate static let countryBottomEmptyCellModelIdentifier = "country_bottom_empty_cell_model"
+        internal static let countryFieldName = "country"
         
-        internal static let countryPlaceholder = "Country"
+        fileprivate static let countryTopEmptyCellModelIdentifier       = "country_top_empty_cell_model"
+        fileprivate static let countryBottomEmptyCellModelIdentifier    = "country_bottom_empty_cell_model"
         
         fileprivate static let descriptionFont: UIFont = .helveticaNeueRegular(15.0)
         fileprivate static let extraDescriptionWidth: CGFloat = 3.0
@@ -31,9 +32,13 @@ internal class AddressFieldsDataManager {
     
     // MARK: Properties
     
+    internal weak var loadingListener: AddressFieldsDataManagerLoadingListener?
+    
     internal unowned let validator: CardAddressValidator
     
-    internal private(set) var visibleCellViewModels: [CellViewModel] = [] {
+    internal var reloadClosure: TypeAlias.ArgumentlessClosure?
+    
+    internal private(set) var cellViewModels: [TableViewCellViewModel] = [] {
         
         didSet {
             
@@ -42,163 +47,259 @@ internal class AddressFieldsDataManager {
         }
     }
     
-    internal var reloadClosure: TypeAlias.ArgumentlessClosure?
-    
-    internal let countryAddressField: AddressField = {
+    internal var country: Country {
         
-        let field = AddressField(inputType: .dropdown,
-                                 placeholder: Constants.countryPlaceholder,
-                                 isRequired: true,
-                                 inputOrder: 0,
-                                 displayOrder: Int.max)
-        return field
-    }()
+        get {
+            
+            guard let result = self.validator.country else {
+                
+                fatalError("Should never reach here")
+            }
+            
+            return result
+        }
+        set {
+            
+            guard self.country != newValue else { return }
+            
+            self.countryCellModel.preselectedValue = newValue
+            self.validator.country = newValue
+            
+            self.generateCellViewModels()
+        }
+    }
     
     // MARK: Methods
     
-    internal init(validator: CardAddressValidator) {
+    internal init(validator: CardAddressValidator, loadingListener: AddressFieldsDataManagerLoadingListener) {
         
         self.validator = validator
-        
+        self.loadingListener = loadingListener
         self.generateCellViewModels()
+    }
+    
+    internal func obtainAddressFormat(for country: Country, completion: @escaping (BillingAddressFormat) -> Void) {
+        
+        self.retrieveAddressFieldsData { (response) in
+            
+            let format = self.addressFormat(for: country, from: response)
+            completion(format)
+        }
     }
     
     internal func tableViewWillDisplayCell(connectedTo model: TableViewCellViewModel) {
         
         if let inputFieldModel = model as? AddressTextInputFieldTableViewCellModel {
             
-            let modelInputField = inputFieldModel.cell?.inputField
-            let previousInputField = self.previousVisibleModelInputField(for: model)
+            self.connectInputFieldResponders(for: inputFieldModel)
             
-            previousInputField?.nextField = modelInputField
-            
-            modelInputField?.previousField = previousInputField
-            modelInputField?.nextField = nil
+            if inputFieldModel.indexPath == self.indexPathToMakeFirstResponderOnceVisible {
+                
+                inputFieldModel.cell?.inputField?.becomeFirstResponder()
+                self.indexPathToMakeFirstResponderOnceVisible = nil
+            }
         }
+        
+        
     }
     
-    internal func firstExisingCellModel<ModelType: AddressFieldTableViewCellModel>(with placeholder: String) -> ModelType? {
+    internal static func fieldSpecification(for field: BillingAddressField) -> AddressField {
         
-        return self.allCellViewModels.first(where: { ($0 as? ModelType)?.addressField.placeholder == placeholder }) as? ModelType
+        guard let allFieldSpecifications = self.cachedAddressFieldsData?.fields else {
+            
+            fatalError("Address fields data is not loaded.")
+        }
+        
+        guard let result = allFieldSpecifications.first(where: { $0.name == field.name }) else {
+            
+            fatalError("There is no field \(field.name) in available address format data.")
+        }
+        
+        return result
+    }
+    
+    internal func makePreviousModelFirstResponder(for model: AddressTextInputFieldTableViewCellModel) {
+        
+        let index = model.indexPath.row - 1
+        guard index > 0 else { return }
+        
+        let indexPath = IndexPath(row: index, section: 0)
+        self.makeInputFieldAtIndexPathFirstResponder(indexPath)
+    }
+    
+    internal func makeNextModelFirstResponder(for model: AddressTextInputFieldTableViewCellModel) {
+        
+        let index = model.indexPath.row + 1
+        
+        guard index < self.cellViewModels.count else { return }
+        
+        let indexPath = IndexPath(row: index, section: 0)
+        self.makeInputFieldAtIndexPathFirstResponder(indexPath)
     }
     
     // MARK: - Private -
+    
+    private typealias AddressFieldsResponse = (BillingAddressResponse) -> Void
+    
     // MARK: Properties
     
-    private var allCellViewModels: [CellViewModel] = [] {
-        
-        didSet {
-            
-            self.filterVisibleCellViewModels()
-        }
-    }
+    private static var cachedAddressFieldsData: BillingAddressResponse?
+    
+    private var isLoadingAddressFields: Bool = false
+    private var indexPathToMakeFirstResponderOnceVisible: IndexPath?
     
     // MARK: Methods
     
+    private func makeInputFieldAtIndexPathFirstResponder(_ indexPath: IndexPath) {
+        
+        guard let model = self.cellViewModels[indexPath.row] as? AddressTextInputFieldTableViewCellModel else { return }
+        if model.tableView?.indexPathsForVisibleRows?.contains(indexPath) ?? false {
+            
+            model.cell?.inputField?.becomeFirstResponder()
+        }
+        else {
+            
+            self.indexPathToMakeFirstResponderOnceVisible = indexPath
+            model.tableView?.scrollToRow(at: indexPath, at: .none, animated: true)
+        }
+    }
+    
+    private func connectInputFieldResponders(for model: AddressTextInputFieldTableViewCellModel) {
+        
+        let modelInputField = model.cell?.inputField
+        let previousInputField = self.previousModelInputField(for: model)
+        let nextInputField = self.nextModelInputField(for: model)
+        
+        previousInputField?.nextField = modelInputField
+        previousInputField?.returnKeyType = modelInputField == nil ? .done : .next
+        
+        nextInputField?.previousField = modelInputField
+        
+        modelInputField?.previousField = previousInputField
+        
+        modelInputField?.nextField = nextInputField
+        modelInputField?.returnKeyType = nextInputField == nil ? .done : .next
+    }
+    
+    private func retrieveAddressFieldsData(_ success: @escaping AddressFieldsResponse) {
+        
+        if let cachedData = type(of: self).cachedAddressFieldsData {
+            
+            self.callCompletion(success, with: cachedData)
+            return
+        }
+        
+        guard !self.isLoadingAddressFields else { return }
+        
+        self.loadingListener?.addressFieldsDataManagerDidStartLoadingFormats()
+        self.isLoadingAddressFields = true
+        
+        APIClient.shared.getBillingAddressFormats { (response, error) in
+            
+            self.isLoadingAddressFields = false
+            self.loadingListener?.addressFieldsDataManagerDidStopLoadingFormats()
+            
+            if let nonnullResponse = response {
+                
+                type(of: self).cachedAddressFieldsData = nonnullResponse
+                self.callCompletion(success, with: nonnullResponse)
+            }
+        }
+    }
+    
+    private func callCompletion(_ closure: @escaping AddressFieldsResponse, with data: BillingAddressResponse) {
+        
+        performOnMainThread {
+            
+            closure(data)
+        }
+    }
+    
+    private func addressFormat(for country: Country, from response: BillingAddressResponse) -> BillingAddressFormat {
+        
+        guard let formatName = response.countryFormats[country] else {
+            
+            fatalError("We don't have address format for \(country.displayName)")
+        }
+        
+        guard let format = response.formats.first(where: { $0.name == formatName }) else {
+            
+            fatalError("We don't have address format for \(country.displayName)")
+        }
+        
+        return format
+    }
+    
     private func generateCellViewModels() {
         
-        var result: [CellViewModel] = self.allCellViewModels
-        
-        self.generateStaticTopAddressFields(fillingInto: &result)
-        
-        // FIXME: Apply real address format logic when Address Format API is ready.
-        
-//        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
-//
-//            self.allCellViewModels = result
-//            return
-//        }
-//
-//        addressFormat.forEach { addressField in
-//
-//            if let _: AddressTextInputFieldTableViewCellModel = self.firstExisingCellModel(with: addressField.placeholder) { } else {
-//
-//                let fieldCellModel = AddressTextInputFieldTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-//                                                                             addressField: addressField,
-//                                                                             inputListener: self.validator,
-//                                                                             dataStorage: self.validator)
-//                result.append(fieldCellModel)
-//            }
-//        }
-        
-        self.allCellViewModels = result
-    }
-    
-    private func generateStaticTopAddressFields(fillingInto result: inout [CellViewModel]) {
-        
-        if let _: EmptyTableViewCellModel = self.firstExisingCellModel(with: Constants.countryTopEmptyCellModelIdentifier) { } else {
+        guard let country = self.validator.country else {
             
-            let topEmptyCellViewModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                identifier: Constants.countryTopEmptyCellModelIdentifier)
-            result.append(topEmptyCellViewModel)
+            self.cellViewModels = []
+            return
         }
         
-        if let _: AddressDropdownFieldTableViewCellModel = self.firstExisingCellModel(with: Constants.countryPlaceholder) { } else {
+        self.obtainAddressFormat(for: country) { (format) in
             
-            let countryCellViewModel = AddressDropdownFieldTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                              field: self.countryAddressField,
-                                                                              allValues: Country.all,
-                                                                              preselectedValue: self.validator.country,
+            self.validator.selectedAddressFormat = format
+            
+            var orderedFields = format.fields.sorted { $0.inputOrder < $1.inputOrder }
+            
+            if !orderedFields.contains(where: { $0.name == Constants.countryFieldName }) {
+                
+                let countryField = BillingAddressField(name: Constants.countryFieldName, isRequired: true, inputOrder: 0, displayOrder: .max)
+                orderedFields.insert(countryField, at: 0)
+            }
+            
+            var result: [TableViewCellViewModel] = []
+            
+            orderedFields.forEach { (field) in
+                
+                let fieldSpecification = type(of: self).fieldSpecification(for: field)
+                switch fieldSpecification.type {
+                    
+                case .dropdown:
+                    
+                    let topEmptyCellIndexPath = self.nextIndexPath(for: result)
+                    let topEmptyCellIdentifier = field.name + "_empty_top"
+                    let topEmptyCell = EmptyTableViewCellModel(indexPath: topEmptyCellIndexPath, identifier: topEmptyCellIdentifier)
+                    
+                    result.append(topEmptyCell)
+                    
+                    let dropdownIndexPath = self.nextIndexPath(for: result)
+                    let countries = type(of: self).cachedAddressFieldsData?.countryFormats.allKeys ?? Country.all
+                    
+                    let dropdownCell = AddressDropdownFieldTableViewCellModel(indexPath: dropdownIndexPath,
+                                                                              field: field,
+                                                                              specification: fieldSpecification,
+                                                                              allValues: countries,
+                                                                              preselectedValue: country,
                                                                               inputListener: self.validator,
                                                                               dataStorage: self.validator)
-            result.append(countryCellViewModel)
-        }
-        
-        if let _: EmptyTableViewCellModel = self.firstExisingCellModel(with: Constants.countryBottomEmptyCellModelIdentifier) { } else {
+                    
+                    result.append(dropdownCell)
+                    
+                    let bottomEmptyCellIndexPath = self.nextIndexPath(for: result)
+                    let bottomEmptyCellIdentifier = field.name + "_empty_bottom"
+                    let bottomEmptyCell = EmptyTableViewCellModel(indexPath: bottomEmptyCellIndexPath, identifier: bottomEmptyCellIdentifier)
+                    
+                    result.append(bottomEmptyCell)
+                    
+                case .textInput(_):
+                    
+                    let indexPath = self.nextIndexPath(for: result)
+                    let inputCellModel = AddressTextInputFieldTableViewCellModel(indexPath: indexPath,
+                                                                                 addressField: field,
+                                                                                 specification: fieldSpecification,
+                                                                                 inputListener: self.validator,
+                                                                                 dataStorage: self.validator,
+                                                                                 dataManager: self)
+                    
+                    result.append(inputCellModel)
+                }
+            }
             
-            let bottomEmptyCellViewModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                   identifier: Constants.countryBottomEmptyCellModelIdentifier)
-            result.append(bottomEmptyCellViewModel)
+            self.cellViewModels = result
         }
-    }
-    
-    private func firstExisingCellModel<ModelType: EmptyTableViewCellModel>(with identifier: String) -> ModelType? {
-        
-        return self.allCellViewModels.first(where: { ($0 as? ModelType)?.identifier == identifier }) as? ModelType
-    }
-    
-    private func filterVisibleCellViewModels() {
-        
-        var result: [CellViewModel] = []
-        
-        if let topEmptyCellModelBeforeCountry: EmptyTableViewCellModel = self.firstExisingCellModel(with: Constants.countryTopEmptyCellModelIdentifier) {
-            
-            topEmptyCellModelBeforeCountry.indexPath = self.nextIndexPath(for: result)
-            result.append(topEmptyCellModelBeforeCountry)
-        }
-        
-        if let countryCellModel: AddressDropdownFieldTableViewCellModel = self.firstExisingCellModel(with: Constants.countryPlaceholder) {
-            
-            countryCellModel.indexPath = self.nextIndexPath(for: result)
-            result.append(countryCellModel)
-        }
-        
-        if let bottomEmptyCellModelAfterCountry: EmptyTableViewCellModel = self.firstExisingCellModel(with: Constants.countryBottomEmptyCellModelIdentifier) {
-            
-            bottomEmptyCellModelAfterCountry.indexPath = self.nextIndexPath(for: result)
-            result.append(bottomEmptyCellModelAfterCountry)
-        }
-
-        // FIXME: Apply real logic when Address Format API is ready.
-        
-//        guard let addressFormat = self.validator.binInformation?.addressFormat, addressFormat.count > 0 else {
-//
-//            self.visibleCellViewModels = result
-//            return
-//        }
-//
-//        let sortedAddressFormat = addressFormat.sorted { $0.inputOrder < $1.inputOrder }
-//
-//        sortedAddressFormat.forEach { addressField in
-//
-//            if let addressCellViewModel: AddressTextInputFieldTableViewCellModel = self.firstExisingCellModel(with: addressField.placeholder) {
-//
-//                addressCellViewModel.indexPath = self.nextIndexPath(for: result)
-//                result.append(addressCellViewModel)
-//            }
-//        }
-        
-        self.visibleCellViewModels = result
     }
     
     @inline(__always) private func nextIndexPath(for temporaryResult: [Any]) -> IndexPath {
@@ -206,11 +307,11 @@ internal class AddressFieldsDataManager {
         return IndexPath(row: temporaryResult.count, section: 0)
     }
     
-    private func previousVisibleModelInputField(for model: TableViewCellViewModel) -> UIResponder? {
+    private func previousModelInputField(for model: TableViewCellViewModel) -> UITextField? {
         
-        guard let index = self.visibleCellViewModels.index(where: { $0.indexPath == model.indexPath }), index > 0 else { return nil }
+        guard let index = self.cellViewModels.index(where: { $0.indexPath == model.indexPath }), index > 0 else { return nil }
         
-        if let previousModel = self.visibleCellViewModels[index - 1] as? AddressTextInputFieldTableViewCellModel {
+        if let previousModel = self.cellViewModels[index - 1] as? AddressTextInputFieldTableViewCellModel {
             
             return previousModel.cell?.inputField
         }
@@ -220,10 +321,24 @@ internal class AddressFieldsDataManager {
         }
     }
     
+    private func nextModelInputField(for model: TableViewCellViewModel) -> UITextField? {
+        
+        guard let index = self.cellViewModels.index(where: { $0.indexPath == model.indexPath }), index + 1 < self.cellViewModels.count else { return nil }
+        
+        if let nextModel = self.cellViewModels[index + 1] as? AddressTextInputFieldTableViewCellModel {
+            
+            return nextModel.cell?.inputField
+        }
+        else {
+            
+            return nil
+        }
+    }
+    
     private func calculateRequiredDescriptionWidthAndAssignToModels() {
         
-        guard let fieldModels = (self.visibleCellViewModels.filter { $0 is AddressFieldTableViewCellModel }) as? [AddressFieldTableViewCellModel] else { return }
-        let titles = fieldModels.map { $0.addressField.placeholder }
+        let fieldModels = self.cellViewModels.compactMap { $0 as? AddressFieldTableViewCellModel }
+        let titles = fieldModels.map { $0.fieldSpecification.placeholder }
         
         let widths: [CGFloat] = titles.map {
             

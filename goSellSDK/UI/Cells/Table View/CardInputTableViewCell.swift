@@ -296,6 +296,12 @@ extension CardInputTableViewCell: BindingWithModelCell {
         self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true, forceLayout: false)
     }
     
+    internal func unbindContent() {
+        
+        self.iconsTableView?.dataSource = nil
+        self.iconsTableView?.delegate = nil
+    }
+    
     private func updateSectionsVisibility(animated: Bool, updateConstraintsOnly: Bool = false, forceLayout: Bool) {
         
         if updateConstraintsOnly {
