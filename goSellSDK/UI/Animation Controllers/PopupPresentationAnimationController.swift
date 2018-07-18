@@ -1,5 +1,5 @@
 //
-//  OTPAnimationController.swift
+//  PopupPresentationAnimationController.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
@@ -16,7 +16,7 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
 
-internal class OTPAnimationController: NSObject {
+internal class PopupPresentationAnimationController: NSObject {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -26,13 +26,14 @@ internal class OTPAnimationController: NSObject {
     
     // MARK: Methods
     
-    internal init(operation: ViewControllerOperation, from: UIViewController, to: UIViewController) {
+    internal convenience init(presentationFrom from: UIViewController, to: UIViewController & PopupPresentationSupport) {
         
-        self.operation          = operation
-        self.fromViewController = from
-        self.toViewController   = to
+        self.init(operation: .presentation, from: from, to: to)
+    }
+    
+    internal convenience init(dismissalFrom from: UIViewController & PopupPresentationSupport, to: UIViewController) {
         
-        super.init()
+        self.init(operation: .dismissal, from: from, to: to)
     }
     
     // MARK: - Private -
@@ -49,10 +50,21 @@ internal class OTPAnimationController: NSObject {
     private let operation: ViewControllerOperation
     
     private weak var firstResponderOnMomentOfDismissal: UIResponder?
+    
+    // MARK: Methods
+    
+    private init(operation: ViewControllerOperation, from: UIViewController, to: UIViewController) {
+        
+        self.operation          = operation
+        self.fromViewController = from
+        self.toViewController   = to
+        
+        super.init()
+    }
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
-extension OTPAnimationController: UIViewControllerAnimatedTransitioning {
+extension PopupPresentationAnimationController: UIViewControllerAnimatedTransitioning {
     
     internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         
@@ -70,7 +82,7 @@ extension OTPAnimationController: UIViewControllerAnimatedTransitioning {
             
         else { return }
         
-        var nullableOTPController: OTPViewController?
+        var presentationSupport: (UIViewController & PopupPresentationSupport)?
         let containerView = transitionContext.containerView
         
         switch self.operation {
@@ -80,20 +92,22 @@ extension OTPAnimationController: UIViewControllerAnimatedTransitioning {
             containerView.addSubview(fromView)
             containerView.addSubview(toView)
             
-            nullableOTPController = toController as? OTPViewController
+            presentationSupport = toController as? UIViewController & PopupPresentationSupport
             
         case .dismissal:
             
             containerView.addSubview(toView)
             containerView.addSubview(fromView)
             
-            nullableOTPController = fromController as? OTPViewController
+            presentationSupport = fromController as? UIViewController & PopupPresentationSupport
         }
         
-        guard let otpController = nullableOTPController, let otpView = otpController.view else { return }
+        guard let nonnullPresentationSupport = presentationSupport else { return }
         
-        let finalFrame = transitionContext.finalFrame(for: otpController)
-        otpView.frame = finalFrame
+        let layoutView = nonnullPresentationSupport.viewToLayout
+        
+        let finalFrame = transitionContext.finalFrame(for: nonnullPresentationSupport)
+        layoutView.frame = finalFrame
         
         var initialConstant: CGFloat
         var finalConstant: CGFloat
@@ -112,18 +126,18 @@ extension OTPAnimationController: UIViewControllerAnimatedTransitioning {
             initialAlpha = 1.0
         }
         
-        otpView.alpha = initialAlpha
+        layoutView.alpha = initialAlpha
         
-        otpController.presentationAnimationAnimatingConstraint?.constant = initialConstant
-        otpView.layout()
+        nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = initialConstant
+        layoutView.layout()
         
-        let backgroundColor = otpView.layer.backgroundColor
+        let backgroundColor = layoutView.layer.backgroundColor
         if self.operation == .presentation {
             
-            otpView.layer.backgroundColor = UIColor.clear.cgColor
+            layoutView.layer.backgroundColor = UIColor.clear.cgColor
         }
         
-        let blurView = otpView.subview(ofClass: TapVisualEffectView.self)
+        let blurView = layoutView.subview(ofClass: TapVisualEffectView.self)
         blurView?.style = self.operation == .presentation ? .none : .light
         
         let animations: TypeAlias.ArgumentlessClosure = {
@@ -132,19 +146,19 @@ extension OTPAnimationController: UIViewControllerAnimatedTransitioning {
                 
                 if self.operation == .presentation {
                     
-                    otpView.layer.backgroundColor = backgroundColor
-                    otpView.alpha = 1.0
+                    layoutView.layer.backgroundColor = backgroundColor
+                    layoutView.alpha = 1.0
                     blurView?.style = .light
                 }
                 else {
                     
-                    otpView.layer.backgroundColor = UIColor.clear.cgColor
-                    otpView.alpha = 1.0
+                    layoutView.layer.backgroundColor = UIColor.clear.cgColor
+                    layoutView.alpha = 1.0
                     blurView?.style = .none
                 }
                 
-                otpController.presentationAnimationAnimatingConstraint?.constant = finalConstant
-                otpView.layout()
+                nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = finalConstant
+                layoutView.layout()
             }
         }
         
@@ -161,24 +175,24 @@ extension OTPAnimationController: UIViewControllerAnimatedTransitioning {
 }
 
 // MARK: - InteractiveTransitionControllerStatusReporting
-extension OTPAnimationController: InteractiveTransitionControllerStatusReporting {
+extension PopupPresentationAnimationController: InteractiveTransitionControllerStatusReporting {
     
     internal func interactiveTransitionWillCancel() {
         
-        guard let otpController = self.fromViewController as? OTPViewController else { return }
+        guard let presentationSupport = self.fromViewController as? PopupPresentationSupport else { return }
         
-        self.firstResponderOnMomentOfDismissal = otpController.view.firstResponder
+        self.firstResponderOnMomentOfDismissal = presentationSupport.viewToLayout.firstResponder
     }
     
     internal func interactiveTransitionDidCancel() {
         
-        guard self.operation == .dismissal, let otpController = self.fromViewController as? OTPViewController else { return }
+        guard self.operation == .dismissal, let presentationSupport = self.fromViewController as? PopupPresentationSupport  else { return }
         
         let animations: TypeAlias.ArgumentlessClosure = {
             
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0) {
              
-                otpController.presentationAnimationAnimatingConstraint?.constant = 0.0
+                presentationSupport.presentationAnimationAnimatingConstraint?.constant = 0.0
                 self.firstResponderOnMomentOfDismissal?.becomeFirstResponder()
             }
         }

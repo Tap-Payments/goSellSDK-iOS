@@ -1485,23 +1485,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wka-gk-Q4b">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHN-fy-CJA">
                                 <rect key="frame" x="0.0" y="110" width="375" height="592"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-xZ-fUC" customClass="WebViewProgressBar" customModule="goSellSDK">
-                                <rect key="frame" x="0.0" y="110" width="375" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="WP5-h0-o9M"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsFullProgress" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
-                                        <color key="value" red="0.0" green="0.60392156862745094" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                <connections>
+                                    <segue destination="rmA-J8-h48" kind="embed" id="rU0-K6-wi7"/>
+                                </connections>
+                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hv5-Vi-uK6" customClass="TapNavigationView" customModule="goSellSDK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1511,26 +1501,58 @@
                         <constraints>
                             <constraint firstItem="Hv5-Vi-uK6" firstAttribute="bottom" secondItem="tMf-mL-ha7" secondAttribute="bottom" constant="66" id="11B-uw-zoF"/>
                             <constraint firstItem="Hv5-Vi-uK6" firstAttribute="leading" secondItem="b2g-2N-ZiD" secondAttribute="leading" id="3jT-dt-TtS"/>
-                            <constraint firstAttribute="bottom" secondItem="wka-gk-Q4b" secondAttribute="bottom" id="5JQ-tN-9Ug"/>
                             <constraint firstItem="Hv5-Vi-uK6" firstAttribute="top" secondItem="b2g-2N-ZiD" secondAttribute="top" id="DNZ-bh-Xf2"/>
-                            <constraint firstAttribute="trailing" secondItem="Jhb-xZ-fUC" secondAttribute="trailing" id="FCu-hn-hJv"/>
-                            <constraint firstItem="wka-gk-Q4b" firstAttribute="top" secondItem="Hv5-Vi-uK6" secondAttribute="bottom" id="GQw-iF-vHQ"/>
-                            <constraint firstItem="Jhb-xZ-fUC" firstAttribute="leading" secondItem="b2g-2N-ZiD" secondAttribute="leading" id="JFW-Pz-Ctg"/>
-                            <constraint firstItem="Jhb-xZ-fUC" firstAttribute="top" secondItem="Hv5-Vi-uK6" secondAttribute="bottom" id="aGH-3Q-ovK"/>
-                            <constraint firstItem="wka-gk-Q4b" firstAttribute="leading" secondItem="b2g-2N-ZiD" secondAttribute="leading" id="dum-lk-L9z"/>
-                            <constraint firstAttribute="trailing" secondItem="wka-gk-Q4b" secondAttribute="trailing" id="mNk-Zu-upB"/>
+                            <constraint firstAttribute="bottom" secondItem="fHN-fy-CJA" secondAttribute="bottom" id="S1k-qy-3J3"/>
+                            <constraint firstItem="fHN-fy-CJA" firstAttribute="top" secondItem="Hv5-Vi-uK6" secondAttribute="bottom" id="aKu-dg-Dsu"/>
+                            <constraint firstAttribute="trailing" secondItem="fHN-fy-CJA" secondAttribute="trailing" id="eRY-8A-xL1"/>
+                            <constraint firstItem="fHN-fy-CJA" firstAttribute="leading" secondItem="b2g-2N-ZiD" secondAttribute="leading" id="jay-h3-6Cy"/>
                             <constraint firstAttribute="trailing" secondItem="Hv5-Vi-uK6" secondAttribute="trailing" id="tS3-az-LXs"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="headerNavigationView" destination="Hv5-Vi-uK6" id="a2f-GS-Qh9"/>
                         <outlet property="progressBar" destination="Jhb-xZ-fUC" id="8tl-66-lFG"/>
-                        <outlet property="webViewContainer" destination="wka-gk-Q4b" id="Fe5-UW-8Ho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDK-tN-NjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945" y="1306"/>
+            <point key="canvasLocation" x="375" y="1305"/>
+        </scene>
+        <!--Web Payment Popup View Controller-->
+        <scene sceneID="uMp-6A-EbA">
+            <objects>
+                <viewController storyboardIdentifier="WebPaymentPopupViewController" id="dLe-BW-Uds" customClass="WebPaymentPopupViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cJx-vO-bdi"/>
+                        <viewControllerLayoutGuide type="bottom" id="1FN-P4-9K9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y6g-nR-vEe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWg-vG-dIX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="rmA-J8-h48" kind="embed" id="06D-E8-sJc"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GWg-vG-dIX" secondAttribute="trailing" id="HVb-SK-JHb"/>
+                            <constraint firstItem="GWg-vG-dIX" firstAttribute="leading" secondItem="Y6g-nR-vEe" secondAttribute="leading" id="MA5-Tv-nXc"/>
+                            <constraint firstItem="GWg-vG-dIX" firstAttribute="height" secondItem="Y6g-nR-vEe" secondAttribute="height" id="p63-ND-i0t"/>
+                            <constraint firstItem="GWg-vG-dIX" firstAttribute="top" secondItem="Y6g-nR-vEe" secondAttribute="top" id="pIX-HX-IHc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentViewTopOffsetConstraint" destination="pIX-HX-IHc" id="mMN-n3-nqQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vcq-hH-ifR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1141" y="1345"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="OfH-rd-fz4">
@@ -1801,5 +1823,54 @@
             </objects>
             <point key="canvasLocation" x="791" y="406"/>
         </scene>
+        <!--Web Payment Content View Controller-->
+        <scene sceneID="2Ex-hr-r6l">
+            <objects>
+                <viewController id="rmA-J8-h48" customClass="WebPaymentContentViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2a3-ZM-oMY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-4D-BEt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-xZ-fUC" customClass="WebViewProgressBar" customModule="goSellSDK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="WP5-h0-o9M"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsFullProgress" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                                        <color key="value" red="0.0" green="0.60392156862745094" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fdd-4D-BEt" firstAttribute="leading" secondItem="2a3-ZM-oMY" secondAttribute="leading" id="HOe-6Z-VXN"/>
+                            <constraint firstAttribute="trailing" secondItem="Jhb-xZ-fUC" secondAttribute="trailing" id="NwI-HM-iVw"/>
+                            <constraint firstItem="Jhb-xZ-fUC" firstAttribute="leading" secondItem="2a3-ZM-oMY" secondAttribute="leading" id="bne-wp-b6w"/>
+                            <constraint firstItem="Fdd-4D-BEt" firstAttribute="top" secondItem="2a3-ZM-oMY" secondAttribute="top" id="goq-jP-6bi"/>
+                            <constraint firstAttribute="bottom" secondItem="Fdd-4D-BEt" secondAttribute="bottom" id="oDB-qf-Le4"/>
+                            <constraint firstItem="Jhb-xZ-fUC" firstAttribute="top" secondItem="2a3-ZM-oMY" secondAttribute="top" id="p6j-3w-9ck"/>
+                            <constraint firstAttribute="trailing" secondItem="Fdd-4D-BEt" secondAttribute="trailing" id="xCG-Gj-HwX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressBar" destination="Jhb-xZ-fUC" id="NGN-ca-4US"/>
+                        <outlet property="webViewContainer" destination="Fdd-4D-BEt" id="IVY-wn-PZA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LXd-UU-yd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="790" y="2083"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="06D-E8-sJc"/>
+    </inferredMetricsTieBreakers>
 </document>

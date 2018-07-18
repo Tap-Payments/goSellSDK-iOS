@@ -30,11 +30,6 @@ internal final class OTPViewController: SeparateWindowViewController {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var presentationAnimationAnimatingConstraint: NSLayoutConstraint? {
-        
-        return self.contentViewTopOffsetConstraint
-    }
-    
     internal fileprivate(set) var dismissalInteractionController: OTPDismissalInteractionController?
     
     // MARK: Methods
@@ -437,7 +432,7 @@ extension OTPViewController.Transitioning: Singleton {
 // MARK: - UIViewControllerTransitioningDelegate
 extension OTPViewController.Transitioning: UIViewControllerTransitioningDelegate {
     
-    internal func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if let otpController = presented as? OTPViewController {
             
@@ -445,21 +440,25 @@ extension OTPViewController.Transitioning: UIViewControllerTransitioningDelegate
             otpController.dismissalInteractionController = interactionController
         }
         
-        return self.shouldUseDefaultOTPAnimation    ? OTPAnimationController(operation: .presentation, from: presented, to: presenting)
+        guard let to = presenting as? UIViewController & PopupPresentationSupport else { return nil }
+        
+        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(presentationFrom: presented, to: to)
                                                     : PaymentPresentationAnimationController()
     }
     
-    internal func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        return self.shouldUseDefaultOTPAnimation    ? OTPAnimationController(operation: .dismissal, from: dismissed, to: dismissed.presentingViewController!)
+        guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
+        
+        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(dismissalFrom: from, to: to)
                                                     : PaymentDismissalAnimationController()
     }
     
-    internal func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    fileprivate func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         
         if
             
-            let otpAnimator = animator as? OTPAnimationController,
+            let otpAnimator = animator as? PopupPresentationAnimationController,
             let otpController = otpAnimator.fromViewController as? OTPViewController,
             let interactionController = otpController.dismissalInteractionController, interactionController.isInteracting {
             
@@ -479,5 +478,19 @@ extension OTPViewController: OTPInputViewDelegate {
     internal func otpInputView(_ otpInputView: OTPInputView, inputStateChanged valid: Bool) {
         
         self.makeConfirmationButtonEnabled(valid)
+    }
+}
+
+// MARK: - PopupPresentationSupport
+extension OTPViewController: PopupPresentationSupport {
+    
+    internal var presentationAnimationAnimatingConstraint: NSLayoutConstraint? {
+        
+        return self.contentViewTopOffsetConstraint
+    }
+    
+    internal var viewToLayout: UIView {
+        
+        return self.view
     }
 }

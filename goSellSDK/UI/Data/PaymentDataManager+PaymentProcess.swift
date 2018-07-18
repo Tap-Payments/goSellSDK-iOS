@@ -320,21 +320,34 @@ internal extension PaymentDataManager {
     private func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String? = nil) {
         
         self.urlToLoadInWebPaymentController = url
-        self.openWebPaymentScreen(for: paymentOption, binNumber: binNumber)
+        self.openWebPaymentScreen(for: paymentOption, url: url, binNumber: binNumber)
     }
     
-    private func openWebPaymentScreen(for paymentOption: PaymentOption, binNumber: String? = nil) {
+    private func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL? = nil, binNumber: String? = nil) {
         
         self.currentPaymentOption = paymentOption
         self.currentPaymentCardBINNumber = binNumber
         
-        if let alreadyOpenedWebPaymentController = WebPaymentViewController.findInHierarchy() {
+        switch paymentOption.paymentType {
             
-            self.prepareWebPaymentController(alreadyOpenedWebPaymentController)
-        }
-        else {
-        
-            PaymentOptionsViewController.findInHierarchy()?.showWebPaymentViewController()
+        case .card:
+            
+            guard let nonnullURL = url else { return }
+            
+            let webPopupControllerFrame = self.loadingControllerFrame()
+            
+            WebPaymentPopupViewController.show(in: webPopupControllerFrame, with: nonnullURL)
+            
+        case .web:
+            
+            if let alreadyOpenedWebPaymentController = WebPaymentViewController.findInHierarchy() {
+                
+                self.prepareWebPaymentController(alreadyOpenedWebPaymentController)
+            }
+            else {
+                
+                PaymentOptionsViewController.findInHierarchy()?.showWebPaymentViewController()
+            }
         }
     }
     
