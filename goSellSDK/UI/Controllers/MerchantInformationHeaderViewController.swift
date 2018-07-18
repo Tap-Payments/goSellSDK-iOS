@@ -5,15 +5,15 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGBase.CGFloat
-import struct CoreGraphics.CGGeometry.CGSize
-import func TapAdditionsKit.clamp
-import class TapNetworkManager.TapImageLoader
-import class UIKit.UIButton.UIButton
-import class UIKit.UIColor.UIColor
-import class UIKit.UILabel.UILabel
-import class UIKit.UIView.UIView
-import class UIKit.UIViewController.UIViewController
+import struct   CoreGraphics.CGBase.CGFloat
+import struct   CoreGraphics.CGGeometry.CGSize
+import func     TapAdditionsKit.clamp
+import class    TapNetworkManager.TapImageLoader
+import class    UIKit.UIButton.UIButton
+import class    UIKit.UIColor.UIColor
+import class    UIKit.UILabel.UILabel
+import class    UIKit.UIView.UIView
+import class    UIKit.UIViewController.UIViewController
 
 /// Merchant information header view controller.
 internal class MerchantInformationHeaderViewController: BaseViewController {

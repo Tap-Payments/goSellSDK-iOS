@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   CoreGraphics.CGGeometry.CGPoint
 import struct   CoreGraphics.CGGeometry.CGRect
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
@@ -154,6 +155,11 @@ extension WebPaymentPopupViewController: Singleton {
 
 // MARK: - WebPaymentContentViewControllerDelegate
 extension WebPaymentPopupViewController: WebPaymentContentViewControllerDelegate {
+    
+    internal func webPaymentContentViewController(_ controller: WebPaymentContentViewController, webViewDidScroll contentOffset: CGPoint) {
+        
+        MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(contentOffset.y)
+    }
     
     internal func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController) {
         
