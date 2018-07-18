@@ -77,7 +77,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     internal override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.startAnotherAttempt()
+        self.startFirstAttemptIfNotYetStarted()
     }
     
     // MARK: - Fileprivate -
@@ -109,12 +109,21 @@ internal final class OTPViewController: SeparateWindowViewController {
             return result
         }()
         
-        fileprivate static let descriptionFont:     UIFont  = .helveticaNeueRegular(13.0)
+        fileprivate static let descriptionFont:     UIFont  = .helveticaNeueRegular(14.0)
+        fileprivate static let countdownFont:       UIFont  = .helveticaNeueRegular(13.0)
+        fileprivate static let resendFont:          UIFont  = .helveticaNeueMedium(13.0)
+        
         fileprivate static let descriptionColor:    UIColor = .hex("535353")
         fileprivate static let numberColor:         UIColor = .hex("1584FC")
         
+        fileprivate static let resendColor:             UIColor = .hex("007AFF")
+        fileprivate static let resendHighlightedColor:  UIColor = .hex("0D61E7")
+        
         fileprivate static let updateTimerTimeInterval: TimeInterval = 1.0
         fileprivate static let resendButtonTitleDateFormat = "mm:ss"
+        
+        fileprivate static let resendText:  String = "RESEND"
+        fileprivate static let confirmText: String = "CONFIRM"
         
         @available(*, unavailable) private init() {}
     }
@@ -149,6 +158,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     }
     
     @IBOutlet private weak var resendButton: UIButton?
+    @IBOutlet private weak var resendButtonLabel: UILabel?
     
     @IBOutlet private weak var confirmationButton: TapButton? {
         
@@ -156,7 +166,7 @@ internal final class OTPViewController: SeparateWindowViewController {
             
             self.confirmationButton?.delegate = self
             self.confirmationButton?.themeSettings = Theme.current.settings.otpConfirmationButtonSettings
-            self.confirmationButton?.setTitle("CONFIRM")
+            self.confirmationButton?.setTitle(Constants.confirmText)
             self.updateConfirmationButtonState()
         }
     }
@@ -164,6 +174,8 @@ internal final class OTPViewController: SeparateWindowViewController {
     @IBOutlet private weak var contentViewTopOffsetConstraint: NSLayoutConstraint?
     
     private static var storage: OTPViewController?
+    
+    private var alreadyStartedFirstAttempt: Bool = false
     
     private lazy var timerDataManager = OTPTimerDataManager()
     
@@ -225,6 +237,14 @@ internal final class OTPViewController: SeparateWindowViewController {
         nonnullLabel.attributedText = NSAttributedString(attributedString: result)
     }
     
+    private func startFirstAttemptIfNotYetStarted() {
+        
+        guard !self.alreadyStartedFirstAttempt else { return }
+        
+        self.startAnotherAttempt()
+        self.alreadyStartedFirstAttempt = true
+    }
+    
     private func updateConfirmationButtonState() {
         
         guard let inputView = self.otpInputView else { return }
@@ -254,20 +274,23 @@ internal final class OTPViewController: SeparateWindowViewController {
             let remainingDate = Date(timeIntervalSince1970: remainingSeconds)
             let title = self.countdownDateFormatter.string(from: remainingDate)
             
-            self.resendButton?.setTitle(title, for: .normal)
-            self.resendButton?.alpha = 1.0
+            self.resendButtonLabel?.text = title
+            self.resendButtonLabel?.font = Constants.countdownFont
+            self.resendButtonLabel?.alpha = 1.0
             self.resendButton?.isEnabled = false
             
         case .notTicking:
             
-            self.resendButton?.setTitle("RESEND", for: .normal)
-            self.resendButton?.alpha = 1.0
+            self.resendButtonLabel?.text = Constants.resendText
+            self.resendButtonLabel?.font = Constants.resendFont
+            self.resendButtonLabel?.alpha = 1.0
             self.resendButton?.isEnabled = true
             
         case .attemptsFinished:
             
-            self.resendButton?.setTitle("RESEND", for: .normal)
-            self.resendButton?.alpha = 0.5
+            self.resendButtonLabel?.text = Constants.resendText
+            self.resendButtonLabel?.font = Constants.resendFont
+            self.resendButtonLabel?.alpha = 0.5
             self.resendButton?.isEnabled = false
             
         }
@@ -277,6 +300,24 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         self.otpInputView?.startEditing()
         self.startAttempt()
+    }
+    
+    private func setResendLabelHighlighted(_ highlighted: Bool) {
+        
+        UIView.animate(withDuration: 0.1) {
+            
+            self.resendButtonLabel?.textColor = highlighted ? Constants.resendHighlightedColor : Constants.resendColor
+        }
+    }
+    
+    @IBAction private func resendButtonHighlighted(_ sender: Any) {
+        
+        self.setResendLabelHighlighted(true)
+    }
+    
+    @IBAction private func resendButtonLostHighlight(_ sender: Any) {
+        
+        self.setResendLabelHighlighted(false)
     }
     
     @IBAction private func resendButtonTouchUpInside(_ sender: Any) {

@@ -16,4 +16,7 @@ internal struct WebPaymentURLDecision {
     
     /// Defines if web payment screen should be closed.
     internal let shouldCloseWebPaymentScreen: Bool
+    
+    /// Defines if web payment flow redirections are finished.
+    internal let redirectionFinished: Bool
 }
