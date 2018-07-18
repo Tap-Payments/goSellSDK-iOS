@@ -7,6 +7,7 @@
 
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UITextField.UITextField
+import protocol UIKit.UITextField.UITextFieldDelegate
 
 /// View model to manager text input address field cell.
 internal class AddressTextInputFieldTableViewCellModel: AddressFieldTableViewCellModel {
