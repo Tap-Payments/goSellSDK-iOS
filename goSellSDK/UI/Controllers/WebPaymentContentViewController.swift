@@ -6,6 +6,8 @@
 //
 
 import class    UIKit.UIScreen.UIScreen
+import class    UIKit.UIScrollView.UIScrollView
+import protocol UIKit.UIScrollView.UIScrollViewDelegate
 import class    UIKit.UIView.UIView
 import class    WebKit.WKNavigation.WKNavigation
 import class    WebKit.WKNavigationAction.WKNavigationAction
@@ -26,6 +28,11 @@ internal final class WebPaymentContentViewController: BaseViewController {
     internal func setup(with url: URL) {
         
         self.url = url
+    }
+    
+    deinit {
+        
+        self.webView.scrollView.delegate = nil
     }
     
     // MARK: - Private -
@@ -80,6 +87,7 @@ internal final class WebPaymentContentViewController: BaseViewController {
     private func addWebViewOnScreen() {
         
         self.webView.navigationDelegate = self
+        self.webView.scrollView.delegate = self
         self.webViewContainer?.addSubviewWithConstraints(self.webView)
     }
     
@@ -89,6 +97,15 @@ internal final class WebPaymentContentViewController: BaseViewController {
         
         let urlRequest = URLRequest(url: nonnullURL)
         self.webView.load(urlRequest)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension WebPaymentContentViewController: UIScrollViewDelegate {
+    
+    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        self.delegate?.webPaymentContentViewController(self, webViewDidScroll: scrollView.contentOffset)
     }
 }
 

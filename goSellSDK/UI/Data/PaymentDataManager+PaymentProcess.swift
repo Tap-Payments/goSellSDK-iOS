@@ -65,8 +65,9 @@ internal extension PaymentDataManager {
         
         let shouldLoad = url != PaymentProcessConstants.returnURL
         let redirectionFinished = url == PaymentProcessConstants.returnURL
+        let shouldCloseWebPaymentScreen = redirectionFinished && self.currentPaymentOption?.paymentType == .card
         
-        return WebPaymentURLDecision(shouldLoad: shouldLoad, shouldCloseWebPaymentScreen: false, redirectionFinished: redirectionFinished)
+        return WebPaymentURLDecision(shouldLoad: shouldLoad, shouldCloseWebPaymentScreen: shouldCloseWebPaymentScreen, redirectionFinished: redirectionFinished)
     }
     
     internal func webPaymentProcessFinished() {

@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   CoreGraphics.CGGeometry.CGPoint
 import class    TapNetworkManager.TapImageLoader
 import class    UIKit.UIImage.UIImage
 import class    UIKit.UIScreen.UIScreen
@@ -113,6 +114,11 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
 
 // MARK: - WebPaymentContentViewControllerDelegate
 extension WebPaymentViewController: WebPaymentContentViewControllerDelegate {
+    
+    internal func webPaymentContentViewController(_ controller: WebPaymentContentViewController, webViewDidScroll contentOffset: CGPoint) {
+        
+        self.updateHeaderShadowOpacity(with: contentOffset.y)
+    }
     
     internal func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController) {
         
