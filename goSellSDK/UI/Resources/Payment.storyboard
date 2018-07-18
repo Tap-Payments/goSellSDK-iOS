@@ -1608,6 +1608,12 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1u-QV-m3K">
+                                                        <rect key="frame" x="343" y="11" width="0.0" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                        <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gR-gB-WjZ">
                                                         <rect key="frame" x="259.66666666666669" y="11" width="83.333333333333314" height="28"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
@@ -1615,12 +1621,19 @@
                                                             <color key="titleColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
+                                                            <action selector="resendButtonHighlighted:" destination="tt4-t7-RYj" eventType="touchDown" id="B0e-4i-7QT"/>
+                                                            <action selector="resendButtonHighlighted:" destination="tt4-t7-RYj" eventType="touchDragEnter" id="gMi-ni-n7h"/>
+                                                            <action selector="resendButtonLostHighlight:" destination="tt4-t7-RYj" eventType="touchDragExit" id="d6W-NJ-PMj"/>
+                                                            <action selector="resendButtonLostHighlight:" destination="tt4-t7-RYj" eventType="touchCancel" id="fkN-Su-qJg"/>
+                                                            <action selector="resendButtonLostHighlight:" destination="tt4-t7-RYj" eventType="touchUpOutside" id="lAh-1t-Q4o"/>
+                                                            <action selector="resendButtonLostHighlight:" destination="tt4-t7-RYj" eventType="touchUpInside" id="w2k-I8-7tT"/>
                                                             <action selector="resendButtonTouchUpInside:" destination="tt4-t7-RYj" eventType="touchUpInside" id="cg6-wY-jfX"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="4gR-gB-WjZ" firstAttribute="top" secondItem="R1u-QV-m3K" secondAttribute="top" id="0M3-Ye-fAe"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="5Sq-8V-uVc"/>
                                                     <constraint firstItem="0yK-jC-UWO" firstAttribute="width" secondItem="4gR-gB-WjZ" secondAttribute="width" multiplier="2.5" id="GUt-40-mka"/>
                                                     <constraint firstItem="0yK-jC-UWO" firstAttribute="top" secondItem="DgS-hR-rLy" secondAttribute="top" constant="11" id="O7h-x1-bvk"/>
@@ -1629,6 +1642,7 @@
                                                     <constraint firstItem="0yK-jC-UWO" firstAttribute="leading" secondItem="DgS-hR-rLy" secondAttribute="leading" constant="32" id="ZJb-YA-PK2"/>
                                                     <constraint firstAttribute="bottom" secondItem="0yK-jC-UWO" secondAttribute="bottom" constant="11" id="hLU-Il-56y"/>
                                                     <constraint firstItem="4gR-gB-WjZ" firstAttribute="leading" secondItem="0yK-jC-UWO" secondAttribute="trailing" constant="20" id="qDo-gm-dSl"/>
+                                                    <constraint firstItem="4gR-gB-WjZ" firstAttribute="trailing" secondItem="R1u-QV-m3K" secondAttribute="trailing" id="wgM-KF-zfk"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1691,6 +1705,7 @@
                         <outlet property="dismissalView" destination="FQF-9b-cKO" id="Zvi-vr-bpE"/>
                         <outlet property="otpInputView" destination="1Wu-iR-4hK" id="fbe-Ou-IMR"/>
                         <outlet property="resendButton" destination="4gR-gB-WjZ" id="2iz-CE-Fmt"/>
+                        <outlet property="resendButtonLabel" destination="R1u-QV-m3K" id="Pki-OH-Cob"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOV-WI-Tpt" userLabel="First Responder" sceneMemberID="firstResponder"/>

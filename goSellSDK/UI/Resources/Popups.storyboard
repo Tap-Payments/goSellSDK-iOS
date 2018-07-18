@@ -27,17 +27,17 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-y2-vBG">
-                                <rect key="frame" x="25" y="283.5" width="325" height="100.5"/>
+                                <rect key="frame" x="25" y="297.5" width="325" height="72.5"/>
                                 <subviews>
                                     <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-86-atf" customClass="TapActivityIndicatorView" customModule="TapGLKit">
-                                        <rect key="frame" x="130" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="144" y="0.0" width="37" height="37"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="65" id="nmn-m1-ro9"/>
+                                            <constraint firstAttribute="width" constant="37" id="nmn-m1-ro9"/>
                                             <constraint firstAttribute="width" secondItem="W3L-86-atf" secondAttribute="height" multiplier="1:1" id="zvr-B3-pig"/>
                                         </constraints>
                                     </glkView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvm-9s-RMI">
-                                        <rect key="frame" x="0.0" y="85" width="325" height="15.5"/>
+                                        <rect key="frame" x="0.0" y="57" width="325" height="15.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                         <color key="textColor" red="0.61568627450000002" green="0.62352941179999999" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>

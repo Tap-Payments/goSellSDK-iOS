@@ -157,10 +157,14 @@ extension WebPaymentViewController: WKNavigationDelegate {
 
         decisionHandler(decision.shouldLoad ? .allow : .cancel)
         
+        if decision.redirectionFinished {
+            
+            PaymentDataManager.shared.webPaymentProcessFinished()
+        }
+        
         if decision.shouldCloseWebPaymentScreen {
             
             self.pop()
-            PaymentDataManager.shared.webPaymentProcessFinished()
         }
     }
     

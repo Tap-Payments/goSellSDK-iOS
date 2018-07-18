@@ -44,6 +44,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                     <connections>
                         <action selector="internalButtonHighlighted:" destination="-1" eventType="touchDown" id="YMA-IR-rpJ"/>
+                        <action selector="internalButtonHighlighted:" destination="-1" eventType="touchDragEnter" id="Ye9-75-IPm"/>
                         <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchUpInside" id="2dK-JR-U9z"/>
                         <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchDragExit" id="390-rh-ta4"/>
                         <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchUpOutside" id="XLH-pa-SeJ"/>
