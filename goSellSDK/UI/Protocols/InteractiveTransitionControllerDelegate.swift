@@ -1,13 +1,17 @@
 //
-//  InteractivePopViewControllerStatusReporting.swift
+//  InteractiveTransitionControllerDelegate.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
 import struct   CoreGraphics.CGBase.CGFloat
+import struct   TapAdditionsKit.TypeAlias
 
-@objc internal protocol InteractiveTransitionControllerStatusReporting: NSObjectProtocol {
+@objc internal protocol InteractiveTransitionControllerDelegate: NSObjectProtocol {
+    
+    @objc optional var canStartInteractiveTransition: Bool { get }
+    @objc optional func canFinishInteractiveTransition(_ decision: @escaping TypeAlias.BooleanClosure)
     
     @objc optional func interactiveTransitionWillBegin()
     @objc optional func interactiveTransitionDidBegin()

@@ -8,6 +8,7 @@
 import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGSize
 import func     TapAdditionsKit.clamp
+import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIView.UIView
 
@@ -46,7 +47,10 @@ internal class HeaderNavigatedViewController: BaseViewController {
         nonnullHeaderView.layer.shadowOpacity = Float(opacity)
     }
     
-    internal func backButtonClicked() { }
+    internal func requestToPop(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        decision(true)
+    }
     
     internal func pop() {
         
@@ -73,8 +77,13 @@ extension HeaderNavigatedViewController: TapNavigationViewDelegate {
     
     internal func navigationViewBackButtonClicked(_ navigationView: TapNavigationView) {
         
-        self.backButtonClicked()
-        self.pop()
+        self.requestToPop { [weak self] (willPop) in
+            
+            if willPop {
+                
+                self?.pop()
+            }
+        }
     }
 }
 

@@ -7,6 +7,8 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 import func     TapAdditionsKit.clamp
+import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
+import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate
 import class    UIKit.UIScreenEdgePanGestureRecognizer.UIScreenEdgePanGestureRecognizer
 import class    UIKit.UIViewController.UIViewController
 import class    UIKit.UIViewControllerTransitioning.UIPercentDrivenInteractiveTransition
@@ -16,7 +18,7 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
     // MARK: - Internal -
     // MARK: Properties
     
-    internal override var statusListener: InteractiveTransitionControllerStatusReporting? {
+    internal override var delegate: InteractiveTransitionControllerDelegate? {
         
         get {
             
@@ -55,11 +57,11 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
     
     // MARK: Properties
     
-    private weak var manualStatusListener: InteractiveTransitionControllerStatusReporting?
+    private weak var manualStatusListener: InteractiveTransitionControllerDelegate?
     
-    private var defaultStatusListener: InteractiveTransitionControllerStatusReporting? {
+    private var defaultStatusListener: InteractiveTransitionControllerDelegate? {
         
-        return self.viewController as? InteractiveTransitionControllerStatusReporting
+        return self.viewController as? InteractiveTransitionControllerDelegate
     }
     
     private var shouldCompleteTransitionOnGestureFinish: Bool = false
@@ -71,6 +73,7 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
     private func setupGestureRecognizer() {
         
         let recognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgePanDetected(_:)))
+        recognizer.delegate = self
         recognizer.edges = SettingsDataManager.shared.layoutDirection == .leftToRight ? .left : .right
         
         self.viewController.view.addGestureRecognizer(recognizer)
@@ -104,7 +107,7 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
             
             if self.shouldCompleteTransitionOnGestureFinish {
                 
-                self.finish()
+                self.tryToFinish()
             }
             else {
                 
@@ -115,5 +118,14 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
             
             break
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension UINavigationControllerPopInteractionController: UIGestureRecognizerDelegate {
+    
+    internal func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return self.delegate?.canStartInteractiveTransition ?? true
     }
 }

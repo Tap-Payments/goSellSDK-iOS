@@ -6,7 +6,10 @@
 //
 
 import struct   CoreGraphics.CGGeometry.CGPoint
+import struct   TapAdditionsKit.TypeAlias
 import class    TapNetworkManager.TapImageLoader
+import class    UIKit.UIAlertController.UIAlertAction
+import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.UIImage.UIImage
 import class    UIKit.UIScreen.UIScreen
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
@@ -42,6 +45,35 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         if let webPaymentContentController = segue.destination as? WebPaymentContentViewController {
             
             self.contentController = webPaymentContentController
+        }
+    }
+    
+    internal override func requestToPop(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        guard let contentViewController = self.contentController else {
+            
+            decision(true)
+            return
+        }
+        
+        let localDecision: TypeAlias.BooleanClosure =  { (willCancelPayment) in
+            
+            if willCancelPayment {
+                
+                APIClient.shared.cancelAllRequests()
+                contentViewController.cancelLoading()
+            }
+            
+            decision(willCancelPayment)
+        }
+        
+        if contentViewController.isLoading || LoadingViewController.findInHierarchy() != nil {
+         
+            self.showCancelAttemptUndefinedStatusAlert(localDecision)
+        }
+        else {
+            
+            self.showCancelAttemptAlert(localDecision)
         }
     }
     
@@ -110,6 +142,68 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             self.headerNavigationView?.title = self.paymentOption?.title
         }
     }
+    
+    private func showCancelAttemptAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        let alert = UIAlertController(title: "Cancel", message: "Would you like to cancel payment?", preferredStyle: .alert)
+        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(false)
+        }
+        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(true)
+        }
+        
+        alert.addAction(cancelCancelAction)
+        alert.addAction(confirmCancelAction)
+        
+        DispatchQueue.main.async {
+            
+            alert.showOnSeparateWindow(true, completion: nil)
+        }
+    }
+    
+    private func showCancelAttemptUndefinedStatusAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        let alert = UIAlertController(title: "Cancel", message: "Would you like to cancel payment? Payment status will be undefined.", preferredStyle: .alert)
+        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(false)
+        }
+        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(true)
+        }
+        
+        alert.addAction(cancelCancelAction)
+        alert.addAction(confirmCancelAction)
+        
+        DispatchQueue.main.async {
+            
+            alert.showOnSeparateWindow(true, completion: nil)
+        }
+    }
 }
 
 // MARK: - WebPaymentContentViewControllerDelegate
@@ -123,5 +217,19 @@ extension WebPaymentViewController: WebPaymentContentViewControllerDelegate {
     internal func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController) {
         
         self.pop()
+    }
+}
+
+// MARK: - InteractiveTransitionControllerDelegate
+extension WebPaymentViewController: InteractiveTransitionControllerDelegate {
+    
+    internal var canStartInteractiveTransition: Bool {
+        
+        return LoadingViewController.findInHierarchy() == nil
+    }
+    
+    internal func canFinishInteractiveTransition(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        self.requestToPop(decision)
     }
 }
