@@ -136,7 +136,7 @@
                         <viewControllerLayoutGuide type="top" id="Ve4-Jj-nfM"/>
                         <viewControllerLayoutGuide type="bottom" id="ehY-Mr-X6y"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="97J-1F-F3l">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="97J-1F-F3l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -332,7 +332,7 @@
                                                         <size key="itemSize" width="106" height="106"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="sectionInset" minX="13" minY="0.0" maxX="13" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCollectionViewCell" id="gmQ-fR-437" customClass="CardCollectionViewCell" customModule="goSellSDK">
@@ -942,8 +942,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5UF-ah-N5p" secondAttribute="trailing" id="Dun-Zn-glp"/>
                             <constraint firstItem="5UF-ah-N5p" firstAttribute="leading" secondItem="97J-1F-F3l" secondAttribute="leading" id="JJC-G4-u5J"/>
-                            <constraint firstAttribute="bottom" secondItem="5UF-ah-N5p" secondAttribute="bottom" id="VvN-9X-Mxx"/>
                             <constraint firstItem="5UF-ah-N5p" firstAttribute="top" secondItem="97J-1F-F3l" secondAttribute="top" id="bNm-bP-Me1"/>
+                            <constraint firstItem="5UF-ah-N5p" firstAttribute="height" secondItem="97J-1F-F3l" secondAttribute="height" id="mWO-Ej-lf6"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="convertsAutoresizingMaskIntoConstraints" value="NO"/>
@@ -951,6 +951,7 @@
                     </view>
                     <connections>
                         <outlet property="paymentOptionsTableView" destination="5UF-ah-N5p" id="Kii-gi-Y6q"/>
+                        <outlet property="tableViewTopOffsetConstraint" destination="bNm-bP-Me1" id="9E5-9z-v0D"/>
                         <segue destination="vWe-pD-xt1" kind="show" identifier="WebPaymentViewControllerSegue" id="v2t-Dx-278"/>
                     </connections>
                 </viewController>
@@ -1827,6 +1828,10 @@
         <scene sceneID="2Ex-hr-r6l">
             <objects>
                 <viewController id="rmA-J8-h48" customClass="WebPaymentContentViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VCI-Gg-aBq"/>
+                        <viewControllerLayoutGuide type="bottom" id="bfl-8B-89Y"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2a3-ZM-oMY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

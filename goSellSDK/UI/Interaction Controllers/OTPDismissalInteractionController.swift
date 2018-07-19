@@ -7,6 +7,8 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 import func     TapAdditionsKit.clamp
+import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
+import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate
 import class    UIKit.UIPanGestureRecognizer.UIPanGestureRecognizer
 import class    UIKit.UIResponder.UIResponder
 
@@ -72,7 +74,7 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
     private func setupGestureRecognizer() {
         
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(panDetected(_:)))
-        
+        recognizer.delegate = self
         self.viewController.addInteractiveDismissalRecognizer(recognizer)
     }
     
@@ -107,7 +109,7 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
             
             if self.shouldCompleteTransitionOnGestureFinish {
                 
-                self.finish()
+                self.tryToFinish()
             }
             else {
                 
@@ -118,5 +120,14 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
             
             break
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension OTPDismissalInteractionController: UIGestureRecognizerDelegate {
+    
+    internal func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return self.delegate?.canStartInteractiveTransition ?? true
     }
 }

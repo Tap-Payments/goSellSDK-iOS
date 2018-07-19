@@ -5,10 +5,11 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class UIKit.UITableView.UITableView
+import struct   TapAdditionsKit.TypeAlias
+import class    UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
-import class UIKit.UITableViewCell.UITableViewCell
+import class    UIKit.UITableViewCell.UITableViewCell
 
 internal class CountrySelectionViewController: HeaderNavigatedViewControllerWithSearch {
     
@@ -29,11 +30,10 @@ internal class CountrySelectionViewController: HeaderNavigatedViewControllerWith
         self.selectCurrentSelectedCell()
     }
     
-    internal override func backButtonClicked() {
+    internal override func requestToPop(_ decision: @escaping TypeAlias.BooleanClosure) {
         
         self.notifyDelegateIfCountryChanged()
-        
-        super.backButtonClicked()
+        decision(true)
     }
     
     internal override func tableViewLoaded(_ aTableView: UITableView) {

@@ -85,6 +85,11 @@ internal final class APIClient {
         }
     }
     
+    internal func cancelAllRequests() {
+        
+        self.networkManager.currentRequestOperations.forEach { self.networkManager.cancelRequest($0) }
+    }
+    
     /// Converts Encodable model into its dictionary representation. Calls completion closure in case of failure.
     ///
     /// - Parameters:

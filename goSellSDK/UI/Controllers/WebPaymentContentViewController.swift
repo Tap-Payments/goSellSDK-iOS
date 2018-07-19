@@ -23,11 +23,21 @@ internal final class WebPaymentContentViewController: BaseViewController {
     
     internal weak var delegate: WebPaymentContentViewControllerDelegate?
     
+    internal var isLoading: Bool {
+        
+        return self.webView.isLoading
+    }
+    
     // MARK: Methods
     
     internal func setup(with url: URL) {
         
         self.url = url
+    }
+    
+    internal func cancelLoading() {
+        
+        self.webView.stopLoading()
     }
     
     deinit {

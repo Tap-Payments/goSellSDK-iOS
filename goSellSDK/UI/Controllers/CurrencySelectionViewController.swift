@@ -5,13 +5,14 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class UIKit.UIButton.UIButton
-import class UIKit.UIImageView.UIImageView
-import class UIKit.UILabel.UILabel
-import class UIKit.UITableView.UITableView
+import struct   TapAdditionsKit.TypeAlias
+import class    UIKit.UIButton.UIButton
+import class    UIKit.UIImageView.UIImageView
+import class    UIKit.UILabel.UILabel
+import class    UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
-import class UIKit.UITableViewCell.UITableViewCell
+import class    UIKit.UITableViewCell.UITableViewCell
 
 internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWithSearch {
     
@@ -32,11 +33,10 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         self.selectCurrentSelectedCell()
     }
     
-    internal override func backButtonClicked() {
+    internal override func requestToPop(_ decision: @escaping TypeAlias.BooleanClosure) {
         
         self.notifyDelegateIfCurrencyChanged()
-        
-        super.backButtonClicked()
+        decision(true)
     }
     
     internal override func tableViewLoaded(_ aTableView: UITableView) {
@@ -154,8 +154,8 @@ extension CurrencySelectionViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - InteractivePopViewControllerStatusReporting
-extension CurrencySelectionViewController: InteractiveTransitionControllerStatusReporting {
+// MARK: - InteractiveTransitionControllerDelegate
+extension CurrencySelectionViewController: InteractiveTransitionControllerDelegate {
     
     internal func interactiveTransitionDidBegin() {
         

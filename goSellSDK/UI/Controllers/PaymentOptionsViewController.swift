@@ -5,11 +5,14 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct UIKit.UIGeometry.UIEdgeInsets
-import class UIKit.UIStoryboardSegue.UIStoryboardSegue
-import class UIKit.UITableView.UITableView
-import let UIKit.UITableView.UITableViewAutomaticDimension
-import class UIKit.UIViewController.UIViewController
+import struct   TapAdditionsKit.TypeAlias
+import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
+import struct   UIKit.UIGeometry.UIEdgeInsets
+import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class    UIKit.UITableView.UITableView
+import let      UIKit.UITableView.UITableViewAutomaticDimension
+import class    UIKit.UIView.UIView
+import class    UIKit.UIViewController.UIViewController
 
 internal class PaymentOptionsViewController: BaseViewController {
     
@@ -73,6 +76,8 @@ internal class PaymentOptionsViewController: BaseViewController {
         }
     }
     
+    @IBOutlet private weak var tableViewTopOffsetConstraint: NSLayoutConstraint?
+    
     // MARK: Methods
     
     private func subscribeNotifications() {
@@ -90,6 +95,29 @@ internal class PaymentOptionsViewController: BaseViewController {
         DispatchQueue.main.async {
             
             self.paymentOptionsTableView?.reloadSections(IndexSet(integer: 0), with: .automatic)
+        }
+    }
+}
+
+// MARK: - PopupOverlaySupport
+extension PaymentOptionsViewController: PopupOverlaySupport {
+    
+    internal var topOffsetOverlayConstraint: NSLayoutConstraint? {
+        
+        return self.tableViewTopOffsetConstraint
+    }
+    
+    internal var layoutView: UIView {
+        
+        return self.view
+    }
+    
+    internal func additionalAnimations(for operation: ViewControllerOperation) -> TypeAlias.ArgumentlessClosure {
+    
+        return {
+            
+            let overlapping = operation == .presentation ? self.view.bounds.height : 0.0
+            MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(overlapping)
         }
     }
 }

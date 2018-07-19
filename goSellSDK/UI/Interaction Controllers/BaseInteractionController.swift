@@ -15,7 +15,7 @@ internal class BaseInteractionController: UIPercentDrivenInteractiveTransition {
     
     internal private(set) var isInteracting: Bool = false
     
-    internal weak var statusListener: InteractiveTransitionControllerStatusReporting?
+    internal weak var delegate: InteractiveTransitionControllerDelegate?
     
     // MARK: Methods
     
@@ -23,42 +23,70 @@ internal class BaseInteractionController: UIPercentDrivenInteractiveTransition {
         
         DispatchQueue.main.async {
             
-            self.statusListener?.interactiveTransitionWillBegin?()
+            self.delegate?.interactiveTransitionWillBegin?()
             self.isInteracting = true
             self.callDismissOrPop(true)
-            self.statusListener?.interactiveTransitionDidBegin?()
+            self.delegate?.interactiveTransitionDidBegin?()
         }
     }
     
     internal override func update(_ percentComplete: CGFloat) {
         
-        self.statusListener?.interactiveTransitionWillChangeProgress?(percentComplete)
+        self.delegate?.interactiveTransitionWillChangeProgress?(percentComplete)
         super.update(percentComplete)
-        self.statusListener?.interactiveTransitionDidChangeProgress?(percentComplete)
+        self.delegate?.interactiveTransitionDidChangeProgress?(percentComplete)
     }
     
     @available(iOS 10.0, *)
     internal override func pause() {
         
-        self.statusListener?.interactiveTransitionWillPause?()
+        self.delegate?.interactiveTransitionWillPause?()
         super.pause()
-        self.statusListener?.interactiveTransitionDidPause?()
+        self.delegate?.interactiveTransitionDidPause?()
     }
     
     internal override func finish() {
         
-        self.statusListener?.interactiveTransitionWillFinish?()
+        self.delegate?.interactiveTransitionWillFinish?()
         self.isInteracting = false
         super.finish()
-        self.statusListener?.interactiveTransitionDidFinish?()
+        self.delegate?.interactiveTransitionDidFinish?()
+    }
+    
+    internal func tryToFinish() {
+        
+        guard let nonnullDelegate = self.delegate else {
+            
+            self.finish()
+            return
+        }
+        
+        if nonnullDelegate.responds(to: #selector(InteractiveTransitionControllerDelegate.canFinishInteractiveTransition(_:))) {
+            
+            nonnullDelegate.canFinishInteractiveTransition? { (willFinish) in
+                
+                if willFinish {
+                    
+                    self.finish()
+                }
+                else {
+                    
+                    self.cancel()
+                }
+            }
+        }
+        else {
+            
+            self.finish()
+        }
     }
     
     internal override func cancel() {
         
-        self.statusListener?.interactiveTransitionWillCancel?()
+        self.delegate?.interactiveTransitionWillCancel?()
         self.isInteracting = false
         super.cancel()
-        self.statusListener?.interactiveTransitionDidCancel?()
+        self.delegate?.interactiveTransitionDidCancel?()
     }
     
     internal func callDismissOrPop(_ animated: Bool) {

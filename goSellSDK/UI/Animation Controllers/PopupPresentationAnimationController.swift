@@ -19,6 +19,9 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTrans
 internal class PopupPresentationAnimationController: NSObject {
     
     // MARK: - Internal -
+    
+    internal typealias PopupPresentationViewController = UIViewController & PopupPresentationSupport
+    
     // MARK: Properties
     
     internal unowned let fromViewController: UIViewController
@@ -26,14 +29,14 @@ internal class PopupPresentationAnimationController: NSObject {
     
     // MARK: Methods
     
-    internal convenience init(presentationFrom from: UIViewController, to: UIViewController & PopupPresentationSupport) {
+    internal convenience init(presentationFrom from: UIViewController, to: PopupPresentationViewController, overlaysFromView: Bool = true, overlaySupport: PopupOverlaySupport? = nil) {
         
-        self.init(operation: .presentation, from: from, to: to)
+        self.init(operation: .presentation, from: from, to: to, overlaysBottomView: overlaysFromView, overlaySupport: overlaySupport)
     }
     
-    internal convenience init(dismissalFrom from: UIViewController & PopupPresentationSupport, to: UIViewController) {
+    internal convenience init(dismissalFrom from: PopupPresentationViewController, to: UIViewController, overlaysToView: Bool = true, overlaySupport: PopupOverlaySupport? = nil) {
         
-        self.init(operation: .dismissal, from: from, to: to)
+        self.init(operation: .dismissal, from: from, to: to, overlaysBottomView: overlaysToView, overlaySupport: overlaySupport)
     }
     
     // MARK: - Private -
@@ -48,16 +51,20 @@ internal class PopupPresentationAnimationController: NSObject {
     // MARK: Properties
     
     private let operation: ViewControllerOperation
+    private let overlaysBottomView: Bool
+    private weak var overlaySupport: PopupOverlaySupport?
     
     private weak var firstResponderOnMomentOfDismissal: UIResponder?
     
     // MARK: Methods
     
-    private init(operation: ViewControllerOperation, from: UIViewController, to: UIViewController) {
+    private init(operation: ViewControllerOperation, from: UIViewController, to: UIViewController, overlaysBottomView: Bool, overlaySupport: PopupOverlaySupport?) {
         
         self.operation          = operation
         self.fromViewController = from
         self.toViewController   = to
+        self.overlaysBottomView = overlaysBottomView
+        self.overlaySupport     = overlaySupport
         
         super.init()
     }
@@ -105,31 +112,43 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
         guard let nonnullPresentationSupport = presentationSupport else { return }
         
         let layoutView = nonnullPresentationSupport.viewToLayout
-        
         let finalFrame = transitionContext.finalFrame(for: nonnullPresentationSupport)
         layoutView.frame = finalFrame
         
         var initialConstant: CGFloat
         var finalConstant: CGFloat
         var initialAlpha: CGFloat
+        var bottomViewInitialTopOffset: CGFloat
+        var bottomViewFinalTopOffset: CGFloat
         
         if self.operation == .presentation {
             
             initialConstant = finalFrame.height
             finalConstant = 0.0
             initialAlpha = 0.0
+            bottomViewInitialTopOffset = 0.0
+            bottomViewFinalTopOffset = -finalFrame.height
         }
         else {
             
             initialConstant = 0.0
             finalConstant = finalFrame.height
             initialAlpha = 1.0
+            bottomViewInitialTopOffset = -finalFrame.height
+            bottomViewFinalTopOffset = 0.0
         }
         
         layoutView.alpha = initialAlpha
         
         nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = initialConstant
         layoutView.layout()
+        
+        
+        if !self.overlaysBottomView {
+            
+            self.overlaySupport?.topOffsetOverlayConstraint?.constant = bottomViewInitialTopOffset
+            self.overlaySupport?.layoutView.layout()
+        }
         
         let backgroundColor = layoutView.layer.backgroundColor
         if self.operation == .presentation {
@@ -159,6 +178,13 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
                 
                 nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = finalConstant
                 layoutView.layout()
+                
+                if !self.overlaysBottomView {
+                    
+                    self.overlaySupport?.topOffsetOverlayConstraint?.constant = bottomViewFinalTopOffset
+                    self.overlaySupport?.additionalAnimations(for: self.operation)()
+                    self.overlaySupport?.layoutView.layout()
+                }
             }
         }
         
@@ -174,8 +200,8 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
     }
 }
 
-// MARK: - InteractiveTransitionControllerStatusReporting
-extension PopupPresentationAnimationController: InteractiveTransitionControllerStatusReporting {
+// MARK: - InteractiveTransitionControllerDelegate
+extension PopupPresentationAnimationController: InteractiveTransitionControllerDelegate {
     
     internal func interactiveTransitionWillCancel() {
         

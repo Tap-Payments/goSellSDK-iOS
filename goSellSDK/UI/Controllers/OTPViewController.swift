@@ -440,9 +440,12 @@ extension OTPViewController.Transitioning: UIViewControllerTransitioningDelegate
             otpController.dismissalInteractionController = interactionController
         }
         
-        guard let to = presenting as? UIViewController & PopupPresentationSupport else { return nil }
+        guard let to = presented as? PopupPresentationAnimationController.PopupPresentationViewController else { return nil }
         
-        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(presentationFrom: presented, to: to)
+        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(presentationFrom: presenting,
+                                                                                           to: to,
+                                                                                           overlaysFromView: false,
+                                                                                           overlaySupport: PaymentOptionsViewController.findInHierarchy())
                                                     : PaymentPresentationAnimationController()
     }
     
@@ -450,7 +453,10 @@ extension OTPViewController.Transitioning: UIViewControllerTransitioningDelegate
         
         guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
         
-        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(dismissalFrom: from, to: to)
+        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(dismissalFrom: from,
+                                                                                           to: to,
+                                                                                           overlaysToView: false,
+                                                                                           overlaySupport: PaymentOptionsViewController.findInHierarchy())
                                                     : PaymentDismissalAnimationController()
     }
     
@@ -462,7 +468,7 @@ extension OTPViewController.Transitioning: UIViewControllerTransitioningDelegate
             let otpController = otpAnimator.fromViewController as? OTPViewController,
             let interactionController = otpController.dismissalInteractionController, interactionController.isInteracting {
             
-            interactionController.statusListener = otpAnimator
+            interactionController.delegate = otpAnimator
             return interactionController
         }
         else {
