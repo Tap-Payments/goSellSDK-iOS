@@ -56,7 +56,6 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         super.headerNavigationViewLoaded(headerView)
         
         headerView.title = "Select Currency"
-        self.addCheckmarkButtonToTheHeader()
     }
     
     // MARK: - Fileprivate -
@@ -99,17 +98,6 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         guard let manager = self.dataManager else { return }
         
         self.delegate?.currencySelectionViewControllerDidFinish(with: manager.preselectedCurrency, changed: false)
-    }
-    
-    private func addCheckmarkButtonToTheHeader() {
-        
-        let doneButton = UIButton(type: .custom)
-        doneButton.setImage(Theme.current.settings.generalImages.checkmarkImage, for: .normal)
-        doneButton.addTarget(self, action: #selector(doneButtonTouchUpInside(_:)), for: .touchUpInside)
-        doneButton.widthConstraint.constant = 45.0
-        doneButton.heightConstraint.constant = 66.0
-        
-        self.headerNavigationView?.customRightView = doneButton
     }
     
     @objc private func doneButtonTouchUpInside(_ sender: Any) {
