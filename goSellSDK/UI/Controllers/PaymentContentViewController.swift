@@ -52,16 +52,18 @@ internal class PaymentContentViewController: BaseViewController {
         self.paymentOptionsViewController?.performAdditionalAnimationsAfterKeyboardLayoutFinished()
     }
     
-    internal func hide(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
+    internal func hide(usingFadeAnimation usesFadeAnimation: Bool = false, completion: @escaping TypeAlias.ArgumentlessClosure) {
         
         DispatchQueue.main.async {
             
             self.hideKeyboard {
                 
+                PaymentDismissalAnimationController.usesFadeAnimation = usesFadeAnimation
+                
                 let presentingController = self.presentingViewController as? PaymentViewController
                 self.dismiss(animated: true) {
-                    
-                    presentingController?.hide(animated: false, completion: completion)
+
+                    presentingController?.dismissFromSeparateWindow(false, completion: completion)
                 }
             }
         }

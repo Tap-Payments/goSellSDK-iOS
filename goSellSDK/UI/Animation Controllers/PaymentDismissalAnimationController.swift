@@ -15,11 +15,16 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTrans
 internal final class PaymentDismissalAnimationController: NSObject {
     
     // MARK: - Internal -
+    // MARK: Properties
+    
+    internal static var usesFadeAnimation: Bool = false
+    
     // MARK: Methods
     
     internal init(animateBlur: Bool = true) {
         
         self.animatesBlur = animateBlur
+        
         super.init()
     }
     
@@ -62,13 +67,25 @@ extension PaymentDismissalAnimationController: UIViewControllerAnimatedTransitio
         containerView.addSubview(fromView)
         
         var finalFrame = transitionContext.finalFrame(for: fromController)
-        finalFrame.origin.y = finalFrame.maxY
+        
+        if !type(of: self).usesFadeAnimation {
+        
+            finalFrame.origin.y = finalFrame.maxY
+        }
         
         let blurView = self.animatesBlur ? toView.subview(ofClass: TapVisualEffectView.self) : nil
         
         let animations: TypeAlias.ArgumentlessClosure = {
             
-            fromView.frame = finalFrame
+            if type(of: self).usesFadeAnimation {
+                
+                fromView.alpha = 0.0
+            }
+            else {
+                
+                fromView.frame = finalFrame
+            }
+            
             blurView?.style = .none
         }
         
