@@ -378,7 +378,7 @@ internal extension PaymentDataManager {
         
         self.showPaymentSuccessPopup(with: receiptNumber) {
             
-            PaymentDataManager.closePayment()
+            PaymentDataManager.closePayment(withFadeAnimation: true)
         }
     }
     
@@ -388,7 +388,7 @@ internal extension PaymentDataManager {
         
         self.showPaymentFailurePopup(with: status) {
         
-            PaymentDataManager.closePayment()
+             PaymentDataManager.closePayment(withFadeAnimation: true)
         }
     }
     

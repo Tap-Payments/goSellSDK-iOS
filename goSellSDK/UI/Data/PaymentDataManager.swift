@@ -159,14 +159,14 @@ internal final class PaymentDataManager {
         selectedModel.tableView?.scrollToRow(at: selectedModel.indexPath, at: .none, animated: false)
     }
     
-    internal static func closePayment(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal static func closePayment(withFadeAnimation: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         LoadingViewController.destroyInstance()
         OTPViewController.destroyInstance()
         
         if let paymentContentController = PaymentContentViewController.findInHierarchy() {
             
-            paymentContentController.hide {
+            paymentContentController.hide(usingFadeAnimation: withFadeAnimation) {
                 
                 PaymentDataManager.paymentClosed()
                 completion?()

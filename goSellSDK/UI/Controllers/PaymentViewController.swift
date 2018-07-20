@@ -5,14 +5,15 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGGeometry.CGRect
-import class TapVisualEffectView.TapVisualEffectView
-import class UIKit.UINavigationController.UINavigationController
+import struct   CoreGraphics.CGGeometry.CGRect
+import struct   TapAdditionsKit.TypeAlias
+import class    TapVisualEffectView.TapVisualEffectView
+import class    UIKit.UINavigationController.UINavigationController
 import protocol UIKit.UINavigationController.UINavigationControllerDelegate
-import enum UIKit.UINavigationController.UINavigationControllerOperation
-import class UIKit.UIStoryboardSegue.UIStoryboardSegue
-import class UIKit.UIView.UIView
-import class UIKit.UIViewController.UIViewController
+import enum     UIKit.UINavigationController.UINavigationControllerOperation
+import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class    UIKit.UIView.UIView
+import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
@@ -59,7 +60,7 @@ internal class PaymentViewController: SeparateWindowViewController {
             self.blurView?.style = .none
         }
     }
-    
+
     private var hasShownPaymentController = false
     
     private lazy var animationsHandler = TransitionAnimationsHandler()
@@ -80,7 +81,10 @@ internal class PaymentViewController: SeparateWindowViewController {
 // MARK: - TransitionAnimationsHandler
 extension PaymentViewController {
     
-    fileprivate class TransitionAnimationsHandler: NSObject {}
+    fileprivate class TransitionAnimationsHandler: NSObject {
+        
+        fileprivate var usesFadeDismissalAnimation: Bool = false
+    }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate

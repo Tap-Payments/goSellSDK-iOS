@@ -85,6 +85,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var iconsTableView: UITableView?
     
     @IBOutlet private weak var cardNumberTextField: EditableTextInsetsTextField?
+    
     @IBOutlet private weak var cardScannerButton: UIButton?
     
     @IBOutlet private var constraintsToDisableWhenCardScanningAvailable: [NSLayoutConstraint]?

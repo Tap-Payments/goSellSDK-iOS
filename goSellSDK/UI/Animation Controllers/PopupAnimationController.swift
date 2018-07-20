@@ -140,7 +140,7 @@ extension PopupAnimationController: UIViewControllerAnimatedTransitioning {
         else {
             
             var finalFrame = context.finalFrame(for: fromController)
-            finalFrame.origin = CGPoint(x: finalFrame.origin.x, y: -finalFrame.size.height)
+            finalFrame.origin = CGPoint(x: finalFrame.origin.x, y: -abs(finalFrame.size.height))
             let initialFrame = CGRect(origin: .zero, size: finalFrame.size)
             let middleFrame = initialFrame.offsetBy(dx: 0.0, dy: Constants.middleFrameBottomOffset)
             
