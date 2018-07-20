@@ -125,7 +125,7 @@ internal class CardNumberValidator: CardValidator {
         }
         
         let cardBrand = recognizedType.cardBrand
-        self.setupSpacings(for: cardBrand)
+        self.setupSpacingsAndOptionallyTrimText(for: cardBrand)
     }
     
     private func compareNewRecognizedBrandToPreviousAndCallDelegate(_ type: DefinedCardBrand, number: String) {
@@ -164,39 +164,48 @@ internal class CardNumberValidator: CardValidator {
         }
     }
     
-    private func setupSpacings(for brand: CardBrand?) {
+    private func setupSpacingsAndOptionallyTrimText(for brand: CardBrand?) {
         
         UIView.performWithoutAnimation {
             
             let cardBrand = brand ?? ( self.recognizedCardType.cardBrand ?? .unknown )
+            
             let attributedText = self.textField.attributedText ?? NSAttributedString(string: .empty, attributes: Theme.current.settings.cardInputFieldsSettings.valid.asStringAttributes)
             
+            let trimRange = NSRange(location: 0, length: min(attributedText.length, TapCardValidator.CardValidator.maximalCardNumberLength(for: brand)))
+            let trimmedText = attributedText.attributedSubstring(from: trimRange)
+            
             let selectedRange = self.textField.selectedTextRange
-            self.textField.attributedText = self.applySpacings(for: attributedText, cardBrand: cardBrand)
+
+            self.textField.attributedText = self.applySpacings(for: trimmedText, cardBrand: cardBrand)
             self.textField.selectedTextRange = selectedRange
         }
     }
     
     private func applySpacings(for attributedString: NSAttributedString, cardBrand: CardBrand? = nil) -> NSAttributedString {
         
-        guard attributedString.length > 0 else { return attributedString }
+        let stringLength = attributedString.length
+        guard stringLength > 0 else { return attributedString }
         
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
         let spacings = TapCardValidator.CardValidator.spacings(for: cardBrand)
-        for index in 0..<mutableAttributedString.length {
+        let adoptedSpacings = self.adoptSpacings(from: spacings, cardNumberLength: stringLength)
+        
+        for index in 0..<stringLength {
             
-            if spacings.contains(index) {
-                
-                mutableAttributedString.addAttribute(.kern, value: 5, range: NSRange(location: index, length: 1))
-            }
-            else {
-                
-                mutableAttributedString.addAttribute(.kern, value: 0, range: NSRange(location: index, length: 1))
-            }
+            let kerningValue = adoptedSpacings.contains(index) ? 5 : 0
+            let range =  NSRange(location: index, length: 1)
+            
+            mutableAttributedString.addAttribute(.kern, value: kerningValue, range: range)
         }
         
         return NSAttributedString(attributedString: mutableAttributedString)
+    }
+    
+    private func adoptSpacings(from spacings: [Int], cardNumberLength: Int) -> [Int] {
+        
+        return spacings.filter { $0 + 1 < cardNumberLength }
     }
 }
 
@@ -222,7 +231,7 @@ extension CardNumberValidator: TextFieldInputDataValidation {
         
         if let previousType = self.previousRecognizedType {
             
-            self.setupSpacings(for: previousType.cardBrand)
+            self.setupSpacingsAndOptionallyTrimText(for: previousType.cardBrand)
         }
     }
 }
