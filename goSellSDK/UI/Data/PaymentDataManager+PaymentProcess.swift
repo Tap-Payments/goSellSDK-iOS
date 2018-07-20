@@ -6,6 +6,7 @@
 //
 
 import struct   CoreGraphics.CGGeometry.CGRect
+import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIScreen.UIScreen
 
@@ -375,9 +376,9 @@ internal extension PaymentDataManager {
         
         self.externalDelegate?.paymentSuccess(customerID)
         
-        PaymentDataManager.closePayment {
+        self.showPaymentSuccessPopup(with: receiptNumber) {
             
-            self.showPaymentSuccessPopup(with: receiptNumber)
+            PaymentDataManager.closePayment()
         }
     }
     
@@ -385,13 +386,13 @@ internal extension PaymentDataManager {
         
         self.externalDelegate?.paymentFailure()
         
-        PaymentDataManager.closePayment {
-            
-            self.showPaymentFailurePopup(with: status)
+        self.showPaymentFailurePopup(with: status) {
+        
+            PaymentDataManager.closePayment()
         }
     }
     
-    private func showPaymentFailurePopup(with status: ChargeStatus) {
+    private func showPaymentFailurePopup(with status: ChargeStatus, completion: @escaping TypeAlias.ArgumentlessClosure) {
         
         let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
         
@@ -403,10 +404,11 @@ internal extension PaymentDataManager {
         popup.display { [weak popup] in
             
             popup?.idleDisappearanceTimeInterval = disappearanceTime
+            completion()
         }
     }
     
-    private func showPaymentSuccessPopup(with receiptNumber: String) {
+    private func showPaymentSuccessPopup(with receiptNumber: String, completion: @escaping TypeAlias.ArgumentlessClosure) {
         
         let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
         
@@ -418,6 +420,7 @@ internal extension PaymentDataManager {
         popup.display { [weak popup] in
             
             popup?.idleDisappearanceTimeInterval = disappearanceTime
+            completion()
         }
     }
 }
