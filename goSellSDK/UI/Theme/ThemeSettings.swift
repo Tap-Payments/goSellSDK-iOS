@@ -22,6 +22,8 @@ internal struct ThemeSettings {
     
     internal let billIcon: UIImage
     
+    internal let loaderAnimationDuration: TimeInterval
+    
     internal let keyboardStyle: UIKeyboardAppearance
     internal let backgroundBlurStyle: TapBlurEffectStyle
     
@@ -74,10 +76,10 @@ internal extension Theme {
                                                                    textColor: .hex("#FFFFFF"),
                                                                    securityIcon: UIImage.named("btn_security", in: .goSellSDKResources)!)
             let highlightedPayButtonSettings = TapButtonStateSettings(backgroundColor: .hex("#1E9A00"),
-                                                                  loaderColor: .hex("#FFFFFF"),
-                                                                  textFont: .helveticaNeueMedium(17.0),
-                                                                  textColor: .hex("#FFFFFF"),
-                                                                  securityIcon: .named("btn_security", in: .goSellSDKResources)!)
+                                                                      loaderColor: .hex("#FFFFFF"),
+                                                                      textFont: .helveticaNeueMedium(17.0),
+                                                                      textColor: .hex("#FFFFFF"),
+                                                                      securityIcon: .named("btn_security", in: .goSellSDKResources)!)
             
             let payButtonSettings = TapButtonSettings(enabled: enabledPayButtonSettings,
                                                       disabled: disabledPayButtonSettings,
@@ -117,6 +119,7 @@ internal extension Theme {
                                        payButtonSettings: payButtonSettings,
                                        otpConfirmationButtonSettings: otpButtonSettings,
                                        billIcon: .named("ic_bill", in: .goSellSDKResources)!,
+                                       loaderAnimationDuration: 3.0,
                                        keyboardStyle: keyboardStyle,
                                        backgroundBlurStyle: backgroundBlurStyle,
                                        cardInputFieldsSettings: cardInputSettings,

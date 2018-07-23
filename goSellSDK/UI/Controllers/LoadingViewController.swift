@@ -85,6 +85,7 @@ internal final class LoadingViewController: SeparateWindowViewController {
         
         didSet {
             
+            self.loader?.animationDuration  = Theme.current.settings.loaderAnimationDuration
             self.loader?.usesCustomColors   = true
             self.loader?.outterCircleColor  = .hex("535353")
             self.loader?.innerCircleColor   = .hex("535353")
