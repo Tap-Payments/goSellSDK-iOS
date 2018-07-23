@@ -53,7 +53,13 @@ internal class LoadingImageView: TapNibView {
     
     @IBOutlet private weak var imageView: UIImageView?
     
-    @IBOutlet private weak var activityIndicator: TapActivityIndicatorView?
+    @IBOutlet private weak var activityIndicator: TapActivityIndicatorView? {
+        
+        didSet {
+            
+            self.activityIndicator?.animationDuration = Theme.current.settings.loaderAnimationDuration
+        }
+    }
     
     // MARK: Methods
     

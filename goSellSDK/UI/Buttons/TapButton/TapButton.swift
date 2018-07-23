@@ -89,6 +89,7 @@ internal class TapButton: TapNibView {
         
         didSet {
             
+            self.loader?.animationDuration = Theme.current.settings.loaderAnimationDuration
             self.loader?.startingProgress = 0.0
         }
     }
