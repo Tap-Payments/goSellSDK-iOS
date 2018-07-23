@@ -15,7 +15,13 @@ internal struct ExpirationDate {
     internal var month: Int
     
     /// Expiration year.
-    internal var year: Int
+    internal var year: Int {
+        
+        didSet {
+            
+            self.updateYearToReal()
+        }
+    }
     
     // MARK: Methods
     
@@ -24,6 +30,8 @@ internal struct ExpirationDate {
         
         self.month = month
         self.year = year
+        
+        self.updateYearToReal()
     }
     
     // MARK: - Private -
@@ -32,6 +40,18 @@ internal struct ExpirationDate {
         
         case month  = "month"
         case year   = "year"
+    }
+    
+    // MARK: Methods
+    
+    private mutating func updateYearToReal() {
+        
+        let currentYear = Date().year
+        
+        if self.year < currentYear {
+            
+            self.year = self.year + 100 * Int(currentYear / 100)
+        }
     }
 }
 

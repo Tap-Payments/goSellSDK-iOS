@@ -7,8 +7,9 @@
 
 import TapResponderChainInputView
 
+import func     TapAdditionsKit.clamp
 import protocol TapAdditionsKit.ClassProtocol
-import class TapEditableView.TapEditableView
+import class    TapEditableView.TapEditableView
 import protocol TapEditableView.TapEditableViewDelegate
 
 /// Expiration Date Validator class.
@@ -99,7 +100,7 @@ internal class ExpirationDateValidator: CardValidator {
     private func updateExpirationDate(from picker: UIPickerView) {
         
         let month = picker.selectedRow(inComponent: ExpirationDatePickerHandler.DatePickerComponent.month.rawValue) + 1
-        let year = picker.selectedRow(inComponent: ExpirationDatePickerHandler.DatePickerComponent.year.rawValue)
+        let year = ExpirationDatePickerHandler.currentYear + picker.selectedRow(inComponent: ExpirationDatePickerHandler.DatePickerComponent.year.rawValue)
         
         self.expirationDate = ExpirationDate(month: month, year: year)
         
@@ -152,8 +153,16 @@ internal class ExpirationDateValidator: CardValidator {
         
         guard let nonnullExpirationDate = self.expirationDate else { return }
         
-        picker.selectRow(nonnullExpirationDate.month - 1, inComponent: ExpirationDatePickerHandler.DatePickerComponent.month.rawValue, animated: animated)
-        picker.selectRow(nonnullExpirationDate.year, inComponent: ExpirationDatePickerHandler.DatePickerComponent.year.rawValue, animated: animated)
+        let minimalMonthIndex = 0
+        let minimalYearIndex = 0
+        let maximalMonthIndex = picker.numberOfRows(inComponent: ExpirationDatePickerHandler.DatePickerComponent.month.rawValue) - 1
+        let maximalYearIndex = picker.numberOfRows(inComponent: ExpirationDatePickerHandler.DatePickerComponent.year.rawValue) - 1
+        
+        let monthIndex  = clamp(value: minimalMonthIndex,   low: nonnullExpirationDate.month - 1,                                       high: maximalMonthIndex)
+        let yearIndex   = clamp(value: minimalYearIndex,    low: nonnullExpirationDate.year - ExpirationDatePickerHandler.currentYear,  high: maximalYearIndex)
+        
+        picker.selectRow(monthIndex, inComponent: ExpirationDatePickerHandler.DatePickerComponent.month.rawValue, animated: animated)
+        picker.selectRow(yearIndex, inComponent: ExpirationDatePickerHandler.DatePickerComponent.year.rawValue, animated: animated)
     }
 }
 
@@ -220,32 +229,66 @@ fileprivate extension ExpirationDateValidator {
                 
                 switch self {
                     
-                case .month:
+                case .month:    return Constants.numberOfMonthsInPickerView
+                case .year:     return Constants.numberOfYearsInPickerView
+
+                }
+            }
+            
+            fileprivate var componentWidth: CGFloat {
+                
+                switch self {
                     
-                    return Constants.numberOfMonthsInPickerView
-                    
-                case .year:
-                    
-                    return Constants.numberOfYearsInPickerView
+                case .month:    return Constants.monthComponentWidth
+                case .year:     return Constants.yearComponentWidth
+
                 }
             }
             
             fileprivate func text(for row: Int) -> String {
                 
-                let integerText = self == .month ? row + 1 : row
-                return String(format: "%02d", locale: Locale.enUS, arguments: [integerText])
+                let formatter = type(of: self).numberFormatter
+                var argument: Int
+                
+                switch self {
+                    
+                case .month:
+                    
+                    formatter.minimumIntegerDigits = 2
+                    argument = row + 1
+                    
+                case .year:
+                    
+                    formatter.minimumIntegerDigits = 4
+                    argument = ExpirationDatePickerHandler.currentYear + row
+                }
+                
+                return formatter.string(from: NSNumber(value: argument))!
             }
+            
+            private static let numberFormatter: NumberFormatter  = {
+               
+                let formatter = NumberFormatter(locale: Locale.enUS)
+                formatter.groupingSeparator = ""
+                formatter.numberStyle = .decimal
+                
+                return formatter
+                
+            }()
         }
         
         private struct Constants {
             
-            fileprivate static let numberOfComponentsInPickerView = 2
-            fileprivate static let numberOfMonthsInPickerView = 12
-            fileprivate static let numberOfYearsInPickerView = 100
-            fileprivate static let pickerViewRowHeight: CGFloat = 50.0
+            fileprivate static let numberOfComponentsInPickerView:  Int     = 2
+            fileprivate static let numberOfMonthsInPickerView:      Int     = 12
+            fileprivate static let numberOfYearsInPickerView:       Int     = 51
+            fileprivate static let monthComponentWidth:             CGFloat = 50.0
+            fileprivate static let yearComponentWidth:              CGFloat = 100.0
             
             @available(*, unavailable) private init() {}
         }
+        
+        fileprivate static var currentYear: Int = Date().year
     }
 }
 
@@ -278,7 +321,7 @@ extension ExpirationDateValidator.ExpirationDatePickerHandler: UIPickerViewDeleg
     
     fileprivate func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         
-        return Constants.pickerViewRowHeight
+        return DatePickerComponent(rawValue: component)!.componentWidth
     }
     
     fileprivate func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

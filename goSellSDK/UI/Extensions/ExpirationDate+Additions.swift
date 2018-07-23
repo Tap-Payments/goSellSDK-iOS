@@ -14,7 +14,7 @@ internal extension ExpirationDate {
     internal static var current: ExpirationDate {
         
         let currentDate = Date()
-        return ExpirationDate(month: currentDate.month, year: currentDate.year % 100)
+        return ExpirationDate(month: currentDate.month, year: currentDate.year)
     }
     
     /// Month string.
@@ -26,7 +26,7 @@ internal extension ExpirationDate {
     /// Year string.
     internal var yearString: String {
         
-        return String(format: "%02d", locale: Locale.enUS, arguments: [self.year])
+        return String(format: "%02d", locale: Locale.enUS, arguments: [self.year % 100])
     }
     
     /// Readable input field representation.
