@@ -75,22 +75,63 @@ internal final class OTPViewController: SeparateWindowViewController {
         self.startFirstAttemptIfNotYetStarted()
     }
     
-    // MARK: - Fileprivate -
-    
-    /// Transition handler for OTP view controller.
-    fileprivate final class Transitioning: NSObject {
+    deinit {
         
-        fileprivate var shouldUseDefaultOTPAnimation = true
-        fileprivate static var storage: Transitioning?
-        
-        private override init() {
-            
-            KnownSingletonTypes.add(Transitioning.self)
-            super.init()
-        }
+        self.transitioning = nil
     }
     
     // MARK: - Private -
+    
+    /// Transition handler for OTP view controller.
+    private final class Transitioning: NSObject, UIViewControllerTransitioningDelegate {
+        
+        fileprivate var shouldUseDefaultOTPAnimation = true
+        
+        fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            
+            if let otpController = presented as? OTPViewController {
+                
+                let interactionController = OTPDismissalInteractionController(viewController: otpController)
+                otpController.dismissalInteractionController = interactionController
+            }
+            
+            guard let to = presented as? PopupPresentationAnimationController.PopupPresentationViewController else { return nil }
+            
+            return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(presentationFrom: presenting,
+                                                                                               to: to,
+                                                                                               overlaysFromView: false,
+                                                                                               overlaySupport: PaymentOptionsViewController.findInHierarchy())
+                : PaymentPresentationAnimationController()
+        }
+        
+        fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            
+            guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
+            
+            return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(dismissalFrom: from,
+                                                                                               to: to,
+                                                                                               overlaysToView: false,
+                                                                                               overlaySupport: PaymentOptionsViewController.findInHierarchy())
+                : PaymentDismissalAnimationController()
+        }
+        
+        fileprivate func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+            
+            if
+                
+                let otpAnimator = animator as? PopupPresentationAnimationController,
+                let otpController = otpAnimator.fromViewController as? OTPViewController,
+                let interactionController = otpController.dismissalInteractionController, interactionController.isInteracting {
+                
+                interactionController.delegate = otpAnimator
+                return interactionController
+            }
+            else {
+                
+                return nil
+            }
+        }
+    }
     
     private struct Constants {
         
@@ -193,6 +234,8 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     private weak var delegate: OTPViewControllerDelegate?
     
+    private var transitioning: Transitioning? = Transitioning()
+    
     // MARK: Methods
     
     private static func createAndSetupController() -> OTPViewController {
@@ -201,7 +244,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         let controller = self.shared
         controller.modalPresentationStyle = .custom
-        controller.transitioningDelegate = Transitioning.shared
+        controller.transitioningDelegate = controller.transitioning
         
         return controller
     }
@@ -368,16 +411,17 @@ extension OTPViewController: Singleton {
         }
         
         let instance = OTPViewController.instantiate()
-        self.storage = instance
+        instance.transitioning?.shouldUseDefaultOTPAnimation = true
         
-        Transitioning.shared.shouldUseDefaultOTPAnimation = true
+        self.storage = instance
         
         return instance
     }
     
     internal static func destroyInstance() {
         
-        Transitioning.shared.shouldUseDefaultOTPAnimation = false
+        self.storage?.transitioning?.shouldUseDefaultOTPAnimation = false
+        
         self.storage?.hide(animated: true)
         self.storage = nil
     }
@@ -399,82 +443,6 @@ extension OTPViewController: TapButtonDelegate {
     internal func securityButtonTouchUpInside() {
         
         self.buttonTouchUpInside()
-    }
-}
-
-// MARK: - Singleton
-extension OTPViewController.Transitioning: Singleton {
-    
-    fileprivate static var hasAliveInstance: Bool {
-        
-        return self.storage != nil
-    }
-    
-    fileprivate static var shared: OTPViewController.Transitioning {
-        
-        if let nonnullStorage = self.storage {
-            
-            return nonnullStorage
-        }
-        
-        let instance = OTPViewController.Transitioning()
-        self.storage = instance
-        
-        return instance
-    }
-    
-    fileprivate static func destroyInstance() {
-        
-        self.storage = nil
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension OTPViewController.Transitioning: UIViewControllerTransitioningDelegate {
-    
-    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        if let otpController = presented as? OTPViewController {
-            
-            let interactionController = OTPDismissalInteractionController(viewController: otpController)
-            otpController.dismissalInteractionController = interactionController
-        }
-        
-        guard let to = presented as? PopupPresentationAnimationController.PopupPresentationViewController else { return nil }
-        
-        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(presentationFrom: presenting,
-                                                                                           to: to,
-                                                                                           overlaysFromView: false,
-                                                                                           overlaySupport: PaymentOptionsViewController.findInHierarchy())
-                                                    : PaymentPresentationAnimationController()
-    }
-    
-    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
-        
-        return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(dismissalFrom: from,
-                                                                                           to: to,
-                                                                                           overlaysToView: false,
-                                                                                           overlaySupport: PaymentOptionsViewController.findInHierarchy())
-                                                    : PaymentDismissalAnimationController()
-    }
-    
-    fileprivate func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        
-        if
-            
-            let otpAnimator = animator as? PopupPresentationAnimationController,
-            let otpController = otpAnimator.fromViewController as? OTPViewController,
-            let interactionController = otpController.dismissalInteractionController, interactionController.isInteracting {
-            
-            interactionController.delegate = otpAnimator
-            return interactionController
-        }
-        else {
-            
-            return nil
-        }
     }
 }
 
