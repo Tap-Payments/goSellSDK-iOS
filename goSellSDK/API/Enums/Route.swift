@@ -10,6 +10,7 @@ internal enum Route: String {
     
     case billingAddress         = "billing_address/"
     case bin                    = "bin/"
+    case card                   = "card/"
     case charges                = "charges/"
     case chargeAuthentication   = "charges/authenticate/"
     case initialization         = "init"

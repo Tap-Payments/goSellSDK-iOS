@@ -15,4 +15,5 @@ internal struct GeneralImages {
     internal let arrowRight: UIImage
     internal let arrowLeft: UIImage
     internal let checkmarkImage: UIImage
+    internal let closeImage: UIImage
 }

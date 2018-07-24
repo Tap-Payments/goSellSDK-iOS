@@ -27,7 +27,7 @@ internal extension CardsContainerTableViewCellModel {
     
     // MARK: Methods
     
-    internal static func generateCollectionViewCellModels(with cards: [SavedCard]) -> [CardCollectionViewCellModel] {
+    internal func generateCollectionViewCellModels(with cards: [SavedCard]) -> [CardCollectionViewCellModel] {
         
         var result: [CardCollectionViewCellModel] = []
         
@@ -62,7 +62,7 @@ internal extension CardsContainerTableViewCellModel {
         sortedCards.forEach {
             
             let indexPath = self.nextCardCollectionViewCellIndexPath(for: result)
-            let model = CardCollectionViewCellModel(indexPath: indexPath, card: $0)
+            let model = CardCollectionViewCellModel(indexPath: indexPath, card: $0, parentModel: self)
             
             result.append(model)
         }
@@ -73,7 +73,7 @@ internal extension CardsContainerTableViewCellModel {
     // MARK: - Private -
     // MARK: Methods
     
-    private static func nextCardCollectionViewCellIndexPath(for temporaryResult: [CardCollectionViewCellModel]) -> IndexPath {
+    @inline(__always) private func nextCardCollectionViewCellIndexPath(for temporaryResult: [CardCollectionViewCellModel]) -> IndexPath {
         
         return IndexPath(item: temporaryResult.count, section: 0)
     }
@@ -107,6 +107,7 @@ extension CardsContainerTableViewCellModel.CardsContainerTableViewCellModelColle
     internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         let cellModel = self.cardCellModel(at: indexPath)
+        
         cellModel.updateCell()
     }
     

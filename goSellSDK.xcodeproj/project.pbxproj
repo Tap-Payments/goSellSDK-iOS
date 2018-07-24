@@ -247,6 +247,14 @@
 		A48810EC20A2E92E00CDF5D4 /* LoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48810E420A2E92E00CDF5D4 /* LoadingImageView.swift */; };
 		A48810EE20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */; };
 		A48810EF20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */; };
+		A4A8545021076CF900B9DE00 /* WobblingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8544F21076CF800B9DE00 /* WobblingView.swift */; };
+		A4A8545121076CF900B9DE00 /* WobblingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8544F21076CF800B9DE00 /* WobblingView.swift */; };
+		A4A8545321076D6C00B9DE00 /* APIClient+Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8545221076D6B00B9DE00 /* APIClient+Card.swift */; };
+		A4A8545421076D6C00B9DE00 /* APIClient+Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8545221076D6B00B9DE00 /* APIClient+Card.swift */; };
+		A4A8545621076DC600B9DE00 /* DeleteCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */; };
+		A4A8545721076DC600B9DE00 /* DeleteCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */; };
+		A4A8545921076FED00B9DE00 /* CardsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8545821076FED00B9DE00 /* CardsCollectionViewLayout.swift */; };
+		A4A8545A21076FED00B9DE00 /* CardsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8545821076FED00B9DE00 /* CardsCollectionViewLayout.swift */; };
 		A4A9827F20D2B32000770690 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A9827220D2B31A00770690 /* Reference.swift */; };
 		A4A9828020D2B32000770690 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A9827220D2B31A00770690 /* Reference.swift */; };
 		A4A9828120D2B32000770690 /* CreateTokenSavedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A9827320D2B31B00770690 /* CreateTokenSavedCard.swift */; };
@@ -717,6 +725,10 @@
 		A48810E320A2E92E00CDF5D4 /* LoadingImageViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingImageViewState.swift; sourceTree = "<group>"; };
 		A48810E420A2E92E00CDF5D4 /* LoadingImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingImageView.swift; sourceTree = "<group>"; };
 		A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TapNavigationView.xib; sourceTree = "<group>"; };
+		A4A8544F21076CF800B9DE00 /* WobblingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WobblingView.swift; sourceTree = "<group>"; };
+		A4A8545221076D6B00B9DE00 /* APIClient+Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Card.swift"; sourceTree = "<group>"; };
+		A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCardResponse.swift; sourceTree = "<group>"; };
+		A4A8545821076FED00B9DE00 /* CardsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		A4A9827220D2B31A00770690 /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		A4A9827320D2B31B00770690 /* CreateTokenSavedCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTokenSavedCard.swift; sourceTree = "<group>"; };
 		A4A9827420D2B31B00770690 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
@@ -955,6 +967,7 @@
 			isa = PBXGroup;
 			children = (
 				A4BD8CEC20A1F0B300EFF2CE /* BatchUpdates.swift */,
+				A4A8545821076FED00B9DE00 /* CardsCollectionViewLayout.swift */,
 				A4BD8CF520A1F0B300EFF2CE /* CurrencyFormatter.swift */,
 				A4BD8CED20A1F0B300EFF2CE /* Validators */,
 			);
@@ -1127,7 +1140,9 @@
 				A4A9827620D2B31C00770690 /* CreateTokenWithSavedCardRequest.swift */,
 				A479F7162099DB2100556E10 /* Currency.swift */,
 				A4444BEE20AB535F005D9E87 /* CustomerInfo.swift */,
+				A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */,
 				A479F7152099DB2100556E10 /* EmailAddress.swift */,
+				A482F75E2085DAD500AA76A4 /* Errors */,
 				A4C13A9820F4F0AE00037EDC /* ExpirationDate.swift */,
 				A4D53120208A54C400830AD8 /* ExtraFee.swift */,
 				A4BD8CC820A1EF7700EFF2CE /* InternalSDKSettings.swift */,
@@ -1152,7 +1167,6 @@
 				A4A9827920D2B31E00770690 /* Token.swift */,
 				A4A9827C20D2B31F00770690 /* TokenizedCard.swift */,
 				A4A9827E20D2B31F00770690 /* TransactionDetails.swift */,
-				A482F75E2085DAD500AA76A4 /* Errors */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1205,6 +1219,7 @@
 				A482F74E2085CED200AA76A4 /* APIClient.swift */,
 				A4571EED20FE2319006D96DC /* APIClient+BillingAddress.swift */,
 				A456717C20AD6AA30057A504 /* APIClient+BIN.swift */,
+				A4A8545221076D6B00B9DE00 /* APIClient+Card.swift */,
 				A482F7522085CEF000AA76A4 /* APIClient+Charges.swift */,
 				A40F5FD32085F27D001D6A9A /* APIClient+Initialization.swift */,
 				A4D53109208A46E700830AD8 /* APIClient+PaymentTypes.swift */,
@@ -1431,6 +1446,7 @@
 				A4F7102620B550760064FE4B /* TextLabelInputDataValidation.swift */,
 				A4571EE820FE2304006D96DC /* Transformable.swift */,
 				A4571F1120FF54EE006D96DC /* WebPaymentContentViewControllerDelegate.swift */,
+				A4A8544F21076CF800B9DE00 /* WobblingView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1675,7 +1691,9 @@
 				A43A0A6720DA4A82006B39F1 /* WebPaymentURLDecision.swift in Sources */,
 				A4A9829720D2B32000770690 /* TransactionDetails.swift in Sources */,
 				A4C13A8120F4EF9900037EDC /* CardsContainerTableViewCellModel+UICollectionView.swift in Sources */,
+				A4A8545621076DC600B9DE00 /* DeleteCardResponse.swift in Sources */,
 				A4C13A8320F4EF9900037EDC /* TableViewCellViewModel.swift in Sources */,
+				A4A8545021076CF900B9DE00 /* WobblingView.swift in Sources */,
 				A4C0FC8D208DFA2200C5FBC6 /* SingleCellModel.swift in Sources */,
 				A4A9829A20D2B33D00770690 /* APIClient+Token.swift in Sources */,
 				A4571EFD20FE2367006D96DC /* AddressType+Additions.swift in Sources */,
@@ -1848,6 +1866,7 @@
 				A4C13AA820F4F0CD00037EDC /* AuthenticationRequirer.swift in Sources */,
 				A413DB2320AEE04000C29C6B /* TextInputDataValidation.swift in Sources */,
 				A4C0FC69208CEE3F00C5FBC6 /* CardInputTableViewCellModel.swift in Sources */,
+				A4A8545321076D6C00B9DE00 /* APIClient+Card.swift in Sources */,
 				A4752A3A208EFF5C003118DB /* CardInputTableViewCell.swift in Sources */,
 				A4C13A9020F4F05900037EDC /* OTPViewControllerDelegate.swift in Sources */,
 				A408C06920BC05B9005E74AD /* CountableCasesEnum.swift in Sources */,
@@ -1909,6 +1928,7 @@
 				A4A982C320D2B5FE00770690 /* TokenType.swift in Sources */,
 				A4D5311C208A4E4400830AD8 /* PaymentOptionsResponse.swift in Sources */,
 				A482F7762085DD3800AA76A4 /* RSAUtils.swift in Sources */,
+				A4A8545921076FED00B9DE00 /* CardsCollectionViewLayout.swift in Sources */,
 				A4D53121208A54C400830AD8 /* ExtraFee.swift in Sources */,
 				A4444BF620AB535F005D9E87 /* Country.swift in Sources */,
 				A4C13AB420F4F17600037EDC /* ExpirationDate+Additions.swift in Sources */,
@@ -1967,6 +1987,7 @@
 				A4A9829B20D2B33D00770690 /* APIClient+Token.swift in Sources */,
 				A4A9828220D2B32000770690 /* CreateTokenSavedCard.swift in Sources */,
 				A4BD8D9020A1FB5500EFF2CE /* WebPaymentViewController.swift in Sources */,
+				A4A8545721076DC600B9DE00 /* DeleteCardResponse.swift in Sources */,
 				A4F7104420B553260064FE4B /* BaseNavigationController.swift in Sources */,
 				A4BD8D9120A1FB5500EFF2CE /* PaymentDataManager.swift in Sources */,
 				A408C06820BC05B9005E74AD /* InitializableWithString.swift in Sources */,
@@ -2071,6 +2092,7 @@
 				A4A982AC20D2B34F00770690 /* AddressType.swift in Sources */,
 				A4BD8D8420A1FB3D00EFF2CE /* CellViewModel.swift in Sources */,
 				A42758B320A361B500D214EE /* PaymentDataManager+CardScanning.swift in Sources */,
+				A4A8545A21076FED00B9DE00 /* CardsCollectionViewLayout.swift in Sources */,
 				A4BD8D8520A1FB3D00EFF2CE /* EmptyTableViewCellModel.swift in Sources */,
 				A4BD8D8620A1FB3D00EFF2CE /* GroupTableViewCellModel.swift in Sources */,
 				A468773F20DC1F1600123391 /* StatusPopupViewController.swift in Sources */,
@@ -2080,6 +2102,7 @@
 				A424877420E4F0D8001C4FAF /* PayButton.swift in Sources */,
 				A424878020E4F100001C4FAF /* CardCollectionViewCellLoading.swift in Sources */,
 				A4F7103920B550AD0064FE4B /* CountriesDataManager.swift in Sources */,
+				A4A8545121076CF900B9DE00 /* WobblingView.swift in Sources */,
 				A4BD8D8720A1FB3D00EFF2CE /* ViewModel.swift in Sources */,
 				A4C13A6F20F4EF5500037EDC /* Duration.swift in Sources */,
 				A4A982A620D2B34F00770690 /* RedirectStatus.swift in Sources */,
@@ -2124,6 +2147,7 @@
 				A401FC8F2101DA6D002DBA73 /* CardScannerViewControllerDelegate.swift in Sources */,
 				A424878D20E4F136001C4FAF /* OTPDismissalInteractionController.swift in Sources */,
 				A43A0A5920D93E19006B39F1 /* FadeAnimationController.swift in Sources */,
+				A4A8545421076D6C00B9DE00 /* APIClient+Card.swift in Sources */,
 				A4571F0F20FF54D2006D96DC /* PopupPresentationAnimationController.swift in Sources */,
 				A479F7202099DB2100556E10 /* EmailAddress.swift in Sources */,
 				A4BD8CE220A1EFFE00EFF2CE /* CurrencySelectionTableViewCellViewModel.swift in Sources */,

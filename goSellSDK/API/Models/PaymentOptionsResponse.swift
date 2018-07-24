@@ -30,7 +30,7 @@ internal struct PaymentOptionsResponse: Identifiable, Decodable {
     internal let supportedCurrenciesAmounts: [AmountedCurrency]
     
     /// Saved cards.
-    internal private(set) var savedCards: [SavedCard]?
+    internal var savedCards: [SavedCard]?
     
     // MARK: - Private -
     

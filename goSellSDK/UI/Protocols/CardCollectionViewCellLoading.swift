@@ -16,4 +16,10 @@ internal protocol CardCollectionViewCellLoading: ClassProtocol {
     var checkmarkImage:     UIImage     { get }
     var currencyLabelText:  String      { get }
     var cardNumberText:     String      { get }
+    
+    var deleteCardImage:    UIImage     { get }
+    
+    var isDeleteCellMode:   Bool        { get set }
+    
+    func deleteCardButtonClicked()
 }

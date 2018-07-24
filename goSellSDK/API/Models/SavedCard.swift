@@ -55,3 +55,12 @@ internal struct SavedCard: Decodable, Identifiable {
         case orderBy            = "order_by"
     }
 }
+
+// MARK: - Equatable
+extension SavedCard: Equatable {
+    
+    internal static func == (lhs: SavedCard, rhs: SavedCard) -> Bool {
+        
+        return lhs.lastFourDigits == rhs.lastFourDigits && lhs.expiry == rhs.expiry && lhs.firstSixDigits == rhs.firstSixDigits
+    }
+}

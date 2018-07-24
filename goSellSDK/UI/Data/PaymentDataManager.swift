@@ -88,6 +88,20 @@ internal final class PaymentDataManager {
         return self.paymentOptionsResponse?.paymentOptions ?? []
     }
     
+    internal var isInDeleteSavedCardsMode: Bool = false {
+        
+        didSet {
+            
+            if self.isInDeleteSavedCardsMode {
+                
+                self.deselectAllPaymentOptionsModels()
+            }
+            
+            let savedCardsModels = self.cellModels(of: CardsContainerTableViewCellModel.self).first?.collectionViewCellModels ?? []
+            savedCardsModels.forEach { $0.isDeleteCellMode = self.isInDeleteSavedCardsMode }
+        }
+    }
+    
     // MARK: Methods
     
     internal func start(with caller: PayButtonInternalImplementation) {
@@ -177,6 +191,19 @@ internal final class PaymentDataManager {
             PaymentDataManager.paymentClosed()
             completion?()
         }
+    }
+    
+    internal func updateUIByRemoving(_ card: SavedCard) {
+        
+        guard let cardIndex = self.paymentOptionsResponse?.savedCards?.index(of: card) else { return }
+        self.paymentOptionsResponse?.savedCards?.remove(at: cardIndex)
+        
+        if self.paymentOptionsResponse?.savedCards?.count ?? 0 == 0 {
+            
+            self.isInDeleteSavedCardsMode = false
+        }
+        
+        self.generatePaymentOptionCellViewModels()
     }
     
     // MARK: - Private -
