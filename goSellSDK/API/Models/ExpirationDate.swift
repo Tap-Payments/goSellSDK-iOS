@@ -68,3 +68,12 @@ extension ExpirationDate: Decodable {
         self.init(month: m, year: y)
     }
 }
+
+// MARK: - Equatable
+extension ExpirationDate: Equatable {
+    
+    internal static func == (lhs: ExpirationDate, rhs: ExpirationDate) -> Bool {
+    
+        return lhs.month == rhs.month && lhs.year == rhs.year
+    }
+}

@@ -113,7 +113,8 @@ internal extension Theme {
             
             let generalImages = GeneralImages(arrowRight: .named("ic_arrow_right", in: .goSellSDKResources)!,
                                               arrowLeft: .named("ic_arrow_left", in: .goSellSDKResources)!,
-                                              checkmarkImage: .named("ic_checkmark", in: .goSellSDKResources)!)
+                                              checkmarkImage: .named("ic_checkmark", in: .goSellSDKResources)!,
+                                              closeImage: .named("ic_close", in:. goSellSDKResources)!)
             
             let result = ThemeSettings(headerSettings: headerSettings,
                                        payButtonSettings: payButtonSettings,

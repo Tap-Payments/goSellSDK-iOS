@@ -12,7 +12,13 @@ internal class CardsContainerTableViewCellModel: TableViewCellViewModel {
     
     internal weak var cell: CardsContainerTableViewCell?
     
-    internal var collectionViewCellModels: [CardCollectionViewCellModel]
+    internal var collectionViewCellModels: [CardCollectionViewCellModel] = [] {
+        
+        didSet {
+            
+            self.updateCell(animated: true)
+        }
+    }
     
     internal lazy var cardsCollectionViewHandler: CardsContainerTableViewCellModelCollectionViewHandler = CardsContainerTableViewCellModelCollectionViewHandler(model: self)
     
@@ -21,8 +27,14 @@ internal class CardsContainerTableViewCellModel: TableViewCellViewModel {
     internal init(indexPath: IndexPath, cards: [SavedCard]) {
         
         self.cards = cards
-        self.collectionViewCellModels = type(of: self).generateCollectionViewCellModels(with: cards)
         super.init(indexPath: indexPath)
+        
+        self.collectionViewCellModels = self.generateCollectionViewCellModels(with: cards)
+    }
+    
+    internal func deleteCardModel(_ model: CardCollectionViewCellModel) {
+        
+        PaymentDataManager.shared.updateUIByRemoving(model.card)
     }
     
     // MARK: - Private -

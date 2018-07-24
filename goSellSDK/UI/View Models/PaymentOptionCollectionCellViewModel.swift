@@ -15,7 +15,7 @@ internal class PaymentOptionCollectionCellViewModel: CollectionViewCellViewModel
     internal var isSelected: Bool = false {
         
         didSet {
-            
+        
             self.updateCellGlow()
         }
     }

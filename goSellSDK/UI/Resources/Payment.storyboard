@@ -319,35 +319,35 @@
                                             <outlet property="titleLabel" destination="0QM-pg-oXV" id="AH9-LU-qs8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardsContainerTableViewCell" rowHeight="106" id="XOj-km-jj7" customClass="CardsContainerTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="125" width="375" height="106"/>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardsContainerTableViewCell" rowHeight="112" id="XOj-km-jj7" customClass="CardsContainerTableViewCell" customModule="goSellSDK">
+                                        <rect key="frame" x="0.0" y="125" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XOj-km-jj7" id="r50-Df-cFw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XOj-km-jj7" id="r50-Df-cFw">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TqD-nr-IjH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
+                                                <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TqD-nr-IjH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="106" id="Hq3-z7-lVf"/>
+                                                        <constraint firstAttribute="height" constant="112" id="Hq3-z7-lVf"/>
                                                     </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="3" id="WMA-1G-8pP">
-                                                        <size key="itemSize" width="106" height="106"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="3" id="WMA-1G-8pP" customClass="CardsCollectionViewLayout" customModule="goSellSDK">
+                                                        <size key="itemSize" width="118" height="112"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="13" minY="0.0" maxX="13" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCollectionViewCell" id="gmQ-fR-437" customClass="CardCollectionViewCell" customModule="goSellSDK">
-                                                            <rect key="frame" x="13" y="0.0" width="106" height="106"/>
+                                                        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCollectionViewCell" id="gmQ-fR-437" customClass="CardCollectionViewCell" customModule="goSellSDK">
+                                                            <rect key="frame" x="13" y="0.0" width="118" height="112"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="118" height="112"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIm-dS-fnu">
-                                                                        <rect key="frame" x="3" y="3" width="100" height="100"/>
+                                                                        <rect key="frame" x="9" y="9" width="100" height="100"/>
                                                                         <subviews>
                                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qt1-mF-tbg">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="26"/>
@@ -410,6 +410,7 @@
                                                                             </view>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <gestureRecognizers/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="bottom" secondItem="xbY-PO-3f0" secondAttribute="bottom" id="15E-gu-C5L"/>
                                                                             <constraint firstItem="fRo-h7-tVX" firstAttribute="leading" secondItem="RIm-dS-fnu" secondAttribute="leading" id="2kR-Gj-huX"/>
@@ -430,11 +431,48 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1W-mp-66a">
+                                                                        <rect key="frame" x="88" y="0.0" width="30" height="30"/>
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yBe-WZ-geX">
+                                                                                <rect key="frame" x="12" y="0.0" width="18" height="18"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="18" id="4kG-aM-fKW"/>
+                                                                                    <constraint firstAttribute="height" constant="18" id="dZW-gD-Fc9"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-nP-6ta">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                                <connections>
+                                                                                    <action selector="deleteCardButtonHighlighted:" destination="gmQ-fR-437" eventType="touchDragEnter" id="aDz-4r-AOE"/>
+                                                                                    <action selector="deleteCardButtonHighlighted:" destination="gmQ-fR-437" eventType="touchDown" id="noR-5j-pU3"/>
+                                                                                    <action selector="deleteCardButtonLostHighlight:" destination="gmQ-fR-437" eventType="touchUpInside" id="Ifv-bN-CFC"/>
+                                                                                    <action selector="deleteCardButtonLostHighlight:" destination="gmQ-fR-437" eventType="touchUpOutside" id="UVl-AD-7Za"/>
+                                                                                    <action selector="deleteCardButtonLostHighlight:" destination="gmQ-fR-437" eventType="touchDragExit" id="YMQ-oe-qZH"/>
+                                                                                    <action selector="deleteCardButtonLostHighlight:" destination="gmQ-fR-437" eventType="touchCancel" id="pPX-Vb-XDS"/>
+                                                                                    <action selector="deleteCardButtonTouchUpInside:" destination="gmQ-fR-437" eventType="touchUpInside" id="tNf-Zt-b4C"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="OB0-nP-6ta" secondAttribute="bottom" id="7Sr-uO-qXH"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="yBe-WZ-geX" secondAttribute="trailing" id="9tk-28-a68"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="OB0-nP-6ta" secondAttribute="trailing" id="NNL-4f-xmu"/>
+                                                                            <constraint firstAttribute="width" constant="30" id="O09-Bw-fvr"/>
+                                                                            <constraint firstAttribute="height" constant="30" id="Pxj-uw-kx4"/>
+                                                                            <constraint firstItem="OB0-nP-6ta" firstAttribute="leading" secondItem="M1W-mp-66a" secondAttribute="leading" id="bOV-m7-KpG"/>
+                                                                            <constraint firstItem="OB0-nP-6ta" firstAttribute="top" secondItem="M1W-mp-66a" secondAttribute="top" id="njU-N7-pXe"/>
+                                                                            <constraint firstItem="yBe-WZ-geX" firstAttribute="top" secondItem="M1W-mp-66a" secondAttribute="top" id="waW-wq-fQH"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                             </view>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="RIm-dS-fnu" firstAttribute="centerY" secondItem="gmQ-fR-437" secondAttribute="centerY" id="kHe-y5-HpY"/>
+                                                                <constraint firstAttribute="trailing" secondItem="M1W-mp-66a" secondAttribute="trailing" id="1WA-Rt-sQZ"/>
+                                                                <constraint firstItem="M1W-mp-66a" firstAttribute="top" secondItem="gmQ-fR-437" secondAttribute="top" id="9BH-Ov-3fg"/>
+                                                                <constraint firstAttribute="bottom" secondItem="RIm-dS-fnu" secondAttribute="bottom" constant="3" id="b82-U5-zyW"/>
                                                                 <constraint firstItem="RIm-dS-fnu" firstAttribute="centerX" secondItem="gmQ-fR-437" secondAttribute="centerX" id="qYD-a4-TU6"/>
                                                             </constraints>
                                                             <connections>
@@ -442,6 +480,9 @@
                                                                 <outlet property="cardBackgroundView" destination="RIm-dS-fnu" id="dd2-zu-99w"/>
                                                                 <outlet property="cardNumberLabel" destination="jnY-IT-WCp" id="IUI-4q-0HK"/>
                                                                 <outlet property="checkmarkImageView" destination="vuk-jQ-q4G" id="kj8-Sm-2fh"/>
+                                                                <outlet property="deleteButton" destination="OB0-nP-6ta" id="T48-wb-km3"/>
+                                                                <outlet property="deleteIconImageView" destination="yBe-WZ-geX" id="msM-Er-TOg"/>
+                                                                <outlet property="deleteView" destination="M1W-mp-66a" id="ZWf-ex-VLH"/>
                                                                 <outlet property="smallIconImageView" destination="THH-4u-gym" id="7tP-nK-sEk"/>
                                                             </connections>
                                                         </collectionViewCell>
@@ -462,7 +503,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WebPaymentOptionTableViewCell" rowHeight="46" id="t9U-Rf-tdf" customClass="WebPaymentOptionTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="231" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="237" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t9U-Rf-tdf" id="MPz-fP-UKt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
@@ -543,7 +584,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardInputTableViewCell" rowHeight="192" id="w9J-dN-6b9" customClass="CardInputTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="277" width="375" height="192"/>
+                                        <rect key="frame" x="0.0" y="283" width="375" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w9J-dN-6b9" id="fFx-GN-gMp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
@@ -1840,11 +1881,11 @@
                         <viewControllerLayoutGuide type="bottom" id="bfl-8B-89Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2a3-ZM-oMY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-4D-BEt">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-xZ-fUC" customClass="WebViewProgressBar" customModule="goSellSDK">
@@ -1883,6 +1924,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="06D-E8-sJc"/>
+        <segue reference="rU0-K6-wi7"/>
     </inferredMetricsTieBreakers>
 </document>

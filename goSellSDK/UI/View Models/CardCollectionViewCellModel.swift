@@ -5,7 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   TapAdditionsKit.TypeAlias
 import class    TapNetworkManager.TapImageLoader
+import class    UIKit.UIAlertController.UIAlertAction
+import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.UIImage.UIImage
 
 internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel {
@@ -30,11 +33,30 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         return PaymentDataManager.shared.paymentOptions.first { $0.supportedCardBrands.contains(self.card.brand) }
     }
     
+    internal var isDeleteCellMode: Bool {
+        
+        get {
+            
+            return self.storedIsInDeleteCellMode
+        }
+        set {
+            
+            guard self.storedIsInDeleteCellMode != newValue else { return }
+            self.storedIsInDeleteCellMode = newValue
+            
+            PaymentDataManager.shared.isInDeleteSavedCardsMode = newValue
+            
+            self.updateCell(animated: true)
+        }
+    }
+    
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, card: SavedCard) {
+    internal init(indexPath: IndexPath, card: SavedCard, parentModel: CardsContainerTableViewCellModel) {
         
-        self.card = card
+        self.card           = card
+        self.parentModel    = parentModel
+        
         super.init(indexPath: indexPath)
         
         self.loadCardImages()
@@ -76,6 +98,10 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         }
     }
     
+    private var storedIsInDeleteCellMode = false
+    
+    private unowned let parentModel: CardsContainerTableViewCellModel
+    
     // MARK: Methods
     
     private func loadCardImages() {
@@ -98,6 +124,45 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
                 guard let strongerSelf = strongSelf, let nonnullImage = image else { return }
                 strongerSelf.cardBankLogo = nonnullImage
             }
+        }
+    }
+    
+    private func showDeleteCardAlert(with decision: @escaping TypeAlias.BooleanClosure) {
+        
+        let alert = UIAlertController(title: "Delete Card", message: "Are you sure you would like to delete card \(self.cardNumberText)?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak alert] (action) in
+            
+            alert?.dismissFromSeparateWindow(true, completion: nil)
+            decision(false)
+        }
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak alert] (action) in
+            
+            alert?.dismissFromSeparateWindow(true, completion: nil)
+            decision(true)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+        DispatchQueue.main.async {
+            
+            alert.showOnSeparateWindow(true, completion: nil)
+        }
+    }
+    
+    private func deleteCard() {
+        
+        guard   let cardIdentifier = self.card.identifier,
+                let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier else { return }
+        
+        let loader = PaymentDataManager.shared.showLoadingController(false)
+        APIClient.shared.deleteCard(with: cardIdentifier, from: customerIdentifier) { [weak loader, weak self] (response, error) in
+            
+            loader?.hide()
+            
+            guard let strongSelf = self, error == nil else { return }
+            
+            strongSelf.parentModel.deleteCardModel(strongSelf)
         }
     }
 }
@@ -129,7 +194,31 @@ extension CardCollectionViewCellModel: CardCollectionViewCellLoading {
         
         return Constants.checkmarkImage
     }
+    
+    internal var deleteCardImage: UIImage {
+        
+        return Theme.current.settings.generalImages.closeImage
+    }
+    
+    internal func deleteCardButtonClicked() {
+        
+        self.showDeleteCardAlert { [weak self] (shouldDeleteCard) in
+            
+            guard shouldDeleteCard else { return }
+            
+            self?.deleteCard()
+        }
+    }
 }
 
 // MARK: - SingleCellModel
 extension CardCollectionViewCellModel: SingleCellModel {}
+
+// MARK: - Equatable
+extension CardCollectionViewCellModel: Equatable {
+    
+    internal static func == (lhs: CardCollectionViewCellModel, rhs: CardCollectionViewCellModel) -> Bool {
+        
+        return lhs.card == rhs.card
+    }
+}
