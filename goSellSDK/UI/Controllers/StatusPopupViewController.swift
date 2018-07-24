@@ -62,9 +62,6 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     
     internal func display(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        self.modalPresentationStyle = .custom
-        self.transitioningDelegate = Transitioning.shared
-        
         let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
             
             rootController.view.layout()
@@ -85,17 +82,24 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
         super.hide(animated: animated, async: async, completion: completion)
     }
     
+    deinit {
+        
+        self.transitioning = nil
+    }
+    
     // MARK: - Private -
     
     /// Transitions handler for Status Popup View Controller.
-    fileprivate final class Transitioning: NSObject {
+    private final class Transitioning: NSObject, UIViewControllerTransitioningDelegate {
         
-        fileprivate static var storage: Transitioning?
-        
-        private override init() {
+        fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
             
-            super.init()
-            KnownSingletonTypes.add(Transitioning.self)
+            return PopupAnimationController(operation: .presentation)
+        }
+        
+        fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            
+            return PopupAnimationController(operation: .dismissal)
         }
     }
     
@@ -142,6 +146,8 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     }
     
     private static var storage: StatusPopupViewController?
+    
+    private lazy var transitioning: Transitioning? = Transitioning()
     
     // MARK: Methods
     
@@ -207,51 +213,13 @@ extension StatusPopupViewController: Singleton {
         }
         
         let instance = StatusPopupViewController.instantiate()
+        instance.modalPresentationStyle = .custom
+        instance.transitioningDelegate = instance.transitioning
+        
         self.storage = instance
         
         return instance
     }
     
     internal static func destroyInstance() { }
-}
-
-// MARK: - Singleton
-extension StatusPopupViewController.Transitioning: Singleton {
-    
-    internal static var hasAliveInstance: Bool {
-        
-        return self.storage != nil
-    }
-    
-    fileprivate static var shared: StatusPopupViewController.Transitioning {
-        
-        if let nonnullStorage = self.storage {
-            
-            return nonnullStorage
-        }
-        
-        let instance = StatusPopupViewController.Transitioning()
-        self.storage = instance
-        
-        return instance
-    }
-    
-    fileprivate static func destroyInstance() {
-        
-        self.storage = nil
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension StatusPopupViewController.Transitioning: UIViewControllerTransitioningDelegate {
-    
-    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return PopupAnimationController(operation: .presentation)
-    }
-    
-    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return PopupAnimationController(operation: .dismissal)
-    }
 }

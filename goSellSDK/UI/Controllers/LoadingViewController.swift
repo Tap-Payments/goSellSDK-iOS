@@ -55,18 +55,26 @@ internal final class LoadingViewController: SeparateWindowViewController {
         self.descriptionLabel?.text = self.text
     }
     
+    deinit {
+        
+        self.transitioning = nil
+    }
+    
     // MARK: - Fileprivate -
     
     /// Loading view controller transitioning handler.
-    fileprivate final class Transitioning: NSObject {
+    private final class Transitioning: NSObject, UIViewControllerTransitioningDelegate {
         
-        fileprivate var shouldUseFadeAnimation = true
-        fileprivate static var storage: Transitioning?
+        fileprivate var shouldUseFadeAnimation: Bool = true
         
-        private override init() {
+        fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
             
-            super.init()
-            KnownSingletonTypes.add(Transitioning.self)
+            return self.shouldUseFadeAnimation ? FadeAnimationController(operation: .presentation) : PaymentPresentationAnimationController(animateBlur: false)
+        }
+        
+        fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            
+            return self.shouldUseFadeAnimation ? FadeAnimationController(operation: .dismissal) : PaymentDismissalAnimationController(animateBlur: false)
         }
     }
     
@@ -99,6 +107,8 @@ internal final class LoadingViewController: SeparateWindowViewController {
     
     private static var storage: LoadingViewController?
     
+    private lazy var transitioning: Transitioning? = Transitioning()
+    
     // MARK: Methods
     
     private static func createAndSetupController() -> LoadingViewController {
@@ -107,7 +117,7 @@ internal final class LoadingViewController: SeparateWindowViewController {
         
         let controller = self.shared
         controller.modalPresentationStyle = .custom
-        controller.transitioningDelegate = Transitioning.shared
+        controller.transitioningDelegate = controller.transitioning
         
         return controller
     }
@@ -138,58 +148,16 @@ extension LoadingViewController: Singleton {
         }
         
         let instance = LoadingViewController.instantiate()
+        instance.transitioning?.shouldUseFadeAnimation = true
         self.storage = instance
-        
-        Transitioning.shared.shouldUseFadeAnimation = true
         
         return instance
     }
     
     internal static func destroyInstance() {
         
-        Transitioning.shared.shouldUseFadeAnimation = false
+        self.storage?.transitioning?.shouldUseFadeAnimation = false
         self.storage?.hide(animated: true)
         self.storage = nil
-    }
-}
-
-// MARK: - Singleton
-extension LoadingViewController.Transitioning: Singleton {
-    
-    fileprivate static var hasAliveInstance: Bool {
-        
-        return self.storage != nil
-    }
-    
-    fileprivate static var shared: LoadingViewController.Transitioning {
-        
-        if let nonnullStorage = self.storage {
-            
-            return nonnullStorage
-        }
-        
-        let instance = LoadingViewController.Transitioning()
-        self.storage = instance
-        
-        return instance
-    }
-    
-    fileprivate static func destroyInstance() {
-        
-        self.storage = nil
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension LoadingViewController.Transitioning: UIViewControllerTransitioningDelegate {
-    
-    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return self.shouldUseFadeAnimation ? FadeAnimationController(operation: .presentation) : PaymentPresentationAnimationController(animateBlur: false)
-    }
-    
-    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return self.shouldUseFadeAnimation ? FadeAnimationController(operation: .dismissal) : PaymentDismissalAnimationController(animateBlur: false)
     }
 }

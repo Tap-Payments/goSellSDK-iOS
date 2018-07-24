@@ -396,7 +396,7 @@ internal extension PaymentDataManager {
         
         let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
         
-        let popup = StatusPopupViewController.instantiate()
+        let popup           = StatusPopupViewController.shared
         popup.titleText     = status.localizedDescription
         popup.subtitleText  = nil
         popup.iconImage     = .named("ic_x_red", in: .goSellSDKResources)
@@ -412,7 +412,7 @@ internal extension PaymentDataManager {
         
         let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
         
-        let popup = StatusPopupViewController.instantiate()
+        let popup           = StatusPopupViewController.shared
         popup.titleText     = "Successful"
         popup.subtitleText  = receiptNumber
         popup.iconImage     = .named("ic_checkmark_green", in: .goSellSDKResources)

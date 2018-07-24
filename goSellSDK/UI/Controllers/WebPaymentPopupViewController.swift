@@ -54,18 +54,32 @@ internal final class WebPaymentPopupViewController: SeparateWindowViewController
         }
     }
     
+    deinit {
+        
+        self.transitioning = nil
+    }
+    
     // MARK: - Fileprivate -
     
     /// Transition handler for Web Payment Popup View Controller.
-    fileprivate final class Transitioning: NSObject {
+    private final class Transitioning: NSObject, UIViewControllerTransitioningDelegate {
         
         fileprivate var shouldUseDefaultWebPopupAnimation = true
-        fileprivate static var storage: Transitioning?
         
-        private override init() {
+        fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
             
-            KnownSingletonTypes.add(Transitioning.self)
-            super.init()
+            guard let to = presenting as? UIViewController & PopupPresentationSupport else { return nil }
+            
+            return self.shouldUseDefaultWebPopupAnimation   ? PopupPresentationAnimationController(presentationFrom: presented, to: to)
+                : PaymentDismissalAnimationController()
+        }
+        
+        fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            
+            guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
+            
+            return self.shouldUseDefaultWebPopupAnimation   ? PopupPresentationAnimationController(dismissalFrom: from, to: to)
+                : PaymentDismissalAnimationController()
         }
     }
     
@@ -92,6 +106,8 @@ internal final class WebPaymentPopupViewController: SeparateWindowViewController
         }
     }
     
+    private lazy var transitioning: Transitioning? = Transitioning()
+    
     // MARK: Methods
     
     private static func createAndSetupController() -> WebPaymentPopupViewController {
@@ -100,7 +116,7 @@ internal final class WebPaymentPopupViewController: SeparateWindowViewController
         
         let controller = self.shared
         controller.modalPresentationStyle = .custom
-        controller.transitioningDelegate = Transitioning.shared
+        controller.transitioningDelegate = controller.transitioning
         
         return controller
     }
@@ -138,16 +154,16 @@ extension WebPaymentPopupViewController: Singleton {
         }
         
         let instance = WebPaymentPopupViewController.instantiate()
-        self.storage = instance
+        instance.transitioning?.shouldUseDefaultWebPopupAnimation = true
         
-        Transitioning.shared.shouldUseDefaultWebPopupAnimation = true
+        self.storage = instance
         
         return instance
     }
     
     internal static func destroyInstance() {
         
-        Transitioning.shared.shouldUseDefaultWebPopupAnimation = false
+        self.storage?.transitioning?.shouldUseDefaultWebPopupAnimation = false
         self.storage?.hide(animated: true)
         self.storage = nil
     }
@@ -164,53 +180,6 @@ extension WebPaymentPopupViewController: WebPaymentContentViewControllerDelegate
     internal func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController) {
         
         self.hide()
-    }
-}
-
-// MARK: - Singleton
-extension WebPaymentPopupViewController.Transitioning: Singleton {
-    
-    fileprivate static var hasAliveInstance: Bool {
-        
-        return self.storage != nil
-    }
-    
-    fileprivate static var shared: WebPaymentPopupViewController.Transitioning {
-        
-        if let nonnullStorage = self.storage {
-            
-            return nonnullStorage
-        }
-        
-        let instance = WebPaymentPopupViewController.Transitioning()
-        self.storage = instance
-        
-        return instance
-    }
-    
-    fileprivate static func destroyInstance() {
-        
-        self.storage = nil
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension WebPaymentPopupViewController.Transitioning: UIViewControllerTransitioningDelegate {
-    
-    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        guard let to = presenting as? UIViewController & PopupPresentationSupport else { return nil }
-        
-        return self.shouldUseDefaultWebPopupAnimation   ? PopupPresentationAnimationController(presentationFrom: presented, to: to)
-                                                        : PaymentDismissalAnimationController()
-    }
-    
-    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
-        
-        return self.shouldUseDefaultWebPopupAnimation   ? PopupPresentationAnimationController(dismissalFrom: from, to: to)
-                                                        : PaymentDismissalAnimationController()
     }
 }
 
