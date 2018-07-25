@@ -5,8 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct TapAdditionsKit.TypeAlias
-import enum TapCardValidator.CardBrand
+import struct   TapAdditionsKit.TypeAlias
+import enum     TapCardValidator.CardBrand
+import class    UIKit.UIAlertController.UIAlertAction
+import class    UIKit.UIAlertController.UIAlertController
 
 /// Payment data manager.
 internal final class PaymentDataManager {
@@ -173,7 +175,63 @@ internal final class PaymentDataManager {
         selectedModel.tableView?.scrollToRow(at: selectedModel.indexPath, at: .none, animated: false)
     }
     
-    internal static func closePayment(withFadeAnimation: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal func closePayment(with status: PaymentStatus, fadeAnimation: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
+        
+        let localCompletion: TypeAlias.BooleanClosure = { (closed) in
+            
+            if closed {
+                
+                self.reportDelegateOnPaymentCompletion(with: status)
+            }
+            
+            completion?()
+        }
+        
+        if self.isCallingPaymentAPI || self.isChargeInProgress  {
+            
+            self.showCancelPaymentAlert { (shouldClose) in
+                
+                if shouldClose {
+                    
+                    self.forceClosePayment(withFadeAnimation: fadeAnimation) {
+                        
+                        localCompletion(true)
+                    }
+                }
+                else {
+                    
+                    localCompletion(false)
+                }
+            }
+        }
+        else {
+            
+            self.forceClosePayment(withFadeAnimation: fadeAnimation) {
+                
+                localCompletion(true)
+            }
+        }
+    }
+    
+    private func reportDelegateOnPaymentCompletion(with status: PaymentStatus) {
+        
+        switch status {
+            
+        case .cancelled:
+            
+            self.externalDelegate?.paymentCancel()
+            
+        case .success(let customerID):
+            
+            self.externalDelegate?.paymentSuccess(customerID)
+            
+        case .failure:
+            
+            self.externalDelegate?.paymentFailure()
+        }
+    }
+    
+    private func forceClosePayment(withFadeAnimation: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         LoadingViewController.destroyInstance()
         OTPViewController.destroyInstance()
@@ -222,6 +280,26 @@ internal final class PaymentDataManager {
     // MARK: Properties
     
     private var isLoadingPaymentOptions = false
+    
+    private var isCallingPaymentAPI: Bool {
+        
+        let activeRoutes = Set(APIClient.shared.activeRequests.compactMap { Route(rawValue: $0.path) })
+        let paymentAPIRoutes: Set<Route> = Set([.charges, .chargeAuthentication, .token, .tokens])
+        
+        return activeRoutes.intersection(paymentAPIRoutes).count > 0
+    }
+    
+    private var isChargeInProgress: Bool {
+        
+        guard let charge = self.currentCharge else { return false }
+        
+        switch charge.status {
+            
+        case .initiated, .inProgress: return true
+        default: return false
+            
+        }
+    }
     
     private var paymentOptionsResponse: PaymentOptionsResponse? {
         
@@ -272,6 +350,37 @@ internal final class PaymentDataManager {
     private func nextIndexPath(for temporaryCellModels: [CellViewModel]) -> IndexPath {
         
         return IndexPath(row: temporaryCellModels.count, section: 0)
+    }
+    
+    private func showCancelPaymentAlert(with decision: @escaping TypeAlias.BooleanClosure) {
+        
+        let alert = UIAlertController(title: "Cancel Payment", message: "Would you like to cancel payment? Payment status will be undefined.", preferredStyle: .alert)
+        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(false)
+        }
+        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(true)
+        }
+        
+        alert.addAction(cancelCancelAction)
+        alert.addAction(confirmCancelAction)
+        
+        DispatchQueue.main.async {
+            
+            alert.showOnSeparateWindow(true, completion: nil)
+        }
     }
     
     private func paymentOptions(of type: PaymentType) -> [PaymentOption] {

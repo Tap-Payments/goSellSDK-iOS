@@ -39,6 +39,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.dependency 'TapApplication'
     goSellSDK.dependency 'TapCardValidator'
     goSellSDK.dependency 'TapEditableView'
+    goSellSDK.dependency 'TapGLKit/LinearGradientView'
     goSellSDK.dependency 'TapGLKit/TapActivityIndicatorView'
     goSellSDK.dependency 'TapKeychain'
     goSellSDK.dependency 'TapNetworkManager/Core'

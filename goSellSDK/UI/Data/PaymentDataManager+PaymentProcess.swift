@@ -115,6 +115,15 @@ internal extension PaymentDataManager {
         self.handleChargeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: self.currentPaymentCardBINNumber)
     }
     
+    internal func paymentCancelled() {
+        
+        self.lastSelectedPaymentOption = nil
+        self.currentPaymentOption = nil
+        self.currentPaymentCardBINNumber = nil
+        self.urlToLoadInWebPaymentController = nil
+        self.currentCharge = nil
+    }
+    
     // MARK: - Private -
     
     private struct PaymentProcessConstants {
@@ -374,21 +383,17 @@ internal extension PaymentDataManager {
     
     private func paymentSuccess(with receiptNumber: String, customerID: String) {
         
-        self.externalDelegate?.paymentSuccess(customerID)
-        
         self.showPaymentSuccessPopup(with: receiptNumber) {
             
-            PaymentDataManager.closePayment(withFadeAnimation: true)
+            self.closePayment(with: .success(customerID), fadeAnimation: true)
         }
     }
     
     private func paymentFailure(with status: ChargeStatus) {
         
-        self.externalDelegate?.paymentFailure()
-        
         self.showPaymentFailurePopup(with: status) {
-        
-             PaymentDataManager.closePayment(withFadeAnimation: true)
+            
+            self.closePayment(with: .failure, fadeAnimation: true)
         }
     }
     

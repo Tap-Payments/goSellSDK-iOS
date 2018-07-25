@@ -97,7 +97,6 @@ internal final class WebPaymentContentViewController: BaseViewController {
     private func addWebViewOnScreen() {
         
         self.webView.navigationDelegate = self
-        self.webView.scrollView.delegate = self
         self.webViewContainer?.addSubviewWithConstraints(self.webView)
     }
     
@@ -107,15 +106,6 @@ internal final class WebPaymentContentViewController: BaseViewController {
         
         let urlRequest = URLRequest(url: nonnullURL)
         self.webView.load(urlRequest)
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-extension WebPaymentContentViewController: UIScrollViewDelegate {
-    
-    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        self.delegate?.webPaymentContentViewController(self, webViewDidScroll: scrollView.contentOffset)
     }
 }
 

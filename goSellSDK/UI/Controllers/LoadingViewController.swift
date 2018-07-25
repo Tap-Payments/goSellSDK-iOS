@@ -102,7 +102,7 @@ internal final class LoadingViewController: SeparateWindowViewController {
     }
     
     @IBOutlet private weak var descriptionLabel: UILabel?
-    
+        
     private var text: String?
     
     private static var storage: LoadingViewController?

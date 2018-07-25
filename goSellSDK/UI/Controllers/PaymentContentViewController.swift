@@ -93,9 +93,6 @@ extension PaymentContentViewController: MerchantInformationHeaderViewControllerD
     
     internal func merchantInformationHeaderViewControllerCloseButtonClicked(_ controller: MerchantInformationHeaderViewController) {
         
-        PaymentDataManager.closePayment {
-            
-            PaymentDataManager.shared.externalDelegate?.paymentCancel()
-        }
+        PaymentDataManager.shared.closePayment(with: .cancelled)
     }
 }
