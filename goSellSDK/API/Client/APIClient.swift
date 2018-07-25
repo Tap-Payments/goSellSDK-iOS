@@ -41,6 +41,11 @@ internal final class APIClient {
         ]
     }
     
+    internal var activeRequests: [TapNetworkRequestOperation] {
+        
+        return self.networkManager.currentRequestOperations
+    }
+    
     // MARK: Methods
     
     /// Performs request.

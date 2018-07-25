@@ -18,15 +18,15 @@
                         <viewControllerLayoutGuide type="top" id="FBO-Rr-LEf"/>
                         <viewControllerLayoutGuide type="bottom" id="ox2-KM-yYs"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Fk-6B-c7C">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="7Fk-6B-c7C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-Sy-KrK" customClass="TapVisualEffectView" customModule="TapVisualEffectView">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-Sy-KrK" customClass="TapVisualEffectView" customModule="TapVisualEffectView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-y2-vBG">
+                            <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-y2-vBG">
                                 <rect key="frame" x="25" y="297.5" width="325" height="72.5"/>
                                 <subviews>
                                     <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-86-atf" customClass="TapActivityIndicatorView" customModule="TapGLKit">
@@ -53,6 +53,21 @@
                                     <constraint firstAttribute="trailing" secondItem="tvm-9s-RMI" secondAttribute="trailing" id="jS4-pB-qVM"/>
                                 </constraints>
                             </view>
+                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hs2-rG-qv8" customClass="LinearGradientView" customModule="TapGLKit">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="eCZ-a1-lLG"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="topToBottom" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </glkView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -60,7 +75,10 @@
                             <constraint firstItem="gPE-Sy-KrK" firstAttribute="leading" secondItem="7Fk-6B-c7C" secondAttribute="leading" id="AQk-V9-xfN"/>
                             <constraint firstItem="gPE-Sy-KrK" firstAttribute="top" secondItem="7Fk-6B-c7C" secondAttribute="top" id="Pbe-7W-Yk7"/>
                             <constraint firstItem="8OP-y2-vBG" firstAttribute="centerY" secondItem="7Fk-6B-c7C" secondAttribute="centerY" id="dCk-Vm-dOC"/>
+                            <constraint firstAttribute="trailing" secondItem="Hs2-rG-qv8" secondAttribute="trailing" id="fRh-X0-tYh"/>
                             <constraint firstAttribute="bottom" secondItem="gPE-Sy-KrK" secondAttribute="bottom" id="gVl-u1-j3M"/>
+                            <constraint firstItem="Hs2-rG-qv8" firstAttribute="leading" secondItem="7Fk-6B-c7C" secondAttribute="leading" id="gwN-5R-Y3q"/>
+                            <constraint firstItem="Hs2-rG-qv8" firstAttribute="top" secondItem="7Fk-6B-c7C" secondAttribute="top" id="jcV-Uv-Ea1"/>
                             <constraint firstItem="8OP-y2-vBG" firstAttribute="leading" secondItem="7Fk-6B-c7C" secondAttribute="leading" constant="25" id="sZq-jY-7rC"/>
                             <constraint firstAttribute="trailing" secondItem="8OP-y2-vBG" secondAttribute="trailing" constant="25" id="zNz-eq-p92"/>
                         </constraints>

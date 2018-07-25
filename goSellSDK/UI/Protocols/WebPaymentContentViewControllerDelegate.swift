@@ -10,7 +10,5 @@ import protocol TapAdditionsKit.ClassProtocol
 
 internal protocol WebPaymentContentViewControllerDelegate: ClassProtocol {
     
-    func webPaymentContentViewController(_ controller: WebPaymentContentViewController, webViewDidScroll contentOffset: CGPoint)
-    
     func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController)
 }

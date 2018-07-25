@@ -31,6 +31,7 @@ PODS:
     - TapApplication
     - TapCardValidator
     - TapEditableView
+    - TapGLKit/LinearGradientView
     - TapGLKit/TapActivityIndicatorView
     - TapKeychain
     - TapNetworkManager/Core
@@ -135,6 +136,8 @@ PODS:
     - TapAdditionsKit/SwiftStandartLibrary/String
     - TapAdditionsKit/UIKit/UIColor
     - TapAdditionsKit/UIKit/UIView
+  - TapGLKit/LinearGradientView (1.0):
+    - TapGLKit/Core
   - TapGLKit/TapActivityIndicatorView (1.0):
     - TapGLKit/AnimatedView
   - TapKeychain (1.0)
@@ -200,7 +203,7 @@ SPEC CHECKSUMS:
   Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
   EditableTextInsetsTextField: be73bcc31de6a83d457851deeb807c46b1cbb16e
   Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
-  goSellSDK: 213b4af88467cb59f5273cfc57842a9db6588f31
+  goSellSDK: 444992951d93da63806f3819e0e642c646758e48
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   TapAdditionsKit: fc145c29e8c6d7a1bea73838e74a351a5f2b4d98
   TapApplication: 3ba1ef06b929427582e6b750c1060c66b973ce22

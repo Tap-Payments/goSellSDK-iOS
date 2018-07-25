@@ -98,6 +98,8 @@ PODS:
     - TapAdditionsKit/SwiftStandartLibrary/String
     - TapAdditionsKit/UIKit/UIColor
     - TapAdditionsKit/UIKit/UIView
+  - TapGLKit/LinearGradientView (1.0):
+    - TapGLKit/Core
   - TapGLKit/TapActivityIndicatorView (1.0):
     - TapGLKit/AnimatedView
   - TapKeychain (1.0)
@@ -154,6 +156,7 @@ DEPENDENCIES:
   - TapApplication
   - TapCardValidator
   - TapEditableView
+  - TapGLKit/LinearGradientView
   - TapGLKit/TapActivityIndicatorView
   - TapKeychain
   - TapNetworkManager/Core
@@ -199,6 +202,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: 77af9d91c385dc42d9ee53d0f50958e5aef2d8fa
   TapVisualEffectView: d69ad714fef55a5c728069de51a3aa16607db164
 
-PODFILE CHECKSUM: 9be9a27972a3d7b7048afb8dc9737502c1e36500
+PODFILE CHECKSUM: 06a8e52b041ef867013f73ce201ba5baa8b603c4
 
 COCOAPODS: 1.5.3

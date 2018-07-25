@@ -61,6 +61,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             if willCancelPayment {
                 
                 APIClient.shared.cancelAllRequests()
+                PaymentDataManager.shared.paymentCancelled()
                 contentViewController.cancelLoading()
             }
             
@@ -176,7 +177,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     private func showCancelAttemptUndefinedStatusAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
         
-        let alert = UIAlertController(title: "Cancel", message: "Would you like to cancel payment? Payment status will be undefined.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Cancel Payment", message: "Would you like to cancel payment? Payment status will be undefined.", preferredStyle: .alert)
         let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
             
             DispatchQueue.main.async {
@@ -208,11 +209,6 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
 
 // MARK: - WebPaymentContentViewControllerDelegate
 extension WebPaymentViewController: WebPaymentContentViewControllerDelegate {
-    
-    internal func webPaymentContentViewController(_ controller: WebPaymentContentViewController, webViewDidScroll contentOffset: CGPoint) {
-        
-        self.updateHeaderShadowOpacity(with: contentOffset.y)
-    }
     
     internal func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController) {
         

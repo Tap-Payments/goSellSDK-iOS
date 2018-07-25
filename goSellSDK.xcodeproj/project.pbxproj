@@ -247,6 +247,8 @@
 		A48810EC20A2E92E00CDF5D4 /* LoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48810E420A2E92E00CDF5D4 /* LoadingImageView.swift */; };
 		A48810EE20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */; };
 		A48810EF20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */; };
+		A4A4D5F62108D2590063488E /* PaymentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4D5F52108D2590063488E /* PaymentStatus.swift */; };
+		A4A4D5F72108D2590063488E /* PaymentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4D5F52108D2590063488E /* PaymentStatus.swift */; };
 		A4A8545021076CF900B9DE00 /* WobblingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8544F21076CF800B9DE00 /* WobblingView.swift */; };
 		A4A8545121076CF900B9DE00 /* WobblingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8544F21076CF800B9DE00 /* WobblingView.swift */; };
 		A4A8545321076D6C00B9DE00 /* APIClient+Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A8545221076D6B00B9DE00 /* APIClient+Card.swift */; };
@@ -725,6 +727,7 @@
 		A48810E320A2E92E00CDF5D4 /* LoadingImageViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingImageViewState.swift; sourceTree = "<group>"; };
 		A48810E420A2E92E00CDF5D4 /* LoadingImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingImageView.swift; sourceTree = "<group>"; };
 		A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TapNavigationView.xib; sourceTree = "<group>"; };
+		A4A4D5F52108D2590063488E /* PaymentStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentStatus.swift; sourceTree = "<group>"; };
 		A4A8544F21076CF800B9DE00 /* WobblingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WobblingView.swift; sourceTree = "<group>"; };
 		A4A8545221076D6B00B9DE00 /* APIClient+Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Card.swift"; sourceTree = "<group>"; };
 		A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCardResponse.swift; sourceTree = "<group>"; };
@@ -1323,6 +1326,7 @@
 			isa = PBXGroup;
 			children = (
 				A424879B20E4F3C0001C4FAF /* OTPTimerState.swift */,
+				A4A4D5F52108D2590063488E /* PaymentStatus.swift */,
 				A4F7106A20B554480064FE4B /* TextInputType.swift */,
 				A4BD8D1820A1F3C800EFF2CE /* ValidationType.swift */,
 				A43A0A5A20D93E3F006B39F1 /* ViewControllerOperation.swift */,
@@ -1878,6 +1882,7 @@
 				A4D5310A208A46E700830AD8 /* APIClient+PaymentTypes.swift in Sources */,
 				A482F73120853FF200AA76A4 /* goSellSDK.swift in Sources */,
 				A4444BF220AB535F005D9E87 /* BINResponse.swift in Sources */,
+				A4A4D5F62108D2590063488E /* PaymentStatus.swift in Sources */,
 				A4A9828520D2B32000770690 /* CreateTokenCard.swift in Sources */,
 				A479F7252099DB2100556E10 /* PaymentItem.swift in Sources */,
 				A408C06720BC05B9005E74AD /* InitializableWithString.swift in Sources */,
@@ -2110,6 +2115,7 @@
 				A4BD8D8820A1FB3D00EFF2CE /* WebPaymentOptionTableViewCellModel.swift in Sources */,
 				A4BD8D1A20A1F3C800EFF2CE /* ValidationType.swift in Sources */,
 				A4A9828C20D2B32000770690 /* Receipt.swift in Sources */,
+				A4A4D5F72108D2590063488E /* PaymentStatus.swift in Sources */,
 				A4571EFE20FE2367006D96DC /* AddressType+Additions.swift in Sources */,
 				A4F7102A20B550760064FE4B /* ListValue.swift in Sources */,
 				A42758AA20A3615200D214EE /* CardInputTableViewCellModel+CardScanning.swift in Sources */,
