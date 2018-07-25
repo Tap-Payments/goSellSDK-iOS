@@ -8,6 +8,7 @@
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIResponder.UIResponder
+import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal class SeparateWindowViewController: BaseViewController {
     
@@ -18,7 +19,7 @@ internal class SeparateWindowViewController: BaseViewController {
         
         let showClosure: TypeAlias.ArgumentlessClosure = {
             
-            self.showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled) { [unowned self] (rootController) in
+            self.showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled, below: UIWindowLevelStatusBar) { [unowned self] (rootController) in
                 
                 parentControllerSetupClosure?(rootController)
                 rootController.present(self, animated: animated, completion: completion)

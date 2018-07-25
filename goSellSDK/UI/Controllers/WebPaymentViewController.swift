@@ -14,6 +14,7 @@ import class    UIKit.UIImage.UIImage
 import class    UIKit.UIScreen.UIScreen
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UIView.UIView
+import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal class WebPaymentViewController: HeaderNavigatedViewController {
     
@@ -171,7 +172,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, completion: nil)
+            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
         }
     }
     
@@ -202,7 +203,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, completion: nil)
+            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
         }
     }
 }
