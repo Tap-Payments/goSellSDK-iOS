@@ -28,7 +28,7 @@ internal final class PaymentPresentationAnimationController: NSObject {
     
     private struct Constants {
         
-        fileprivate static let animationDuration: TimeInterval = 0.4
+        fileprivate static let animationDuration: TimeInterval = 0.6
         
         @available(*, unavailable) private init() {}
     }
