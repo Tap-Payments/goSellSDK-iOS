@@ -9,6 +9,7 @@ import struct   TapAdditionsKit.TypeAlias
 import enum     TapCardValidator.CardBrand
 import class    UIKit.UIAlertController.UIAlertAction
 import class    UIKit.UIAlertController.UIAlertController
+import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 /// Payment data manager.
 internal final class PaymentDataManager {
@@ -379,7 +380,7 @@ internal final class PaymentDataManager {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, completion: nil)
+            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
         }
     }
     

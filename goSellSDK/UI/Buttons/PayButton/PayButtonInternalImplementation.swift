@@ -5,8 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class UIKit.UIStoryboard.UIStoryboard
-import class UIKit.UIView.UIView
+import class    UIKit.UIStoryboard.UIStoryboard
+import class    UIKit.UIView.UIView
+import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal protocol PayButtonInternalImplementation: PayButtonProtocol {
     
@@ -73,7 +74,7 @@ internal extension PayButtonInternalImplementation {
             controller.payButton = selfAsView
         }
         
-        controller.showOnSeparateWindow { [unowned controller] (rootController) in
+        controller.showOnSeparateWindow(below: UIWindowLevelStatusBar) { [unowned controller] (rootController) in
             
             rootController.allowedInterfaceOrientations = .portrait
             rootController.preferredInterfaceOrientation = .portrait

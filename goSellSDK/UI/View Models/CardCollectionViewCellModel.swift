@@ -10,6 +10,7 @@ import class    TapNetworkManager.TapImageLoader
 import class    UIKit.UIAlertController.UIAlertAction
 import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.UIImage.UIImage
+import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel {
     
@@ -146,7 +147,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, completion: nil)
+            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
         }
     }
     

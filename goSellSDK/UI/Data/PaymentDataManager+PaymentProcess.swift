@@ -11,6 +11,7 @@ import class    UIKit.UIAlertController.UIAlertAction
 import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIScreen.UIScreen
+import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal extension PaymentDataManager {
     
@@ -178,7 +179,7 @@ internal extension PaymentDataManager {
         alert.addAction(cancelAction)
         alert.addAction(confirmAction)
         
-        alert.showOnSeparateWindow(true, completion: nil)
+        alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
     }
     
     private func forceStartPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {
