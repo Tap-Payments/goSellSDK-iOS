@@ -7,6 +7,8 @@
 
 import struct   CoreGraphics.CGGeometry.CGRect
 import struct   TapAdditionsKit.TypeAlias
+import class    UIKit.UIAlertController.UIAlertAction
+import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIScreen.UIScreen
 
@@ -17,24 +19,25 @@ internal extension PaymentDataManager {
     
     internal func startPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {
         
-        if let savedCardPaymentOption = paymentOption as? CardCollectionViewCellModel {
+        let amount = self.userSelectedCurrency ?? self.transactionCurrency
+        let extraFeesAmount = AmountedCurrency(amount.currency, self.extraFeeAmount(from: paymentOption.paymentOption?.extraFees ?? [], in: amount))
+        if extraFeesAmount.amount > 0.0 {
             
-            let card = savedCardPaymentOption.card
-            let paymentOption = self.paymentOption(for: card)
-            self.startPaymentProcess(with: card, paymentOption: paymentOption)
-        }
-        else if let webPaymentOption = paymentOption as? WebPaymentOptionTableViewCellModel {
-            
-            self.startPaymentProcess(withWebPaymentOption: webPaymentOption.paymentOption)
-        }
-        else if let cardPaymentOption = paymentOption as? CardInputTableViewCellModel, let card = cardPaymentOption.card {
-
-            guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else {
+            self.showExtraFeesPaymentAlert(with: amount, extraFeesAmount: extraFeesAmount) { (shouldProcessPayment) in
                 
-                fatalError("Selected payment option is not defined.")
+                if shouldProcessPayment {
+                    
+                    self.forceStartPaymentProcess(with: paymentOption)
+                }
+                else {
+                    
+                    self.deselectAllPaymentOptionsModels()
+                }
             }
+        }
+        else {
             
-            self.startPaymentProcess(with: card, paymentOption: selectedPaymentOption, saveCard: cardPaymentOption.shouldSaveCard)
+            self.forceStartPaymentProcess(with: paymentOption)
         }
     }
     
@@ -117,11 +120,11 @@ internal extension PaymentDataManager {
     
     internal func paymentCancelled() {
         
-        self.lastSelectedPaymentOption = nil
-        self.currentPaymentOption = nil
-        self.currentPaymentCardBINNumber = nil
-        self.urlToLoadInWebPaymentController = nil
-        self.currentCharge = nil
+        self.lastSelectedPaymentOption          = nil
+        self.currentPaymentOption               = nil
+        self.currentPaymentCardBINNumber        = nil
+        self.urlToLoadInWebPaymentController    = nil
+        self.currentCharge                      = nil
     }
     
     // MARK: - Private -
@@ -148,6 +151,58 @@ internal extension PaymentDataManager {
     }
     
     // MARK: Methods
+    
+    private func showExtraFeesPaymentAlert(with plainAmount: AmountedCurrency, extraFeesAmount: AmountedCurrency, decision: @escaping TypeAlias.BooleanClosure) {
+        
+        let totalAmount = AmountedCurrency(plainAmount.currency, plainAmount.amount + extraFeesAmount.amount, plainAmount.currencySymbol)
+        
+        let extraFeesAmountText = CurrencyFormatter.shared.format(extraFeesAmount)
+        let totalAmountText = CurrencyFormatter.shared.format(totalAmount)
+        
+        let title = "Confirm extra charges"
+        let message = "You will be charged an additional fee of \(extraFeesAmountText) for this type of payment, totaling an amount of \(totalAmountText)"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak alert] (action) in
+            
+            alert?.dismissFromSeparateWindow(true, completion: nil)
+            decision(false)
+        }
+        
+        let confirmAction: UIAlertAction = UIAlertAction(title: "Confirm", style: .default) { [weak alert] (action) in
+            
+            alert?.dismissFromSeparateWindow(true, completion: nil)
+            decision(true)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(confirmAction)
+        
+        alert.showOnSeparateWindow(true, completion: nil)
+    }
+    
+    private func forceStartPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {
+        
+        if let savedCardPaymentOption = paymentOption as? CardCollectionViewCellModel {
+            
+            let card = savedCardPaymentOption.card
+            let paymentOption = self.paymentOption(for: card)
+            self.startPaymentProcess(with: card, paymentOption: paymentOption)
+        }
+        else if let webPaymentOption = paymentOption as? WebPaymentOptionTableViewCellModel {
+            
+            self.startPaymentProcess(withWebPaymentOption: webPaymentOption.paymentOption)
+        }
+        else if let cardPaymentOption = paymentOption as? CardInputTableViewCellModel, let card = cardPaymentOption.card {
+            
+            guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else {
+                
+                fatalError("Selected payment option is not defined.")
+            }
+            
+            self.startPaymentProcess(with: card, paymentOption: selectedPaymentOption, saveCard: cardPaymentOption.shouldSaveCard)
+        }
+    }
     
     private func loadingControllerFrame(coveringHeader: Bool = false) -> CGRect {
     
