@@ -46,9 +46,9 @@ extension AddressFieldInputType: Decodable {
     
     private struct Constants {
         
-        fileprivate static let textInputType        = "text"
-        fileprivate static let numberInputType      = "number"
-        fileprivate static let dropdownInputType    = "dropdown"
+        fileprivate static let textInputType        = "TEXT"
+        fileprivate static let numberInputType      = "NUMBER"
+        fileprivate static let dropdownInputType    = "DROPDOWN"
         
         @available(*, unavailable) private init() {}
     }
