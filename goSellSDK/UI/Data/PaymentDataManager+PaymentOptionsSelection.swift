@@ -20,6 +20,7 @@ internal extension PaymentDataManager {
     internal func deselectAllPaymentOptionsModels() {
         
         self.ableToBeSelectedPaymentOptionCellModels.forEach { $0.isSelected = false }
+        self.updatePayButtonStateAndAmount()
     }
     
     internal func deselectAllPaymentOptionsModels(except model: PaymentOptionCellViewModel) {

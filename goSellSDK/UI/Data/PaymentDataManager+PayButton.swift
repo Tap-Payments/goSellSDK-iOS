@@ -43,7 +43,7 @@ internal extension PaymentDataManager {
             
             let amount = AmountedCurrency(amountedCurrency.currency,
                                           amountedCurrency.amount + extraFeeAmount,
-                                          currencySymbol: amountedCurrency.currencySymbol)
+                                          amountedCurrency.currencySymbol)
             
             self.payButtonUI?.amount = amount
         }
