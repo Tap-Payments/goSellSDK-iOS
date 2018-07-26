@@ -19,7 +19,7 @@ internal class BaseTableViewCell: UITableViewCell {
         self.translatesAutoresizingMaskIntoConstraints = true
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        if let glowingCell = self as? GlowingCell {
+        if let glowingCell = self as? GlowingViewHandler {
             
             glowingCell.prepareForGlowing()
         }
@@ -29,7 +29,7 @@ internal class BaseTableViewCell: UITableViewCell {
         
         super.prepareForReuse()
         
-        if let glowingCell = self as? GlowingCell {
+        if let glowingCell = self as? GlowingViewHandler {
             
             glowingCell.prepareForGlowing()
         }

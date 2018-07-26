@@ -64,7 +64,7 @@ internal class PaymentOptionCollectionCellViewModel: CollectionViewCellViewModel
     
     private func updateCellGlow() {
         
-        guard let glowingCell = self.collectionView?.cellForItem(at: self.indexPath) as? GlowingCell else { return }
+        guard let glowingCell = self.collectionView?.cellForItem(at: self.indexPath) as? GlowingViewHandler else { return }
         
         if self.isSelected {
             

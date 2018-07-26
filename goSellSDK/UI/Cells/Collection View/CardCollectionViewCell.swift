@@ -6,6 +6,7 @@
 //
 
 import class    UIKit.UIButton.UIButton
+import class    UIKit.UIColor.UIColor
 import class    UIKit.UIImageView.UIImageView
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UILongPressGestureRecognizer.UILongPressGestureRecognizer
@@ -161,16 +162,22 @@ extension CardCollectionViewCell: LoadingWithModelCell {
     }
 }
 
-// MARK: - GlowingCell
-extension CardCollectionViewCell: GlowingCell {
-
+// MARK: - AlwaysGlowingViewHandler
+extension CardCollectionViewCell: AlwaysGlowingViewHandler {
+    
     internal var glowingView: UIView {
         
         return self.cardBackgroundView ?? self
     }
+    
+    internal var standartGlowColor: UIColor {
+        
+        return UIColor.black.withAlphaComponent(0.08)
+    }
 }
 
-extension CardCollectionViewCell: WobblingView {
+// MARK: - WobblingViewHandler
+extension CardCollectionViewCell: WobblingViewHandler {
     
     internal var wobblingView: UIView {
         

@@ -1,5 +1,5 @@
 //
-//  WobblingView.swift
+//  WobblingViewHandler.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
@@ -11,12 +11,12 @@ import var      QuartzCore.CAMediaTiming.kCAFillModeForwards
 import func     QuartzCore.CATransform3D.CATransform3DMakeRotation
 import class    UIKit.UIView.UIView
 
-internal protocol WobblingView {
+internal protocol WobblingViewHandler {
     
     var wobblingView: UIView { get }
 }
 
-internal extension WobblingView {
+internal extension WobblingViewHandler {
     
     internal func startWobbling(with angle: CGFloat = CGFloat.pi / 36.0, duration: TimeInterval = 0.3) {
         

@@ -65,7 +65,7 @@ internal class PaymentOptionTableCellViewModel: TableViewCellViewModel, PaymentO
     
     private func updateCellGlow() {
         
-        guard let glowingCell = self.tableView?.cellForRow(at: self.indexPath) as? GlowingCell else { return }
+        guard let glowingCell = self.tableView?.cellForRow(at: self.indexPath) as? GlowingViewHandler else { return }
         
         glowingCell.setGlowing(self.isSelected)
     }

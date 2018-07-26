@@ -17,7 +17,7 @@ internal class BaseCollectionViewCell: UICollectionViewCell {
         self.translatesAutoresizingMaskIntoConstraints = true
         self.contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        if let glowingCell = self as? GlowingCell {
+        if let glowingCell = self as? GlowingViewHandler {
             
             glowingCell.prepareForGlowing()
         }
@@ -27,7 +27,7 @@ internal class BaseCollectionViewCell: UICollectionViewCell {
         
         super.prepareForReuse()
         
-        if let glowingCell = self as? GlowingCell {
+        if let glowingCell = self as? GlowingViewHandler {
             
             glowingCell.prepareForGlowing()
         }
