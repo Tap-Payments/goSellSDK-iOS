@@ -356,8 +356,8 @@ extension CardInputTableViewCell: BindingWithModelCell {
     }
 }
 
-// MARK: - GlowingCell
-extension CardInputTableViewCell: GlowingCell {
+// MARK: - GlowingViewHandler
+extension CardInputTableViewCell: GlowingViewHandler {
     
     internal var glowingView: UIView { return self }
 }
