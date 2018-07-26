@@ -194,6 +194,10 @@
 		A45991132109E4CB00E941D5 /* WobblingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45991102109E4CB00E941D5 /* WobblingViewHandler.swift */; };
 		A45991142109E4CB00E941D5 /* GlowingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45991112109E4CB00E941D5 /* GlowingViewHandler.swift */; };
 		A45991152109E4CB00E941D5 /* GlowingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45991112109E4CB00E941D5 /* GlowingViewHandler.swift */; };
+		A4599121210A04A100E941D5 /* StaticlyDestroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4599120210A04A100E941D5 /* StaticlyDestroyable.swift */; };
+		A4599122210A04A100E941D5 /* StaticlyDestroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4599120210A04A100E941D5 /* StaticlyDestroyable.swift */; };
+		A4599124210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4599123210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift */; };
+		A4599125210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4599123210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift */; };
 		A468772820DAC84900123391 /* Popups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468772720DAC84900123391 /* Popups.storyboard */; };
 		A468772920DAC84900123391 /* Popups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468772720DAC84900123391 /* Popups.storyboard */; };
 		A468773C20DC1F1600123391 /* SeparateWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468773A20DC1F1500123391 /* SeparateWindowViewController.swift */; };
@@ -687,6 +691,8 @@
 		A4571F1720FF54FE006D96DC /* WebPaymentPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPaymentPopupViewController.swift; sourceTree = "<group>"; };
 		A45991102109E4CB00E941D5 /* WobblingViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WobblingViewHandler.swift; sourceTree = "<group>"; };
 		A45991112109E4CB00E941D5 /* GlowingViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowingViewHandler.swift; sourceTree = "<group>"; };
+		A4599120210A04A100E941D5 /* StaticlyDestroyable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticlyDestroyable.swift; sourceTree = "<group>"; };
+		A4599123210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownStaticallyDestroyableTypes.swift; sourceTree = "<group>"; };
 		A468772720DAC84900123391 /* Popups.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popups.storyboard; sourceTree = "<group>"; };
 		A468773A20DC1F1500123391 /* SeparateWindowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparateWindowViewController.swift; sourceTree = "<group>"; };
 		A468773B20DC1F1600123391 /* StatusPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPopupViewController.swift; sourceTree = "<group>"; };
@@ -972,6 +978,7 @@
 				A4BD8CEC20A1F0B300EFF2CE /* BatchUpdates.swift */,
 				A4A8545821076FED00B9DE00 /* CardsCollectionViewLayout.swift */,
 				A4BD8CF520A1F0B300EFF2CE /* CurrencyFormatter.swift */,
+				A4599123210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift */,
 				A4BD8CED20A1F0B300EFF2CE /* Validators */,
 			);
 			path = Utils;
@@ -1445,6 +1452,7 @@
 				A4571F1020FF54EE006D96DC /* PopupPresentationSupport.swift */,
 				A4C0FC8C208DFA2200C5FBC6 /* SingleCellModel.swift */,
 				A456717620AD69F60057A504 /* Singleton.swift */,
+				A4599120210A04A100E941D5 /* StaticlyDestroyable.swift */,
 				A4F7102520B550760064FE4B /* TextFieldInputDataValidation.swift */,
 				A413DB1B20AEE04000C29C6B /* TextInputDataValidation.swift */,
 				A4F7102620B550760064FE4B /* TextLabelInputDataValidation.swift */,
@@ -1719,6 +1727,7 @@
 				A4C13A7620F4EF5500037EDC /* ElectricCurrent.swift in Sources */,
 				A4BD8CDB20A1EFFE00EFF2CE /* ImageTableViewCellModel.swift in Sources */,
 				A43A0A7A20DA877B006B39F1 /* InteractivePopViewController.swift in Sources */,
+				A4599121210A04A100E941D5 /* StaticlyDestroyable.swift in Sources */,
 				A4BD8D1F20A1F48B00EFF2CE /* CurrencyCodesDataManager.swift in Sources */,
 				A482F7642085DAF100AA76A4 /* TapSDKKnownError.swift in Sources */,
 				A4BD8D2920A1F61A00EFF2CE /* ErrorConstants.swift in Sources */,
@@ -1953,6 +1962,7 @@
 				A4571EF720FE2337006D96DC /* BillingAddressField.swift in Sources */,
 				A4AF5FC320CE840300AC254D /* PaymentItem+Amount.swift in Sources */,
 				A413DB2120AEE04000C29C6B /* CardBrandChangeReporting.swift in Sources */,
+				A4599124210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift in Sources */,
 				A424879620E4F2C9001C4FAF /* OTPInputView.swift in Sources */,
 				A4BD8CA820A1EF0300EFF2CE /* ThemeSettings.swift in Sources */,
 				A45991142109E4CB00E941D5 /* GlowingViewHandler.swift in Sources */,
@@ -2124,6 +2134,7 @@
 				A4BD8CA920A1EF0300EFF2CE /* ThemeSettings.swift in Sources */,
 				A4BD8CF920A1F0B300EFF2CE /* CardValidator.swift in Sources */,
 				A4BD8D0320A1F0B300EFF2CE /* CardholderNameValidator.swift in Sources */,
+				A4599122210A04A100E941D5 /* StaticlyDestroyable.swift in Sources */,
 				A4C13AB520F4F17600037EDC /* ExpirationDate+Additions.swift in Sources */,
 				A4BD8D3420A1F65800EFF2CE /* PaymentPresentationAnimationController.swift in Sources */,
 				A4571F1920FF54FE006D96DC /* WebPaymentContentViewController.swift in Sources */,
@@ -2140,6 +2151,7 @@
 				A424877820E4F0D8001C4FAF /* TapButtonDelegate.swift in Sources */,
 				A4BD8D4020A1F6AE00EFF2CE /* UICollectionView+Additions.swift in Sources */,
 				A4BD8D2A20A1F61A00EFF2CE /* ErrorConstants.swift in Sources */,
+				A4599125210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift in Sources */,
 				A4BE546D20A88DF3004E979E /* HeaderSettings.swift in Sources */,
 				A4571F1B20FF54FE006D96DC /* WebPaymentPopupViewController.swift in Sources */,
 				A401FC812100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */,

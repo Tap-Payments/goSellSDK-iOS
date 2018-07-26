@@ -71,7 +71,7 @@ internal final class SettingsDataManager {
     
     private init() {
         
-        KnownSingletonTypes.add(SettingsDataManager.self)
+        KnownStaticallyDestroyableTypes.add(SettingsDataManager.self)
     }
     
     private func append(_ completion: @escaping OptionalErrorClosure) {
@@ -106,13 +106,22 @@ internal final class SettingsDataManager {
     }
 }
 
-// MARK: - Singleton
-extension SettingsDataManager: Singleton {
+// MARK: - ImmediatelyDestroyable
+extension SettingsDataManager: ImmediatelyDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
+    }
+}
+
+// MARK: - Singleton
+extension SettingsDataManager: Singleton {
     
     internal static var shared: SettingsDataManager {
         
@@ -127,9 +136,6 @@ extension SettingsDataManager: Singleton {
         return instance
     }
     
-    internal static func destroyInstance() {
-        
-        self.storage = nil
-    }
+    
 }
 

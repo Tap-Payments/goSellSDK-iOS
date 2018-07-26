@@ -240,7 +240,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     private static func createAndSetupController() -> OTPViewController {
         
-        KnownSingletonTypes.add(OTPViewController.self)
+        KnownStaticallyDestroyableTypes.add(OTPViewController.self)
         
         let controller = self.shared
         controller.modalPresentationStyle = .custom
@@ -395,13 +395,28 @@ extension OTPViewController: InstantiatableFromStoryboard {
     }
 }
 
-// MARK: - Singleton
-extension OTPViewController: Singleton {
+// MARK: - DelayedDestroyable
+extension OTPViewController: DelayedDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
+        
+        self.storage?.transitioning?.shouldUseDefaultOTPAnimation = false
+        
+        self.storage?.hide(animated: true) {
+            
+            self.storage = nil
+            completion?()
+        }
+    }
+}
+
+// MARK: - Singleton
+extension OTPViewController: Singleton {
     
     internal static var shared: OTPViewController {
         
@@ -416,14 +431,6 @@ extension OTPViewController: Singleton {
         self.storage = instance
         
         return instance
-    }
-    
-    internal static func destroyInstance() {
-        
-        self.storage?.transitioning?.shouldUseDefaultOTPAnimation = false
-        
-        self.storage?.hide(animated: true)
-        self.storage = nil
     }
 }
 

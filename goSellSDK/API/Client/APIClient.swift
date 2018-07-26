@@ -233,7 +233,7 @@ internal final class APIClient {
     
     private init() {
         
-        KnownSingletonTypes.add(APIClient.self)
+        KnownStaticallyDestroyableTypes.add(APIClient.self)
     }
     
     private func handleResponse<Response>(_ response: Any?, error: Error?, in dataTask: URLSessionDataTask?, using decoder: JSONDecoder, completion: @escaping Completion<Response>) where Response: Decodable {
@@ -318,13 +318,22 @@ internal final class APIClient {
     }
 }
 
-// MARK: - Singleton
-extension APIClient: Singleton {
+// MARK: - ImmediatelyDestroyable
+extension APIClient: ImmediatelyDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
+    }
+}
+
+// MARK: - Singleton
+extension APIClient: Singleton {
     
     internal static var shared: APIClient {
         
@@ -339,8 +348,5 @@ extension APIClient: Singleton {
         return instance
     }
     
-    internal static func destroyInstance() {
-        
-        self.storage = nil
-    }
+    
 }

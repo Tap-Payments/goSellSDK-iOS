@@ -112,7 +112,7 @@ internal final class WebPaymentPopupViewController: SeparateWindowViewController
     
     private static func createAndSetupController() -> WebPaymentPopupViewController {
         
-        KnownSingletonTypes.add(WebPaymentPopupViewController.self)
+        KnownStaticallyDestroyableTypes.add(WebPaymentPopupViewController.self)
         
         let controller = self.shared
         controller.modalPresentationStyle = .custom
@@ -138,13 +138,28 @@ extension WebPaymentPopupViewController: InstantiatableFromStoryboard {
     }
 }
 
-// MARK: - Singleton
-extension WebPaymentPopupViewController: Singleton {
+// MARK: - DelayedDestroyable
+extension WebPaymentPopupViewController: DelayedDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
+        
+        self.storage?.transitioning?.shouldUseDefaultWebPopupAnimation = false
+        
+        self.storage?.hide(animated: true, async: true) {
+            
+            self.storage = nil
+            completion?()
+        }
+    }
+}
+
+// MARK: - Singleton
+extension WebPaymentPopupViewController: Singleton {
     
     internal static var shared: WebPaymentPopupViewController {
         
@@ -159,13 +174,6 @@ extension WebPaymentPopupViewController: Singleton {
         self.storage = instance
         
         return instance
-    }
-    
-    internal static func destroyInstance() {
-        
-        self.storage?.transitioning?.shouldUseDefaultWebPopupAnimation = false
-        self.storage?.hide(animated: true)
-        self.storage = nil
     }
 }
 
