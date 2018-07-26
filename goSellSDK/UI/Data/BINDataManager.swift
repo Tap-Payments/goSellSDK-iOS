@@ -59,7 +59,7 @@ internal final class BINDataManager {
     
     private init() {
         
-        KnownSingletonTypes.add(BINDataManager.self)
+        KnownStaticallyDestroyableTypes.add(BINDataManager.self)
     }
     
     private func callCompletion(_ closure: @escaping BINResult, with result: BINResponse) {
@@ -71,13 +71,22 @@ internal final class BINDataManager {
     }
 }
 
-// MARK: - Singleton
-extension BINDataManager: Singleton {
+// MARK: - ImmediatelyDestroyable
+extension BINDataManager: ImmediatelyDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
+    }
+}
+
+// MARK: - Singleton
+extension BINDataManager: Singleton {
     
     internal static var shared: BINDataManager {
         
@@ -90,10 +99,5 @@ extension BINDataManager: Singleton {
         self.storage = instance
         
         return instance
-    }
-    
-    internal static func destroyInstance() {
-        
-        self.storage = nil
     }
 }

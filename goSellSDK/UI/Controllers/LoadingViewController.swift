@@ -113,7 +113,7 @@ internal final class LoadingViewController: SeparateWindowViewController {
     
     private static func createAndSetupController() -> LoadingViewController {
         
-        KnownSingletonTypes.add(LoadingViewController.self)
+        KnownStaticallyDestroyableTypes.add(LoadingViewController.self)
         
         let controller = self.shared
         controller.modalPresentationStyle = .custom
@@ -132,13 +132,28 @@ extension LoadingViewController: InstantiatableFromStoryboard {
     }
 }
 
-// MARK: - Singleton
-extension LoadingViewController: Singleton {
+// MARK: - DelayedDestroyable
+extension LoadingViewController: DelayedDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
+        
+        self.storage?.transitioning?.shouldUseFadeAnimation = false
+        
+        self.storage?.hide(animated: true) {
+            
+            self.storage = nil
+            completion?()
+        }
+    }
+}
+
+// MARK: - Singleton
+extension LoadingViewController: Singleton {
     
     internal static var shared: LoadingViewController {
         
@@ -152,12 +167,5 @@ extension LoadingViewController: Singleton {
         self.storage = instance
         
         return instance
-    }
-    
-    internal static func destroyInstance() {
-        
-        self.storage?.transitioning?.shouldUseFadeAnimation = false
-        self.storage?.hide(animated: true)
-        self.storage = nil
     }
 }

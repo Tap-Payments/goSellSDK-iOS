@@ -79,7 +79,7 @@ internal final class CurrencyFormatter {
     
     private init() {
         
-        KnownSingletonTypes.add(CurrencyFormatter.self)
+        KnownStaticallyDestroyableTypes.add(CurrencyFormatter.self)
     }
     
     private func optionallyHardcodeCurrencySymbol(_ currencySymbol: inout String) {
@@ -98,13 +98,22 @@ internal final class CurrencyFormatter {
     }
 }
 
-// MARK: - Singleton
-extension CurrencyFormatter: Singleton {
+// MARK: - ImmediatelyDestroyable
+extension CurrencyFormatter: ImmediatelyDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
+    }
+}
+
+// MARK: - Singleton
+extension CurrencyFormatter: Singleton {
     
     internal static var shared: CurrencyFormatter {
         
@@ -119,8 +128,5 @@ extension CurrencyFormatter: Singleton {
         return instance
     }
     
-    internal static func destroyInstance() {
-        
-        self.storage = nil
-    }
+    
 }

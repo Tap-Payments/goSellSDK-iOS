@@ -234,21 +234,21 @@ internal final class PaymentDataManager {
     
     private func forceClosePayment(withFadeAnimation: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        LoadingViewController.destroyInstance()
-        OTPViewController.destroyInstance()
-        
-        if let paymentContentController = PaymentContentViewController.findInHierarchy() {
+        KnownStaticallyDestroyableTypes.destroyAllDelayedDestroyableInstances {
             
-            paymentContentController.hide(usingFadeAnimation: withFadeAnimation) {
+            if let paymentContentController = PaymentContentViewController.findInHierarchy() {
+                
+                paymentContentController.hide(usingFadeAnimation: withFadeAnimation) {
+                    
+                    PaymentDataManager.paymentClosed()
+                    completion?()
+                }
+            }
+            else {
                 
                 PaymentDataManager.paymentClosed()
                 completion?()
             }
-        }
-        else {
-            
-            PaymentDataManager.paymentClosed()
-            completion?()
         }
     }
     
@@ -345,7 +345,7 @@ internal final class PaymentDataManager {
     
     private init() {
         
-        KnownSingletonTypes.add(PaymentDataManager.self)
+        KnownStaticallyDestroyableTypes.add(PaymentDataManager.self)
     }
     
     private func nextIndexPath(for temporaryCellModels: [CellViewModel]) -> IndexPath {
@@ -604,17 +604,26 @@ internal final class PaymentDataManager {
     
     private static func paymentClosed() {
         
-        KnownSingletonTypes.destroyAllInstances()
+        KnownStaticallyDestroyableTypes.destroyAllInstances()
     }
 }
 
-// MARK: - Singleton
-extension PaymentDataManager: Singleton {
+// MARK: - ImmediatelyDestroyable
+extension PaymentDataManager: ImmediatelyDestroyable {
     
     internal static var hasAliveInstance: Bool {
         
         return self.storage != nil
     }
+    
+    internal static func destroyInstance() {
+        
+        self.storage = nil
+    }
+}
+
+// MARK: - Singleton
+extension PaymentDataManager: Singleton {
     
     internal static var shared: PaymentDataManager {
         
@@ -627,10 +636,5 @@ extension PaymentDataManager: Singleton {
         self.storage = instance
         
         return instance
-    }
-    
-    internal static func destroyInstance() {
-        
-        self.storage = nil
     }
 }
