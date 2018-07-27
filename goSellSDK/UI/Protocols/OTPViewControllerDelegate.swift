@@ -11,4 +11,5 @@ internal protocol OTPViewControllerDelegate: ClassProtocol {
     
     func otpViewControllerResendButtonTouchUpInside(_ controller: OTPViewController)
     func otpViewController(_ controller: OTPViewController, didEnter code: String)
+    func otpViewControllerDidCancel(_ controller: OTPViewController)
 }

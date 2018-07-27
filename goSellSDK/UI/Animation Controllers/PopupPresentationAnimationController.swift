@@ -27,6 +27,8 @@ internal class PopupPresentationAnimationController: NSObject {
     internal unowned let fromViewController: UIViewController
     internal unowned let toViewController: UIViewController
     
+    internal var canFinishInteractiveTransitionDecisionHandler: ((@escaping TypeAlias.BooleanClosure) -> Void)?
+    
     // MARK: Methods
     
     internal convenience init(presentationFrom from: UIViewController, to: PopupPresentationViewController, overlaysFromView: Bool = true, overlaySupport: PopupOverlaySupport? = nil) {
@@ -228,5 +230,17 @@ extension PopupPresentationAnimationController: InteractiveTransitionControllerD
         let animationOptions: UIViewKeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
         
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)
+    }
+    
+    internal func canFinishInteractiveTransition(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        if let nonnullHandler = self.canFinishInteractiveTransitionDecisionHandler {
+            
+            nonnullHandler(decision)
+        }
+        else {
+            
+            decision(true)
+        }
     }
 }
