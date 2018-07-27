@@ -39,6 +39,11 @@ extension PaymentDataManager: OTPViewControllerDelegate {
         }
     }
     
+    internal func otpViewControllerDidCancel(_ controller: OTPViewController) {
+        
+        self.paymentCancelled()
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     

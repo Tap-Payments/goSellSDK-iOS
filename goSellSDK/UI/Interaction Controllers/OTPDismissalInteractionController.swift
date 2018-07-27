@@ -48,8 +48,6 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
     internal override func cancel() {
         
         super.cancel()
-        
-        self.viewController.presentationAnimationAnimatingConstraint?.constant = 0.0
         self.firstResponderOnMomentOfDismissal?.becomeFirstResponder()
     }
     

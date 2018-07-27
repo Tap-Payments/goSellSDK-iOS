@@ -8,6 +8,8 @@
 import struct   CoreGraphics.CGGeometry.CGRect
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
+import class    UIKit.UIAlertController.UIAlertAction
+import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIColor.UIColor
@@ -23,15 +25,12 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
+import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 /// View controller that handles Tap OTP input.
 internal final class OTPViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
-    // MARK: Properties
-    
-    internal fileprivate(set) var dismissalInteractionController: OTPDismissalInteractionController?
-    
     // MARK: Methods
     
     internal static func show(in frame: CGRect, with phoneNumber: String, delegate: OTPViewControllerDelegate) {
@@ -78,7 +77,13 @@ internal final class OTPViewController: SeparateWindowViewController {
     deinit {
         
         self.transitioning = nil
+        self.timerDataManager.invalidateTimer()
     }
+    
+    // MARK: - Fileprivate -
+    // MARK: Properties
+    
+    fileprivate var dismissalInteractionController: OTPDismissalInteractionController?
     
     // MARK: - Private -
     
@@ -122,6 +127,18 @@ internal final class OTPViewController: SeparateWindowViewController {
                 let otpAnimator = animator as? PopupPresentationAnimationController,
                 let otpController = otpAnimator.fromViewController as? OTPViewController,
                 let interactionController = otpController.dismissalInteractionController, interactionController.isInteracting {
+                
+                otpAnimator.canFinishInteractiveTransitionDecisionHandler = { [weak otpController] (decision) in
+                    
+                    guard let controller = otpController else {
+                        
+                        decision(true)
+                        return
+                    }
+                    
+                    controller.canDismissInteractively(decision)
+
+                }
                 
                 interactionController.delegate = otpAnimator
                 return interactionController
@@ -213,7 +230,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     private var alreadyStartedFirstAttempt: Bool = false
     
-    private lazy var timerDataManager = OTPTimerDataManager()
+    private lazy var timerDataManager: OTPTimerDataManager = OTPTimerDataManager()
     
     private lazy var countdownDateFormatter: DateFormatter = {
         
@@ -370,7 +387,14 @@ internal final class OTPViewController: SeparateWindowViewController {
             return
         }
         
-        self.hide(animated: true)
+        self.showCancelAttemptAlert { (shouldCancel) in
+            
+            if shouldCancel {
+                
+                self.delegate?.otpViewControllerDidCancel(self)
+                self.hide(animated: true)
+            }
+        }
     }
     
     private func resendOTPCode() {
@@ -383,6 +407,56 @@ internal final class OTPViewController: SeparateWindowViewController {
         guard let code = self.otpInputView?.otp else { return }
         
         self.delegate?.otpViewController(self, didEnter: code)
+    }
+    
+    private func canDismissInteractively(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        self.showCancelAttemptAlert { [weak self] (shouldCancel) in
+            
+            guard let strongSelf = self else {
+                
+                decision(shouldCancel)
+                return
+            }
+            
+            if shouldCancel {
+                
+                strongSelf.delegate?.otpViewControllerDidCancel(strongSelf)
+            }
+            
+            decision(shouldCancel)
+        }
+    }
+    
+    private func showCancelAttemptAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
+        
+        let alert = UIAlertController(title: "Cancel", message: "Would you like to cancel payment?", preferredStyle: .alert)
+        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(false)
+        }
+        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+            
+            decision(true)
+        }
+        
+        alert.addAction(cancelCancelAction)
+        alert.addAction(confirmCancelAction)
+        
+        DispatchQueue.main.async {
+            
+            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+        }
     }
 }
 
@@ -405,11 +479,17 @@ extension OTPViewController: DelayedDestroyable {
     
     internal static func destroyInstance(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        self.storage?.transitioning?.shouldUseDefaultOTPAnimation = false
-        
-        self.storage?.hide(animated: true) {
+        if let nonnullStorage = self.storage {
             
-            self.storage = nil
+            nonnullStorage.transitioning?.shouldUseDefaultOTPAnimation = false
+            nonnullStorage.hide(animated: true) {
+                
+                self.storage = nil
+                completion?()
+            }
+        }
+        else {
+            
             completion?()
         }
     }

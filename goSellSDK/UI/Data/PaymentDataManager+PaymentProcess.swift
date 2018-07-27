@@ -179,7 +179,10 @@ internal extension PaymentDataManager {
         alert.addAction(cancelAction)
         alert.addAction(confirmAction)
         
-        alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+        DispatchQueue.main.async {
+        
+            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+        }
     }
     
     private func forceStartPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {

@@ -45,6 +45,12 @@ internal class OTPTimerDataManager {
         }
     }
     
+    internal func invalidateTimer() {
+        
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
@@ -104,11 +110,5 @@ internal class OTPTimerDataManager {
             
             closure(state)
         }
-    }
-    
-    private func invalidateTimer() {
-        
-        self.timer?.invalidate()
-        self.timer = nil
     }
 }

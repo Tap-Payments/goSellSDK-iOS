@@ -40,9 +40,15 @@ internal class SeparateWindowViewController: BaseViewController {
         
         let closure: TypeAlias.ArgumentlessClosure = { [weak self] in
             
-            self?.hideKeyboard {
+            guard let strongSelf = self else {
                 
-                self?.dismissFromSeparateWindow(animated, completion: completion)
+                completion?()
+                return
+            }
+            
+            strongSelf.hideKeyboard {
+                
+                strongSelf.dismissFromSeparateWindow(animated, completion: completion)
             }
         }
         
