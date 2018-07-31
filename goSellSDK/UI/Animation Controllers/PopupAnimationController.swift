@@ -133,10 +133,11 @@ extension PopupAnimationController: UIViewControllerAnimatedTransitioning {
             
             guard let separateWindowController = toController as? SeparateWindowViewController else { return nil }
             let contentHeight = separateWindowController.mask.bounds.height
+            let contentTopOffset = separateWindowController.mask.frame.origin.y
             
             let finalFrame = context.finalFrame(for: toController)
             let middleFrame = finalFrame.offsetBy(dx: 0.0, dy: Constants.middleFrameBottomOffset)
-            let initialFrame = CGRect(origin: CGPoint(x: finalFrame.origin.x, y: -contentHeight), size: finalFrame.size)
+            let initialFrame = CGRect(origin: CGPoint(x: finalFrame.origin.x, y: -(contentHeight + contentTopOffset)), size: finalFrame.size)
             
             return PopupAnimationParameters(viewToMove: toView, initialFrame: initialFrame, middleFrame: middleFrame, finalFrame: finalFrame)
         }
@@ -144,9 +145,10 @@ extension PopupAnimationController: UIViewControllerAnimatedTransitioning {
             
             guard let separateWindowController = fromController as? SeparateWindowViewController else { return nil }
             let contentHeight = separateWindowController.mask.bounds.height
+            let contentTopOffset = separateWindowController.mask.frame.origin.y
             
             var finalFrame = context.finalFrame(for: fromController)
-            finalFrame.origin = CGPoint(x: finalFrame.origin.x, y: -abs(contentHeight))
+            finalFrame.origin = CGPoint(x: finalFrame.origin.x, y: -abs(contentHeight + contentTopOffset))
             let initialFrame = CGRect(origin: .zero, size: finalFrame.size)
             let middleFrame = initialFrame.offsetBy(dx: 0.0, dy: Constants.middleFrameBottomOffset)
             
