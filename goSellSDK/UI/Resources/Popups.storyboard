@@ -22,71 +22,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-Sy-KrK" customClass="TapVisualEffectView" customModule="TapVisualEffectView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAu-b0-Oes">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-y2-vBG">
-                                <rect key="frame" x="25" y="297.5" width="325" height="72.5"/>
                                 <subviews>
-                                    <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-86-atf" customClass="TapActivityIndicatorView" customModule="TapGLKit">
-                                        <rect key="frame" x="144" y="0.0" width="37" height="37"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-Sy-KrK" customClass="TapVisualEffectView" customModule="TapVisualEffectView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-y2-vBG">
+                                        <rect key="frame" x="25" y="297" width="325" height="72.5"/>
+                                        <subviews>
+                                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-86-atf" customClass="TapActivityIndicatorView" customModule="TapGLKit">
+                                                <rect key="frame" x="144" y="0.0" width="37" height="37"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="37" id="nmn-m1-ro9"/>
+                                                    <constraint firstAttribute="width" secondItem="W3L-86-atf" secondAttribute="height" multiplier="1:1" id="zvr-B3-pig"/>
+                                                </constraints>
+                                            </glkView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvm-9s-RMI">
+                                                <rect key="frame" x="0.0" y="57" width="325" height="15.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                <color key="textColor" red="0.61568627450000002" green="0.62352941179999999" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="37" id="nmn-m1-ro9"/>
-                                            <constraint firstAttribute="width" secondItem="W3L-86-atf" secondAttribute="height" multiplier="1:1" id="zvr-B3-pig"/>
+                                            <constraint firstItem="W3L-86-atf" firstAttribute="centerX" secondItem="8OP-y2-vBG" secondAttribute="centerX" id="Ail-t7-ABT"/>
+                                            <constraint firstItem="tvm-9s-RMI" firstAttribute="leading" secondItem="8OP-y2-vBG" secondAttribute="leading" id="Bo7-Di-2De"/>
+                                            <constraint firstItem="W3L-86-atf" firstAttribute="top" secondItem="8OP-y2-vBG" secondAttribute="top" id="Ghf-4h-EFq"/>
+                                            <constraint firstAttribute="bottom" secondItem="tvm-9s-RMI" secondAttribute="bottom" id="MtA-6n-bf4"/>
+                                            <constraint firstItem="tvm-9s-RMI" firstAttribute="top" secondItem="W3L-86-atf" secondAttribute="bottom" constant="20" id="i2W-Da-02j"/>
+                                            <constraint firstAttribute="trailing" secondItem="tvm-9s-RMI" secondAttribute="trailing" id="jS4-pB-qVM"/>
                                         </constraints>
+                                    </view>
+                                    <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hs2-rG-qv8" customClass="LinearGradientView" customModule="TapGLKit">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="eCZ-a1-lLG"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="topToBottom" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </glkView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvm-9s-RMI">
-                                        <rect key="frame" x="0.0" y="57" width="325" height="15.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                        <color key="textColor" red="0.61568627450000002" green="0.62352941179999999" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="W3L-86-atf" firstAttribute="centerX" secondItem="8OP-y2-vBG" secondAttribute="centerX" id="Ail-t7-ABT"/>
-                                    <constraint firstItem="tvm-9s-RMI" firstAttribute="leading" secondItem="8OP-y2-vBG" secondAttribute="leading" id="Bo7-Di-2De"/>
-                                    <constraint firstItem="W3L-86-atf" firstAttribute="top" secondItem="8OP-y2-vBG" secondAttribute="top" id="Ghf-4h-EFq"/>
-                                    <constraint firstAttribute="bottom" secondItem="tvm-9s-RMI" secondAttribute="bottom" id="MtA-6n-bf4"/>
-                                    <constraint firstItem="tvm-9s-RMI" firstAttribute="top" secondItem="W3L-86-atf" secondAttribute="bottom" constant="20" id="i2W-Da-02j"/>
-                                    <constraint firstAttribute="trailing" secondItem="tvm-9s-RMI" secondAttribute="trailing" id="jS4-pB-qVM"/>
+                                    <constraint firstItem="Hs2-rG-qv8" firstAttribute="top" secondItem="NAu-b0-Oes" secondAttribute="top" id="7ma-Wf-lBK"/>
+                                    <constraint firstAttribute="trailing" secondItem="8OP-y2-vBG" secondAttribute="trailing" constant="25" id="FGk-1s-RMQ"/>
+                                    <constraint firstItem="8OP-y2-vBG" firstAttribute="centerY" secondItem="NAu-b0-Oes" secondAttribute="centerY" id="LVO-e0-zKd"/>
+                                    <constraint firstAttribute="trailing" secondItem="gPE-Sy-KrK" secondAttribute="trailing" id="dP0-yx-C38"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hs2-rG-qv8" secondAttribute="trailing" id="gke-Ai-ELd"/>
+                                    <constraint firstItem="Hs2-rG-qv8" firstAttribute="leading" secondItem="NAu-b0-Oes" secondAttribute="leading" id="jby-Ww-Tx1"/>
+                                    <constraint firstItem="gPE-Sy-KrK" firstAttribute="leading" secondItem="NAu-b0-Oes" secondAttribute="leading" id="nBV-fu-Fqd"/>
+                                    <constraint firstItem="8OP-y2-vBG" firstAttribute="leading" secondItem="NAu-b0-Oes" secondAttribute="leading" constant="25" id="qaO-S5-JzB"/>
+                                    <constraint firstAttribute="bottom" secondItem="gPE-Sy-KrK" secondAttribute="bottom" id="xkd-hS-6jU"/>
+                                    <constraint firstItem="gPE-Sy-KrK" firstAttribute="top" secondItem="NAu-b0-Oes" secondAttribute="top" id="ydg-BP-UfK"/>
                                 </constraints>
                             </view>
-                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hs2-rG-qv8" customClass="LinearGradientView" customModule="TapGLKit">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="eCZ-a1-lLG"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="topToBottom" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </glkView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="gPE-Sy-KrK" secondAttribute="trailing" id="7HR-sd-Wls"/>
-                            <constraint firstItem="gPE-Sy-KrK" firstAttribute="leading" secondItem="7Fk-6B-c7C" secondAttribute="leading" id="AQk-V9-xfN"/>
-                            <constraint firstItem="gPE-Sy-KrK" firstAttribute="top" secondItem="7Fk-6B-c7C" secondAttribute="top" id="Pbe-7W-Yk7"/>
-                            <constraint firstItem="8OP-y2-vBG" firstAttribute="centerY" secondItem="7Fk-6B-c7C" secondAttribute="centerY" id="dCk-Vm-dOC"/>
-                            <constraint firstAttribute="trailing" secondItem="Hs2-rG-qv8" secondAttribute="trailing" id="fRh-X0-tYh"/>
-                            <constraint firstAttribute="bottom" secondItem="gPE-Sy-KrK" secondAttribute="bottom" id="gVl-u1-j3M"/>
-                            <constraint firstItem="Hs2-rG-qv8" firstAttribute="leading" secondItem="7Fk-6B-c7C" secondAttribute="leading" id="gwN-5R-Y3q"/>
-                            <constraint firstItem="Hs2-rG-qv8" firstAttribute="top" secondItem="7Fk-6B-c7C" secondAttribute="top" id="jcV-Uv-Ea1"/>
-                            <constraint firstItem="8OP-y2-vBG" firstAttribute="leading" secondItem="7Fk-6B-c7C" secondAttribute="leading" constant="25" id="sZq-jY-7rC"/>
-                            <constraint firstAttribute="trailing" secondItem="8OP-y2-vBG" secondAttribute="trailing" constant="25" id="zNz-eq-p92"/>
+                            <constraint firstItem="NAu-b0-Oes" firstAttribute="leading" secondItem="7Fk-6B-c7C" secondAttribute="leading" id="Oae-wp-QbA"/>
+                            <constraint firstAttribute="trailing" secondItem="NAu-b0-Oes" secondAttribute="trailing" id="VmE-rm-f7c"/>
+                            <constraint firstAttribute="bottom" secondItem="NAu-b0-Oes" secondAttribute="bottom" id="d2V-7m-3VT"/>
+                            <constraint firstItem="NAu-b0-Oes" firstAttribute="top" secondItem="7Fk-6B-c7C" secondAttribute="top" id="sLZ-et-owk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundBlurView" destination="gPE-Sy-KrK" id="0rS-Fp-Hdz"/>
+                        <outlet property="contentMaskView" destination="NAu-b0-Oes" id="Rmy-Ir-Ohh"/>
                         <outlet property="descriptionLabel" destination="tvm-9s-RMI" id="Do3-SH-fJA"/>
                         <outlet property="loader" destination="W3L-86-atf" id="xPj-cJ-iw6"/>
+                        <outlet property="topOffsetMaskConstraint" destination="sLZ-et-owk" id="9rL-14-La7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQ0-7k-bui" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -182,10 +196,10 @@
                             <constraint firstAttribute="trailing" secondItem="uMM-Dc-dru" secondAttribute="trailing" id="jjd-5W-Zho"/>
                         </constraints>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="65"/>
                     <connections>
                         <outlet property="closeButton" destination="uRZ-Wb-aQM" id="c8q-2J-ANC"/>
+                        <outlet property="contentMaskView" destination="uMM-Dc-dru" id="rlK-Y9-NPP"/>
                         <outlet property="iconImageView" destination="9T4-0d-0G1" id="Yq0-ET-uWZ"/>
                         <outlet property="subtitleLabel" destination="8KV-bP-nnU" id="AMS-f0-GqZ"/>
                         <outlet property="titleLabel" destination="Alz-Wh-jSU" id="nuL-RS-bZu"/>

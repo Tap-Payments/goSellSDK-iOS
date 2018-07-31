@@ -45,7 +45,7 @@ internal extension PaymentDataManager {
     internal func showLoadingController(_ coveringHeader: Bool = false) -> LoadingViewController {
         
         let loaderFrame = self.loadingControllerFrame(coveringHeader: coveringHeader)
-        let loader = LoadingViewController.show(in: loaderFrame)
+        let loader = LoadingViewController.show(topOffset: loaderFrame.minY)
         
         return loader
     }
@@ -155,33 +155,36 @@ internal extension PaymentDataManager {
     
     private func showExtraFeesPaymentAlert(with plainAmount: AmountedCurrency, extraFeesAmount: AmountedCurrency, decision: @escaping TypeAlias.BooleanClosure) {
         
-        let totalAmount = AmountedCurrency(plainAmount.currency, plainAmount.amount + extraFeesAmount.amount, plainAmount.currencySymbol)
-        
-        let extraFeesAmountText = CurrencyFormatter.shared.format(extraFeesAmount)
-        let totalAmountText = CurrencyFormatter.shared.format(totalAmount)
-        
-        let title = "Confirm extra charges"
-        let message = "You will be charged an additional fee of \(extraFeesAmountText) for this type of payment, totaling an amount of \(totalAmountText)"
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak alert] (action) in
+        UIResponder.resign {
             
-            alert?.dismissFromSeparateWindow(true, completion: nil)
-            decision(false)
-        }
-        
-        let confirmAction: UIAlertAction = UIAlertAction(title: "Confirm", style: .default) { [weak alert] (action) in
+            let totalAmount = AmountedCurrency(plainAmount.currency, plainAmount.amount + extraFeesAmount.amount, plainAmount.currencySymbol)
             
-            alert?.dismissFromSeparateWindow(true, completion: nil)
-            decision(true)
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(confirmAction)
-        
-        DispatchQueue.main.async {
-        
-            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+            let extraFeesAmountText = CurrencyFormatter.shared.format(extraFeesAmount)
+            let totalAmountText = CurrencyFormatter.shared.format(totalAmount)
+            
+            let title = "Confirm extra charges"
+            let message = "You will be charged an additional fee of \(extraFeesAmountText) for this type of payment, totaling an amount of \(totalAmountText)"
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak alert] (action) in
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+                decision(false)
+            }
+            
+            let confirmAction: UIAlertAction = UIAlertAction(title: "Confirm", style: .default) { [weak alert] (action) in
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+                decision(true)
+            }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(confirmAction)
+            
+            DispatchQueue.main.async {
+                
+                alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+            }
         }
     }
     
@@ -209,7 +212,7 @@ internal extension PaymentDataManager {
     }
     
     private func loadingControllerFrame(coveringHeader: Bool = false) -> CGRect {
-    
+        
         let topOffset = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerTopOffset ?? 0.0
         let screenBounds = UIScreen.main.bounds
         var result = screenBounds
@@ -406,7 +409,7 @@ internal extension PaymentDataManager {
             
             let webPopupControllerFrame = self.loadingControllerFrame()
             
-            WebPaymentPopupViewController.show(in: webPopupControllerFrame, with: nonnullURL)
+            WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL)
             
         case .web:
             
@@ -426,7 +429,7 @@ internal extension PaymentDataManager {
         self.currentPaymentOption = paymentOption
         
         let otpControllerFrame = self.loadingControllerFrame()
-        OTPViewController.show(in: otpControllerFrame, with: phoneNumber, delegate: self)
+        OTPViewController.show(with: otpControllerFrame.minY, with: phoneNumber, delegate: self)
     }
     
     private func continuePaymentWithCurrentCharge(_ paymentOption: PaymentOption, loader: LoadingViewController? = nil) {

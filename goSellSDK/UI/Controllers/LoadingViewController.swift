@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGRect
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
@@ -23,18 +24,12 @@ internal final class LoadingViewController: SeparateWindowViewController {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func show(with text: String? = nil, in frame: CGRect = UIScreen.main.bounds) -> LoadingViewController {
+    internal static func show(with text: String? = nil, topOffset: CGFloat = 0.0) -> LoadingViewController {
         
         let controller = self.createAndSetupController()
-        
         controller.text = text
         
-        let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
-            
-            rootController.view.window?.frame = frame
-        }
-        
-        controller.show(userInteractionEnabled: false, parentControllerSetupClosure: parentControllerSetupClosure)
+        controller.showExternally(userInteractionEnabled: false, topOffset: topOffset)
         
         return controller
     }

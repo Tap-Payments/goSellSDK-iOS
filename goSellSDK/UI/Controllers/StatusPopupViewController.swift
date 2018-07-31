@@ -62,18 +62,7 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     
     internal func display(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
-            
-            rootController.view.layout()
-            
-            let windowHeight = rootController.topLayoutGuide.length + Constants.contentHeight
-            let windowSize = CGSize(width: UIScreen.main.bounds.width, height: windowHeight)
-            let windowFrame = CGRect(origin: .zero, size: windowSize)
-            
-            rootController.view.window?.frame = windowFrame
-        }
-        
-        self.show(parentControllerSetupClosure: parentControllerSetupClosure, completion: completion)
+        self.showExternally(completion: completion)
     }
     
     internal override func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {

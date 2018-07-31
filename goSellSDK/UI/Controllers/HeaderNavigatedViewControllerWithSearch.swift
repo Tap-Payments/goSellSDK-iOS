@@ -26,6 +26,11 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
     // MARK: - Internal -
     // MARK: Properties
     
+    internal override var headerHasShadowInitially: Bool {
+        
+        return false
+    }
+    
     @IBOutlet internal private(set) weak var tableView: UITableView? {
         
         didSet {
@@ -152,8 +157,8 @@ extension HeaderNavigatedViewControllerWithSearch: UIScrollViewDelegate {
         self.searchViewHeightConstraint?.constant = visibleSearchViewPart
         
         let scaleY = visibleSearchViewPart / height
-        
         self.updateSearchViewShadowOpacity(for: scaleY)
+        self.updateHeaderShadowOpacity(with: scrollView.contentOffset.y)
     }
 }
 

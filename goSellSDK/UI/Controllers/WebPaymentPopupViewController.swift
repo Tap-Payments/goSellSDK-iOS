@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGPoint
 import struct   CoreGraphics.CGGeometry.CGRect
 import class    TapAdditionsKit.SeparateWindowRootViewController
@@ -17,22 +18,18 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
 
+/// Web payment view controller popup container.
 internal final class WebPaymentPopupViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func show(in frame: CGRect, with url: URL) {
+    internal static func show(with topOffset: CGFloat, with url: URL) {
         
         let controller = self.createAndSetupController()
         controller.initialURL = url
         
-        let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
-            
-            rootController.view.window?.frame = frame
-        }
-        
-        controller.show(parentControllerSetupClosure: parentControllerSetupClosure)
+        controller.showExternally(topOffset: topOffset)
     }
     
     internal override func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
