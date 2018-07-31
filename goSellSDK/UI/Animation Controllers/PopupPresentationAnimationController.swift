@@ -191,7 +191,7 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
         }
         
         let animationDuration = self.transitionDuration(using: transitionContext)
-        let animationOption = UIViewKeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveEaseIn)
+        let animationOption = UIViewKeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveLinear)
         let animationOptions: UIViewKeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
         
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations) { (finished) in

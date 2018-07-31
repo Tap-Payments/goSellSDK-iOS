@@ -33,8 +33,8 @@ internal final class PopupAnimationController: NSObject {
     
     private struct Constants {
         
-        fileprivate static let animationDuration:       TimeInterval    = 0.7
-        fileprivate static let moveDownDuration:        TimeInterval    = 0.1
+        fileprivate static let animationDuration:       TimeInterval    = 0.8
+        fileprivate static let moveDownDuration:        TimeInterval    = 0.3
         fileprivate static let middleFrameBottomOffset: CGFloat         = 8.0
         
         @available(*, unavailable) private init() {}
@@ -131,16 +131,22 @@ extension PopupAnimationController: UIViewControllerAnimatedTransitioning {
         
         if self.operation == .presentation {
             
+            guard let separateWindowController = toController as? SeparateWindowViewController else { return nil }
+            let contentHeight = separateWindowController.mask.bounds.height
+            
             let finalFrame = context.finalFrame(for: toController)
             let middleFrame = finalFrame.offsetBy(dx: 0.0, dy: Constants.middleFrameBottomOffset)
-            let initialFrame = CGRect(origin: CGPoint(x: finalFrame.origin.x, y: -finalFrame.size.height), size: finalFrame.size)
+            let initialFrame = CGRect(origin: CGPoint(x: finalFrame.origin.x, y: -contentHeight), size: finalFrame.size)
             
             return PopupAnimationParameters(viewToMove: toView, initialFrame: initialFrame, middleFrame: middleFrame, finalFrame: finalFrame)
         }
         else {
             
+            guard let separateWindowController = fromController as? SeparateWindowViewController else { return nil }
+            let contentHeight = separateWindowController.mask.bounds.height
+            
             var finalFrame = context.finalFrame(for: fromController)
-            finalFrame.origin = CGPoint(x: finalFrame.origin.x, y: -abs(finalFrame.size.height))
+            finalFrame.origin = CGPoint(x: finalFrame.origin.x, y: -abs(contentHeight))
             let initialFrame = CGRect(origin: .zero, size: finalFrame.size)
             let middleFrame = initialFrame.offsetBy(dx: 0.0, dy: Constants.middleFrameBottomOffset)
             

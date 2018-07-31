@@ -16,16 +16,16 @@ internal class BaseNavigationController: UINavigationController {
     
     internal override var shouldAutorotate: Bool {
         
-        return false
-    }
-    
-    internal override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        
-        return .portrait
+        return InterfaceOrientationManager.shared.viewControllerShouldAutorotate(self)
     }
     
     internal override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         
-        return .portrait
+        return InterfaceOrientationManager.shared.supportedInterfaceOrientations(for: self)
+    }
+    
+    internal override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        
+        return InterfaceOrientationManager.shared.preferredInterfaceOrientationForPresentation(of: self)
     }
 }

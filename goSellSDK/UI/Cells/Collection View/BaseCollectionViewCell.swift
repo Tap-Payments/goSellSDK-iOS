@@ -24,7 +24,7 @@ internal class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     internal override func prepareForReuse() {
-        
+
         super.prepareForReuse()
         
         if let glowingCell = self as? GlowingViewHandler {

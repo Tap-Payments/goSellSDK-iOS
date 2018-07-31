@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGRect
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
@@ -33,7 +34,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func show(in frame: CGRect, with phoneNumber: String, delegate: OTPViewControllerDelegate) {
+    internal static func show(with topOffset: CGFloat = 0.0, with phoneNumber: String, delegate: OTPViewControllerDelegate) {
         
         let controller = self.createAndSetupController()
         controller.delegate = delegate
@@ -41,12 +42,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         if controller.presentingViewController == nil {
             
-            let parentControllerSetupClosure: TypeAlias.GenericViewControllerClosure<SeparateWindowRootViewController> = { (rootController) in
-                
-                rootController.view.window?.frame = frame
-            }
-            
-            controller.show(parentControllerSetupClosure: parentControllerSetupClosure)
+            controller.showExternally(topOffset: topOffset)
         }
         else {
             
