@@ -26,8 +26,11 @@ internal struct CreateChargeRequest: Encodable {
     /// Order.
     internal let order: Order
     
-    /// Information related to the redirect.
-    internal let redirect: Redirect
+    /// Redirect URL.
+    internal let redirect: TrackingURL
+    
+    /// Post URL.
+    internal private(set) var post: TrackingURL?
     
     /// If source is null then, default Tap payment page link will be provided.
     /// if source.id = "src_kw.knet" then KNET payment page link will be provided.
@@ -75,6 +78,7 @@ internal struct CreateChargeRequest: Encodable {
     ///   - fee: Extra fees amount.
     ///   - order: Order.
     ///   - redirect: Redirect.
+    ///   - post: Post.
     ///   - source: Source.
     ///   - descriptionText: Description text.
     ///   - metadata: Metadata.
@@ -83,7 +87,7 @@ internal struct CreateChargeRequest: Encodable {
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-    internal init(amount: Decimal, currency: Currency, customer: CustomerInfo, fee: Decimal, order: Order, redirect: Redirect, source: Source, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
+    internal init(amount: Decimal, currency: Currency, customer: CustomerInfo, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: Source, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
         
         self.amount                 = amount
         self.currency               = currency
@@ -91,6 +95,7 @@ internal struct CreateChargeRequest: Encodable {
         self.fee                    = fee
         self.order                  = order
         self.redirect               = redirect
+        self.post                   = post
         self.source                 = source
         self.descriptionText        = descriptionText
         self.metadata               = metadata

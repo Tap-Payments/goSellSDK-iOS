@@ -307,10 +307,16 @@ internal extension PaymentDataManager {
                 fatalError("This case should never happen.")
         }
         
+        var post: TrackingURL? = nil
+        if let postURL = self.externalDataSource?.postURL, let nonnullPostURL = postURL {
+            
+            post = TrackingURL(url: nonnullPostURL)
+        }
+        
         let amountedCurrency    = self.userSelectedCurrency ?? self.transactionCurrency
         let fee                 = self.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
         let order               = Order(identifier: orderID)
-        let redirect            = Redirect(returnURL: PaymentProcessConstants.returnURL, postURL: self.externalDataSource?.postURL ?? nil)
+        let redirect            = TrackingURL(url: PaymentProcessConstants.returnURL)
         let paymentDescription  = self.externalDataSource?.paymentDescription ?? nil
         let paymentMetadata     = self.externalDataSource?.paymentMetadata ?? nil
         let reference           = self.externalDataSource?.paymentReference ?? nil
@@ -326,6 +332,7 @@ internal extension PaymentDataManager {
                                                 fee:                    fee,
                                                 order:                  order,
                                                 redirect:               redirect,
+                                                post:                   post,
                                                 source:                 source,
                                                 descriptionText:        paymentDescription,
                                                 metadata:               paymentMetadata,
@@ -372,7 +379,7 @@ internal extension PaymentDataManager {
                     self.openOTPScreen(with: authentication.value, for: paymentOption)
                 }
             }
-            else if let url = nonnullCharge.redirect.paymentURL {
+            else if let url = nonnullCharge.transactionDetails.url {
                 
                 self.openPaymentURL(url, for: paymentOption, binNumber: cardBIN)
             }
