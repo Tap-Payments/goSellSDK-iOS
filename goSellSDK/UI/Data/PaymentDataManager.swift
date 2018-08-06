@@ -73,7 +73,7 @@ internal final class PaymentDataManager {
         
         let currency = nonnullPaymentOptionsResponse.currency
         
-        guard let amountedCurrency = (self.paymentOptionsResponse?.supportedCurrenciesAmounts.first { $0.currency == currency }) else {
+        guard let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) else {
             
             fatalError("Transaction currency is not a supported currency?!")
         }

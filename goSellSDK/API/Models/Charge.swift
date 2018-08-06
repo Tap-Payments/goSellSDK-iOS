@@ -37,7 +37,10 @@ internal struct Charge: Decodable, Identifiable {
     internal private(set) var authentication: Authentication?
     
     /// Information related to the payment page redirect.
-    internal let redirect: Redirect
+    internal let redirect: TrackingURL
+    
+    /// Post URL.
+    internal private(set) var post: TrackingURL?
     
     /// The source of every charge is a credit or debit card. This hash is then the card object describing that card.
     /// If source is null then, default Tap payment page link will be provided.
@@ -87,6 +90,7 @@ internal struct Charge: Decodable, Identifiable {
         case object                 = "object"
         case authentication         = "authenticate"
         case redirect               = "redirect"
+        case post                   = "post"
         case source                 = "source"
         case status                 = "status"
         case requires3DSecure       = "threeDSecure"
