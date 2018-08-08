@@ -26,12 +26,12 @@
         
         for error in self.details {
             
-            let whitespacesCount = longestErrorTitleLength - error.name.length
+            let whitespacesCount = longestErrorTitleLength - error.title.length
             let extraWhitespaces = String(repeating: " ", count: whitespacesCount)
-            result += error.name
+            result += error.title
             result += ": "
             result += extraWhitespaces
-            result += error.message
+            result += error.descriptionText
             result += "\n"
         }
         
@@ -49,7 +49,7 @@
     
     private var longestErrorTitleLength: Int {
         
-        let lengths = self.details.map { $0.name.length }
+        let lengths = self.details.map { $0.title.length }
         let result = lengths.max() ?? 0
         
         return result

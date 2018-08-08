@@ -21,7 +21,10 @@ extension PaymentDataManager: OTPViewControllerDelegate {
         
         APIClient.shared.requestAuthenticationForCharge(with: chargeIdentifier) { [weak self] (charge, error) in
             
-            self?.handleOTPChargeResponse(charge, error: error, loader: loader, otpController: controller)
+            self?.handleOTPChargeResponse(charge, error: error, loader: loader, otpController: controller) {
+                
+                self?.otpViewControllerResendButtonTouchUpInside(controller)
+            }
         }
     }
     
@@ -35,7 +38,10 @@ extension PaymentDataManager: OTPViewControllerDelegate {
         
         APIClient.shared.authenticateCharge(with: chargeIdentifier, details: authenticationDetails) { [weak self] (charge, error) in
             
-            self?.handleOTPChargeResponse(charge, error: error, loader: loader, otpController: controller)
+            self?.handleOTPChargeResponse(charge, error: error, loader: loader, otpController: controller) {
+                
+                self?.otpViewController(controller, didEnter: code)
+            }
         }
     }
     
@@ -47,16 +53,16 @@ extension PaymentDataManager: OTPViewControllerDelegate {
     // MARK: - Private -
     // MARK: Properties
     
-    private func handleOTPChargeResponse(_ charge: Charge?, error: TapSDKError?, loader: LoadingViewController, otpController: OTPViewController) {
+    private func handleOTPChargeResponse(_ charge: Charge?, error: TapSDKError?, loader: LoadingViewController, otpController: OTPViewController, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
-        let shouldHideOTP = self.shouldHideOTP(for: charge)
+        let shouldHideOTP = self.shouldHideOTP(for: charge) && error == nil
         var loaderDismissed = false
         var otpDismissed = !shouldHideOTP
         
         let dismissalCompletionClosure: TypeAlias.ArgumentlessClosure = { [weak self] in
             
             guard loaderDismissed && otpDismissed else { return }
-            self?.handleChargeResponse(charge, error: error)
+            self?.handleChargeResponse(charge, error: error, retryAction: retryAction)
         }
         
         loader.hide {

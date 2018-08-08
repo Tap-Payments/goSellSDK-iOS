@@ -73,12 +73,14 @@ internal final class PaymentDataManager {
         
         let currency = nonnullPaymentOptionsResponse.currency
         
-        guard let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) else {
+        if let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) {
             
-            fatalError("Transaction currency is not a supported currency?!")
+            return amountedCurrency
         }
-        
-        return amountedCurrency
+        else {
+            
+            return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
+        }
     }
     
     internal var currentPaymentOption: PaymentOption?
@@ -142,8 +144,22 @@ internal final class PaymentDataManager {
         APIClient.shared.getPaymentOptions(with: paymentRequest) { [weak self, weak caller] (response, error) in
             
             self?.isLoadingPaymentOptions = false
-            self?.paymentOptionsResponse = response
-            self?.currentTheme = caller?.theme ?? .light
+            
+            if let nonnullError = error {
+                
+                ErrorDataManager.handle(nonnullError) {
+                    
+                    if let nonnullSelf = self, let nonnullCaller = caller {
+                        
+                        nonnullSelf.start(with: nonnullCaller)
+                    }
+                }
+            }
+            else if let nonnullResponse = response {
+                
+                self?.paymentOptionsResponse = nonnullResponse
+                self?.currentTheme = caller?.theme ?? .light
+            }
             
             caller?.paymentDataManagerDidStopLoadingPaymentOptions(with: error == nil)
         }
@@ -475,17 +491,9 @@ internal final class PaymentDataManager {
         var result: [CellViewModel] = []
         result.append(self.currencyCellViewModel)
         
-        let currenciesFilter: (PaymentOption) -> Bool = { option in
-            
-            if let nonnullUserCurrency = self.userSelectedCurrency?.currency {
-                
-                return option.supportedCurrencies.contains(nonnullUserCurrency)
-            }
-            else {
-                
-                return true
-            }
-        }
+        let currency = (self.userSelectedCurrency ?? self.transactionCurrency).currency
+        
+        let currenciesFilter: (PaymentOption) -> Bool = { $0.supportedCurrencies.contains(currency) }
         
         let savedCards = self.recentCards
         let webPaymentOptions = self.paymentOptions(of: .web).filter(currenciesFilter).sorted { $0.orderBy < $1.orderBy }

@@ -85,10 +85,26 @@ internal final class SettingsDataManager {
         
         APIClient.shared.initSDK { [unowned self] (settings, error) in
             
-            self.settings = settings?.data
-            self.status = error == nil ? .succeed : .notInitiated
-            
-            self.callAllPendingCompletionsAndEmptyStack(error)
+            if let nonnullError = error {
+                
+                if self.pendingCompletions.count > 0 {
+                
+                    self.callAllPendingCompletionsAndEmptyStack(nonnullError)
+                }
+                else {
+                    
+                    ErrorDataManager.handle(nonnullError) {
+                        
+                        self.callInitializationAPI()
+                    }
+                }
+            }
+            else {
+                
+                self.settings = settings?.data
+                self.status = .succeed
+                self.callAllPendingCompletionsAndEmptyStack(nil)
+            }
         }
     }
     

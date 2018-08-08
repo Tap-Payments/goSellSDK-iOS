@@ -161,9 +161,17 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
             
             loader?.hide()
             
-            guard let strongSelf = self, error == nil else { return }
-            
-            strongSelf.parentModel.deleteCardModel(strongSelf)
+            if let nonnullError = error {
+                
+                ErrorDataManager.handle(nonnullError) {
+                    
+                    self?.deleteCard()
+                }
+            }
+            else if let strongSelf = self {
+                
+                strongSelf.parentModel.deleteCardModel(strongSelf)
+            }
         }
     }
 }

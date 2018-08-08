@@ -81,7 +81,10 @@ internal extension PaymentDataManager {
         
         let loader = self.showLoadingController()
         
-        self.continuePaymentWithCurrentCharge(paymentOption, loader: loader)
+        self.continuePaymentWithCurrentCharge(paymentOption, loader: loader) {
+            
+            self.webPaymentProcessFinished()
+        }
     }
     
     internal func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
@@ -112,11 +115,11 @@ internal extension PaymentDataManager {
         return result
     }
     
-    internal func handleChargeResponse(_ charge: Charge?, error: TapSDKError?) {
+    internal func handleChargeResponse(_ charge: Charge?, error: TapSDKError?, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
         guard let paymentOption = self.currentPaymentOption else { return }
         
-        self.handleChargeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: self.currentPaymentCardBINNumber)
+        self.handleChargeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: self.currentPaymentCardBINNumber, retryAction: retryAction)
     }
     
     internal func paymentCancelled() {
@@ -237,24 +240,48 @@ internal extension PaymentDataManager {
         
         guard let cardIdentifier = savedCard.identifier, let customerIdentifier = self.externalDataSource?.customer?.identifier else { return }
         
-        self.isExecutingAPICalls = true
-        
-        self.payButtonUI?.startLoader()
-        
         let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
         let request = CreateTokenWithSavedCardRequest(savedCard: card)
         
+        self.callTokenAPI(with: request, paymentOption: paymentOption)
+    }
+    
+    private func startPaymentProcess(with card: CreateTokenCard, paymentOption: PaymentOption, saveCard: Bool) {
+        
+        let request = CreateTokenWithCardDataRequest(card: card)
+        self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
+    }
+    
+    private func callTokenAPI(with request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool? = nil) {
+        
+        UIResponder.current?.resignFirstResponder()
+        
+        self.isExecutingAPICalls = true
+        self.payButtonUI?.startLoader()
+        
         APIClient.shared.createToken(with: request) { [weak self] (token, error) in
             
-            if let nonnullToken = token {
+            if let nonnullError = error {
+                
+                self?.payButtonUI?.stopLoader()
+                self?.isExecutingAPICalls = false
+                
+                ErrorDataManager.handle(nonnullError) {
+                    
+                    self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
+                }
+            }
+            else if let nonnullToken = token {
                 
                 let source = Source(token: nonnullToken)
-                self?.callChargeAPI(with: source, paymentOption: paymentOption)
+                self?.callChargeAPI(with: source, paymentOption: paymentOption, cardBIN: nonnullToken.card.binNumber, saveCard: saveCard) {
+                    
+                    self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
+                }
             }
             else {
                 
                 self?.payButtonUI?.stopLoader()
-                
                 self?.isExecutingAPICalls = false
             }
         }
@@ -267,37 +294,15 @@ internal extension PaymentDataManager {
         self.openWebPaymentScreen(for: paymentOption)
         
         self.isExecutingAPICalls = true
-        
         let loader = self.showLoadingController()
-        self.callChargeAPI(with: source, paymentOption: paymentOption, loader: loader)
-    }
-    
-    private func startPaymentProcess(with card: CreateTokenCard, paymentOption: PaymentOption, saveCard: Bool) {
         
-        UIResponder.current?.resignFirstResponder()
-        
-        self.isExecutingAPICalls = true
-        
-        self.payButtonUI?.startLoader()
-        
-        let request = CreateTokenWithCardDataRequest(card: card)
-        APIClient.shared.createToken(with: request) { [weak self] (token, error) in
+        self.callChargeAPI(with: source, paymentOption: paymentOption, loader: loader) {
             
-            if let nonnullToken = token {
-                
-                let source = Source(token: nonnullToken)
-                self?.callChargeAPI(with: source, paymentOption: paymentOption, cardBIN: nonnullToken.card.binNumber, saveCard: saveCard)
-            }
-            else {
-                
-                self?.payButtonUI?.stopLoader()
-                
-                self?.isExecutingAPICalls = false
-            }
+            self.startPaymentProcess(withWebPaymentOption: paymentOption)
         }
     }
     
-    private func callChargeAPI(with source: Source, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil) {
+    private func callChargeAPI(with source: Source, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
         guard
             
@@ -346,19 +351,21 @@ internal extension PaymentDataManager {
             
             loader?.hide()
             self?.payButtonUI?.stopLoader()
-            
             self?.isExecutingAPICalls = false
             
-            self?.handleChargeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: cardBIN)
+            self?.handleChargeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction)
         }
     }
     
-    private func handleChargeResponse(_ charge: Charge?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String? = nil) {
+    private func handleChargeResponse(_ charge: Charge?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
-        guard let nonnullCharge = charge, error == nil else {
+        if let nonnullError = error {
             
+            ErrorDataManager.handle(nonnullError, retryAction: retryAction)
             return
         }
+        
+        guard let nonnullCharge = charge else { return }
         
         self.currentCharge = nonnullCharge
         
@@ -439,14 +446,14 @@ internal extension PaymentDataManager {
         OTPViewController.show(with: otpControllerFrame.minY, with: phoneNumber, delegate: self)
     }
     
-    private func continuePaymentWithCurrentCharge(_ paymentOption: PaymentOption, loader: LoadingViewController? = nil) {
+    private func continuePaymentWithCurrentCharge(_ paymentOption: PaymentOption, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
         guard let chargeIdentifier = self.currentCharge?.identifier else { return }
         
         APIClient.shared.retrieveCharge(with: chargeIdentifier) { [weak self] (charge, error) in
             
             loader?.hide()
-            self?.handleChargeResponse(charge, error: error, paymentOption: paymentOption)
+            self?.handleChargeResponse(charge, error: error, paymentOption: paymentOption, retryAction: retryAction)
         }
     }
     

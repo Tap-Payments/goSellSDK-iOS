@@ -34,7 +34,14 @@ internal final class BINDataManager {
                 self?.pendingBINs.remove(at: index)
             }
             
-            if let nonnullResponse = response {
+            if let nonnullError = error {
+                
+                ErrorDataManager.handle(nonnullError) {
+                    
+                    self?.retrieveBINData(for: binNumber, success: success)
+                }
+            }
+            else if let nonnullResponse = response {
                 
                 self?.cachedBINData[binNumber] = nonnullResponse
                 self?.callCompletion(success, with: nonnullResponse)

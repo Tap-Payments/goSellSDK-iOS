@@ -199,7 +199,14 @@ internal class AddressFieldsDataManager {
             self.isLoadingAddressFields = false
             self.loadingListener?.addressFieldsDataManagerDidStopLoadingFormats()
             
-            if let nonnullResponse = response {
+            if let nonnullError = error {
+            
+                ErrorDataManager.handle(nonnullError) {
+                    
+                    self.retrieveAddressFieldsData(success)
+                }
+            }
+            else if let nonnullResponse = response {
                 
                 type(of: self).cachedAddressFieldsData = nonnullResponse
                 self.callCompletion(success, with: nonnullResponse)
