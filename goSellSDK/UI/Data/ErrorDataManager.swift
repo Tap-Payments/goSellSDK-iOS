@@ -106,6 +106,7 @@ internal class ErrorDataManager {
             
         case .invalidCountryCode:           return .invalidCountryCode
         case .invalidAmountModificatorType: return .invalidAmountModificatorType
+        case .invalidAuthorizeActionType:   return .invalidAuthorizeAutoScheduleType
         case .invalidCurrency:              return .invalidCurrency
         case .invalidCustomerInfo:          return .missingCustomerIDOrCustomerInformation
         case .invalidEmail:                 return .invalidEmailAddress

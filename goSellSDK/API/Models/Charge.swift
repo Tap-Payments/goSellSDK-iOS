@@ -9,7 +9,7 @@
 /// To charge a credit or a debit card, you create a charge object.
 /// You can retrieve and refund individual charges as well as list all charges.
 /// Charges are identified by a unique random ID.
-internal struct Charge: Decodable, Identifiable {
+internal struct Charge: ChargeProtocol, IdentifiableWithString, Decodable {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -102,4 +102,16 @@ internal struct Charge: Decodable, Identifiable {
         case response               = "response"
         case statementDescriptor    = "statement_descriptor"
     }
+}
+
+// MARK: - Authenticatable
+extension Charge: Authenticatable {
+    
+    static var authenticationRoute: Route { return .charges }
+}
+
+// MARK: - Retrievable
+extension Charge: Retrievable {
+    
+    static var retrieveRoute: Route { return .charges }
 }

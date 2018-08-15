@@ -1,12 +1,12 @@
 //
-//  ChargeAuthenticationRequest.swift
+//  AuthenticationRequest.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
 /// Structure to authenticate the charge.
-internal struct ChargeAuthenticationRequest: Encodable {
+internal struct AuthenticationRequest: Encodable {
     
     // MARK: - Internal -
     // MARK: Properties

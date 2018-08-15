@@ -11,6 +11,7 @@ import class    goSellSDK.Currency
 import class    goSellSDK.CustomerInfo
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
+import enum     goSellSDK.TransactionMode
 import class    ObjectiveC.NSObject.NSObject
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UINavigationController.UINavigationController
@@ -94,6 +95,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
                 caseSelectionController.allValues = Currency.all
                 caseSelectionController.preselectedValue = self.currentSettings?.currency
                 
+            case Constants.modeCellReuseIdentifier:
+                
+                caseSelectionController.title = "Mode"
+                caseSelectionController.allValues = TransactionMode.all
+                caseSelectionController.preselectedValue = self.currentSettings?.mode
+                
             default:
                 
                 break
@@ -140,7 +147,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         switch reuseIdentifier {
             
-        case Constants.currencyCellReuseIdentifier:
+        case Constants.currencyCellReuseIdentifier, Constants.modeCellReuseIdentifier:
             
             self.showCaseSelectionViewController(with: reuseIdentifier)
             
@@ -184,6 +191,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     private struct Constants {
         
+        fileprivate static let modeCellReuseIdentifier          = "mode_cell"
         fileprivate static let currencyCellReuseIdentifier      = "currency_cell"
         fileprivate static let customerCellReuseIdentifier      = "customer_cell"
         fileprivate static let taxListCellReuseIdentifier       = "tax_list_cell"
@@ -194,6 +202,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     // MARK: Properties
     
+    @IBOutlet private weak var modeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
     @IBOutlet private weak var customerNameLabel: UILabel?
     
@@ -246,6 +255,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     private func updateWithCurrentSettings() {
         
+        self.modeValueLabel?.text = self.currentSettings?.mode.description
         self.currencyValueLabel?.text = self.currentSettings?.currency.localizedSymbol
         
         if let name = self.currentSettings?.customer?.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -371,6 +381,13 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
         guard let reuseIdentifier = self.selectedCellReuseIdentifier else { return }
         
         switch reuseIdentifier {
+            
+        case Constants.modeCellReuseIdentifier:
+            
+            if let mode = value as? TransactionMode {
+                
+                self.currentSettings?.mode = mode
+            }
             
         case Constants.currencyCellReuseIdentifier:
             

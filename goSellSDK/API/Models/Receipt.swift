@@ -6,7 +6,7 @@
 //
 
 /// Receipt dispatch settings.
-@objcMembers public final class Receipt: NSObject, Identifiable, Codable {
+@objcMembers public final class Receipt: NSObject, IdentifiableWithString, Codable {
     
     // MARK: - Public -
     // MARK: Properties

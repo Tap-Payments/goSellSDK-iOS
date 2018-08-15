@@ -12,6 +12,7 @@ internal struct ErrorConstants {
     internal struct UserInfoKeys {
         
         internal static let amountModificatorType   = "amount_modificator_type"
+        internal static let authorizeActionType     = "authorize_action_type"
         internal static let countryCode             = "country_code"
         internal static let currencyCode            = "currency_code"
         internal static let customerInfo            = "customer_info"

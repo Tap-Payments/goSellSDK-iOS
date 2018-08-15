@@ -8,7 +8,7 @@
 import enum TapCardValidator.CardBrand
 
 /// Source model.
-internal struct Source: Identifiable, Codable {
+internal struct Source: IdentifiableWithString, Codable {
     
     // MARK: - Internal -
     // MARK: Properties

@@ -5,7 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal final class Authentication: Identifiable {
+internal final class Authentication: IdentifiableWithString {
     
     // MARK: - Internal -
     // MARK: Properties

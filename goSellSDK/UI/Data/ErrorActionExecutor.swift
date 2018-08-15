@@ -17,7 +17,7 @@ internal class ErrorActionExecutor {
     
     internal static func closePayment(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
         
-        PaymentDataManager.shared.closePayment(with: .failure, completion: completion)
+        PaymentDataManager.shared.closePayment(with: .failure, force: true, completion: completion)
     }
     
     internal static func showAlert(with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure? = nil, completion: TypeAlias.BooleanClosure? = nil) {

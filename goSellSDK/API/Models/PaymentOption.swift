@@ -8,7 +8,7 @@
 import enum TapCardValidator.CardBrand
 
 /// Payment Option model.
-internal struct PaymentOption: Identifiable {
+internal struct PaymentOption: IdentifiableWithString {
     
     // MARK: - Internal -
     // MARK: Properties

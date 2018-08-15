@@ -481,6 +481,7 @@ extension OTPViewController: DelayedDestroyable {
             nonnullStorage.hide(animated: true) {
                 
                 self.storage = nil
+                KnownStaticallyDestroyableTypes.delayedDestroyableInstanceDestroyed()
                 completion?()
             }
         }

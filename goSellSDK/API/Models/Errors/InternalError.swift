@@ -9,6 +9,7 @@ internal enum InternalError: Int {
     
     case invalidCountryCode = 1
     case invalidAmountModificatorType
+    case invalidAuthorizeActionType
     case invalidCurrency
     case invalidCustomerInfo
     case invalidEmail

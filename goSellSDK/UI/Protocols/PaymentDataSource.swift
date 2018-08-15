@@ -17,6 +17,9 @@
     /// Items to pay for. In order to start payment, array should contain at least one payment item.
     @objc var items: [PaymentItem] { get }
     
+    /// Transaction mode.
+    @objc optional var mode: TransactionMode { get }
+    
     /// Taxes.
     @objc optional var taxes: [Tax]? { get }
     
@@ -43,4 +46,7 @@
     
     /// Receipt dispatch settings.
     @objc optional var receiptSettings: Receipt? { get }
+    
+    /// Action to perform after authorization succeeds.
+    @objc optional var authorizeAction: AuthorizeAction { get }
 }

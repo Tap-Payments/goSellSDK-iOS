@@ -69,7 +69,7 @@ extension AddressInputViewController: AddressFieldsDataManagerLoadingListener {
     
     internal func addressFieldsDataManagerDidStopLoadingFormats() {
         
-        self.loader?.hide()
+        self.loader?.hide(animated: true, async: true, fromDestroyInstance: false)
     }
 }
 

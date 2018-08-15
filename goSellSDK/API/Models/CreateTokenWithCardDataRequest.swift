@@ -14,7 +14,7 @@ internal struct CreateTokenWithCardDataRequest: CreateTokenRequest {
     /// Card to create token for.
     internal let card: CreateTokenCard
     
-    internal let route: Route = .token
+    internal let route: Route = .tokens
     
     // MARK: - Internal -
     // MARK: Methods
