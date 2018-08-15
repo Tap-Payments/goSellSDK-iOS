@@ -6,7 +6,7 @@
 //
 
 /// Create charge request model.
-internal struct CreateChargeRequest: Encodable {
+internal class CreateChargeRequest: Encodable {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -116,6 +116,7 @@ internal struct CreateChargeRequest: Encodable {
         case fee                    = "fee"
         case order                  = "order"
         case redirect               = "redirect"
+        case post                   = "post"
         case source                 = "source"
         case descriptionText        = "description"
         case metadata               = "metadata"

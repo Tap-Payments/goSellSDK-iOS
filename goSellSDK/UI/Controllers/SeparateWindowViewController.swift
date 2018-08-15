@@ -41,7 +41,7 @@ internal class SeparateWindowViewController: BaseViewController {
         }
     }
     
-    internal func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal func hide(animated: Bool, async: Bool, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         let closure: TypeAlias.ArgumentlessClosure = { [weak self] in
             

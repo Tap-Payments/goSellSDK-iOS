@@ -10,6 +10,9 @@ internal struct PaymentOptionsRequest {
     // MARK: - Internal -
     // MARK: Properties
     
+    /// Transaction mode.
+    internal let transactionMode: TransactionMode
+    
     /// Items to pay for.
     internal let items: [PaymentItem]
     
@@ -27,26 +30,28 @@ internal struct PaymentOptionsRequest {
     
     // MARK: Methods
     
-    internal init(items: [PaymentItem], shipping: [Shipping]?, taxes: [Tax]?, currency: Currency, customer: String?) {
+    internal init(transactionMode: TransactionMode, items: [PaymentItem], shipping: [Shipping]?, taxes: [Tax]?, currency: Currency, customer: String?) {
         
-        self.items          = items
-        self.shipping       = shipping
-        self.taxes          = taxes
-        self.currency       = currency
-        self.customer       = customer
-        self.totalAmount    = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
+        self.transactionMode    = transactionMode
+        self.items              = items
+        self.shipping           = shipping
+        self.taxes              = taxes
+        self.currency           = currency
+        self.customer           = customer
+        self.totalAmount        = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
     }
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case items          = "items"
-        case shipping       = "shipping"
-        case taxes          = "taxes"
-        case currency       = "currency"
-        case customer       = "customer"
-        case totalAmount    = "total_amount"
+        case transactionMode    = "transaction_mode"
+        case items              = "items"
+        case shipping           = "shipping"
+        case taxes              = "taxes"
+        case currency           = "currency"
+        case customer           = "customer"
+        case totalAmount        = "total_amount"
     }
     
     // MARK: Properties
@@ -61,7 +66,8 @@ extension PaymentOptionsRequest: Encodable {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode            (self.items         , forKey: .items)
+        try container.encode            (self.transactionMode,  forKey: .transactionMode)
+        try container.encode            (self.items,            forKey: .items)
         
         if self.shipping?.count ?? 0 > 0 {
             

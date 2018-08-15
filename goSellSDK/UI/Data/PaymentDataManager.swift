@@ -86,7 +86,7 @@ internal final class PaymentDataManager {
     internal var currentPaymentOption: PaymentOption?
     internal var currentPaymentCardBINNumber: String?
     internal var urlToLoadInWebPaymentController: URL?
-    internal var currentCharge: Charge?
+    internal var currentChargeOrAuthorize: ChargeProtocol?
     
     internal var paymentOptions: [PaymentOption] {
         
@@ -131,11 +131,16 @@ internal final class PaymentDataManager {
         self.externalDataSource = nonnullDataSource
         self.externalDelegate = caller.uiElement?.paymentDelegate
         
-        let paymentRequest = PaymentOptionsRequest(items:       nonnullDataSource.items,
-                                                   shipping:    nonnullDataSource.shipping ?? nil,
-                                                   taxes:       nonnullDataSource.taxes ?? nil,
-                                                   currency:    currency,
-                                                   customer:    customer.identifier)
+        let transactionMode = nonnullDataSource.mode        ?? .purchase
+        let shipping        = nonnullDataSource.shipping    ?? nil
+        let taxes           = nonnullDataSource.taxes       ?? nil
+        
+        let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
+                                                   items:           nonnullDataSource.items,
+                                                   shipping:        shipping,
+                                                   taxes:           taxes,
+                                                   currency:        currency,
+                                                   customer:        customer.identifier)
         
         self.isLoadingPaymentOptions = true
         
@@ -192,7 +197,7 @@ internal final class PaymentDataManager {
         selectedModel.tableView?.scrollToRow(at: selectedModel.indexPath, at: .none, animated: false)
     }
     
-    internal func closePayment(with status: PaymentStatus, fadeAnimation: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal func closePayment(with status: PaymentStatus, fadeAnimation: Bool = false, force: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         let localCompletion: TypeAlias.BooleanClosure = { (closed) in
             
@@ -204,9 +209,9 @@ internal final class PaymentDataManager {
             completion?()
         }
         
-        if self.isCallingPaymentAPI || self.isChargeInProgress  {
+        if self.isCallingPaymentAPI || self.isChargeOrAuthorizeInProgress  {
             
-            self.showCancelPaymentAlert { (shouldClose) in
+            let alertDecision: TypeAlias.BooleanClosure = { (shouldClose) in
                 
                 if shouldClose {
                     
@@ -219,6 +224,15 @@ internal final class PaymentDataManager {
                     
                     localCompletion(false)
                 }
+            }
+            
+            if force {
+                
+                alertDecision(true)
+            }
+            else {
+                
+                self.showCancelPaymentAlert(with: alertDecision)
             }
         }
         else {
@@ -301,16 +315,16 @@ internal final class PaymentDataManager {
     private var isCallingPaymentAPI: Bool {
         
         let activeRoutes = Set(APIClient.shared.activeRequests.compactMap { Route(rawValue: $0.path) })
-        let paymentAPIRoutes: Set<Route> = Set([.charges, .chargeAuthentication, .token, .tokens])
+        let paymentAPIRoutes: Set<Route> = Set([.charges, .authorize, .token, .tokens])
         
         return activeRoutes.intersection(paymentAPIRoutes).count > 0
     }
     
-    private var isChargeInProgress: Bool {
+    private var isChargeOrAuthorizeInProgress: Bool {
         
-        guard let charge = self.currentCharge else { return false }
+        guard let chargeOrAuthorize = self.currentChargeOrAuthorize else { return false }
         
-        switch charge.status {
+        switch chargeOrAuthorize.status {
             
         case .initiated, .inProgress: return true
         default: return false

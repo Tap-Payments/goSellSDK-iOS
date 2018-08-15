@@ -33,13 +33,23 @@ internal final class LoadingViewController: SeparateWindowViewController {
         
         return controller
     }
-
-    internal override func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    
+    internal func hide(animated: Bool, async: Bool, fromDestroyInstance: Bool, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         super.hide(animated: animated, async: async) {
             
-            LoadingViewController.destroyInstance()
-            completion?()
+            if fromDestroyInstance {
+                
+                completion?()
+            }
+            else {
+                
+                let selfType = type(of: self)
+                if selfType.storage != nil {
+                    
+                    selfType.destroyInstance(completion)
+                }
+            }
         }
     }
     
@@ -137,11 +147,12 @@ extension LoadingViewController: DelayedDestroyable {
     
     internal static func destroyInstance(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
         
-        self.storage?.transitioning?.shouldUseFadeAnimation = false
+        self.storage?.transitioning?.shouldUseFadeAnimation = true
         
-        self.storage?.hide(animated: true) {
+        self.storage?.hide(animated: true, async: true, fromDestroyInstance: true) {
             
             self.storage = nil
+            KnownStaticallyDestroyableTypes.delayedDestroyableInstanceDestroyed()
             completion?()
         }
     }

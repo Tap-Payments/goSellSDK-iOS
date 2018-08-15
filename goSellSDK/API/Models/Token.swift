@@ -6,7 +6,7 @@
 //
 
 /// Token model.
-internal struct Token: Identifiable, Decodable {
+internal struct Token: IdentifiableWithString, Decodable {
     
     // MARK: - Internal -
     // MARK: Properties

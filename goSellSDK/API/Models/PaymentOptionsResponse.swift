@@ -6,7 +6,7 @@
 //
 
 /// Payment Options Response model.
-internal struct PaymentOptionsResponse: Identifiable, Decodable {
+internal struct PaymentOptionsResponse: IdentifiableWithString, Decodable {
     
     // MARK: - Internal -
     // MARK: Properties

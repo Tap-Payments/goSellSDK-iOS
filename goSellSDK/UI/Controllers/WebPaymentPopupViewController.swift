@@ -150,6 +150,7 @@ extension WebPaymentPopupViewController: DelayedDestroyable {
         self.storage?.hide(animated: true, async: true) {
             
             self.storage = nil
+            KnownStaticallyDestroyableTypes.delayedDestroyableInstanceDestroyed()
             completion?()
         }
     }

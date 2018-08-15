@@ -6,6 +6,7 @@
 //
 
 import class    Dispatch.DispatchQueue
+import class    goSellSDK.AuthorizeAction
 import class    goSellSDK.Currency
 import class    goSellSDK.CustomerInfo
 import class    goSellSDK.EmailAddress
@@ -15,6 +16,7 @@ import protocol goSellSDK.PaymentDelegate
 import class    goSellSDK.PaymentItem
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
+import enum     goSellSDK.TransactionMode
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UITableView.UITableView
@@ -175,6 +177,16 @@ extension ExampleViewController: PaymentDataSource {
     internal var require3DSecure: Bool {
         
         return true
+    }
+    
+    internal var mode: TransactionMode {
+        
+        return self.paymentSettings.mode
+    }
+    
+    internal var authorizeAction: AuthorizeAction {
+        
+        return AuthorizeAction(type: .capture, time: 8)
     }
 }
 

@@ -9,17 +9,20 @@ import class goSellSDK.Currency
 import class goSellSDK.CustomerInfo
 import class goSellSDK.Shipping
 import class goSellSDK.Tax
+import enum  goSellSDK.TransactionMode
 
 internal final class Settings: Codable {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    internal static let `default` = Settings(currency: try! Currency(isoCode: "kwd"), customer: nil, shippingList: [], taxes: [])
+    internal static let `default` = Settings(mode: .purchase, currency: try! Currency(isoCode: "kwd"), customer: nil, shippingList: [], taxes: [])
     
     internal var currency: Currency
     
     internal var customer: CustomerInfo? = Serializer.deserialize().first
+    
+    internal var mode: TransactionMode
     
     internal var shippingList: [Shipping]
     
@@ -27,10 +30,11 @@ internal final class Settings: Codable {
     
     // MARK: Methods
     
-    internal init(currency: Currency, customer: CustomerInfo?, shippingList: [Shipping], taxes: [Tax]) {
+    internal init(mode: TransactionMode, currency: Currency, customer: CustomerInfo?, shippingList: [Shipping], taxes: [Tax]) {
         
-        self.currency = currency
-        self.shippingList = shippingList
-        self.taxes = taxes
+        self.mode           = mode
+        self.currency       = currency
+        self.shippingList   = shippingList
+        self.taxes          = taxes
     }
 }

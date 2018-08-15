@@ -5,7 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal struct DeleteCardResponse: Identifiable, Decodable {
+internal struct DeleteCardResponse: IdentifiableWithString, Decodable {
     
     // MARK: - Internal -
     // MARK: Properties

@@ -8,15 +8,15 @@
 /// Route enum.
 internal enum Route: String {
     
-    case billingAddress         = "billing_address/"
-    case bin                    = "bin/"
-    case card                   = "card/"
-    case charges                = "charges/"
-    case chargeAuthentication   = "charges/authenticate/"
-    case initialization         = "init"
-    case paymentOptions         = "payment/types/"
-    case token                  = "token/"
-    case tokens                 = "tokens/"
+    case authorize                  = "authorize/"
+    case billingAddress             = "billing_address/"
+    case bin                        = "bin/"
+    case card                       = "card/"
+    case charges                    = "charges/"
+    case initialization             = "init"
+    case paymentOptions             = "payment/types/"
+    case token                      = "token/"
+    case tokens                     = "tokens/"
     
     internal var decoder: JSONDecoder {
         
@@ -24,7 +24,7 @@ internal enum Route: String {
         
         switch self {
             
-        case .charges, .chargeAuthentication:
+        case .charges, .authorize:
             
             decoder.dateDecodingStrategy = .custom { (aDecoder) -> Date in
                 

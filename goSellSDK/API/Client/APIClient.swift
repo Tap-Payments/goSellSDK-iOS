@@ -122,7 +122,9 @@ internal final class APIClient {
     
     // MARK: - Private -
     
-    private struct Constants {
+    internal struct Constants {
+        
+        internal static let authenticateParameter = "authenticate"
         
         fileprivate static let baseURL: URL = {
             
@@ -161,8 +163,8 @@ internal final class APIClient {
             @available(*, unavailable) private init() { }
         }
         
-//        private static let baseURLString = "https://api.tap.company/v2/"
-        private static let baseURLString = "http://35.194.57.148:8080/v2/"
+        private static let baseURLString = "https://api.tap.company/v2/"
+//        private static let baseURLString = "http://35.194.57.148:8080/v2/"
         
         @available(*, unavailable) private init() { }
     }

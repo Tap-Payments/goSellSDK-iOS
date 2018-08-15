@@ -1,15 +1,11 @@
 //
-//  Charge.swift
+//  Authorize.swift
 //  goSellSDK
 //
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-/// Charge model.
-/// To charge a credit or a debit card, you create a charge object.
-/// You can retrieve and refund individual charges as well as list all charges.
-/// Charges are identified by a unique random ID.
-internal struct Charge: ChargeProtocol, IdentifiableWithString, Decodable {
+internal struct Authorize: AuthorizeProtocol, IdentifiableWithString, Decodable {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -78,6 +74,8 @@ internal struct Charge: ChargeProtocol, IdentifiableWithString, Decodable {
     /// It must contain at least one letter.
     internal private(set) var statementDescriptor: String?
     
+    internal private(set) var authorizeAction: AuthorizeActionResponse
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -101,17 +99,18 @@ internal struct Charge: ChargeProtocol, IdentifiableWithString, Decodable {
         case receiptSettings        = "receipt"
         case response               = "response"
         case statementDescriptor    = "statement_descriptor"
+        case authorizeAction        = "auto"
     }
 }
 
 // MARK: - Authenticatable
-extension Charge: Authenticatable {
+extension Authorize: Authenticatable {
     
-    static var authenticationRoute: Route { return .charges }
+    static var authenticationRoute: Route { return .authorize }
 }
 
 // MARK: - Retrievable
-extension Charge: Retrievable {
+extension Authorize: Retrievable {
     
-    static var retrieveRoute: Route { return .charges }
+    static var retrieveRoute: Route { return .authorize }
 }

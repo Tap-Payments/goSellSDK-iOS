@@ -8,7 +8,7 @@
 import enum TapCardValidator.CardBrand
 
 /// Saved Card model.
-internal struct SavedCard: Decodable, Identifiable {
+internal struct SavedCard: Decodable, IdentifiableWithString {
     
     // MARK: - Internal -
     // MARK: Properties

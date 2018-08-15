@@ -8,7 +8,7 @@
 import enum TapCardValidator.CardBrand
 
 /// Tokenized card model.
-internal struct TokenizedCard: Identifiable {
+internal struct TokenizedCard: IdentifiableWithString {
     
     // MARK: - Internal -
     // MARK: Properties

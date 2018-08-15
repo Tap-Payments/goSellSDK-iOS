@@ -41,17 +41,17 @@ internal class LocalizationStorage {
     
         "en": [
         
-            LocalizationStorage.alertTitleKey(for: .invalidInput): "Invalid input",
+            LocalizationStorage.alertTitleKey(for: .invalidInput): "Invalid Input",
             LocalizationStorage.alertMessageKey(for: .invalidInput): "Required inputs are invalid.",
             
             LocalizationStorage.alertTitleKey(for: .missingCustomerID): "Missing Customer ID",
             LocalizationStorage.alertMessageKey(for: .missingCustomerID): "Customer ID is missing.",
             
             LocalizationStorage.alertTitleKey(for: .saveCardFeatureDisabled): "Save Card",
-            LocalizationStorage.alertMessageKey(for: .saveCardFeatureDisabled): "Save Card feature is disabled.",
+            LocalizationStorage.alertMessageKey(for: .saveCardFeatureDisabled): "Save card feature is disabled.",
             
             LocalizationStorage.alertTitleKey(for: .non3DSecureTransactionsForbidden): "3D Secure",
-            LocalizationStorage.alertMessageKey(for: .non3DSecureTransactionsForbidden): "3D Secure transactions are forbidden.",
+            LocalizationStorage.alertMessageKey(for: .non3DSecureTransactionsForbidden): "Non-3D secure transactions are forbidden.",
             
             LocalizationStorage.alertTitleKey(for: .authorizeIDMissing): "Authorize ID",
             LocalizationStorage.alertMessageKey(for: .authorizeIDMissing): "Authorize ID is missing.",
@@ -66,7 +66,7 @@ internal class LocalizationStorage {
             LocalizationStorage.alertMessageKey(for: .authorizeIDNotFound): "Authorize ID not found.",
             
             LocalizationStorage.alertTitleKey(for: .saveCardFeatureNotSupported): "Save Card",
-            LocalizationStorage.alertMessageKey(for: .saveCardFeatureNotSupported): "Save Card feature is not supported.",
+            LocalizationStorage.alertMessageKey(for: .saveCardFeatureNotSupported): "Save card feature is not supported.",
             
             LocalizationStorage.alertTitleKey(for: .invalidCardNumber): "Card Number",
             LocalizationStorage.alertMessageKey(for: .invalidCardNumber): "Invalid card number.",
@@ -101,10 +101,8 @@ internal class LocalizationStorage {
             LocalizationStorage.alertTitleKey(for: .serialization): "Serialization",
             LocalizationStorage.alertMessageKey(for: .serialization): "Serialization error has occured.",
             
-            
-            
             LocalizationStorage.alertTitleKey(for: .sourceAlreadyUsed): "Source Used",
-            LocalizationStorage.alertMessageKey(for: .sourceAlreadyUsed): "Source is used already.",
+            LocalizationStorage.alertMessageKey(for: .sourceAlreadyUsed): "Source is already used.",
             
             LocalizationStorage.alertTitleKey(for: .gatewayTimeout): "Gateway Timeout",
             LocalizationStorage.alertMessageKey(for: .gatewayTimeout): "Gateway timed out.",
@@ -114,8 +112,6 @@ internal class LocalizationStorage {
             
             LocalizationStorage.alertTitleKey(for: .unknown): "Unknown Error",
             LocalizationStorage.alertMessageKey(for: .unknown): "An unknown error has occured.",
-            
-            
             
             LocalizationStorage.alertTitleKey(for: .missingCustomerIDOrCustomerInformation): "Customer Information",
             LocalizationStorage.alertMessageKey(for: .missingCustomerIDOrCustomerInformation): "Customer ID or customer information is required.",
@@ -159,8 +155,8 @@ internal class LocalizationStorage {
             LocalizationStorage.alertTitleKey(for: .invalidAuthorizeAutoScheduleTime): "Auto Schedule",
             LocalizationStorage.alertMessageKey(for: .invalidAuthorizeAutoScheduleTime): "Invalid authorize auto schedule time.",
             
-            LocalizationStorage.alertTitleKey(for: .invalidAuthenticationType): "Authenticate Type",
-            LocalizationStorage.alertMessageKey(for: .invalidAuthenticationType): "Authenticate type is invalid.",
+            LocalizationStorage.alertTitleKey(for: .invalidAuthenticationType): "Authentication Type",
+            LocalizationStorage.alertMessageKey(for: .invalidAuthenticationType): "Authentication type is invalid.",
             
             LocalizationStorage.alertTitleKey(for: .invalidAmountModificatorType): "Amount Modificator Type",
             LocalizationStorage.alertMessageKey(for: .invalidAmountModificatorType): "Amount modificator type is invalid.",
@@ -195,8 +191,8 @@ internal class LocalizationStorage {
             LocalizationStorage.alertTitleKey(for: .publicKeyGivenInsteadOfSecret): "API Key",
             LocalizationStorage.alertMessageKey(for: .publicKeyGivenInsteadOfSecret): "Public API key given. Please use secret API key instead.",
             
-            LocalizationStorage.alertTitleKey(for: .serverUnavailable): "Permission Denied",
-            LocalizationStorage.alertMessageKey(for: .serverUnavailable): "Insufficient permissions.",
+            LocalizationStorage.alertTitleKey(for: .permissionDenied): "Permission Denied",
+            LocalizationStorage.alertMessageKey(for: .permissionDenied): "Insufficient permissions.",
         ]
     ]
 }
