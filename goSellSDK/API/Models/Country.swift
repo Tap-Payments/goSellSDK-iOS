@@ -6,22 +6,27 @@
 //
 
 /// Country model.
-internal struct Country {
+public final class Country: NSObject {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
     /// Two-letters iso code.
-    internal let isoCode: String
+    public let isoCode: String
+    
+    public override var hashValue: Int {
+        
+        return self.isoCode.hashValue
+    }
+    
+    public static func == (lhs: Country, rhs: Country) -> Bool {
+        
+        return lhs.isoCode.lowercased() == rhs.isoCode.lowercased()
+    }
     
     // MARK: Methods
     
-    internal init(_ isoCode: String) throws {
-        
-        try self.init(isoCode: isoCode)
-    }
-    
-    internal init(isoCode: String) throws {
+    public required init(isoCode: String) throws {
         
         let code = isoCode.uppercased()
         
@@ -33,6 +38,16 @@ internal struct Country {
         }
         
         self.isoCode = code
+        
+        super.init()
+    }
+    
+    // MARK: - Internal -
+    // MARK: Methods
+    
+    internal convenience init(_ isoCode: String) throws {
+        
+        try self.init(isoCode: isoCode)
     }
     
     // MARK: - Private -
@@ -53,20 +68,11 @@ extension Country: Encodable {
 // MARK: - Decodable
 extension Country: Decodable {
     
-    public init(from decoder: Decoder) throws {
+    public convenience init(from decoder: Decoder) throws {
         
         let container = try decoder.singleValueContainer()
         let code = try container.decode(String.self)
         
         try self.init(isoCode: code)
-    }
-}
-
-// MARK: - Hashable
-extension Country: Hashable {
-    
-    internal var hashValue: Int {
-        
-        return self.isoCode.hashValue
     }
 }

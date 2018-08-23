@@ -193,6 +193,9 @@ internal class LocalizationStorage {
             
             LocalizationStorage.alertTitleKey(for: .permissionDenied): "Permission Denied",
             LocalizationStorage.alertMessageKey(for: .permissionDenied): "Insufficient permissions.",
+            
+            LocalizationStorage.alertTitleKey(for: .invalidEnumValue): "Serialization",
+            LocalizationStorage.alertMessageKey(for: .invalidEnumValue): "Failed to deserialize an enum."
         ]
     ]
 }

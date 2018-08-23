@@ -14,31 +14,31 @@ internal struct PaymentOption: IdentifiableWithString {
     // MARK: Properties
     
     /// Unique identifier for the object.
-    internal private(set) var identifier: String?
+    internal let identifier: String
     
     /// Payment option card brand.
-    internal private(set) var brand: CardBrand
+    internal let brand: CardBrand
     
     /// Name of the payment option.
-    internal private(set) var title: String
+    internal let title: String
     
     /// Image URL of the payment option.
-    internal private(set) var imageURL: URL
+    internal let imageURL: URL
     
     /// Payment type.
-    internal private(set) var paymentType: PaymentType
+    internal let paymentType: PaymentType
     
     /// Supported card brands.
-    internal private(set) var supportedCardBrands: [CardBrand]
+    internal let supportedCardBrands: [CardBrand]
     
     /// Extra fees.
-    internal private(set) var extraFees: [ExtraFee]
+    internal let extraFees: [ExtraFee]
     
     /// List of supported currencies.
-    internal private(set) var supportedCurrencies: [Currency]
+    internal let supportedCurrencies: [Currency]
     
     /// Ordering parameter.
-    internal private(set) var orderBy: Int
+    internal let orderBy: Int
     
     // MARK: - Private -
     
@@ -62,15 +62,15 @@ extension PaymentOption: Decodable {
 
         let container           = try decoder.container(keyedBy: CodingKeys.self)
 
-        let identifier          = try container.decodeIfPresent (String.self        , forKey: .identifier)
-        let brand               = try container.decode          (CardBrand.self     , forKey: .title)
-        let title               = try container.decode          (String.self        , forKey: .title)
-        let imageURL            = try container.decode          (URL.self           , forKey: .imageURL)
-        let paymentType         = try container.decode          (PaymentType.self   , forKey: .paymentType)
-        let supportedCardBrands = try container.decode          ([CardBrand].self   , forKey: .supportedCardBrands)
-        let extraFees           = try container.decode          ([ExtraFee].self    , forKey: .extraFees)
-        let supportedCurrencies = try container.decode          ([Currency].self    , forKey: .supportedCurrencies)
-        let orderBy             = try container.decode          (Int.self           , forKey: .orderBy)
+        let identifier          = try container.decode  (String.self        , forKey: .identifier)
+        let brand               = try container.decode  (CardBrand.self     , forKey: .title)
+        let title               = try container.decode  (String.self        , forKey: .title)
+        let imageURL            = try container.decode  (URL.self           , forKey: .imageURL)
+        let paymentType         = try container.decode  (PaymentType.self   , forKey: .paymentType)
+        let supportedCardBrands = try container.decode  ([CardBrand].self   , forKey: .supportedCardBrands)
+        let extraFees           = try container.decode  ([ExtraFee].self    , forKey: .extraFees)
+        let supportedCurrencies = try container.decode  ([Currency].self    , forKey: .supportedCurrencies)
+        let orderBy             = try container.decode  (Int.self           , forKey: .orderBy)
         
         self.init(identifier: identifier,
                   brand: brand,

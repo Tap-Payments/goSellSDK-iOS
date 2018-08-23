@@ -20,15 +20,6 @@ internal extension Country {
     internal static let all: [Country] = Locale.isoRegionCodes.compactMap { try? Country($0) }
 }
 
-// MARK: - Equatable
-extension Country: Equatable {
-    
-    internal static func == (lhs: Country, rhs: Country) -> Bool {
-        
-        return lhs.isoCode.lowercased() == rhs.isoCode.lowercased()
-    }
-}
-
 // MARK: - Filterable
 extension Country: Filterable {
     
@@ -66,7 +57,7 @@ extension Country: ListValue {
 // MARK: - Transformable
 extension Country: Transformable {
     
-    internal init?(untransformedValue: Any?) {
+    internal convenience init?(untransformedValue: Any?) {
         
         if let country = untransformedValue as? Country {
             

@@ -6,20 +6,20 @@
 //
 
 /// Redirect model.
-internal struct TrackingURL: Codable {
+@objcMembers public final class TrackingURL: NSObject, Codable {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
     /// The status of the payment is either succeeded, pending, or failed.
-    internal private(set) var status: URLStatus?
+    public private(set) var status: URLStatus = .pending
     
     /// URL.
-    internal private(set) var  url: URL?
+    public private(set) var  url: URL?
     
     // MARK: Methods
     
-    internal init(url: URL) {
+    public init(url: URL) {
         
         self.url = url
     }

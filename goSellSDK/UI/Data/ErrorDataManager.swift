@@ -114,7 +114,8 @@ internal class ErrorDataManager {
         case .invalidPhoneNumber:           return .invalidPhoneNumber
         case .invalidUnitOfMeasurement:     return .invalidUnitOfMeasurement
         case .invalidMeasurement:           return .invalidMeasurement
-            
+        case .invalidEnumValue:             return .invalidEnumValue
+
         }
     }
     
@@ -196,7 +197,8 @@ internal class ErrorDataManager {
              .currencyCodeMismatch,
              .captureAmountExceeds,
              .invalidCountryCode,
-             .serialization:
+             .serialization,
+             .invalidEnumValue:
             
             return .alert
             

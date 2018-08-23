@@ -36,7 +36,7 @@ internal class CreateChargeRequest: Encodable {
     /// if source.id = "src_kw.knet" then KNET payment page link will be provided.
     /// if source.id = "src_card" then Credit Card payment page link will be provided.
     /// if source.id = "Card Token ID or Card ID" then Credit Card payment processing page link will be provided.
-    internal let source: Source
+    internal let source: SourceRequest
     
     /// An arbitrary string which you can attach to a Charge object. It is displayed when in the web interface alongside the charge.
     internal private(set) var descriptionText: String?
@@ -87,7 +87,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-    internal init(amount: Decimal, currency: Currency, customer: CustomerInfo, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: Source, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
+    internal init(amount: Decimal, currency: Currency, customer: CustomerInfo, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
         
         self.amount                 = amount
         self.currency               = currency

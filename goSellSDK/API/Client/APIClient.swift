@@ -34,11 +34,18 @@ internal final class APIClient {
         
         let applicationValue = self.applicationHeaderValue
         
-        return [
+        var result = [
             
             Constants.HTTPHeaderKey.authorization: "Bearer \(secretKey)",
             Constants.HTTPHeaderKey.application: applicationValue
         ]
+        
+        if let sessionToken = SettingsDataManager.shared.settings?.sessionToken, !sessionToken.isEmpty {
+            
+            result[Constants.HTTPHeaderKey.sessionToken] = sessionToken
+        }
+        
+        return result
     }
     
     internal var activeRequests: [TapNetworkRequestOperation] {
@@ -145,6 +152,7 @@ internal final class APIClient {
             
             fileprivate static let authorization    = "Authorization"
             fileprivate static let application      = "application"
+            fileprivate static let sessionToken     = "session_token"
             
             @available(*, unavailable) private init() { }
         }
@@ -349,6 +357,4 @@ extension APIClient: Singleton {
         
         return instance
     }
-    
-    
 }

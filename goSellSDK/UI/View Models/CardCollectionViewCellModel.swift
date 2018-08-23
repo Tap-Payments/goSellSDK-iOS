@@ -153,11 +153,10 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     private func deleteCard() {
         
-        guard   let cardIdentifier = self.card.identifier,
-                let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier else { return }
+        guard let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier else { return }
         
         let loader = PaymentDataManager.shared.showLoadingController(false)
-        APIClient.shared.deleteCard(with: cardIdentifier, from: customerIdentifier) { [weak loader, weak self] (response, error) in
+        APIClient.shared.deleteCard(with: self.card.identifier, from: customerIdentifier) { [weak loader, weak self] (response, error) in
             
             loader?.hide(animated: true, async: true, fromDestroyInstance: false)
             

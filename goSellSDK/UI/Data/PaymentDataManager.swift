@@ -252,9 +252,13 @@ internal final class PaymentDataManager {
             
             self.externalDelegate?.paymentCancel()
             
-        case .success(let customerID):
+        case .successfulCharge(let charge):
             
-            self.externalDelegate?.paymentSuccess(customerID)
+            self.externalDelegate?.paymentSuccess?(charge)
+            
+        case .successfulAuthorize(let authorize):
+            
+            self.externalDelegate?.authorizeSuccess?(authorize)
             
         case .failure:
             

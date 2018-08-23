@@ -8,49 +8,25 @@
 import enum TapCardValidator.CardBrand
 
 /// Source model.
-internal struct Source: IdentifiableWithString, Codable {
+@objcMembers public final class Source: SourceRequest {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
-    /// A payment source to be charged, such as a credit card.
-    /// If you also pass a customer ID, the source must be the ID of a source belonging to the customer (e.g., a saved card).
-    /// Otherwise, if you do not pass a customer ID, the source you provide must can be a token or card id or source id.
-    /// Default source id's (KNET - src_kw.knet, Visa/MasterCard - src_visamastercard)
-    internal private(set) var identifier: String?
-    
     /// Object type.
-    internal private(set) var object: SourceObject?
+    public private(set) var object: SourceObject
     
     /// Source type.
-    internal private(set) var type: SourceType?
+    public private(set) var type: SourceType
     
     /// Source payment type.
-    internal private(set) var paymentType: SourcePaymentType?
+    public private(set) var paymentType: SourcePaymentType
     
     /// Payment method.
-    internal private(set) var paymentMethod: CardBrand?
+    public private(set) var paymentMethod: CardBrand
     
     /// Source channel.
-    internal private(set) var channel: SourceChannel?
-    
-    // MARK: Methods
-    
-    /// Initializes source object with static identifier.
-    ///
-    /// - Parameter identifier: Static source identifier.
-    internal init(identifier: SourceIdentifier) {
-        
-        self.identifier = identifier.stringValue
-    }
-    
-    /// Initializes source object with token.
-    ///
-    /// - Parameter token: Token to initialize source with.
-    internal init(token: Token) {
-        
-        self.identifier = token.identifier
-    }
+    public private(set) var channel: SourceChannel
     
     // MARK: - Private -
     
@@ -62,5 +38,41 @@ internal struct Source: IdentifiableWithString, Codable {
         case paymentType    = "payment_type"
         case paymentMethod  = "payment_method"
         case channel        = "channel"
+    }
+    
+    // MARK: Methods
+    
+    private init(identifier: String, object: SourceObject, type: SourceType, paymentType: SourcePaymentType, paymentMethod: CardBrand, channel: SourceChannel) {
+        
+        self.object         = object
+        self.type           = type
+        self.paymentType    = paymentType
+        self.paymentMethod  = paymentMethod
+        self.channel        = channel
+        
+        super.init(identifier)
+    }
+}
+
+// MARK: - Decodable
+extension Source: Decodable {
+    
+    public convenience init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let identifier      = try container.decode(String.self, forKey: .identifier)
+        let object          = try container.decode(SourceObject.self, forKey: .object)
+        let type            = try container.decode(SourceType.self, forKey: .type)
+        let paymentType     = try container.decode(SourcePaymentType.self, forKey: .paymentType)
+        let paymentMethod   = try container.decode(CardBrand.self, forKey: .paymentMethod)
+        let channel         = try container.decode(SourceChannel.self, forKey: .channel)
+        
+        self.init(identifier:       identifier,
+                  object:           object,
+                  type:             type,
+                  paymentType:      paymentType,
+                  paymentMethod:    paymentMethod,
+                  channel:          channel)
     }
 }

@@ -5,17 +5,17 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal enum ChargeStatus: String, Decodable {
+@objc public enum ChargeStatus: Int {
     
-    case initiated      = "INITIATED"
-    case inProgress     = "IN_PROGRESS"
-    case abandoned      = "ABANDONED"
-    case cancelled      = "CANCELLED"
-    case failed         = "FAILED"
-    case declined       = "DECLINED"
-    case restricted     = "RESTRICTED"
-    case captured       = "CAPTURED"
-    case void           = "VOID"
+    case initiated
+    case inProgress
+    case abandoned
+    case cancelled
+    case failed
+    case declined
+    case restricted
+    case captured
+    case void
     
     // MARK: - Internal -
     // MARK: Properties
@@ -35,5 +35,59 @@ internal enum ChargeStatus: String, Decodable {
         case .void:         return "Void"
 
         }
+    }
+    
+    // MARK: - Private -
+    // MARK: Properties
+    
+    private var stringValue: String {
+        
+        switch self {
+            
+        case .initiated:    return "INITIATED"
+        case .inProgress:   return "IN_PROGRESS"
+        case .abandoned:    return "ABANDONED"
+        case .cancelled:    return "CANCELLED"
+        case .failed:       return "FAILED"
+        case .declined:     return "DECLINED"
+        case .restricted:   return "RESTRICTED"
+        case .captured:     return "CAPTURED"
+        case .void:         return "VOID"
+
+        }
+    }
+    
+    // MARK: Methods
+    
+    private init(_ stringValue: String) throws {
+        
+        switch stringValue {
+            
+        case ChargeStatus.initiated.stringValue:    self = .initiated
+        case ChargeStatus.inProgress.stringValue:   self = .inProgress
+        case ChargeStatus.abandoned.stringValue:    self = .abandoned
+        case ChargeStatus.cancelled.stringValue:    self = .cancelled
+        case ChargeStatus.failed.stringValue:       self = .failed
+        case ChargeStatus.declined.stringValue:     self = .declined
+        case ChargeStatus.restricted.stringValue:   self = .restricted
+        case ChargeStatus.captured.stringValue:     self = .captured
+        case ChargeStatus.void.stringValue:         self = .void
+            
+        default:
+            
+            throw ErrorUtils.createEnumStringInitializationError(for: ChargeStatus.self, value: stringValue)
+        }
+    }
+}
+
+// MARK: - Decodable
+extension ChargeStatus: Decodable {
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let stringValue = try container.decode(String.self)
+        
+        try self.init(stringValue)
     }
 }

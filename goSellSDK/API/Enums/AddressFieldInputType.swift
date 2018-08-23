@@ -13,15 +13,11 @@ internal enum AddressFieldInputType {
     
     case textInput(TextInputType)
     case dropdown
-}
-
-// MARK: - Decodable
-extension AddressFieldInputType: Decodable {
     
-    internal init(from decoder: Decoder) throws {
-        
-        let container = try decoder.singleValueContainer()
-        let stringValue = try container.decode(String.self)
+    // MARK: - Private -
+    // MARK: Methods
+    
+    private init(_ stringValue: String) throws {
         
         switch stringValue {
             
@@ -39,9 +35,20 @@ extension AddressFieldInputType: Decodable {
             
         default:
             
-            self = .textInput(.text)
-            print("Unknown address field input type: \(stringValue)")
+            throw ErrorUtils.createEnumStringInitializationError(for: AddressFieldInputType.self, value: stringValue)
         }
+    }
+}
+
+// MARK: - Decodable
+extension AddressFieldInputType: Decodable {
+    
+    internal init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let stringValue = try container.decode(String.self)
+        
+        try self.init(stringValue)
     }
     
     private struct Constants {

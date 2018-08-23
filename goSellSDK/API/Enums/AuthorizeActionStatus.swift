@@ -5,7 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal enum AuthorizeActionStatus: String, Decodable {
+public enum AuthorizeActionStatus: String, Decodable {
     
     case pending    = "PENDING"
     case scheduled  = "SCHEDULED"

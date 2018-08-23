@@ -6,7 +6,9 @@
 //
 
 import class    Dispatch.DispatchQueue
+import class    goSellSDK.Authorize
 import class    goSellSDK.AuthorizeAction
+import class    goSellSDK.Charge
 import class    goSellSDK.Currency
 import class    goSellSDK.CustomerInfo
 import class    goSellSDK.EmailAddress
@@ -193,14 +195,20 @@ extension ExampleViewController: PaymentDataSource {
 // MARK: - PaymentDelegate
 extension ExampleViewController: PaymentDelegate {
     
-    internal func paymentSuccess(_ customerID: String) {
+    internal func paymentSuccess(_ charge: Charge) {
         
-        if let nonnullCustomer = self.customer {
+        if let customerID = charge.customer.identifier {
             
-            SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
+            self.saveCustomer(customerID)
         }
+    }
+    
+    internal func authorizeSuccess(_ authorize: Authorize) {
         
-        Serializer.serialize(self.paymentSettings)
+        if let customerID = authorize.customer.identifier {
+            
+            self.saveCustomer(customerID)
+        }
     }
     
     internal func paymentFailure() {
@@ -208,6 +216,11 @@ extension ExampleViewController: PaymentDelegate {
     }
     
     internal func paymentCancel() {
+        
+        
+    }
+    
+    private func saveCustomer(_ customerID: String) {
         
         
     }

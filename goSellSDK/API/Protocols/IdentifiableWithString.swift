@@ -11,5 +11,5 @@ internal protocol IdentifiableWithString {
     // MARK: Properties
     
     /// Unique identifier of an object.
-    var identifier: String? { get }
+    var identifier: String { get }
 }

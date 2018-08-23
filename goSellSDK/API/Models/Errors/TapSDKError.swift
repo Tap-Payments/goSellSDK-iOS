@@ -32,3 +32,7 @@
         super.init()
     }
 }
+
+// MARK: - Error
+extension TapSDKError: Error {}
+

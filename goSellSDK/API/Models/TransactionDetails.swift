@@ -5,19 +5,19 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal struct TransactionDetails: Decodable {
+@objcMembers public final class TransactionDetails: NSObject {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
     /// Transaction creation date.
-    internal let creationDate: Date
+    public let creationDate: Date
     
     /// Transaction time zone.
-    internal let timeZone: String
+    public let timeZone: String
     
     /// Transaction URL.
-    internal let url: URL?
+    public let url: URL?
     
     // MARK: - Private -
     
@@ -26,5 +26,31 @@ internal struct TransactionDetails: Decodable {
         case creationDate   = "created"
         case timeZone       = "timezone"
         case url            = "url"
+    }
+    
+    // MARK: Methods
+    
+    private init(creationDate: Date, timeZone: String, url: URL?) {
+        
+        self.creationDate = creationDate
+        self.timeZone = timeZone
+        self.url = url
+        
+        super.init()
+    }
+}
+
+// MARK: - Decodable
+extension TransactionDetails: Decodable {
+    
+    public convenience init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let creationDate    = try container.decode          (Date.self,     forKey: .creationDate)
+        let timeZone        = try container.decode          (String.self,   forKey: .timeZone)
+        let url             = try container.decodeIfPresent (URL.self,      forKey: .url)
+        
+        self.init(creationDate: creationDate, timeZone: timeZone, url: url)
     }
 }

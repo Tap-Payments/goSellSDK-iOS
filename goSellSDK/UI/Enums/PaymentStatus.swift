@@ -8,6 +8,7 @@
 internal enum PaymentStatus {
     
     case cancelled
-    case success(String)
+    case successfulCharge(Charge)
+    case successfulAuthorize(Authorize)
     case failure
 }

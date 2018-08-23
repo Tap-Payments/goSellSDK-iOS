@@ -72,6 +72,3 @@
         }
     }
 }
-
-// MARK: - Error
-extension TapSDKKnownError: Error {}

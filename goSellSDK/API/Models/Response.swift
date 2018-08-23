@@ -6,16 +6,16 @@
 //
 
 /// Response structure.
-internal struct Response: Decodable {
+@objcMembers public final class Response: NSObject {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
     /// Response code.
-    internal let code: String
+    public let code: String
     
     /// Response message.
-    internal let message: String
+    public let message: String
     
     // MARK: - Private -
     
@@ -23,5 +23,29 @@ internal struct Response: Decodable {
         
         case code       = "code"
         case message    = "message"
+    }
+    
+    // MARK: Methods
+    
+    private init(code: String, message: String) {
+        
+        self.code       = code
+        self.message    = message
+        
+        super.init()
+    }
+}
+
+// MARK: - Decodable
+extension Response: Decodable {
+    
+    public convenience init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let code    = try container.decode(String.self, forKey: .code)
+        let message = try container.decode(String.self, forKey: .message)
+        
+        self.init(code: code, message: message)
     }
 }

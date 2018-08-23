@@ -8,10 +8,15 @@
 /// Payment delegate.
 @objc public protocol PaymentDelegate: class, NSObjectProtocol {
     
-    /// Notifies the receiver that payment has finished successfully.
+    /// Notifies the receiver that payment has succeed, passing `charge` as an argument.
     ///
-    /// - Parameter customerID: Customer identifier for reuse.
-    func paymentSuccess(_ customerID: String)
+    /// - Parameter charge: Successful charge object.
+    @objc optional func paymentSuccess(_ charge: Charge)
+    
+    /// Notifies the receiver that authorization has succeed, passing `authorize` as an argument.
+    ///
+    /// - Parameter authorize: Successful authorization object.
+    @objc optional func authorizeSuccess(_ authorize: Authorize)
     
     /// Notifies the receiver that payment has failed.
     func paymentFailure()

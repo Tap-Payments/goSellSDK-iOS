@@ -5,7 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal enum SourceChannel: String, Codable {
+public enum SourceChannel: String, Codable {
     
     case callCentre     = "CALL_CENTRE"
     case internet       = "INTERNET"

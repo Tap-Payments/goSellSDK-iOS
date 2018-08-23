@@ -9,7 +9,7 @@
 ///
 /// - card: Card token.
 /// - savedCard: Saved card token.
-internal enum TokenType: String, Decodable {
+public enum TokenType: String, Decodable {
     
     case card       = "CARD"
     case savedCard  = "SAVED_CARD"

@@ -246,9 +246,9 @@ internal extension PaymentDataManager {
     
     private func startPaymentProcess(with savedCard: SavedCard, paymentOption: PaymentOption) {
         
-        guard let cardIdentifier = savedCard.identifier, let customerIdentifier = self.externalDataSource?.customer?.identifier else { return }
+        guard let customerIdentifier = self.externalDataSource?.customer?.identifier else { return }
         
-        let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
+        let card = CreateTokenSavedCard(cardIdentifier: savedCard.identifier, customerIdentifier: customerIdentifier)
         let request = CreateTokenWithSavedCardRequest(savedCard: card)
         
         self.callTokenAPI(with: request, paymentOption: paymentOption)
@@ -281,7 +281,7 @@ internal extension PaymentDataManager {
             }
             else if let nonnullToken = token {
                 
-                let source = Source(token: nonnullToken)
+                let source = SourceRequest(token: nonnullToken)
                 self?.callChargeOrAuthorizeAPI(with: source, paymentOption: paymentOption, cardBIN: nonnullToken.card.binNumber, saveCard: saveCard) {
                     
                     self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
@@ -297,7 +297,7 @@ internal extension PaymentDataManager {
     
     private func startPaymentProcess(withWebPaymentOption paymentOption: PaymentOption) {
     
-        let source = Source(identifier: paymentOption.sourceIdentifier)
+        let source = SourceRequest(identifier: paymentOption.sourceIdentifier)
         
         self.openWebPaymentScreen(for: paymentOption)
         
@@ -310,7 +310,7 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func callChargeOrAuthorizeAPI(with source: Source, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
         guard
             
@@ -441,10 +441,7 @@ internal extension PaymentDataManager {
             
         case .captured:
             
-            if let receiptNumber = nonnullChargeOrAuthorize.receiptSettings?.identifier, let customerID = nonnullChargeOrAuthorize.customer.identifier {
-                
-                self.paymentSuccess(with: receiptNumber, customerID: customerID)
-            }
+            self.paymentSuccess(with: nonnullChargeOrAuthorize)
         }
     }
     
@@ -492,21 +489,34 @@ internal extension PaymentDataManager {
     
     private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(_ chargeOrAuthorize: T, paymentOption: PaymentOption, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
-        guard let identifier = chargeOrAuthorize.identifier else { return }
-        
-        APIClient.shared.retrieveObject(with: identifier) { (returnChargeOrAuthorize: T?, error: TapSDKError?) in
+        APIClient.shared.retrieveObject(with: chargeOrAuthorize.identifier) { (returnChargeOrAuthorize: T?, error: TapSDKError?) in
             
             loader?.hide(animated: true, async: true, fromDestroyInstance: false)
             self.handleChargeOrAuthorizeResponse(chargeOrAuthorize, error: error, paymentOption: paymentOption, retryAction: retryAction)
         }
     }
     
-    private func paymentSuccess(with receiptNumber: String, customerID: String) {
+    private func paymentSuccess(with chargeOrAuthorize: ChargeProtocol) {
         
-        self.showPaymentSuccessPopup(with: receiptNumber) {
+        let popupAppearanceCompletionClosure: TypeAlias.ArgumentlessClosure = { [weak self] in
             
-            self.closePayment(with: .success(customerID), fadeAnimation: true)
+            if let authorize = chargeOrAuthorize as? Authorize {
+                
+                self?.closePayment(with: .successfulAuthorize(authorize), fadeAnimation: true)
+            }
+            else if let charge = chargeOrAuthorize as? Charge {
+                
+                self?.closePayment(with: .successfulCharge(charge), fadeAnimation: true)
+            }
         }
+        
+        guard let receiptNumber = chargeOrAuthorize.receiptSettings?.identifier else {
+            
+            popupAppearanceCompletionClosure()
+            return
+        }
+        
+        self.showPaymentSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
     }
     
     private func paymentFailure(with status: ChargeStatus) {

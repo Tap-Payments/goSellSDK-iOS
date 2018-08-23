@@ -11,7 +11,7 @@
 /// - BENEFIT: Benefit source identifier.
 /// - SADAD: Sadad source identifier.
 /// - FAWRY: Fawry source identifier.
-internal enum SourceIdentifier {
+public enum SourceIdentifier {
     
     /// KNET source identifier.
     case KNET

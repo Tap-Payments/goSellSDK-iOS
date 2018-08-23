@@ -11,7 +11,7 @@ internal struct DeleteCardResponse: IdentifiableWithString, Decodable {
     // MARK: Properties
     
     internal let isDeleted: Bool
-    internal var identifier: String?
+    internal let identifier: String
     
     // MARK: - Private -
     

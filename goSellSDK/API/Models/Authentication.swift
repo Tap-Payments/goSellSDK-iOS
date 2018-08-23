@@ -5,32 +5,44 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal final class Authentication: IdentifiableWithString {
+/// Authentication class.
+@objcMembers public final class Authentication: NSObject, IdentifiableWithString {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
-    internal private(set) var identifier: String?
+    /// Authentication identifier.
+    public let identifier: String
     
-    internal let object: String
+    /// Object type.
+    public let object: String
     
-    internal let type: AuthenticationType
+    /// Authentication type.
+    public let type: AuthenticationType
     
-    internal let requirer: AuthenticationRequirer
+    /// Authentication requirer.
+    public let requirer: AuthenticationRequirer
     
-    internal let status: AuthenticationStatus
+    /// Authentication status.
+    public let status: AuthenticationStatus
     
-    internal let retryAttemptsCount: Int
+    /// Retry attempts count.
+    public let retryAttemptsCount: Int
     
-    internal let url: URL?
+    /// URL.
+    public let url: URL?
     
-    internal let creationDate: Date
+    /// Creation date.
+    public let creationDate: Date
     
-    internal let authenticationDate: Date?
+    /// Authentication date.
+    public let authenticationDate: Date?
     
-    internal let count: Int
+    /// Count.
+    public let count: Int
     
-    internal let value: String
+    /// Authentication value.
+    public let value: String
     
     // MARK: - Private -
     
@@ -80,7 +92,7 @@ internal final class Authentication: IdentifiableWithString {
 // MARK: - Decodable
 extension Authentication: Decodable {
     
-    internal convenience init(from decoder: Decoder) throws {
+    public convenience init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
