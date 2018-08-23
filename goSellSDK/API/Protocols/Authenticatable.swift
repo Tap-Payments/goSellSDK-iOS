@@ -8,7 +8,7 @@
 internal protocol Authenticatable: Decodable {
     
     /// Unique object identifier.
-    var identifier: String? { get }
+    var identifier: String { get }
     
     /// Charge authentication if required.
     var authentication: Authentication? { get }

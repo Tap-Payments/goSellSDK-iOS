@@ -8,45 +8,46 @@
 import enum TapCardValidator.CardBrand
 
 /// Tokenized card model.
-internal struct TokenizedCard: IdentifiableWithString {
+public final class TokenizedCard: NSObject, IdentifiableWithString {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
-    internal private(set) var identifier: String?
+    /// Unique tokenized card identifier.
+    public let identifier: String
     
     /// Object type.
-    internal let object: String
+    public let object: String
     
     /// Last four digits.
-    internal let lastFourDigits: String
+    public let lastFourDigits: String
     
     /// Expiration month.
-    internal let expirationMonth: Int
+    public let expirationMonth: Int
     
     /// Expiration year.
-    internal let expirationYear: Int
+    public let expirationYear: Int
     
     /// BIN number.
-    internal let binNumber: String
+    public let binNumber: String
     
     /// Card brand.
-    internal let brand: CardBrand
+    public let brand: CardBrand
     
     /// Card funding.
-    internal let funding: String
+    public let funding: String
     
     /// Cardholder name.
-    internal let cardholderName: String
+    public let cardholderName: String
     
     /// Customer identifier.
-    internal let customerIdentifier: String?
+    public let customerIdentifier: String?
     
     /// Card fingerprint.
-    internal let fingerprint: String
+    public let fingerprint: String
     
     /// Address on card.
-    internal private(set) var address: Address?
+    public private(set) var address: Address?
     
     // MARK: - Private -
     
@@ -65,26 +66,59 @@ internal struct TokenizedCard: IdentifiableWithString {
         case fingerprint        = "fingerprint"
         case address            = "address"
     }
+    
+    // MARK: Methods
+    
+    private init(identifier: String, object: String, lastFourDigits: String, expirationMonth: Int, expirationYear: Int, binNumber: String, brand: CardBrand, funding: String, cardholderName: String, customerIdentifier: String?, fingerprint: String, address: Address?) {
+        
+        self.identifier         = identifier
+        self.object             = object
+        self.lastFourDigits     = lastFourDigits
+        self.expirationMonth    = expirationMonth
+        self.expirationYear     = expirationYear
+        self.binNumber          = binNumber
+        self.brand              = brand
+        self.funding            = funding
+        self.cardholderName     = cardholderName
+        self.customerIdentifier = customerIdentifier
+        self.fingerprint        = fingerprint
+        self.address            = address
+        
+        super.init()
+    }
 }
 
 // MARK: - Decodable
 extension TokenizedCard: Decodable {
     
-    internal init(from decoder: Decoder) throws {
+    public convenience init(from decoder: Decoder) throws {
         
         let container           = try decoder.container(keyedBy: CodingKeys.self)
     
-        self.identifier         = try container.decodeIfPresent             (String.self,       forKey: .identifier)
-        self.object             = try container.decode                      (String.self,       forKey: .object)
-        self.lastFourDigits     = try container.decode                      (String.self,       forKey: .lastFourDigits)
-        self.expirationMonth    = try container.decode                      (Int.self,          forKey: .expirationMonth)
-        self.expirationYear     = try container.decode                      (Int.self,          forKey: .expirationYear)
-        self.binNumber          = try container.decode                      (String.self,       forKey: .binNumber)
-        self.brand              = try container.decode                      (CardBrand.self,    forKey: .brand)
-        self.funding            = try container.decode                      (String.self,       forKey: .funding)
-        self.cardholderName     = try container.decode                      (String.self,       forKey: .cardholderName)
-        self.customerIdentifier = try container.decodeIfPresent             (String.self,       forKey: .customerIdentifier)
-        self.fingerprint        = try container.decode                      (String.self,       forKey: .fingerprint)
-        self.address            = try container.decodeIfPresentAndNotEmpty  (Address.self,      forKey: .address)
+        let identifier         = try container.decode                      (String.self,       forKey: .identifier)
+        let object             = try container.decode                      (String.self,       forKey: .object)
+        let lastFourDigits     = try container.decode                      (String.self,       forKey: .lastFourDigits)
+        let expirationMonth    = try container.decode                      (Int.self,          forKey: .expirationMonth)
+        let expirationYear     = try container.decode                      (Int.self,          forKey: .expirationYear)
+        let binNumber          = try container.decode                      (String.self,       forKey: .binNumber)
+        let brand              = try container.decode                      (CardBrand.self,    forKey: .brand)
+        let funding            = try container.decode                      (String.self,       forKey: .funding)
+        let cardholderName     = try container.decode                      (String.self,       forKey: .cardholderName)
+        let customerIdentifier = try container.decodeIfPresent             (String.self,       forKey: .customerIdentifier)
+        let fingerprint        = try container.decode                      (String.self,       forKey: .fingerprint)
+        let address            = try container.decodeIfPresentAndNotEmpty  (Address.self,      forKey: .address)
+        
+        self.init(identifier:           identifier,
+                  object:               object,
+                  lastFourDigits:       lastFourDigits,
+                  expirationMonth:      expirationMonth,
+                  expirationYear:       expirationYear,
+                  binNumber:            binNumber,
+                  brand:                brand,
+                  funding:              funding,
+                  cardholderName:       cardholderName,
+                  customerIdentifier:   customerIdentifier,
+                  fingerprint:          fingerprint,
+                  address:              address)
     }
 }

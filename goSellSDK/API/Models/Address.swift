@@ -6,7 +6,64 @@
 //
 
 /// Address model.
-internal struct Address: Decodable {
+public class Address: NSObject, Decodable {
+    
+    // MARK: - Public -
+    // MARK: Properties
+    
+    /// Address format.
+    public internal(set) var format: AddressFormat?
+    
+    /// Address type.
+    public internal(set) var type: AddressType?
+    
+    /// Country.
+    public internal(set) var country: Country?
+    
+    /// Address line 1.
+    public internal(set) var line1: String?
+    
+    /// Address line 2.
+    public internal(set) var line2: String?
+    
+    /// Address city.
+    public internal(set) var city: String?
+    
+    /// Address state.
+    public internal(set) var state: String?
+    
+    /// Address zip code.
+    public internal(set) var zipCode: String?
+    
+    /// Address country governorate.
+    public internal(set) var countryGovernorate: String?
+    
+    /// Address area.
+    public internal(set) var area: String?
+    
+    /// Address block.
+    public internal(set) var block: String?
+    
+    /// Address avenue.
+    public internal(set) var avenue: String?
+    
+    /// Address street.
+    public internal(set) var street: String?
+    
+    /// Address building or house.
+    public internal(set) var buildingHouse: String?
+    
+    /// Address floor.
+    public internal(set) var floor: String?
+    
+    /// Address office.
+    public internal(set) var office: String?
+    
+    /// Address postal box.
+    public internal(set) var postalBox: String?
+    
+    /// Address postal code.
+    public internal(set) var postalCode: String?
     
     // MARK: - Internal -
     
@@ -31,62 +88,6 @@ internal struct Address: Decodable {
         case postalBox          = "po_box"
         case postalCode         = "postal_code"
     }
-
-    // MARK: Properties
-    
-    /// Address format.
-    internal var format: AddressFormat?
-    
-    /// Address type.
-    internal var type: AddressType?
-    
-    /// Country.
-    internal var country: Country?
-    
-    /// Address line 1.
-    internal var line1: String?
-    
-    /// Address line 2.
-    internal var line2: String?
-    
-    /// Address city.
-    internal var city: String?
-    
-    /// Address state.
-    internal var state: String?
-    
-    /// Address zip code.
-    internal var zipCode: String?
-    
-    /// Address country governorate.
-    internal var countryGovernorate: String?
-    
-    /// Address area.
-    internal var area: String?
-    
-    /// Address block.
-    internal var block: String?
-    
-    /// Address avenue.
-    internal var avenue: String?
-    
-    /// Address street.
-    internal var street: String?
-    
-    /// Address building or house.
-    internal var buildingHouse: String?
-    
-    /// Address floor.
-    internal var floor: String?
-    
-    /// Address office.
-    internal var office: String?
-    
-    /// Address postal box.
-    internal var postalBox: String?
-    
-    /// Address postal code.
-    internal var postalCode: String?
     
     // MARK: Methods
     
@@ -99,7 +100,7 @@ internal struct Address: Decodable {
 // MARK: - Encodable
 extension Address: Encodable {
     
-    internal func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         

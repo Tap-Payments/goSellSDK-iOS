@@ -30,6 +30,9 @@ internal struct SDKSettingsData: Decodable {
     /// Internal SDK settings.
     internal let internalSettings: InternalSDKSettings
     
+    /// Session token.
+    internal private(set) var sessionToken: String?
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -40,5 +43,6 @@ internal struct SDKSettingsData: Decodable {
         case deviceID           = "device_id"
         case merchant           = "merchant"
         case internalSettings   = "sdk_settings"
+        case sessionToken       = "session_token"
     }
 }

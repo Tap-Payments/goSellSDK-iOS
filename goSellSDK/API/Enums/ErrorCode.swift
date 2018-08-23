@@ -82,6 +82,7 @@ public enum ErrorCode: Int, Decodable {
     case invalidAmountModificatorType           = 8001
     case invalidUnitOfMeasurement               = 8002
     case invalidMeasurement                     = 8003
+    case invalidEnumValue                       = 8004
     
     case serialization                          = 8100
     

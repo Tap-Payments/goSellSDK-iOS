@@ -5,12 +5,12 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal final class AuthorizeActionResponse: AuthorizeAction {
+public final class AuthorizeActionResponse: AuthorizeAction {
     
-    // MARK: - Internal -
+    // MARK: - Public -
     // MARK: Properties
     
-    internal private(set) var status: AuthorizeActionStatus = .failed
+    public private(set) var status: AuthorizeActionStatus = .failed
     
     // MARK: - Private -
     

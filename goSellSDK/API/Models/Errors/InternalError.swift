@@ -17,4 +17,5 @@ internal enum InternalError: Int {
     case invalidPhoneNumber
     case invalidUnitOfMeasurement
     case invalidMeasurement
+    case invalidEnumValue
 }

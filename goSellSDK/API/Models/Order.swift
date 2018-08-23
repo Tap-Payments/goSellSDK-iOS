@@ -10,7 +10,7 @@ internal struct Order: IdentifiableWithString, Encodable {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var identifier: String?
+    internal let identifier: String
     
     // MARK: Methods
     

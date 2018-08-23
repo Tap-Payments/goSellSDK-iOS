@@ -6,10 +6,12 @@
 //
 
 /// Receipt dispatch settings.
-@objcMembers public final class Receipt: NSObject, IdentifiableWithString, Codable {
+@objcMembers public final class Receipt: NSObject, OptionallyIdentifiableWithString, Codable {
     
     // MARK: - Public -
     // MARK: Properties
+    
+    public private(set) var identifier: String?
     
     /// Defines if receipt email should be sent.
     public let email: Bool
@@ -31,11 +33,6 @@
         
         super.init()
     }
-    
-    // MARK: - Internal -
-    // MARK: Properties
-    
-    internal private(set) var identifier: String?
     
     // MARK: - Private -
     

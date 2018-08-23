@@ -12,7 +12,7 @@ internal struct PaymentOptionsResponse: IdentifiableWithString, Decodable {
     // MARK: Properties
     
     /// Object identifier.
-    internal private(set) var identifier: String?
+    internal let identifier: String
     
     /// Order identifier.
     internal private(set) var orderIdentifier: String

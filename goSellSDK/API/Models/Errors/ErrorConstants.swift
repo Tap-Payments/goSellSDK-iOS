@@ -22,6 +22,8 @@ internal struct ErrorConstants {
         internal static let measurementUnit         = "measurement_unit"
         internal static let phoneNumber             = "phone_number"
         internal static let unitOfMeasurement       = "unit_of_measurement"
+        internal static let enumName                = "enum_name"
+        internal static let enumValue               = "enum_value"
         
         @available(*, unavailable) private init() {}
     }

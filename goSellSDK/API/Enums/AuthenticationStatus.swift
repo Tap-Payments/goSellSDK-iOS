@@ -5,11 +5,57 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-internal enum AuthenticationStatus: String, Decodable {
+@objc public enum AuthenticationStatus: Int {
     
-    case initiated          = "INITIATED"
-    case authenticated      = "AUTHENTICATED"
-    case notAuthenticated   = "NOT_AUTHENTICATED"
-    case abandoned          = "ABANDONED"
-    case failed             = "FAILED"
+    case initiated
+    case authenticated
+    case notAuthenticated
+    case abandoned
+    case failed
+    
+    // MARK: - Private -
+    // MARK: Properties
+    
+    private var stringValue: String {
+        
+        switch self {
+            
+        case .initiated:        return "INITIATED"
+        case .authenticated:    return "AUTHENTICATED"
+        case .notAuthenticated: return "NOT_AUTHENTICATED"
+        case .abandoned:        return "ABANDONED"
+        case .failed:           return "FAILED"
+
+        }
+    }
+    
+    // MARK: Methods
+    
+    private init(_ stringValue: String) throws {
+        
+        switch stringValue {
+            
+        case AuthenticationStatus.initiated.stringValue:        self = .initiated
+        case AuthenticationStatus.authenticated.stringValue:    self = .authenticated
+        case AuthenticationStatus.notAuthenticated.stringValue: self = .notAuthenticated
+        case AuthenticationStatus.abandoned.stringValue:        self = .abandoned
+        case AuthenticationStatus.failed.stringValue:           self = .failed
+            
+        default:
+            
+            throw ErrorUtils.createEnumStringInitializationError(for: AuthenticationStatus.self, value: stringValue)
+        }
+    }
+}
+
+// MARK: - Decodable
+extension AuthenticationStatus: Decodable {
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        
+        let stringValue = try container.decode(String.self)
+        try self.init(stringValue)
+    }
 }

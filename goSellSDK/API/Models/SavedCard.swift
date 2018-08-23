@@ -14,7 +14,7 @@ internal struct SavedCard: Decodable, IdentifiableWithString {
     // MARK: Properties
     
     /// Identifier.
-    internal let identifier: String?
+    internal let identifier: String
     
     /// Object type.
     internal let object: String

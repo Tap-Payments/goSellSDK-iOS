@@ -21,11 +21,9 @@ internal extension APIClient {
     ///   - completion: Completion that will be called when request finishes.
     internal func requestAuthentication<T: Authenticatable>(for object: T, completion: @escaping Completion<T>) {
         
-        guard let identifier = object.identifier else { return }
-        
         let route = T.authenticationRoute
         
-        let urlModel = TapURLModel.array(parameters: [Constants.authenticateParameter, identifier])
+        let urlModel = TapURLModel.array(parameters: [Constants.authenticateParameter, object.identifier])
         
         let operation = TapNetworkRequestOperation(path: route.rawValue, method: .PUT, headers: self.staticHTTPHeaders, urlModel: urlModel, bodyModel: nil, responseType: .json)
         
@@ -40,12 +38,11 @@ internal extension APIClient {
     ///   - completion: Completion that will be called when request finishes.
     internal func authenticate<T: Authenticatable>(_ object: T, details: AuthenticationRequest, completion: @escaping Completion<T>) {
         
-        guard let identifier = object.identifier else { return }
         guard let bodyDictionary = self.convertModelToDictionary(details, callingCompletionOnFailure: completion) else { return }
         
         let route = T.authenticationRoute
         
-        let urlModel = TapURLModel.array(parameters: [Constants.authenticateParameter, identifier])
+        let urlModel = TapURLModel.array(parameters: [Constants.authenticateParameter, object.identifier])
         let bodyModel = TapBodyModel(body: bodyDictionary)
         
         let operation = TapNetworkRequestOperation(path: route.rawValue, method: .POST, headers: self.staticHTTPHeaders, urlModel: urlModel, bodyModel: bodyModel, responseType: .json)
