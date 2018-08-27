@@ -125,7 +125,23 @@ internal final class PaymentDataManager {
         
         guard let customer = nonnullDataSource.customer else {
             
-            fatalError("Payment data source customer is nil.")
+            let alert = UIAlertController(title: "Error", message: "Customer information must be provided.", preferredStyle: .alert)
+            let closeAction = UIAlertAction(title: "Close", style: .default) { [weak alert] (action) in
+                
+                DispatchQueue.main.async {
+                    
+                    alert?.dismissFromSeparateWindow(true, completion: nil)
+                }
+            }
+            
+            alert.addAction(closeAction)
+            
+            DispatchQueue.main.async {
+                
+                alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+            }
+            
+            return
         }
         
         self.externalDataSource = nonnullDataSource

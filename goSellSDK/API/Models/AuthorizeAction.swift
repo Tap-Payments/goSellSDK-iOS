@@ -6,7 +6,7 @@
 //
 
 /// Authorize action model.
-@objc public class AuthorizeAction: NSObject, Codable {
+@objcMembers public class AuthorizeAction: NSObject, Codable {
     
     // MARK: - Public -
     // MARK: Properties

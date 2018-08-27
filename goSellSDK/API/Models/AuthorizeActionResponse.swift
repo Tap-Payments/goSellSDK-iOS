@@ -5,7 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-public final class AuthorizeActionResponse: AuthorizeAction {
+@objcMembers public final class AuthorizeActionResponse: AuthorizeAction {
     
     // MARK: - Public -
     // MARK: Properties

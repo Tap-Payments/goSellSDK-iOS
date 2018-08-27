@@ -10,14 +10,17 @@
     case cardPresent
     case cardNotPresent
     
+    case null
+    
     // MARK: - Private -
     
     private var stringValue: String {
         
         switch self {
             
-        case .cardPresent: return "CARD_PRESENT"
-        case .cardNotPresent: return "CARD_NOT_PRESENT"
+        case .cardPresent:      return "CARD_PRESENT"
+        case .cardNotPresent:   return "CARD_NOT_PRESENT"
+        case .null:             return "null"
 
         }
     }

@@ -5,9 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-public enum AddressType: String, Codable {
-    
-    // MARK: - Public -
+internal enum AddressType: String, Codable {
     
     case residential    = "RESIDENTIAL"
     case commercial     = "COMMERCIAL"

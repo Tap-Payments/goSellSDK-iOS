@@ -6,7 +6,7 @@
 //
 
 /// Redirect model.
-@objcMembers public final class TrackingURL: NSObject, Codable {
+@objcMembers public final class TrackingURL: NSObject {
     
     // MARK: - Public -
     // MARK: Properties
@@ -15,7 +15,7 @@
     public private(set) var status: URLStatus = .pending
     
     /// URL.
-    public private(set) var  url: URL?
+    public private(set) var url: URL?
     
     // MARK: Methods
     
@@ -30,5 +30,37 @@
         
         case status = "status"
         case url    = "url"
+    }
+    
+    // MARK: Methods
+    
+    private init(url: URL?, status: URLStatus) {
+        
+        self.url = url
+        self.status = status
+    }
+}
+
+// MARK: - Encodable
+extension TrackingURL: Encodable {
+    
+    public func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+}
+
+// MARK: - Decodable
+extension TrackingURL: Decodable {
+    
+    public convenience init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let url = try container.decodeIfPresent(URL.self, forKey: .url)
+        let status = try container.decodeIfPresent(URLStatus.self, forKey: .status) ?? .pending
+        
+        self.init(url: url, status: status)
     }
 }

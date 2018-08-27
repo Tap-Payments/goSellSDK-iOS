@@ -246,9 +246,9 @@ internal extension PaymentDataManager {
     
     private func startPaymentProcess(with savedCard: SavedCard, paymentOption: PaymentOption) {
         
-        guard let customerIdentifier = self.externalDataSource?.customer?.identifier else { return }
+        guard let customerIdentifier = self.externalDataSource?.customer?.identifier, let cardIdentifier = savedCard.identifier else { return }
         
-        let card = CreateTokenSavedCard(cardIdentifier: savedCard.identifier, customerIdentifier: customerIdentifier)
+        let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
         let request = CreateTokenWithSavedCardRequest(savedCard: card)
         
         self.callTokenAPI(with: request, paymentOption: paymentOption)
@@ -439,7 +439,7 @@ internal extension PaymentDataManager {
             
             self.paymentFailure(with: nonnullChargeOrAuthorize.status)
             
-        case .captured:
+        case .captured, .authorized:
             
             self.paymentSuccess(with: nonnullChargeOrAuthorize)
         }

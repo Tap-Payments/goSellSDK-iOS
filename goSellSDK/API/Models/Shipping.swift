@@ -6,7 +6,7 @@
 //
 
 /// Shipping data model class.
-@objcMembers public class Shipping: NSObject, Codable {
+@objcMembers public final class Shipping: NSObject, Codable {
     
     // MARK: - Public -
     // MARK: Properties

@@ -10,7 +10,7 @@ internal extension Address {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal convenience init?(inputData: [String: Any], format: BillingAddressFormat) {
+    internal init?(inputData: [String: Any], format: BillingAddressFormat) {
         
         self.init(format: format.name)
         

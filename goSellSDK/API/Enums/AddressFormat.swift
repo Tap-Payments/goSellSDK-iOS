@@ -5,7 +5,12 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-public enum AddressFormat: String, Codable {
+/// Address format enum.
+///
+/// - a: Format A.
+/// - b: Format B.
+/// - c: Format C.
+internal enum AddressFormat: String, Codable {
     
     case a = "FORMAT_A"
     case b = "FORMAT_B"

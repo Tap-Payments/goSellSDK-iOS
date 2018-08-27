@@ -6,27 +6,22 @@
 //
 
 /// Country model.
-public final class Country: NSObject {
+internal struct Country {
     
     // MARK: - Public -
     // MARK: Properties
     
     /// Two-letters iso code.
-    public let isoCode: String
+    internal let isoCode: String
     
-    public override var hashValue: Int {
-        
-        return self.isoCode.hashValue
-    }
-    
-    public static func == (lhs: Country, rhs: Country) -> Bool {
+    internal static func == (lhs: Country, rhs: Country) -> Bool {
         
         return lhs.isoCode.lowercased() == rhs.isoCode.lowercased()
     }
     
     // MARK: Methods
     
-    public required init(isoCode: String) throws {
+    internal init(isoCode: String) throws {
         
         let code = isoCode.uppercased()
         
@@ -38,14 +33,12 @@ public final class Country: NSObject {
         }
         
         self.isoCode = code
-        
-        super.init()
     }
     
     // MARK: - Internal -
     // MARK: Methods
     
-    internal convenience init(_ isoCode: String) throws {
+    internal init(_ isoCode: String) throws {
         
         try self.init(isoCode: isoCode)
     }
@@ -55,10 +48,19 @@ public final class Country: NSObject {
     private static let allISOCodes = Locale.isoRegionCodes.map { $0.uppercased() }
 }
 
+// MARK: - Hashable
+extension Country: Hashable {
+    
+    internal var hashValue: Int {
+        
+        return self.isoCode.hashValue
+    }
+}
+
 // MARK: - Encodable
 extension Country: Encodable {
     
-    public func encode(to encoder: Encoder) throws {
+    internal func encode(to encoder: Encoder) throws {
         
         var container = encoder.singleValueContainer()
         try container.encode(self.isoCode)
@@ -68,7 +70,7 @@ extension Country: Encodable {
 // MARK: - Decodable
 extension Country: Decodable {
     
-    public convenience init(from decoder: Decoder) throws {
+    internal init(from decoder: Decoder) throws {
         
         let container = try decoder.singleValueContainer()
         let code = try container.decode(String.self)
