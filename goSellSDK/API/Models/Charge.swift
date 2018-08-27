@@ -17,6 +17,9 @@
     /// Unique charge identifier.
     public let identifier: String
     
+    /// API version.
+    public let apiVersion: String
+    
     /// Amount.
     /// The minimum amount is $0.50 US or equivalent in charge currency.
     public let amount: Decimal
@@ -27,8 +30,11 @@
     /// Customer.
     public let customer: CustomerInfo
     
-    ///Flag indicating whether the object exists in live mode or test mode.
+    /// Flag indicating whether the object exists in live mode or test mode.
     public let isLiveMode: Bool
+    
+    /// Defines if the card used in transaction was saved.
+    public let cardSaved: Bool
     
     /// Objects of the same type share the same value
     public let object: String
@@ -41,6 +47,9 @@
     
     /// Post URL.
     public private(set) var post: TrackingURL?
+    
+    /// Saved card.
+    public private(set) var card: SavedCard?
     
     /// The source of every charge is a credit or debit card. This hash is then the card object describing that card.
     /// If source is null then, default Tap payment page link will be provided.
@@ -70,6 +79,9 @@
     /// Receipt settings.
     public private(set) var receiptSettings: Receipt?
     
+    /// Acquirer information.
+    public private(set) var acquirer: Acquirer?
+    
     /// Charge response.
     public private(set) var response: Response?
     
@@ -83,14 +95,17 @@
     private enum CodingKeys: String, CodingKey {
         
         case identifier             = "id"
+        case apiVersion             = "api_version"
         case amount                 = "amount"
         case currency               = "currency"
         case customer               = "customer"
         case isLiveMode             = "live_mode"
+        case cardSaved              = "save_card"
         case object                 = "object"
         case authentication         = "authenticate"
         case redirect               = "redirect"
         case post                   = "post"
+        case card                   = "card"
         case source                 = "source"
         case status                 = "status"
         case requires3DSecure       = "threeDSecure"
@@ -99,23 +114,27 @@
         case metadata               = "metadata"
         case reference              = "reference"
         case receiptSettings        = "receipt"
+        case acquirer               = "acquirer"
         case response               = "response"
         case statementDescriptor    = "statement_descriptor"
     }
     
     // MARK: Methods
     
-    private init(identifier: String, amount: Decimal, currency: Currency, customer: CustomerInfo, isLiveMode: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, source: Source, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: [String: String]?, reference: Reference?, receiptSettings: Receipt?, response: Response?, statementDescriptor: String?) {
+    private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: CustomerInfo, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: [String: String]?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
         
         self.identifier             = identifier
+        self.apiVersion             = apiVersion
         self.amount                 = amount
         self.currency               = currency
         self.customer               = customer
         self.isLiveMode             = isLiveMode
+        self.cardSaved              = cardSaved
         self.object                 = object
         self.authentication         = authentication
         self.redirect               = redirect
         self.post                   = post
+        self.card                   = card
         self.source                 = source
         self.status                 = status
         self.requires3DSecure       = requires3DSecure
@@ -124,6 +143,7 @@
         self.metadata               = metadata
         self.reference              = reference
         self.receiptSettings        = receiptSettings
+        self.acquirer               = acquirer
         self.response               = response
         self.statementDescriptor    = statementDescriptor
         
@@ -139,14 +159,17 @@ extension Charge: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let identifier          = try container.decode          (String.self,               forKey: .identifier)
+        let apiVersion          = try container.decode          (String.self,               forKey: .apiVersion)
         let amount              = try container.decode          (Decimal.self,              forKey: .amount)
         let currency            = try container.decode          (Currency.self,             forKey: .currency)
         let customer            = try container.decode          (CustomerInfo.self,         forKey: .customer)
         let isLiveMode          = try container.decode          (Bool.self,                 forKey: .isLiveMode)
+        let cardSaved           = try container.decodeIfPresent (Bool.self,                 forKey: .cardSaved) ?? false
         let object              = try container.decode          (String.self,               forKey: .object)
         let authentication      = try container.decodeIfPresent (Authentication.self,       forKey: .authentication)
         let redirect            = try container.decode          (TrackingURL.self,          forKey: .redirect)
         let post                = try container.decodeIfPresent (TrackingURL.self,          forKey: .post)
+        let card                = try container.decodeIfPresent (SavedCard.self,            forKey: .card)
         let source              = try container.decode          (Source.self,               forKey: .source)
         let status              = try container.decode          (ChargeStatus.self,         forKey: .status)
         let requires3DSecure    = try container.decode          (Bool.self,                 forKey: .requires3DSecure)
@@ -155,18 +178,22 @@ extension Charge: Decodable {
         let metadata            = try container.decodeIfPresent ([String: String].self,     forKey: .metadata)
         let reference           = try container.decodeIfPresent (Reference.self,            forKey: .reference)
         let receiptSettings     = try container.decodeIfPresent (Receipt.self,              forKey: .receiptSettings)
+        let acquirer            = try container.decodeIfPresent (Acquirer.self,             forKey: .acquirer)
         let response            = try container.decodeIfPresent (Response.self,             forKey: .response)
         let statementDescriptor = try container.decodeIfPresent (String.self,               forKey: .statementDescriptor)
         
         self.init(identifier:           identifier,
+                  apiVersion:           apiVersion,
                   amount:               amount,
                   currency:             currency,
                   customer:             customer,
                   isLiveMode:           isLiveMode,
+                  cardSaved:            cardSaved,
                   object:               object,
                   authentication:       authentication,
                   redirect:             redirect,
                   post:                 post,
+                  card:                 card,
                   source:               source,
                   status:               status,
                   requires3DSecure:     requires3DSecure,
@@ -175,6 +202,7 @@ extension Charge: Decodable {
                   metadata:             metadata,
                   reference:            reference,
                   receiptSettings:      receiptSettings,
+                  acquirer:             acquirer,
                   response:             response,
                   statementDescriptor:  statementDescriptor)
     }

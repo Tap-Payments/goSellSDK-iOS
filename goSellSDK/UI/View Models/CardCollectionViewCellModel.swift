@@ -153,10 +153,10 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     private func deleteCard() {
         
-        guard let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier else { return }
+        guard let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier, let cardIdentifier = self.card.identifier else { return }
         
         let loader = PaymentDataManager.shared.showLoadingController(false)
-        APIClient.shared.deleteCard(with: self.card.identifier, from: customerIdentifier) { [weak loader, weak self] (response, error) in
+        APIClient.shared.deleteCard(with: cardIdentifier, from: customerIdentifier) { [weak loader, weak self] (response, error) in
             
             loader?.hide(animated: true, async: true, fromDestroyInstance: false)
             
@@ -190,7 +190,14 @@ extension CardCollectionViewCellModel: CardCollectionViewCellLoading {
     
     internal var currencyLabelText: String {
         
-        return PaymentDataManager.shared.currencySymbol(for: self.card.currency)
+        if let currency = self.card.currency {
+            
+            return PaymentDataManager.shared.currencySymbol(for: currency)
+        }
+        else {
+            
+            return .empty
+        }
     }
     
     internal var cardNumberText: String {

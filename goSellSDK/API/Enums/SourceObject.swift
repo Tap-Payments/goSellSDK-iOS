@@ -27,7 +27,7 @@
     
     private init(_ stringValue: String) throws {
         
-        switch stringValue {
+        switch stringValue.uppercased() {
             
         case SourceObject.token.stringValue: self = .token
         case SourceObject.source.stringValue: self = .source

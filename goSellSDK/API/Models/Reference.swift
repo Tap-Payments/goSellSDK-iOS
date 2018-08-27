@@ -6,7 +6,7 @@
 //
 
 /// Reference object.
-@objcMembers public class Reference: NSObject, Codable {
+@objcMembers public final class Reference: NSObject, Codable {
     
     // MARK: - Public -
     // MARK: Properties

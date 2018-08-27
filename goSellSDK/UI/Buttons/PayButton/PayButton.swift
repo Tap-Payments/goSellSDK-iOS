@@ -9,7 +9,7 @@ import class TapNibView.TapNibView
 import class UIKit.UIButton.UIButton
 
 /// Pay button.
-public class PayButton: TapNibView {
+@objcMembers public final class PayButton: TapNibView {
     
     // MARK: - Public -
     // MARK: Properties
@@ -26,9 +26,6 @@ public class PayButton: TapNibView {
             self.ui?.isEnabled = newValue
         }
     }
-    
-    /// Theme of the payment controller. Default is light.
-    public var controllerTheme: Theme = .light
     
     /// Payment data source.
     @IBOutlet public weak var dataSource: PaymentDataSource? {
@@ -61,6 +58,13 @@ public class PayButton: TapNibView {
         
         self.calculateDisplayedAmount()
     }
+    
+    // MARK: - Internal -
+    // MARK: Properties
+    
+    /// Theme of the payment controller. Default is light.
+    /// Currently not available for modification until we add another theme.
+    internal let controllerTheme: Theme = .light
     
     // MARK: - Private -
     // MARK: Properties

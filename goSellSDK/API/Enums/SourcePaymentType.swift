@@ -12,6 +12,8 @@
     case prepaidCard
     case prepaidWallet
     
+    case null
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -23,6 +25,7 @@
         case .creditCard:       return "CREDIT_CARD"
         case .prepaidCard:      return "PREPAID_CARD"
         case .prepaidWallet:    return "PREPAID_WALLET"
+        case .null:             return "null"
 
         }
     }

@@ -15,6 +15,7 @@
     case declined
     case restricted
     case captured
+    case authorized
     case void
     
     // MARK: - Internal -
@@ -32,6 +33,7 @@
         case .declined:     return "Declined"
         case .restricted:   return "Restricted"
         case .captured:     return "Captured"
+        case .authorized:   return "Authorized"
         case .void:         return "Void"
 
         }
@@ -52,6 +54,7 @@
         case .declined:     return "DECLINED"
         case .restricted:   return "RESTRICTED"
         case .captured:     return "CAPTURED"
+        case .authorized:   return "AUTHORIZED"
         case .void:         return "VOID"
 
         }
@@ -71,6 +74,7 @@
         case ChargeStatus.declined.stringValue:     self = .declined
         case ChargeStatus.restricted.stringValue:   self = .restricted
         case ChargeStatus.captured.stringValue:     self = .captured
+        case ChargeStatus.authorized.stringValue:   self = .authorized
         case ChargeStatus.void.stringValue:         self = .void
             
         default:

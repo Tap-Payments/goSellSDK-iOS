@@ -10,6 +10,9 @@
     // MARK: - Public -
     // MARK: Properties
     
+    /// Transaction authorization identifier.
+    public private(set) var authorizationID: String?
+    
     /// Transaction creation date.
     public let creationDate: Date
     
@@ -23,18 +26,20 @@
     
     private enum CodingKeys: String, CodingKey {
         
-        case creationDate   = "created"
-        case timeZone       = "timezone"
-        case url            = "url"
+        case authorizationID    = "authorization_id"
+        case creationDate       = "created"
+        case timeZone           = "timezone"
+        case url                = "url"
     }
     
     // MARK: Methods
     
-    private init(creationDate: Date, timeZone: String, url: URL?) {
+    private init(authorizationID: String?, creationDate: Date, timeZone: String, url: URL?) {
         
-        self.creationDate = creationDate
-        self.timeZone = timeZone
-        self.url = url
+        self.authorizationID    = authorizationID
+        self.creationDate       = creationDate
+        self.timeZone           = timeZone
+        self.url                = url
         
         super.init()
     }
@@ -47,10 +52,11 @@ extension TransactionDetails: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        let authorizationID = try container.decodeIfPresent (String.self,   forKey: .authorizationID)
         let creationDate    = try container.decode          (Date.self,     forKey: .creationDate)
         let timeZone        = try container.decode          (String.self,   forKey: .timeZone)
         let url             = try container.decodeIfPresent (URL.self,      forKey: .url)
         
-        self.init(creationDate: creationDate, timeZone: timeZone, url: url)
+        self.init(authorizationID: authorizationID, creationDate: creationDate, timeZone: timeZone, url: url)
     }
 }

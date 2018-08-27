@@ -6,7 +6,7 @@
 //
 
 /// Address model.
-public class Address: NSObject, Decodable {
+internal struct Address: Decodable {
     
     // MARK: - Public -
     // MARK: Properties

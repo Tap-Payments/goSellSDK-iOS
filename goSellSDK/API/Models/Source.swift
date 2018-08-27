@@ -61,12 +61,12 @@ extension Source: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let identifier      = try container.decode(String.self, forKey: .identifier)
-        let object          = try container.decode(SourceObject.self, forKey: .object)
-        let type            = try container.decode(SourceType.self, forKey: .type)
-        let paymentType     = try container.decode(SourcePaymentType.self, forKey: .paymentType)
-        let paymentMethod   = try container.decode(CardBrand.self, forKey: .paymentMethod)
-        let channel         = try container.decode(SourceChannel.self, forKey: .channel)
+        let identifier      = try container.decode(String.self,         forKey: .identifier)
+        let object          = try container.decode(SourceObject.self,   forKey: .object)
+        let type            = try container.decodeIfPresent(SourceType.self,        forKey: .type)          ?? .null
+        let paymentType     = try container.decodeIfPresent(SourcePaymentType.self, forKey: .paymentType)   ?? .null
+        let paymentMethod   = try container.decodeIfPresent(CardBrand.self,         forKey: .paymentMethod) ?? .unknown
+        let channel         = try container.decodeIfPresent(SourceChannel.self,     forKey: .channel)       ?? .null
         
         self.init(identifier:       identifier,
                   object:           object,

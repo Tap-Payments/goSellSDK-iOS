@@ -8,7 +8,7 @@
 import enum TapCardValidator.CardBrand
 
 /// Tokenized card model.
-public final class TokenizedCard: NSObject, IdentifiableWithString {
+internal struct TokenizedCard: IdentifiableWithString {
     
     // MARK: - Public -
     // MARK: Properties
@@ -83,15 +83,13 @@ public final class TokenizedCard: NSObject, IdentifiableWithString {
         self.customerIdentifier = customerIdentifier
         self.fingerprint        = fingerprint
         self.address            = address
-        
-        super.init()
     }
 }
 
 // MARK: - Decodable
 extension TokenizedCard: Decodable {
     
-    public convenience init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         
         let container           = try decoder.container(keyedBy: CodingKeys.self)
     

@@ -6,33 +6,34 @@
 //
 
 /// Token model.
-public final class Token: NSObject, IdentifiableWithString {
+internal struct Token: IdentifiableWithString {
     
-    // MARK: - Public -
+    // MARK: - Internal -
     // MARK: Properties
     
-    public let identifier: String
+    /// Unique token identifier.
+    internal let identifier: String
     
     /// Object type.
-    public let object: String
+    internal let object: String
     
     /// Tokenized card.
-    public let card: TokenizedCard
+    internal let card: TokenizedCard
     
     /// Token type.
-    public let type: TokenType
+    internal let type: TokenType
     
     /// Token creation date.
-    public let creationDate: Date
+    internal let creationDate: Date
     
     /// Client IP address.
-    public private(set) var clientIPAddress: String?
+    internal private(set) var clientIPAddress: String?
     
     /// Defines if object is existing in live mode.
-    public let isLiveMode: Bool
+    internal let isLiveMode: Bool
     
     /// Defines if token is used.
-    public let isUsed: Bool
+    internal let isUsed: Bool
     
     // MARK: - Private -
     
@@ -60,15 +61,13 @@ public final class Token: NSObject, IdentifiableWithString {
         self.clientIPAddress    = clientIPAddress
         self.isLiveMode         = isLiveMode
         self.isUsed             = isUsed
-        
-        super.init()
     }
 }
 
 // MARK: - Decodable
 extension Token: Decodable {
     
-    public convenience init(from decoder: Decoder) throws {
+    internal init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

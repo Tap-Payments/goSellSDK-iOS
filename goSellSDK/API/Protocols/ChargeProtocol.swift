@@ -7,6 +7,9 @@
 
 internal protocol ChargeProtocol: Authenticatable, Retrievable {
     
+    /// API version.
+    var apiVersion: String { get }
+    
     /// Amount.
     /// The minimum amount is $0.50 US or equivalent in charge currency.
     var amount: Decimal { get }
@@ -17,8 +20,11 @@ internal protocol ChargeProtocol: Authenticatable, Retrievable {
     /// Customer.
     var customer: CustomerInfo { get }
     
-    ///Flag indicating whether the object exists in live mode or test mode.
+    /// Flag indicating whether the object exists in live mode or test mode.
     var isLiveMode: Bool { get }
+    
+    /// Defines if the card used in transaction was saved.
+    var cardSaved: Bool { get }
     
     /// Objects of the same type share the same value
     var object: String { get }
@@ -28,6 +34,9 @@ internal protocol ChargeProtocol: Authenticatable, Retrievable {
     
     /// Post URL.
     var post: TrackingURL? { get }
+    
+    /// Saved card. Available only with card payment.
+    var card: SavedCard? { get }
     
     /// The source of every charge is a credit or debit card. This hash is then the card object describing that card.
     /// If source is null then, default Tap payment page link will be provided.
@@ -56,6 +65,9 @@ internal protocol ChargeProtocol: Authenticatable, Retrievable {
     
     /// Receipt settings.
     var receiptSettings: Receipt? { get }
+    
+    /// Acquirer information.
+    var acquirer: Acquirer? { get }
     
     /// Charge response.
     var response: Response? { get }
