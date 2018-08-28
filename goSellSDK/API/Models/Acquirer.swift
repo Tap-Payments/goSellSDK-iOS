@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Acquirer information class.
 @objcMembers public final class Acquirer: NSObject, Decodable {
     
     // MARK: - Public -

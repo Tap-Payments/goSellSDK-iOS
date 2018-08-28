@@ -14,7 +14,7 @@
     <a title="SourceChannel Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">goSellSDK Docs</a> (79% documented)</p>
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,7 +34,7 @@
                 <a href="../Classes/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Address.html">Address</a>
+                <a href="../Classes/Acquirer.html">Acquirer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AmountModificator.html">AmountModificator</a>
@@ -53,9 +53,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Charge.html">Charge</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/Country.html">Country</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Currency.html">Currency</a>
@@ -91,6 +88,9 @@
                 <a href="../Classes/Response.html">Response</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Shipping.html">Shipping</a>
               </li>
               <li class="nav-group-task">
@@ -115,12 +115,6 @@
                 <a href="../Classes/Tax.html">Tax</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Token.html">Token</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/TokenizedCard.html">TokenizedCard</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/TrackingURL.html">TrackingURL</a>
               </li>
               <li class="nav-group-task">
@@ -137,12 +131,6 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Enums/AddressFormat.html">AddressFormat</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/AddressType.html">AddressType</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
               </li>
@@ -198,9 +186,6 @@
                 <a href="../Enums/SourceChannel.html">SourceChannel</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/SourceIdentifier.html">SourceIdentifier</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/SourceObject.html">SourceObject</a>
               </li>
               <li class="nav-group-task">
@@ -213,15 +198,6 @@
                 <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/TapSerializationError.html">TapSerializationError</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/Theme.html">Theme</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/TokenType.html">TokenType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/TransactionMode.html">TransactionMode</a>
               </li>
               <li class="nav-group-task">
@@ -229,6 +205,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
               </li>
             </ul>
           </li>
@@ -257,11 +247,12 @@
             <h1>SourceChannel</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SourceChannel</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SourceChannel</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Source channel enum.</p>
 
           </section>
           <section class="section task-group-section">
@@ -270,9 +261,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK13SourceChannelO10callCentreA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel@SourceChannelCallCentre"></a>
                     <a name="//apple_ref/swift/Element/callCentre" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13SourceChannelO10callCentreA2CmF">callCentre</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel@SourceChannelCallCentre">callCentre</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -280,14 +271,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Call centre.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">callCentre</span> <span class="o">=</span> <span class="s">"CALL_CENTRE"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">callCentre</span></code></pre>
 
                         </div>
                       </div>
@@ -297,9 +288,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK13SourceChannelO8internetA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel@SourceChannelInternet"></a>
                     <a name="//apple_ref/swift/Element/internet" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13SourceChannelO8internetA2CmF">internet</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel@SourceChannelInternet">internet</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,14 +298,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Internet.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">internet</span> <span class="o">=</span> <span class="s">"INTERNET"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">internet</span></code></pre>
 
                         </div>
                       </div>
@@ -324,9 +315,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK13SourceChannelO9mailOrderA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel@SourceChannelMailOrder"></a>
                     <a name="//apple_ref/swift/Element/mailOrder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13SourceChannelO9mailOrderA2CmF">mailOrder</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel@SourceChannelMailOrder">mailOrder</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -334,14 +325,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Mail order.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">mailOrder</span> <span class="o">=</span> <span class="s">"MAIL_ORDER"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">mailOrder</span></code></pre>
 
                         </div>
                       </div>
@@ -351,9 +342,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK13SourceChannelO4motoA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel@SourceChannelMoto"></a>
                     <a name="//apple_ref/swift/Element/moto" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13SourceChannelO4motoA2CmF">moto</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel@SourceChannelMoto">moto</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -361,14 +352,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Manual input of payment.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">moto</span> <span class="o">=</span> <span class="s">"MOTO"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">moto</span></code></pre>
 
                         </div>
                       </div>
@@ -378,9 +369,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK13SourceChannelO14telephoneOrderA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel@SourceChannelTelephoneOrder"></a>
                     <a name="//apple_ref/swift/Element/telephoneOrder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13SourceChannelO14telephoneOrderA2CmF">telephoneOrder</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel@SourceChannelTelephoneOrder">telephoneOrder</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -388,14 +379,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Telephone order.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">telephoneOrder</span> <span class="o">=</span> <span class="s">"TELEPHONE_ORDER"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">telephoneOrder</span></code></pre>
 
                         </div>
                       </div>
@@ -405,9 +396,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK13SourceChannelO13voiceResponseA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel@SourceChannelVoiceResponse"></a>
                     <a name="//apple_ref/swift/Element/voiceResponse" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13SourceChannelO13voiceResponseA2CmF">voiceResponse</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel@SourceChannelVoiceResponse">voiceResponse</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -415,14 +406,115 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Voice response.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">voiceResponse</span> <span class="o">=</span> <span class="s">"VOICE_RESPONSE"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">voiceResponse</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel@SourceChannelNull"></a>
+                    <a name="//apple_ref/swift/Element/null" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel@SourceChannelNull">null</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Invalid source channel.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">null</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Encodable"></a>
+                <a name="//apple_ref/swift/Section/Encodable" class="dashAnchor"></a>
+                <a href="#/Encodable">
+                  <h3 class="section-name">Encodable</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s9EncodableP6encodeys7Encoder_p2to_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s9EncodableP6encodeys7Encoder_p2to_tKF">encode(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Decodable"></a>
+                <a name="//apple_ref/swift/Section/Decodable" class="dashAnchor"></a>
+                <a href="#/Decodable">
+                  <h3 class="section-name">Decodable</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s9DecodablePxs7Decoder_p4from_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s9DecodablePxs7Decoder_p4from_tKcfc">init(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -434,7 +526,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-23)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

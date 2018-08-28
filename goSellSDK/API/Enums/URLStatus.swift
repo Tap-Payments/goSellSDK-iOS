@@ -8,8 +8,13 @@
 /// URL Status.
 @objc public enum URLStatus: Int {
     
+    /// URL was not called.
     case pending
+    
+    /// URL call succeed.
     case success
+    
+    /// URL call failed.
     case failed
     
     // MARK: - Private -

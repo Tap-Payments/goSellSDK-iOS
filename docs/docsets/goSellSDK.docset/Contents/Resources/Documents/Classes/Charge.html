@@ -14,7 +14,7 @@
     <a title="Charge Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">goSellSDK Docs</a> (79% documented)</p>
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,7 +34,7 @@
                 <a href="../Classes/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Address.html">Address</a>
+                <a href="../Classes/Acquirer.html">Acquirer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AmountModificator.html">AmountModificator</a>
@@ -53,9 +53,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Charge.html">Charge</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/Country.html">Country</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Currency.html">Currency</a>
@@ -91,6 +88,9 @@
                 <a href="../Classes/Response.html">Response</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Shipping.html">Shipping</a>
               </li>
               <li class="nav-group-task">
@@ -115,12 +115,6 @@
                 <a href="../Classes/Tax.html">Tax</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Token.html">Token</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/TokenizedCard.html">TokenizedCard</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/TrackingURL.html">TrackingURL</a>
               </li>
               <li class="nav-group-task">
@@ -137,12 +131,6 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Enums/AddressFormat.html">AddressFormat</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/AddressType.html">AddressType</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
               </li>
@@ -198,9 +186,6 @@
                 <a href="../Enums/SourceChannel.html">SourceChannel</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/SourceIdentifier.html">SourceIdentifier</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/SourceObject.html">SourceObject</a>
               </li>
               <li class="nav-group-task">
@@ -213,15 +198,6 @@
                 <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/TapSerializationError.html">TapSerializationError</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/Theme.html">Theme</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/TokenType.html">TokenType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/TransactionMode.html">TransactionMode</a>
               </li>
               <li class="nav-group-task">
@@ -229,6 +205,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
               </li>
             </ul>
           </li>
@@ -299,6 +289,33 @@ Charges are identified by a unique random ID.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Charge(py)apiVersion"></a>
+                    <a name="//apple_ref/swift/Property/apiVersion" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Charge(py)apiVersion">apiVersion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>API version.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">apiVersion</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -417,6 +434,33 @@ The minimum amount is $0.50 US or equivalent in charge currency.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Charge(py)cardSaved"></a>
+                    <a name="//apple_ref/swift/Property/cardSaved" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Charge(py)cardSaved">cardSaved</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Defines if the card used in transaction was saved.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">cardSaved</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@goSellSDK@objc(cs)Charge(py)object"></a>
                     <a name="//apple_ref/swift/Property/object" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@objc(cs)Charge(py)object">object</a>
@@ -525,6 +569,33 @@ The minimum amount is $0.50 US or equivalent in charge currency.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Charge(py)card"></a>
+                    <a name="//apple_ref/swift/Property/card" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Charge(py)card">card</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Saved card.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">card</span><span class="p">:</span> <span class="kt"><a href="../Classes/SavedCard.html">SavedCard</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@goSellSDK@objc(cs)Charge(py)source"></a>
                     <a name="//apple_ref/swift/Property/source" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@objc(cs)Charge(py)source">source</a>
@@ -535,10 +606,7 @@ The minimum amount is $0.50 US or equivalent in charge currency.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The source of every charge is a credit or debit card. This hash is then the card object describing that card.
-If source is null then, default Tap payment page link will be provided.
-if source.id = <q>src_kw.knet</q> then KNET payment page link will be provided.
-if source.id = <q>src_visamastercard</q> then Credit Card payment page link will be provided.</p>
+                        <p>Charge source.</p>
 
                       </div>
                       <div class="declaration">
@@ -745,6 +813,33 @@ It can be useful for storing additional information about the object in a struct
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Charge(py)acquirer"></a>
+                    <a name="//apple_ref/swift/Property/acquirer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Charge(py)acquirer">acquirer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Acquirer information.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">acquirer</span><span class="p">:</span> <span class="kt"><a href="../Classes/Acquirer.html">Acquirer</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@goSellSDK@objc(cs)Charge(py)response"></a>
                     <a name="//apple_ref/swift/Property/response" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@objc(cs)Charge(py)response">response</a>
@@ -840,7 +935,7 @@ It must contain at least one letter.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-23)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

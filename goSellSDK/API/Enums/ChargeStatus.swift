@@ -5,17 +5,37 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Status of the charge or authorize.
 @objc public enum ChargeStatus: Int {
     
+    /// Initiated.
     case initiated
+    
+    /// In progress.
     case inProgress
+    
+    /// Charge/authorize was abandoned.
     case abandoned
+    
+    /// Charge/authorize cancelled.
     case cancelled
+    
+    /// Charge/authorize failed.
     case failed
+    
+    /// Charge/authorize declined.
     case declined
+    
+    /// Charge/authorize restricted.
     case restricted
+    
+    /// Charge was captured.
     case captured
+    
+    /// Authorize succeed.
     case authorized
+    
+    /// Charge/authorize void.
     case void
     
     // MARK: - Internal -

@@ -1,2 +1,9 @@
 exclude:
   - "Example"
+min_acl: public
+xcodebuild_arguments:
+  - clean
+  - -workspace
+  - goSellSDK.xcworkspace
+  - -scheme
+  - goSellSDK

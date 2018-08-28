@@ -5,11 +5,16 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Source type.
 @objc public enum SourceType: Int {
     
+    /// Card present.
     case cardPresent
+    
+    /// Card not present.
     case cardNotPresent
     
+    /// Other.
     case null
     
     // MARK: - Private -

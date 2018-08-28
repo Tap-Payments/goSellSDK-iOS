@@ -5,13 +5,22 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Source payment type enum.
 @objc public enum SourcePaymentType: Int {
     
+    /// Debit card.
     case debitCard
+    
+    /// Credit card.
     case creditCard
+    
+    /// Prepaid card.
     case prepaidCard
+    
+    /// Prepaid wallet.
     case prepaidWallet
     
+    /// Other.
     case null
     
     // MARK: - Private -

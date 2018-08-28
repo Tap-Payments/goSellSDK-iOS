@@ -14,7 +14,7 @@
     <a title="SourcePaymentType Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">goSellSDK Docs</a> (79% documented)</p>
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,7 +34,7 @@
                 <a href="../Classes/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Address.html">Address</a>
+                <a href="../Classes/Acquirer.html">Acquirer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AmountModificator.html">AmountModificator</a>
@@ -53,9 +53,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Charge.html">Charge</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/Country.html">Country</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Currency.html">Currency</a>
@@ -91,6 +88,9 @@
                 <a href="../Classes/Response.html">Response</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Shipping.html">Shipping</a>
               </li>
               <li class="nav-group-task">
@@ -115,12 +115,6 @@
                 <a href="../Classes/Tax.html">Tax</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Token.html">Token</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/TokenizedCard.html">TokenizedCard</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/TrackingURL.html">TrackingURL</a>
               </li>
               <li class="nav-group-task">
@@ -137,12 +131,6 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Enums/AddressFormat.html">AddressFormat</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/AddressType.html">AddressType</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
               </li>
@@ -198,9 +186,6 @@
                 <a href="../Enums/SourceChannel.html">SourceChannel</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/SourceIdentifier.html">SourceIdentifier</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/SourceObject.html">SourceObject</a>
               </li>
               <li class="nav-group-task">
@@ -213,15 +198,6 @@
                 <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/TapSerializationError.html">TapSerializationError</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/Theme.html">Theme</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/TokenType.html">TokenType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/TransactionMode.html">TransactionMode</a>
               </li>
               <li class="nav-group-task">
@@ -229,6 +205,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
               </li>
             </ul>
           </li>
@@ -262,7 +252,7 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Source payment type enum.</p>
 
           </section>
           <section class="section task-group-section">
@@ -281,7 +271,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Debit card.</p>
 
                       </div>
                       <div class="declaration">
@@ -308,7 +298,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Credit card.</p>
 
                       </div>
                       <div class="declaration">
@@ -335,7 +325,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Prepaid card.</p>
 
                       </div>
                       <div class="declaration">
@@ -362,7 +352,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Prepaid wallet.</p>
 
                       </div>
                       <div class="declaration">
@@ -370,6 +360,33 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="k">case</span> <span class="n">prepaidWallet</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@E@SourcePaymentType@SourcePaymentTypeNull"></a>
+                    <a name="//apple_ref/swift/Element/null" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourcePaymentType@SourcePaymentTypeNull">null</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Other.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">null</span></code></pre>
 
                         </div>
                       </div>
@@ -455,7 +472,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-23)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

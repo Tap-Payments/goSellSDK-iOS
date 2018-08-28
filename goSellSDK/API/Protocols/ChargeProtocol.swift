@@ -38,10 +38,7 @@ internal protocol ChargeProtocol: Authenticatable, Retrievable {
     /// Saved card. Available only with card payment.
     var card: SavedCard? { get }
     
-    /// The source of every charge is a credit or debit card. This hash is then the card object describing that card.
-    /// If source is null then, default Tap payment page link will be provided.
-    /// if source.id = "src_kw.knet" then KNET payment page link will be provided.
-    /// if source.id = "src_visamastercard" then Credit Card payment page link will be provided.
+    /// Charge source.
     var source: Source { get }
     
     /// Charge status.

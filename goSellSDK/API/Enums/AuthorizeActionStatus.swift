@@ -5,14 +5,26 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Status of the automatic scheduled action after successful charge authorization.
 @objc public enum AuthorizeActionStatus: Int {
     
+    /// Pending.
     case pending
+    
+    /// Scheduled.
     case scheduled
+    
+    /// Amount was captured.
     case captured
+    
+    /// Automatic action failed.
     case failed
+    
+    /// Declined.
     case declined
-    case void    
+    
+    /// Amount was void.
+    case void
     
     // MARK: - Private -
     // MARK: Properties

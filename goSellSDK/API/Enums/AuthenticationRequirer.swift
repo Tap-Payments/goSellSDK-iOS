@@ -8,8 +8,13 @@
 /// Entity requiring authentication.
 @objc public enum AuthenticationRequirer: Int {
     
+    /// Service provider (Tap)
     case provider
+    
+    /// Merchant.
     case merchant
+    
+    /// Cardholder
     case cardholder
     
     // MARK: - Private -
