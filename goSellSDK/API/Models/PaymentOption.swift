@@ -32,7 +32,7 @@ internal struct PaymentOption: IdentifiableWithString {
     internal let supportedCardBrands: [CardBrand]
     
     /// Extra fees.
-    internal let extraFees: [ExtraFee]
+    internal private(set) var extraFees: [ExtraFee]
     
     /// List of supported currencies.
     internal let supportedCurrencies: [Currency]
@@ -62,15 +62,15 @@ extension PaymentOption: Decodable {
 
         let container           = try decoder.container(keyedBy: CodingKeys.self)
 
-        let identifier          = try container.decode  (String.self        , forKey: .identifier)
-        let brand               = try container.decode  (CardBrand.self     , forKey: .title)
-        let title               = try container.decode  (String.self        , forKey: .title)
-        let imageURL            = try container.decode  (URL.self           , forKey: .imageURL)
-        let paymentType         = try container.decode  (PaymentType.self   , forKey: .paymentType)
-        let supportedCardBrands = try container.decode  ([CardBrand].self   , forKey: .supportedCardBrands)
-        let extraFees           = try container.decode  ([ExtraFee].self    , forKey: .extraFees)
-        let supportedCurrencies = try container.decode  ([Currency].self    , forKey: .supportedCurrencies)
-        let orderBy             = try container.decode  (Int.self           , forKey: .orderBy)
+        let identifier          = try container.decode          (String.self,       forKey: .identifier)
+        let brand               = try container.decode          (CardBrand.self,    forKey: .title)
+        let title               = try container.decode          (String.self,       forKey: .title)
+        let imageURL            = try container.decode          (URL.self,          forKey: .imageURL)
+        let paymentType         = try container.decode          (PaymentType.self,  forKey: .paymentType)
+        let supportedCardBrands = try container.decode          ([CardBrand].self,  forKey: .supportedCardBrands)
+        let extraFees           = try container.decodeIfPresent ([ExtraFee].self,   forKey: .extraFees) ?? []
+        let supportedCurrencies = try container.decode          ([Currency].self,   forKey: .supportedCurrencies)
+        let orderBy             = try container.decode          (Int.self,          forKey: .orderBy)
         
         self.init(identifier: identifier,
                   brand: brand,
