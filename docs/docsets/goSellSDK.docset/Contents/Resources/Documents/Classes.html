@@ -14,7 +14,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">goSellSDK Docs</a> (79% documented)</p>
+        <p><a href="index.html">goSellSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,7 +34,7 @@
                 <a href="Classes/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Address.html">Address</a>
+                <a href="Classes/Acquirer.html">Acquirer</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/AmountModificator.html">AmountModificator</a>
@@ -53,9 +53,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Charge.html">Charge</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/Country.html">Country</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Currency.html">Currency</a>
@@ -91,6 +88,9 @@
                 <a href="Classes/Response.html">Response</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Shipping.html">Shipping</a>
               </li>
               <li class="nav-group-task">
@@ -115,12 +115,6 @@
                 <a href="Classes/Tax.html">Tax</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Token.html">Token</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/TokenizedCard.html">TokenizedCard</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/TrackingURL.html">TrackingURL</a>
               </li>
               <li class="nav-group-task">
@@ -137,12 +131,6 @@
           <li class="nav-group-name">
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Enums/AddressFormat.html">AddressFormat</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/AddressType.html">AddressType</a>
-              </li>
               <li class="nav-group-task">
                 <a href="Enums/AmountModificatorType.html">AmountModificatorType</a>
               </li>
@@ -198,9 +186,6 @@
                 <a href="Enums/SourceChannel.html">SourceChannel</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/SourceIdentifier.html">SourceIdentifier</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Enums/SourceObject.html">SourceObject</a>
               </li>
               <li class="nav-group-task">
@@ -213,15 +198,6 @@
                 <a href="Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/TapSerializationError.html">TapSerializationError</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/Theme.html">Theme</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/TokenType.html">TokenType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Enums/TransactionMode.html">TransactionMode</a>
               </li>
               <li class="nav-group-task">
@@ -229,6 +205,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TokenizedCard.html">TokenizedCard</a>
               </li>
             </ul>
           </li>
@@ -330,9 +320,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)Address"></a>
-                    <a name="//apple_ref/swift/Class/Address" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Address">Address</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)Acquirer"></a>
+                    <a name="//apple_ref/swift/Class/Acquirer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Acquirer">Acquirer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -340,15 +330,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Address model.</p>
+                        <p>Acquirer information class.</p>
 
-                        <a href="Classes/Address.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/Acquirer.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Address</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Acquirer</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
 
                         </div>
                       </div>
@@ -438,7 +429,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Authorize object.</p>
 
                         <a href="Classes/Authorize.html" class="slightly-smaller">See more</a>
                       </div>
@@ -479,7 +470,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+                          <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="kt">AuthorizeAction</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
@@ -504,7 +495,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Authorize action response class.</p>
 
                         <a href="Classes/AuthorizeActionResponse.html" class="slightly-smaller">See more</a>
                       </div>
@@ -512,7 +503,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">AuthorizeActionResponse</span> <span class="p">:</span> <span class="kt"><a href="Classes/AuthorizeAction.html">AuthorizeAction</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">AuthorizeActionResponse</span> <span class="p">:</span> <span class="kt"><a href="Classes/AuthorizeAction.html">AuthorizeAction</a></span></code></pre>
 
                         </div>
                       </div>
@@ -549,38 +541,6 @@ Charges are identified by a unique random ID.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
 <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Charge</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">ChargeProtocol</span><span class="p">,</span> <span class="kt">IdentifiableWithString</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)Country"></a>
-                    <a name="//apple_ref/swift/Class/Country" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Country">Country</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Country model.</p>
-
-                        <a href="Classes/Country.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Country</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -1009,7 +969,7 @@ Charges are identified by a unique random ID.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Reference</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Reference</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
                       </div>
@@ -1056,6 +1016,39 @@ Charges are identified by a unique random ID.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)SavedCard"></a>
+                    <a name="//apple_ref/swift/Class/SavedCard" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)SavedCard">SavedCard</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Saved Card model.</p>
+
+                        <a href="Classes/SavedCard.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SavedCard</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">OptionallyIdentifiableWithString</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@goSellSDK@objc(cs)Shipping"></a>
                     <a name="//apple_ref/swift/Class/Shipping" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@objc(cs)Shipping">Shipping</a>
@@ -1075,7 +1068,7 @@ Charges are identified by a unique random ID.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kt">Shipping</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Shipping</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
                       </div>
@@ -1188,70 +1181,6 @@ Charges are identified by a unique random ID.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)Token"></a>
-                    <a name="//apple_ref/swift/Class/Token" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Token">Token</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Token model.</p>
-
-                        <a href="Classes/Token.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Token</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">IdentifiableWithString</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)TokenizedCard"></a>
-                    <a name="//apple_ref/swift/Class/TokenizedCard" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)TokenizedCard">TokenizedCard</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Tokenized card model.</p>
-
-                        <a href="Classes/TokenizedCard.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">TokenizedCard</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">IdentifiableWithString</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/c:@M@goSellSDK@objc(cs)TrackingURL"></a>
                     <a name="//apple_ref/swift/Class/TrackingURL" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@objc(cs)TrackingURL">TrackingURL</a>
@@ -1271,7 +1200,7 @@ Charges are identified by a unique random ID.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">TrackingURL</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">TrackingURL</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -1295,7 +1224,7 @@ Charges are identified by a unique random ID.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Transaction details model.</p>
 
                         <a href="Classes/TransactionDetails.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1318,9 +1247,9 @@ Charges are identified by a unique random ID.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9PayButtonC"></a>
+                    <a name="/c:@M@goSellSDK@objc(cs)PayButton"></a>
                     <a name="//apple_ref/swift/Class/PayButton" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9PayButtonC">PayButton</a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PayButton">PayButton</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1336,7 +1265,8 @@ Charges are identified by a unique random ID.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PayButton</span> <span class="p">:</span> <span class="kt">TapNibView</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PayButton</span> <span class="p">:</span> <span class="kt">TapNibView</span></code></pre>
 
                         </div>
                       </div>
@@ -1381,7 +1311,7 @@ Charges are identified by a unique random ID.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-23)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

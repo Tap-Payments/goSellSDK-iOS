@@ -8,12 +8,15 @@
 /// Serialization error.
 ///
 /// - wrongData: Wrong data to serialize/deserialize.
-public enum TapSerializationError: Int, Error {
+internal enum TapSerializationError: Int, Error {
     
     /// Wrong data to serialize/deserialize.
     case wrongData
     
-    internal var readableType: String {
+    // MARK: - Private -
+    // MARK: Properties
+    
+    private var readableType: String {
         
         switch self {
             

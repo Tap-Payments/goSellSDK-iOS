@@ -5,9 +5,13 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Source object enum.
 @objc public enum SourceObject: Int {
     
+    /// Token source.
     case token
+    
+    /// Static source.
     case source
     
     // MARK: - Private -

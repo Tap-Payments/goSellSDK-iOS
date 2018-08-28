@@ -5,12 +5,22 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Status of authentication.
 @objc public enum AuthenticationStatus: Int {
     
+    /// Authentication was initiated.
     case initiated
+    
+    /// Authentication succeed.
     case authenticated
+    
+    /// Authentication not yet succeed.
     case notAuthenticated
+    
+    /// Authentication was abandoned.
     case abandoned
+    
+    /// Authentication failed.
     case failed
     
     // MARK: - Private -

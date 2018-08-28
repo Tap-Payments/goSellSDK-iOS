@@ -30,6 +30,12 @@ import enum TapCardValidator.CardBrand
     
     // MARK: Methods
     
+    /// Checks whether two saved cards are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: Left side.
+    ///   - rhs: Ride side.
+    /// - Returns: `true` if two saved cards are equal, `false` otherwise.
     public static func == (lhs: SavedCard, rhs: SavedCard) -> Bool {
         
         return lhs.lastFourDigits == rhs.lastFourDigits && lhs.expiry == rhs.expiry && lhs.firstSixDigits == rhs.firstSixDigits

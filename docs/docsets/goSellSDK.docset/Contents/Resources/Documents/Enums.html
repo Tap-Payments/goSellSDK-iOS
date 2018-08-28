@@ -14,7 +14,7 @@
     <a title="Enumerations  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">goSellSDK Docs</a> (79% documented)</p>
+        <p><a href="index.html">goSellSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,7 +34,7 @@
                 <a href="Classes/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Address.html">Address</a>
+                <a href="Classes/Acquirer.html">Acquirer</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/AmountModificator.html">AmountModificator</a>
@@ -53,9 +53,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Charge.html">Charge</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/Country.html">Country</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Currency.html">Currency</a>
@@ -91,6 +88,9 @@
                 <a href="Classes/Response.html">Response</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Shipping.html">Shipping</a>
               </li>
               <li class="nav-group-task">
@@ -115,12 +115,6 @@
                 <a href="Classes/Tax.html">Tax</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Token.html">Token</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/TokenizedCard.html">TokenizedCard</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/TrackingURL.html">TrackingURL</a>
               </li>
               <li class="nav-group-task">
@@ -137,12 +131,6 @@
           <li class="nav-group-name">
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Enums/AddressFormat.html">AddressFormat</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/AddressType.html">AddressType</a>
-              </li>
               <li class="nav-group-task">
                 <a href="Enums/AmountModificatorType.html">AmountModificatorType</a>
               </li>
@@ -198,9 +186,6 @@
                 <a href="Enums/SourceChannel.html">SourceChannel</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/SourceIdentifier.html">SourceIdentifier</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Enums/SourceObject.html">SourceObject</a>
               </li>
               <li class="nav-group-task">
@@ -213,15 +198,6 @@
                 <a href="Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/TapSerializationError.html">TapSerializationError</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/Theme.html">Theme</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/TokenType.html">TokenType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Enums/TransactionMode.html">TransactionMode</a>
               </li>
               <li class="nav-group-task">
@@ -229,6 +205,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TokenizedCard.html">TokenizedCard</a>
               </li>
             </ul>
           </li>
@@ -259,70 +249,6 @@
 
           </section>
           <section class="section task-group-section">
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK13AddressFormatO"></a>
-                    <a name="//apple_ref/swift/Enum/AddressFormat" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13AddressFormatO">AddressFormat</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/AddressFormat.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AddressFormat</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK11AddressTypeO"></a>
-                    <a name="//apple_ref/swift/Enum/AddressType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK11AddressTypeO">AddressType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/AddressType.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AddressType</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
             <div class="task-group">
               <ul>
                 <li class="item">
@@ -409,7 +335,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Status of authentication.</p>
 
                         <a href="Enums/AuthenticationStatus.html" class="slightly-smaller">See more</a>
                       </div>
@@ -442,7 +368,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Authentication type.</p>
 
                         <a href="Enums/AuthenticationType.html" class="slightly-smaller">See more</a>
                       </div>
@@ -465,9 +391,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK21AuthorizeActionStatusO"></a>
+                    <a name="/c:@M@goSellSDK@E@AuthorizeActionStatus"></a>
                     <a name="//apple_ref/swift/Enum/AuthorizeActionStatus" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK21AuthorizeActionStatusO">AuthorizeActionStatus</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@AuthorizeActionStatus">AuthorizeActionStatus</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -475,7 +401,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Status of the automatic scheduled action after successful charge authorization.</p>
 
                         <a href="Enums/AuthorizeActionStatus.html" class="slightly-smaller">See more</a>
                       </div>
@@ -483,7 +409,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AuthorizeActionStatus</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AuthorizeActionStatus</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -540,7 +467,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Status of the charge or authorize.</p>
 
                         <a href="Enums/ChargeStatus.html" class="slightly-smaller">See more</a>
                       </div>
@@ -563,9 +490,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode"></a>
                     <a name="//apple_ref/swift/Enum/ErrorCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO">ErrorCode</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode">ErrorCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -573,7 +500,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>All possible error codes.</p>
 
                         <a href="Enums/ErrorCode.html" class="slightly-smaller">See more</a>
                       </div>
@@ -581,7 +508,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ErrorCode</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ErrorCode</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
 
                         </div>
                       </div>
@@ -924,9 +852,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK13SourceChannelO"></a>
+                    <a name="/c:@M@goSellSDK@E@SourceChannel"></a>
                     <a name="//apple_ref/swift/Enum/SourceChannel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK13SourceChannelO">SourceChannel</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SourceChannel">SourceChannel</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -934,7 +862,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Source channel enum.</p>
 
                         <a href="Enums/SourceChannel.html" class="slightly-smaller">See more</a>
                       </div>
@@ -942,46 +870,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SourceChannel</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK16SourceIdentifierO"></a>
-                    <a name="//apple_ref/swift/Enum/SourceIdentifier" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK16SourceIdentifierO">SourceIdentifier</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Static source identifier.</p>
-
-<ul>
-<li>KNET: KNET source identifier.</li>
-<li>BENEFIT: Benefit source identifier.</li>
-<li>SADAD: Sadad source identifier.</li>
-<li>FAWRY: Fawry source identifier.</li>
-</ul>
-
-                        <a href="Enums/SourceIdentifier.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SourceIdentifier</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SourceChannel</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -1005,7 +895,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Source object enum.</p>
 
                         <a href="Enums/SourceObject.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1038,7 +928,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Source payment type enum.</p>
 
                         <a href="Enums/SourcePaymentType.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1071,7 +961,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Source type.</p>
 
                         <a href="Enums/SourceType.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1094,9 +984,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK15TapSDKErrorTypeO"></a>
+                    <a name="/c:@M@goSellSDK@E@TapSDKErrorType"></a>
                     <a name="//apple_ref/swift/Enum/TapSDKErrorType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK15TapSDKErrorTypeO">TapSDKErrorType</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@TapSDKErrorType">TapSDKErrorType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1119,80 +1009,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TapSDKErrorType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK21TapSerializationErrorO"></a>
-                    <a name="//apple_ref/swift/Enum/TapSerializationError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK21TapSerializationErrorO">TapSerializationError</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Serialization error.</p>
-
-<ul>
-<li>wrongData: Wrong data to serialize/deserialize.</li>
-</ul>
-
-                        <a href="Enums/TapSerializationError.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TapSerializationError</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Error</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK9TokenTypeO"></a>
-                    <a name="//apple_ref/swift/Enum/TokenType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9TokenTypeO">TokenType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Token type.</p>
-
-<ul>
-<li>card: Card token.</li>
-<li>savedCard: Saved card token.</li>
-</ul>
-
-                        <a href="Enums/TokenType.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TokenType</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TapSDKErrorType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -1267,42 +1085,10 @@
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9goSellSDK5ThemeO"></a>
-                    <a name="//apple_ref/swift/Enum/Theme" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK5ThemeO">Theme</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Theme.</p>
-
-                        <a href="Enums/Theme.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Theme</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-23)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

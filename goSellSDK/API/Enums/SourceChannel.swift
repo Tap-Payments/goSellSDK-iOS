@@ -5,15 +5,28 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Source channel enum.
 @objc public enum SourceChannel: Int {
     
+    /// Call centre.
     case callCentre
+    
+    /// Internet.
     case internet
+    
+    /// Mail order.
     case mailOrder
+    
+    /// Manual input of payment.
     case moto
+    
+    /// Telephone order.
     case telephoneOrder
+    
+    /// Voice response.
     case voiceResponse 
     
+    /// Invalid source channel.
     case null
     
     // MARK: - Private -

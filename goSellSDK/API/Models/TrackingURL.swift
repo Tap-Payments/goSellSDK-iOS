@@ -19,6 +19,9 @@
     
     // MARK: Methods
     
+    /// Initializes `TrackingURL` with the `url`.
+    ///
+    /// - Parameter url: URL to initialize `TrackingURL` with.
     public init(url: URL) {
         
         self.url = url

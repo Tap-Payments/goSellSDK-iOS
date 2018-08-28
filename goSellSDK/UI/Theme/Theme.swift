@@ -6,7 +6,7 @@
 //
 
 /// Theme.
-public enum Theme {
+internal enum Theme {
     
     /// Light theme.
     case light

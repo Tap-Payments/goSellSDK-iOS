@@ -11,7 +11,7 @@
 /// - network: Network error.
 /// - serialization: Serialization error.
 /// - unknown: Unknown error.
-public enum TapSDKErrorType: Int {
+@objc public enum TapSDKErrorType: Int {
     
     /// API error.
     case api
@@ -28,8 +28,11 @@ public enum TapSDKErrorType: Int {
     /// Unknown error.
     case unknown
     
+    // MARK: - Private -
+    // MARK: Properties
+    
     /// Readable error type.
-    internal var readableType: String {
+    private var readableType: String {
         
         switch self {
             

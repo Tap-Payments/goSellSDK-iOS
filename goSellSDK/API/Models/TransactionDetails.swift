@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Transaction details model.
 @objcMembers public final class TransactionDetails: NSObject {
     
     // MARK: - Public -

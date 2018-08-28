@@ -5,9 +5,13 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+/// Authentication type.
 @objc public enum AuthenticationType: Int {
     
+    /// Authentication through the OTP
     case otp
+    
+    /// Authentication through biometrics (fingerprint, face scanning etc.)
     case biometrics
     
     // MARK: - Private -

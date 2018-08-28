@@ -14,7 +14,7 @@
     <a title="ErrorCode Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">goSellSDK Docs</a> (79% documented)</p>
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,7 +34,7 @@
                 <a href="../Classes/APIError.html">APIError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Address.html">Address</a>
+                <a href="../Classes/Acquirer.html">Acquirer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AmountModificator.html">AmountModificator</a>
@@ -53,9 +53,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Charge.html">Charge</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/Country.html">Country</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Currency.html">Currency</a>
@@ -91,6 +88,9 @@
                 <a href="../Classes/Response.html">Response</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Shipping.html">Shipping</a>
               </li>
               <li class="nav-group-task">
@@ -115,12 +115,6 @@
                 <a href="../Classes/Tax.html">Tax</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Token.html">Token</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/TokenizedCard.html">TokenizedCard</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/TrackingURL.html">TrackingURL</a>
               </li>
               <li class="nav-group-task">
@@ -137,12 +131,6 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Enums/AddressFormat.html">AddressFormat</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/AddressType.html">AddressType</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
               </li>
@@ -198,9 +186,6 @@
                 <a href="../Enums/SourceChannel.html">SourceChannel</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/SourceIdentifier.html">SourceIdentifier</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/SourceObject.html">SourceObject</a>
               </li>
               <li class="nav-group-task">
@@ -213,15 +198,6 @@
                 <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/TapSerializationError.html">TapSerializationError</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/Theme.html">Theme</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/TokenType.html">TokenType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/TransactionMode.html">TransactionMode</a>
               </li>
               <li class="nav-group-task">
@@ -229,6 +205,20 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
               </li>
             </ul>
           </li>
@@ -257,11 +247,12 @@
             <h1>ErrorCode</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ErrorCode</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ErrorCode</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>All possible error codes.</p>
 
           </section>
           <section class="section task-group-section">
@@ -270,9 +261,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO21requestHeadersMissingA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRequestHeadersMissing"></a>
                     <a name="//apple_ref/swift/Element/requestHeadersMissing" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO21requestHeadersMissingA2CmF">requestHeadersMissing</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRequestHeadersMissing">requestHeadersMissing</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -280,7 +271,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>API error indicating that required request headers are missing.</p>
 
                       </div>
                       <div class="declaration">
@@ -297,9 +288,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO25keyAndEnvironmentMismatchA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeKeyAndEnvironmentMismatch"></a>
                     <a name="//apple_ref/swift/Element/keyAndEnvironmentMismatch" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO25keyAndEnvironmentMismatchA2CmF">keyAndEnvironmentMismatch</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeKeyAndEnvironmentMismatch">keyAndEnvironmentMismatch</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,7 +298,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Given key is not matching the environment.</p>
 
                       </div>
                       <div class="declaration">
@@ -324,9 +315,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO12emptyRequestA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeEmptyRequest"></a>
                     <a name="//apple_ref/swift/Element/emptyRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO12emptyRequestA2CmF">emptyRequest</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeEmptyRequest">emptyRequest</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -334,7 +325,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Request is empty.</p>
 
                       </div>
                       <div class="declaration">
@@ -351,9 +342,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO12invalidInputA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidInput"></a>
                     <a name="//apple_ref/swift/Element/invalidInput" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO12invalidInputA2CmF">invalidInput</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidInput">invalidInput</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -361,7 +352,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Input is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -378,9 +369,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO17missingCustomerIDA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerID"></a>
                     <a name="//apple_ref/swift/Element/missingCustomerID" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO17missingCustomerIDA2CmF">missingCustomerID</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerID">missingCustomerID</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -388,7 +379,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Customer ID is missing.</p>
 
                       </div>
                       <div class="declaration">
@@ -405,9 +396,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO17invalidCustomerIDA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerID"></a>
                     <a name="//apple_ref/swift/Element/invalidCustomerID" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO17invalidCustomerIDA2CmF">invalidCustomerID</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerID">invalidCustomerID</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -415,7 +406,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Customer ID is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -432,9 +423,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO16customerNotFoundA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCustomerNotFound"></a>
                     <a name="//apple_ref/swift/Element/customerNotFound" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO16customerNotFoundA2CmF">customerNotFound</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCustomerNotFound">customerNotFound</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -442,7 +433,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Customer with the given ID not found.</p>
 
                       </div>
                       <div class="declaration">
@@ -459,9 +450,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18customerIDMismatchA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCustomerIDMismatch"></a>
                     <a name="//apple_ref/swift/Element/customerIDMismatch" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18customerIDMismatchA2CmF">customerIDMismatch</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCustomerIDMismatch">customerIDMismatch</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -469,7 +460,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Card does not belong to the customer.</p>
 
                       </div>
                       <div class="declaration">
@@ -486,9 +477,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO23saveCardFeatureDisabledA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSaveCardFeatureDisabled"></a>
                     <a name="//apple_ref/swift/Element/saveCardFeatureDisabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO23saveCardFeatureDisabledA2CmF">saveCardFeatureDisabled</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSaveCardFeatureDisabled">saveCardFeatureDisabled</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -496,7 +487,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Card saving feature is disabled.</p>
 
                       </div>
                       <div class="declaration">
@@ -513,9 +504,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO32non3DSecureTransactionsForbiddenA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeNon3DSecureTransactionsForbidden"></a>
                     <a name="//apple_ref/swift/Element/non3DSecureTransactionsForbidden" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO32non3DSecureTransactionsForbiddenA2CmF">non3DSecureTransactionsForbidden</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeNon3DSecureTransactionsForbidden">non3DSecureTransactionsForbidden</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -523,7 +514,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Non-3D secure transactions are forbidden.</p>
 
                       </div>
                       <div class="declaration">
@@ -540,9 +531,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18redirectURLMissingA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRedirectURLMissing"></a>
                     <a name="//apple_ref/swift/Element/redirectURLMissing" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18redirectURLMissingA2CmF">redirectURLMissing</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRedirectURLMissing">redirectURLMissing</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -550,7 +541,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Redirect URL is missing.</p>
 
                       </div>
                       <div class="declaration">
@@ -567,9 +558,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18redirectURLInvalidA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRedirectURLInvalid"></a>
                     <a name="//apple_ref/swift/Element/redirectURLInvalid" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18redirectURLInvalidA2CmF">redirectURLInvalid</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRedirectURLInvalid">redirectURLInvalid</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -577,7 +568,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Redirect URL is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -594,9 +585,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18authorizeIDMissingA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeIDMissing"></a>
                     <a name="//apple_ref/swift/Element/authorizeIDMissing" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18authorizeIDMissingA2CmF">authorizeIDMissing</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeIDMissing">authorizeIDMissing</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -604,7 +595,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Authorize ID is missing.</p>
 
                       </div>
                       <div class="declaration">
@@ -621,9 +612,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18authorizeIDInvalidA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeIDInvalid"></a>
                     <a name="//apple_ref/swift/Element/authorizeIDInvalid" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18authorizeIDInvalidA2CmF">authorizeIDInvalid</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeIDInvalid">authorizeIDInvalid</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -631,7 +622,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Authorize ID is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -648,9 +639,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO15authorizeStatusA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeStatus"></a>
                     <a name="//apple_ref/swift/Element/authorizeStatus" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO15authorizeStatusA2CmF">authorizeStatus</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeStatus">authorizeStatus</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -658,7 +649,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Please check authorize status.</p>
 
                       </div>
                       <div class="declaration">
@@ -675,9 +666,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO19authorizeIDNotFoundA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeIDNotFound"></a>
                     <a name="//apple_ref/swift/Element/authorizeIDNotFound" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO19authorizeIDNotFoundA2CmF">authorizeIDNotFound</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeAuthorizeIDNotFound">authorizeIDNotFound</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -685,7 +676,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Authorize ID not found.</p>
 
                       </div>
                       <div class="declaration">
@@ -702,9 +693,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO27saveCardFeatureNotSupportedA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSaveCardFeatureNotSupported"></a>
                     <a name="//apple_ref/swift/Element/saveCardFeatureNotSupported" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO27saveCardFeatureNotSupportedA2CmF">saveCardFeatureNotSupported</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSaveCardFeatureNotSupported">saveCardFeatureNotSupported</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -712,7 +703,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Save card feature is not supported.</p>
 
                       </div>
                       <div class="declaration">
@@ -729,9 +720,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO13invalidAmountA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAmount"></a>
                     <a name="//apple_ref/swift/Element/invalidAmount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO13invalidAmountA2CmF">invalidAmount</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAmount">invalidAmount</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -739,7 +730,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Amount is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -756,9 +747,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO15invalidCurrencyA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCurrency"></a>
                     <a name="//apple_ref/swift/Element/invalidCurrency" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO15invalidCurrencyA2CmF">invalidCurrency</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCurrency">invalidCurrency</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -766,7 +757,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Currency is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -783,9 +774,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO19unsupportedCurrencyA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeUnsupportedCurrency"></a>
                     <a name="//apple_ref/swift/Element/unsupportedCurrency" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO19unsupportedCurrencyA2CmF">unsupportedCurrency</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeUnsupportedCurrency">unsupportedCurrency</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -793,7 +784,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Currency is not supported.</p>
 
                       </div>
                       <div class="declaration">
@@ -810,9 +801,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO26invalidStatementDescriptorA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidStatementDescriptor"></a>
                     <a name="//apple_ref/swift/Element/invalidStatementDescriptor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO26invalidStatementDescriptorA2CmF">invalidStatementDescriptor</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidStatementDescriptor">invalidStatementDescriptor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -820,7 +811,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Statement descriptor is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -837,9 +828,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18invalidDescriptionA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidDescription"></a>
                     <a name="//apple_ref/swift/Element/invalidDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18invalidDescriptionA2CmF">invalidDescription</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidDescription">invalidDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -847,7 +838,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Description is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -864,9 +855,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO29invalidMerchantOrderReferenceA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMerchantOrderReference"></a>
                     <a name="//apple_ref/swift/Element/invalidMerchantOrderReference" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO29invalidMerchantOrderReferenceA2CmF">invalidMerchantOrderReference</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMerchantOrderReference">invalidMerchantOrderReference</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -874,7 +865,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid merchant order reference.</p>
 
                       </div>
                       <div class="declaration">
@@ -891,9 +882,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO35invalidMerchantTransactionReferenceA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMerchantTransactionReference"></a>
                     <a name="//apple_ref/swift/Element/invalidMerchantTransactionReference" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO35invalidMerchantTransactionReferenceA2CmF">invalidMerchantTransactionReference</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMerchantTransactionReference">invalidMerchantTransactionReference</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -901,7 +892,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid merchant transaction reference.</p>
 
                       </div>
                       <div class="declaration">
@@ -918,9 +909,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO15missingSourceIDA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingSourceID"></a>
                     <a name="//apple_ref/swift/Element/missingSourceID" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO15missingSourceIDA2CmF">missingSourceID</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingSourceID">missingSourceID</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -928,7 +919,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Source ID is missing.</p>
 
                       </div>
                       <div class="declaration">
@@ -945,9 +936,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO15invalidSourceIDA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidSourceID"></a>
                     <a name="//apple_ref/swift/Element/invalidSourceID" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO15invalidSourceIDA2CmF">invalidSourceID</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidSourceID">invalidSourceID</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -955,7 +946,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Source ID is invalid.</p>
 
                       </div>
                       <div class="declaration">
@@ -972,9 +963,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO17sourceAlreadyUsedA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSourceAlreadyUsed"></a>
                     <a name="//apple_ref/swift/Element/sourceAlreadyUsed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO17sourceAlreadyUsedA2CmF">sourceAlreadyUsed</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSourceAlreadyUsed">sourceAlreadyUsed</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -982,7 +973,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Source is already used.</p>
 
                       </div>
                       <div class="declaration">
@@ -999,9 +990,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18invalidMetadataKeyA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMetadataKey"></a>
                     <a name="//apple_ref/swift/Element/invalidMetadataKey" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18invalidMetadataKeyA2CmF">invalidMetadataKey</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMetadataKey">invalidMetadataKey</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1009,7 +1000,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid metadata key.</p>
 
                       </div>
                       <div class="declaration">
@@ -1026,9 +1017,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO20invalidMetadataValueA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMetadataValue"></a>
                     <a name="//apple_ref/swift/Element/invalidMetadataValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO20invalidMetadataValueA2CmF">invalidMetadataValue</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMetadataValue">invalidMetadataValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1036,7 +1027,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid metadata value.</p>
 
                       </div>
                       <div class="declaration">
@@ -1053,9 +1044,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO019missingCustomerIDOrG11InformationA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerIDOrCustomerInformation"></a>
                     <a name="//apple_ref/swift/Element/missingCustomerIDOrCustomerInformation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO019missingCustomerIDOrG11InformationA2CmF">missingCustomerIDOrCustomerInformation</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerIDOrCustomerInformation">missingCustomerIDOrCustomerInformation</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1063,7 +1054,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing customer ID or customer information. One of two is required.</p>
 
                       </div>
                       <div class="declaration">
@@ -1080,9 +1071,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO24missingCustomerFirstNameA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerFirstName"></a>
                     <a name="//apple_ref/swift/Element/missingCustomerFirstName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO24missingCustomerFirstNameA2CmF">missingCustomerFirstName</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerFirstName">missingCustomerFirstName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1090,7 +1081,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing customer&rsquo;s first name.</p>
 
                       </div>
                       <div class="declaration">
@@ -1107,9 +1098,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO24invalidCustomerFirstNameA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerFirstName"></a>
                     <a name="//apple_ref/swift/Element/invalidCustomerFirstName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO24invalidCustomerFirstNameA2CmF">invalidCustomerFirstName</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerFirstName">invalidCustomerFirstName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1117,7 +1108,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid customer&rsquo;s first name.</p>
 
                       </div>
                       <div class="declaration">
@@ -1134,9 +1125,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO23missingCustomerLastNameA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerLastName"></a>
                     <a name="//apple_ref/swift/Element/missingCustomerLastName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO23missingCustomerLastNameA2CmF">missingCustomerLastName</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerLastName">missingCustomerLastName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1144,7 +1135,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing customer&rsquo;s last name.</p>
 
                       </div>
                       <div class="declaration">
@@ -1161,9 +1152,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO23invalidCustomerLastNameA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerLastName"></a>
                     <a name="//apple_ref/swift/Element/invalidCustomerLastName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO23invalidCustomerLastNameA2CmF">invalidCustomerLastName</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerLastName">invalidCustomerLastName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1171,7 +1162,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid customer&rsquo;s last name.</p>
 
                       </div>
                       <div class="declaration">
@@ -1188,9 +1179,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO25invalidCustomerMiddleNameA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerMiddleName"></a>
                     <a name="//apple_ref/swift/Element/invalidCustomerMiddleName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO25invalidCustomerMiddleNameA2CmF">invalidCustomerMiddleName</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCustomerMiddleName">invalidCustomerMiddleName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1198,7 +1189,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid customer&rsquo;s middle name.</p>
 
                       </div>
                       <div class="declaration">
@@ -1215,9 +1206,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18missingPhoneNumberA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingPhoneNumber"></a>
                     <a name="//apple_ref/swift/Element/missingPhoneNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18missingPhoneNumberA2CmF">missingPhoneNumber</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingPhoneNumber">missingPhoneNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1225,7 +1216,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Phone number is missing.</p>
 
                       </div>
                       <div class="declaration">
@@ -1242,9 +1233,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO025invalidPhoneNumberCountryE0A2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidPhoneNumberCountryCode"></a>
                     <a name="//apple_ref/swift/Element/invalidPhoneNumberCountryCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO025invalidPhoneNumberCountryE0A2CmF">invalidPhoneNumberCountryCode</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidPhoneNumberCountryCode">invalidPhoneNumberCountryCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1252,7 +1243,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid phone number country code.</p>
 
                       </div>
                       <div class="declaration">
@@ -1269,9 +1260,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18invalidPhoneNumberA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidPhoneNumber"></a>
                     <a name="//apple_ref/swift/Element/invalidPhoneNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18invalidPhoneNumberA2CmF">invalidPhoneNumber</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidPhoneNumber">invalidPhoneNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1279,7 +1270,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid phone number.</p>
 
                       </div>
                       <div class="declaration">
@@ -1296,9 +1287,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO19invalidEmailAddressA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidEmailAddress"></a>
                     <a name="//apple_ref/swift/Element/invalidEmailAddress" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO19invalidEmailAddressA2CmF">invalidEmailAddress</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidEmailAddress">invalidEmailAddress</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1306,7 +1297,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid email address.</p>
 
                       </div>
                       <div class="declaration">
@@ -1323,9 +1314,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO34missingCustomerPhoneNumberAndEmailA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerPhoneNumberAndEmail"></a>
                     <a name="//apple_ref/swift/Element/missingCustomerPhoneNumberAndEmail" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO34missingCustomerPhoneNumberAndEmailA2CmF">missingCustomerPhoneNumberAndEmail</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingCustomerPhoneNumberAndEmail">missingCustomerPhoneNumberAndEmail</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1333,7 +1324,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing customer phone number and email.</p>
 
                       </div>
                       <div class="declaration">
@@ -1350,9 +1341,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO17invalidCardNumberA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCardNumber"></a>
                     <a name="//apple_ref/swift/Element/invalidCardNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO17invalidCardNumberA2CmF">invalidCardNumber</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCardNumber">invalidCardNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1360,7 +1351,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid card number.</p>
 
                       </div>
                       <div class="declaration">
@@ -1377,9 +1368,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO21invalidExpirationDateA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidExpirationDate"></a>
                     <a name="//apple_ref/swift/Element/invalidExpirationDate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO21invalidExpirationDateA2CmF">invalidExpirationDate</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidExpirationDate">invalidExpirationDate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1387,7 +1378,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid expiration date.</p>
 
                       </div>
                       <div class="declaration">
@@ -1404,9 +1395,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO15missingChargeIDA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingChargeID"></a>
                     <a name="//apple_ref/swift/Element/missingChargeID" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO15missingChargeIDA2CmF">missingChargeID</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingChargeID">missingChargeID</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1414,7 +1405,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing charge ID.</p>
 
                       </div>
                       <div class="declaration">
@@ -1431,9 +1422,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO15invalidChargeIDA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidChargeID"></a>
                     <a name="//apple_ref/swift/Element/invalidChargeID" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO15invalidChargeIDA2CmF">invalidChargeID</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidChargeID">invalidChargeID</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1441,7 +1432,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid charge ID.</p>
 
                       </div>
                       <div class="declaration">
@@ -1458,9 +1449,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO16chargeIDNotFoundA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeChargeIDNotFound"></a>
                     <a name="//apple_ref/swift/Element/chargeIDNotFound" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO16chargeIDNotFoundA2CmF">chargeIDNotFound</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeChargeIDNotFound">chargeIDNotFound</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1468,7 +1459,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Charge ID not found.</p>
 
                       </div>
                       <div class="declaration">
@@ -1485,9 +1476,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO25missingAuthenticationTypeA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingAuthenticationType"></a>
                     <a name="//apple_ref/swift/Element/missingAuthenticationType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO25missingAuthenticationTypeA2CmF">missingAuthenticationType</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingAuthenticationType">missingAuthenticationType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1495,7 +1486,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing authentication type.</p>
 
                       </div>
                       <div class="declaration">
@@ -1512,9 +1503,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO25invalidAuthenticationTypeA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAuthenticationType"></a>
                     <a name="//apple_ref/swift/Element/invalidAuthenticationType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO25invalidAuthenticationTypeA2CmF">invalidAuthenticationType</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAuthenticationType">invalidAuthenticationType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1522,7 +1513,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid authentication type.</p>
 
                       </div>
                       <div class="declaration">
@@ -1539,9 +1530,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO019missingConfirmationE0A2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingConfirmationCode"></a>
                     <a name="//apple_ref/swift/Element/missingConfirmationCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO019missingConfirmationE0A2CmF">missingConfirmationCode</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingConfirmationCode">missingConfirmationCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1549,7 +1540,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing confirmation code.</p>
 
                       </div>
                       <div class="declaration">
@@ -1566,9 +1557,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO019invalidConfirmationE0A2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidConfirmationCode"></a>
                     <a name="//apple_ref/swift/Element/invalidConfirmationCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO019invalidConfirmationE0A2CmF">invalidConfirmationCode</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidConfirmationCode">invalidConfirmationCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1576,7 +1567,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid confirmation code.</p>
 
                       </div>
                       <div class="declaration">
@@ -1593,9 +1584,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO08currencyE8MismatchA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCurrencyCodeMismatch"></a>
                     <a name="//apple_ref/swift/Element/currencyCodeMismatch" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO08currencyE8MismatchA2CmF">currencyCodeMismatch</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCurrencyCodeMismatch">currencyCodeMismatch</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1603,7 +1594,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Currency code mismatch.</p>
 
                       </div>
                       <div class="declaration">
@@ -1620,9 +1611,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO20captureAmountExceedsA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCaptureAmountExceeds"></a>
                     <a name="//apple_ref/swift/Element/captureAmountExceeds" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO20captureAmountExceedsA2CmF">captureAmountExceeds</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCaptureAmountExceeds">captureAmountExceeds</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1630,7 +1621,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Capture amount exceeds.</p>
 
                       </div>
                       <div class="declaration">
@@ -1647,9 +1638,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO14gatewayTimeoutA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeGatewayTimeout"></a>
                     <a name="//apple_ref/swift/Element/gatewayTimeout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO14gatewayTimeoutA2CmF">gatewayTimeout</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeGatewayTimeout">gatewayTimeout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1657,7 +1648,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Gateway timed out.</p>
 
                       </div>
                       <div class="declaration">
@@ -1674,9 +1665,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO32invalidAuthorizeAutoScheduleTypeA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAuthorizeAutoScheduleType"></a>
                     <a name="//apple_ref/swift/Element/invalidAuthorizeAutoScheduleType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO32invalidAuthorizeAutoScheduleTypeA2CmF">invalidAuthorizeAutoScheduleType</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAuthorizeAutoScheduleType">invalidAuthorizeAutoScheduleType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1684,7 +1675,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid authorize auto schedule type.</p>
 
                       </div>
                       <div class="declaration">
@@ -1701,9 +1692,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO32invalidAuthorizeAutoScheduleTimeA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAuthorizeAutoScheduleTime"></a>
                     <a name="//apple_ref/swift/Element/invalidAuthorizeAutoScheduleTime" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO32invalidAuthorizeAutoScheduleTimeA2CmF">invalidAuthorizeAutoScheduleTime</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAuthorizeAutoScheduleTime">invalidAuthorizeAutoScheduleTime</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1711,7 +1702,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid authorize auto schedule time.</p>
 
                       </div>
                       <div class="declaration">
@@ -1728,9 +1719,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO16missingBINNumberA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingBINNumber"></a>
                     <a name="//apple_ref/swift/Element/missingBINNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO16missingBINNumberA2CmF">missingBINNumber</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingBINNumber">missingBINNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1738,7 +1729,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing BIN number.</p>
 
                       </div>
                       <div class="declaration">
@@ -1755,9 +1746,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO16invalidBINNumberA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidBINNumber"></a>
                     <a name="//apple_ref/swift/Element/invalidBINNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO16invalidBINNumberA2CmF">invalidBINNumber</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidBINNumber">invalidBINNumber</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1765,7 +1756,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid BIN number.</p>
 
                       </div>
                       <div class="declaration">
@@ -1782,9 +1773,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18invalidJSONRequestA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidJSONRequest"></a>
                     <a name="//apple_ref/swift/Element/invalidJSONRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18invalidJSONRequestA2CmF">invalidJSONRequest</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidJSONRequest">invalidJSONRequest</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1792,7 +1783,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid JSON request.</p>
 
                       </div>
                       <div class="declaration">
@@ -1809,9 +1800,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO17serverUnavailableA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeServerUnavailable"></a>
                     <a name="//apple_ref/swift/Element/serverUnavailable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO17serverUnavailableA2CmF">serverUnavailable</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeServerUnavailable">serverUnavailable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1819,7 +1810,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Server unavailable.</p>
 
                       </div>
                       <div class="declaration">
@@ -1836,9 +1827,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO15requestNotFoundA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRequestNotFound"></a>
                     <a name="//apple_ref/swift/Element/requestNotFound" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO15requestNotFoundA2CmF">requestNotFound</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeRequestNotFound">requestNotFound</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1846,7 +1837,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Request not found.</p>
 
                       </div>
                       <div class="declaration">
@@ -1863,9 +1854,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO19applicationRequiredA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeApplicationRequired"></a>
                     <a name="//apple_ref/swift/Element/applicationRequired" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO19applicationRequiredA2CmF">applicationRequired</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeApplicationRequired">applicationRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1873,7 +1864,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Application required.</p>
 
                       </div>
                       <div class="declaration">
@@ -1890,9 +1881,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO13invalidAPIKeyA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAPIKey"></a>
                     <a name="//apple_ref/swift/Element/invalidAPIKey" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO13invalidAPIKeyA2CmF">invalidAPIKey</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAPIKey">invalidAPIKey</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1900,7 +1891,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid API key.</p>
 
                       </div>
                       <div class="declaration">
@@ -1917,9 +1908,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO21missingAPICredentialsA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingAPICredentials"></a>
                     <a name="//apple_ref/swift/Element/missingAPICredentials" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO21missingAPICredentialsA2CmF">missingAPICredentials</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeMissingAPICredentials">missingAPICredentials</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1927,7 +1918,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Missing API credentials.</p>
 
                       </div>
                       <div class="declaration">
@@ -1944,9 +1935,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO29publicKeyGivenInsteadOfSecretA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodePublicKeyGivenInsteadOfSecret"></a>
                     <a name="//apple_ref/swift/Element/publicKeyGivenInsteadOfSecret" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO29publicKeyGivenInsteadOfSecretA2CmF">publicKeyGivenInsteadOfSecret</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodePublicKeyGivenInsteadOfSecret">publicKeyGivenInsteadOfSecret</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1954,7 +1945,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Public key was given instead of secret.</p>
 
                       </div>
                       <div class="declaration">
@@ -1971,9 +1962,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO16permissionDeniedA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodePermissionDenied"></a>
                     <a name="//apple_ref/swift/Element/permissionDenied" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO16permissionDeniedA2CmF">permissionDenied</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodePermissionDenied">permissionDenied</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1981,7 +1972,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Permission denied.</p>
 
                       </div>
                       <div class="declaration">
@@ -1998,9 +1989,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO014invalidCountryE0A2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCountryCode"></a>
                     <a name="//apple_ref/swift/Element/invalidCountryCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO014invalidCountryE0A2CmF">invalidCountryCode</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidCountryCode">invalidCountryCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2008,7 +1999,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid country code.</p>
 
                       </div>
                       <div class="declaration">
@@ -2025,9 +2016,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO28invalidAmountModificatorTypeA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAmountModificatorType"></a>
                     <a name="//apple_ref/swift/Element/invalidAmountModificatorType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO28invalidAmountModificatorTypeA2CmF">invalidAmountModificatorType</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidAmountModificatorType">invalidAmountModificatorType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2035,7 +2026,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid amount modificator type.</p>
 
                       </div>
                       <div class="declaration">
@@ -2052,9 +2043,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO24invalidUnitOfMeasurementA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidUnitOfMeasurement"></a>
                     <a name="//apple_ref/swift/Element/invalidUnitOfMeasurement" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO24invalidUnitOfMeasurementA2CmF">invalidUnitOfMeasurement</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidUnitOfMeasurement">invalidUnitOfMeasurement</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2062,7 +2053,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid unit of measurement.</p>
 
                       </div>
                       <div class="declaration">
@@ -2079,9 +2070,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO18invalidMeasurementA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMeasurement"></a>
                     <a name="//apple_ref/swift/Element/invalidMeasurement" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO18invalidMeasurementA2CmF">invalidMeasurement</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidMeasurement">invalidMeasurement</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2089,7 +2080,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid measurement.</p>
 
                       </div>
                       <div class="declaration">
@@ -2106,9 +2097,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO16invalidEnumValueA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidEnumValue"></a>
                     <a name="//apple_ref/swift/Element/invalidEnumValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO16invalidEnumValueA2CmF">invalidEnumValue</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeInvalidEnumValue">invalidEnumValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2116,7 +2107,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Invalid enumeration value.</p>
 
                       </div>
                       <div class="declaration">
@@ -2133,9 +2124,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO13serializationA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSerialization"></a>
                     <a name="//apple_ref/swift/Element/serialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO13serializationA2CmF">serialization</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeSerialization">serialization</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2143,7 +2134,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Serialization error.</p>
 
                       </div>
                       <div class="declaration">
@@ -2160,9 +2151,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO7networkA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeNetwork"></a>
                     <a name="//apple_ref/swift/Element/network" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO7networkA2CmF">network</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeNetwork">network</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2170,7 +2161,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Network error has occured.</p>
 
                       </div>
                       <div class="declaration">
@@ -2187,9 +2178,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO6cancelA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCancel"></a>
                     <a name="//apple_ref/swift/Element/cancel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO6cancelA2CmF">cancel</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeCancel">cancel</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2197,7 +2188,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Operation cancelled.</p>
 
                       </div>
                       <div class="declaration">
@@ -2214,9 +2205,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK9ErrorCodeO7unknownA2CmF"></a>
+                    <a name="/c:@M@goSellSDK@E@ErrorCode@ErrorCodeUnknown"></a>
                     <a name="//apple_ref/swift/Element/unknown" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK9ErrorCodeO7unknownA2CmF">unknown</a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@ErrorCode@ErrorCodeUnknown">unknown</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2224,7 +2215,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Unknown error.</p>
 
                       </div>
                       <div class="declaration">
@@ -2243,7 +2234,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-23)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
