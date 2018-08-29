@@ -68,30 +68,33 @@ internal extension PaymentDataManager {
     
     internal func decision(forWebPayment url: URL) -> WebPaymentURLDecision {
         
-        let shouldLoad = url != PaymentProcessConstants.returnURL
-        let redirectionFinished = url == PaymentProcessConstants.returnURL
-        let shouldCloseWebPaymentScreen = redirectionFinished && self.currentPaymentOption?.paymentType == .card
+        let urlIsReturnURL = url.absoluteString.starts(with: PaymentProcessConstants.returnURL.absoluteString)
         
-        return WebPaymentURLDecision(shouldLoad: shouldLoad, shouldCloseWebPaymentScreen: shouldCloseWebPaymentScreen, redirectionFinished: redirectionFinished)
+        let shouldLoad = !urlIsReturnURL
+        let redirectionFinished = urlIsReturnURL
+        let tapID = url[PaymentProcessConstants.tapIDKey]
+        let shouldCloseWebPaymentScreen = redirectionFinished && self.currentPaymentOption?.paymentType == .card
+
+        return WebPaymentURLDecision(shouldLoad: shouldLoad, shouldCloseWebPaymentScreen: shouldCloseWebPaymentScreen, redirectionFinished: redirectionFinished, tapID: tapID)
     }
     
-    internal func webPaymentProcessFinished() {
+    internal func webPaymentProcessFinished(_ chargeOrAuthorizeID: String) {
         
         guard let paymentOption = self.currentPaymentOption, let chargeOrAuthorize = self.currentChargeOrAuthorize else { return }
-    
+        
         let loader = self.showLoadingController()
         let retryAction: TypeAlias.ArgumentlessClosure = { [weak self] in
             
-            self?.webPaymentProcessFinished()
+            self?.webPaymentProcessFinished(chargeOrAuthorizeID)
         }
         
-        if let chargeObject = chargeOrAuthorize as? Charge {
-            
-            self.continuePaymentWithCurrentChargeOrAuthorize(chargeObject, paymentOption: paymentOption, loader: loader, retryAction: retryAction)
+        if chargeOrAuthorize is Charge {
+
+            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Charge.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction)
         }
-        else if let authorizeObject = chargeOrAuthorize as? Authorize {
-            
-            self.continuePaymentWithCurrentChargeOrAuthorize(authorizeObject, paymentOption: paymentOption, loader: loader, retryAction: retryAction)
+        else if chargeOrAuthorize is Authorize {
+
+            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Authorize.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction)
         }
     }
     
@@ -144,6 +147,7 @@ internal extension PaymentDataManager {
     private struct PaymentProcessConstants {
         
         fileprivate static let returnURL = URL(string: "gosellsdk://return_url")!
+        fileprivate static let tapIDKey = "tap_id"
         
         @available(*, unavailable) private init() {}
     }
@@ -487,12 +491,12 @@ internal extension PaymentDataManager {
         OTPViewController.show(with: otpControllerFrame.minY, with: phoneNumber, delegate: self)
     }
     
-    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(_ chargeOrAuthorize: T, paymentOption: PaymentOption, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
-        APIClient.shared.retrieveObject(with: chargeOrAuthorize.identifier) { (returnChargeOrAuthorize: T?, error: TapSDKError?) in
+        APIClient.shared.retrieveObject(with: identifier) { (returnChargeOrAuthorize: T?, error: TapSDKError?) in
             
             loader?.hide(animated: true, async: true, fromDestroyInstance: false)
-            self.handleChargeOrAuthorizeResponse(chargeOrAuthorize, error: error, paymentOption: paymentOption, retryAction: retryAction)
+            self.handleChargeOrAuthorizeResponse(returnChargeOrAuthorize, error: error, paymentOption: paymentOption, retryAction: retryAction)
         }
     }
     

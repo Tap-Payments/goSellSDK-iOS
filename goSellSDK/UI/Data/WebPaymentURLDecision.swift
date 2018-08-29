@@ -19,4 +19,7 @@ internal struct WebPaymentURLDecision {
     
     /// Defines if web payment flow redirections are finished.
     internal let redirectionFinished: Bool
+    
+    /// Charge or authorize identifier.
+    internal let tapID: String?
 }

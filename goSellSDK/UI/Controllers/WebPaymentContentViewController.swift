@@ -124,9 +124,9 @@ extension WebPaymentContentViewController: WKNavigationDelegate {
         
         decisionHandler(decision.shouldLoad ? .allow : .cancel)
         
-        if decision.redirectionFinished {
+        if decision.redirectionFinished, let chargeOrAuthorizeID = decision.tapID {
             
-            PaymentDataManager.shared.webPaymentProcessFinished()
+            PaymentDataManager.shared.webPaymentProcessFinished(chargeOrAuthorizeID)
         }
         
         if decision.shouldCloseWebPaymentScreen {
