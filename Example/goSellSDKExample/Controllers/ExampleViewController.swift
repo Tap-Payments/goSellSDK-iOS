@@ -217,11 +217,13 @@ extension ExampleViewController: PaymentDelegate {
     
     internal func paymentCancel() {
         
-        
     }
     
     private func saveCustomer(_ customerID: String) {
         
-        
+        if let nonnullCustomer = self.customer {
+            
+            SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
+        }
     }
 }
