@@ -90,11 +90,11 @@ internal extension PaymentDataManager {
         
         if chargeOrAuthorize is Charge {
 
-            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Charge.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction)
+            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Charge.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction, alertDismissButtonClickHandler: nil)
         }
         else if chargeOrAuthorize is Authorize {
 
-            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Authorize.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction)
+            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Authorize.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction, alertDismissButtonClickHandler: nil)
         }
     }
     
@@ -130,7 +130,7 @@ internal extension PaymentDataManager {
         
         guard let paymentOption = self.currentPaymentOption else { return }
         
-        self.handleChargeOrAuthorizeResponse(chargeOrAuthorize, error: error, paymentOption: paymentOption, cardBIN: self.currentPaymentCardBINNumber, retryAction: retryAction)
+        self.handleChargeOrAuthorizeResponse(chargeOrAuthorize, error: error, paymentOption: paymentOption, cardBIN: self.currentPaymentCardBINNumber, retryAction: retryAction, alertDismissButtonClickHandler: nil)
     }
     
     internal func paymentCancelled() {
@@ -239,7 +239,7 @@ internal extension PaymentDataManager {
     
     private func paymentOption(for savedCard: SavedCard) -> PaymentOption {
         
-        let options = self.paymentOptions.filter { $0.supportedCardBrands.contains(savedCard.brand) }
+        let options = self.paymentOptions.filter { $0.identifier == savedCard.paymentOptionIdentifier }
         guard let firstAndOnlyOption = options.first, options.count == 1 else {
             
             fatalError("Cannot uniqely identify payment option.")
@@ -278,18 +278,12 @@ internal extension PaymentDataManager {
                 self?.payButtonUI?.stopLoader()
                 self?.isExecutingAPICalls = false
                 
-                ErrorDataManager.handle(nonnullError) {
-                    
-                    self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
-                }
+                ErrorDataManager.handle(nonnullError, retryAction: { self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard) }, alertDismissButtonClickHandler: nil)
             }
             else if let nonnullToken = token {
                 
                 let source = SourceRequest(token: nonnullToken)
-                self?.callChargeOrAuthorizeAPI(with: source, paymentOption: paymentOption, cardBIN: nonnullToken.card.binNumber, saveCard: saveCard) {
-                    
-                    self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
-                }
+                self?.callChargeOrAuthorizeAPI(with: source, paymentOption: paymentOption, cardBIN: nonnullToken.card.binNumber, saveCard: saveCard, retryAction: { self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard) }, alertDismissButtonClickHandler: nil)
             }
             else {
                 
@@ -308,13 +302,12 @@ internal extension PaymentDataManager {
         self.isExecutingAPICalls = true
         let loader = self.showLoadingController()
         
-        self.callChargeOrAuthorizeAPI(with: source, paymentOption: paymentOption, loader: loader) {
-            
-            self.startPaymentProcess(withWebPaymentOption: paymentOption)
-        }
+        let alertDissmissClosure = { self.closeWebPaymentScreen() }
+        
+        self.callChargeOrAuthorizeAPI(with: source, paymentOption: paymentOption, loader: loader, retryAction: { self.startPaymentProcess(withWebPaymentOption: paymentOption) }, alertDismissButtonClickHandler: alertDissmissClosure)
     }
     
-    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         guard
             
@@ -370,7 +363,7 @@ internal extension PaymentDataManager {
                 self?.payButtonUI?.stopLoader()
                 self?.isExecutingAPICalls = false
                 
-                self?.handleChargeOrAuthorizeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction)
+                self?.handleChargeOrAuthorizeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             }
             
         case .authorizeCapture:
@@ -400,16 +393,16 @@ internal extension PaymentDataManager {
                 self?.payButtonUI?.stopLoader()
                 self?.isExecutingAPICalls = false
                 
-                self?.handleChargeOrAuthorizeResponse(authorize, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction)
+                self?.handleChargeOrAuthorizeResponse(authorize, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             }
         }
     }
     
-    private func handleChargeOrAuthorizeResponse<T: ChargeProtocol>(_ chargeOrAuthorize: T?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+    private func handleChargeOrAuthorizeResponse<T: ChargeProtocol>(_ chargeOrAuthorize: T?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         if let nonnullError = error {
             
-            ErrorDataManager.handle(nonnullError, retryAction: retryAction)
+            ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             return
         }
         
@@ -483,6 +476,19 @@ internal extension PaymentDataManager {
         }
     }
     
+    private func closeWebPaymentScreen() {
+        
+        if let popupController = WebPaymentPopupViewController.findInHierarchy() {
+            
+            popupController.hide()
+        }
+        
+        if let pushedController = WebPaymentViewController.findInHierarchy() {
+            
+            pushedController.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     private func openOTPScreen(with phoneNumber: String, for paymentOption: PaymentOption) {
         
         self.currentPaymentOption = paymentOption
@@ -491,12 +497,12 @@ internal extension PaymentDataManager {
         OTPViewController.show(with: otpControllerFrame.minY, with: phoneNumber, delegate: self)
     }
     
-    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         APIClient.shared.retrieveObject(with: identifier) { (returnChargeOrAuthorize: T?, error: TapSDKError?) in
             
             loader?.hide(animated: true, async: true, fromDestroyInstance: false)
-            self.handleChargeOrAuthorizeResponse(returnChargeOrAuthorize, error: error, paymentOption: paymentOption, retryAction: retryAction)
+            self.handleChargeOrAuthorizeResponse(returnChargeOrAuthorize, error: error, paymentOption: paymentOption, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
         }
     }
     

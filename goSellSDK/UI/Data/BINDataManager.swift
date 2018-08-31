@@ -36,10 +36,7 @@ internal final class BINDataManager {
             
             if let nonnullError = error {
                 
-                ErrorDataManager.handle(nonnullError) {
-                    
-                    self?.retrieveBINData(for: binNumber, success: success)
-                }
+                ErrorDataManager.handle(nonnullError, retryAction: { self?.retrieveBINData(for: binNumber, success: success) }, alertDismissButtonClickHandler: nil)
             }
             else if let nonnullResponse = response {
                 

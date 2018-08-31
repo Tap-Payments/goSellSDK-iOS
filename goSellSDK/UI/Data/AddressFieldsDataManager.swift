@@ -201,17 +201,14 @@ internal class AddressFieldsDataManager {
             
             if let nonnullError = error {
             
-                ErrorDataManager.handle(nonnullError) {
-                    
-                    self.retrieveAddressFieldsData(success)
-                }
+                ErrorDataManager.handle(nonnullError, retryAction: { self.retrieveAddressFieldsData(success) }, alertDismissButtonClickHandler: nil)
             }
             else if let nonnullResponse = response {
                 
                 type(of: self).cachedAddressFieldsData = nonnullResponse
                 self.callCompletion(success, with: nonnullResponse)
             }
-        }
+        } 
     }
     
     private func callCompletion(_ closure: @escaping AddressFieldsResponse, with data: BillingAddressResponse) {

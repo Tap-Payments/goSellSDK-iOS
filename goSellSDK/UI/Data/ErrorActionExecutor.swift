@@ -20,7 +20,7 @@ internal class ErrorActionExecutor {
         PaymentDataManager.shared.closePayment(with: .failure, force: true, completion: completion)
     }
     
-    internal static func showAlert(with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure? = nil, completion: TypeAlias.BooleanClosure? = nil) {
+    internal static func showAlert(with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure?, completion: TypeAlias.BooleanClosure? = nil) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -28,7 +28,14 @@ internal class ErrorActionExecutor {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true) {
+                if let nonnullAlert = alert {
+                    
+                    nonnullAlert.dismissFromSeparateWindow(true) {
+                        
+                        completion?(false)
+                    }
+                }
+                else {
                     
                     completion?(false)
                 }
@@ -37,19 +44,26 @@ internal class ErrorActionExecutor {
         
         alert.addAction(dismissAction)
         
-        if let nonnullRetryAction = retryAction {
+        if retryAction != nil {
             
             let retryAlertAction = UIAlertAction(title: "Retry", style: .cancel) { [weak alert] (action) in
                 
                 DispatchQueue.main.async {
                     
-                    alert?.dismissFromSeparateWindow(true) {
+                    if let nonnullAlert = alert {
+                        
+                        nonnullAlert.dismissFromSeparateWindow(true) {
+                            
+                            completion?(true)
+                        }
+                    }
+                    else {
                         
                         completion?(true)
                     }
                 }
                 
-                nonnullRetryAction()
+                retryAction?()
             }
             
             alert.addAction(retryAlertAction)

@@ -162,10 +162,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
             
             if let nonnullError = error {
                 
-                ErrorDataManager.handle(nonnullError) {
-                    
-                    self?.deleteCard()
-                }
+                ErrorDataManager.handle(nonnullError, retryAction: { self?.deleteCard() }, alertDismissButtonClickHandler: nil)
             }
             else if let strongSelf = self {
                 

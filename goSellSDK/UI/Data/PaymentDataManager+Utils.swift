@@ -14,11 +14,14 @@ internal extension PaymentDataManager {
     
     internal func iconURL(for cardBrand: CardBrand) -> URL? {
         
-        if let option = self.paymentOptions.first(where: { $0.supportedCardBrands.contains(cardBrand) }) {
+        let possibleOptions = self.paymentOptions.filter { $0.supportedCardBrands.contains(cardBrand) }
+        if let original = possibleOptions.first(where: { $0.brand == cardBrand }) {
             
-            return option.imageURL
+            return original.imageURL
         }
-        
-        return nil
+        else {
+            
+            return possibleOptions.first?.imageURL
+        }
     }
 }

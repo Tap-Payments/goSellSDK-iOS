@@ -44,6 +44,9 @@ import enum TapCardValidator.CardBrand
     // MARK: - Internal -
     // MARK: Properties
     
+    /// Payment option identifier.
+    internal let paymentOptionIdentifier: String?
+    
     /// Expiration date.
     internal let expiry: ExpirationDate?
     
@@ -53,6 +56,9 @@ import enum TapCardValidator.CardBrand
     /// Currency.
     internal let currency: Currency?
     
+    /// Card scheme
+    internal let scheme: CardScheme?
+    
     /// Order parameter
     internal let orderBy: Int
     
@@ -60,30 +66,34 @@ import enum TapCardValidator.CardBrand
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier         = "id"
-        case object             = "object"
-        case lastFourDigits     = "last_four"
-        case expiry             = "expiry"
-        case brand              = "brand"
-        case cardholderName     = "name"
-        case firstSixDigits     = "first_six"
-        case currency           = "currency"
-        case orderBy            = "order_by"
+        case identifier                 = "id"
+        case object                     = "object"
+        case lastFourDigits             = "last_four"
+        case paymentOptionIdentifier    = "payment_method_id"
+        case expiry                     = "expiry"
+        case brand                      = "brand"
+        case cardholderName             = "name"
+        case firstSixDigits             = "first_six"
+        case currency                   = "currency"
+        case scheme                     = "scheme"
+        case orderBy                    = "order_by"
     }
     
     // MARK: Methods
     
-    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, expiry: ExpirationDate?, cardholderName: String?, currency: Currency?, orderBy: Int) {
+    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, currency: Currency?, scheme: CardScheme?, orderBy: Int) {
         
-        self.identifier     = identifier
-        self.object         = object
-        self.firstSixDigits = firstSixDigits
-        self.lastFourDigits = lastFourDigits
-        self.brand          = brand
-        self.expiry         = expiry
-        self.cardholderName = cardholderName
-        self.currency       = currency
-        self.orderBy        = orderBy
+        self.identifier                 = identifier
+        self.object                     = object
+        self.firstSixDigits             = firstSixDigits
+        self.lastFourDigits             = lastFourDigits
+        self.brand                      = brand
+        self.paymentOptionIdentifier    = paymentOptionIdentifier
+        self.expiry                     = expiry
+        self.cardholderName             = cardholderName
+        self.currency                   = currency
+        self.scheme                     = scheme
+        self.orderBy                    = orderBy
         
         super.init()
     }
@@ -101,19 +111,23 @@ extension SavedCard: Decodable {
         let firstSixDigits  = try container.decode(String.self,     forKey: .firstSixDigits)
         let lastFourDigits  = try container.decode(String.self,     forKey: .lastFourDigits)
         let brand           = try container.decodeIfPresent(CardBrand.self,         forKey: .brand) ?? .unknown
+        let paymentOptionID = try container.decodeIfPresent(String.self,     forKey: .paymentOptionIdentifier)
         let expiry          = try container.decodeIfPresent(ExpirationDate.self,    forKey: .expiry)
         let cardholderName  = try container.decodeIfPresent(String.self,            forKey: .cardholderName)
         let currency        = try container.decodeIfPresent(Currency.self,          forKey: .currency)
+        let scheme          = try container.decodeIfPresent(CardScheme.self,        forKey: .scheme)
         let orderBy         = try container.decodeIfPresent(Int.self,               forKey: .orderBy) ?? 0
         
-        self.init(identifier:       identifier,
-                  object:           object,
-                  firstSixDigits:   firstSixDigits,
-                  lastFourDigits:   lastFourDigits,
-                  brand:            brand,
-                  expiry:           expiry,
-                  cardholderName:   cardholderName,
-                  currency:         currency,
-                  orderBy:          orderBy)
+        self.init(identifier:               identifier,
+                  object:                   object,
+                  firstSixDigits:           firstSixDigits,
+                  lastFourDigits:           lastFourDigits,
+                  brand:                    brand,
+                  paymentOptionIdentifier:  paymentOptionID,
+                  expiry:                   expiry,
+                  cardholderName:           cardholderName,
+                  currency:                 currency,
+                  scheme:                   scheme,
+                  orderBy:                  orderBy)
     }
 }
