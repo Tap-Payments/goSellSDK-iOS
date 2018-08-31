@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
-		81211BAD4B4C16E540178533 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
+		785CDC87A2EDC7D183E95853 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC7F2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC802100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */; };
@@ -234,6 +234,8 @@
 		A4694B2C211B481900B335F1 /* URLStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4694B27211B481900B335F1 /* URLStatus.swift */; };
 		A4694B2D211B481900B335F1 /* URLStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4694B27211B481900B335F1 /* URLStatus.swift */; };
 		A46CDF2E2042ABEE00EA38A5 /* goSellSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A40D32192031E6DE0030FDDE /* goSellSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A473D0FF2139C24400F13B73 /* CardScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D0FE2139C24400F13B73 /* CardScheme.swift */; };
+		A473D1002139C24400F13B73 /* CardScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D0FE2139C24400F13B73 /* CardScheme.swift */; };
 		A4752A1D208E09CA003118DB /* EmptyTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4752A1C208E09C9003118DB /* EmptyTableViewCellModel.swift */; };
 		A4752A39208EFF5C003118DB /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4752A34208EFF5C003118DB /* EmptyTableViewCell.swift */; };
 		A4752A3A208EFF5C003118DB /* CardInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4752A35208EFF5C003118DB /* CardInputTableViewCell.swift */; };
@@ -766,6 +768,7 @@
 		A4694B27211B481900B335F1 /* URLStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLStatus.swift; sourceTree = "<group>"; };
 		A46CDF342042ABEE00EA38A5 /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46CDF362042BE6300EA38A5 /* TapNetworkManager_Carthage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapNetworkManager_Carthage.framework; path = Carthage/Build/iOS/TapNetworkManager_Carthage.framework; sourceTree = "<group>"; };
+		A473D0FE2139C24400F13B73 /* CardScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScheme.swift; sourceTree = "<group>"; };
 		A4752A1C208E09C9003118DB /* EmptyTableViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCellModel.swift; sourceTree = "<group>"; };
 		A4752A34208EFF5C003118DB /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		A4752A35208EFF5C003118DB /* CardInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInputTableViewCell.swift; sourceTree = "<group>"; };
@@ -978,7 +981,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */,
-				81211BAD4B4C16E540178533 /* Pods_goSellSDK.framework in Frameworks */,
+				785CDC87A2EDC7D183E95853 /* Pods_goSellSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,6 +1292,7 @@
 				A4C13AA120F4F0CC00037EDC /* AuthenticationType.swift */,
 				A4B3FB80212467B3000C05EB /* AuthorizeActionStatus.swift */,
 				A4B3FB7E212467B2000C05EB /* AuthorizeActionType.swift */,
+				A473D0FE2139C24400F13B73 /* CardScheme.swift */,
 				A4A982A020D2B34E00770690 /* ChargeStatus.swift */,
 				A4694B26211B481900B335F1 /* ErrorAction.swift */,
 				A4694B25211B481800B335F1 /* ErrorCode.swift */,
@@ -1946,6 +1950,7 @@
 				A4B3FB7421246796000C05EB /* Retrievable.swift in Sources */,
 				A4BD8D3120A1F65800EFF2CE /* PaymentDismissalAnimationController.swift in Sources */,
 				A4571F0320FE2367006D96DC /* BillingAddressField+Additions.swift in Sources */,
+				A473D0FF2139C24400F13B73 /* CardScheme.swift in Sources */,
 				A4BD8CFC20A1F0B300EFF2CE /* ExpirationDateValidator.swift in Sources */,
 				A4AF5FC620CE841D00AC254D /* AmountCalculator.swift in Sources */,
 				A413DB3A20AEE0FD00C29C6B /* AddressInputViewController.swift in Sources */,
@@ -2272,6 +2277,7 @@
 				A4BD8D1A20A1F3C800EFF2CE /* ValidationType.swift in Sources */,
 				A4B3FB7921246796000C05EB /* ChargeProtocol.swift in Sources */,
 				A4B3FB9A21246809000C05EB /* APIClient+Authentication.swift in Sources */,
+				A473D1002139C24400F13B73 /* CardScheme.swift in Sources */,
 				A4A9828C20D2B32000770690 /* Receipt.swift in Sources */,
 				A4A4D5F72108D2590063488E /* PaymentStatus.swift in Sources */,
 				A4B3FB7521246796000C05EB /* Retrievable.swift in Sources */,

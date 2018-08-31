@@ -28,6 +28,9 @@ internal struct BINResponse: Decodable {
     /// Card brand.
     internal let cardBrand: CardBrand?
     
+    /// Card scheme.
+    internal let scheme: CardScheme?
+    
     /// Card issuing country.
     internal let country: Country
     
@@ -40,6 +43,7 @@ internal struct BINResponse: Decodable {
         case bankLogoURL        = "bank_logo"
         case binNumber          = "bin"
         case cardBrand          = "card_brand"
+        case scheme             = "card_scheme"
         case country            = "country"
     }
 }

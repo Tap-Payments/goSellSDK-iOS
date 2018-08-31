@@ -20,6 +20,12 @@ internal extension CardInputTableViewCellModel {
     
     internal var possiblePaymentOptions: [PaymentOption] {
         
+        let binDataBrand = self.binData?.scheme?.cardBrand ?? self.binData?.cardBrand
+        if let brand = binDataBrand, let option = self.paymentOptions.first(where: { $0.brand == brand }) {
+            
+            return [option]
+        }
+        
         if let existingBrand = self.definedCardBrand?.cardBrand {
             
             let possiblePaymentOptions = self.paymentOptions.filter {

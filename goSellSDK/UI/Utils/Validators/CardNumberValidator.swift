@@ -6,12 +6,12 @@
 //
 
 import protocol TapAdditionsKit.ClassProtocol
-import enum TapCardValidator.CardBrand
-import class TapCardValidator.CardValidator
-import struct TapCardValidator.DefinedCardBrand
-import class UIKit.UITextField.UITextField
+import enum     TapCardValidator.CardBrand
+import class    TapCardValidator.CardValidator
+import struct   TapCardValidator.DefinedCardBrand
+import class    UIKit.UITextField.UITextField
 import protocol UIKit.UITextField.UITextFieldDelegate
-import class UIKit.UIView.UIView
+import class    UIKit.UIView.UIView
 
 /// Card Number Validator class.
 internal class CardNumberValidator: CardValidator {
@@ -23,7 +23,18 @@ internal class CardNumberValidator: CardValidator {
     
     internal var recognizedCardType: DefinedCardBrand {
         
-        return TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
+        if let brand = self.currentBINData?.scheme?.cardBrand {
+            
+            return DefinedCardBrand(.valid, brand)
+        }
+        else if let brand = self.currentBINData?.cardBrand {
+            
+            return DefinedCardBrand(.valid, brand)
+        }
+        else {
+            
+            return TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
+        }
     }
     
     internal var cardNumber: String {
@@ -72,6 +83,12 @@ internal class CardNumberValidator: CardValidator {
         self.updateInputFieldTextAndAttributes()
     }
     
+    internal func update(withRemoteBINData binData: BINResponse?) {
+        
+        self.currentBINData = binData
+        self.inputDataChanged()
+    }
+    
     internal override func validate() {
         
         let recognizedBrand = self.recognizedCardType
@@ -96,6 +113,8 @@ internal class CardNumberValidator: CardValidator {
     private var previousRecognizedType: DefinedCardBrand?
     private var previousCardNumber: String?
     
+    private var currentBINData: BINResponse?
+    
     // MARK: Methods
     
     private func setupTextField() {
@@ -103,6 +122,7 @@ internal class CardNumberValidator: CardValidator {
         if #available(iOS 10.0, *) {
             
             self.textField.keyboardType = .asciiCapableNumberPad
+
         } else {
             
             self.textField.keyboardType = .numberPad
@@ -116,16 +136,19 @@ internal class CardNumberValidator: CardValidator {
     
     @objc private func textFieldEditingChanged(_ sender: Any) {
         
-        let recognizedType = self.recognizedCardType
-        defer {
-            
-            self.delegate?.cardValidator(self, inputDataChanged: self.cardNumber)
-            self.compareNewRecognizedBrandToPreviousAndCallDelegate(recognizedType, number: self.cardNumber)
-            self.delegate?.validationStateChanged(to: self.isDataValid, on: .cardNumber)
-        }
+        self.inputDataChanged()
+    }
+    
+    private func inputDataChanged() {
         
+        let recognizedType = self.recognizedCardType
         let cardBrand = recognizedType.cardBrand
+        
         self.setupSpacingsAndOptionallyTrimText(for: cardBrand)
+        
+        self.delegate?.cardValidator(self, inputDataChanged: self.cardNumber)
+        self.compareNewRecognizedBrandToPreviousAndCallDelegate(recognizedType, number: self.cardNumber)
+        self.delegate?.validationStateChanged(to: self.isDataValid, on: .cardNumber)
     }
     
     private func compareNewRecognizedBrandToPreviousAndCallDelegate(_ type: DefinedCardBrand, number: String) {

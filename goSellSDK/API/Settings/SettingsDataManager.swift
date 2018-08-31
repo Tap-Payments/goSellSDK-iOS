@@ -92,11 +92,8 @@ internal final class SettingsDataManager {
                     self.callAllPendingCompletionsAndEmptyStack(nonnullError)
                 }
                 else {
-                    
-                    ErrorDataManager.handle(nonnullError) {
-                        
-                        self.callInitializationAPI()
-                    }
+
+                    ErrorDataManager.handle(nonnullError, retryAction: { self.callInitializationAPI() }, alertDismissButtonClickHandler: nil)
                 }
             }
             else {

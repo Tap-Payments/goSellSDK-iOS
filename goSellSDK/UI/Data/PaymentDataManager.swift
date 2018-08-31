@@ -168,13 +168,15 @@ internal final class PaymentDataManager {
             
             if let nonnullError = error {
                 
-                ErrorDataManager.handle(nonnullError) {
+                let retryAction = {
                     
                     if let nonnullSelf = self, let nonnullCaller = caller {
                         
                         nonnullSelf.start(with: nonnullCaller)
                     }
                 }
+                
+                ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: nil)
             }
             else if let nonnullResponse = response {
                 

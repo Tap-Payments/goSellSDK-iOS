@@ -5,6 +5,7 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIScreen.UIScreen
 import class    UIKit.UIScrollView.UIScrollView
 import protocol UIKit.UIScrollView.UIScrollViewDelegate
@@ -92,6 +93,8 @@ internal final class WebPaymentContentViewController: BaseViewController {
         }
     }
     
+    private var lastAttemptedURL: URL? = nil
+    
     // MARK: Methods
     
     private func addWebViewOnScreen() {
@@ -121,6 +124,10 @@ extension WebPaymentContentViewController: WKNavigationDelegate {
         }
         
         let decision = PaymentDataManager.shared.decision(forWebPayment: url)
+        if decision.shouldLoad {
+            
+            self.lastAttemptedURL = url
+        }
         
         decisionHandler(decision.shouldLoad ? .allow : .cancel)
         
@@ -137,6 +144,27 @@ extension WebPaymentContentViewController: WKNavigationDelegate {
     
     internal func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         
+        let tapError = TapSDKKnownError(type: .network, error: error, response: nil)
         
+        var retryAction: TypeAlias.ArgumentlessClosure? = nil
+        
+        if self.lastAttemptedURL != nil {
+            
+            retryAction = {
+                
+                if let lastURL = self.lastAttemptedURL {
+                    
+                    let request = URLRequest(url: lastURL)
+                    webView.load(request)
+                }
+            }
+        }
+        
+        let alertDismissHandler: TypeAlias.ArgumentlessClosure = {
+            
+            self.delegate?.webPaymentContentViewControllerRequestedDismissal(self)
+        }
+        
+        ErrorDataManager.handle(tapError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissHandler)
     }
 }

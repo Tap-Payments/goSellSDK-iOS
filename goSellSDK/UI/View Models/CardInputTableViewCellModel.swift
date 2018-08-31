@@ -75,6 +75,11 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
                 addressValidator.country = country
             }
 
+            if let cardNumberValidator = self.validator(of: .cardNumber) as? CardNumberValidator {
+                
+                cardNumberValidator.update(withRemoteBINData: self.binData)
+            }
+            
             self.updateCell(animated: true)
         }
     }
