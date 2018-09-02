@@ -21,20 +21,14 @@ internal class CardNumberValidator: CardValidator {
     
     internal weak var brandReporting: CardBrandChangeReporting?
     
-    internal var recognizedCardType: DefinedCardBrand {
+    internal var recognizedCardType: BrandWithScheme {
         
-        if let brand = self.currentBINData?.scheme?.cardBrand {
-            
-            return DefinedCardBrand(.valid, brand)
-        }
-        else if let brand = self.currentBINData?.cardBrand {
-            
-            return DefinedCardBrand(.valid, brand)
-        }
-        else {
-            
-            return TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
-        }
+        let scheme = self.currentBINData?.scheme
+        let localData = TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
+        let state = localData.validationState
+        let brand = self.currentBINData?.cardBrand ?? localData.cardBrand ?? .unknown
+        
+        return BrandWithScheme(brand: brand, scheme: scheme, validationState: state)
     }
     
     internal var cardNumber: String {
@@ -110,7 +104,7 @@ internal class CardNumberValidator: CardValidator {
     private var availableCardBrands: [CardBrand]
     private var preferredCardBrands: [CardBrand]
     
-    private var previousRecognizedType: DefinedCardBrand?
+    private var previousRecognizedType: BrandWithScheme?
     private var previousCardNumber: String?
     
     private var currentBINData: BINResponse?
@@ -142,7 +136,7 @@ internal class CardNumberValidator: CardValidator {
     private func inputDataChanged() {
         
         let recognizedType = self.recognizedCardType
-        let cardBrand = recognizedType.cardBrand
+        let cardBrand = recognizedType.brand
         
         self.setupSpacingsAndOptionallyTrimText(for: cardBrand)
         
@@ -151,12 +145,12 @@ internal class CardNumberValidator: CardValidator {
         self.delegate?.validationStateChanged(to: self.isDataValid, on: .cardNumber)
     }
     
-    private func compareNewRecognizedBrandToPreviousAndCallDelegate(_ type: DefinedCardBrand, number: String) {
+    private func compareNewRecognizedBrandToPreviousAndCallDelegate(_ type: BrandWithScheme, number: String) {
         
         var shouldCallDelegateWithNewType: Bool
         
         if let nonnullPreviousType = self.previousRecognizedType {
-            
+        
             shouldCallDelegateWithNewType = nonnullPreviousType != type
         }
         else {
@@ -191,7 +185,7 @@ internal class CardNumberValidator: CardValidator {
         
         UIView.performWithoutAnimation {
             
-            let cardBrand = brand ?? ( self.recognizedCardType.cardBrand ?? .unknown )
+            let cardBrand = brand ?? self.recognizedCardType.brand
             
             let attributedText = self.textField.attributedText ?? NSAttributedString(string: .empty, attributes: Theme.current.settings.cardInputFieldsSettings.valid.asStringAttributes)
             
@@ -254,7 +248,7 @@ extension CardNumberValidator: TextFieldInputDataValidation {
         
         if let previousType = self.previousRecognizedType {
             
-            self.setupSpacingsAndOptionallyTrimText(for: previousType.cardBrand)
+            self.setupSpacingsAndOptionallyTrimText(for: previousType.brand)
         }
     }
 }

@@ -59,6 +59,9 @@ import enum TapCardValidator.CardBrand
     /// Card scheme
     internal let scheme: CardScheme?
     
+    /// Supported currencies.
+    internal let supportedCurrencies: [Currency]
+    
     /// Order parameter
     internal let orderBy: Int
     
@@ -76,12 +79,13 @@ import enum TapCardValidator.CardBrand
         case firstSixDigits             = "first_six"
         case currency                   = "currency"
         case scheme                     = "scheme"
+        case supportedCurrencies        = "supported_currencies"
         case orderBy                    = "order_by"
     }
     
     // MARK: Methods
     
-    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, currency: Currency?, scheme: CardScheme?, orderBy: Int) {
+    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int) {
         
         self.identifier                 = identifier
         self.object                     = object
@@ -93,6 +97,7 @@ import enum TapCardValidator.CardBrand
         self.cardholderName             = cardholderName
         self.currency                   = currency
         self.scheme                     = scheme
+        self.supportedCurrencies        = supportedCurrencies
         self.orderBy                    = orderBy
         
         super.init()
@@ -106,17 +111,18 @@ extension SavedCard: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let identifier      = try container.decodeIfPresent(String.self,     forKey: .identifier)
-        let object          = try container.decode(String.self,     forKey: .object)
-        let firstSixDigits  = try container.decode(String.self,     forKey: .firstSixDigits)
-        let lastFourDigits  = try container.decode(String.self,     forKey: .lastFourDigits)
-        let brand           = try container.decodeIfPresent(CardBrand.self,         forKey: .brand) ?? .unknown
-        let paymentOptionID = try container.decodeIfPresent(String.self,     forKey: .paymentOptionIdentifier)
-        let expiry          = try container.decodeIfPresent(ExpirationDate.self,    forKey: .expiry)
-        let cardholderName  = try container.decodeIfPresent(String.self,            forKey: .cardholderName)
-        let currency        = try container.decodeIfPresent(Currency.self,          forKey: .currency)
-        let scheme          = try container.decodeIfPresent(CardScheme.self,        forKey: .scheme)
-        let orderBy         = try container.decodeIfPresent(Int.self,               forKey: .orderBy) ?? 0
+        let identifier          = try container.decodeIfPresent(String.self,     forKey: .identifier)
+        let object              = try container.decode(String.self,     forKey: .object)
+        let firstSixDigits      = try container.decode(String.self,     forKey: .firstSixDigits)
+        let lastFourDigits      = try container.decode(String.self,     forKey: .lastFourDigits)
+        let brand               = try container.decodeIfPresent(CardBrand.self,         forKey: .brand) ?? .unknown
+        let paymentOptionID     = try container.decodeIfPresent(String.self,     forKey: .paymentOptionIdentifier)
+        let expiry              = try container.decodeIfPresent(ExpirationDate.self,    forKey: .expiry)
+        let cardholderName      = try container.decodeIfPresent(String.self,            forKey: .cardholderName)
+        let currency            = try container.decodeIfPresent(Currency.self,          forKey: .currency)
+        let scheme              = try container.decodeIfPresent(CardScheme.self,        forKey: .scheme)
+        let supportedCurrencies = try container.decodeIfPresent([Currency].self,        forKey: .supportedCurrencies) ?? []
+        let orderBy             = try container.decodeIfPresent(Int.self,               forKey: .orderBy) ?? 0
         
         self.init(identifier:               identifier,
                   object:                   object,
@@ -128,6 +134,13 @@ extension SavedCard: Decodable {
                   cardholderName:           cardholderName,
                   currency:                 currency,
                   scheme:                   scheme,
+                  supportedCurrencies:      supportedCurrencies,
                   orderBy:                  orderBy)
     }
 }
+
+// MARK: - FilterableByCurrency
+extension SavedCard: FilterableByCurrency {}
+
+// MARK: - SortableByOrder
+extension SavedCard: SortableByOrder {}

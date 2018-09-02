@@ -8,7 +8,7 @@
 import enum TapCardValidator.CardBrand
 
 /// BIN Response model.
-internal struct BINResponse: Decodable {
+internal struct BINResponse {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -17,7 +17,7 @@ internal struct BINResponse: Decodable {
     internal let isAddressRequired: Bool
     
     /// Card issuer bank.
-    internal let bank: String
+    internal let bank: String?
     
     /// Bank logo URL.
     internal let bankLogoURL: URL?
@@ -26,13 +26,13 @@ internal struct BINResponse: Decodable {
     internal let binNumber: String
     
     /// Card brand.
-    internal let cardBrand: CardBrand?
+    internal let cardBrand: CardBrand
     
     /// Card scheme.
     internal let scheme: CardScheme?
     
     /// Card issuing country.
-    internal let country: Country
+    internal let country: Country?
     
     // MARK: - Private -
     
@@ -54,5 +54,29 @@ extension BINResponse: Equatable {
     internal static func == (lhs: BINResponse, rhs: BINResponse) -> Bool {
         
         return lhs.binNumber == rhs.binNumber
+    }
+}
+
+// MARK: - Decodable
+extension BINResponse: Decodable {
+    
+    internal init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let isAddressRequired   = try container.decodeIfPresent(Bool.self, forKey: .isAddressRequired) ?? false
+        let bank                = try container.decodeIfPresent(String.self, forKey: .bank)
+        let bankLogoURL         = try container.decodeIfPresent(URL.self, forKey: .bankLogoURL)
+        let binNumber           = try container.decode(String.self, forKey: .binNumber)
+        let cardBrand           = try container.decodeIfPresent(CardBrand.self, forKey: .cardBrand) ?? .unknown
+        let scheme              = try container.decodeIfPresent(CardScheme.self, forKey: .scheme)
+        
+        var country: Country? = nil
+        if let countryString = try container.decodeIfPresent(String.self, forKey: .country), !countryString.isEmpty {
+            
+            country = try container.decodeIfPresent(Country.self, forKey: .country)
+        }
+        
+        self.init(isAddressRequired: isAddressRequired, bank: bank, bankLogoURL: bankLogoURL, binNumber: binNumber, cardBrand: cardBrand, scheme: scheme, country: country)
     }
 }

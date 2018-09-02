@@ -31,7 +31,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     internal override var paymentOption: PaymentOption? {
         
-        return PaymentDataManager.shared.paymentOptions.first { $0.supportedCardBrands.contains(self.card.brand) }
+        return PaymentDataManager.shared.paymentOptions.first(where: { $0.identifier == self.card.paymentOptionIdentifier } )
     }
     
     internal var isDeleteCellMode: Bool {

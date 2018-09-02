@@ -6,10 +6,9 @@
 //
 
 import protocol TapAdditionsKit.ClassProtocol
-import struct TapCardValidator.DefinedCardBrand
 
 internal protocol CardBrandChangeReporting: ClassProtocol {
     
     func cardNumberValidator(_ validator: CardNumberValidator, cardNumberInputChanged cardNumber: String)
-    func recognizedCardBrandChanged(_ definedCardBrand: DefinedCardBrand)
+    func recognizedCardBrandChanged(_ definedCardBrand: BrandWithScheme)
 }
