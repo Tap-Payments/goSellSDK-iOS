@@ -47,7 +47,7 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
     
     internal lazy var cardDataValidators: [CardValidator] = []
     
-    internal var definedCardBrand: DefinedCardBrand?
+    internal var definedCardBrand: BrandWithScheme?
     
     internal lazy var inputData: [ValidationType: Any?] = [:]
     

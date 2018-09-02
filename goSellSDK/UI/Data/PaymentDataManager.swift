@@ -529,11 +529,12 @@ internal final class PaymentDataManager {
         
         let currency = (self.userSelectedCurrency ?? self.transactionCurrency).currency
         
-        let currenciesFilter: (PaymentOption) -> Bool = { $0.supportedCurrencies.contains(currency) }
+        let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
+        let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
         
-        let savedCards = self.recentCards
-        let webPaymentOptions = self.paymentOptions(of: .web).filter(currenciesFilter).sorted { $0.orderBy < $1.orderBy }
-        let cardPaymentOptions = self.paymentOptions(of: .card).filter(currenciesFilter).sorted { $0.orderBy < $1.orderBy }
+        let savedCards = self.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)
+        let webPaymentOptions = self.paymentOptions(of: .web).filter(currenciesFilter).sorted(by: sortingClosure)
+        let cardPaymentOptions = self.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
         
         let hasSavedCards = savedCards.count > 0
         let hasWebPaymentOptions = webPaymentOptions.count > 0

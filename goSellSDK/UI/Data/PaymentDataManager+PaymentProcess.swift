@@ -21,7 +21,8 @@ internal extension PaymentDataManager {
     internal func startPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {
         
         let amount = self.userSelectedCurrency ?? self.transactionCurrency
-        let extraFeesAmount = AmountedCurrency(amount.currency, self.extraFeeAmount(from: paymentOption.paymentOption?.extraFees ?? [], in: amount))
+        let extraFees = paymentOption.paymentOption?.extraFees ?? []
+        let extraFeesAmount = AmountedCurrency(amount.currency, self.extraFeeAmount(from: extraFees, in: amount))
         if extraFeesAmount.amount > 0.0 {
             
             self.showExtraFeesPaymentAlert(with: amount, extraFeesAmount: extraFeesAmount) { (shouldProcessPayment) in
@@ -208,7 +209,7 @@ internal extension PaymentDataManager {
         if let savedCardPaymentOption = paymentOption as? CardCollectionViewCellModel {
             
             let card = savedCardPaymentOption.card
-            let paymentOption = self.paymentOption(for: card)
+            let paymentOption = paymentOption.paymentOption ?? self.paymentOption(for: card)
             self.startPaymentProcess(with: card, paymentOption: paymentOption)
         }
         else if let webPaymentOption = paymentOption as? WebPaymentOptionTableViewCellModel {

@@ -83,3 +83,9 @@ extension PaymentOption: Decodable {
                   orderBy: orderBy)
     }
 }
+
+// MARK: - FilterableByCurrency
+extension PaymentOption: FilterableByCurrency {}
+
+// MARK: - SortableByOrder
+extension PaymentOption: SortableByOrder {}

@@ -20,13 +20,20 @@ internal extension CardInputTableViewCellModel {
     
     internal var possiblePaymentOptions: [PaymentOption] {
         
-        let binDataBrand = self.binData?.scheme?.cardBrand ?? self.binData?.cardBrand
-        if let brand = binDataBrand, let option = self.paymentOptions.first(where: { $0.brand == brand }) {
+        if self.shouldUseCardSchemeBrand {
             
-            return [option]
+            guard let brand = self.definedCardBrand?.scheme?.cardBrand else { return self.paymentOptions }
+            
+            if let option = self.paymentOptions.first(where: { $0.brand == brand }) {
+                
+                return [option]
+            }
+            else {
+                
+                return self.paymentOptions
+            }
         }
-        
-        if let existingBrand = self.definedCardBrand?.cardBrand {
+        else if let existingBrand = self.definedCardBrand?.brand {
             
             let possiblePaymentOptions = self.paymentOptions.filter {
                 
@@ -37,12 +44,36 @@ internal extension CardInputTableViewCellModel {
                 return allCardBrands.contains(existingBrand)
             }
             
-            return possiblePaymentOptions
+            return possiblePaymentOptions.count > 0 ? possiblePaymentOptions : self.paymentOptions
         }
         else {
             
             return self.paymentOptions
         }
+        
+//        let binDataBrand = self.binData?.scheme?.cardBrand ?? self.binData?.cardBrand
+//        if let brand = binDataBrand, let option = self.paymentOptions.first(where: { $0.brand == brand }) {
+//
+//            return [option]
+//        }
+//
+//        if let existingBrand = self.definedCardBrand?.brand {
+//
+//            let possiblePaymentOptions = self.paymentOptions.filter {
+//
+//                var allCardBrands: [CardBrand] = [$0.brand]
+//                allCardBrands.append(contentsOf: $0.supportedCardBrands)
+//                allCardBrands = Array(Set(allCardBrands))
+//
+//                return allCardBrands.contains(existingBrand)
+//            }
+//
+//            return possiblePaymentOptions
+//        }
+//        else {
+//
+//            return self.paymentOptions
+//        }
     }
     
     // MARK: Methods
@@ -110,6 +141,18 @@ internal extension CardInputTableViewCellModel {
     private var preferredCardBrands: [CardBrand] {
         
         return self.paymentOptions.map { $0.brand }
+    }
+    
+    private var shouldUseCardSchemeBrand: Bool {
+        
+        if let schemeBrand = self.definedCardBrand?.scheme?.cardBrand {
+            
+            return self.paymentOptions.first(where: { $0.brand == schemeBrand }) != nil
+        }
+        else {
+            
+            return false
+        }
     }
     
     // MARK: Methods
@@ -278,13 +321,13 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
         }
     }
     
-    internal func recognizedCardBrandChanged(_ definedCardBrand: DefinedCardBrand) {
+    internal func recognizedCardBrandChanged(_ definedCardBrand: BrandWithScheme) {
         
         self.definedCardBrand = definedCardBrand
         
         if let cvvValidator = (self.cardDataValidators.first { $0.validationType == .cvv }) as? CVVValidator {
             
-            cvvValidator.cardBrand = definedCardBrand.cardBrand
+            cvvValidator.cardBrand = definedCardBrand.brand
         }
         
         self.updateDisplayedCollectionViewCellModels()
