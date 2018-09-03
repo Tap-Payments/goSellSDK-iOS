@@ -9,13 +9,13 @@
 @objc public protocol PaymentDataSource: class, NSObjectProtocol {
     
     /// Items currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
-    @objc var currency: Currency? { get }
+    var currency: Currency? { get }
     
     /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
-    @objc var customer: CustomerInfo? { get }
+    var customer: CustomerInfo? { get }
     
     /// Items to pay for. In order to start payment, array should contain at least one payment item.
-    @objc var items: [PaymentItem] { get }
+    var items: [PaymentItem] { get }
     
     /// Transaction mode.
     @objc optional var mode: TransactionMode { get }

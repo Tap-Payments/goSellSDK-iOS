@@ -5,11 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import protocol TapAdditionsKit.ClassProtocol
 import class UIKit.UIView.UIView
 
 /// Pay Button Protocol.
-public protocol PayButtonProtocol: ClassProtocol {
+@objc public protocol PayButtonProtocol: NSObjectProtocol {
     
     /// Controls enabled state of the receiver. Final decision is taken by internal logic.
     var isEnabled: Bool { get set }

@@ -15,8 +15,9 @@ import class UIKit.UIButton.UIButton
     // MARK: Properties
     
     /// Defines if the receiver is enabled.
-    public var isEnabled: Bool {
+    @objc(enabled) public var isEnabled: Bool {
         
+        @objc(isEnabled)
         get {
             
             return self.ui?.isEnabled ?? false
@@ -53,8 +54,8 @@ import class UIKit.UIButton.UIButton
     
     // MARK: Methods
     
-    /// Updates displayed state and amount.
-    public func updateDisplayedStateAndAmount() {
+    /// Updates displayed amount.
+    public func updateDisplayedAmount() {
         
         self.calculateDisplayedAmount()
     }
@@ -99,5 +100,10 @@ extension PayButton: PayButtonInternalImplementation {
     internal var uiElement: PayButtonUI? {
         
         return self.ui
+    }
+    
+    internal func updateDisplayedStateAndAmount() {
+        
+        self.updateDisplayedAmount()
     }
 }

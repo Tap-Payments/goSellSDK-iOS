@@ -34,19 +34,19 @@ internal class ErrorDataManager {
     private static func handleAPIError(_ error: TapSDKAPIError, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         guard let firstError = error.error.details.first else { return }
-        self.handleErrorDetails(error.error.details, current: firstError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+        self.handleErrorDetails(error.error.details, in: error, current: firstError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
     }
     
-    private static func handleErrorDetails(_ errorDetails: [ErrorDetail], current: ErrorDetail, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+    private static func handleErrorDetails(_ errorDetails: [ErrorDetail], in error: TapSDKError, current: ErrorDetail, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
-        self.handleErrorDetail(current, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler) { (retryUsed) in
+        self.handleErrorDetail(current, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler) { (retryUsed) in
             
             guard !retryUsed else { return }
             
             guard let index = errorDetails.index(of: current), index < errorDetails.count - 1 else { return }
             
             let nextIndex = errorDetails.index(after: index)
-            self.handleErrorDetails(errorDetails, current: errorDetails[nextIndex], retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+            self.handleErrorDetails(errorDetails, in: error, current: errorDetails[nextIndex], retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
         }
     }
     
@@ -62,42 +62,42 @@ internal class ErrorDataManager {
             let errorCode = self.errorCode(from: internalErrorCode)
             
             let errorDetail = ErrorDetail(code: errorCode)
-            self.handleErrorDetail(errorDetail, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+            self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             
         case .serialization:
             
             let errorDetail = ErrorDetail(code: .serialization)
-            self.handleErrorDetail(errorDetail, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+            self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             
         case .network:
             
             if let nsError = error.error as NSError?, nsError.domain == NSURLErrorDomain, nsError.code == NSURLErrorCancelled {
                 
                 let errorDetail = ErrorDetail(code: .cancel)
-                self.handleErrorDetail(errorDetail, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+                self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             }
             else {
             
                 let errorDetail = ErrorDetail(code: .network)
-                self.handleErrorDetail(errorDetail, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+                self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             }
             
         case .unknown:
             
             let errorDetail = ErrorDetail(code: .unknown)
-            self.handleErrorDetail(errorDetail, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+            self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             
         case .api:
         
             let errorDetail = ErrorDetail(code: .unknown)
-            self.handleErrorDetail(errorDetail, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+            self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
         }
     }
     
     private static func handleUnknownError(_ error: TapSDKUnknownError, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         let errorDetail = ErrorDetail(code: .unknown)
-        self.handleErrorDetail(errorDetail, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+        self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
     }
     
     private static func errorCode(from internalErrorCode: InternalError) -> ErrorCode {
@@ -119,16 +119,16 @@ internal class ErrorDataManager {
         }
     }
     
-    private static func handleErrorDetail(_ error: ErrorDetail, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?, completion: TypeAlias.BooleanClosure? = nil) {
+    private static func handleErrorDetail(_ errorDetail: ErrorDetail, in error: TapSDKError, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?, completion: TypeAlias.BooleanClosure? = nil) {
         
-        let action = self.action(for: error.code)
+        let action = self.action(for: errorDetail.code)
         
         let paymentPotentiallyClosedClosure: TypeAlias.ArgumentlessClosure = {
             
             if action.contains(.alert) {
                 
-                let titleKey = LocalizationStorage.alertTitleKey(for: error.code)
-                let messageKey = LocalizationStorage.alertMessageKey(for: error.code)
+                let titleKey = LocalizationStorage.alertTitleKey(for: errorDetail.code)
+                let messageKey = LocalizationStorage.alertMessageKey(for: errorDetail.code)
                 
                 let alertTitle = LocalizationStorage.localizedString(for: titleKey)
                 let alertMessage = LocalizationStorage.localizedString(for: messageKey)
@@ -156,7 +156,7 @@ internal class ErrorDataManager {
         
         if action.contains(.closePayment) {
             
-            ErrorActionExecutor.closePayment(paymentPotentiallyClosedClosure)
+            ErrorActionExecutor.closePayment(with: error, paymentPotentiallyClosedClosure)
         }
         else {
             

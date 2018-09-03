@@ -13,10 +13,12 @@ import class    goSellSDK.Currency
 import class    goSellSDK.CustomerInfo
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.PayButton
+import protocol goSellSDK.PayButtonProtocol
 import protocol goSellSDK.PaymentDataSource
 import protocol goSellSDK.PaymentDelegate
 import class    goSellSDK.PaymentItem
 import class    goSellSDK.Shipping
+import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
 import class    UIKit.UINavigationController.UINavigationController
@@ -45,7 +47,7 @@ internal class ExampleViewController: UIViewController {
     internal override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        self.updatePayButtonStateAndAmount()
+        self.updatePayButtonAmount()
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,9 +76,9 @@ internal class ExampleViewController: UIViewController {
         }
     }
     
-    internal func updatePayButtonStateAndAmount() {
+    internal func updatePayButtonAmount() {
         
-        self.payButton?.updateDisplayedStateAndAmount()
+        self.payButton?.updateDisplayedAmount()
     }
     
     // MARK: - Private -
@@ -195,7 +197,9 @@ extension ExampleViewController: PaymentDataSource {
 // MARK: - PaymentDelegate
 extension ExampleViewController: PaymentDelegate {
     
-    internal func paymentSuccess(_ charge: Charge) {
+    internal func paymentSucceed(_ charge: Charge, payButton: PayButtonProtocol) {
+        
+        // payment succeed, saving the customer for reuse.
         
         if let customerID = charge.customer.identifier {
             
@@ -203,7 +207,9 @@ extension ExampleViewController: PaymentDelegate {
         }
     }
     
-    internal func authorizeSuccess(_ authorize: Authorize) {
+    internal func authorizationSucceed(_ authorize: Authorize, payButton: PayButtonProtocol) {
+        
+        // authorization succeed, saving the customer for reuse.
         
         if let customerID = authorize.customer.identifier {
             
@@ -211,12 +217,19 @@ extension ExampleViewController: PaymentDelegate {
         }
     }
     
-    internal func paymentFailure() {
+    internal func paymentFailed(with charge: Charge?, error: TapSDKError?, payButton: PayButtonProtocol) {
         
+        // payment failed, payment screen closed.
     }
     
-    internal func paymentCancel() {
+    internal func authorizationFailed(with authorization: Authorize?, error: TapSDKError?, payButton: PayButtonProtocol) {
         
+        // authorization failed, payment screen closed.
+    }
+    
+    internal func paymentCancelled(_ payButton: PayButtonProtocol) {
+        
+        // payment cancelled (user manually closed the payment screen).
     }
     
     private func saveCustomer(_ customerID: String) {

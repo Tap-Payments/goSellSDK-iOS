@@ -10,5 +10,6 @@ internal enum PaymentStatus {
     case cancelled
     case successfulCharge(Charge)
     case successfulAuthorize(Authorize)
-    case failure
+    case chargeFailure(Charge?, TapSDKError?)
+    case authorizationFailure(Authorize?, TapSDKError?)
 }
