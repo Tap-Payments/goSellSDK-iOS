@@ -87,7 +87,7 @@ extension ExampleViewController: UITableViewDelegate {
         let item = self.paymentItems[indexPath.row]
         self.selectedPaymentItems.append(item)
         
-        self.updatePayButtonStateAndAmount()
+        self.updatePayButtonAmount()
     }
     
     internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -98,11 +98,11 @@ extension ExampleViewController: UITableViewDelegate {
             self.selectedPaymentItems.remove(at: index)
         }
         
-        self.updatePayButtonStateAndAmount()
+        self.updatePayButtonAmount()
     }
     
     private func tableViewSelectionChanged() {
         
-        self.updatePayButtonStateAndAmount()
+        self.updatePayButtonAmount()
     }
 }

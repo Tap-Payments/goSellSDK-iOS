@@ -15,9 +15,18 @@ internal class ErrorActionExecutor {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func closePayment(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
+    internal static func closePayment(with error: TapSDKError, _ completion: @escaping TypeAlias.ArgumentlessClosure) {
         
-        PaymentDataManager.shared.closePayment(with: .failure, force: true, completion: completion)
+        let mode = PaymentDataManager.shared.externalDataSource?.mode ?? .purchase
+        var status: PaymentStatus
+        switch mode {
+            
+        case .purchase:         status = .chargeFailure(nil, error)
+        case .authorizeCapture: status = .authorizationFailure(nil, error)
+            
+        }
+        
+        PaymentDataManager.shared.closePayment(with: status, force: true, completion: completion)
     }
     
     internal static func showAlert(with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure?, completion: TypeAlias.BooleanClosure? = nil) {

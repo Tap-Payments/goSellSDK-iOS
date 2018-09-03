@@ -42,14 +42,14 @@ internal class PayButtonUI: TapButton {
         
         guard let displayedAmount = self.amount, displayedAmount.amount > 0.0 else {
             
-            self.setTitle(Constants.genericTitle, enabled: false)
+            self.setTitle(Constants.genericTitle, forceDisabled: true)
             return
         }
         
         let amountString = CurrencyFormatter.shared.format(displayedAmount)
         let amountText = "PAY " + amountString
         
-        self.setTitle(amountText, enabled: self.isEnabled)
+        self.setTitle(amountText, forceDisabled: false)
     }
     
     // MARK: - Private -
@@ -63,9 +63,9 @@ internal class PayButtonUI: TapButton {
     
     // MARK: Methods
     
-    private func setTitle(_ title: String, enabled: Bool) {
+    private func setTitle(_ title: String, forceDisabled: Bool) {
         
+        self.forceDisabled = forceDisabled
         self.setTitle(title)
-        self.isEnabled = enabled
     }
 }

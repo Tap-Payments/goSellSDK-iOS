@@ -435,7 +435,7 @@ internal extension PaymentDataManager {
             
         case .inProgress, .abandoned, .cancelled, .failed, .declined, .restricted, .void:
             
-            self.paymentFailure(with: nonnullChargeOrAuthorize.status)
+            self.paymentFailure(with: nonnullChargeOrAuthorize.status, chargeOrAuthorize: nonnullChargeOrAuthorize, error: error)
             
         case .captured, .authorized:
             
@@ -530,11 +530,28 @@ internal extension PaymentDataManager {
         self.showPaymentSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
     }
     
-    private func paymentFailure(with status: ChargeStatus) {
+    private func paymentFailure(with status: ChargeStatus, chargeOrAuthorize: ChargeProtocol, error: TapSDKError?) {
         
         self.showPaymentFailurePopup(with: status) {
             
-            self.closePayment(with: .failure, fadeAnimation: true)
+            if let authorize = chargeOrAuthorize as? Authorize {
+                
+                self.closePayment(with: .authorizationFailure(authorize, error))
+            }
+            else if let charge = chargeOrAuthorize as? Charge {
+                
+                self.closePayment(with: .chargeFailure(charge, error))
+            }
+            else {
+                
+                let mode = self.externalDataSource?.mode ?? .purchase
+                switch mode {
+                    
+                case .purchase:         self.closePayment(with: .chargeFailure(nil, error))
+                case .authorizeCapture: self.closePayment(with: .authorizationFailure(nil, error))
+                
+                }
+            }
         }
     }
     

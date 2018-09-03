@@ -34,8 +34,6 @@ internal extension PayButtonInternalImplementation {
     
     internal func calculateDisplayedAmount() {
         
-        self.isEnabled = true
-        
         let items = self.dataSource?.items ?? []
         let taxes = self.dataSource?.taxes ?? nil
         let shipping = self.dataSource?.shipping ?? nil

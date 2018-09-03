@@ -29,6 +29,15 @@ internal class TapButton: TapNibView {
         }
     }
     
+    /// Defines if the receiver is force disabled.
+    internal var forceDisabled: Bool = false {
+        
+        didSet {
+            
+            self.updateStateUI(animated: true)
+        }
+    }
+    
     internal override class var bundle: Bundle {
         
         return .goSellSDKResources
@@ -132,7 +141,8 @@ internal class TapButton: TapNibView {
     
     private func updateStateUI(animated: Bool) {
         
-        self.internalButton?.isEnabled = self.isEnabled
+        let enabled = self.isEnabled && !self.forceDisabled
+        self.internalButton?.isEnabled = enabled
         self.updateTheme(animated: animated)
     }
     
@@ -144,8 +154,10 @@ internal class TapButton: TapNibView {
                 
                 guard let strongSelf = self else { return }
                 
+                let enabled = strongSelf.isEnabled && !strongSelf.forceDisabled
+                
                 let settings = strongSelf.themeSettings
-                let stateSettings = strongSelf.isEnabled ? (strongSelf.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
+                let stateSettings = enabled ? (strongSelf.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
                 
                 strongSelf.layer.backgroundColor = stateSettings.backgroundColor.cgColor
                 

@@ -56,6 +56,7 @@ internal final class PaymentDataManager {
     
     internal private(set) var externalDataSource: PaymentDataSource?
     internal private(set) var externalDelegate: PaymentDelegate?
+    internal private(set) var payButton: PayButtonProtocol?
     
     internal var orderIdentifier: String? {
         
@@ -145,7 +146,8 @@ internal final class PaymentDataManager {
         }
         
         self.externalDataSource = nonnullDataSource
-        self.externalDelegate = caller.uiElement?.paymentDelegate
+        self.externalDelegate   = caller.uiElement?.paymentDelegate
+        self.payButton          = caller
         
         let transactionMode = nonnullDataSource.mode        ?? .purchase
         let shipping        = nonnullDataSource.shipping    ?? nil
@@ -264,23 +266,29 @@ internal final class PaymentDataManager {
     
     private func reportDelegateOnPaymentCompletion(with status: PaymentStatus) {
         
+        guard let button = self.payButton else { return }
+        
         switch status {
             
         case .cancelled:
             
-            self.externalDelegate?.paymentCancel()
+            self.externalDelegate?.paymentCancelled?(button)
             
         case .successfulCharge(let charge):
             
-            self.externalDelegate?.paymentSuccess?(charge)
+            self.externalDelegate?.paymentSucceed?(charge, payButton: button)
             
         case .successfulAuthorize(let authorize):
             
-            self.externalDelegate?.authorizeSuccess?(authorize)
+            self.externalDelegate?.authorizationSucceed?(authorize, payButton: button)
             
-        case .failure:
+        case .chargeFailure(let charge, let error):
             
-            self.externalDelegate?.paymentFailure()
+            self.externalDelegate?.paymentFailed?(with: charge, error: error, payButton: button)
+            
+        case .authorizationFailure(let authorize, let error):
+            
+            self.externalDelegate?.authorizationFailed?(with: authorize, error: error, payButton: button)
         }
     }
     
