@@ -206,8 +206,8 @@ Below is the list of Pay button properties
     <th colspan=2>Type</th>
     <th rowspan=2>Description</th>
     <tr>
-        <th><nobr>Objective-C</nobr></td><th>Swift</td>
-        <th><nobr>Objective-C</nobr></td><th>Swift</td>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+         <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
     </tr>
     <tr>
         <td><sub><i>enabled</i></sub></td><td><sub><i>isEnabled</i></sub></td>
@@ -233,7 +233,7 @@ Below is the list of Pay button properties
     <th colspan=2>Method</th>
     <th rowspan=2>Description</th>
     <tr>
-        <th><nobr>Objective-C</nobr></th><th>Swift</th>
+        <th><sub><nobr>Objective-C</nobr></sub></th><th><sub>Swift</sub></th>
     </tr>
     <tr>
         <td><sub><nobr>- (void)updateDisplayedAmount</nobr></sub></td><td><sub><nobr>func updateDisplayedAmount()</nobr></sub></td>
@@ -254,8 +254,8 @@ The following table describes its structure and specifies which fields are requi
     <th colspan=2>Required</th>
     <th rowspan=2>Description</th>
     <tr>
-        <th>Objective-C</th><th>Swift</th>
-        <th>Purchase</th><th>Authorize</th>
+        <th><sub>Objective-C</sub></th><th><sub>Swift</sub></th>
+        <th><sub>Purchase</sub></th><th><sub>Authorize</sub></th>
     </tr>
     <tr>
         <td><sub><i>currency</i></sub></td>
