@@ -33,10 +33,10 @@
     /// Notifies the receiver that authorization has failed, passing `payButton` which has initiated the authorization.
     ///
     /// - Parameters:
-    ///   - authorization: Authorization that has failed (if reached the stage of authorization).
+    ///   - authorize: Authorize object that has failed (if reached the stage of authorization).
     ///   - error: Error that has occured.
     ///   - payButton: Button which has initiated the authorization.
-    @objc optional func authorizationFailed(with authorization: Authorize?, error: TapSDKError?, payButton: PayButtonProtocol)
+    @objc optional func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, payButton: PayButtonProtocol)
     
     /// Notifies the receiver that payment has been cancelled by the user.
     ///
