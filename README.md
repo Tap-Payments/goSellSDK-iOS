@@ -198,32 +198,31 @@ func addPayButton() {
 
 <a name="pay_button_properties"></a>
 ### Properties
+
 Below is the list of Pay button properties
 
 <table style="text-align:center">
-
     <th colspan=2>Property</th>
     <th colspan=2>Type</th>
     <th rowspan=2>Description</th>
-    
     <tr>
-        <th>Objective-C</td><th>Swift</td>
-        <th>Objective-C</td><th>Swift</td>
+        <th><nobr>Objective-C</nobr></td><th>Swift</td>
+        <th><nobr>Objective-C</nobr></td><th>Swift</td>
     </tr>
     <tr>
-        <td><i>enabled</i></td><td><i>isEnabled</i></td>
-        <td><b>BOOL</b></td><td><b>Bool</b></td>
-        <td align="justify">Defines whether the button is enabled.<br>Perhaps you will need it for your internal logic.</td>
+        <td><sub><i>enabled</i></sub></td><td><sub><i>isEnabled</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td align="justify"><sub>Defines whether the button is enabled.<br>Perhaps you will need it for your internal logic.</sub></td>
     </tr>
     <tr>
-        <td colspan=2><i>dataSource</i></td>
-        <td><b>id&lt;PaymentDataSource&gt;</b></td><td><b>PaymentDataSource</b></td>
-        <td align="justify">Pay button data source. All input payment information is passed through this protocol. Required.</td>
+        <td colspan=2><sub><i>dataSource</i></sub></td>
+        <td><sub><b>id&lt;PaymentDataSource&gt;</b></sub></td><td><sub><b>PaymentDataSource</b></sub></td>
+        <td align="justify"><sub>Pay button data source. All input payment information is passed through this protocol. Required.</sub></td>
     </tr>
     <tr>
-        <td colspan=2><i>delegate</i></td>
-        <td><b>id&lt;PaymentDelegate&gt;</b></td><td><b>PaymentDelegate</b></td>
-        <td align="justify">Pay button delegate. Payment status along with all output payment information is passed through this protocol.</td>
+        <td colspan=2><sub><i>delegate</i></sub></td>
+        <td><sub><b>id&lt;PaymentDelegate&gt;</b></sub></td><td><sub><b>PaymentDelegate</b></sub></td>
+        <td align="justify"><sub>Pay button delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
     </tr>
 </table>
 
@@ -231,16 +230,14 @@ Below is the list of Pay button properties
 ### Methods
 
 <table style="text-align:center">
-
     <th colspan=2>Method</th>
     <th rowspan=2>Description</th>
-    
     <tr>
-        <th>Objective-C</th><th>Swift</th>
+        <th><nobr>Objective-C</nobr></th><th>Swift</th>
     </tr>
     <tr>
-        <td> <nobr>- (<i>void</i>)updateDisplayedAmount</nobr> </td><td><nobr>func updateDisplayedAmount()</nobr></td>
-        <td align="justify">Call this method to update displayed amount on the button.<br><b>Note:</b> If amount is non positive then pay button is force disabled.</td>
+        <td><sub><nobr>- (void)updateDisplayedAmount</nobr></sub></td><td><sub><nobr>func updateDisplayedAmount()</nobr></sub></td>
+        <td align="justify"><sub>Call this method to update displayed amount on the button.<br><b>Note:</b> If amount is non positive then pay button is force disabled.</sub></td>
     </tr>
 </table>
 
@@ -252,99 +249,97 @@ Below is the list of Pay button properties
 The following table describes its structure and specifies which fields are required for each of the modes.
 
 <table style="text-align:center">
-    
     <th rowspan=2>Member</th>
     <th colspan=2>Type</th>
     <th colspan=2>Required</th>
     <th rowspan=2>Description</th>
-    
     <tr>
         <th>Objective-C</th><th>Swift</th>
         <th>Purchase</th><th>Authorize</th>
     </tr>
     <tr>
-        <td><i>currency</i></td>
-        <td colspan=2><b>Currency</b></td>
-        <td colspan=2><i>true</i></td>
-        <td align="justify">Currency of the transaction.</td>
+        <td><sub><i>currency</i></sub></td>
+        <td colspan=2><sub><b>Currency</b></sub></td>
+        <td colspan=2><sub><i>true</i></sub></td>
+        <td align="left"><sub>Currency of the transaction.</sub></td>
     </tr>
     <tr>
-        <td><i>customer</td>
-        <td colspan=2><b>CustomerInfo</b></td>
-        <td colspan=2><i>true</i></td>
-        <td align="justify">Customer information. For more details on how to create the customer, please refer to <b>CustomerInfo </b> class reference.</td>
+        <td><sub><i>customer</i></sub></td>
+        <td colspan=2><sub><b>CustomerInfo</b></sub></td>
+        <td colspan=2><sub><i>true</i></sub></td>
+        <td align="left"><sub>Customer information. For more details on how to create the customer, please refer to <b>CustomerInfo</b> class reference.</sub></td>
     </tr>
     <tr>
-        <td><i>items</i></td>
-        <td><b><nobr>NSArray&lt;PaymentItem *&gt;</nobr></b></td><td><b>[PaymentItem]</b></td>
-        <td colspan=2><i>true</i></td>
-        <td align="justify">List of items to pay for.</td>
+        <td><sub><i>items</i></sub></td>
+        <td><sub><b><nobr>NSArray&lt;PaymentItem *&gt;</nobr></b></sub></td><td><sub><b><nobr>[PaymentItem]</nobr></b></sub></td>
+        <td colspan=2><sub><i>true</i></sub></td>
+        <td align="left"><sub>List of items to pay for.</sub></td>
     </tr>
     <tr>
-        <td><i>mode</i></td>
-        <td colspan=2><b>TransactionMode</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">Mode of the transactions (purchase or authorize). If this property is not implemented, <i>purchase</i> mode is used.</td>
+        <td><sub><i>mode</i></sub></td>
+        <td colspan=2><sub><b>TransactionMode</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Mode of the transactions (purchase or authorize). If this property is not implemented, <i>purchase</i> mode is used.</sub></td>
     </tr>
     <tr>
-        <td><i>taxes</i></td>
-        <td><b><nobr>NSArray&lt;Tax *&gt;</nobr></b></td><td><b>[Tax]</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">You can specify taxation details here. By default, there are no taxes.<br> <b>Note:</b> specifying taxes will affect total payment/authorization amount.</td>
+        <td><sub><i>taxes</i></sub></td>
+        <td><sub><b><nobr>NSArray&lt;Tax *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Tax]</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>You can specify taxation details here. By default, there are no taxes.<br> <b>Note:</b> specifying taxes will affect total payment/authorization amount.</sub></td>
     </tr>
     <tr>
-        <td><i>shipping</i></td>
-        <td><b><nobr>NSArray&lt;Shipping *&gt;</nobr></b></td><td><b>[Shipping]</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">You can specify shipping details here. By default, there are no shipping details.<br> <b>Note:</b> specifying shipping will affect total payment/authorization amount.</td>
+        <td><sub><i>shipping</i></sub></td>
+        <td><sub><b><nobr>NSArray&lt;Shipping *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Shipping]</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>You can specify shipping details here. By default, there are no shipping details.<br> <b>Note:</b> specifying shipping will affect total payment/authorization amount.</sub></td>
     </tr>
     <tr>
-        <td><i>postURL</i></td>
-        <td><b>NSURL</b></td><td><b>URL</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">The URL which will be called by Tap system notifying that payment has either succeed or failed.</td>
+        <td><sub><i>postURL</i></sub></td>
+        <td><sub><b>NSURL</b></sub></td><td><sub><b>URL</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>The URL which will be called by Tap system notifying that payment has either succeed or failed.</sub></td>
     </tr>
     <tr>
-        <td><i>paymentDescription</i></td>
-        <td><b>NSString</b></td><td><b>String</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">Description of the payment.</td>
+        <td><sub><i>paymentDescription</i></sub></td>
+        <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Description of the payment.</sub></td>
     </tr>
     <tr>
-        <td><i>paymentMetadata</i></td>
-        <td><b><nobr>NSDictionary&lt;NSString *, NSString *&gt;</nobr></b></td><td><b><nobr>[String: String]</nobr></b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">Additional information you would like to pass along with the transaction.</td>
+        <td><sub><i>paymentMetadata</i></sub></td>
+        <td><sub><b><nobr>NSDictionary&lt;NSString *, NSString *&gt;</nobr></b></sub></td><td><sub><b><nobr>[String: String]</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Additional information you would like to pass along with the transaction.</sub></td>
     </tr>
     <tr>
-        <td><i>paymentReference</i></td>
-        <td colspan=2><b>Reference</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">You can keep a reference to the transaction using this property.</td>
+        <td><sub><i>paymentReference</i></sub></td>
+        <td colspan=2><sub><b>Reference</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>You can keep a reference to the transaction using this property.</sub></td>
     </tr>
     <tr>
-        <td><i>paymentStatementDescriptor</i></td>
-        <td><b>NSString</b></td><td><b>String</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">Statement descriptor.</td>
+        <td><sub><i>paymentStatementDescriptor</i></sub></td>
+        <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Statement descriptor.</sub></td>
     </tr>
     <tr>
-        <td><i>require3DSecure</i></td>
-        <td><b>BOOL</b></td><td><b>Bool</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">Defines if 3D secure check is required. If not implemented, treated as <i>true</i>.<br><b>Note:</b> If you disable 3D secure check, it still may occure. Final decision is taken by Tap.</td>
+        <td><sub><i>require3DSecure</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines if 3D secure check is required. If not implemented, treated as <i>true</i>.<br><b>Note:</b> If you disable 3D secure check, it still may occure. Final decision is taken by Tap.</sub></td>
     </tr>
     <tr>
-        <td><i>receiptSettings</i></td>
-        <td colspan=2><b>Receipt</b></td>
-        <td colspan=2><i>false</i></td>
-        <td align="justify">Receipt recipient details.</td>
+        <td><sub><i>receiptSettings</i></sub></td>
+        <td colspan=2><sub><b>Receipt</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Receipt recipient details.</sub></td>
     </tr>
     <tr>
-        <td><i>authorizeAction</i></td>
-        <td colspan=2><b>AuthorizeAction</b></td>
-        <td><i>false</i></td><td><i>true</i></td>
-        <td align="justify">Action to perform after authorization succeeds.</td>
+        <td><sub><i>authorizeAction</i></sub></td>
+        <td colspan=2><sub><b>AuthorizeAction</b></sub></td>
+        <td><sub><i>false</i></sub></td><td><sub><i>true</i></sub></td>
+        <td align="left"><sub>Action to perform after authorization succeeds.</sub></td>
     </tr>
 </table>
 
