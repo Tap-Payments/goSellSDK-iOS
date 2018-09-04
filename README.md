@@ -5,12 +5,13 @@ iOS SDK to use [goSell API][1].
 [![Platform](https://img.shields.io/cocoapods/p/goSellSDK.svg?style=flat)](https://tap-payments.github.io/goSellSDK-iOS)
 [![Build Status](https://travis-ci.org/Tap-Payments/goSellSDK-iOS.svg?branch=master)](https://travis-ci.org/Tap-Payments/goSellSDK-iOS)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/goSellSDK.svg?style=flat)](https://img.shields.io/Tap-Payments/v/goSellSDK)
-<!---[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)-->
 [![Applications](https://img.shields.io/cocoapods/at/goSellSDK.svg?style=flat)](https://tap-payments.github.io/goSellSDK-iOS)
+<!---[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)-->
+
 
 A library that fully covers payment process inside your iOS application.
 
-#Table of Contents 
+# Table of Contents 
 1. [Installation](#installation)
     1. [Installation with CocoaPods](#installation_with_cocoapods)
 2. [Setup](#setup)
@@ -29,7 +30,7 @@ A library that fully covers payment process inside your iOS application.
         
 
 <a name="installation"></a>
-#Installation
+# Installation
 ---------
 <a name="installation_with_cocoapods"></a>
 ## Installation with CocoaPods
@@ -40,7 +41,7 @@ A library that fully covers payment process inside your iOS application.
 $ gem install cocoapods
 ```
 
-###Podfile
+### Podfile
 
 To integrate goSellSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
@@ -84,7 +85,7 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 -->
 
 <a name="setup"></a>
-#Setup
+# Setup
 First of all, `goSellSDK` should be set up. To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `goSellSDK`, otherwise an exception will be thrown.
 
 *Swift*:
@@ -126,7 +127,7 @@ or
 ```
 
 <a name="usage"></a>
-#Usage
+# Usage
 
 After `goSellSDK` is set up, you can actually use the SDK.<br>
 We have tried to make the SDK integration as simple as possible, requiring the minimum from you.
@@ -139,15 +140,15 @@ We have tried to make the SDK integration as simple as possible, requiring the m
 The mode is set through **PaymentDataSource** interface.
 
 <a name="pay_button"></a>
-##Pay Button
+## Pay Button
 Here at Tap, we have designed our custom Pay button and all you need to do is just to put it somewhere on the screen and provide at least required payment details through its ```dataSource``` property.
 
 <a name="pay_button_placement"></a>
-###Pay Button Placement 
+### Pay Button Placement 
 
 Pay Button is restricted to the height of exactly **44 points**. For better experience, make sure that it has enough **width** to display the content.
 
-####XIB/Storyboard
+#### XIB/Storyboard
 You can add Pay button on your view in XIB/Storyboard file.
 To do that, do the following:
 
@@ -158,7 +159,7 @@ To do that, do the following:
    2. Module: **goSellSDK**
 4. For your convenience, you may also connect ```dataSource``` and ```delegate``` outlets.
 
-####Code
+#### Code
 You can also add Pay button with the code:
 
 *Swift*:
@@ -196,7 +197,7 @@ func addPayButton() {
 ```
 
 <a name="pay_button_properties"></a>
-###Properties
+### Properties
 Below is the list of Pay button properties
 
 <table style="text-align:center">
@@ -227,7 +228,7 @@ Below is the list of Pay button properties
 </table>
 
 <a name ="pay_button_methods"></a>
-###Methods
+### Methods
 
 <table style="text-align:center">
 
@@ -244,7 +245,7 @@ Below is the list of Pay button properties
 </table>
 
 <a name="payment_data_source"></a>
-##Payment Data Source
+## Payment Data Source
 
 **PaymentDataSource** is an interface which you should implement somewhere in your code to pass payment information to an instance of Pay button in order to be able to access payment flow within the SDK.
 
@@ -348,18 +349,18 @@ The following table describes its structure and specifies which fields are requi
 </table>
 
 <a name="payment_delegate"></a>
-##Payment Delegate
+## Payment Delegate
 
 **PaymentDelegate** is an interface which you may want to implement to receive payment/authorization status updates and update your user interface accordingly when payment window closes.
 
 Below are listed down all available callbacks:
 
 <a name="payment_success_callback"></a>
-###Payment Success Callback
+### Payment Success Callback
 
 Notifies the receiver that payment has succeed.
 
-####Declaration
+#### Declaration
 
 *Objective-C:*
 
@@ -373,18 +374,18 @@ Notifies the receiver that payment has succeed.
 func paymentSucceed(_ charge: Charge, payButton: PayButtonProtocol)
 ```
 
-####Arguments
+#### Arguments
 
 **charge**: Successful charge object.
 
 **payButton**: Button which has initiated the payment.
 
 <a name="authorization_success_callback"></a>
-###Authorization Success Callback
+### Authorization Success Callback
 
 Notifies the receiver that authorization has succeed.
 
-####Declaration
+#### Declaration
 
 *Objective-C:*
 
@@ -398,18 +399,18 @@ Notifies the receiver that authorization has succeed.
 func authorizationSucceed(_ authorize: Authorize, payButton: PayButtonProtocol)
 ```
 
-####Arguments
+#### Arguments
 
 **authorize**: Successful authorize object.
 
 **payButton**: Button which has initiated the authorization.
 
 <a name="payment_failure_callback"></a>
-###Payment Failure Callback
+### Payment Failure Callback
 
 Notifies the receiver that payment has failed.
 
-####Declaration
+#### Declaration
 
 *Objective-C:*
 
@@ -422,7 +423,7 @@ Notifies the receiver that payment has failed.
 ```swift
 func paymentFailed(with charge: Charge?, error: TapSDKError?, payButton: PayButtonProtocol)
 ```
-####Arguments
+#### Arguments
 
 **charge**: Charge object that has failed (if reached the stage of charging).
 
@@ -433,11 +434,11 @@ func paymentFailed(with charge: Charge?, error: TapSDKError?, payButton: PayButt
 You may assume that at least one, `charge` or `error` is not `nil`.
 
 <a name="authorization_failure_callback"></a>
-###Authorization Failure Callback
+### Authorization Failure Callback
 
 Notifies the receiver that authorization has failed.
 
-####Declaration
+#### Declaration
 
 *Objective-C:*
 
@@ -450,7 +451,7 @@ Notifies the receiver that authorization has failed.
 ```swift
 func authorizationFailed(with authorization: Authorize?, error: TapSDKError?, payButton: PayButtonProtocol)
 ```
-####Arguments
+#### Arguments
 
 **authorize**: Authorize object that has failed (if reached the stage of authorization).
 
@@ -461,11 +462,11 @@ func authorizationFailed(with authorization: Authorize?, error: TapSDKError?, pa
 You may assume that at least one, `authorize` or `error` is not `nil`.
 
 <a name="payment_cancel_callback"></a>
-###Payment/Authorization Cancel Callback
+### Payment/Authorization Cancel Callback
 
 Notifies the receiver that payment/authorization was cancelled by user.
 
-####Declaration
+#### Declaration
 
 *Objective-C:*
 
@@ -479,7 +480,7 @@ Notifies the receiver that payment/authorization was cancelled by user.
 func paymentCancelled(_ payButton: PayButtonProtocol)
 ```
 
-####Arguments
+#### Arguments
 
 **payButton**: Button which has initiated the payment/authorization.
 
