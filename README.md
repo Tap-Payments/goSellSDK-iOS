@@ -10,15 +10,29 @@ iOS SDK to use [goSell API][1].
 
 A library that fully covers payment process inside your iOS application.
 
-# Table of Contents 
-1. [Installation](#Installation)
+#Table of Contents 
+1. [Installation](#installation)
     1. [Installation with CocoaPods](#installation_with_cocoapods)
-2. [Setup](#Setup)
-3. [Usage](#Usage)
+2. [Setup](#setup)
+3. [Usage](#usage)
+    1. [Pay Button](#pay_button)
+        1. [Pay Button Placement](#pay_button_placement)
+        2. [Properties](#pay_button_properties)
+        3. [Methods](#pay_button_methods)
+    2. [Payment Data Source](#payment_data_source)
+    3. [Payment Delegate](#payment_delegate)
+        1. [Payment Success Callback](#payment_success_callback)
+        2. [Authorization Success Callback](#authorization_success_callback)
+        3. [Payment Failure Callback](#payment_failure_callback)
+        4. [Authorization Failure Callback](#authorization_failure_callback)
+        5. [Payment/Authorization Cancel Callback](#payment_cancel_callback)
+        
 
-# Installation
+<a name="installation"></a>
+#Installation
 ---------
-## Installation with CocoaPods <a name ="installation_with_cocoapods"></a>
+<a name="installation_with_cocoapods"></a>
+## Installation with CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager, which automates and simplifies the process of using 3rd-party libraries in your projects.<br>You can install it with the following command:
 
@@ -26,7 +40,7 @@ A library that fully covers payment process inside your iOS application.
 $ gem install cocoapods
 ```
 
-### Podfile
+###Podfile
 
 To integrate goSellSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
@@ -68,7 +82,9 @@ github "Tap-Payments/goSellSDK-iOS"
 
 Run `carthage` to build the framework and drag the built `goSellSDK.framework` into your Xcode project.
 -->
-# Setup
+
+<a name="setup"></a>
+#Setup
 First of all, `goSellSDK` should be set up. To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `goSellSDK`, otherwise an exception will be thrown.
 
 *Swift*:
@@ -109,6 +125,7 @@ or
 #import <goSellSDK/goSellSDK-Swift.h>
 ```
 
+<a name="usage"></a>
 #Usage
 
 After `goSellSDK` is set up, you can actually use the SDK.<br>
@@ -121,9 +138,12 @@ We have tried to make the SDK integration as simple as possible, requiring the m
 
 The mode is set through **PaymentDataSource** interface.
 
+<a name="pay_button"></a>
 ##Pay Button
 Here at Tap, we have designed our custom Pay button and all you need to do is just to put it somewhere on the screen and provide at least required payment details through its ```dataSource``` property.
-###Pay Button Placement
+
+<a name="pay_button_placement"></a>
+###Pay Button Placement 
 
 Pay Button is restricted to the height of exactly **44 points**. For better experience, make sure that it has enough **width** to display the content.
 
@@ -175,7 +195,8 @@ func addPayButton() {
 
 ```
 
-### Properties
+<a name="pay_button_properties"></a>
+###Properties
 Below is the list of Pay button properties
 
 <table style="text-align:center">
@@ -205,6 +226,7 @@ Below is the list of Pay button properties
     </tr>
 </table>
 
+<a name ="pay_button_methods"></a>
 ###Methods
 
 <table style="text-align:center">
@@ -221,7 +243,8 @@ Below is the list of Pay button properties
     </tr>
 </table>
 
-##PaymentDataSource
+<a name="payment_data_source"></a>
+##Payment Data Source
 
 **PaymentDataSource** is an interface which you should implement somewhere in your code to pass payment information to an instance of Pay button in order to be able to access payment flow within the SDK.
 
@@ -324,228 +347,141 @@ The following table describes its structure and specifies which fields are requi
     </tr>
 </table>
 
-##PaymentDelegate
+<a name="payment_delegate"></a>
+##Payment Delegate
 
 **PaymentDelegate** is an interface which you may want to implement to receive payment/authorization status updates and update your user interface accordingly when payment window closes.
 
-The table below lists down all available callbacks.
+Below are listed down all available callbacks:
 
-<table style="text-align:center">
-    
-    <tr>
-        <td />
-        <th>Method</th>
-        <th>Parameters</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <th><nobr>Objective-C</nobr></th>
-        <td align="left"><nobr>- (void)paymentSucceed:(Charge * _Nonnull)charge payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton</nobr></td>
-        <td rowspan=2 align="justify"><b>charge</b>: Successful charge<br><b>payButton</b>: Pay button which has initiated the payment.</td>
-        <td rowspan=2 align="justify">Notifies the receiver that payment has succeed, passing successful charge and the button which has initiated the payment.</td>
-    <tr>
-        <th>Swift</th>
-        <td align="left"><nobr>func paymentSucceed(_ charge: Charge, payButton: PayButtonProtocol)</nobr></td>
-    <tr>
-    
-</table>
+<a name="payment_success_callback"></a>
+###Payment Success Callback
 
+Notifies the receiver that payment has succeed.
 
-Currently the following sections are available:
+####Declaration
 
-### Tokens
-
-Tokens are used in charges. The interact with the Tokens APIs, please refer to the `TokenClient` class inside the SDK.
-
-Example of **token** creation:
-
-*Swift*:
-
-```swift
-func exampleCreateToken() {
-        
-    let fullCard = CreateTokenCard(number: "4111111111111111",
-                                   expirationMonth: 10,
-                                   expirationYear: 20,
-                                   cvc: "123",
-                                   name: "Testing VISA card",
-                                   city: "Some city",
-                                   country: "Some country",
-                                   addressLine1: "First line",
-                                   addressLine2: "Second line",
-                                   addressState: "Royal State",                                    
-                                   addressZip: 007)
-        
-    let request = CreateTokenRequest(card: fullCard)
-        
-    TokenClient.createToken(with: request) { (token, error) in
-            
-        if let _ = token {
-                
-            NSLog("Successfully created token.")
-        }
-        else {
-                
-            NSLog("Failed to create token with error: \(error!)")
-        }
-    }
-}
-```
-
-*Objective-C*:
+*Objective-C:*
 
 ```objective-c
-- (void)exampleCreateToken {
-    
-    CreateTokenCard  *fullCard = [[CreateTokenCard alloc] initWithNumber:@"4111111111111111"
-                                                         expirationMonth:10
-                                                          expirationYear:20
-                                                                     cvc:@"123"
-                                                                    name:@"Testing VISA card"
-                                                                    city:@"Some city"
-                                                                 country:@"Some country"
-                                                            addressLine1:@"First line"
-                                                            addressLine2:@"Second line"
-                                                            addressState:@"Royal State"
-                                                              addressZip:007];
-    
-    CreateTokenRequest *request = [[CreateTokenRequest alloc] initWithCard:fullCard];
-    
-    [TokenClient createTokenWith:request completion:^(Token * _Nullable token, TapSDKError * _Nullable error) {
-        
-        if (token) {
-            
-            NSLog(@"Successfully created token.");
-        }
-        else {
-            
-            NSLog(@"Failed to create token with error: %@", error);
-        }
-    }];
-}
+- (void)paymentSucceed:(Charge * _Nonnull)charge payButton:(id <PayButtonProtocol> _Nonnull)payButton;
 ```
 
-
-### Charges
-
-To interact with the Charges APIs, please refer to the `ChargeClient` class inside the SDK.
-
-Example of **charge** creation:
-
-*Swift*:
+*Swift:*
 
 ```swift
-func exampleCreateCharge() {
-        
-	let redirect = CreateChargeRedirect(returnURL: URL(string: "your_return_url")!, postURL: URL(string: "your_post_url")!)
-    let source = CreateChargeSource(tokenIdentifier: "tok_XXXXXXXXXXXXXXXXXXXXXXXX")
-    let request = CreateChargeRequest(amount: 1000.0, currency: "kwd", redirect: redirect, source: source)
-        
-    ChargeClient.createCharge(with: request) { (charge, error) in
-            
-        if let _ = charge {
-                
-            NSLog("Charge successfully created.")
-        }
-        else {
-                
-            NSLog("Failed to create charge with error: \(error!)")
-        }
-    }
-}
-
+func paymentSucceed(_ charge: Charge, payButton: PayButtonProtocol)
 ```
 
-*Objective-C*:
+####Arguments
+
+**charge**: Successful charge object.
+
+**payButton**: Button which has initiated the payment.
+
+<a name="authorization_success_callback"></a>
+###Authorization Success Callback
+
+Notifies the receiver that authorization has succeed.
+
+####Declaration
+
+*Objective-C:*
 
 ```objective-c
-- (void)exampleCreateCharge {
-    
-    CreateChargeRedirect *redirect = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"]
-                                                                             postURL:[NSURL URLWithString:@"your_post_url"]];
-    
-    CreateChargeSource *source = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
-    
-    CreateChargeRequest *request = [[CreateChargeRequest alloc] initWithAmount:[NSDecimalNumber numberWithInteger:1000].decimalValue
-                                                                      currency:@"kwd"
-                                                                      redirect:redirect
-                                                                        source:source];
-    
-    [ChargeClient createChargeWith:request completion:^(Charge * _Nullable charge, TapSDKError * _Nullable error) {
-        
-        if ( charge ) {
-            
-            NSLog(@"Charge successfully created.");
-        }
-        else {
-            
-            NSLog(@"Failed to create charge with error: %@", error);
-        }
-    }];
-}
+- (void)authorizationSucceed:(Authorize * _Nonnull)authorize payButton:(id <PayButtonProtocol> _Nonnull)payButton;
 ```
 
-Example of **source** creation:
-
-*Swift*:
+*Swift:*
 
 ```swift
-func exampleCreateSource() {
-    
-    // with token identifier
-    let tokenSource = CreateChargeSource(tokenIdentifier: "tok_XXXXXXXXXXXXXXXXXXXXXXXX")
-    
-    // static source
-    let staticKNETSource = CreateChargeSource(staticIdentifier: .KNET)
-    
-    // with plain card data
-    let plainSource = CreateChargeSource(cardNumber: "4111111111111111", expirationMonth: 10, expirationYear: 20, cvc: "123")
-}
+func authorizationSucceed(_ authorize: Authorize, payButton: PayButtonProtocol)
 ```
 
-*Objective-C*:
+####Arguments
+
+**authorize**: Successful authorize object.
+
+**payButton**: Button which has initiated the authorization.
+
+<a name="payment_failure_callback"></a>
+###Payment Failure Callback
+
+Notifies the receiver that payment has failed.
+
+####Declaration
+
+*Objective-C:*
 
 ```objective-c
-- (void)exampleCreateSource {
-    
-    // with token identifier
-    CreateChargeSource *tokenSource = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
-    
-    // static source
-    CreateChargeSource *staticKNETSource = [[CreateChargeSource alloc] initWithStaticIdentifier:SourceIdentifierKNET];
-    
-    // with plain card data
-    CreateChargeSource *plainSource = [[CreateChargeSource alloc] initWithCardNumber:@"4111111111111111" expirationMonth:10 expirationYear:20 cvc:@"123"];
-}
+- (void)paymentFailedWith:(Charge * _Nullable)charge error:(TapSDKError * _Nullable)error payButton:(id <PayButtonProtocol> _Nonnull)payButton;
 ```
 
-Example of **redirect** creation:
-
-*Swift*:
+*Swift:*
 
 ```swift
-func exampleCreateRedirect() {
-        
-    // without post url
-    let redirectWithoutPostURL = CreateChargeRedirect(returnURL: URL(string: "your_return_url")!)
-        
-    // with post url
-    let redirectWithPostURL = CreateChargeRedirect(returnURL: URL(string: "your_return_url")!, postURL: URL(string: "your_post_url")!)
-}
+func paymentFailed(with charge: Charge?, error: TapSDKError?, payButton: PayButtonProtocol)
 ```
+####Arguments
 
-*Objective-C*:
+**charge**: Charge object that has failed (if reached the stage of charging).
+
+**error**: An error that has occured (if any).
+
+**payButton**: Button which has initiated the payment.
+
+You may assume that at least one, `charge` or `error` is not `nil`.
+
+<a name="authorization_failure_callback"></a>
+###Authorization Failure Callback
+
+Notifies the receiver that authorization has failed.
+
+####Declaration
+
+*Objective-C:*
 
 ```objective-c
-- (void)exampleCreateRedirect {
-    
-    // without post url
-    CreateChargeRedirect *redirectWithoutPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"]];
-    
-    // with post url
-    CreateChargeRedirect *redirectWithPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"] postURL:[NSURL URLWithString:@"your_post_url"]];
-}
+- (void)authorizationFailedWith:(Authorize * _Nullable)authorization error:(TapSDKError * _Nullable)error payButton:(id <PayButtonProtocol> _Nonnull)payButton;
 ```
+
+*Swift:*
+
+```swift
+func authorizationFailed(with authorization: Authorize?, error: TapSDKError?, payButton: PayButtonProtocol)
+```
+####Arguments
+
+**authorize**: Authorize object that has failed (if reached the stage of authorization).
+
+**error**: An error that has occured (if any).
+
+**payButton**: Button which has initiated the authorization.
+
+You may assume that at least one, `authorize` or `error` is not `nil`.
+
+<a name="payment_cancel_callback"></a>
+###Payment/Authorization Cancel Callback
+
+Notifies the receiver that payment/authorization was cancelled by user.
+
+####Declaration
+
+*Objective-C:*
+
+```objective-c
+- (void)paymentCancelled:(id <PayButtonProtocol> _Nonnull)payButton;
+```
+
+*Swift:*
+
+```swift
+func paymentCancelled(_ payButton: PayButtonProtocol)
+```
+
+####Arguments
+
+**payButton**: Button which has initiated the payment/authorization.
 
 -----
 # Documentation
