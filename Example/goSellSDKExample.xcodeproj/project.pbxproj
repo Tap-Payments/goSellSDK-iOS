@@ -16,6 +16,8 @@
 		A412AE0F20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */; };
 		A412AE1120C95703002BFCDD /* SettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */; };
 		A468773320DBCFD800123391 /* Currency+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468773220DBCFD800123391 /* Currency+Additions.swift */; };
+		A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D1132140306600F13B73 /* PlainAmountTableViewCell.swift */; };
+		A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D1152140315400F13B73 /* GroupHeaderCell.swift */; };
 		A4B35FE020C59FCF00847031 /* ShippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FDF20C59FCF00847031 /* ShippingTableViewCell.swift */; };
 		A4B35FE220C7D39A00847031 /* ShippingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE120C7D39A00847031 /* ShippingViewController.swift */; };
 		A4B35FE420C7D5D100847031 /* ShippingViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE320C7D5D100847031 /* ShippingViewControllerDelegate.swift */; };
@@ -56,6 +58,8 @@
 		A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersListViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A468773220DBCFD800123391 /* Currency+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Additions.swift"; sourceTree = "<group>"; };
+		A473D1132140306600F13B73 /* PlainAmountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAmountTableViewCell.swift; sourceTree = "<group>"; };
+		A473D1152140315400F13B73 /* GroupHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderCell.swift; sourceTree = "<group>"; };
 		A4B35FDF20C59FCF00847031 /* ShippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingTableViewCell.swift; sourceTree = "<group>"; };
 		A4B35FE120C7D39A00847031 /* ShippingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingViewController.swift; sourceTree = "<group>"; };
 		A4B35FE320C7D5D100847031 /* ShippingViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 				A4B35FDF20C59FCF00847031 /* ShippingTableViewCell.swift */,
 				A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */,
 				A4CFAF3E20B96E1500B5D83B /* TitleTableViewCell.swift */,
+				A473D1132140306600F13B73 /* PlainAmountTableViewCell.swift */,
+				A473D1152140315400F13B73 /* GroupHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -418,8 +424,10 @@
 				A4CFAF3F20B96E1500B5D83B /* TitleTableViewCell.swift in Sources */,
 				A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */,
 				A4B35FEA20C7F9A000847031 /* CustomerViewController.swift in Sources */,
+				A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */,
 				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
 				A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */,
+				A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */,
 				A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */,
 				A4CFAF3920B849F400B5D83B /* TaxViewController.swift in Sources */,
 				A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */,

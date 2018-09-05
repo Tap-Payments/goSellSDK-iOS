@@ -17,7 +17,7 @@ extension PaymentDataManager: OTPViewControllerDelegate {
         
         guard self.currentChargeOrAuthorize is Charge || self.currentChargeOrAuthorize is Authorize else { return }
         
-        let loader = self.showLoadingController()
+        let loader = self.showLoadingController(false)
         
         if let chargeObject = self.currentChargeOrAuthorize as? Charge {
             
@@ -49,7 +49,7 @@ extension PaymentDataManager: OTPViewControllerDelegate {
         
         guard self.currentChargeOrAuthorize is Charge || self.currentChargeOrAuthorize is Authorize else { return }
         
-        let loader = self.showLoadingController()
+        let loader = self.showLoadingController(false)
         let authenticationDetails = AuthenticationRequest(type: .otp, value: code)
         
         if let chargeObject = self.currentChargeOrAuthorize as? Charge {

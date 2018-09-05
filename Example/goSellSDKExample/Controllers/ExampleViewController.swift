@@ -158,7 +158,7 @@ extension ExampleViewController: PaymentDataSource {
         return self.paymentSettings.customer
     }
     
-    internal var items: [PaymentItem] {
+    internal var items: [PaymentItem]? {
         
         return self.selectedPaymentItems
     }

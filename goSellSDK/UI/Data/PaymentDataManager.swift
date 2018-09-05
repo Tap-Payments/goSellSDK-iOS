@@ -116,32 +116,26 @@ internal final class PaymentDataManager {
         
         guard let nonnullDataSource = caller.uiElement?.paymentDataSource else {
             
-            fatalError("Pay button data source is not set.")
+            self.showMissingInformationAlert(with: "Error", message: "Payment data source cannot be nil.")
+            return
         }
         
         guard let currency = nonnullDataSource.currency else {
             
-            fatalError("Payment data source currency is nil.")
+            self.showMissingInformationAlert(with: "Error", message: "Currency must be provided.")
+            return
         }
         
         guard let customer = nonnullDataSource.customer else {
             
-            let alert = UIAlertController(title: "Error", message: "Customer information must be provided.", preferredStyle: .alert)
-            let closeAction = UIAlertAction(title: "Close", style: .default) { [weak alert] (action) in
-                
-                DispatchQueue.main.async {
-                    
-                    alert?.dismissFromSeparateWindow(true, completion: nil)
-                }
-            }
+            self.showMissingInformationAlert(with: "Error", message: "Customer information must be provided.")
+            return
+        }
+        
+        let itemsCount = (nonnullDataSource.items ?? [])?.count ?? 0
+        guard nonnullDataSource.amount != nil || itemsCount > 0 else {
             
-            alert.addAction(closeAction)
-            
-            DispatchQueue.main.async {
-                
-                alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
-            }
-            
+            self.showMissingInformationAlert(with: "Error", message: "Either amount or items should be implemented in payment data source. If items is implemented, number of items should be > 0.")
             return
         }
         
@@ -154,7 +148,8 @@ internal final class PaymentDataManager {
         let taxes           = nonnullDataSource.taxes       ?? nil
         
         let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
-                                                   items:           nonnullDataSource.items,
+                                                   amount:          nonnullDataSource.amount,
+                                                   items:           nonnullDataSource.items ?? [],
                                                    shipping:        shipping,
                                                    taxes:           taxes,
                                                    currency:        currency,
@@ -217,7 +212,7 @@ internal final class PaymentDataManager {
         selectedModel.tableView?.scrollToRow(at: selectedModel.indexPath, at: .none, animated: false)
     }
     
-    internal func closePayment(with status: PaymentStatus, fadeAnimation: Bool = false, force: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    internal func closePayment(with status: PaymentStatus, fadeAnimation: Bool, force: Bool, completion: TypeAlias.ArgumentlessClosure?) {
         
         let localCompletion: TypeAlias.BooleanClosure = { (closed) in
             
@@ -292,7 +287,7 @@ internal final class PaymentDataManager {
         }
     }
     
-    private func forceClosePayment(withFadeAnimation: Bool = false, completion: TypeAlias.ArgumentlessClosure? = nil) {
+    private func forceClosePayment(withFadeAnimation: Bool, completion: TypeAlias.ArgumentlessClosure?) {
         
         KnownStaticallyDestroyableTypes.destroyAllDelayedDestroyableInstances {
             
@@ -437,6 +432,25 @@ internal final class PaymentDataManager {
         
         alert.addAction(cancelCancelAction)
         alert.addAction(confirmCancelAction)
+        
+        DispatchQueue.main.async {
+            
+            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+        }
+    }
+    
+    private func showMissingInformationAlert(with title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .default) { [weak alert] (action) in
+            
+            DispatchQueue.main.async {
+                
+                alert?.dismissFromSeparateWindow(true, completion: nil)
+            }
+        }
+        
+        alert.addAction(closeAction)
         
         DispatchQueue.main.async {
             

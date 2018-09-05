@@ -34,13 +34,20 @@ internal extension PayButtonInternalImplementation {
     
     internal func calculateDisplayedAmount() {
         
-        let items = self.dataSource?.items ?? []
-        let taxes = self.dataSource?.taxes ?? nil
-        let shipping = self.dataSource?.shipping ?? nil
+        var amount: Decimal
+        if let optionalItems = self.dataSource?.items, let items = optionalItems, items.count > 0 {
+            
+            let taxes = self.dataSource?.taxes ?? nil
+            let shipping = self.dataSource?.shipping ?? nil
+            
+            amount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
+        }
+        else {
+            
+            amount = self.dataSource?.amount ?? 0.0
+        }
         
-        let amount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
-        
-        guard let currency = self.dataSource?.currency, amount > 0.0, items.count > 0 else {
+        guard let currency = self.dataSource?.currency, amount > 0.0 else {
             
             self.uiElement?.amount = nil
             return
