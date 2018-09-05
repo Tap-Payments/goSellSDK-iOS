@@ -14,8 +14,15 @@
     /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
     var customer: CustomerInfo? { get }
     
-    /// Items to pay for. In order to start payment, array should contain at least one payment item.
-    var items: [PaymentItem] { get }
+    /// Payment/Authorization amount.
+    /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` are preferred and amount is calculated from them.
+    ///         If `taxes` and/or `shipping` is implemented, it will affect the value you pass in this property.
+    @objc optional var amount: Decimal { get }
+    
+    /// Items to pay for.
+    /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` are preferred and amount is calculated from them.
+    ///         If `taxes` and/or `shipping` is implemented, it will affect the amount which is calculated based on items you pass in this property.
+    @objc optional var items: [PaymentItem]? { get }
     
     /// Transaction mode.
     @objc optional var mode: TransactionMode { get }

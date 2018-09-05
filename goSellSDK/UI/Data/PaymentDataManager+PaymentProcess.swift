@@ -43,7 +43,7 @@ internal extension PaymentDataManager {
         }
     }
     
-    internal func showLoadingController(_ coveringHeader: Bool = false) -> LoadingViewController {
+    internal func showLoadingController(_ coveringHeader: Bool) -> LoadingViewController {
         
         let loaderFrame = self.loadingControllerFrame(coveringHeader: coveringHeader)
         let loader = LoadingViewController.show(topOffset: loaderFrame.minY)
@@ -83,7 +83,7 @@ internal extension PaymentDataManager {
         
         guard let paymentOption = self.currentPaymentOption, let chargeOrAuthorize = self.currentChargeOrAuthorize else { return }
         
-        let loader = self.showLoadingController()
+        let loader = self.showLoadingController(false)
         let retryAction: TypeAlias.ArgumentlessClosure = { [weak self] in
             
             self?.webPaymentProcessFinished(chargeOrAuthorizeID)
@@ -227,7 +227,7 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func loadingControllerFrame(coveringHeader: Bool = false) -> CGRect {
+    private func loadingControllerFrame(coveringHeader: Bool) -> CGRect {
         
         let topOffset = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerTopOffset ?? 0.0
         let screenBounds = UIScreen.main.bounds
@@ -256,7 +256,7 @@ internal extension PaymentDataManager {
         let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
         let request = CreateTokenWithSavedCardRequest(savedCard: card)
         
-        self.callTokenAPI(with: request, paymentOption: paymentOption)
+        self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: nil)
     }
     
     private func startPaymentProcess(with card: CreateTokenCard, paymentOption: PaymentOption, saveCard: Bool) {
@@ -265,7 +265,7 @@ internal extension PaymentDataManager {
         self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
     }
     
-    private func callTokenAPI(with request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool? = nil) {
+    private func callTokenAPI(with request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
         
         UIResponder.current?.resignFirstResponder()
         
@@ -284,7 +284,18 @@ internal extension PaymentDataManager {
             else if let nonnullToken = token {
                 
                 let source = SourceRequest(token: nonnullToken)
-                self?.callChargeOrAuthorizeAPI(with: source, paymentOption: paymentOption, cardBIN: nonnullToken.card.binNumber, saveCard: saveCard, retryAction: { self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard) }, alertDismissButtonClickHandler: nil)
+                let retryAction: TypeAlias.ArgumentlessClosure = {
+                    
+                    self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
+                }
+                
+                self?.callChargeOrAuthorizeAPI(with:                            source,
+                                               paymentOption:                   paymentOption,
+                                               cardBIN:                         nonnullToken.card.binNumber,
+                                               saveCard:                        saveCard,
+                                               loader:                          nil,
+                                               retryAction:                     retryAction,
+                                               alertDismissButtonClickHandler:  nil)
             }
             else {
                 
@@ -298,17 +309,28 @@ internal extension PaymentDataManager {
     
         let source = SourceRequest(identifier: paymentOption.sourceIdentifier)
         
-        self.openWebPaymentScreen(for: paymentOption)
+        self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil)
         
         self.isExecutingAPICalls = true
-        let loader = self.showLoadingController()
+        let loader = self.showLoadingController(false)
         
         let alertDissmissClosure = { self.closeWebPaymentScreen() }
         
-        self.callChargeOrAuthorizeAPI(with: source, paymentOption: paymentOption, loader: loader, retryAction: { self.startPaymentProcess(withWebPaymentOption: paymentOption) }, alertDismissButtonClickHandler: alertDissmissClosure)
+        let retryAction: TypeAlias.ArgumentlessClosure = {
+            
+            self.startPaymentProcess(withWebPaymentOption: paymentOption)
+        }
+        
+        self.callChargeOrAuthorizeAPI(with:                             source,
+                                      paymentOption:                    paymentOption,
+                                      cardBIN:                          nil,
+                                      saveCard:                         nil,
+                                      loader:                           loader,
+                                      retryAction:                      retryAction,
+                                      alertDismissButtonClickHandler:   alertDissmissClosure)
     }
     
-    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String? = nil, saveCard: Bool? = nil, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String?, saveCard: Bool?, loader: LoadingViewController?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         guard
             
@@ -399,7 +421,7 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func handleChargeOrAuthorizeResponse<T: ChargeProtocol>(_ chargeOrAuthorize: T?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+    private func handleChargeOrAuthorizeResponse<T: ChargeProtocol>(_ chargeOrAuthorize: T?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         if let nonnullError = error {
             
@@ -443,13 +465,13 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String? = nil) {
+    private func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String?) {
         
         self.urlToLoadInWebPaymentController = url
         self.openWebPaymentScreen(for: paymentOption, url: url, binNumber: binNumber)
     }
     
-    private func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL? = nil, binNumber: String? = nil) {
+    private func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL?, binNumber: String?) {
         
         self.currentPaymentOption = paymentOption
         self.currentPaymentCardBINNumber = binNumber
@@ -460,7 +482,7 @@ internal extension PaymentDataManager {
             
             guard let nonnullURL = url else { return }
             
-            let webPopupControllerFrame = self.loadingControllerFrame()
+            let webPopupControllerFrame = self.loadingControllerFrame(coveringHeader: false)
             
             WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL)
             
@@ -494,16 +516,22 @@ internal extension PaymentDataManager {
         
         self.currentPaymentOption = paymentOption
         
-        let otpControllerFrame = self.loadingControllerFrame()
+        let otpControllerFrame = self.loadingControllerFrame(coveringHeader: false)
         OTPViewController.show(with: otpControllerFrame.minY, with: phoneNumber, delegate: self)
     }
     
-    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewController? = nil, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewController?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         APIClient.shared.retrieveObject(with: identifier) { (returnChargeOrAuthorize: T?, error: TapSDKError?) in
             
             loader?.hide(animated: true, async: true, fromDestroyInstance: false)
-            self.handleChargeOrAuthorizeResponse(returnChargeOrAuthorize, error: error, paymentOption: paymentOption, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+            
+            self.handleChargeOrAuthorizeResponse(                                   returnChargeOrAuthorize,
+                                                 error:                             error,
+                                                 paymentOption:                     paymentOption,
+                                                 cardBIN:                           nil,
+                                                 retryAction:                       retryAction,
+                                                 alertDismissButtonClickHandler:    alertDismissButtonClickHandler)
         }
     }
     
@@ -513,11 +541,11 @@ internal extension PaymentDataManager {
             
             if let authorize = chargeOrAuthorize as? Authorize {
                 
-                self?.closePayment(with: .successfulAuthorize(authorize), fadeAnimation: true)
+                self?.closePayment(with: .successfulAuthorize(authorize), fadeAnimation: true, force: false, completion: nil)
             }
             else if let charge = chargeOrAuthorize as? Charge {
                 
-                self?.closePayment(with: .successfulCharge(charge), fadeAnimation: true)
+                self?.closePayment(with: .successfulCharge(charge), fadeAnimation: true, force: false, completion: nil)
             }
         }
         
@@ -536,19 +564,19 @@ internal extension PaymentDataManager {
             
             if let authorize = chargeOrAuthorize as? Authorize {
                 
-                self.closePayment(with: .authorizationFailure(authorize, error))
+                self.closePayment(with: .authorizationFailure(authorize, error), fadeAnimation: false, force: false, completion: nil)
             }
             else if let charge = chargeOrAuthorize as? Charge {
                 
-                self.closePayment(with: .chargeFailure(charge, error))
+                self.closePayment(with: .chargeFailure(charge, error), fadeAnimation: false, force: false, completion: nil)
             }
             else {
                 
                 let mode = self.externalDataSource?.mode ?? .purchase
                 switch mode {
                     
-                case .purchase:         self.closePayment(with: .chargeFailure(nil, error))
-                case .authorizeCapture: self.closePayment(with: .authorizationFailure(nil, error))
+                case .purchase:         self.closePayment(with: .chargeFailure(nil, error), fadeAnimation: false, force: false, completion: nil)
+                case .authorizeCapture: self.closePayment(with: .authorizationFailure(nil, error), fadeAnimation: false, force: false, completion: nil)
                 
                 }
             }

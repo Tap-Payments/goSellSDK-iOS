@@ -26,7 +26,7 @@ internal class ErrorActionExecutor {
             
         }
         
-        PaymentDataManager.shared.closePayment(with: status, force: true, completion: completion)
+        PaymentDataManager.shared.closePayment(with: status, fadeAnimation: false, force: true, completion: completion)
     }
     
     internal static func showAlert(with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure?, completion: TypeAlias.BooleanClosure? = nil) {
