@@ -368,10 +368,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="NNl-3M-423"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="AEe-AK-yvL"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6b2-JM-nJ9" customClass="PayButton" customModule="goSellSDK">
                                 <rect key="frame" x="8" y="615" width="359" height="44"/>
@@ -412,7 +408,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="itemsTableView" destination="F15-Cc-alU" id="zEp-bZ-aoI"/>
+                        <outlet property="itemsTableView" destination="F15-Cc-alU" id="Boy-6b-2jg"/>
                         <outlet property="payButton" destination="6b2-JM-nJ9" id="PzM-a6-bCG"/>
                         <segue destination="qGr-ff-bUV" kind="show" identifier="PaymentItemViewControllerSegue" id="aaY-1B-Dcb"/>
                     </connections>

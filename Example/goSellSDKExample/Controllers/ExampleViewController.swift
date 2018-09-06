@@ -86,11 +86,14 @@ internal class ExampleViewController: UIViewController {
     
     private var paymentSettings: Settings = Serializer.deserialize() ?? .default
     
+    private var tableViewHandler: PaymentItemsTableViewHandler?
+    
     @IBOutlet private weak var itemsTableView: UITableView? {
         
         didSet {
             
             self.itemsTableView?.tableFooterView = UIView()
+            self.createPaymentItemsTableViewHandler()
         }
     }
     
@@ -104,7 +107,18 @@ internal class ExampleViewController: UIViewController {
         
         self.showPaymentItemViewController()
     }
+    
+    private func createPaymentItemsTableViewHandler() {
+        
+        guard let nonnullTableView = self.itemsTableView else { return }
+        
+        self.tableViewHandler = PaymentItemsTableViewHandler(itemsProvider: self, tableView: nonnullTableView)
+        self.tableViewHandler?.reloadData()
+    }
 }
+
+// MARK: - PaymentItemsProvider
+extension ExampleViewController: PaymentItemsProvider {}
 
 // MARK: - PaymentItemViewControllerDelegate
 extension ExampleViewController: PaymentItemViewControllerDelegate {
