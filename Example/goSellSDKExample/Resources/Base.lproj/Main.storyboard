@@ -49,6 +49,9 @@
                                                 <constraint firstItem="YAH-os-3iS" firstAttribute="leading" secondItem="b9O-Sx-y3l" secondAttribute="leading" constant="15" id="tm9-Tr-RWR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="groupTitleLabel" destination="YAH-os-3iS" id="Q7k-SL-EC0"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="PaymentItemTableViewCell" rowHeight="100" id="jdv-Vh-5oh" customClass="PaymentItemTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="100"/>
@@ -313,26 +316,56 @@
                                             <outlet property="totalAmountLabel" destination="4TF-qB-i2n" id="DrV-k5-GBS"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlainAmountTableViewCell" rowHeight="100" id="wss-fh-3Zy" customClass="PlainAmountTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="172" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlainAmountTableViewCell" id="wss-fh-3Zy" customClass="PlainAmountTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="172" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wss-fh-3Zy" id="8Xl-hb-vgp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsy-4C-n6A">
-                                                    <rect key="frame" x="15" y="10" width="345" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lZY-6h-LI9">
+                                                    <rect key="frame" x="15" y="10" width="267" height="23.5"/>
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                    <connections>
+                                                        <action selector="textFieldEditingChanged:" destination="wss-fh-3Zy" eventType="editingChanged" id="gh3-zW-o8I"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yld-eG-bMy">
+                                                    <rect key="frame" x="292" y="10" width="50" height="23.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="MqB-Ca-RLe"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Done"/>
+                                                    <connections>
+                                                        <action selector="doneButtonTouchUpInside:" destination="wss-fh-3Zy" eventType="touchUpInside" id="9yl-au-o7a"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="uCE-mb-6cs">
+                                                    <rect key="frame" x="352" y="10" width="13" height="10"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="13" id="2nj-us-YVf"/>
+                                                        <constraint firstAttribute="height" constant="10" id="Erl-Tv-gLY"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="xsy-4C-n6A" firstAttribute="top" secondItem="8Xl-hb-vgp" secondAttribute="top" constant="10" id="6pV-Bz-kDC"/>
-                                                <constraint firstItem="xsy-4C-n6A" firstAttribute="leading" secondItem="8Xl-hb-vgp" secondAttribute="leading" constant="15" id="J0n-w7-J6v"/>
-                                                <constraint firstAttribute="trailing" secondItem="xsy-4C-n6A" secondAttribute="trailing" constant="15" id="ia9-4b-TIE"/>
+                                                <constraint firstAttribute="bottom" secondItem="yld-eG-bMy" secondAttribute="bottom" constant="10" id="6GO-e9-22r"/>
+                                                <constraint firstItem="uCE-mb-6cs" firstAttribute="leading" secondItem="yld-eG-bMy" secondAttribute="trailing" constant="10" id="EIc-6O-tMh"/>
+                                                <constraint firstAttribute="bottom" secondItem="lZY-6h-LI9" secondAttribute="bottom" constant="10" id="Fbw-WB-mMU"/>
+                                                <constraint firstItem="yld-eG-bMy" firstAttribute="leading" secondItem="lZY-6h-LI9" secondAttribute="trailing" constant="10" id="I7x-9e-rld"/>
+                                                <constraint firstItem="lZY-6h-LI9" firstAttribute="leading" secondItem="8Xl-hb-vgp" secondAttribute="leading" constant="15" id="Ijz-7I-e3i"/>
+                                                <constraint firstItem="lZY-6h-LI9" firstAttribute="top" secondItem="8Xl-hb-vgp" secondAttribute="top" constant="10" id="SDh-Nd-Uvu"/>
+                                                <constraint firstAttribute="trailing" secondItem="uCE-mb-6cs" secondAttribute="trailing" constant="10" id="SMx-fA-OgC"/>
+                                                <constraint firstItem="yld-eG-bMy" firstAttribute="top" secondItem="8Xl-hb-vgp" secondAttribute="top" constant="10" id="m8E-m1-Am8"/>
+                                                <constraint firstItem="uCE-mb-6cs" firstAttribute="top" secondItem="8Xl-hb-vgp" secondAttribute="top" constant="10" id="yqq-vd-akd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountTextField" destination="lZY-6h-LI9" id="NKI-E0-9Cv"/>
+                                            <outlet property="checkmarkImageView" destination="uCE-mb-6cs" id="h6c-DZ-ecp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -386,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="469"/>
+            <point key="canvasLocation" x="733.60000000000002" y="468.21589205397305"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zD4-Y2-5Pf">

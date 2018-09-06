@@ -9,7 +9,7 @@ import class UIKit.UIImageView.UIImageView
 import class UIKit.UILabel.UILabel
 import class UIKit.UITableViewCell.UITableViewCell
 
-internal class CustomerTableViewCell: UITableViewCell {
+internal final class CustomerTableViewCell: UITableViewCell {
     
     // MARK: - Internal -
     // MARK: Methods

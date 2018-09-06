@@ -8,7 +8,7 @@
 import class UIKit.UILabel.UILabel
 import class UIKit.UITableViewCell.UITableViewCell
 
-internal class TaxTableViewCell: UITableViewCell {
+internal final class TaxTableViewCell: UITableViewCell {
     
     // MARK: - Internal -
     // MARK: Methods

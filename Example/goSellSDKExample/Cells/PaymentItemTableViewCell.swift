@@ -5,11 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class    UIKit.UIImageView.UIImageView
 import class    UIKit.UILabel.UILabel
-import class    UIKit.UITableViewCell.UITableViewCell
 
-internal class PaymentItemTableViewCell: UITableViewCell {
+internal final class PaymentItemTableViewCell: SelectableCell {
     
     // MARK: - Internal -
     // MARK: Methods
@@ -26,12 +24,6 @@ internal class PaymentItemTableViewCell: UITableViewCell {
         self.totalAmountLabel?.text = total
     }
     
-    internal override func setSelected(_ selected: Bool, animated: Bool) {
-        
-        super.setSelected(selected, animated: animated)
-        self.checkmarkImageView?.isHidden = !selected
-    }
-    
     // MARK: - Private -
     // MARK: Properties
     
@@ -43,5 +35,4 @@ internal class PaymentItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var discountLabel: UILabel?
     @IBOutlet private weak var taxesLabel: UILabel?
     @IBOutlet private weak var totalAmountLabel: UILabel?
-    @IBOutlet private weak var checkmarkImageView: UIImageView?
 }
