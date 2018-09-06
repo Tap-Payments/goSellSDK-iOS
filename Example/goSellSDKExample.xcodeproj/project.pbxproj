@@ -16,6 +16,11 @@
 		A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03D20BAC710005E74AD /* Decodable+Additions.swift */; };
 		A412AE0F20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */; };
 		A412AE1120C95703002BFCDD /* SettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */; };
+		A45A5DC22141269200B7DDE9 /* PaymentItemsTableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC12141269200B7DDE9 /* PaymentItemsTableViewHandler.swift */; };
+		A45A5DC42141279B00B7DDE9 /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC32141279B00B7DDE9 /* TableViewCellModel.swift */; };
+		A45A5DC6214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC5214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift */; };
+		A45A5DC8214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC7214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift */; };
+		A45A5DCA214127C500B7DDE9 /* GroupHeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */; };
 		A468773320DBCFD800123391 /* Currency+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468773220DBCFD800123391 /* Currency+Additions.swift */; };
 		A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D1132140306600F13B73 /* PlainAmountTableViewCell.swift */; };
 		A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D1152140315400F13B73 /* GroupHeaderCell.swift */; };
@@ -59,6 +64,11 @@
 		A408C03D20BAC710005E74AD /* Decodable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Additions.swift"; sourceTree = "<group>"; };
 		A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersListViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A45A5DC12141269200B7DDE9 /* PaymentItemsTableViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemsTableViewHandler.swift; sourceTree = "<group>"; };
+		A45A5DC32141279B00B7DDE9 /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
+		A45A5DC5214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemTableViewCellModel.swift; sourceTree = "<group>"; };
+		A45A5DC7214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAmountTableViewCellModel.swift; sourceTree = "<group>"; };
+		A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderCellModel.swift; sourceTree = "<group>"; };
 		A468773220DBCFD800123391 /* Currency+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Additions.swift"; sourceTree = "<group>"; };
 		A473D1132140306600F13B73 /* PlainAmountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAmountTableViewCell.swift; sourceTree = "<group>"; };
 		A473D1152140315400F13B73 /* GroupHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderCell.swift; sourceTree = "<group>"; };
@@ -238,6 +248,11 @@
 			isa = PBXGroup;
 			children = (
 				A4DF066220C03778006F59D8 /* Settings.swift */,
+				A45A5DC12141269200B7DDE9 /* PaymentItemsTableViewHandler.swift */,
+				A45A5DC32141279B00B7DDE9 /* TableViewCellModel.swift */,
+				A45A5DC5214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift */,
+				A45A5DC7214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift */,
+				A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -435,17 +450,21 @@
 				A4CFAF3920B849F400B5D83B /* TaxViewController.swift in Sources */,
 				A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */,
 				A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */,
+				A45A5DCA214127C500B7DDE9 /* GroupHeaderCellModel.swift in Sources */,
 				A408C03720BAB577005E74AD /* Measurement+Additions.swift in Sources */,
 				A4DF066020C03659006F59D8 /* SettingsTableViewController.swift in Sources */,
 				A412AE1120C95703002BFCDD /* SettingsTableViewControllerDelegate.swift in Sources */,
 				A4B35FE420C7D5D100847031 /* ShippingViewControllerDelegate.swift in Sources */,
 				A4B35FE820C7F8B900847031 /* CustomersListViewController.swift in Sources */,
+				A45A5DC8214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift in Sources */,
 				A4B35FE220C7D39A00847031 /* ShippingViewController.swift in Sources */,
+				A45A5DC22141269200B7DDE9 /* PaymentItemsTableViewHandler.swift in Sources */,
 				A4B35FE020C59FCF00847031 /* ShippingTableViewCell.swift in Sources */,
 				A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
 				A4C38F5F20EA36A300FE7C7B /* SerializationHelper.swift in Sources */,
 				A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */,
 				A4D5FE532083235E007D52F5 /* AppDelegate.swift in Sources */,
+				A45A5DC42141279B00B7DDE9 /* TableViewCellModel.swift in Sources */,
 				A4CFAF4120B96EE000B5D83B /* CaseSelectionTableViewController.swift in Sources */,
 				A412AE0F20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift in Sources */,
 				A468773320DBCFD800123391 /* Currency+Additions.swift in Sources */,
@@ -454,6 +473,7 @@
 				A408C03A20BAC2EE005E74AD /* Serializer.swift in Sources */,
 				A4B35FEC20C814E100847031 /* CustomerViewControllerDelegate.swift in Sources */,
 				A4B35FE620C7DE7800847031 /* InputFieldObserver.swift in Sources */,
+				A45A5DC6214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift in Sources */,
 				14277BBB214056FA0011521F /* SelectableCell.swift in Sources */,
 				A4D5FE65208323FB007D52F5 /* ExampleViewController.swift in Sources */,
 				A4CFAF3B20B84A9500B5D83B /* ModalNavigationTableViewController.swift in Sources */,
