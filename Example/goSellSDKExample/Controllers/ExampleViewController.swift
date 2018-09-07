@@ -6,6 +6,7 @@
 //
 
 import class    Dispatch.DispatchQueue
+import struct   Foundation.NSDecimal.Decimal
 import class    goSellSDK.Authorize
 import class    goSellSDK.AuthorizeAction
 import class    goSellSDK.Charge
@@ -34,7 +35,8 @@ internal class ExampleViewController: UIViewController {
     
     internal var paymentItems: [PaymentItem] = Serializer.deserialize()
     
-    internal var selectedPaymentItems: [PaymentItem] = []
+    internal var selectedPaymentItems: [PaymentItem]?
+    internal var plainAmount: Decimal?
     
     // MARK: Methods
     
@@ -112,13 +114,39 @@ internal class ExampleViewController: UIViewController {
         
         guard let nonnullTableView = self.itemsTableView else { return }
         
-        self.tableViewHandler = PaymentItemsTableViewHandler(itemsProvider: self, tableView: nonnullTableView)
+        self.tableViewHandler = PaymentItemsTableViewHandler(itemsProvider: self, tableView: nonnullTableView, callbacksHandler: self)
         self.tableViewHandler?.reloadData()
     }
 }
 
 // MARK: - PaymentItemsProvider
 extension ExampleViewController: PaymentItemsProvider {}
+
+// MARK: - PaymentItemsTableViewCallbacksHandler
+extension ExampleViewController: PaymentItemsTableViewCallbacksHandler {
+    
+    internal func removePaymentItem(_ item: PaymentItem) {
+        
+        if let index = self.paymentItems.index(of: item) {
+            
+            self.paymentItems.remove(at: index)
+            Serializer.serialize(self.paymentItems)
+        }
+    }
+    
+    internal func selectionChanged(_ items: [PaymentItem]?, plainAmount: Decimal?) {
+        
+        self.selectedPaymentItems = items
+        self.plainAmount = plainAmount
+        
+        self.updatePayButtonAmount()
+    }
+    
+    internal func accessoryButtonTappedForCell(with item: PaymentItem) {
+    
+        self.showPaymentItemViewController(with: item)
+    }
+}
 
 // MARK: - PaymentItemViewControllerDelegate
 extension ExampleViewController: PaymentItemViewControllerDelegate {
@@ -129,10 +157,10 @@ extension ExampleViewController: PaymentItemViewControllerDelegate {
             
             if let index = self.paymentItems.index(of: nonnullSelectedItem) {
                 
-                if let selectedIndex = self.selectedPaymentItems.index(of: nonnullSelectedItem) {
+                if let selectedIndex = self.selectedPaymentItems?.index(of: nonnullSelectedItem) {
                     
-                    self.selectedPaymentItems.remove(at: selectedIndex)
-                    self.selectedPaymentItems.append(item)
+                    self.selectedPaymentItems?.remove(at: selectedIndex)
+                    self.selectedPaymentItems?.append(item)
                 }
                 
                 self.paymentItems.remove(at: index)
@@ -150,7 +178,7 @@ extension ExampleViewController: PaymentItemViewControllerDelegate {
         
         Serializer.serialize(self.paymentItems)
         
-        self.itemsTableView?.reloadData()
+        self.tableViewHandler?.reloadData()
     }
 }
 
@@ -175,6 +203,11 @@ extension ExampleViewController: PaymentDataSource {
     internal var items: [PaymentItem]? {
         
         return self.selectedPaymentItems
+    }
+    
+    internal var amount: Decimal {
+        
+        return self.plainAmount ?? 0
     }
     
     internal var currency: Currency? {

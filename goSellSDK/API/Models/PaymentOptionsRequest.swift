@@ -76,7 +76,7 @@ extension PaymentOptionsRequest: Encodable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode            (self.transactionMode,  forKey: .transactionMode)
-        try container.encode            (self.items,            forKey: .items)
+        try container.encodeIfPresent(self.items,            forKey: .items)
         
         if self.shipping?.count ?? 0 > 0 {
             

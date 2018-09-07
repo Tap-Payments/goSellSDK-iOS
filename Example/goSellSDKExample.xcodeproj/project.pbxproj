@@ -32,7 +32,6 @@
 		A4B35FEA20C7F9A000847031 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FE920C7F9A000847031 /* CustomerViewController.swift */; };
 		A4B35FEC20C814E100847031 /* CustomerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */; };
 		A4C38F5F20EA36A300FE7C7B /* SerializationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C38F5E20EA36A300FE7C7B /* SerializationHelper.swift */; };
-		A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */; };
 		A4CFAF2F20B82A5700B5D83B /* PaymentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */; };
 		A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */; };
 		A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CFAF3220B83E3300B5D83B /* PaymentItemTableViewCell.swift */; };
@@ -80,7 +79,6 @@
 		A4B35FE920C7F9A000847031 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A4C38F5E20EA36A300FE7C7B /* SerializationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationHelper.swift; sourceTree = "<group>"; };
-		A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExampleViewController+UITableView.swift"; sourceTree = "<group>"; };
 		A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewController.swift; sourceTree = "<group>"; };
 		A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxTableViewCell.swift; sourceTree = "<group>"; };
 		A4CFAF3220B83E3300B5D83B /* PaymentItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */,
 				A4B35FE920C7F9A000847031 /* CustomerViewController.swift */,
 				A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */,
-				A4CFAF2C20B8290800B5D83B /* ExampleViewController+UITableView.swift */,
 				A4CFAF3A20B84A9500B5D83B /* ModalNavigationTableViewController.swift */,
 				A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */,
 				A4DF065F20C03659006F59D8 /* SettingsTableViewController.swift */,
@@ -247,12 +244,12 @@
 		A4DF066120C0376D006F59D8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A4DF066220C03778006F59D8 /* Settings.swift */,
+				A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */,
 				A45A5DC12141269200B7DDE9 /* PaymentItemsTableViewHandler.swift */,
-				A45A5DC32141279B00B7DDE9 /* TableViewCellModel.swift */,
 				A45A5DC5214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift */,
 				A45A5DC7214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift */,
-				A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */,
+				A4DF066220C03778006F59D8 /* Settings.swift */,
+				A45A5DC32141279B00B7DDE9 /* TableViewCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -462,7 +459,6 @@
 				A4B35FE020C59FCF00847031 /* ShippingTableViewCell.swift in Sources */,
 				A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
 				A4C38F5F20EA36A300FE7C7B /* SerializationHelper.swift in Sources */,
-				A4CFAF2D20B8290800B5D83B /* ExampleViewController+UITableView.swift in Sources */,
 				A4D5FE532083235E007D52F5 /* AppDelegate.swift in Sources */,
 				A45A5DC42141279B00B7DDE9 /* TableViewCellModel.swift in Sources */,
 				A4CFAF4120B96EE000B5D83B /* CaseSelectionTableViewController.swift in Sources */,
