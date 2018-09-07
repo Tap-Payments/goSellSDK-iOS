@@ -6,6 +6,7 @@
 //
 
 import class    goSellSDK.PaymentItem
+import class    UIKit.UITableViewCell.UITableViewCell
 
 internal class PaymentItemTableViewCellModel: TableViewCellModel {
     
@@ -13,6 +14,11 @@ internal class PaymentItemTableViewCellModel: TableViewCellModel {
     // MARK: Properties
     
     internal let paymentItem: PaymentItem
+    
+    internal override class var cellClass: UITableViewCell.Type {
+        
+        return PaymentItemTableViewCell.self
+    }
     
     // MARK: Methods
     

@@ -5,7 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct Foundation.NSDecimal.Decimal
+import struct   Foundation.NSDecimal.Decimal
+import class    UIKit.UITableViewCell.UITableViewCell
 
 internal protocol AmountChangeObserver {
     
@@ -24,6 +25,11 @@ internal class PlainAmountTableViewCellModel: TableViewCellModel {
     internal var amount: Decimal {
         
         return self.amountString.decimalValue ?? 0
+    }
+    
+    internal override class var cellClass: UITableViewCell.Type {
+        
+        return PlainAmountTableViewCell.self
     }
     
     // MARK: Methods

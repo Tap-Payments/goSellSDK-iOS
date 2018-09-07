@@ -21,6 +21,7 @@
 		A45A5DC6214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC5214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift */; };
 		A45A5DC8214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC7214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift */; };
 		A45A5DCA214127C500B7DDE9 /* GroupHeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */; };
+		A45A5DCC2142BEC000B7DDE9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45A5DCB2142BEC000B7DDE9 /* BaseViewController.swift */; };
 		A468773320DBCFD800123391 /* Currency+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468773220DBCFD800123391 /* Currency+Additions.swift */; };
 		A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D1132140306600F13B73 /* PlainAmountTableViewCell.swift */; };
 		A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A473D1152140315400F13B73 /* GroupHeaderCell.swift */; };
@@ -68,6 +69,7 @@
 		A45A5DC5214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemTableViewCellModel.swift; sourceTree = "<group>"; };
 		A45A5DC7214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAmountTableViewCellModel.swift; sourceTree = "<group>"; };
 		A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderCellModel.swift; sourceTree = "<group>"; };
+		A45A5DCB2142BEC000B7DDE9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A468773220DBCFD800123391 /* Currency+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Additions.swift"; sourceTree = "<group>"; };
 		A473D1132140306600F13B73 /* PlainAmountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAmountTableViewCell.swift; sourceTree = "<group>"; };
 		A473D1152140315400F13B73 /* GroupHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderCell.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				A4DF065F20C03659006F59D8 /* SettingsTableViewController.swift */,
 				A4B35FE120C7D39A00847031 /* ShippingViewController.swift */,
 				A4CFAF3820B849F400B5D83B /* TaxViewController.swift */,
+				A45A5DCB2142BEC000B7DDE9 /* BaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */,
 				A4B35FEA20C7F9A000847031 /* CustomerViewController.swift in Sources */,
 				A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */,
+				A45A5DCC2142BEC000B7DDE9 /* BaseViewController.swift in Sources */,
 				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
 				A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */,
 				A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */,

@@ -20,7 +20,7 @@ internal extension PaymentDataManager {
     
     internal func startPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {
         
-        let amount = self.userSelectedCurrency ?? self.transactionCurrency
+        let amount = self.selectedCurrency
         let extraFees = paymentOption.paymentOption?.extraFees ?? []
         let extraFeesAmount = AmountedCurrency(amount.currency, self.extraFeeAmount(from: extraFees, in: amount))
         if extraFeesAmount.amount > 0.0 {
@@ -346,7 +346,7 @@ internal extension PaymentDataManager {
             post = TrackingURL(url: nonnullPostURL)
         }
         
-        let amountedCurrency    = self.userSelectedCurrency ?? self.transactionCurrency
+        let amountedCurrency    = self.selectedCurrency
         let fee                 = self.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
         let order               = Order(identifier: orderID)
         let redirect            = TrackingURL(url: PaymentProcessConstants.returnURL)

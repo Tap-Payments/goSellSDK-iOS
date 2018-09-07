@@ -35,7 +35,7 @@ internal extension PaymentDataManager {
     
     private func updatePayButtonAmount() {
         
-        let amountedCurrency = self.userSelectedCurrency ?? self.transactionCurrency
+        let amountedCurrency = self.selectedCurrency
         
         if let paymentOption = self.selectedPaymentOptionCellViewModel?.paymentOption {
         

@@ -12,10 +12,12 @@ internal extension PaymentDataManager {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func iconURL(for cardBrand: CardBrand) -> URL? {
+    internal func iconURL(for cardBrand: CardBrand, scheme: CardScheme?) -> URL? {
         
-        let possibleOptions = self.paymentOptions.filter { $0.supportedCardBrands.contains(cardBrand) }
-        if let original = possibleOptions.first(where: { $0.brand == cardBrand }) {
+        let brand = self.appliedCardBrand(from: cardBrand, scheme: scheme)
+        
+        let possibleOptions = self.paymentOptions.filter { $0.supportedCardBrands.contains(brand) }
+        if let original = possibleOptions.first(where: { $0.brand == brand }) {
             
             return original.imageURL
         }
@@ -23,5 +25,24 @@ internal extension PaymentDataManager {
             
             return possibleOptions.first?.imageURL
         }
+    }
+    
+    // MARK: - Private -
+    // MARK: Methods
+    
+    private func appliedCardBrand(from brand: CardBrand, scheme: CardScheme?) -> CardBrand {
+        
+        if let schemeBrand = scheme?.cardBrand {
+            
+            let currency = self.selectedCurrency.currency
+            let filterClosure: (PaymentOption) -> Bool = { $0.brand == schemeBrand && $0.supportedCurrencies.contains(currency) }
+            
+            if self.paymentOptions.first(where: filterClosure) != nil {
+                
+                return schemeBrand
+            }
+        }
+        
+        return brand
     }
 }
