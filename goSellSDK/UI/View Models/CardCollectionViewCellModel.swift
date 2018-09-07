@@ -107,7 +107,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     private func loadCardImages() {
         
-        guard let cardBrandLogoURL = PaymentDataManager.shared.iconURL(for: self.card.brand) else { return }
+        guard let cardBrandLogoURL = PaymentDataManager.shared.iconURL(for: self.card.brand, scheme: self.card.scheme) else { return }
         
         TapImageLoader.shared.downloadImage(from: cardBrandLogoURL) { [weak self] (image, error) in
             

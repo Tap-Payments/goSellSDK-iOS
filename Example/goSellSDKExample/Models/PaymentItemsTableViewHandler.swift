@@ -151,23 +151,7 @@ extension PaymentItemsTableViewHandler: UITableViewDataSource {
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let model = self.cellModels[indexPath.row]
-        
-        if model is GroupHeaderCellModel {
-            
-            return tableView.dequeueReusableCell(withIdentifier: GroupHeaderCell.className)!
-        }
-        else if model is PaymentItemTableViewCellModel {
-            
-            return tableView.dequeueReusableCell(withIdentifier: PaymentItemTableViewCell.className)!
-        }
-        else if model is PlainAmountTableViewCellModel {
-            
-            return tableView.dequeueReusableCell(withIdentifier: PlainAmountTableViewCell.className)!
-        }
-        else {
-            
-            fatalError("Data source corrupted.")
-        }
+        return tableView.dequeueReusableCell(withIdentifier: type(of: model).cellClass.className)!
     }
 }
 
@@ -222,6 +206,12 @@ extension PaymentItemsTableViewHandler: UITableViewDelegate {
             
             cell.setSelected(model.isSelected, animated: false)
         }
+    }
+    
+    internal func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        let model = self.cellModels[indexPath.row]
+        return type(of: model).cellClass.isSubclass(of: SelectableCell.self) ? indexPath : nil
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

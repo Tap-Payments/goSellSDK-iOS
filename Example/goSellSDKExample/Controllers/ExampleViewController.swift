@@ -28,7 +28,7 @@ import class    UIKit.UITableView.UITableView
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 
-internal class ExampleViewController: UIViewController {
+internal class ExampleViewController: BaseViewController {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -284,6 +284,9 @@ extension ExampleViewController: PaymentDelegate {
         if let nonnullCustomer = self.customer {
             
             SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
+            
+            self.paymentSettings.customer = nonnullCustomer
+            Serializer.serialize(self.paymentSettings)
         }
     }
 }

@@ -94,6 +94,11 @@ internal final class PaymentDataManager {
         return self.paymentOptionsResponse?.paymentOptions ?? []
     }
     
+    internal var selectedCurrency: AmountedCurrency {
+        
+        return self.userSelectedCurrency ?? self.transactionCurrency
+    }
+    
     internal var isInDeleteSavedCardsMode: Bool = false {
         
         didSet {
@@ -549,7 +554,7 @@ internal final class PaymentDataManager {
         var result: [CellViewModel] = []
         result.append(self.currencyCellViewModel)
         
-        let currency = (self.userSelectedCurrency ?? self.transactionCurrency).currency
+        let currency = self.selectedCurrency.currency
         
         let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
         let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }

@@ -330,10 +330,10 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
             cvvValidator.cardBrand = definedCardBrand.brand
         }
         
-        self.updateDisplayedCollectionViewCellModels()
+        self.updateDisplayedTableViewCellModels()
     }
     
-    internal func updateDisplayedCollectionViewCellModels() {
+    internal func updateDisplayedTableViewCellModels() {
         
         let visiblePaymentOptions = self.possiblePaymentOptions
         let possibleImageURLs = visiblePaymentOptions.map { $0.imageURL }

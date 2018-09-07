@@ -81,6 +81,18 @@ internal class CustomersListViewController: UITableViewController {
         }
         
         let customer = self.customers[indexPath.row]
+        let selected = customer == self.selectedCustomer
+        
+        if selected {
+            
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
+        else {
+            
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
+        
+        cell.setSelected(selected, animated: false)
         
         customerCell.fill(with: customer.firstName,
                           middleName: customer.middleName,

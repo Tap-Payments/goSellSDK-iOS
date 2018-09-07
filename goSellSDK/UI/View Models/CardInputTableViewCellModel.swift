@@ -190,7 +190,7 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
         
         let iconURLs = self.paymentOptions.map { $0.imageURL }
         self.tableViewCellModels = type(of: self).generateTableViewCellModels(with: iconURLs)
-        self.updateDisplayedCollectionViewCellModels()
+        self.updateDisplayedTableViewCellModels()
     }
 }
 
