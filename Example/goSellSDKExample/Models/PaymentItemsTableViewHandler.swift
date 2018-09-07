@@ -12,6 +12,7 @@ import class    ObjectiveC.NSObject.NSObject
 import class    UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
+import class    UIKit.UITableView.UITableViewRowAction
 import class    UIKit.UITableViewCell.UITableViewCell
 
 internal protocol PaymentItemsProvider {
@@ -19,15 +20,23 @@ internal protocol PaymentItemsProvider {
     var paymentItems: [PaymentItem] { get }
 }
 
+internal protocol PaymentItemsTableViewCallbacksHandler {
+    
+    func accessoryButtonTappedForCell(with item: PaymentItem)
+    func removePaymentItem(_ item: PaymentItem)
+    func selectionChanged(_ items: [PaymentItem]?, plainAmount: Decimal?)
+}
+
 internal final class PaymentItemsTableViewHandler: NSObject {
     
     // MARK: - Internal -
     // MARK: Methods
     
-    internal init(itemsProvider: PaymentItemsProvider, tableView: UITableView) {
+    internal init(itemsProvider: PaymentItemsProvider, tableView: UITableView, callbacksHandler: PaymentItemsTableViewCallbacksHandler) {
         
         self.itemsProvider = itemsProvider
         self.tableView = tableView
+        self.callbacksHandler = callbacksHandler
         
         super.init()
         
@@ -45,9 +54,22 @@ internal final class PaymentItemsTableViewHandler: NSObject {
     // MARK: Properties
     
     private let itemsProvider: PaymentItemsProvider
+    private let callbacksHandler: PaymentItemsTableViewCallbacksHandler
     private let tableView: UITableView
     
     private var cellModels: [TableViewCellModel] = []
+    
+    private var selectedItems: [PaymentItem]? {
+        
+        let selectedModels = self.selectedModels(of: PaymentItemTableViewCellModel.self)
+        return selectedModels.isEmpty ? nil : selectedModels.map { $0.paymentItem }
+    }
+    
+    private var plainAmount: Decimal? {
+        
+        let selectedModels = self.selectedModels(of: PlainAmountTableViewCellModel.self)
+        return selectedModels.first?.amount
+    }
     
     // MARK: Methods
     
@@ -90,11 +112,31 @@ internal final class PaymentItemsTableViewHandler: NSObject {
         }
         else {
             
-            let amountModel = PlainAmountTableViewCellModel(amount: 0.0)
+            let amountModel = PlainAmountTableViewCellModel(amountString: .empty, changeObserver: self)
             result.append(amountModel)
         }
         
         self.cellModels = result
+    }
+    
+    private func selectedModels<Type: TableViewCellModel>(of type: Type.Type) -> [Type] {
+        
+        return self.cellModels.filter({ $0.isSelected }).compactMap { $0 as? Type }
+    }
+    
+    private func deselectAllCellsForModels(of modelType: TableViewCellModel.Type) {
+        
+        self.cellModels.forEach { if type(of: $0) == modelType { $0.isSelected = false } }
+        self.tableView.reloadVisibleCells()
+    }
+}
+
+// MARK: - AmountChangeObserver
+extension PaymentItemsTableViewHandler: AmountChangeObserver {
+    
+    internal func amountChanged(_ amount: Decimal) {
+        
+        self.callbacksHandler.selectionChanged(self.selectedItems, plainAmount: self.plainAmount)
     }
 }
 
@@ -162,7 +204,75 @@ extension PaymentItemsTableViewHandler: UITableViewDelegate {
         }
         else if let plainAmountCell = cell as? PlainAmountTableViewCell, let model = self.cellModels[indexPath.row] as? PlainAmountTableViewCellModel {
             
-            plainAmountCell.setAmount(model.amount)
+            plainAmountCell.setAmountText(model.amountString, changeListener: model)
+        }
+        
+        if cell is SelectableCell {
+            
+            let model = self.cellModels[indexPath.row]
+            
+            if model.isSelected {
+                
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
+            else {
+                
+                tableView.deselectRow(at: indexPath, animated: false)
+            }
+            
+            cell.setSelected(model.isSelected, animated: false)
+        }
+    }
+    
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let itemModel = self.cellModels[indexPath.row] as? PaymentItemTableViewCellModel {
+            
+            itemModel.isSelected = true
+            self.deselectAllCellsForModels(of: PlainAmountTableViewCellModel.self)
+            self.callbacksHandler.selectionChanged(self.selectedItems, plainAmount: self.plainAmount)
+        }
+        else if let amountModel = self.cellModels[indexPath.row] as? PlainAmountTableViewCellModel {
+            
+            amountModel.isSelected = true
+            self.deselectAllCellsForModels(of: PaymentItemTableViewCellModel.self)
+            self.callbacksHandler.selectionChanged(self.selectedItems, plainAmount: self.plainAmount)
+        }
+        else {
+            
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
+    }
+    
+    internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        let model = self.cellModels[indexPath.row]
+        model.isSelected = false
+        
+        self.callbacksHandler.selectionChanged(self.selectedItems, plainAmount: self.plainAmount)
+    }
+    
+    internal func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        guard let model = self.cellModels[indexPath.row] as? PaymentItemTableViewCellModel else { return }
+        self.callbacksHandler.accessoryButtonTappedForCell(with: model.paymentItem)
+    }
+    
+    internal func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        if let model = self.cellModels[indexPath.row] as? PaymentItemTableViewCellModel {
+            
+            let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] (action, cellIndexPath) in
+                
+                self?.callbacksHandler.removePaymentItem(model.paymentItem)
+                self?.tableView.deleteRows(at: [cellIndexPath], with: .automatic)
+            }
+            
+            return [deleteAction]
+        }
+        else {
+            
+            return nil
         }
     }
 }

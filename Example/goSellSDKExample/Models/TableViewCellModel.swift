@@ -7,5 +7,8 @@
 
 internal class TableViewCellModel {
     
+    // MARK: - Internal -
+    // MARK: Properties
     
+    internal var isSelected = false
 }
