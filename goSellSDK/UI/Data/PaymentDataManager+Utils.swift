@@ -16,7 +16,7 @@ internal extension PaymentDataManager {
         
         let brand = self.appliedCardBrand(from: cardBrand, scheme: scheme)
         
-        let possibleOptions = self.paymentOptions.filter { $0.supportedCardBrands.contains(brand) }
+        let possibleOptions = self.paymentOptions.filter { $0.brand == brand || $0.supportedCardBrands.contains(brand) }
         if let original = possibleOptions.first(where: { $0.brand == brand }) {
             
             return original.imageURL

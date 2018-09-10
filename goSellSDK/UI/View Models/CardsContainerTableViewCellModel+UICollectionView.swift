@@ -31,7 +31,7 @@ internal extension CardsContainerTableViewCellModel {
         
         var result: [CardCollectionViewCellModel] = []
         
-        let amountedCurrency = PaymentDataManager.shared.userSelectedCurrency ?? PaymentDataManager.shared.transactionCurrency
+        let amountedCurrency = PaymentDataManager.shared.selectedCurrency
         let currency = amountedCurrency.currency
         
         let cardsSortingClosure: (SavedCard, SavedCard) -> Bool = { (firstCard, secondCard) in

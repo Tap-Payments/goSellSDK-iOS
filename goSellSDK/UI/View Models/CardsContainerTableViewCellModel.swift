@@ -12,7 +12,7 @@ internal class CardsContainerTableViewCellModel: TableViewCellViewModel {
     
     internal weak var cell: CardsContainerTableViewCell?
     
-    internal var collectionViewCellModels: [CardCollectionViewCellModel] = [] {
+    internal private(set) var collectionViewCellModels: [CardCollectionViewCellModel] = [] {
         
         didSet {
             
@@ -20,16 +20,21 @@ internal class CardsContainerTableViewCellModel: TableViewCellViewModel {
         }
     }
     
-    internal lazy var cardsCollectionViewHandler: CardsContainerTableViewCellModelCollectionViewHandler = CardsContainerTableViewCellModelCollectionViewHandler(model: self)
+    internal private(set) lazy var cardsCollectionViewHandler: CardsContainerTableViewCellModelCollectionViewHandler = CardsContainerTableViewCellModelCollectionViewHandler(model: self)
     
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, cards: [SavedCard]) {
+    internal init(indexPath: IndexPath, cards: [SavedCard], currency: Currency) {
         
         self.cards = cards
         super.init(indexPath: indexPath)
         
-        self.collectionViewCellModels = self.generateCollectionViewCellModels(with: cards)
+        self.updateData()
+    }
+    
+    internal func updateData() {
+        
+        self.collectionViewCellModels = self.generateCollectionViewCellModels(with: self.cards)
     }
     
     internal func deleteCardModel(_ model: CardCollectionViewCellModel) {

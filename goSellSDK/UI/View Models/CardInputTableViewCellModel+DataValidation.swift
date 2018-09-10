@@ -50,30 +50,6 @@ internal extension CardInputTableViewCellModel {
             
             return self.paymentOptions
         }
-        
-//        let binDataBrand = self.binData?.scheme?.cardBrand ?? self.binData?.cardBrand
-//        if let brand = binDataBrand, let option = self.paymentOptions.first(where: { $0.brand == brand }) {
-//
-//            return [option]
-//        }
-//
-//        if let existingBrand = self.definedCardBrand?.brand {
-//
-//            let possiblePaymentOptions = self.paymentOptions.filter {
-//
-//                var allCardBrands: [CardBrand] = [$0.brand]
-//                allCardBrands.append(contentsOf: $0.supportedCardBrands)
-//                allCardBrands = Array(Set(allCardBrands))
-//
-//                return allCardBrands.contains(existingBrand)
-//            }
-//
-//            return possiblePaymentOptions
-//        }
-//        else {
-//
-//            return self.paymentOptions
-//        }
     }
     
     // MARK: Methods
@@ -336,8 +312,9 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
     internal func updateDisplayedTableViewCellModels() {
         
         let visiblePaymentOptions = self.possiblePaymentOptions
-        let possibleImageURLs = visiblePaymentOptions.map { $0.imageURL }
-        let toBeDisplayedCellModels = self.tableViewCellModels.filter { possibleImageURLs.contains($0.imageURL) }
+        let possibleURLs = visiblePaymentOptions.map { $0.imageURL }
+        
+        let toBeDisplayedCellModels = self.tableViewCellModels.filter { possibleURLs.contains($0.imageURL) }
         self.displayedTableViewCellModels = toBeDisplayedCellModels
     }
 }
