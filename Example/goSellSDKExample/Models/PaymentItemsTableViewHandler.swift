@@ -9,6 +9,9 @@ import struct   Foundation.NSDecimal.Decimal
 import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.PaymentItem
 import class    ObjectiveC.NSObject.NSObject
+import class    UIKit.UIResponder.UIResponder
+import class    UIKit.UIScrollView.UIScrollView
+import protocol UIKit.UIScrollView.UIScrollViewDelegate
 import class    UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
@@ -155,6 +158,15 @@ extension PaymentItemsTableViewHandler: UITableViewDataSource {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension PaymentItemsTableViewHandler: UIScrollViewDelegate {
+    
+    internal func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        UIResponder.resign()
+    }
+}
+
 // MARK: - UITableViewDelegate
 extension PaymentItemsTableViewHandler: UITableViewDelegate {
     
@@ -206,6 +218,12 @@ extension PaymentItemsTableViewHandler: UITableViewDelegate {
             
             cell.setSelected(model.isSelected, animated: false)
         }
+    }
+    
+    internal func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        
+        let model = self.cellModels[indexPath.row]
+        return type(of: model).cellClass.isSubclass(of: SelectableCell.self)
     }
     
     internal func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
