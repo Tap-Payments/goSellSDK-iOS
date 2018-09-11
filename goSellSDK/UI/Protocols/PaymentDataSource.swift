@@ -15,7 +15,7 @@
     var customer: Customer? { get }
     
     /// Payment/Authorization amount.
-    /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` are preferred and amount is calculated from them.
+    /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` is preferred and amount is calculated from them.
     ///         If `taxes` and/or `shipping` is implemented, it will affect the value you pass in this property.
     @objc optional var amount: Decimal { get }
     
