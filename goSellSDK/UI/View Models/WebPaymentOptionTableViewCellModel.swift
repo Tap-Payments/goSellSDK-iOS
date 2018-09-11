@@ -14,9 +14,15 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
     // MARK: - Internal -
     // MARK: Properties
     
-    internal let title: String
+    internal var title: String {
+        
+        return self.paymentOption.title
+    }
     
-    internal let iconImageURL: URL
+    internal var iconImageURL: URL {
+        
+        return self.paymentOption.imageURL
+    }
     
     internal override var paymentOption: PaymentOption {
         
@@ -55,10 +61,8 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
     
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, title: String, iconImageURL: URL, paymentOption: PaymentOption) {
+    internal init(indexPath: IndexPath, paymentOption: PaymentOption) {
         
-        self.title = title
-        self.iconImageURL = iconImageURL
         self.storedPaymentOption = paymentOption
         
         super.init(indexPath: indexPath)

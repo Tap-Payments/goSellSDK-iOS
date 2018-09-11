@@ -9,7 +9,7 @@ import ObjectiveC
 
 import class    Dispatch.DispatchQueue
 import struct   Foundation.NSIndexPath.IndexPath
-import class    goSellSDK.CustomerInfo
+import class    goSellSDK.Customer
 import class    UIKit.UIBarButtonItem.UIBarButtonItem
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
@@ -26,7 +26,7 @@ internal class CustomersListViewController: UITableViewController {
     
     internal weak var delegate: CustomersListViewControllerDelegate?
     
-    internal var selectedCustomer: CustomerInfo?
+    internal var selectedCustomer: Customer?
     
     // MARK: Methods
     
@@ -123,7 +123,7 @@ internal class CustomersListViewController: UITableViewController {
     // MARK: - Private -
     // MARK: Properties
     
-    private var customers: [CustomerInfo] = Serializer.deserialize()
+    private var customers: [Customer] = Serializer.deserialize()
     
     // MARK: Methods
     
@@ -138,7 +138,7 @@ internal class CustomersListViewController: UITableViewController {
         self.showCustomerViewController()
     }
     
-    private func showCustomerViewController(with customer: CustomerInfo? = nil) {
+    private func showCustomerViewController(with customer: Customer? = nil) {
         
         self.selectedCustomer = customer
         self.show(CustomerViewController.self)
@@ -185,7 +185,7 @@ internal class CustomersListViewController: UITableViewController {
 // MARK: - CustomerViewControllerDelegate
 extension CustomersListViewController: CustomerViewControllerDelegate {
     
-    internal func customerViewController(_ controller: CustomerViewController, didFinishWith customer: CustomerInfo) {
+    internal func customerViewController(_ controller: CustomerViewController, didFinishWith customer: Customer) {
         
         if let nonnullSelectedCustomer = self.selectedCustomer {
             

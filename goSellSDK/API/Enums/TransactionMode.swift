@@ -9,10 +9,10 @@
 @objc public enum TransactionMode: Int {
     
     /// Regular payment transaction.
-    case purchase
+    @objc(Purchase) case purchase
     
     /// Only authorizing the payment and capturing the amount.
-    case authorizeCapture
+    @objc(AuthorizeCapture) case authorizeCapture
     
     // MARK: - Private -
     // MARK: Properties

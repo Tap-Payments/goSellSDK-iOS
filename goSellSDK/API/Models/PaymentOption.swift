@@ -89,3 +89,18 @@ extension PaymentOption: FilterableByCurrency {}
 
 // MARK: - SortableByOrder
 extension PaymentOption: SortableByOrder {}
+
+// MARK: - Equatable
+extension PaymentOption: Equatable {
+    
+    /// Checks if 2 objects are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: First object.
+    ///   - rhs: Second object.
+    /// - Returns: `true` if 2 objects are equal, `false` otherwise.
+    public static func == (lhs: PaymentOption, rhs: PaymentOption) -> Bool {
+        
+        return lhs.identifier == rhs.identifier
+    }
+}

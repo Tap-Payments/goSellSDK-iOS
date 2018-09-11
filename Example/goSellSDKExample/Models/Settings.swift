@@ -6,7 +6,7 @@
 //
 
 import class goSellSDK.Currency
-import class goSellSDK.CustomerInfo
+import class goSellSDK.Customer
 import class goSellSDK.Shipping
 import class goSellSDK.Tax
 import enum  goSellSDK.TransactionMode
@@ -20,7 +20,7 @@ internal final class Settings: Encodable {
     
     internal var currency: Currency
     
-    internal var customer: CustomerInfo?
+    internal var customer: Customer?
     
     internal var mode: TransactionMode
     
@@ -30,7 +30,7 @@ internal final class Settings: Encodable {
     
     // MARK: Methods
     
-    internal init(mode: TransactionMode, currency: Currency, customer: CustomerInfo?, shippingList: [Shipping], taxes: [Tax]) {
+    internal init(mode: TransactionMode, currency: Currency, customer: Customer?, shippingList: [Shipping], taxes: [Tax]) {
         
         self.mode           = mode
         self.currency       = currency
@@ -59,14 +59,14 @@ extension Settings: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let currency = try container.decode(Currency.self, forKey: .currency)
-        var customer = try container.decodeIfPresent(CustomerInfo.self, forKey: .customer)
+        var customer = try container.decodeIfPresent(Customer.self, forKey: .customer)
         let mode = try container.decode(TransactionMode.self, forKey: .mode)
         let shippingList = try container.decode([Shipping].self, forKey: .shippingList)
         let taxes = try container.decode([Tax].self, forKey: .taxes)
         
         if customer == nil {
             
-            let allCustomers: [CustomerInfo] = Serializer.deserialize()
+            let allCustomers: [Customer] = Serializer.deserialize()
             customer = allCustomers.first
         }
         

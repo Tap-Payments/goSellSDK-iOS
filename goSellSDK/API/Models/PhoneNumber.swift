@@ -50,6 +50,19 @@
         super.init()
     }
     
+    /// Intiailizes `PhoneNumber` with ISD number and a phone number.
+    ///
+    /// - Parameters:
+    ///   - isdNumber: ISD number.
+    ///   - phoneNumber: Phone number.
+    /// - Warning: This method returns `nil` if you pass invalid ISD number or phone number.
+    @available(swift, obsoleted: 1.0)
+    @objc(initWithISDNumber:phoneNumber:)
+    public convenience init?(with isdNumber: String, phoneNumber: String) {
+        
+        try? self.init(isdNumber: isdNumber, phoneNumber: phoneNumber)
+    }
+    
     /// Checks if the receiver is equal to `object.`
     ///
     /// - Parameter object: Object to test equality with.

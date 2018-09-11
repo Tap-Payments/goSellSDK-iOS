@@ -35,7 +35,7 @@
     ///
     /// - Parameter isoCode: ISO code.
     /// - Throws: Invalid currency exception.
-    public init(isoCode: String) throws {
+    @objc(initWithISOCode:error:) public init(isoCode: String) throws {
         
         let code = isoCode.lowercased()
         
@@ -49,6 +49,15 @@
         self.isoCode = code
         
         super.init()
+    }
+
+    /// Initializes the currench with 3-lettered ISO code.
+    ///
+    /// - Parameter isoCode: 3-lettered ISO code.
+    /// - Warning: This method returns `nil` if ISO code is not valid.
+    @objc(initWithISOCode:) public convenience init?(_ isoCode: String) {
+        
+        try? self.init(isoCode: isoCode)
     }
     
     /// Checks if 2 objects are equal.

@@ -18,7 +18,7 @@ internal class CreateChargeRequest: Encodable {
     internal let currency: Currency
     
     /// Customer information.
-    internal let customer: CustomerInfo
+    internal let customer: Customer
     
     /// Fees amount.
     internal let fee: Decimal
@@ -87,7 +87,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-    internal init(amount: Decimal, currency: Currency, customer: CustomerInfo, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
+    internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
         
         self.amount                 = amount
         self.currency               = currency

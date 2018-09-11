@@ -6,7 +6,7 @@
 //
 
 import struct   Foundation.NSNotification.Notification
-import class    goSellSDK.CustomerInfo
+import class    goSellSDK.Customer
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.PhoneNumber
 import class    UIKit.UILabel.UILabel
@@ -20,7 +20,7 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     
     internal weak var delegate: CustomerViewControllerDelegate?
     
-    internal var customer: CustomerInfo? {
+    internal var customer: Customer? {
         
         didSet {
             
@@ -28,7 +28,7 @@ internal class CustomerViewController: ModalNavigationTableViewController {
             
             if let nonnullCustomer = self.customer {
                 
-                self.currentCustomer = nonnullCustomer.copy() as! CustomerInfo
+                self.currentCustomer = nonnullCustomer.copy() as! Customer
             }
         }
     }
@@ -78,7 +78,7 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var phoneISDNumberTextField: UITextField?
     @IBOutlet private weak var phoneNumberTextField: UITextField?
     
-    private var currentCustomer: CustomerInfo = try! CustomerInfo(identifier: "") {
+    private var currentCustomer: Customer = try! Customer(identifier: "") {
         
         didSet {
             
@@ -102,23 +102,23 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     
     private func updateCurrentCustomerInfoFromInputFields() {
         
-        self.currentCustomer.firstName = self.firstNameTextField?.text
-        self.currentCustomer.middleName = self.middleNameTextField?.text
-        self.currentCustomer.lastName = self.lastNameTextField?.text
-        self.currentCustomer.emailAddress = try? EmailAddress(self.emailAddressTextField?.text ?? "")
-        self.currentCustomer.phoneNumber = try? PhoneNumber(isdNumber: self.phoneISDNumberTextField?.text ?? "",
-                                                            phoneNumber: self.phoneNumberTextField?.text ?? "")
+        self.currentCustomer.firstName      = self.firstNameTextField?.text
+        self.currentCustomer.middleName     = self.middleNameTextField?.text
+        self.currentCustomer.lastName       = self.lastNameTextField?.text
+        self.currentCustomer.emailAddress   = try? EmailAddress(emailAddressString: self.emailAddressTextField?.text ?? "")
+        self.currentCustomer.phoneNumber    = try? PhoneNumber(isdNumber:   self.phoneISDNumberTextField?.text ?? "",
+                                                               phoneNumber: self.phoneNumberTextField?.text ?? "")
     }
     
     private func updateWithCurrentCustomerInfo() {
         
-        self.idLabel?.text = self.currentCustomer.identifier
-        self.firstNameTextField?.text = self.currentCustomer.firstName
-        self.middleNameTextField?.text = self.currentCustomer.middleName
-        self.lastNameTextField?.text = self.currentCustomer.lastName
-        self.emailAddressTextField?.text = self.currentCustomer.emailAddress?.value
-        self.phoneISDNumberTextField?.text = self.currentCustomer.phoneNumber?.isdNumber
-        self.phoneNumberTextField?.text = self.currentCustomer.phoneNumber?.phoneNumber
+        self.idLabel?.text                  = self.currentCustomer.identifier
+        self.firstNameTextField?.text       = self.currentCustomer.firstName
+        self.middleNameTextField?.text      = self.currentCustomer.middleName
+        self.lastNameTextField?.text        = self.currentCustomer.lastName
+        self.emailAddressTextField?.text    = self.currentCustomer.emailAddress?.value
+        self.phoneISDNumberTextField?.text  = self.currentCustomer.phoneNumber?.isdNumber
+        self.phoneNumberTextField?.text     = self.currentCustomer.phoneNumber?.phoneNumber
     }
 }
 

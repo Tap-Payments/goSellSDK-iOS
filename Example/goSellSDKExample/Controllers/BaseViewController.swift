@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import ObjectiveC
+
 import struct   Foundation.NSNotification.Notification
 import class    Foundation.NSNotification.NotificationCenter
 import class    Foundation.NSValue.NSNumber

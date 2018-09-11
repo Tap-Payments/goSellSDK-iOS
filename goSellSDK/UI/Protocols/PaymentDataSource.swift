@@ -12,7 +12,7 @@
     var currency: Currency? { get }
     
     /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
-    var customer: CustomerInfo? { get }
+    var customer: Customer? { get }
     
     /// Payment/Authorization amount.
     /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` are preferred and amount is calculated from them.

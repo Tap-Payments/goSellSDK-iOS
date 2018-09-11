@@ -18,7 +18,7 @@ internal protocol ChargeProtocol: Authenticatable, Retrievable {
     var currency: Currency { get }
     
     /// Customer.
-    var customer: CustomerInfo { get }
+    var customer: Customer { get }
     
     /// Flag indicating whether the object exists in live mode or test mode.
     var isLiveMode: Bool { get }

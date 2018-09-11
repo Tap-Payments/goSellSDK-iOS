@@ -11,7 +11,7 @@ import class    goSellSDK.Authorize
 import class    goSellSDK.AuthorizeAction
 import class    goSellSDK.Charge
 import class    goSellSDK.Currency
-import class    goSellSDK.CustomerInfo
+import class    goSellSDK.Customer
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.PayButton
 import protocol goSellSDK.PayButtonProtocol
@@ -195,7 +195,7 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
 // MARK: - PaymentDataSource
 extension ExampleViewController: PaymentDataSource {
     
-    internal var customer: CustomerInfo? {
+    internal var customer: Customer? {
         
         return self.paymentSettings.customer
     }

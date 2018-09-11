@@ -17,6 +17,10 @@ internal final class PaymentDataManager {
     // MARK: - Internal -
     // MARK: Properties
     
+    /// All cell view models.
+    internal private(set) lazy var paymentOptionsScreenCellViewModels: [CellViewModel] = []
+    
+    /// Currently visible cell view models.
     internal private(set) var paymentOptionCellViewModels: [CellViewModel] = [] {
         
         didSet {
@@ -41,8 +45,6 @@ internal final class PaymentDataManager {
             self.updatePayButtonStateAndAmount()
         }
     }
-    
-    internal private(set) lazy var paymentOptionsScreenCellViewModels: [CellViewModel] = []
     
     internal weak var payButtonUI: PayButtonUI? {
         
@@ -480,12 +482,15 @@ internal final class PaymentDataManager {
         
         let currencyModel = CurrencySelectionTableViewCellViewModel(indexPath: self.nextIndexPath(for: result),
                                                                     transactionCurrency: self.transactionCurrency,
-                                                                    userSelectedCurrency: self.transactionCurrency)
+                                                                    userSelectedCurrency: self.selectedCurrency)
         result.append(currencyModel)
         
         let savedCards = self.recentCards
-        let webPaymentOptions = self.paymentOptions(of: .web).sorted { $0.orderBy < $1.orderBy }
-        let cardPaymentOptions = self.paymentOptions(of: .card).sorted { $0.orderBy < $1.orderBy }
+        
+        let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
+        
+        let webPaymentOptions = self.paymentOptions(of: .web).sorted(by: sortingClosure)
+        let cardPaymentOptions = self.paymentOptions(of: .card).sorted(by: sortingClosure)
         
         let hasSavedCards = savedCards.count > 0
         let hasWebPaymentOptions = webPaymentOptions.count > 0
@@ -525,8 +530,6 @@ internal final class PaymentDataManager {
             webPaymentOptions.forEach {
                 
                 let webOptionCellModel = WebPaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                            title: $0.title,
-                                                                            iconImageURL: $0.imageURL,
                                                                             paymentOption: $0)
                 result.append(webOptionCellModel)
             }
@@ -605,7 +608,7 @@ internal final class PaymentDataManager {
             
             webPaymentOptions.forEach {
                 
-                let webModel = self.webPaymentCellModel(with: $0.title)
+                let webModel = self.webPaymentCellModel(with: $0)
                 webModel.indexPath = self.nextIndexPath(for: result)
                 
                 result.append(webModel)
@@ -644,22 +647,28 @@ internal final class PaymentDataManager {
             }
         }
         
-        fatalError("Data source is corrupted")
+        let newModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), title: title)
+        self.paymentOptionsScreenCellViewModels.append(newModel)
+        
+        return newModel
     }
     
-    private func webPaymentCellModel(with title: String) -> WebPaymentOptionTableViewCellModel {
+    private func webPaymentCellModel(with paymentOption: PaymentOption) -> WebPaymentOptionTableViewCellModel {
         
         let webModels = self.cellModels(of: WebPaymentOptionTableViewCellModel.self)
         
         for model in webModels {
             
-            if model.title == title {
+            if model.paymentOption == paymentOption {
                 
                 return model
             }
         }
         
-        fatalError("Data source is corrupted")
+        let newModel = WebPaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), paymentOption: paymentOption)
+        self.paymentOptionsScreenCellViewModels.append(newModel)
+        
+        return newModel
     }
     
     private func emptyCellModel(with identifier: String) -> EmptyTableViewCellModel {
@@ -674,7 +683,10 @@ internal final class PaymentDataManager {
             }
         }
         
-        fatalError("Data source is corrupted")
+        let newModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), identifier: identifier)
+        self.paymentOptionsScreenCellViewModels.append(newModel)
+        
+        return newModel
     }
     
     private static func paymentClosed() {
