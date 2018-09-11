@@ -382,7 +382,7 @@ The following table describes its structure and specifies which fields are requi
 ---
 
 #### Currency
--
+--
 
 **Objective-C**
 
