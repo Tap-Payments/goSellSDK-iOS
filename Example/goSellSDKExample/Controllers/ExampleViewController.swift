@@ -237,7 +237,7 @@ extension ExampleViewController: PaymentDataSource {
     
     internal var authorizeAction: AuthorizeAction {
         
-        return AuthorizeAction(type: .capture, time: 8)
+        return .capture(after: 8)
     }
 }
 

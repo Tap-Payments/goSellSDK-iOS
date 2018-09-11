@@ -12,13 +12,13 @@
     // MARK: Properties
     
     /// Default authorize action (automatically void in 168 hours).
-    public static let `default` = AuthorizeAction(type: .void, time: 168)
+    public static let `default` = AuthorizeAction(type: .void, timeInHours: 168)
     
     /// Action type.
     public var type: AuthorizeActionType
     
     /// Time measured in hours.
-    public var time: UInt
+    public var timeInHours: UInt
     
     // MARK: Methods
     
@@ -26,13 +26,31 @@
     ///
     /// - Parameters:
     ///   - type: Authorize action type.
-    ///   - time: Time in hours. Once reached, based on the `type`, action will be performed.
-    public init(type: AuthorizeActionType, time: UInt) {
+    ///   - timeInHours: Time in hours. Once reached, based on the `type`, action will be performed.
+    public init(type: AuthorizeActionType, timeInHours: UInt) {
         
-        self.type = type
-        self.time = time
+        self.type           = type
+        self.timeInHours    = timeInHours
         
         super.init()
+    }
+    
+    /// Creates and returns `AuthorizeAction` instance with capture action after the specified time in hours.
+    ///
+    /// - Parameter timeInHours: Time in hours.
+    /// - Returns: An `AuthorizeAction` instance.
+    @objc(captureAfterTimeInHours:) public static func capture(after timeInHours: UInt) -> AuthorizeAction {
+        
+        return AuthorizeAction(type: .capture, timeInHours: timeInHours)
+    }
+    
+    /// Creatus and returns `AuthorizeAction` instance with void action after the specified time in hours.
+    ///
+    /// - Parameter timeInHours: Time in hours.
+    /// - Returns: an `AuthorizeAction` instance.
+    @objc(voidAfterTimeInHours:) public static func void(after timeInHours: UInt) -> AuthorizeAction {
+        
+        return AuthorizeAction(type: .void, timeInHours: timeInHours)
     }
     
     // MARK: - Private -
@@ -40,7 +58,7 @@
     
     private enum CodingKeys: String, CodingKey {
         
-        case type = "type"
-        case time = "time"
+        case type           = "type"
+        case timeInHours    = "time"
     }
 }

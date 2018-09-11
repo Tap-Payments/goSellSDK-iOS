@@ -9,10 +9,10 @@
 @objc public enum AuthorizeActionType: Int {
     
     /// Capture authorization action.
-    case capture
+    @objc(Capture) case capture
     
     /// Void authorization action.
-    case void
+    @objc(Void) case void
     
     // MARK: - Private -
     // MARK: Properties

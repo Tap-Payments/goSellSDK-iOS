@@ -60,6 +60,15 @@
         try? self.init(isoCode: isoCode)
     }
     
+    /// Creates and returns an instance of `Currency` with the given `isoCode`.
+    ///
+    /// - Parameter isoCode: Three-lettered currency ISO code.
+    /// - Returns: An instance of `Currency` or `nil` if ISO code is invalid.
+    @objc(withISOCode:) public static func with(isoCode: String) -> Currency? {
+        
+        return Currency(isoCode)
+    }
+    
     /// Checks if 2 objects are equal.
     ///
     /// - Parameters:
