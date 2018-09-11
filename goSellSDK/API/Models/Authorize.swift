@@ -25,7 +25,7 @@
     public let currency: Currency
     
     /// Customer.
-    public let customer: CustomerInfo
+    public let customer: Customer
     
     ///Flag indicating whether the object exists in live mode or test mode.
     public let isLiveMode: Bool
@@ -119,7 +119,7 @@
     
     // MARK: Methods
     
-    private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: CustomerInfo, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: [String: String]?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?, authorizeAction: AuthorizeActionResponse) {
+    private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: [String: String]?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?, authorizeAction: AuthorizeActionResponse) {
         
         self.identifier             = identifier
         self.apiVersion             = apiVersion
@@ -161,7 +161,7 @@ extension Authorize: Decodable {
         let apiVersion          = try container.decode          (String.self,                   forKey: .apiVersion)
         let amount              = try container.decode          (Decimal.self,                  forKey: .amount)
         let currency            = try container.decode          (Currency.self,                 forKey: .currency)
-        let customer            = try container.decode          (CustomerInfo.self,             forKey: .customer)
+        let customer            = try container.decode          (Customer.self,             forKey: .customer)
         let isLiveMode          = try container.decode          (Bool.self,                     forKey: .isLiveMode)
         let cardSaved           = try container.decodeIfPresent (Bool.self,                     forKey: .cardSaved) ?? false
         let object              = try container.decode          (String.self,                   forKey: .object)

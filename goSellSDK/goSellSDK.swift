@@ -15,7 +15,7 @@
     public static var secretKey: String = .empty
     
     /// Customer. Set this value at any time before user presses Pay button.
-    public static var customer: CustomerInfo?
+    public static var customer: Customer?
     
     // MARK: - Internal -
     // MARK: Properties

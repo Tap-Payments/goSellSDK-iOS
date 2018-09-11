@@ -5,16 +5,16 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class goSellSDK.CustomerInfo
+import class goSellSDK.Customer
 
 internal class SerializationHelper {
     
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func updateCustomer(_ customer: CustomerInfo, with identifier: String) {
+    internal static func updateCustomer(_ customer: Customer, with identifier: String) {
         
-        var allCustomers: [CustomerInfo] = Serializer.deserialize()
+        var allCustomers: [Customer] = Serializer.deserialize()
         guard let index = allCustomers.index(of: customer) else { return }
         
         customer.identifier = identifier

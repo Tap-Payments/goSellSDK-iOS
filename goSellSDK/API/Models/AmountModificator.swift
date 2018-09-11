@@ -32,6 +32,22 @@
         super.init()
     }
     
+    /// Initializes percent based amount modification.
+    ///
+    /// - Parameter percents: Number of percents.
+    public convenience init(percents: Decimal) {
+        
+        self.init(type: .percents, value: percents)
+    }
+    
+    /// Initializes fixed amount modification.
+    ///
+    /// - Parameter fixedAmount: Fixed amount.
+    public convenience init(fixedAmount: Decimal) {
+        
+        self.init(type: .fixedAmount, value: fixedAmount)
+    }
+    
     // MARK: - Internal -
     // MARK: Properties
     

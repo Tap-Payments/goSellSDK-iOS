@@ -8,7 +8,7 @@
 import struct   CoreGraphics.CGBase.CGFloat
 import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.Currency
-import class    goSellSDK.CustomerInfo
+import class    goSellSDK.Customer
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
@@ -408,7 +408,7 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
 // MARK: - CustomersListViewControllerDelegate
 extension SettingsTableViewController: CustomersListViewControllerDelegate {
     
-    internal func customersListViewController(_ controller: CustomersListViewController, didFinishWith customer: CustomerInfo?) {
+    internal func customersListViewController(_ controller: CustomersListViewController, didFinishWith customer: Customer?) {
         
         self.currentSettings?.customer = customer
         self.updateWithCurrentSettings()

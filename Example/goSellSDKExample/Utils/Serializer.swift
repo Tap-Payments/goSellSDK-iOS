@@ -8,7 +8,7 @@
 import struct   Foundation.NSData.Data
 import class    Foundation.NSJSONSerialization.JSONSerialization
 import class    Foundation.NSUserDefaults.UserDefaults
-import class    goSellSDK.CustomerInfo
+import class    goSellSDK.Customer
 import class    goSellSDK.PaymentItem
 
 internal class Serializer {
@@ -95,7 +95,7 @@ internal class Serializer {
             
             result = Constants.itemsUserDefaultsKey
         }
-        else if modelType == CustomerInfo.self {
+        else if modelType == Customer.self {
             
             result = Constants.customersUserDefaultsKey
         }
