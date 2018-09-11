@@ -45,6 +45,17 @@
         try? self.init(emailAddressString: emailAddressString)
     }
     
+    
+    
+    /// Creates and returns an instance of `EmailAddress` with a given email address string.
+    ///
+    /// - Parameter emailAddressString: Email address string.
+    /// - Returns: An instance of `EmailAddress` or `nil` if email address is not valid.
+    @objc(withEmailAddressString:) public static func with(_ emailAddressString: String) -> EmailAddress? {
+        
+        return try? EmailAddress(emailAddressString: emailAddressString)
+    }
+    
     /// Checks if the receiver is equal to `object.`
     ///
     /// - Parameter object: Object to test equality with.
