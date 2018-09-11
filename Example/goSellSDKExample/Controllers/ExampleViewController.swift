@@ -7,6 +7,7 @@
 
 import class    Dispatch.DispatchQueue
 import struct   Foundation.NSDecimal.Decimal
+import class    goSellSDK.AmountModificator
 import class    goSellSDK.Authorize
 import class    goSellSDK.AuthorizeAction
 import class    goSellSDK.Charge
@@ -18,6 +19,10 @@ import protocol goSellSDK.PayButtonProtocol
 import protocol goSellSDK.PaymentDataSource
 import protocol goSellSDK.PaymentDelegate
 import class    goSellSDK.PaymentItem
+import class    goSellSDK.PhoneNumber
+import class    goSellSDK.Quantity
+import class    goSellSDK.Receipt
+import class    goSellSDK.Reference
 import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
@@ -195,14 +200,14 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
 // MARK: - PaymentDataSource
 extension ExampleViewController: PaymentDataSource {
     
+    internal var currency: Currency? {
+        
+        return self.paymentSettings.currency
+    }
+    
     internal var customer: Customer? {
         
         return self.paymentSettings.customer
-    }
-    
-    internal var items: [PaymentItem]? {
-        
-        return self.selectedPaymentItems
     }
     
     internal var amount: Decimal {
@@ -210,19 +215,24 @@ extension ExampleViewController: PaymentDataSource {
         return self.plainAmount ?? 0
     }
     
-    internal var currency: Currency? {
-        
-        return self.paymentSettings.currency
+    internal var items: [PaymentItem]? {
+
+        return self.selectedPaymentItems
     }
     
-    internal var shipping: [Shipping]? {
+    internal var mode: TransactionMode {
         
-        return self.paymentSettings.shippingList
+        return self.paymentSettings.mode
     }
     
     internal var taxes: [Tax]? {
-        
+
         return self.paymentSettings.taxes
+    }
+    
+    internal var shipping: [Shipping]? {
+
+        return self.paymentSettings.shippingList
     }
     
     internal var require3DSecure: Bool {
@@ -230,9 +240,9 @@ extension ExampleViewController: PaymentDataSource {
         return true
     }
     
-    internal var mode: TransactionMode {
+    internal var receiptSettings: Receipt? {
         
-        return self.paymentSettings.mode
+        return Receipt(email: true, sms: true)
     }
     
     internal var authorizeAction: AuthorizeAction {

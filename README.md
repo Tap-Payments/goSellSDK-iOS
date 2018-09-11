@@ -12,15 +12,20 @@ iOS SDK to use [goSell API][1].
 A library that fully covers payment process inside your iOS application.
 
 # Table of Contents 
-1. [Installation](#installation)
+--
+1. [Requirements](#requirements)
+2. [Installation](#installation)
     1. [Installation with CocoaPods](#installation_with_cocoapods)
-2. [Setup](#setup)
-3. [Usage](#usage)
+3. [Setup](#setup)
+    1. [Setup Steps](#setup_steps)
+4. [Usage](#usage)
     1. [Pay Button](#pay_button)
         1. [Pay Button Placement](#pay_button_placement)
         2. [Properties](#pay_button_properties)
         3. [Methods](#pay_button_methods)
     2. [Payment Data Source](#payment_data_source)
+        1. [Structure](#payment_data_source_structure)
+        2. [Samples](#payment_data_source_samples)
     3. [Payment Delegate](#payment_delegate)
         1. [Payment Success Callback](#payment_success_callback)
         2. [Authorization Success Callback](#authorization_success_callback)
@@ -29,9 +34,20 @@ A library that fully covers payment process inside your iOS application.
         5. [Payment/Authorization Cancel Callback](#payment_cancel_callback)
         
 
+<a name="requirements"></a>
+# Requirements
+---
+
+To use the SDK the following requirements must be met:
+
+1. **Xcode 9.1** or newer
+2. **Swift 4.1** or newer (preinstalled with Xcode)   
+3. Base SDK for the target app: **iOS 8.0** or later
+
 <a name="installation"></a>
 # Installation
----------
+---
+
 <a name="installation_with_cocoapods"></a>
 ## Installation with CocoaPods
 
@@ -86,6 +102,7 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 
 <a name="setup"></a>
 # Setup
+---
 First of all, `goSellSDK` should be set up. To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `goSellSDK`, otherwise an exception will be thrown.
 
 *Swift*:
@@ -126,8 +143,16 @@ or
 #import <goSellSDK/goSellSDK-Swift.h>
 ```
 
+<a name="setup_steps"></a>
+## Setup Steps
+
+1. Place *PayButton*.
+2. Assign its *datasource* and *delegate*.
+3. Implement *datasource* and *delegate*.
+
 <a name="usage"></a>
 # Usage
+---
 
 After `goSellSDK` is set up, you can actually use the SDK.<br>
 We have tried to make the SDK integration as simple as possible, requiring the minimum from you.
@@ -246,6 +271,9 @@ Below is the list of Pay button properties
 
 **PaymentDataSource** is an interface which you should implement somewhere in your code to pass payment information to an instance of Pay button in order to be able to access payment flow within the SDK.
 
+<a name="payment_data_source_structure"></a>
+### Strucure
+
 The following table describes its structure and specifies which fields are required for each of the modes.
 
 <table style="text-align:center">
@@ -265,15 +293,21 @@ The following table describes its structure and specifies which fields are requi
     </tr>
     <tr>
         <td><sub><i>customer</i></sub></td>
-        <td colspan=2><sub><b>CustomerInfo</b></sub></td>
+        <td colspan=2><sub><b>Customer</b></sub></td>
         <td colspan=2><sub><i>true</i></sub></td>
-        <td align="left"><sub>Customer information. For more details on how to create the customer, please refer to <b>CustomerInfo</b> class reference.</sub></td>
+        <td align="left"><sub>Customer information. For more details on how to create the customer, please refer to <i>Customer</i> class reference.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>amount</i></sub></td>
+        <td><sub><b><nobr>NSDecimal</nobr></b></sub></td><td><sub><b><nobr>Decimal</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Payment/Authorization amount.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
     </tr>
     <tr>
         <td><sub><i>items</i></sub></td>
         <td><sub><b><nobr>NSArray&lt;PaymentItem *&gt;</nobr></b></sub></td><td><sub><b><nobr>[PaymentItem]</nobr></b></sub></td>
-        <td colspan=2><sub><i>true</i></sub></td>
-        <td align="left"><sub>List of items to pay for.</sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>List of items to pay for.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
     </tr>
     <tr>
         <td><sub><i>mode</i></sub></td>
@@ -285,13 +319,13 @@ The following table describes its structure and specifies which fields are requi
         <td><sub><i>taxes</i></sub></td>
         <td><sub><b><nobr>NSArray&lt;Tax *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Tax]</nobr></b></sub></td>
         <td colspan=2><sub><i>false</i></sub></td>
-        <td align="left"><sub>You can specify taxation details here. By default, there are no taxes.<br> <b>Note:</b> specifying taxes will affect total payment/authorization amount.</sub></td>
+        <td align="left"><sub>You can specify taxation details here. By default, there are no taxes.<br> <b>Note:</b> Specifying taxes will affect total payment/authorization amount.</sub></td>
     </tr>
     <tr>
         <td><sub><i>shipping</i></sub></td>
         <td><sub><b><nobr>NSArray&lt;Shipping *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Shipping]</nobr></b></sub></td>
         <td colspan=2><sub><i>false</i></sub></td>
-        <td align="left"><sub>You can specify shipping details here. By default, there are no shipping details.<br> <b>Note:</b> specifying shipping will affect total payment/authorization amount.</sub></td>
+        <td align="left"><sub>You can specify shipping details here. By default, there are no shipping details.<br> <b>Note:</b> Specifying shipping will affect total payment/authorization amount.</sub></td>
     </tr>
     <tr>
         <td><sub><i>postURL</i></sub></td>
@@ -343,6 +377,455 @@ The following table describes its structure and specifies which fields are requi
     </tr>
 </table>
 
+<a name="payment_data_source_samples"></a>
+### Samples
+---
+
+#### Currency
+-
+
+**Objective-C**
+
+```objective-c
+- (Currency *)currency {
+    
+    return [Currency withISOCode:@"KWD"];
+}
+```
+
+**Swift**
+
+```swift
+var currency: Currency? {
+        
+    return .with(isoCode: "KWD")
+}
+```
+
+#### Customer
+-
+
+**Objective-C**
+
+```objective-c
+- (Customer *)customer {
+    
+    if ( customerIDIsKnown ) {
+        
+        return [self identifiedCustomer];
+    }
+    else {
+        
+        return [self newCustomer];
+    }
+}
+
+/// Creating a customer with known identifier received from Tap before.
+- (Customer *)identifiedCustomer {
+    
+    return [[Customer alloc] initWithIdentifier:@"cus_tomer_id"];
+}
+
+/// Creating a customer with raw information.
+- (Customer *)newCustomer {
+    
+    EmailAddress *email = [EmailAddress withEmailAddressString:@"customer@mail.com"];
+    PhoneNumber *phoneNumber = [[PhoneNumber alloc] initWithISDNumber:@"965" phoneNumber:@"96512345"];
+    
+    Customer *newCustomer = [[Customer alloc] initWithEmailAddress:email
+                                                       phoneNumber:phoneNumber
+                                                         firstName:@"Steve"
+                                                        middleName:nil
+                                                          lastName:@"Jobs"];
+    
+    return newCustomer;
+}
+```
+
+**Swift**
+
+```swift
+var customer: Customer? {
+        
+    if customerIDIsKnown {
+            
+        return self.identifiedCustomer
+    }
+    else {
+            
+        return self.newCustomer
+    }
+}
+
+/// Creating a customer with known identifier received from Tap before.
+var identifiedCustomer: Customer? {
+        
+    return try? Customer(identifier: "cus_to_mer")
+}
+
+/// Creating a customer with raw information. 
+var newCustomer: Customer? {
+        
+    let emailAddress = try! EmailAddress(emailAddressString: "customer@mail.com")
+    let phoneNumber = try! PhoneNumber(isdNumber: "965", phoneNumber: "96512345")
+        
+    return try? Customer(emailAddress:  emailAddress,
+                         phoneNumber:   phoneNumber,
+                         firstName:     "Steve",
+                         middleName:    nil,
+                         lastName:      "Jobs")
+}
+```
+#### Amount
+-
+
+**Objective-C**
+
+```objective-c
+- (NSDecimal)amount {
+    
+    return [NSDecimalNumber one].decimalValue;
+}
+```
+
+**Swift**
+
+```swift
+var amount: Decimal {
+        
+    return 1.0
+}
+```
+
+#### Items
+-
+
+**Objective-C**
+
+```objective-c
+- (NSArray<PaymentItem *> *)items {
+    
+    Quantity *oneUnit = [[Quantity alloc] initWithValue:[NSDecimalNumber one].decimalValue
+                                      unitOfMeasurement:[Measurement units]];
+    NSDecimal ten = [[NSDecimalNumber one] decimalNumberByMultiplyingByPowerOf10:1].decimalValue;
+    
+    PaymentItem *firstItem = [[PaymentItem alloc] initWithTitle:@"Test item #1"
+                                                       quantity:oneUnit
+                                                  amountPerUnit:ten];
+    
+    
+    NSDecimal oneHundred = [[NSDecimalNumber one] decimalNumberByMultiplyingByPowerOf10:2].decimalValue;
+    Quantity *oneHundredSquareMeters = [[Quantity alloc] initWithValue:oneHundred unitOfMeasurement:[Measurement area:SquareMeters]];
+    
+    NSDecimal seventeen = [NSDecimalNumber numberWithDouble:17.0].decimalValue;
+    
+    AmountModificator *tenPercents = [[AmountModificator alloc] initWithPercents:ten];
+    
+    NSDecimal oneThousand = [[NSDecimalNumber one] decimalNumberByMultiplyingByPowerOf10:3].decimalValue;
+    
+    AmountModificator *thousandMoney = [[AmountModificator alloc] initWithFixedAmount:oneThousand];
+    Tax *thousandKD = [[Tax alloc] initWithTitle:@"KD 1,000.000" descriptionText:@"This is an example of a tax." amount:thousandMoney];
+    
+    PaymentItem *secondItem = [[PaymentItem alloc] initWithTitle:@"Test item #2"
+                                                 descriptionText:@"Test item #2 awesome description"
+                                                        quantity:oneHundredSquareMeters
+                                                   amountPerUnit:seventeen
+                                                        discount:tenPercents
+                                                           taxes:@[thousandKD]];
+    
+    return @[firstItem, secondItem];
+}
+```
+
+**Swift**
+
+```swift
+var items: [PaymentItem]? {
+        
+    let oneUnit = Quantity(value: 1, unitOfMeasurement: .units)
+    let firstItem = PaymentItem(title:          "Test item #1",
+                                quantity:       oneUnit,
+                                amountPerUnit:  10)
+        
+    let oneHundredSquareMeters = Quantity(value:                100,
+                                          unitOfMeasurement:    .area(.squareMeters))
+    let tenPercents = AmountModificator(percents: 10)
+    let thousandMoney = AmountModificator(fixedAmount: 1000)
+    let thousandKD = Tax(title:             "KD 1,000.000",
+                         descriptionText:   "This is an example of a tax.",
+                         amount: thousandMoney)
+        
+    let secondItem = PaymentItem(title:             "Test item #2",
+                                 descriptionText:   "Test item #2 awesome description.",
+                                 quantity:          oneHundredSquareMeters,
+                                 amountPerUnit:     17,
+                                 discount:          tenPercents,
+                                 taxes:             [thousandKD])
+        
+    return [firstItem, secondItem]
+}
+```
+
+#### Mode
+-
+
+**Objective-C**
+
+```objective-c
+- (enum TransactionMode)mode {
+    
+    return Purchase;
+}
+```
+
+**Swift**
+
+```swift
+var mode: TransactionMode {
+        
+    return .purchase
+}
+```
+
+#### Taxes
+-
+
+**Objective-C**
+
+```objective-c
+- (NSArray<Tax *> *)taxes {
+    
+    NSDecimal fifteen = [NSDecimalNumber numberWithDouble:15.0].decimalValue;
+    AmountModificator *fifteenPercents = [[AmountModificator alloc] initWithPercents:fifteen];
+    
+    Tax *fifteenPercentsTax = [[Tax alloc] initWithTitle:@"15 percents"
+                                         descriptionText:@"Just another fifteen percents."
+                                                  amount:fifteenPercents];
+    
+    return @[fifteenPercentsTax];
+}
+```
+
+**Swift**
+
+```swift
+var taxes: [Tax]? {
+        
+    let fifteenPercents = AmountModificator(percents: 15)
+    
+    let fifteenPercentsTax = Tax(title:             "15 percents",
+                                 descriptionText:   "Just another fifteen percents",
+                                 amount:            fifteenPercents)
+        
+    return [fifteenPercentsTax]
+}
+```
+
+#### Shipping
+-
+
+**Objective-C**
+
+```objective-c
+- (NSArray<Shipping *> *)shipping {
+    
+    NSDecimal fiveHundred = [NSDecimalNumber numberWithDouble:500.0].decimalValue;
+    Shipping *deliveryToHome = [[Shipping alloc] initWithName:@"Delivery"
+                                              descriptionText:@"Delivery to Home"
+                                                       amount:fiveHundred];
+    
+    return @[deliveryToHome];
+}
+```
+
+**Swift**
+
+```swift
+var shipping: [Shipping]? {
+        
+    let deliveryToHome = Shipping(name:             "Delivery",
+                                  descriptionText:  "Delivery to Home",
+                                  amount:           500)
+    return [deliveryToHome]
+}
+```
+
+#### Post URL
+-
+
+**Objective-C**
+
+```objective-c
+- (NSURL *)postURL {
+    
+    return [NSURL URLWithString:@"https://tap.company/post"];
+}
+```
+
+**Swift**
+
+```swift
+var postURL: URL? {
+        
+    return URL(string: "https://tap.company/post")
+}
+```
+
+#### Payment Description
+-
+
+**Objective-C**
+
+```objective-c
+- (NSString *)paymentDescription {
+    
+    return @"Awesome payment description will be here.";
+}
+```
+
+**Swift**
+
+```swift
+var paymentDescription: String? {
+        
+    return "Awesome payment description will be here.";
+}
+```
+
+#### Payment Metadata
+-
+
+**Objective-C**
+
+```objective-c
+- (NSDictionary<NSString *,NSString *> *)paymentMetadata {
+    
+    return @{@"note": @"some note",
+             @"internal_linking_id": @"id3424141414"};
+}
+```
+
+**Swift**
+
+```swift
+var paymentMetadata: [String : String]? {
+        
+    return [
+        
+        "note": "some note",
+        "internal_linking_id": "id3424141414"
+    ]
+}
+```
+
+#### Payment Reference
+-
+
+**Objective-C**
+
+```objective-c
+- (Reference *)paymentReference {
+    
+    return [[Reference alloc] initWithTransactionNumber:@"tr_2352358020f"
+                                            orderNumber:@"ord_2352094823"];
+}
+```
+
+**Swift**
+
+```swift
+var paymentReference: Reference? {
+        
+    return Reference(transactionNumber: "tr_2352358020f",
+                     orderNumber:       "ord_2352094823")
+}
+```
+
+#### Payment Statement Descriptor
+-
+
+**Objective-C**
+
+```objective-c
+- (NSString *)paymentStatementDescriptor {
+    
+    return @"Payment statement descriptor will be here";
+}
+```
+
+**Swift**
+
+```swift
+var paymentStatementDescriptor: String? {
+        
+    return "Payment statement descriptor will be here"
+}
+```
+
+#### Require 3D Secure
+-
+
+**Objective-C**
+
+```objective-c
+- (BOOL)require3DSecure {
+    
+    return YES;
+}
+```
+
+**Swift**
+
+```swift
+var require3DSecure: Bool {
+        
+    return true
+}
+```
+
+#### Receipt Settings
+-
+
+**Objective-C**
+
+```objective-c
+- (Receipt *)receiptSettings {
+    
+    return [[Receipt alloc] initWithEmail:YES sms:YES];
+}
+```
+
+**Swift**
+
+```swift
+var receiptSettings: Receipt? {
+        
+    return Receipt(email: true, sms: true)
+}
+```
+
+#### Authorize Action
+-
+
+**Objective-C**
+
+```objective-c
+- (AuthorizeAction *)authorizeAction {
+    
+    AuthorizeAction *captureAfterTwoHours = [AuthorizeAction captureAfterTimeInHours:2];
+    return captureAfterTwoHours;
+}
+```
+
+**Swift**
+
+```swift
+var authorizeAction: AuthorizeAction {
+        
+    return .capture(after: 2)
+}
+```
+
 <a name="payment_delegate"></a>
 ## Payment Delegate
 
@@ -352,6 +835,7 @@ Below are listed down all available callbacks:
 
 <a name="payment_success_callback"></a>
 ### Payment Success Callback
+-
 
 Notifies the receiver that payment has succeed.
 
@@ -377,6 +861,7 @@ func paymentSucceed(_ charge: Charge, payButton: PayButtonProtocol)
 
 <a name="authorization_success_callback"></a>
 ### Authorization Success Callback
+-
 
 Notifies the receiver that authorization has succeed.
 
@@ -402,6 +887,7 @@ func authorizationSucceed(_ authorize: Authorize, payButton: PayButtonProtocol)
 
 <a name="payment_failure_callback"></a>
 ### Payment Failure Callback
+-
 
 Notifies the receiver that payment has failed.
 
@@ -430,6 +916,7 @@ You may assume that at least one, `charge` or `error` is not `nil`.
 
 <a name="authorization_failure_callback"></a>
 ### Authorization Failure Callback
+-
 
 Notifies the receiver that authorization has failed.
 
@@ -458,6 +945,7 @@ You may assume that at least one, `authorize` or `error` is not `nil`.
 
 <a name="payment_cancel_callback"></a>
 ### Payment/Authorization Cancel Callback
+-
 
 Notifies the receiver that payment/authorization was cancelled by user.
 
