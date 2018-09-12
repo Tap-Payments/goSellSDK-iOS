@@ -12,7 +12,8 @@ iOS SDK to use [goSell API][1].
 A library that fully covers payment process inside your iOS application.
 
 # Table of Contents 
---
+---
+
 1. [Requirements](#requirements)
 2. [Installation](#installation)
     1. [Installation with CocoaPods](#installation_with_cocoapods)
@@ -382,7 +383,6 @@ The following table describes its structure and specifies which fields are requi
 ---
 
 #### Currency
---
 
 **Objective-C**
 
