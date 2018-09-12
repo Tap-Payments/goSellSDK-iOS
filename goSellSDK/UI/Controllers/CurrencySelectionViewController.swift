@@ -6,6 +6,7 @@
 //
 
 import struct   TapAdditionsKit.TypeAlias
+import func     TapSwiftFixes.performOnMainThread
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIImageView.UIImageView
 import class    UIKit.UILabel.UILabel
@@ -102,8 +103,16 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
     
     @objc private func doneButtonTouchUpInside(_ sender: Any) {
         
-        self.notifyDelegateIfCurrencyChanged()
-        self.pop()
+        self.notifyDelegateIfCurrencyChangedAndPop()
+    }
+    
+    @objc private func notifyDelegateIfCurrencyChangedAndPop() {
+        
+        performOnMainThread {
+            
+            self.notifyDelegateIfCurrencyChanged()
+            self.pop()
+        }
     }
 }
 
@@ -139,6 +148,11 @@ extension CurrencySelectionViewController: UITableViewDelegate {
         
         let model = self.model(at: indexPath)
         self.dataManager?.selectViewModel(model)
+        
+        let selector = #selector(notifyDelegateIfCurrencyChangedAndPop)
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: selector, object: nil)
+        self.perform(selector, with: nil, afterDelay: 0.5)
     }
 }
 
