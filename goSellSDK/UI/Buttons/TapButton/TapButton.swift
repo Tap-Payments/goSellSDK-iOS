@@ -143,6 +143,7 @@ internal class TapButton: TapNibView {
         
         let enabled = self.isEnabled && !self.forceDisabled
         self.internalButton?.isEnabled = enabled
+        self.securityButton?.isUserInteractionEnabled = enabled
         self.updateTheme(animated: animated)
     }
     

@@ -34,6 +34,12 @@ internal extension PayButtonInternalImplementation {
     
     internal func calculateDisplayedAmount() {
         
+        guard PaymentDataManager.shared.canStart(with: self), let currency = self.dataSource?.currency else {
+            
+            self.uiElement?.amount = nil
+            return
+        }
+        
         var amount: Decimal
         if let optionalItems = self.dataSource?.items, let items = optionalItems, items.count > 0 {
             
@@ -45,12 +51,6 @@ internal extension PayButtonInternalImplementation {
         else {
             
             amount = self.dataSource?.amount ?? 0.0
-        }
-        
-        guard let currency = self.dataSource?.currency, amount > 0.0 else {
-            
-            self.uiElement?.amount = nil
-            return
         }
         
         self.uiElement?.amount = AmountedCurrency(currency, amount)
