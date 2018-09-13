@@ -58,7 +58,7 @@
                 <a href="../Classes/Currency.html">Currency</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CustomerInfo.html">CustomerInfo</a>
+                <a href="../Classes/Customer.html">Customer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/EmailAddress.html">EmailAddress</a>
@@ -215,6 +215,9 @@
                 <a href="../Extensions/Address.html">Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/PaymentOption.html">PaymentOption</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -306,9 +309,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)EmailAddress(im)init:error:"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)EmailAddress(im)init:error:">init(_:)</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)EmailAddress(im)initWithEmailAddressString:error:"></a>
+                    <a name="//apple_ref/swift/Method/init(emailAddressString:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)EmailAddress(im)initWithEmailAddressString:error:">init(emailAddressString:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -328,7 +331,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">emailAddressString</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -339,7 +342,7 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>value</em>
+                                <em>emailAddressString</em>
                                 </code>
                               </td>
                               <td>
@@ -350,6 +353,57 @@
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)EmailAddress(cm)withEmailAddressString:"></a>
+                    <a name="//apple_ref/swift/Method/with(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)EmailAddress(cm)withEmailAddressString:">with(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of <code>EmailAddress</code> with a given email address string.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(withEmailAddressString:)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">with</span><span class="p">(</span><span class="n">_</span> <span class="nv">emailAddressString</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EmailAddress</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>emailAddressString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Email address string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An instance of <code>EmailAddress</code> or <code>nil</code> if email address is not valid.</p>
                       </div>
                     </section>
                   </div>
@@ -606,7 +660,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

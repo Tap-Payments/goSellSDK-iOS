@@ -1,6 +1,6 @@
 PODS:
   - CardIODynamic (5.4.1)
-  - EditableTextInsetsTextField (1.0):
+  - EditableTextInsetsTextField (1.0.1):
     - TapAdditionsKit/Foundation/Locale
     - TapAdditionsKit/UIKit/UIView
   - SDWebImage/Core (4.4.2)
@@ -187,7 +187,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
-  EditableTextInsetsTextField: be73bcc31de6a83d457851deeb807c46b1cbb16e
+  EditableTextInsetsTextField: ca2fe36b38625624e25edf792c687cfc0c48f9eb
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   TapAdditionsKit: d2261c78de40bdf59c796cbb6f217ac09f7560d5
   TapApplication: 3ba1ef06b929427582e6b750c1060c66b973ce22

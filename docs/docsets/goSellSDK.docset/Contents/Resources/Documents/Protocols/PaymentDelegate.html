@@ -58,7 +58,7 @@
                 <a href="../Classes/Currency.html">Currency</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CustomerInfo.html">CustomerInfo</a>
+                <a href="../Classes/Customer.html">Customer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/EmailAddress.html">EmailAddress</a>
@@ -215,6 +215,9 @@
                 <a href="../Extensions/Address.html">Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/PaymentOption.html">PaymentOption</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -261,9 +264,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentSuccess:"></a>
-                    <a name="//apple_ref/swift/Method/paymentSuccess(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentSuccess:">paymentSuccess(_:)</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentSucceed:payButton:"></a>
+                    <a name="//apple_ref/swift/Method/paymentSucceed(_:payButton:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentSucceed:payButton:">paymentSucceed(_:payButton:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -271,7 +274,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Notifies the receiver that payment has succeed, passing <code>charge</code> as an argument.</p>
+                        <p>Notifies the receiver that payment has succeed, passing <code>charge</code> and <code>payButton</code> which has initiated payment as arguments.</p>
 
                       </div>
                       <div class="declaration">
@@ -279,7 +282,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">paymentSuccess</span><span class="p">(</span><span class="n">_</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt"><a href="../Classes/Charge.html">Charge</a></span><span class="p">)</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">paymentSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt"><a href="../Classes/Charge.html">Charge</a></span><span class="p">,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -299,6 +302,18 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>payButton</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pay button which has initiated the payment.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -308,9 +323,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)authorizeSuccess:"></a>
-                    <a name="//apple_ref/swift/Method/authorizeSuccess(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)authorizeSuccess:">authorizeSuccess(_:)</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)authorizationSucceed:payButton:"></a>
+                    <a name="//apple_ref/swift/Method/authorizationSucceed(_:payButton:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)authorizationSucceed:payButton:">authorizationSucceed(_:payButton:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -318,7 +333,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Notifies the receiver that authorization has succeed, passing <code>authorize</code> as an argument.</p>
+                        <p>Notifies the receiver that authorization has succeed, passing <code>authorize</code> and <code>payButton</code> which has initiated authorization as arguments.</p>
 
                       </div>
                       <div class="declaration">
@@ -326,7 +341,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">authorizeSuccess</span><span class="p">(</span><span class="n">_</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt"><a href="../Classes/Authorize.html">Authorize</a></span><span class="p">)</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">authorizationSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt"><a href="../Classes/Authorize.html">Authorize</a></span><span class="p">,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -346,6 +361,18 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>payButton</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pay button which has initiated the authorization.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -355,9 +382,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentFailure"></a>
-                    <a name="//apple_ref/swift/Method/paymentFailure()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentFailure">paymentFailure()</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentFailedWith:error:payButton:"></a>
+                    <a name="//apple_ref/swift/Method/paymentFailed(with:error:payButton:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentFailedWith:error:payButton:">paymentFailed(with:error:payButton:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -365,16 +392,60 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Notifies the receiver that payment has failed.</p>
+                        <p>Notifies the receiver that charge has failed, passing <code>payButton</code> which has initiated the payment.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentFailure</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">paymentFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt"><a href="../Classes/Charge.html">Charge</a></span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/TapSDKError.html">TapSDKError</a></span><span class="p">?,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a></span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>charge</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Charge that has failed (if reached the stage of charging).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error that has occured.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>payButton</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Button which has initiated the payment.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -382,9 +453,80 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentCancel"></a>
-                    <a name="//apple_ref/swift/Method/paymentCancel()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentCancel">paymentCancel()</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)authorizationFailedWith:error:payButton:"></a>
+                    <a name="//apple_ref/swift/Method/authorizationFailed(with:error:payButton:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)authorizationFailedWith:error:payButton:">authorizationFailed(with:error:payButton:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies the receiver that authorization has failed, passing <code>payButton</code> which has initiated the authorization.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">authorizationFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt"><a href="../Classes/Authorize.html">Authorize</a></span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/TapSDKError.html">TapSDKError</a></span><span class="p">?,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authorize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Authorize object that has failed (if reached the stage of authorization).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error that has occured.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>payButton</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Button which has initiated the authorization.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentCancelled:"></a>
+                    <a name="//apple_ref/swift/Method/paymentCancelled(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate(im)paymentCancelled:">paymentCancelled(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -399,9 +541,29 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentCancel</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">paymentCancelled</span><span class="p">(</span><span class="n">_</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a></span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>payButton</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Button which has initiated the payment/authorization</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -411,7 +573,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

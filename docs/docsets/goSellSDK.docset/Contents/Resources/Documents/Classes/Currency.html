@@ -58,7 +58,7 @@
                 <a href="../Classes/Currency.html">Currency</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CustomerInfo.html">CustomerInfo</a>
+                <a href="../Classes/Customer.html">Customer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/EmailAddress.html">EmailAddress</a>
@@ -215,6 +215,9 @@
                 <a href="../Extensions/Address.html">Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/PaymentOption.html">PaymentOption</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -333,9 +336,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)Currency(im)initWithIsoCode:error:"></a>
+                    <a name="/c:@M@goSellSDK@objc(cs)Currency(im)initWithISOCode:error:"></a>
                     <a name="//apple_ref/swift/Method/init(isoCode:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Currency(im)initWithIsoCode:error:">init(isoCode:)</a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Currency(im)initWithISOCode:error:">init(isoCode:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -355,7 +358,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">isoCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc(initWithISOCode:error:)</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">isoCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -377,6 +381,109 @@
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Currency(im)initWithISOCode:"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Currency(im)initWithISOCode:">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the currench with 3-lettered ISO code.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    This method returns <code>nil</code> if ISO code is not valid.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(initWithISOCode:)</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="n">_</span> <span class="nv">isoCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isoCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>3-lettered ISO code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Currency(cm)withISOCode:"></a>
+                    <a name="//apple_ref/swift/Method/with(isoCode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Currency(cm)withISOCode:">with(isoCode:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of <code>Currency</code> with the given <code><a href="../Classes/Currency.html#/c:@M@goSellSDK@objc(cs)Currency(py)isoCode">isoCode</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(withISOCode:)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">with</span><span class="p">(</span><span class="nv">isoCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Currency</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isoCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Three-lettered currency ISO code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An instance of <code>Currency</code> or <code>nil</code> if ISO code is invalid.</p>
                       </div>
                     </section>
                   </div>
@@ -609,7 +716,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
