@@ -57,7 +57,7 @@
                 <a href="Classes/Currency.html">Currency</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/CustomerInfo.html">CustomerInfo</a>
+                <a href="Classes/Customer.html">Customer</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/EmailAddress.html">EmailAddress</a>
@@ -214,6 +214,9 @@
                 <a href="Extensions/Address.html">Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/PaymentOption.html">PaymentOption</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -251,11 +254,74 @@
 <p><a href="https://tap-payments.github.io/goSellSDK-iOS"><img src="https://img.shields.io/cocoapods/p/goSellSDK.svg?style=flat" alt="Platform"></a>
 <a href="https://travis-ci.org/Tap-Payments/goSellSDK-iOS"><img src="https://travis-ci.org/Tap-Payments/goSellSDK-iOS.svg?branch=master" alt="Build Status"></a>
 <a href="https://img.shields.io/Tap-Payments/v/goSellSDK"><img src="https://img.shields.io/cocoapods/v/goSellSDK.svg?style=flat" alt="CocoaPods Compatible"></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
 <a href="https://tap-payments.github.io/goSellSDK-iOS"><img src="https://img.shields.io/cocoapods/at/goSellSDK.svg?style=flat" alt="Applications"></a></p>
-<h1 id='install' class='heading'>Install</h1>
+
+<!---[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)-->
+
+<p>A library that fully covers payment process inside your iOS application.</p>
+<h1 id='table-of-contents' class='heading'>Table of Contents</h1>
 
 <hr>
+
+<ol>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#installation">Installation</a>
+
+<ol>
+<li><a href="#installation_with_cocoapods">Installation with CocoaPods</a></li>
+</ol></li>
+<li><a href="#setup">Setup</a>
+
+<ol>
+<li><a href="#setup_steps">Setup Steps</a></li>
+</ol></li>
+<li><a href="#usage">Usage</a>
+
+<ol>
+<li><a href="#pay_button">Pay Button</a>
+
+<ol>
+<li><a href="#pay_button_placement">Pay Button Placement</a></li>
+<li><a href="#pay_button_properties">Properties</a></li>
+<li><a href="#pay_button_methods">Methods</a></li>
+</ol></li>
+<li><a href="#payment_data_source">Payment Data Source</a>
+
+<ol>
+<li><a href="#payment_data_source_structure">Structure</a></li>
+<li><a href="#payment_data_source_samples">Samples</a></li>
+</ol></li>
+<li><a href="#payment_delegate">Payment Delegate</a>
+
+<ol>
+<li><a href="#payment_success_callback">Payment Success Callback</a></li>
+<li><a href="#authorization_success_callback">Authorization Success Callback</a></li>
+<li><a href="#payment_failure_callback">Payment Failure Callback</a></li>
+<li><a href="#authorization_failure_callback">Authorization Failure Callback</a></li>
+<li><a href="#payment_cancel_callback">Payment/Authorization Cancel Callback</a></li>
+</ol></li>
+</ol></li>
+</ol>
+
+<p><a name="requirements"></a></p>
+<h1 id='requirements' class='heading'>Requirements</h1>
+
+<hr>
+
+<p>To use the SDK the following requirements must be met:</p>
+
+<ol>
+<li><strong>Xcode 9.1</strong> or newer</li>
+<li><strong>Swift 4.1</strong> or newer (preinstalled with Xcode)<br></li>
+<li>Base SDK for the target app: <strong>iOS 8.0</strong> or later</li>
+</ol>
+
+<p><a name="installation"></a></p>
+<h1 id='installation' class='heading'>Installation</h1>
+
+<hr>
+
+<p><a name="installation_with_cocoapods"></a></p>
 <h2 id='installation-with-cocoapods' class='heading'>Installation with CocoaPods</h2>
 
 <p><a href="http://cocoapods.org">CocoaPods</a> is a dependency manager, which automates and simplifies the process of using 3rd-party libraries in your projects.<br>You can install it with the following command:</p>
@@ -279,229 +345,859 @@
 <p>Then, run the following command:</p>
 <pre class="highlight shell"><code><span class="nv">$ </span>pod update
 </code></pre>
-<h2 id='installation-with-carthage' class='heading'>Installation with Carthage</h2>
 
-<p><a href="https://github.com/Carthage/Carthage">Carthage</a> is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.</p>
+<!---
+## Installation with Carthage
 
-<p>You can install Carthage with <a href="http://brew.sh/">Homebrew</a> using the following command:</p>
-<pre class="highlight shell"><code><span class="nv">$ </span>brew update
-<span class="nv">$ </span>brew <span class="nb">install </span>carthage
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate goSellSDK into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "Tap-Payments/goSellSDK-iOS"
+```
+
+Run `carthage` to build the framework and drag the built `goSellSDK.framework` into your Xcode project.
+-->
+
+<p><a name="setup"></a></p>
+<h1 id='setup' class='heading'>Setup</h1>
+
+<hr>
+
+<p>First of all, <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> should be set up. To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of <code><a href="Classes/goSellSDK.html">goSellSDK</a></code>, otherwise an exception will be thrown.</p>
+
+<p><em>Swift</em>:</p>
+<pre class="highlight swift"><code><span class="n">goSellSDK</span><span class="o">.</span><span class="n">secretKey</span> <span class="o">=</span> <span class="s">"YOUR_SECRET_KEY"</span> <span class="c1">// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")</span>
 </code></pre>
 
-<p>To integrate goSellSDK into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
-<pre class="highlight plaintext"><code>github "Tap-Payments/goSellSDK-iOS"
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>[goSellSDK setSecretKey:@"YOUR_SECRET_KEY"]; // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+
 </code></pre>
 
-<p>Run <code>carthage</code> to build the framework and drag the built <code>goSellSDK.framework</code> into your Xcode project.</p>
+<p>or</p>
+<pre class="highlight plaintext"><code>goSellSDK.secretKey = @"YOUR_SECRET_KEY"; // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+</code></pre>
+
+<p>Don&rsquo;t forget to import the framework at the beginning of the file:</p>
+
+<p><em>Swift</em>:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="n">goSellSDK</span>
+</code></pre>
+
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>@import goSellSDK;
+</code></pre>
+
+<p>or</p>
+<pre class="highlight plaintext"><code>#import &lt;goSellSDK/goSellSDK-Swift.h&gt;
+</code></pre>
+
+<p><a name="setup_steps"></a></p>
+<h2 id='setup-steps' class='heading'>Setup Steps</h2>
+
+<ol>
+<li>Place <em>PayButton</em>.</li>
+<li>Assign its <em>datasource</em> and <em>delegate</em>.</li>
+<li>Implement <em>datasource</em> and <em>delegate</em>.</li>
+</ol>
+
+<p><a name="usage"></a></p>
 <h1 id='usage' class='heading'>Usage</h1>
 
 <hr>
-<h2 id='setup' class='heading'>Setup</h2>
 
-<p>First of all, <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> should be set up. To set it up, add the following lines of code somewhere in your project and make sure they will be called before any usage of <code><a href="Classes/goSellSDK.html">goSellSDK</a></code>.</p>
+<p>After <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> is set up, you can actually use the SDK.<br>
+We have tried to make the SDK integration as simple as possible, requiring the minimum from you.</p>
+
+<p><strong>goSellSDK</strong> works in 2 modes:</p>
+
+<ol>
+<li><em>Purchase</em>: Default mode. Normal customer charge.</li>
+<li><em>Authorize</em>: Only authorization is happening. You should specify an action after successful authorization: either capture the amount or void the charge after specific period of time.</li>
+</ol>
+
+<p>The mode is set through <strong>PaymentDataSource</strong> interface.</p>
+
+<p><a name="pay_button"></a></p>
+<h2 id='pay-button' class='heading'>Pay Button</h2>
+
+<p>Here at Tap, we have designed our custom Pay button and all you need to do is just to put it somewhere on the screen and provide at least required payment details through its <code>dataSource</code> property.</p>
+
+<p><a name="pay_button_placement"></a></p>
+<h3 id='pay-button-placement' class='heading'>Pay Button Placement</h3>
+
+<p>Pay Button is restricted to the height of exactly <strong>44 points</strong>. For better experience, make sure that it has enough <strong>width</strong> to display the content.</p>
+<h4 id='xib-storyboard' class='heading'>XIB/Storyboard</h4>
+
+<p>You can add Pay button on your view in XIB/Storyboard file.
+To do that, do the following:</p>
+
+<ol>
+<li>Drag &amp; drop an instance of <code>UIView</code> at the desired location.</li>
+<li>Select added view and open <strong>Identity Inspector</strong></li>
+<li>Enter the following values:
+
+<ol>
+<li>Class: <strong>PayButton</strong></li>
+<li>Module: <strong>goSellSDK</strong></li>
+</ol></li>
+<li>For your convenience, you may also connect <code>dataSource</code> and <code>delegate</code> outlets.</li>
+</ol>
+<h4 id='code' class='heading'>Code</h4>
+
+<p>You can also add Pay button with the code:</p>
 
 <p><em>Swift</em>:</p>
-<pre class="highlight swift"><code><span class="kd">import</span> <span class="n">goSellSDK</span> <span class="c1">// import goSellSDK framework</span>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="n">goSellSDK</span>
+<span class="o">...</span>
+<span class="kd">func</span> <span class="nf">addPayButton</span><span class="p">()</span> <span class="p">{</span>
 
-<span class="kd">func</span> <span class="nf">setupGoSellSDK</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">buttonFrame</span> <span class="o">=</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">UIScreen</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="mf">52.0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">UIScreen</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="mf">16.0</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mf">44.0</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">button</span> <span class="o">=</span> <span class="kt">PayButton</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="n">buttonFrame</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">button</span><span class="p">)</span> <span class="c1">// or where you want it</span>
 
-    <span class="n">goSellSDK</span><span class="o">.</span><span class="n">authenticationKey</span> <span class="o">=</span> <span class="s">"YOUR_AUTHENTICATION_KEY"</span> <span class="c1">// Authentication key</span>
-    <span class="n">goSellSDK</span><span class="o">.</span><span class="n">encryptionKey</span> <span class="o">=</span> <span class="s">"YOUR_ENCRYPTION_KEY"</span>         <span class="c1">// Encryption key</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">dataSource</span> <span class="o">=</span> <span class="k">self</span> <span class="c1">// or whatever</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span> <span class="c1">// or whatever</span>
 <span class="p">}</span>
 </code></pre>
 
 <p><em>Objective-C</em>:</p>
 <pre class="highlight plaintext"><code>@import goSellSDK;
-// or
-#import &lt;goSellSDK/goSellSDK-Swift.h&gt;
+...
+- (void)addPayButton {
 
-- (void)setupGoSellSDK {
+    CGRect buttonFrame = CGRectMake(8.0, UIScreen.mainScreen.bounds.size.height - 52.0, UIScreen.mainScreen.bounds.size.width - 16.0, 44.0);
+    PayButton *button = [[PayButton alloc] initWithFrame:buttonFrame];
+    [self.view addSubview:button]; // or where you want it
 
-    [goSellSDK setAuthenticationKey:@"YOUR_AUTHENTICATION_KEY"]; // Authentication key
-    [goSellSDK setEncryptionKey:@"YOUR_ENCRYPTION_KEY"];         // Encryption key
+    button.dataSource = self; // or whatever
+    button.delegate = self; // or whatever
 }
 
 </code></pre>
-<h2 id='api-calls' class='heading'>API calls</h2>
 
-<p>After <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> is set up, you can start calling the APIs.<br>The SDK is designed in a way that each of the sections has its own API manager.</p>
+<p><a name="pay_button_properties"></a></p>
+<h3 id='properties' class='heading'>Properties</h3>
 
-<p>Currently the following sections are available:</p>
-<h3 id='tokens' class='heading'>Tokens</h3>
+<p>Below is the list of Pay button properties</p>
 
-<p>Tokens are used in charges. The interact with the Tokens APIs, please refer to the <code>TokenClient</code> class inside the SDK.</p>
+<table style="text-align:center">
+    <th colspan=2>Property</th>
+    <th colspan=2>Type</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+         <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>enabled</i></sub></td><td><sub><i>isEnabled</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td align="justify"><sub>Defines whether the button is enabled.<br>Perhaps you will need it for your internal logic.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>dataSource</i></sub></td>
+        <td><sub><b>id&lt;PaymentDataSource&gt;</b></sub></td><td><sub><b>PaymentDataSource</b></sub></td>
+        <td align="justify"><sub>Pay button data source. All input payment information is passed through this protocol. Required.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>delegate</i></sub></td>
+        <td><sub><b>id&lt;PaymentDelegate&gt;</b></sub></td><td><sub><b>PaymentDelegate</b></sub></td>
+        <td align="justify"><sub>Pay button delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
+    </tr>
+</table>
 
-<p>Example of <strong>token</strong> creation:</p>
+<p><a name ="pay_button_methods"></a></p>
+<h3 id='methods' class='heading'>Methods</h3>
 
-<p><em>Swift</em>:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exampleCreateToken</span><span class="p">()</span> <span class="p">{</span>
+<table style="text-align:center">
+    <th colspan=2>Method</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub><nobr>Objective-C</nobr></sub></th><th><sub>Swift</sub></th>
+    </tr>
+    <tr>
+        <td><sub><nobr>- (void)updateDisplayedAmount</nobr></sub></td><td><sub><nobr>func updateDisplayedAmount()</nobr></sub></td>
+        <td align="justify"><sub>Call this method to update displayed amount on the button.<br><b>Note:</b> If amount is non positive then pay button is force disabled.</sub></td>
+    </tr>
+</table>
 
-    <span class="k">let</span> <span class="nv">fullCard</span> <span class="o">=</span> <span class="kt">CreateTokenCard</span><span class="p">(</span><span class="nv">number</span><span class="p">:</span> <span class="s">"4111111111111111"</span><span class="p">,</span>
-                                   <span class="nv">expirationMonth</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-                                   <span class="nv">expirationYear</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-                                   <span class="nv">cvc</span><span class="p">:</span> <span class="s">"123"</span><span class="p">,</span>
-                                   <span class="nv">name</span><span class="p">:</span> <span class="s">"Testing VISA card"</span><span class="p">,</span>
-                                   <span class="nv">city</span><span class="p">:</span> <span class="s">"Some city"</span><span class="p">,</span>
-                                   <span class="nv">country</span><span class="p">:</span> <span class="s">"Some country"</span><span class="p">,</span>
-                                   <span class="nv">addressLine1</span><span class="p">:</span> <span class="s">"First line"</span><span class="p">,</span>
-                                   <span class="nv">addressLine2</span><span class="p">:</span> <span class="s">"Second line"</span><span class="p">,</span>
-                                   <span class="nv">addressState</span><span class="p">:</span> <span class="s">"Royal State"</span><span class="p">,</span>                                    
-                                   <span class="nv">addressZip</span><span class="p">:</span> <span class="mo">007</span><span class="p">)</span>
+<p><a name="payment_data_source"></a></p>
+<h2 id='payment-data-source' class='heading'>Payment Data Source</h2>
 
-    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">CreateTokenRequest</span><span class="p">(</span><span class="nv">card</span><span class="p">:</span> <span class="n">fullCard</span><span class="p">)</span>
+<p><strong>PaymentDataSource</strong> is an interface which you should implement somewhere in your code to pass payment information to an instance of Pay button in order to be able to access payment flow within the SDK.</p>
 
-    <span class="kt">TokenClient</span><span class="o">.</span><span class="nf">createToken</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+<p><a name="payment_data_source_structure"></a></p>
+<h3 id='strucure' class='heading'>Strucure</h3>
 
-        <span class="k">if</span> <span class="k">let</span> <span class="nv">_</span> <span class="o">=</span> <span class="n">token</span> <span class="p">{</span>
+<p>The following table describes its structure and specifies which fields are required for each of the modes.</p>
 
-            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Successfully created token."</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
+<table style="text-align:center">
+    <th rowspan=2>Member</th>
+    <th colspan=2>Type</th>
+    <th colspan=2>Required</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub>Objective-C</sub></th><th><sub>Swift</sub></th>
+        <th><sub>Purchase</sub></th><th><sub>Authorize</sub></th>
+    </tr>
+    <tr>
+        <td><sub><i>currency</i></sub></td>
+        <td colspan=2><sub><b>Currency</b></sub></td>
+        <td colspan=2><sub><i>true</i></sub></td>
+        <td align="left"><sub>Currency of the transaction.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>customer</i></sub></td>
+        <td colspan=2><sub><b>Customer</b></sub></td>
+        <td colspan=2><sub><i>true</i></sub></td>
+        <td align="left"><sub>Customer information. For more details on how to create the customer, please refer to <i>Customer</i> class reference.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>amount</i></sub></td>
+        <td><sub><b><nobr>NSDecimal</nobr></b></sub></td><td><sub><b><nobr>Decimal</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Payment/Authorization amount.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>items</i></sub></td>
+        <td><sub><b><nobr>NSArray&lt;PaymentItem *&gt;</nobr></b></sub></td><td><sub><b><nobr>[PaymentItem]</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>List of items to pay for.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>mode</i></sub></td>
+        <td colspan=2><sub><b>TransactionMode</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Mode of the transactions (purchase or authorize). If this property is not implemented, <i>purchase</i> mode is used.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>taxes</i></sub></td>
+        <td><sub><b><nobr>NSArray&lt;Tax *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Tax]</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>You can specify taxation details here. By default, there are no taxes.<br> <b>Note:</b> Specifying taxes will affect total payment/authorization amount.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>shipping</i></sub></td>
+        <td><sub><b><nobr>NSArray&lt;Shipping *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Shipping]</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>You can specify shipping details here. By default, there are no shipping details.<br> <b>Note:</b> Specifying shipping will affect total payment/authorization amount.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>postURL</i></sub></td>
+        <td><sub><b>NSURL</b></sub></td><td><sub><b>URL</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>The URL which will be called by Tap system notifying that payment has either succeed or failed.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>paymentDescription</i></sub></td>
+        <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Description of the payment.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>paymentMetadata</i></sub></td>
+        <td><sub><b><nobr>NSDictionary&lt;NSString *, NSString *&gt;</nobr></b></sub></td><td><sub><b><nobr>[String: String]</nobr></b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Additional information you would like to pass along with the transaction.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>paymentReference</i></sub></td>
+        <td colspan=2><sub><b>Reference</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>You can keep a reference to the transaction using this property.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>paymentStatementDescriptor</i></sub></td>
+        <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Statement descriptor.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>require3DSecure</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines if 3D secure check is required. If not implemented, treated as <i>true</i>.<br><b>Note:</b> If you disable 3D secure check, it still may occure. Final decision is taken by Tap.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>receiptSettings</i></sub></td>
+        <td colspan=2><sub><b>Receipt</b></sub></td>
+        <td colspan=2><sub><i>false</i></sub></td>
+        <td align="left"><sub>Receipt recipient details.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>authorizeAction</i></sub></td>
+        <td colspan=2><sub><b>AuthorizeAction</b></sub></td>
+        <td><sub><i>false</i></sub></td><td><sub><i>true</i></sub></td>
+        <td align="left"><sub>Action to perform after authorization succeeds.</sub></td>
+    </tr>
+</table>
 
-            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Failed to create token with error: </span><span class="se">\(</span><span class="n">error</span><span class="o">!</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
+<p><a name="payment_data_source_samples"></a></p>
+<h3 id='samples' class='heading'>Samples</h3>
+
+<hr>
+<h4 id='currency' class='heading'>Currency</h4>
+
+<p>Tap supports processing payments in 10+ currencies, allowing you to charge customers in their native currency while receiving funds in yours. This is especially helpful if you have a global presence, as charging in a customer’s native currency can increase sales. </p>
+<h5 id='supportedcurrencies' class='heading'>SupportedCurrencies</h5>
+
+<table><thead>
+<tr>
+<th>Currency</th>
+<th>Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UAE Dirham</td>
+<td>AED</td>
+</tr>
+<tr>
+<td>Bahraini Dinar</td>
+<td>BHD</td>
+</tr>
+<tr>
+<td>Egyptian Pound</td>
+<td>EGP</td>
+</tr>
+<tr>
+<td>Euro</td>
+<td>EUR</td>
+</tr>
+<tr>
+<td>UK Pound Sterling</td>
+<td>GBP</td>
+</tr>
+<tr>
+<td>Kuwaiti Dinar</td>
+<td>KWD</td>
+</tr>
+<tr>
+<td>Omani Riyal</td>
+<td>OMR</td>
+</tr>
+<tr>
+<td>Qatari Riyal</td>
+<td>QAR</td>
+</tr>
+<tr>
+<td>Saudi Riyal</td>
+<td>SAR</td>
+</tr>
+<tr>
+<td>US Dollar</td>
+<td>USD</td>
+</tr>
+</tbody></table>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (Currency *)currency {
+
+    return [Currency withISOCode:@"KWD"];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">Currency</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">isoCode</span><span class="p">:</span> <span class="s">"KWD"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='customer' class='heading'>Customer</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (Customer *)customer {
+
+    if ( customerIDIsKnown ) {
+
+        return [self identifiedCustomer];
+    }
+    else {
+
+        return [self newCustomer];
+    }
+}
+
+/// Creating a customer with known identifier received from Tap before.
+- (Customer *)identifiedCustomer {
+
+    return [[Customer alloc] initWithIdentifier:@"cus_tomer_id"];
+}
+
+/// Creating a customer with raw information.
+- (Customer *)newCustomer {
+
+    EmailAddress *email = [EmailAddress withEmailAddressString:@"customer@mail.com"];
+    PhoneNumber *phoneNumber = [[PhoneNumber alloc] initWithISDNumber:@"965" phoneNumber:@"96512345"];
+
+    Customer *newCustomer = [[Customer alloc] initWithEmailAddress:email
+                                                       phoneNumber:phoneNumber
+                                                         firstName:@"Steve"
+                                                        middleName:nil
+                                                          lastName:@"Jobs"];
+
+    return newCustomer;
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">customer</span><span class="p">:</span> <span class="kt">Customer</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="n">customerIDIsKnown</span> <span class="p">{</span>
+
+        <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">identifiedCustomer</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+
+        <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">newCustomer</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
 
-<p><em>Objective-C</em>:</p>
-<pre class="highlight plaintext"><code>- (void)exampleCreateToken {
+<span class="c1">/// Creating a customer with known identifier received from Tap before.</span>
+<span class="k">var</span> <span class="nv">identifiedCustomer</span><span class="p">:</span> <span class="kt">Customer</span><span class="p">?</span> <span class="p">{</span>
 
-    CreateTokenCard  *fullCard = [[CreateTokenCard alloc] initWithNumber:@"4111111111111111"
-                                                         expirationMonth:10
-                                                          expirationYear:20
-                                                                     cvc:@"123"
-                                                                    name:@"Testing VISA card"
-                                                                    city:@"Some city"
-                                                                 country:@"Some country"
-                                                            addressLine1:@"First line"
-                                                            addressLine2:@"Second line"
-                                                            addressState:@"Royal State"
-                                                              addressZip:007];
-
-    CreateTokenRequest *request = [[CreateTokenRequest alloc] initWithCard:fullCard];
-
-    [TokenClient createTokenWith:request completion:^(Token * _Nullable token, TapSDKError * _Nullable error) {
-
-        if (token) {
-
-            NSLog(@"Successfully created token.");
-        }
-        else {
-
-            NSLog(@"Failed to create token with error: %@", error);
-        }
-    }];
-}
-</code></pre>
-<h3 id='charges' class='heading'>Charges</h3>
-
-<p>To interact with the Charges APIs, please refer to the <code>ChargeClient</code> class inside the SDK.</p>
-
-<p>Example of <strong>charge</strong> creation:</p>
-
-<p><em>Swift</em>:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exampleCreateCharge</span><span class="p">()</span> <span class="p">{</span>
-
-    <span class="k">let</span> <span class="nv">redirect</span> <span class="o">=</span> <span class="kt">CreateChargeRedirect</span><span class="p">(</span><span class="nv">returnURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"your_return_url"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="nv">postURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"your_post_url"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
-    <span class="k">let</span> <span class="nv">source</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">tokenIdentifier</span><span class="p">:</span> <span class="s">"tok_XXXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">)</span>
-    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">CreateChargeRequest</span><span class="p">(</span><span class="nv">amount</span><span class="p">:</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="nv">currency</span><span class="p">:</span> <span class="s">"kwd"</span><span class="p">,</span> <span class="nv">redirect</span><span class="p">:</span> <span class="n">redirect</span><span class="p">,</span> <span class="nv">source</span><span class="p">:</span> <span class="n">source</span><span class="p">)</span>
-
-    <span class="kt">ChargeClient</span><span class="o">.</span><span class="nf">createCharge</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">charge</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
-
-        <span class="k">if</span> <span class="k">let</span> <span class="nv">_</span> <span class="o">=</span> <span class="n">charge</span> <span class="p">{</span>
-
-            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Charge successfully created."</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-
-            <span class="kt">NSLog</span><span class="p">(</span><span class="s">"Failed to create charge with error: </span><span class="se">\(</span><span class="n">error</span><span class="o">!</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Customer</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="s">"cus_to_mer"</span><span class="p">)</span>
 <span class="p">}</span>
 
+<span class="c1">/// Creating a customer with raw information. </span>
+<span class="k">var</span> <span class="nv">newCustomer</span><span class="p">:</span> <span class="kt">Customer</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">emailAddress</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">EmailAddress</span><span class="p">(</span><span class="nv">emailAddressString</span><span class="p">:</span> <span class="s">"customer@mail.com"</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">phoneNumber</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">PhoneNumber</span><span class="p">(</span><span class="nv">isdNumber</span><span class="p">:</span> <span class="s">"965"</span><span class="p">,</span> <span class="nv">phoneNumber</span><span class="p">:</span> <span class="s">"96512345"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="k">try</span><span class="p">?</span> <span class="kt">Customer</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span>  <span class="n">emailAddress</span><span class="p">,</span>
+                         <span class="nv">phoneNumber</span><span class="p">:</span>   <span class="n">phoneNumber</span><span class="p">,</span>
+                         <span class="nv">firstName</span><span class="p">:</span>     <span class="s">"Steve"</span><span class="p">,</span>
+                         <span class="nv">middleName</span><span class="p">:</span>    <span class="kc">nil</span><span class="p">,</span>
+                         <span class="nv">lastName</span><span class="p">:</span>      <span class="s">"Jobs"</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
+<h4 id='amount' class='heading'>Amount</h4>
 
-<p><em>Objective-C</em>:</p>
-<pre class="highlight plaintext"><code>- (void)exampleCreateCharge {
+<p>-</p>
 
-    CreateChargeRedirect *redirect = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"]
-                                                                             postURL:[NSURL URLWithString:@"your_post_url"]];
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSDecimal)amount {
 
-    CreateChargeSource *source = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
-
-    CreateChargeRequest *request = [[CreateChargeRequest alloc] initWithAmount:[NSDecimalNumber numberWithInteger:1000].decimalValue
-                                                                      currency:@"kwd"
-                                                                      redirect:redirect
-                                                                        source:source];
-
-    [ChargeClient createChargeWith:request completion:^(Charge * _Nullable charge, TapSDKError * _Nullable error) {
-
-        if ( charge ) {
-
-            NSLog(@"Charge successfully created.");
-        }
-        else {
-
-            NSLog(@"Failed to create charge with error: %@", error);
-        }
-    }];
+    return [NSDecimalNumber one].decimalValue;
 }
 </code></pre>
 
-<p>Example of <strong>source</strong> creation:</p>
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Decimal</span> <span class="p">{</span>
 
-<p><em>Swift</em>:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exampleCreateSource</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mf">1.0</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='items' class='heading'>Items</h4>
 
-    <span class="c1">// with token identifier</span>
-    <span class="k">let</span> <span class="nv">tokenSource</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">tokenIdentifier</span><span class="p">:</span> <span class="s">"tok_XXXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">)</span>
+<p>-</p>
 
-    <span class="c1">// static source</span>
-    <span class="k">let</span> <span class="nv">staticKNETSource</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">staticIdentifier</span><span class="p">:</span> <span class="o">.</span><span class="kt">KNET</span><span class="p">)</span>
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSArray&lt;PaymentItem *&gt; *)items {
 
-    <span class="c1">// with plain card data</span>
-    <span class="k">let</span> <span class="nv">plainSource</span> <span class="o">=</span> <span class="kt">CreateChargeSource</span><span class="p">(</span><span class="nv">cardNumber</span><span class="p">:</span> <span class="s">"4111111111111111"</span><span class="p">,</span> <span class="nv">expirationMonth</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">expirationYear</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">cvc</span><span class="p">:</span> <span class="s">"123"</span><span class="p">)</span>
+    Quantity *oneUnit = [[Quantity alloc] initWithValue:[NSDecimalNumber one].decimalValue
+                                      unitOfMeasurement:[Measurement units]];
+    NSDecimal ten = [[NSDecimalNumber one] decimalNumberByMultiplyingByPowerOf10:1].decimalValue;
+
+    PaymentItem *firstItem = [[PaymentItem alloc] initWithTitle:@"Test item #1"
+                                                       quantity:oneUnit
+                                                  amountPerUnit:ten];
+
+
+    NSDecimal oneHundred = [[NSDecimalNumber one] decimalNumberByMultiplyingByPowerOf10:2].decimalValue;
+    Quantity *oneHundredSquareMeters = [[Quantity alloc] initWithValue:oneHundred unitOfMeasurement:[Measurement area:SquareMeters]];
+
+    NSDecimal seventeen = [NSDecimalNumber numberWithDouble:17.0].decimalValue;
+
+    AmountModificator *tenPercents = [[AmountModificator alloc] initWithPercents:ten];
+
+    NSDecimal oneThousand = [[NSDecimalNumber one] decimalNumberByMultiplyingByPowerOf10:3].decimalValue;
+
+    AmountModificator *thousandMoney = [[AmountModificator alloc] initWithFixedAmount:oneThousand];
+    Tax *thousandKD = [[Tax alloc] initWithTitle:@"KD 1,000.000" descriptionText:@"This is an example of a tax." amount:thousandMoney];
+
+    PaymentItem *secondItem = [[PaymentItem alloc] initWithTitle:@"Test item #2"
+                                                 descriptionText:@"Test item #2 awesome description"
+                                                        quantity:oneHundredSquareMeters
+                                                   amountPerUnit:seventeen
+                                                        discount:tenPercents
+                                                           taxes:@[thousandKD]];
+
+    return @[firstItem, secondItem];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt">PaymentItem</span><span class="p">]?</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">oneUnit</span> <span class="o">=</span> <span class="kt">Quantity</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">unitOfMeasurement</span><span class="p">:</span> <span class="o">.</span><span class="n">units</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">firstItem</span> <span class="o">=</span> <span class="kt">PaymentItem</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span>          <span class="s">"Test item #1"</span><span class="p">,</span>
+                                <span class="nv">quantity</span><span class="p">:</span>       <span class="n">oneUnit</span><span class="p">,</span>
+                                <span class="nv">amountPerUnit</span><span class="p">:</span>  <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">let</span> <span class="nv">oneHundredSquareMeters</span> <span class="o">=</span> <span class="kt">Quantity</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span>                <span class="mi">100</span><span class="p">,</span>
+                                          <span class="nv">unitOfMeasurement</span><span class="p">:</span>    <span class="o">.</span><span class="nf">area</span><span class="p">(</span><span class="o">.</span><span class="n">squareMeters</span><span class="p">))</span>
+    <span class="k">let</span> <span class="nv">tenPercents</span> <span class="o">=</span> <span class="kt">AmountModificator</span><span class="p">(</span><span class="nv">percents</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">thousandMoney</span> <span class="o">=</span> <span class="kt">AmountModificator</span><span class="p">(</span><span class="nv">fixedAmount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">thousandKD</span> <span class="o">=</span> <span class="kt">Tax</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span>             <span class="s">"KD 1,000.000"</span><span class="p">,</span>
+                         <span class="nv">descriptionText</span><span class="p">:</span>   <span class="s">"This is an example of a tax."</span><span class="p">,</span>
+                         <span class="nv">amount</span><span class="p">:</span> <span class="n">thousandMoney</span><span class="p">)</span>
+
+    <span class="k">let</span> <span class="nv">secondItem</span> <span class="o">=</span> <span class="kt">PaymentItem</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span>             <span class="s">"Test item #2"</span><span class="p">,</span>
+                                 <span class="nv">descriptionText</span><span class="p">:</span>   <span class="s">"Test item #2 awesome description."</span><span class="p">,</span>
+                                 <span class="nv">quantity</span><span class="p">:</span>          <span class="n">oneHundredSquareMeters</span><span class="p">,</span>
+                                 <span class="nv">amountPerUnit</span><span class="p">:</span>     <span class="mi">17</span><span class="p">,</span>
+                                 <span class="nv">discount</span><span class="p">:</span>          <span class="n">tenPercents</span><span class="p">,</span>
+                                 <span class="nv">taxes</span><span class="p">:</span>             <span class="p">[</span><span class="n">thousandKD</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">firstItem</span><span class="p">,</span> <span class="n">secondItem</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='mode' class='heading'>Mode</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (enum TransactionMode)mode {
+
+    return Purchase;
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt">TransactionMode</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="o">.</span><span class="n">purchase</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='taxes' class='heading'>Taxes</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSArray&lt;Tax *&gt; *)taxes {
+
+    NSDecimal fifteen = [NSDecimalNumber numberWithDouble:15.0].decimalValue;
+    AmountModificator *fifteenPercents = [[AmountModificator alloc] initWithPercents:fifteen];
+
+    Tax *fifteenPercentsTax = [[Tax alloc] initWithTitle:@"15 percents"
+                                         descriptionText:@"Just another fifteen percents."
+                                                  amount:fifteenPercents];
+
+    return @[fifteenPercentsTax];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">taxes</span><span class="p">:</span> <span class="p">[</span><span class="kt">Tax</span><span class="p">]?</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">fifteenPercents</span> <span class="o">=</span> <span class="kt">AmountModificator</span><span class="p">(</span><span class="nv">percents</span><span class="p">:</span> <span class="mi">15</span><span class="p">)</span>
+
+    <span class="k">let</span> <span class="nv">fifteenPercentsTax</span> <span class="o">=</span> <span class="kt">Tax</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span>             <span class="s">"15 percents"</span><span class="p">,</span>
+                                 <span class="nv">descriptionText</span><span class="p">:</span>   <span class="s">"Just another fifteen percents"</span><span class="p">,</span>
+                                 <span class="nv">amount</span><span class="p">:</span>            <span class="n">fifteenPercents</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">fifteenPercentsTax</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='shipping' class='heading'>Shipping</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSArray&lt;Shipping *&gt; *)shipping {
+
+    NSDecimal fiveHundred = [NSDecimalNumber numberWithDouble:500.0].decimalValue;
+    Shipping *deliveryToHome = [[Shipping alloc] initWithName:@"Delivery"
+                                              descriptionText:@"Delivery to Home"
+                                                       amount:fiveHundred];
+
+    return @[deliveryToHome];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">shipping</span><span class="p">:</span> <span class="p">[</span><span class="kt">Shipping</span><span class="p">]?</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">deliveryToHome</span> <span class="o">=</span> <span class="kt">Shipping</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span>             <span class="s">"Delivery"</span><span class="p">,</span>
+                                  <span class="nv">descriptionText</span><span class="p">:</span>  <span class="s">"Delivery to Home"</span><span class="p">,</span>
+                                  <span class="nv">amount</span><span class="p">:</span>           <span class="mi">500</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">deliveryToHome</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='post-url' class='heading'>Post URL</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSURL *)postURL {
+
+    return [NSURL URLWithString:@"https://tap.company/post"];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">postURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://tap.company/post"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='payment-description' class='heading'>Payment Description</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSString *)paymentDescription {
+
+    return @"Awesome payment description will be here.";
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">paymentDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="s">"Awesome payment description will be here."</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='payment-metadata' class='heading'>Payment Metadata</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSDictionary&lt;NSString *,NSString *&gt; *)paymentMetadata {
+
+    return @{@"note": @"some note",
+             @"internal_linking_id": @"id3424141414"};
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">paymentMetadata</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="p">[</span>
+
+        <span class="s">"note"</span><span class="p">:</span> <span class="s">"some note"</span><span class="p">,</span>
+        <span class="s">"internal_linking_id"</span><span class="p">:</span> <span class="s">"id3424141414"</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='payment-reference' class='heading'>Payment Reference</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (Reference *)paymentReference {
+
+    return [[Reference alloc] initWithTransactionNumber:@"tr_2352358020f"
+                                            orderNumber:@"ord_2352094823"];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">paymentReference</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="kt">Reference</span><span class="p">(</span><span class="nv">transactionNumber</span><span class="p">:</span> <span class="s">"tr_2352358020f"</span><span class="p">,</span>
+                     <span class="nv">orderNumber</span><span class="p">:</span>       <span class="s">"ord_2352094823"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='payment-statement-descriptor' class='heading'>Payment Statement Descriptor</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (NSString *)paymentStatementDescriptor {
+
+    return @"Payment statement descriptor will be here";
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">paymentStatementDescriptor</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="s">"Payment statement descriptor will be here"</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='require-3d-secure' class='heading'>Require 3D Secure</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (BOOL)require3DSecure {
+
+    return YES;
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">require3DSecure</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='receipt-settings' class='heading'>Receipt Settings</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (Receipt *)receiptSettings {
+
+    return [[Receipt alloc] initWithEmail:YES sms:YES];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">receiptSettings</span><span class="p">:</span> <span class="kt">Receipt</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="kt">Receipt</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">sms</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='authorize-action' class='heading'>Authorize Action</h4>
+
+<p>-</p>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (AuthorizeAction *)authorizeAction {
+
+    AuthorizeAction *captureAfterTwoHours = [AuthorizeAction captureAfterTimeInHours:2];
+    return captureAfterTwoHours;
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">authorizeAction</span><span class="p">:</span> <span class="kt">AuthorizeAction</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="o">.</span><span class="nf">capture</span><span class="p">(</span><span class="nv">after</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
 
-<p><em>Objective-C</em>:</p>
-<pre class="highlight plaintext"><code>- (void)exampleCreateSource {
+<p><a name="payment_delegate"></a></p>
+<h2 id='payment-delegate' class='heading'>Payment Delegate</h2>
 
-    // with token identifier
-    CreateChargeSource *tokenSource = [[CreateChargeSource alloc] initWithTokenIdentifier:@"tok_XXXXXXXXXXXXXXXXXXXXXXXX"];
+<p><strong>PaymentDelegate</strong> is an interface which you may want to implement to receive payment/authorization status updates and update your user interface accordingly when payment window closes.</p>
 
-    // static source
-    CreateChargeSource *staticKNETSource = [[CreateChargeSource alloc] initWithStaticIdentifier:SourceIdentifierKNET];
+<p>Below are listed down all available callbacks:</p>
 
-    // with plain card data
-    CreateChargeSource *plainSource = [[CreateChargeSource alloc] initWithCardNumber:@"4111111111111111" expirationMonth:10 expirationYear:20 cvc:@"123"];
-}
+<p><a name="payment_success_callback"></a></p>
+<h3 id='payment-success-callback' class='heading'>Payment Success Callback</h3>
+
+<p>-</p>
+
+<p>Notifies the receiver that payment has succeed.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)paymentSucceed:(Charge * _Nonnull)charge payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
 </code></pre>
 
-<p>Example of <strong>redirect</strong> creation:</p>
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt">Charge</span><span class="p">,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
 
-<p><em>Swift</em>:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">exampleCreateRedirect</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>charge</strong>: Successful charge object.</p>
 
-    <span class="c1">// without post url</span>
-    <span class="k">let</span> <span class="nv">redirectWithoutPostURL</span> <span class="o">=</span> <span class="kt">CreateChargeRedirect</span><span class="p">(</span><span class="nv">returnURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"your_return_url"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<p><strong>payButton</strong>: Button which has initiated the payment.</p>
 
-    <span class="c1">// with post url</span>
-    <span class="k">let</span> <span class="nv">redirectWithPostURL</span> <span class="o">=</span> <span class="kt">CreateChargeRedirect</span><span class="p">(</span><span class="nv">returnURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"your_return_url"</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="nv">postURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"your_post_url"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
-<span class="p">}</span>
+<p><a name="authorization_success_callback"></a></p>
+<h3 id='authorization-success-callback' class='heading'>Authorization Success Callback</h3>
+
+<p>-</p>
+
+<p>Notifies the receiver that authorization has succeed.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)authorizationSucceed:(Authorize * _Nonnull)authorize payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
 </code></pre>
 
-<p><em>Objective-C</em>:</p>
-<pre class="highlight plaintext"><code>- (void)exampleCreateRedirect {
-
-    // without post url
-    CreateChargeRedirect *redirectWithoutPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"]];
-
-    // with post url
-    CreateChargeRedirect *redirectWithPostURL = [[CreateChargeRedirect alloc] initWithReturnURL:[NSURL URLWithString:@"your_return_url"] postURL:[NSURL URLWithString:@"your_post_url"]];
-}
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">authorizationSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt">Authorize</span><span class="p">,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
 </code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>authorize</strong>: Successful authorize object.</p>
+
+<p><strong>payButton</strong>: Button which has initiated the authorization.</p>
+
+<p><a name="payment_failure_callback"></a></p>
+<h3 id='payment-failure-callback' class='heading'>Payment Failure Callback</h3>
+
+<p>-</p>
+
+<p>Notifies the receiver that payment has failed.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)paymentFailedWith:(Charge * _Nullable)charge error:(TapSDKError * _Nullable)error payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt">Charge</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">?,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>charge</strong>: Charge object that has failed (if reached the stage of charging).</p>
+
+<p><strong>error</strong>: An error that has occured (if any).</p>
+
+<p><strong>payButton</strong>: Button which has initiated the payment.</p>
+
+<p>You may assume that at least one, <code>charge</code> or <code>error</code> is not <code>nil</code>.</p>
+
+<p><a name="authorization_failure_callback"></a></p>
+<h3 id='authorization-failure-callback' class='heading'>Authorization Failure Callback</h3>
+
+<p>-</p>
+
+<p>Notifies the receiver that authorization has failed.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)authorizationFailedWith:(Authorize * _Nullable)authorization error:(TapSDKError * _Nullable)error payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">authorizationFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">authorization</span><span class="p">:</span> <span class="kt">Authorize</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">?,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>authorize</strong>: Authorize object that has failed (if reached the stage of authorization).</p>
+
+<p><strong>error</strong>: An error that has occured (if any).</p>
+
+<p><strong>payButton</strong>: Button which has initiated the authorization.</p>
+
+<p>You may assume that at least one, <code>authorize</code> or <code>error</code> is not <code>nil</code>.</p>
+
+<p><a name="payment_cancel_callback"></a></p>
+<h3 id='payment-authorization-cancel-callback' class='heading'>Payment/Authorization Cancel Callback</h3>
+
+<p>-</p>
+
+<p>Notifies the receiver that payment/authorization was cancelled by user.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)paymentCancelled:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentCancelled</span><span class="p">(</span><span class="n">_</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>payButton</strong>: Button which has initiated the payment/authorization.</p>
 
 <hr>
 <h1 id='documentation' class='heading'>Documentation</h1>
@@ -512,7 +1208,7 @@ Also documented sources are attached to the library.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-08-28)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
