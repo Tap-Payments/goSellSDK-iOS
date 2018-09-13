@@ -69,10 +69,7 @@ internal final class SettingsDataManager {
     
     // MARK: Methods
     
-    private init() {
-        
-        KnownStaticallyDestroyableTypes.add(SettingsDataManager.self)
-    }
+    private init() {}
     
     private func append(_ completion: @escaping OptionalErrorClosure) {
         
@@ -148,7 +145,5 @@ extension SettingsDataManager: Singleton {
         
         return instance
     }
-    
-    
 }
 
