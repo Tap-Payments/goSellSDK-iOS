@@ -117,6 +117,31 @@ internal final class PaymentDataManager {
     
     // MARK: Methods
     
+    internal func canStart(with caller: PayButtonInternalImplementation) -> Bool {
+        
+        if self.isLoadingPaymentOptions { return false }
+        
+        guard let dataSource = caller.uiElement?.paymentDataSource else { return false }
+        
+        if dataSource.currency == nil || dataSource.customer == nil { return false }
+        
+        let itemsCount = (caller.uiElement?.paymentDataSource?.items ?? [])?.count ?? 0
+        if itemsCount > 0 {
+            
+            let items = (dataSource.items ?? []) ?? []
+            let taxes = dataSource.taxes ?? []
+            let shipping = dataSource.shipping ?? []
+            
+            let totalAmount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
+            
+            return totalAmount > 0
+        }
+        else {
+            
+            return (dataSource.amount ?? 0) > 0
+        }
+    }
+    
     internal func start(with caller: PayButtonInternalImplementation) {
         
         guard !self.isLoadingPaymentOptions else { return }
