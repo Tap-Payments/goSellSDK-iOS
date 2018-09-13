@@ -384,6 +384,23 @@ The following table describes its structure and specifies which fields are requi
 
 #### Currency
 
+Tap supports processing payments in 10+ currencies, allowing you to charge customers in their native currency while receiving funds in yours. This is especially helpful if you have a global presence, as charging in a customer’s native currency can increase sales. 
+
+##### SupportedCurrencies
+
+|      Currency     | Code |
+|-------------------|------|
+| UAE Dirham        | AED  |
+| Bahraini Dinar    | BHD  |
+| Egyptian Pound    | EGP  |
+| Euro              | EUR  |
+| UK Pound Sterling | GBP  |
+| Kuwaiti Dinar     | KWD  |
+| Omani Riyal       | OMR  |
+| Qatari Riyal      | QAR  |
+| Saudi Riyal       | SAR  |
+| US Dollar         | USD  |
+
 **Objective-C**
 
 ```objective-c

@@ -78,12 +78,20 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var phoneISDNumberTextField: UITextField?
     @IBOutlet private weak var phoneNumberTextField: UITextField?
     
-    private var currentCustomer: Customer = try! Customer(identifier: "") {
+    private var currentCustomer: Customer = CustomerViewController.createEmptyCustomer() {
         
         didSet {
             
             self.updateWithCurrentCustomerInfo()
         }
+    }
+    
+    private static func createEmptyCustomer() -> Customer {
+        
+        let customer = try! Customer(identifier: "new")
+        customer.identifier = nil
+        
+        return customer
     }
     
     // MARK: Methods
