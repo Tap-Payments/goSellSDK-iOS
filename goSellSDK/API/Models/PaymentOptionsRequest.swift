@@ -46,7 +46,7 @@ internal struct PaymentOptionsRequest {
         else {
             
             self.items = nil
-            self.totalAmount = amount ?? 0
+            self.totalAmount = AmountCalculator.totalAmount(of: [], with: taxes, and: shipping) + (amount ?? 0)
         }
     }
     

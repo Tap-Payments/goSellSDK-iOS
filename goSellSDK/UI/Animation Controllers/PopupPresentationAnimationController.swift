@@ -6,8 +6,10 @@
 //
 
 import struct   CoreGraphics.CGBase.CGFloat
+import struct   CoreGraphics.CGGeometry.CGRect
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
+import class    UIKit.UIColor.CGColor
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIView.UIView
@@ -84,15 +86,15 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
         
         guard
             
-            let fromController = transitionContext.viewController(forKey: .from),
-            let toController = transitionContext.viewController(forKey: .to),
-            let fromView = fromController.view,
-            let toView = toController.view
+            let fromController: UIViewController = transitionContext.viewController(forKey: .from),
+            let toController: UIViewController = transitionContext.viewController(forKey: .to),
+            let fromView: UIView = fromController.view,
+            let toView: UIView = toController.view
             
         else { return }
         
         var presentationSupport: (UIViewController & PopupPresentationSupport)?
-        let containerView = transitionContext.containerView
+        let containerView: UIView = transitionContext.containerView
         
         switch self.operation {
             
@@ -111,10 +113,10 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             presentationSupport = fromController as? UIViewController & PopupPresentationSupport
         }
         
-        guard let nonnullPresentationSupport = presentationSupport else { return }
+        guard let nonnullPresentationSupport: UIViewController & PopupPresentationSupport = presentationSupport else { return }
         
-        let layoutView = nonnullPresentationSupport.viewToLayout
-        let finalFrame = transitionContext.finalFrame(for: nonnullPresentationSupport)
+        let layoutView: UIView = nonnullPresentationSupport.viewToLayout
+        let finalFrame: CGRect = transitionContext.finalFrame(for: nonnullPresentationSupport)
         layoutView.frame = finalFrame
         
         var initialConstant: CGFloat
@@ -152,13 +154,13 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             self.overlaySupport?.layoutView.layout()
         }
         
-        let backgroundColor = layoutView.layer.backgroundColor
+        let backgroundColor: CGColor? = layoutView.layer.backgroundColor
         if self.operation == .presentation {
             
             layoutView.layer.backgroundColor = UIColor.clear.cgColor
         }
         
-        let blurView = layoutView.subview(ofClass: TapVisualEffectView.self)
+        let blurView: TapVisualEffectView? = layoutView.subview(ofClass: TapVisualEffectView.self)
         blurView?.style = self.operation == .presentation ? .none : .light
         
         let animations: TypeAlias.ArgumentlessClosure = {
@@ -190,13 +192,13 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             }
         }
         
-        let animationDuration = self.transitionDuration(using: transitionContext)
-        let animationOption = UIViewKeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveLinear)
-        let animationOptions: UIViewKeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
+        let animationDuration: TimeInterval = self.transitionDuration(using: transitionContext)
+        let animationOption: UIView.KeyframeAnimationOptions = UIView.KeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveLinear)
+        let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
         
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations) { (finished) in
             
-            let success = finished && !transitionContext.transitionWasCancelled
+            let success: Bool = finished && !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(success)
         }
     }
@@ -226,8 +228,8 @@ extension PopupPresentationAnimationController: InteractiveTransitionControllerD
         }
         
         let animationDuration = self.transitionDuration(using: nil)
-        let animationOption = UIViewKeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveEaseIn)
-        let animationOptions: UIViewKeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
+        let animationOption = UIView.KeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveEaseIn)
+        let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
         
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)
     }

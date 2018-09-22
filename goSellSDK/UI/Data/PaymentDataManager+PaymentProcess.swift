@@ -199,7 +199,7 @@ internal extension PaymentDataManager {
             
             DispatchQueue.main.async {
                 
-                alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+                alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
             }
         }
     }
@@ -307,7 +307,9 @@ internal extension PaymentDataManager {
     
     private func startPaymentProcess(withWebPaymentOption paymentOption: PaymentOption) {
     
-        let source = SourceRequest(identifier: paymentOption.sourceIdentifier)
+        guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
+        
+        let source = SourceRequest(identifier: sourceIdentifier)
         
         self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil)
         
@@ -355,9 +357,10 @@ internal extension PaymentDataManager {
         let reference           = self.externalDataSource?.paymentReference ?? nil
         let shouldSaveCard      = saveCard ?? false
         let statementDescriptor = self.externalDataSource?.paymentStatementDescriptor ?? nil
+        let requires3DSecure    = self.chargeRequires3DSecure || (self.externalDataSource?.require3DSecure ?? false)
         let receiptSettings     = self.externalDataSource?.receiptSettings ?? nil
         
-        let requires3DSecure    = self.chargeRequires3DSecure || (self.externalDataSource?.require3DSecure ?? false)
+        
         
         let mode = self.externalDataSource?.mode ?? .purchase
         switch mode {

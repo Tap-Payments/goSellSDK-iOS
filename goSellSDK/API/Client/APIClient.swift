@@ -6,13 +6,13 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class TapApplication.TapApplicationPlistInfo
-import class TapApplication.TapBundlePlistInfo
-import func TapSwiftFixes.performOnBackgroundThread
-import func TapSwiftFixes.performOnMainThread
-import class TapNetworkManager.TapNetworkManager
-import class TapNetworkManager.TapNetworkRequestOperation
-import class UIKit.UIDevice.UIDevice
+import class    TapApplication.TapApplicationPlistInfo
+import class    TapApplication.TapBundlePlistInfo
+import func     TapSwiftFixes.performOnBackgroundThread
+import func     TapSwiftFixes.performOnMainThread
+import class    TapNetworkManager.TapNetworkManager
+import class    TapNetworkManager.TapNetworkRequestOperation
+import class    UIKit.UIDevice.UIDevice
 
 /// API client.
 internal final class APIClient {
@@ -26,7 +26,7 @@ internal final class APIClient {
     /// Static HTTP headers sent with each request.
     internal var staticHTTPHeaders: [String: String] {
         
-        let secretKey = goSellSDK.secretKey
+        let secretKey = self.sdkSecretKey
         
         guard secretKey.length > 0 else {
             
@@ -173,7 +173,6 @@ internal final class APIClient {
         }
         
         private static let baseURLString = "https://api.tap.company/v2/"
-//        private static let baseURLString = "http://35.194.57.148:8080/v2/"
         
         @available(*, unavailable) private init() { }
     }
@@ -238,6 +237,16 @@ internal final class APIClient {
         let result = (applicationDetails.map { "\($0.key)=\($0.value)" }).joined(separator: "|")
         
         return result
+    }
+    
+    private var sdkSecretKey: String {
+        
+        switch goSellSDK.mode {
+            
+        case .sandbox:      return goSellSDK.secretKey.sandbox
+        case .production:   return goSellSDK.secretKey.production
+            
+        }
     }
     
     // MARK: Methods

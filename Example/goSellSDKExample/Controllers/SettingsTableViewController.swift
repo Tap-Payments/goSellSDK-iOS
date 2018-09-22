@@ -9,6 +9,7 @@ import struct   CoreGraphics.CGBase.CGFloat
 import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
+import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
@@ -17,7 +18,6 @@ import class    UIKit.UILabel.UILabel
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UITableView.UITableView
-import var      UIKit.UITableView.UITableViewAutomaticDimension
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
 import class    UIKit.UITableView.UITableViewRowAction
@@ -70,13 +70,14 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         if let customersListController = segue.destination as? CustomersListViewController {
             
-            customersListController.delegate = self
-            customersListController.selectedCustomer = self.currentSettings?.customer
+            customersListController.delegate            = self
+            customersListController.mode                = self.currentSettings?.sdkMode ?? .sandbox
+            customersListController.selectedCustomer    = self.currentSettings?.customer
         }
         else if let taxController = (segue.destination as? UINavigationController)?.rootViewController as? TaxViewController {
             
-            taxController.delegate = self
-            taxController.tax = self.selectedTax
+            taxController.delegate  = self
+            taxController.tax       = self.selectedTax
         }
         else if let shippingController = (segue.destination as? UINavigationController)?.rootViewController as? ShippingViewController {
             
@@ -89,17 +90,23 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             
             switch reuseIdentifier {
                 
+            case Constants.sdkModelCellReuseIdentifier:
+                
+                caseSelectionController.title = "SDK Mode"
+                caseSelectionController.allValues = SDKMode.all
+                caseSelectionController.preselectedValue = self.currentSettings?.sdkMode
+                
+            case Constants.transactionModeCellReuseIdentifier:
+                
+                caseSelectionController.title = "Transaction Mode"
+                caseSelectionController.allValues = TransactionMode.all
+                caseSelectionController.preselectedValue = self.currentSettings?.transactionMode
+                
             case Constants.currencyCellReuseIdentifier:
                 
                 caseSelectionController.title = "Currency"
                 caseSelectionController.allValues = Currency.all
                 caseSelectionController.preselectedValue = self.currentSettings?.currency
-                
-            case Constants.modeCellReuseIdentifier:
-                
-                caseSelectionController.title = "Mode"
-                caseSelectionController.allValues = TransactionMode.all
-                caseSelectionController.preselectedValue = self.currentSettings?.mode
                 
             default:
                 
@@ -119,7 +126,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         guard let reuseIdentifier = tableView.cellForRow(at: indexPath)?.reuseIdentifier else {
             
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         
         switch reuseIdentifier {
@@ -134,7 +141,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             
         default:
             
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
             
         }
     }
@@ -147,7 +154,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         switch reuseIdentifier {
             
-        case Constants.currencyCellReuseIdentifier, Constants.modeCellReuseIdentifier:
+        case Constants.currencyCellReuseIdentifier, Constants.sdkModelCellReuseIdentifier, Constants.transactionModeCellReuseIdentifier:
             
             self.showCaseSelectionViewController(with: reuseIdentifier)
             
@@ -191,18 +198,20 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     private struct Constants {
         
-        fileprivate static let modeCellReuseIdentifier          = "mode_cell"
-        fileprivate static let currencyCellReuseIdentifier      = "currency_cell"
-        fileprivate static let customerCellReuseIdentifier      = "customer_cell"
-        fileprivate static let taxListCellReuseIdentifier       = "tax_list_cell"
-        fileprivate static let shippingListCellReuseIdentifier  = "shiping_list_cell"
+        fileprivate static let sdkModelCellReuseIdentifier          = "sdk_mode_cell"
+        fileprivate static let transactionModeCellReuseIdentifier   = "transaction_mode_cell"
+        fileprivate static let currencyCellReuseIdentifier          = "currency_cell"
+        fileprivate static let customerCellReuseIdentifier          = "customer_cell"
+        fileprivate static let taxListCellReuseIdentifier           = "tax_list_cell"
+        fileprivate static let shippingListCellReuseIdentifier      = "shiping_list_cell"
         
         @available(*, unavailable) private init() {}
     }
     
     // MARK: Properties
     
-    @IBOutlet private weak var modeValueLabel: UILabel?
+    @IBOutlet private weak var sdkModeValueLabel: UILabel?
+    @IBOutlet private weak var transactionModeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
     @IBOutlet private weak var customerNameLabel: UILabel?
     
@@ -255,11 +264,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     private func updateWithCurrentSettings() {
         
-        self.modeValueLabel?.text = self.currentSettings?.mode.description
-        self.currencyValueLabel?.text = self.currentSettings?.currency.localizedSymbol
+        self.sdkModeValueLabel?.text            = self.currentSettings?.sdkMode.description
+        self.transactionModeValueLabel?.text    = self.currentSettings?.transactionMode.description
+        self.currencyValueLabel?.text           = self.currentSettings?.currency.localizedSymbol
         
-        if let name = self.currentSettings?.customer?.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
-           let surname = self.currentSettings?.customer?.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
+        if let name = self.currentSettings?.customer?.customer.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
+           let surname = self.currentSettings?.customer?.customer.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
             
             self.customerNameLabel?.text = name + " " + surname
         }
@@ -382,11 +392,23 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
         
         switch reuseIdentifier {
             
-        case Constants.modeCellReuseIdentifier:
+        case Constants.sdkModelCellReuseIdentifier:
             
-            if let mode = value as? TransactionMode {
+            if let sdkMode = value as? SDKMode {
                 
-                self.currentSettings?.mode = mode
+                self.currentSettings?.sdkMode = sdkMode
+                
+                if self.currentSettings?.customer?.environment != sdkMode {
+                    
+                    self.currentSettings?.customer = nil
+                }
+            }
+            
+        case Constants.transactionModeCellReuseIdentifier:
+            
+            if let transactionMode = value as? TransactionMode {
+                
+                self.currentSettings?.transactionMode = transactionMode
             }
             
         case Constants.currencyCellReuseIdentifier:
@@ -408,7 +430,7 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
 // MARK: - CustomersListViewControllerDelegate
 extension SettingsTableViewController: CustomersListViewControllerDelegate {
     
-    internal func customersListViewController(_ controller: CustomersListViewController, didFinishWith customer: Customer?) {
+    internal func customersListViewController(_ controller: CustomersListViewController, didFinishWith customer: EnvironmentCustomer?) {
         
         self.currentSettings?.customer = customer
         self.updateWithCurrentSettings()

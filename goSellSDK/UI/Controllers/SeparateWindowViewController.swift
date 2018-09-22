@@ -24,7 +24,7 @@ internal class SeparateWindowViewController: BaseViewController {
         
         let showClosure: TypeAlias.ArgumentlessClosure = {
             
-            self.showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled, windowClass: MaskedWindow.self, below: UIWindowLevelStatusBar) { [unowned self] (rootController) in
+            self.showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled, windowClass: MaskedWindow.self, below: .statusBar) { [unowned self] (rootController) in
                 
                 (rootController.view.window as? MaskedWindow)?.contentProvider = self
                 rootController.present(self, animated: animated, completion: completion)

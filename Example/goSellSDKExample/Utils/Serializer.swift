@@ -66,17 +66,49 @@ internal class Serializer {
         return objects
     }
     
+    internal static func markAllCustomersAsSandboxIfNotYet() {
+        
+        guard !UserDefaults.standard.bool(forKey: Constants.didMakeSandboxCustomersUserDefaultsKey) else { return }
+        
+        let oldCustomers: [Customer] = self.deserialize()
+        let newCustomers = oldCustomers.map { EnvironmentCustomer(customer: $0, environment: .sandbox) }
+        
+        self.serialize(newCustomers)
+        
+        if let customersKey = self.key(for: Customer.self, isArray: true) {
+            
+            UserDefaults.standard.removeObject(forKey: customersKey)
+        }
+        
+        if let oldCustomer: Customer = self.deserialize() {
+            
+            let newCustomer = EnvironmentCustomer(customer: oldCustomer, environment: .sandbox)
+            self.serialize(newCustomer)
+            
+            if let customerKey = self.key(for: Customer.self) {
+                
+                UserDefaults.standard.removeObject(forKey: customerKey)
+            }
+        }
+        
+        UserDefaults.standard.set(true, forKey: Constants.didMakeSandboxCustomersUserDefaultsKey)
+        
+        UserDefaults.standard.synchronize()
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
         
-        fileprivate static let itemsUserDefaultsKey     = Constants.keyPrefix + "item"
-        fileprivate static let customersUserDefaultsKey = Constants.keyPrefix + "customer"
-        fileprivate static let settingsUserDefaultsKey  = Constants.keyPrefix + "settings"
+        fileprivate static let itemsUserDefaultsKey                     = Constants.keyPrefix + "item"
+        fileprivate static let customersUserDefaultsKey                 = Constants.keyPrefix + "customer"
+        fileprivate static let environmentCustomerUserDefaultsKey       = Constants.keyPrefix + "environment_customer"
+        fileprivate static let settingsUserDefaultsKey                  = Constants.keyPrefix + "settings"
+        fileprivate static let didMakeSandboxCustomersUserDefaultsKey   = Constants.keyPrefix + "did_make_sandbox_customers"
         
-        fileprivate static let multipleSuffix           = "s"
+        fileprivate static let multipleSuffix   = "s"
         
-        private static let keyPrefix                    = "goSellSDKExample."
+        private static let keyPrefix            = "goSellSDKExample."
         
         
         @available(*, unavailable) private init() {}
@@ -102,6 +134,10 @@ internal class Serializer {
         else if modelType == Settings.self {
             
             result = Constants.settingsUserDefaultsKey
+        }
+        else if modelType == EnvironmentCustomer.self {
+            
+            result = Constants.environmentCustomerUserDefaultsKey
         }
         else {
             

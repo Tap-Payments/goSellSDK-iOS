@@ -14,6 +14,7 @@ import class    goSellSDK.Charge
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
 import class    goSellSDK.EmailAddress
+import class    goSellSDK.goSellSDK
 import class    goSellSDK.PayButton
 import protocol goSellSDK.PayButtonProtocol
 import protocol goSellSDK.PaymentDataSource
@@ -48,7 +49,9 @@ internal class ExampleViewController: BaseViewController {
     internal override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.title = "goSell SDK Example"
+        goSellSDK.mode = self.paymentSettings.sdkMode
     }
     
     internal override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +94,13 @@ internal class ExampleViewController: BaseViewController {
     // MARK: - Private -
     // MARK: Properties
     
-    private var paymentSettings: Settings = Serializer.deserialize() ?? .default
+    private var paymentSettings: Settings = Serializer.deserialize() ?? .default {
+        
+        didSet {
+            
+            goSellSDK.mode = self.paymentSettings.sdkMode
+        }
+    }
     
     private var tableViewHandler: PaymentItemsTableViewHandler?
     
@@ -207,7 +216,7 @@ extension ExampleViewController: PaymentDataSource {
     
     internal var customer: Customer? {
         
-        return self.paymentSettings.customer
+        return self.paymentSettings.customer?.customer
     }
     
     internal var amount: Decimal {
@@ -222,7 +231,7 @@ extension ExampleViewController: PaymentDataSource {
     
     internal var mode: TransactionMode {
         
-        return self.paymentSettings.mode
+        return self.paymentSettings.transactionMode
     }
     
     internal var taxes: [Tax]? {
@@ -293,9 +302,9 @@ extension ExampleViewController: PaymentDelegate {
         
         if let nonnullCustomer = self.customer {
             
-            SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
+            let envCustomer = SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
             
-            self.paymentSettings.customer = nonnullCustomer
+            self.paymentSettings.customer = envCustomer
             Serializer.serialize(self.paymentSettings)
         }
     }

@@ -8,6 +8,7 @@
 import class    Crashlytics.Crashlytics
 import class    Fabric.Fabric
 import class    goSellSDK.goSellSDK
+import class    goSellSDK.SecretKey
 import class    UIKit.UIApplication.UIApplication
 import protocol UIKit.UIApplication.UIApplicationDelegate
 import class    UIKit.UIResponder.UIResponder
@@ -21,6 +22,10 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
     internal func applicationDidFinishLaunching(_ application: UIApplication) {
         
         Fabric.with([Crashlytics.self])
-        goSellSDK.secretKey = "YOUR_SANDBOX_SECRET_KEY"
+        
+        Serializer.markAllCustomersAsSandboxIfNotYet()
+        
+        goSellSDK.secretKey = SecretKey(sandbox:    "YOUR_SANDBOX_SECRET_KEY",
+                                        production: "YOUR_PRODUCTION_SECRET_KEY")
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import struct   CoreGraphics.CGBase.CGFloat
-import enum     UIKit.UINavigationController.UINavigationControllerOperation
+import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIView.UIView
 import struct   UIKit.UIView.UIViewAnimationOptions
 import struct   UIKit.UIView.UIViewKeyframeAnimationOptions
@@ -19,13 +19,13 @@ internal final class UINavigationControllerSideAnimationController: NSObject {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal let operation: UINavigationControllerOperation
+    internal let operation: UINavigationController.Operation
     internal unowned let fromViewController: UIViewController
     internal unowned let toViewController: UIViewController
     
     // MARK: Methods
     
-    internal init(operation: UINavigationControllerOperation, from: UIViewController, to: UIViewController) {
+    internal init(operation: UINavigationController.Operation, from: UIViewController, to: UIViewController) {
         
         self.operation          = operation
         self.fromViewController = from
@@ -119,7 +119,7 @@ extension UINavigationControllerSideAnimationController: UIViewControllerAnimate
         }
         
         let animationDuration = self.transitionDuration(using: transitionContext)
-        let animationOptions: UIViewKeyframeAnimationOptions = [.beginFromCurrentState, UIViewKeyframeAnimationOptions(.curveEaseInOut)]
+        let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, UIView.KeyframeAnimationOptions(.curveEaseInOut)]
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations) { (finished) in
             
             transitionContext.completeTransition(finished && !transitionContext.transitionWasCancelled)

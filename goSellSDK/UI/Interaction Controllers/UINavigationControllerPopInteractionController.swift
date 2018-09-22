@@ -7,8 +7,10 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 import func     TapAdditionsKit.clamp
+import struct   UIKit.UIGeometry.UIRectEdge
 import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
 import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate
+import enum     UIKit.UIInterface.UIUserInterfaceLayoutDirection
 import class    UIKit.UIScreenEdgePanGestureRecognizer.UIScreenEdgePanGestureRecognizer
 import class    UIKit.UIViewController.UIViewController
 import class    UIKit.UIViewControllerTransitioning.UIPercentDrivenInteractiveTransition
@@ -72,9 +74,10 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
     
     private func setupGestureRecognizer() {
         
-        let recognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgePanDetected(_:)))
+        let recognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgePanDetected(_:)))
         recognizer.delegate = self
-        recognizer.edges = SettingsDataManager.shared.layoutDirection == .leftToRight ? .left : .right
+        
+        recognizer.edges = SettingsDataManager.shared.layoutDirection == UIUserInterfaceLayoutDirection.leftToRight ? UIRectEdge.left : UIRectEdge.right
         
         self.viewController.view.addGestureRecognizer(recognizer)
     }

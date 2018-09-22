@@ -116,11 +116,14 @@ internal class CardNumberValidator: CardValidator {
         if #available(iOS 10.0, *) {
             
             self.textField.keyboardType = .asciiCapableNumberPad
+            self.textField.textContentType = .creditCardNumber
 
         } else {
             
             self.textField.keyboardType = .numberPad
         }
+        
+        
         
         self.textField.keyboardAppearance = Theme.current.settings.keyboardStyle
         

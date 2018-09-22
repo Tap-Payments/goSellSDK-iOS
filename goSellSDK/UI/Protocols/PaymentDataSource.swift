@@ -8,7 +8,7 @@
 /// Payment data source.
 @objc public protocol PaymentDataSource: class, NSObjectProtocol {
     
-    /// Items currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
+    /// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
     var currency: Currency? { get }
     
     /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.

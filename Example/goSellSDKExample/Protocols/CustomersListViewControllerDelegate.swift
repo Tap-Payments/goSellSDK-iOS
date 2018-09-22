@@ -9,5 +9,5 @@ import class goSellSDK.Customer
 
 internal protocol CustomersListViewControllerDelegate: class {
     
-    func customersListViewController(_ controller: CustomersListViewController, didFinishWith customer: Customer?)
+    func customersListViewController(_ controller: CustomersListViewController, didFinishWith customer: EnvironmentCustomer?)
 }

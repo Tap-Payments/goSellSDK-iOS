@@ -11,8 +11,15 @@
     // MARK: - Public -
     // MARK: Properties
     
+    /// SDK mode. By default, `production`.
+    ///
+    /// - Warning: Don't change while the payment is in progress or the payment process and status will be undefined.
+    public static var mode: SDKMode = .production
+    
     /// Secret key.
-    public static var secretKey: String = .empty
+    ///
+    /// - Warning: Don't change while the payment is in progress or the payment process and status will be undefined.
+    public static var secretKey: SecretKey = .empty
     
     /// Customer. Set this value at any time before user presses Pay button.
     public static var customer: Customer?
@@ -20,7 +27,6 @@
     // MARK: - Internal -
     // MARK: Properties
     
-    /// Locale identifier. Change this value to see the SDK in different language.
     internal static let localeIdentifier: String = "en"
     
     // MARK: - Private -

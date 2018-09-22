@@ -41,11 +41,11 @@ internal extension SingleCellModel where CellClass: UITableViewCell {
     
     internal func dequeueCell(from tableView: UITableView) -> CellClass {
         
-        let reuseIdentifier = CellClass.className
+        let reuseIdentifier: String = CellClass.className
         
-        if let loadedCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CellClass {
+        if let loadedCell: CellClass = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CellClass {
             
-            if let tableViewCellModel = self as? TableViewCellViewModel {
+            if let tableViewCellModel: TableViewCellViewModel = self as? TableViewCellViewModel {
                 
                 tableViewCellModel.tableView = tableView
             }

@@ -1,19 +1,18 @@
 Pod::Spec.new do |goSellSDK|
     
-    goSellSDK.platform = :ios
+    goSellSDK.platform              = :ios
     goSellSDK.ios.deployment_target = '8.0'
-    goSellSDK.swift_version = '4.1'
-    goSellSDK.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1' }
-    goSellSDK.name = 'goSellSDK'
-    goSellSDK.summary = 'goSell SDK for iOS'
-    goSellSDK.requires_arc = true
-    goSellSDK.version = '2.0'
-    goSellSDK.license = { :type => 'MIT', :file => 'LICENSE' }
-    goSellSDK.author = { 'Tap Payments' => 'hello@tap.company' }
-    goSellSDK.homepage = 'https://github.com/Tap-Payments/goSellSDK-iOS'
-    goSellSDK.source = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
-    goSellSDK.source_files = 'goSellSDK/**/*.{swift}'
-    goSellSDK.ios.resource_bundle = { 'goSellSDKResources' => 'goSellSDK/UI/Resources/*.{xcassets,storyboard,xib}' }
+    goSellSDK.swift_version         = '4.2'
+    goSellSDK.name                  = 'goSellSDK'
+    goSellSDK.summary               = 'goSell SDK for iOS'
+    goSellSDK.requires_arc          = true
+    goSellSDK.version               = '2.0'
+    goSellSDK.license               = { :type => 'MIT', :file => 'LICENSE' }
+    goSellSDK.author                = { 'Tap Payments' => 'hello@tap.company' }
+    goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
+    goSellSDK.source                = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
+    goSellSDK.source_files          = 'goSellSDK/**/*.{swift}'
+    goSellSDK.ios.resource_bundle   = { 'goSellSDKResources' => 'goSellSDK/UI/Resources/*.{xcassets,storyboard,xib}' }
     
     goSellSDK.dependency 'CardIODynamic'
     goSellSDK.dependency 'EditableTextInsetsTextField'
@@ -34,8 +33,8 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UIScreen'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UITableView'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UIView'
-    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIViewAnimationOptions'
-    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIViewKeyframeAnimationOptions'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIView/AnimationOptions'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIView/KeyframeAnimationOptions'
     goSellSDK.dependency 'TapApplication'
     goSellSDK.dependency 'TapCardValidator'
     goSellSDK.dependency 'TapEditableView'

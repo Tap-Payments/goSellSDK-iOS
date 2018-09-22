@@ -9,6 +9,7 @@ import func     TapSwiftFixes.performOnMainThread
 import enum     UIKit.UIApplication.UIInterfaceOrientation
 import struct   UIKit.UIApplication.UIInterfaceOrientationMask
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIView.UIView
 import enum     UIKit.UIView.UIViewAnimationCurve
 import struct   UIKit.UIView.UIViewAnimationOptions
@@ -73,14 +74,14 @@ internal class BaseViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillChangeFrame(_:)),
-                                               name: .UIKeyboardWillChangeFrame,
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
                                                object: nil)
     }
     
     private func removeKeyboardObserver() {
         
         NotificationCenter.default.removeObserver(self,
-                                                  name: .UIKeyboardWillChangeFrame,
+                                                  name: UIResponder.keyboardWillChangeFrameNotification,
                                                   object: nil)
     }
     
@@ -92,7 +93,7 @@ internal class BaseViewController: UIViewController {
             guard let userInfo = notification.userInfo else { return }
             
             guard let window = strongSelf.view.window else { return }
-            guard var endKeyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+            guard var endKeyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
             
             endKeyboardFrame = window.convert(endKeyboardFrame, to: strongSelf.view)
             
@@ -101,19 +102,27 @@ internal class BaseViewController: UIViewController {
             let keyboardIsShown = screenSize.height > endKeyboardFrame.origin.y
             let offset = keyboardIsShown ? endKeyboardFrame.size.height : 0.0
             
-            let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
-            var animationCurve: UIViewAnimationOptions
-            if let animationCurveRawValue = ((userInfo[UIKeyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue,
-               let curve = UIViewAnimationCurve(rawValue: animationCurveRawValue) {
+            let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
+            var animationCurve: UIView.AnimationOptions
+            if let animationCurveRawValue = ((userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {
                 
-                animationCurve = UIViewAnimationOptions(curve)
+                let allPossibleCurves: [UIView.AnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
+                let allPossibleRawValues = allPossibleCurves.map { $0.rawValue }
+                if allPossibleRawValues.contains(animationCurveRawValue), let curve = UIView.AnimationCurve(rawValue: animationCurveRawValue) {
+                    
+                    animationCurve = UIView.AnimationOptions(curve)
+                }
+                else {
+                    
+                    animationCurve = keyboardIsShown ? .curveEaseOut : .curveEaseIn
+                }
             }
             else {
                 
                 animationCurve = keyboardIsShown ? .curveEaseOut : .curveEaseIn
             }
             
-            let animationOptions: UIViewAnimationOptions = [
+            let animationOptions: UIView.AnimationOptions = [
                 
                 .beginFromCurrentState,
                 animationCurve

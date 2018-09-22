@@ -37,25 +37,26 @@ internal class CardAddressValidator: CardValidator {
     /// Address display text.
     internal var displayText: String {
         
-        guard let format = self.selectedAddressFormat else {
+        guard let format: BillingAddressFormat = self.selectedAddressFormat else {
             
             return Constants.placeholderDisplayText
         }
         
         if self.hasInputDataForCurrentAddressFormat {
             
-            let orderedDisplayData = format.fields.sorted { $0.displayOrder < $1.displayOrder }
-            var filledFields = orderedDisplayData.compactMap { self.inputData[$0.name] as? String }
+            let orderedDisplayData: [BillingAddressField] = format.fields.sorted { $0.displayOrder < $1.displayOrder }
+            var filledFields: [String] = orderedDisplayData.compactMap { self.inputData[$0.name] as? String }
             filledFields = filledFields.filter { $0.length > 0 }
             
             if filledFields.count == 0 { return Constants.placeholderDisplayText }
             
-            if let country = self.country {
+            if let nonnullCountry: Country = self.country {
                 
-                filledFields.append(country.displayValue)
+                filledFields.append(nonnullCountry.displayValue)
             }
             
-            return filledFields.joined(separator: Constants.addressFieldsDisplaySeparatorText)
+            let result: String = filledFields.joined(separator: Constants.addressFieldsDisplaySeparatorText)
+            return result
         }
         else {
             
