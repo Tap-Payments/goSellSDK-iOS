@@ -89,7 +89,7 @@ extension PaymentDismissalAnimationController: UIViewControllerAnimatedTransitio
             blurView?.style = .none
         }
         
-        let options: UIViewAnimationOptions = [.beginFromCurrentState, .curveEaseIn]
+        let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseIn]
         UIView.animate(withDuration: Constants.animationDuration, delay: 0.0, options: options, animations: animations) { _ in
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

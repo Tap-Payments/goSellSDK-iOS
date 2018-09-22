@@ -20,7 +20,7 @@ internal struct TextThemeSettings {
     
     internal let paragraphStyle: NSParagraphStyle
     
-    internal var asStringAttributes: [NSAttributedStringKey: Any] {
+    internal var asStringAttributes: [NSAttributedString.Key: Any] {
         
         return [
             

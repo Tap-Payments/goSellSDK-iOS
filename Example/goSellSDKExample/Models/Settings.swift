@@ -5,24 +5,27 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class goSellSDK.Currency
-import class goSellSDK.Customer
-import class goSellSDK.Shipping
-import class goSellSDK.Tax
-import enum  goSellSDK.TransactionMode
+import class    goSellSDK.Currency
+import class    goSellSDK.Customer
+import enum     goSellSDK.SDKMode
+import class    goSellSDK.Shipping
+import class    goSellSDK.Tax
+import enum     goSellSDK.TransactionMode
 
 internal final class Settings: Encodable {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    internal static let `default` = Settings(mode: .purchase, currency: try! Currency(isoCode: "kwd"), customer: nil, shippingList: [], taxes: [])
+    internal static let `default` = Settings(sdkMode: .sandbox, transactionMode: .purchase, currency: try! Currency(isoCode: "kwd"), customer: nil, shippingList: [], taxes: [])
     
     internal var currency: Currency
     
-    internal var customer: Customer?
+    internal var customer: EnvironmentCustomer?
     
-    internal var mode: TransactionMode
+    internal var sdkMode: SDKMode
+    
+    internal var transactionMode: TransactionMode
     
     internal var shippingList: [Shipping]
     
@@ -30,24 +33,26 @@ internal final class Settings: Encodable {
     
     // MARK: Methods
     
-    internal init(mode: TransactionMode, currency: Currency, customer: Customer?, shippingList: [Shipping], taxes: [Tax]) {
+    internal init(sdkMode: SDKMode, transactionMode: TransactionMode, currency: Currency, customer: EnvironmentCustomer?, shippingList: [Shipping], taxes: [Tax]) {
         
-        self.mode           = mode
-        self.currency       = currency
-        self.customer       = customer
-        self.shippingList   = shippingList
-        self.taxes          = taxes
+        self.sdkMode            = sdkMode
+        self.transactionMode    = transactionMode
+        self.currency           = currency
+        self.customer           = customer
+        self.shippingList       = shippingList
+        self.taxes              = taxes
     }
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
         
-        case currency       = "currency"
-        case customer       = "customer"
-        case mode           = "mode"
-        case shippingList   = "shippingList"
-        case taxes          = "taxes"
+        case sdkMode            = "sdk_mode"
+        case transactionMode    = "mode"
+        case currency           = "currency"
+        case customer           = "customer"
+        case shippingList       = "shippingList"
+        case taxes              = "taxes"
     }
 }
 
@@ -58,18 +63,63 @@ extension Settings: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let currency = try container.decode(Currency.self, forKey: .currency)
-        var customer = try container.decodeIfPresent(Customer.self, forKey: .customer)
-        let mode = try container.decode(TransactionMode.self, forKey: .mode)
-        let shippingList = try container.decode([Shipping].self, forKey: .shippingList)
-        let taxes = try container.decode([Tax].self, forKey: .taxes)
+        let sdkMode         = try container.decodeIfPresent(SDKMode.self, forKey: .sdkMode) ?? Settings.default.sdkMode
+        let transactionMode = try container.decode(TransactionMode.self, forKey: .transactionMode)
+        let currency        = try container.decode(Currency.self, forKey: .currency)
+        var envCustomer     = try container.decodeIfPresent(EnvironmentCustomer.self, forKey: .customer)
+        let shippingList    = try container.decode([Shipping].self, forKey: .shippingList)
+        let taxes           = try container.decode([Tax].self, forKey: .taxes)
         
-        if customer == nil {
+        if envCustomer == nil {
             
-            let allCustomers: [Customer] = Serializer.deserialize()
-            customer = allCustomers.first
+            let customer: Customer? = try container.decodeIfPresent(Customer.self, forKey: .customer)
+            if let nonnullCustomer = customer {
+                
+                envCustomer = EnvironmentCustomer(customer: nonnullCustomer, environment: .sandbox)
+            }
         }
         
-        self.init(mode: mode, currency: currency, customer: customer, shippingList: shippingList, taxes: taxes)
+        if envCustomer == nil {
+        
+            if let envCustomers: [EnvironmentCustomer] = Serializer.deserialize(), envCustomers.count > 0 {
+                
+                envCustomer = envCustomers.first
+            }
+        }
+        
+        if envCustomer == nil {
+            
+            if let customers: [Customer] = Serializer.deserialize(), customers.count > 0 {
+                
+                envCustomer = EnvironmentCustomer(customer: customers[0], environment: .sandbox)
+            }
+        }
+        
+        self.init(sdkMode: sdkMode, transactionMode: transactionMode, currency: currency, customer: envCustomer, shippingList: shippingList, taxes: taxes)
+    }
+}
+
+// MARK: - Codable
+extension SDKMode: Codable {
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(Int.self)
+        
+        if let result = SDKMode(rawValue: rawValue) {
+            
+            self = result
+        }
+        else {
+            
+            self = .sandbox
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.singleValueContainer()
+        try container.encode(self.rawValue)
     }
 }

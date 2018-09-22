@@ -10,6 +10,7 @@ import ObjectiveC
 import class    Dispatch.DispatchQueue
 import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.Customer
+import enum     goSellSDK.SDKMode
 import class    UIKit.UIBarButtonItem.UIBarButtonItem
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
@@ -26,7 +27,16 @@ internal class CustomersListViewController: UITableViewController {
     
     internal weak var delegate: CustomersListViewControllerDelegate?
     
-    internal var selectedCustomer: Customer?
+    internal var mode: SDKMode = .sandbox {
+        
+        didSet {
+            
+            self.filterVisibleCustomers(true)
+        }
+    }
+    
+    internal var selectedCustomer: EnvironmentCustomer?
+    private var customerForCustomerController: EnvironmentCustomer?
     
     // MARK: Methods
     
@@ -54,13 +64,13 @@ internal class CustomersListViewController: UITableViewController {
         if let customerController = (segue.destination as? UINavigationController)?.rootViewController as? CustomerViewController {
             
             customerController.delegate = self
-            customerController.customer = self.selectedCustomer
+            customerController.customer = self.customerForCustomerController
         }
     }
     
     internal override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.customers.count
+        return self.visibleCustomers.count
     }
     
     internal override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,8 +90,8 @@ internal class CustomersListViewController: UITableViewController {
             fatalError("Somehow cell class is wrong")
         }
         
-        let customer = self.customers[indexPath.row]
-        let selected = customer == self.selectedCustomer
+        let envCustomer = self.visibleCustomers[indexPath.row]
+        let selected = envCustomer == self.selectedCustomer
         
         if selected {
             
@@ -94,18 +104,20 @@ internal class CustomersListViewController: UITableViewController {
         
         cell.setSelected(selected, animated: false)
         
-        customerCell.fill(with: customer.firstName,
-                          middleName: customer.middleName,
-                          lastName: customer.lastName,
-                          email: customer.emailAddress?.value,
-                          phoneISDNumber: customer.phoneNumber?.isdNumber,
-                          phoneNumber: customer.phoneNumber?.phoneNumber,
-                          id: customer.identifier)
+        let customer = envCustomer.customer
+        
+        customerCell.fill(with:             customer.firstName,
+                          middleName:       customer.middleName,
+                          lastName:         customer.lastName,
+                          email:            customer.emailAddress?.value,
+                          phoneISDNumber:   customer.phoneNumber?.isdNumber,
+                          phoneNumber:      customer.phoneNumber?.phoneNumber,
+                          id:               customer.identifier)
     }
     
     internal override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         
-        let customer = self.customers[indexPath.row]
+        let customer = self.visibleCustomers[indexPath.row]
         self.showCustomerViewController(with: customer)
     }
     
@@ -113,19 +125,46 @@ internal class CustomersListViewController: UITableViewController {
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, cellIndexPath) in
             
-            self.customers.remove(at: cellIndexPath.row)
+            let customer = self.visibleCustomers[cellIndexPath.row]
+            if let index = self.allCustomers.index(of: customer) {
+                
+                self.allCustomers.remove(at: index)
+            }
+            
             tableView.deleteRows(at: [cellIndexPath], with: .automatic)
+            
+            Serializer.serialize(self.allCustomers)
         }
         
         return [deleteAction]
     }
     
+    internal override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.selectedCustomer = self.visibleCustomers[indexPath.row]
+    }
+    
     // MARK: - Private -
     // MARK: Properties
     
-    private var customers: [Customer] = Serializer.deserialize()
+    private var allCustomers: [EnvironmentCustomer] = Serializer.deserialize() {
+        
+        didSet {
+            
+            self.filterVisibleCustomers(false)
+        }
+    }
+    
+    private var visibleCustomers: [EnvironmentCustomer] = []
     
     // MARK: Methods
+    
+    private func filterVisibleCustomers(_ reloadData: Bool = false) {
+        
+        self.visibleCustomers = self.allCustomers.filter { $0.environment == self.mode }
+        
+        if reloadData { self.tableView.reloadData() }
+    }
     
     private func addAddButtonToNavigationBar() {
         
@@ -138,9 +177,9 @@ internal class CustomersListViewController: UITableViewController {
         self.showCustomerViewController()
     }
     
-    private func showCustomerViewController(with customer: Customer? = nil) {
+    private func showCustomerViewController(with customer: EnvironmentCustomer? = nil) {
         
-        self.selectedCustomer = customer
+        self.customerForCustomerController = customer
         self.show(CustomerViewController.self)
     }
     
@@ -152,7 +191,7 @@ internal class CustomersListViewController: UITableViewController {
     
     private func selectPreselectedCustomer() {
         
-        if let customer = self.selectedCustomer, let index = self.customers.index(of: customer), self.tableView.numberOfRows(inSection: 0) > index {
+        if let customer = self.selectedCustomer, let index = self.visibleCustomers.index(of: customer), self.tableView.numberOfRows(inSection: 0) > index {
             
             let indexPath = IndexPath(row: index, section: 0)
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -171,11 +210,11 @@ internal class CustomersListViewController: UITableViewController {
     
     private func notifyDelegateAboutCustomerSelection() {
         
-        if let index = self.tableView.indexPathForSelectedRow?.row, self.customers.count > index {
+        if let index = self.tableView.indexPathForSelectedRow?.row, self.visibleCustomers.count > index {
             
-            self.delegate?.customersListViewController(self, didFinishWith: self.customers[index])
+            self.delegate?.customersListViewController(self, didFinishWith: self.visibleCustomers[index])
         }
-        else if let firstCustomer = self.customers.first {
+        else if let firstCustomer = self.visibleCustomers.first {
             
             self.delegate?.customersListViewController(self, didFinishWith: firstCustomer)
         }
@@ -185,26 +224,28 @@ internal class CustomersListViewController: UITableViewController {
 // MARK: - CustomerViewControllerDelegate
 extension CustomersListViewController: CustomerViewControllerDelegate {
     
-    internal func customerViewController(_ controller: CustomerViewController, didFinishWith customer: Customer) {
+    internal func customerViewController(_ controller: CustomerViewController, didFinishWith customer: EnvironmentCustomer) {
+        
+        customer.environment = self.mode
         
         if let nonnullSelectedCustomer = self.selectedCustomer {
             
-            if let index = self.customers.index(of: nonnullSelectedCustomer) {
+            if let index = self.allCustomers.index(of: nonnullSelectedCustomer) {
                 
-                self.customers.remove(at: index)
-                self.customers.insert(customer, at: index)
+                self.allCustomers.remove(at: index)
+                self.allCustomers.insert(customer, at: index)
             }
             else {
                 
-                self.customers.append(customer)
+                self.allCustomers.append(customer)
             }
         }
         else {
             
-            self.customers.append(customer)
+            self.allCustomers.append(customer)
         }
         
-        Serializer.serialize(self.customers)
+        Serializer.serialize(self.allCustomers)
         
         self.tableView.reloadData()
     }

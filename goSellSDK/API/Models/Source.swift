@@ -49,7 +49,7 @@ import enum TapCardValidator.CardBrand
         self.paymentType    = paymentType
         self.paymentMethod  = paymentMethod
         self.channel        = channel
-        
+    
         super.init(identifier)
     }
 }

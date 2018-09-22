@@ -17,6 +17,9 @@
     /// URL call failed.
     case failed
     
+    /// Status unknown.
+    case unknown
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -27,6 +30,7 @@
         case .pending:  return "PENDING"
         case .success:  return "SUCCESS"
         case .failed:   return "FAILED"
+        case .unknown:  return "UNKNOWN"
 
         }
     }
@@ -40,6 +44,7 @@
         case URLStatus.pending.stringValue: self = .pending
         case URLStatus.success.stringValue: self = .success
         case URLStatus.failed.stringValue:  self = .failed
+        case URLStatus.unknown.stringValue: self = .unknown
             
         default:
             

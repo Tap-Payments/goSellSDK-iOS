@@ -28,6 +28,9 @@ internal struct PaymentOption: IdentifiableWithString {
     /// Payment type.
     internal let paymentType: PaymentType
     
+    /// Source identifier.
+    internal private(set) var sourceIdentifier: String?
+    
     /// Supported card brands.
     internal let supportedCardBrands: [CardBrand]
     
@@ -48,6 +51,7 @@ internal struct PaymentOption: IdentifiableWithString {
         case title                  = "name"
         case imageURL               = "image"
         case paymentType            = "payment_type"
+        case sourceIdentifier       = "source_id"
         case supportedCardBrands    = "supported_card_brands"
         case extraFees              = "extra_fees"
         case supportedCurrencies    = "supported_currencies"
@@ -59,7 +63,7 @@ internal struct PaymentOption: IdentifiableWithString {
 extension PaymentOption: Decodable {
 
     internal init(from decoder: Decoder) throws {
-
+        
         let container           = try decoder.container(keyedBy: CodingKeys.self)
 
         let identifier          = try container.decode          (String.self,       forKey: .identifier)
@@ -67,6 +71,7 @@ extension PaymentOption: Decodable {
         let title               = try container.decode          (String.self,       forKey: .title)
         let imageURL            = try container.decode          (URL.self,          forKey: .imageURL)
         let paymentType         = try container.decode          (PaymentType.self,  forKey: .paymentType)
+        let sourceIdentifier    = try container.decodeIfPresent (String.self,       forKey: .sourceIdentifier)
         let supportedCardBrands = try container.decode          ([CardBrand].self,  forKey: .supportedCardBrands)
         let extraFees           = try container.decodeIfPresent ([ExtraFee].self,   forKey: .extraFees) ?? []
         let supportedCurrencies = try container.decode          ([Currency].self,   forKey: .supportedCurrencies)
@@ -77,6 +82,7 @@ extension PaymentOption: Decodable {
                   title: title,
                   imageURL: imageURL,
                   paymentType: paymentType,
+                  sourceIdentifier: sourceIdentifier,
                   supportedCardBrands: supportedCardBrands,
                   extraFees: extraFees,
                   supportedCurrencies: supportedCurrencies,

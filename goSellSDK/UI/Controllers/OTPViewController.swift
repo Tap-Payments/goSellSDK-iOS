@@ -6,8 +6,6 @@
 //
 
 import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGRect
-import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIAlertController.UIAlertAction
 import class    UIKit.UIAlertController.UIAlertController
@@ -26,7 +24,6 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
-import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 /// View controller that handles Tap OTP input.
 internal final class OTPViewController: SeparateWindowViewController {
@@ -268,13 +265,13 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         let descriptionText = "Please enter the OTP that has been sent to "
         
-        let descriptionAttributes: [NSAttributedStringKey: Any] = [
+        let descriptionAttributes: [NSAttributedString.Key: Any] = [
             
             .font: Constants.descriptionFont,
             .foregroundColor: Constants.descriptionColor
         ]
         
-        let numberAttributes: [NSAttributedStringKey: Any] = [
+        let numberAttributes: [NSAttributedString.Key: Any] = [
             
             .font: Constants.descriptionFont,
             .foregroundColor: Constants.numberColor
@@ -451,7 +448,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
 }
@@ -533,9 +530,14 @@ extension OTPViewController: TapButtonDelegate {
 // MARK: - OTPInputViewDelegate
 extension OTPViewController: OTPInputViewDelegate {
     
-    internal func otpInputView(_ otpInputView: OTPInputView, inputStateChanged valid: Bool) {
+    internal func otpInputView(_ otpInputView: OTPInputView, inputStateChanged valid: Bool, wholeOTPAtOnce: Bool) {
         
         self.makeConfirmationButtonEnabled(valid)
+        
+        if valid && wholeOTPAtOnce {
+            
+            self.confirmOTPCode()
+        }
     }
 }
 

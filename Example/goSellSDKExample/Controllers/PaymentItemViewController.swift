@@ -31,7 +31,6 @@ import class    UIKit.UILabel.UILabel
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UITableView.UITableView
-import var      UIKit.UITableView.UITableViewAutomaticDimension
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
 import class    UIKit.UITableViewCell.UITableViewCell
@@ -184,7 +183,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         }
         else {
             
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
     

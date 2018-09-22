@@ -21,7 +21,7 @@ internal extension TextFieldInputDataValidation {
         let textSettings = self.isDataValid || self.textInputField.isEditing ? cardInputSettings.valid : cardInputSettings.invalid
         let textAttributes = textSettings.asStringAttributes
         
-        self.textInputField.defaultTextAttributes = textAttributes.mapKeys { $0.rawValue }
+        self.textInputField.defaultTextAttributes = textAttributes
         
         let selectedRange = self.textInputField.selectedTextRange
         self.textInputField.attributedText = NSAttributedString(string: self.textInputFieldText, attributes: textAttributes)

@@ -5,11 +5,11 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGGeometry.CGRect
-import struct TapAdditionsKit.TypeAlias
-import class TapVisualEffectView.TapVisualEffectView
-import class UIKit.UIView.UIView
-import struct UIKit.UIView.UIViewAnimationOptions
+import struct   CoreGraphics.CGGeometry.CGRect
+import struct   TapAdditionsKit.TypeAlias
+import class    TapVisualEffectView.TapVisualEffectView
+import class    UIKit.UIView.UIView
+import struct   UIKit.UIView.UIViewAnimationOptions
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
 
@@ -78,7 +78,7 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
             blurView?.style = Theme.current.settings.backgroundBlurStyle
         }
         
-        let options: UIViewAnimationOptions = [.beginFromCurrentState, .curveEaseOut]
+        let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseOut]
         UIView.animate(withDuration: Constants.animationDuration, delay: 0.0, options: options, animations: animations) { _ in
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

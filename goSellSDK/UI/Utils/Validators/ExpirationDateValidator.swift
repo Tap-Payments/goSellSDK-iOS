@@ -121,7 +121,7 @@ internal class ExpirationDateValidator: CardValidator {
         self.updateTextFieldText(shouldClear: false, attributes: attributes.asStringAttributes)
     }
     
-    private func updateTextFieldText(shouldClear: Bool, attributes: [NSAttributedStringKey: Any]? = nil) {
+    private func updateTextFieldText(shouldClear: Bool, attributes: [NSAttributedString.Key: Any]? = nil) {
         
         if shouldClear {
             

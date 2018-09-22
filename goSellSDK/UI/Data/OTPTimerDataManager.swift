@@ -21,7 +21,7 @@ internal class OTPTimerDataManager {
         self.remainingTime = self.resendInterval
     }
     
-    internal func startTimer(force: Bool = true, tickClosure: TickClosure) {
+    internal func startTimer(force: Bool = true, tickClosure: @escaping TickClosure) {
         
         if !force && (self.timer?.isValid ?? false) {
             
@@ -72,7 +72,7 @@ internal class OTPTimerDataManager {
     
     // MARK: Methods
     
-    private func startTimer(_ updateClosure: TickClosure) {
+    private func startTimer(_ updateClosure: @escaping TickClosure) {
         
         let timer = Timer.scheduledTimer(timeInterval: Constants.tickDuration,
                                          target: self,
@@ -80,7 +80,7 @@ internal class OTPTimerDataManager {
                                          userInfo: updateClosure,
                                          repeats: true)
         
-        RunLoop.main.add(timer, forMode: .commonModes)
+        RunLoop.main.add(timer, forMode: .common)
         
         self.timer = timer
     }

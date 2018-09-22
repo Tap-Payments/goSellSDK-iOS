@@ -467,7 +467,7 @@ internal final class PaymentDataManager {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
     
@@ -486,7 +486,7 @@ internal final class PaymentDataManager {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: UIWindowLevelStatusBar, completion: nil)
+            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
     

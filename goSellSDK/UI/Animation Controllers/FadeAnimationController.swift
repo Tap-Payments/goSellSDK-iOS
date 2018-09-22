@@ -63,7 +63,7 @@ extension FadeAnimationController: UIViewControllerAnimatedTransitioning {
         var viewToFade: UIView
         var initialAlpha: CGFloat
         var finalAlpha: CGFloat
-        var animationOptions: UIViewAnimationOptions
+        var animationOptions: UIView.AnimationOptions
         
         switch self.operation {
             

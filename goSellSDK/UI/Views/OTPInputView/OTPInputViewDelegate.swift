@@ -9,5 +9,5 @@ import protocol TapAdditionsKit.ClassProtocol
 
 internal protocol OTPInputViewDelegate: ClassProtocol {
     
-    func otpInputView(_ otpInputView: OTPInputView, inputStateChanged valid: Bool)
+    func otpInputView(_ otpInputView: OTPInputView, inputStateChanged valid: Bool, wholeOTPAtOnce: Bool)
 }

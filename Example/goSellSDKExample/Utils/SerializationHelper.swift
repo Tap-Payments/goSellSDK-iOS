@@ -12,17 +12,20 @@ internal class SerializationHelper {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func updateCustomer(_ customer: Customer, with identifier: String) {
+    internal static func updateCustomer(_ customer: Customer, with identifier: String) -> EnvironmentCustomer? {
         
-        var allCustomers: [Customer] = Serializer.deserialize()
-        guard let index = allCustomers.index(of: customer) else { return }
-        
-        customer.identifier = identifier
+        var allCustomers: [EnvironmentCustomer] = Serializer.deserialize()
+        guard let index = allCustomers.index(where: { $0.customer == customer }) else { return nil }
+    
+        let envCustomer = allCustomers[index]
+        envCustomer.customer.identifier = identifier
         
         allCustomers.remove(at: index)
-        allCustomers.insert(customer, at: index)
+        allCustomers.insert(envCustomer, at: index)
         
         Serializer.serialize(allCustomers)
+        
+        return envCustomer
     }
     
     // MARK: - Private -

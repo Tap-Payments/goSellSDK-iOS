@@ -8,6 +8,7 @@
 import struct   CoreGraphics.CGBase.CGFloat
 import class    QuartzCore.CAAnimation.CAKeyframeAnimation
 import var      QuartzCore.CAMediaTiming.kCAFillModeForwards
+import struct   QuartzCore.CATransform3D.CATransform3D
 import func     QuartzCore.CATransform3D.CATransform3DMakeRotation
 import class    UIKit.UIView.UIView
 
@@ -25,16 +26,16 @@ internal extension WobblingViewHandler {
             self.stopWobbling()
         }
         
-        let timeOffset = duration * TimeInterval(Float(arc4random()) / Float(UInt32.max))
+        let timeOffset: Double = duration * TimeInterval(Float(arc4random()) / Float(UInt32.max))
         
-        let wobbleAnimation                     = CAKeyframeAnimation(keyPath: WobblingConstants.animationKeyPath)
-        wobbleAnimation.values                  = self.wobbleAnimationValues(for: angle)
-        wobbleAnimation.keyTimes                = self.animationTimings
-        wobbleAnimation.fillMode                = kCAFillModeForwards
-        wobbleAnimation.isRemovedOnCompletion   = false
-        wobbleAnimation.repeatCount             = Float.greatestFiniteMagnitude
-        wobbleAnimation.timeOffset              = timeOffset
-        wobbleAnimation.duration                = duration
+        let wobbleAnimation: CAKeyframeAnimation    = CAKeyframeAnimation(keyPath: WobblingConstants.animationKeyPath)
+        wobbleAnimation.values                      = self.wobbleAnimationValues(for: angle)
+        wobbleAnimation.keyTimes                    = self.animationTimings
+        wobbleAnimation.fillMode                    = .forwards
+        wobbleAnimation.isRemovedOnCompletion       = false
+        wobbleAnimation.repeatCount                 = Float.greatestFiniteMagnitude
+        wobbleAnimation.timeOffset                  = timeOffset
+        wobbleAnimation.duration                    = duration
         
         self.wobblingView.layer.add(wobbleAnimation, forKey: WobblingConstants.wobbleAnimationKey)
     }
@@ -48,11 +49,11 @@ internal extension WobblingViewHandler {
     
     private func wobbleAnimationValues(for angle: CGFloat) -> [NSValue] {
         
-        let value1 = CATransform3DMakeRotation(0.0,     0.0, 0.0, 1.0)
-        let value2 = CATransform3DMakeRotation(-angle,  0.0, 0.0, 1.0)
-        let value3 = CATransform3DMakeRotation(angle,   0.0, 0.0, 1.0)
-        let value4 = CATransform3DMakeRotation(0.0,     0.0, 0.0, 1.0)
-        
+        let value1: CATransform3D = CATransform3DMakeRotation(0.0,     0.0, 0.0, 1.0)
+        let value2: CATransform3D = CATransform3DMakeRotation(-angle,  0.0, 0.0, 1.0)
+        let value3: CATransform3D = CATransform3DMakeRotation(angle,   0.0, 0.0, 1.0)
+        let value4: CATransform3D = CATransform3DMakeRotation(0.0,     0.0, 0.0, 1.0)
+
         return [
         
             NSValue(caTransform3D: value1),
@@ -65,8 +66,8 @@ internal extension WobblingViewHandler {
 
 private struct WobblingConstants {
     
-    fileprivate static let animationKeyPath         = "transform"
-    fileprivate static let wobbleAnimationKey       = "wobble"
+    fileprivate static let animationKeyPath: String     = "transform"
+    fileprivate static let wobbleAnimationKey: String   = "wobble"
     
     @available(*, unavailable) private init() {}
 }

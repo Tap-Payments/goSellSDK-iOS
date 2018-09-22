@@ -20,9 +20,9 @@
     /// Initializes source object with static identifier.
     ///
     /// - Parameter identifier: Static source identifier.
-    internal convenience init(identifier: SourceIdentifier) {
+    internal convenience init(identifier: String) {
         
-        self.init(identifier.stringValue)
+        self.init(identifier)
     }
     
     /// Initializes source object with token.

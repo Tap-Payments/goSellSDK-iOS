@@ -79,7 +79,7 @@ internal extension PayButtonInternalImplementation {
             controller.payButton = selfAsView
         }
         
-        controller.showOnSeparateWindow(below: UIWindowLevelStatusBar) { [unowned controller] (rootController) in
+        controller.showOnSeparateWindow(below: .statusBar) { [unowned controller] (rootController) in
             
             rootController.allowedInterfaceOrientations = .portrait
             rootController.preferredInterfaceOrientation = .portrait

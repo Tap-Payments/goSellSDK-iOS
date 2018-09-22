@@ -20,7 +20,7 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     
     internal weak var delegate: CustomerViewControllerDelegate?
     
-    internal var customer: Customer? {
+    internal var customer: EnvironmentCustomer? {
         
         didSet {
             
@@ -28,18 +28,20 @@ internal class CustomerViewController: ModalNavigationTableViewController {
             
             if let nonnullCustomer = self.customer {
                 
-                self.currentCustomer = nonnullCustomer.copy() as! Customer
+                self.currentCustomer = nonnullCustomer.copy() as! EnvironmentCustomer
             }
         }
     }
     
     internal override var isDoneButtonEnabled: Bool {
         
-        if !(self.currentCustomer.identifier?.isEmpty ?? true) { return true }
+        let cust = self.currentCustomer.customer
         
-        if self.currentCustomer.firstName?.isEmpty ?? true { return false }
-        if self.currentCustomer.emailAddress == nil { return false }
-        if self.currentCustomer.phoneNumber == nil { return false }
+        if !(cust.identifier?.isEmpty ?? true) { return true }
+        
+        if cust.firstName?.isEmpty ?? true { return false }
+        if cust.emailAddress == nil { return false }
+        if cust.phoneNumber == nil { return false }
         
         return true
     }
@@ -78,7 +80,7 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var phoneISDNumberTextField: UITextField?
     @IBOutlet private weak var phoneNumberTextField: UITextField?
     
-    private var currentCustomer: Customer = CustomerViewController.createEmptyCustomer() {
+    private var currentCustomer: EnvironmentCustomer = CustomerViewController.createEmptyCustomer() {
         
         didSet {
             
@@ -86,12 +88,14 @@ internal class CustomerViewController: ModalNavigationTableViewController {
         }
     }
     
-    private static func createEmptyCustomer() -> Customer {
+    private static func createEmptyCustomer() -> EnvironmentCustomer {
         
         let customer = try! Customer(identifier: "new")
         customer.identifier = nil
         
-        return customer
+        let envCustomer = EnvironmentCustomer(customer: customer, environment: .sandbox)
+        
+        return envCustomer
     }
     
     // MARK: Methods
@@ -110,23 +114,25 @@ internal class CustomerViewController: ModalNavigationTableViewController {
     
     private func updateCurrentCustomerInfoFromInputFields() {
         
-        self.currentCustomer.firstName      = self.firstNameTextField?.text
-        self.currentCustomer.middleName     = self.middleNameTextField?.text
-        self.currentCustomer.lastName       = self.lastNameTextField?.text
-        self.currentCustomer.emailAddress   = try? EmailAddress(emailAddressString: self.emailAddressTextField?.text ?? "")
-        self.currentCustomer.phoneNumber    = try? PhoneNumber(isdNumber:   self.phoneISDNumberTextField?.text ?? "",
-                                                               phoneNumber: self.phoneNumberTextField?.text ?? "")
+        
+        
+        self.currentCustomer.customer.firstName      = self.firstNameTextField?.text
+        self.currentCustomer.customer.middleName     = self.middleNameTextField?.text
+        self.currentCustomer.customer.lastName       = self.lastNameTextField?.text
+        self.currentCustomer.customer.emailAddress   = try? EmailAddress(emailAddressString: self.emailAddressTextField?.text ?? "")
+        self.currentCustomer.customer.phoneNumber    = try? PhoneNumber(isdNumber:   self.phoneISDNumberTextField?.text ?? "",
+                                                                        phoneNumber: self.phoneNumberTextField?.text ?? "")
     }
     
     private func updateWithCurrentCustomerInfo() {
         
-        self.idLabel?.text                  = self.currentCustomer.identifier
-        self.firstNameTextField?.text       = self.currentCustomer.firstName
-        self.middleNameTextField?.text      = self.currentCustomer.middleName
-        self.lastNameTextField?.text        = self.currentCustomer.lastName
-        self.emailAddressTextField?.text    = self.currentCustomer.emailAddress?.value
-        self.phoneISDNumberTextField?.text  = self.currentCustomer.phoneNumber?.isdNumber
-        self.phoneNumberTextField?.text     = self.currentCustomer.phoneNumber?.phoneNumber
+        self.idLabel?.text                  = self.currentCustomer.customer.identifier
+        self.firstNameTextField?.text       = self.currentCustomer.customer.firstName
+        self.middleNameTextField?.text      = self.currentCustomer.customer.middleName
+        self.lastNameTextField?.text        = self.currentCustomer.customer.lastName
+        self.emailAddressTextField?.text    = self.currentCustomer.customer.emailAddress?.value
+        self.phoneISDNumberTextField?.text  = self.currentCustomer.customer.phoneNumber?.isdNumber
+        self.phoneNumberTextField?.text     = self.currentCustomer.customer.phoneNumber?.phoneNumber
     }
 }
 
