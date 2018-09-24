@@ -149,10 +149,7 @@ extension CurrencySelectionViewController: UITableViewDelegate {
         let model = self.model(at: indexPath)
         self.dataManager?.selectViewModel(model)
         
-        let selector = #selector(notifyDelegateIfCurrencyChangedAndPop)
-        
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: selector, object: nil)
-        self.perform(selector, with: nil, afterDelay: 0.5)
+        self.notifyDelegateIfCurrencyChangedAndPop()
     }
 }
 

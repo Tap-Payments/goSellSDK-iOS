@@ -22,7 +22,10 @@ extension PaymentOptionsViewController: UIScrollViewDelegate {
     
     internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
+        DispatchQueue.main.async {
+            
+            MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
+        }
     }
 }
 
@@ -114,21 +117,13 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else {
-            
-            fatalError("Datasource is corrupted")
-        }
-        
+        guard let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else { return }
         model.tableViewDidSelectCell(tableView)
     }
     
     internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        guard let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else {
-            
-            fatalError("Datasource is corrupted")
-        }
-        
+        guard let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else { return }
         model.tableViewDidDeselectCell(tableView)
     }
 }

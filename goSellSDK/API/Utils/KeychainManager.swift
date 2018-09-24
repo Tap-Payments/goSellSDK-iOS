@@ -16,11 +16,13 @@ internal class KeychainManager {
         
         get {
             
-            return Keychain.read(for: Constants.deviceIDKey)
+            let key = self.deviceIDKey(for: goSellSDK.mode)
+            return Keychain.read(for: key)
         }
         set {
             
-            Keychain.write(newValue, for: Constants.deviceIDKey)
+            let key = self.deviceIDKey(for: goSellSDK.mode)
+            Keychain.write(newValue, for: key)
         }
     }
     
@@ -38,4 +40,9 @@ internal class KeychainManager {
     // MARK: Methods
     
     @available(*, unavailable) private init() {}
+    
+    private static func deviceIDKey(for mode: SDKMode) -> String {
+        
+        return Constants.deviceIDKey + "_\(mode)"
+    }
 }
