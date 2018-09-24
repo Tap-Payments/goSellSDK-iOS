@@ -58,6 +58,8 @@ internal extension PayButtonInternalImplementation {
     
     internal func buttonTouchUpInside() {
         
+        guard PaymentDataManager.shared.canStart(with: self) else { return }
+        
         PaymentDataManager.shared.start(with: self)
     }
     

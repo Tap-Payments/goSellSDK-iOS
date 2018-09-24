@@ -7,37 +7,39 @@
 
 import enum TapCardValidator.CardBrand
 
-internal enum CardScheme: String, Decodable {
-    
-    case knet               = "KNET"
-    case visa               = "VISA"
-    case masterCard         = "MASTERCARD"
-    case americanExpress    = "AMERICAN_EXPRESS"
-    case mada               = "MADA"
-    case benefit            = "BENEFIT"
-    case sadadAccount       = "SADAD_ACCOUNT"
-    case fawry              = "FAWRY"
-    case naps               = "NAPS"
-    case omanNet            = "OMAN_NET"
+internal struct CardScheme {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var cardBrand: CardBrand {
+    internal let cardBrand: CardBrand
+    
+    // MARK: - Private -
+    // MARK: Methods
+    
+    private init(_ brand: CardBrand) {
         
-        switch self {
-            
-        case .knet: return .knet
-        case .visa: return .visa
-        case .masterCard: return .masterCard
-        case .americanExpress: return .americanExpress
-        case .mada: return .mada
-        case .benefit: return .benefit
-        case .sadadAccount: return .sadad
-        case .fawry: return .fawry
-        case .naps: return .naps
-        case .omanNet: return .omanNet
+        self.cardBrand = brand
+    }
+}
 
-        }
+// MARK: - Decodable
+extension CardScheme: Decodable {
+    
+    internal init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let brand = try container.decode(CardBrand.self)
+        
+        self.init(brand)
+    }
+}
+
+// MARK: - Equatable
+extension CardScheme: Equatable {
+    
+    internal static func == (lhs: CardScheme, rhs: CardScheme) -> Bool {
+    
+        return lhs.cardBrand == rhs.cardBrand
     }
 }

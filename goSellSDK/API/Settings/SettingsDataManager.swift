@@ -65,7 +65,7 @@ internal final class SettingsDataManager {
     
     private var pendingCompletions: [OptionalErrorClosure] = []
     
-    private static var storage: SettingsDataManager?
+    private static var storages: [SDKMode: SettingsDataManager] = [:]
     
     // MARK: Methods
     
@@ -83,6 +83,8 @@ internal final class SettingsDataManager {
         APIClient.shared.initSDK { [unowned self] (settings, error) in
             
             if let nonnullError = error {
+                
+                self.status = .notInitiated
                 
                 if self.pendingCompletions.count > 0 {
                 
@@ -116,34 +118,19 @@ internal final class SettingsDataManager {
     }
 }
 
-// MARK: - ImmediatelyDestroyable
-extension SettingsDataManager: ImmediatelyDestroyable {
-    
-    internal static var hasAliveInstance: Bool {
-        
-        return self.storage != nil
-    }
-    
-    internal static func destroyInstance() {
-        
-        self.storage = nil
-    }
-}
-
 // MARK: - Singleton
 extension SettingsDataManager: Singleton {
     
     internal static var shared: SettingsDataManager {
         
-        if let nonnullStorage = self.storage {
+        if let existing = self.storages[goSellSDK.mode] {
             
-            return nonnullStorage
+            return existing
         }
         
         let instance = SettingsDataManager()
-        self.storage = instance
+        self.storages[goSellSDK.mode] = instance
         
         return instance
     }
 }
-
