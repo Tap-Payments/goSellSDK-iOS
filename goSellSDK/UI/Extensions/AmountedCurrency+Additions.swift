@@ -14,7 +14,7 @@ internal extension AmountedCurrency {
     
     internal var readableCurrencyName: String {
         
-        let locale = Locale(identifier: goSellSDK.localeIdentifier)
+        let locale = Locale(identifier: SettingsDataManager.shared.localeIdentifier)
         return locale.localizedString(forCurrencyCode: self.currency.isoCode) ?? self.currency.isoCode
     }
 }

@@ -39,7 +39,7 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
             self.scannerView?.scanExpiry                    = true
             self.scannerView?.scannedImageDuration          = 0.0
             self.scannerView?.hideCardIOLogo                = true
-            self.scannerView?.languageOrLocale              = goSellSDK.localeIdentifier
+            self.scannerView?.languageOrLocale              = SettingsDataManager.shared.localeIdentifier
             self.scannerView?.detectionMode                 = .cardImageAndNumber
             self.scannerView?.guideColor                    = .hex("#2ACE00")
             self.scannerView?.allowFreelyRotatingCardGuide  = true

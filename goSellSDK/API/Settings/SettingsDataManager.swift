@@ -14,6 +14,8 @@ internal final class SettingsDataManager {
     
     internal typealias OptionalErrorClosure = (TapSDKError?) -> Void
     
+    internal let localeIdentifier: String = "en"
+    
     // MARK: Properties
     
     /// SDK settings.

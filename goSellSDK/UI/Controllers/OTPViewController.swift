@@ -228,7 +228,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     private lazy var countdownDateFormatter: DateFormatter = {
         
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: goSellSDK.localeIdentifier)
+        formatter.locale = Locale(identifier: SettingsDataManager.shared.localeIdentifier)
         formatter.dateFormat = Constants.resendButtonTitleDateFormat
         
         return formatter

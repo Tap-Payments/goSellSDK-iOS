@@ -17,7 +17,7 @@
     /// Pretty printed object description.
     public override var description: String {
         
-        let locale = Locale(identifier: goSellSDK.localeIdentifier)
+        let locale = Locale(identifier: SettingsDataManager.shared.localeIdentifier)
         let currencyName = locale.localizedString(forCurrencyCode: self.isoCode)
         if let nonnullCurrencyName = currencyName {
             

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1444698121594A4D009849DC /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444698021594A4D009849DC /* LocalizationProvider.swift */; };
+		1444698221594A4D009849DC /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444698021594A4D009849DC /* LocalizationProvider.swift */; };
 		14690B112155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
 		14690B122155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
 		14690B142155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
@@ -650,6 +652,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1444698021594A4D009849DC /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
 		14690B102155DF240033C562 /* SDKMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKMode.swift; sourceTree = "<group>"; };
 		14690B132155DF330033C562 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 		14DF99F72147F4B900991EB3 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -1499,6 +1502,7 @@
 				A4694B1A211B47EC00B335F1 /* ErrorActionExecutor.swift */,
 				A4694B1B211B47EC00B335F1 /* ErrorDataManager.swift */,
 				A447EB012110542700099C07 /* InterfaceOrientationManager.swift */,
+				1444698021594A4D009849DC /* LocalizationProvider.swift */,
 				A4694B19211B47EC00B335F1 /* LocalizationStorage.swift */,
 				A424879820E4F396001C4FAF /* OTPTimerDataManager.swift */,
 				A4C0FC55208CE50C00C5FBC6 /* PaymentDataManager.swift */,
@@ -1939,6 +1943,7 @@
 				A468773E20DC1F1600123391 /* StatusPopupViewController.swift in Sources */,
 				A473D10E213BE7C600F13B73 /* BrandWithScheme.swift in Sources */,
 				A482F73A2085BC1000AA76A4 /* Charge.swift in Sources */,
+				1444698121594A4D009849DC /* LocalizationProvider.swift in Sources */,
 				A4BE547920A9D4ED004E979E /* GeneralImages.swift in Sources */,
 				A4BD8CDD20A1EFFE00EFF2CE /* AmountedCurrencyTableViewCellModel.swift in Sources */,
 				A4571EEE20FE2319006D96DC /* APIClient+BillingAddress.swift in Sources */,
@@ -2202,6 +2207,7 @@
 				A424878B20E4F136001C4FAF /* BaseInteractionController.swift in Sources */,
 				A4A982BA20D2B36A00770690 /* EmptyInitializable.swift in Sources */,
 				A4A9829420D2B32000770690 /* TokenizedCard.swift in Sources */,
+				1444698221594A4D009849DC /* LocalizationProvider.swift in Sources */,
 				A4C13A7920F4EF5500037EDC /* Energy.swift in Sources */,
 				A4C13A8220F4EF9900037EDC /* CardsContainerTableViewCellModel+UICollectionView.swift in Sources */,
 				A4BD8D6920A1FB3D00EFF2CE /* Charge.swift in Sources */,
@@ -2556,6 +2562,11 @@
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Weverything",
+				);
 			};
 			name = Debug;
 		};
@@ -2648,6 +2659,11 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Weverything",
+				);
 			};
 			name = Release;
 		};

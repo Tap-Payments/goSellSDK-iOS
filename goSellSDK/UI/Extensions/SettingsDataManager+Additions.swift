@@ -11,6 +11,6 @@ internal extension SettingsDataManager {
     
     internal var layoutDirection: UIUserInterfaceLayoutDirection {
         
-        return Locale.characterDirection(forLanguage: goSellSDK.localeIdentifier) == .leftToRight ? .leftToRight : .rightToLeft
+        return Locale.characterDirection(forLanguage: SettingsDataManager.shared.localeIdentifier) == .leftToRight ? .leftToRight : .rightToLeft
     }
 }
