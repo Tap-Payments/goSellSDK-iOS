@@ -22,7 +22,7 @@ internal class LocalizationStorage {
     
     internal static func localizedString(for key: String) -> String {
         
-        guard let data = self.localizationData[goSellSDK.localeIdentifier] else { return key }
+        guard let data = self.localizationData[SettingsDataManager.shared.localeIdentifier] else { return key }
         
         if let result = data[key] {
             

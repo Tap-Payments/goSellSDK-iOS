@@ -226,7 +226,7 @@ internal final class APIClient {
         
         var applicationDetails = self.applicationStaticDetails
         
-        let localeIdentifier = goSellSDK.localeIdentifier
+        let localeIdentifier = SettingsDataManager.shared.localeIdentifier
         applicationDetails[Constants.HTTPHeaderValueKey.appLocale] = localeIdentifier
         
         if let deviceID = KeychainManager.deviceID {

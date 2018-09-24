@@ -21,14 +21,6 @@
     /// - Warning: Don't change while the payment is in progress or the payment process and status will be undefined.
     public static var secretKey: SecretKey = .empty
     
-    /// Customer. Set this value at any time before user presses Pay button.
-    public static var customer: Customer?
-    
-    // MARK: - Internal -
-    // MARK: Properties
-    
-    internal static let localeIdentifier: String = "en"
-    
     // MARK: - Private -
     // MARK: Methods
     
