@@ -12,7 +12,7 @@
         <!--Data Source-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ExampleViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ExampleViewController" customModule="goSell_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2oO-oy-FhN"/>
                         <viewControllerLayoutGuide type="bottom" id="24L-YU-wCA"/>
@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupHeaderCell" id="0cT-6y-7Xe" customClass="GroupHeaderCell" customModule="goSellSDKExample" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupHeaderCell" id="0cT-6y-7Xe" customClass="GroupHeaderCell" customModule="goSell_SDK" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0cT-6y-7Xe" id="b9O-Sx-y3l">
@@ -56,7 +56,7 @@
                                                     <outlet property="groupTitleLabel" destination="YAH-os-3iS" id="Q7k-SL-EC0"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="PaymentItemTableViewCell" rowHeight="100" id="jdv-Vh-5oh" customClass="PaymentItemTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="PaymentItemTableViewCell" rowHeight="100" id="jdv-Vh-5oh" customClass="PaymentItemTableViewCell" customModule="goSell_SDK" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jdv-Vh-5oh" id="5Ui-SI-K4M">
@@ -319,7 +319,7 @@
                                                     <outlet property="totalAmountLabel" destination="4TF-qB-i2n" id="DrV-k5-GBS"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlainAmountTableViewCell" id="wss-fh-3Zy" customClass="PlainAmountTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlainAmountTableViewCell" id="wss-fh-3Zy" customClass="PlainAmountTableViewCell" customModule="goSell_SDK" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="172" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wss-fh-3Zy" id="8Xl-hb-vgp">
@@ -450,7 +450,7 @@
         <!--Payment Item View Controller-->
         <scene sceneID="0aD-zJ-EKT">
             <objects>
-                <tableViewController id="PiG-a3-YSD" customClass="PaymentItemViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="PiG-a3-YSD" customClass="PaymentItemViewController" customModule="goSell_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="h4M-Sy-OSa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -804,7 +804,7 @@
                                                     <rect key="frame" x="50" y="0.0" width="325" height="99.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaxTableViewCell" rowHeight="100" id="xuh-ZZ-WTt" customClass="TaxTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaxTableViewCell" rowHeight="100" id="xuh-ZZ-WTt" customClass="TaxTableViewCell" customModule="goSell_SDK" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="325" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xuh-ZZ-WTt" id="67w-Yj-MeV">
@@ -1196,7 +1196,7 @@
                                                     <rect key="frame" x="50" y="0.0" width="325" height="99.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShippingTableViewCell" rowHeight="65" id="KCe-oJ-K24" customClass="ShippingTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShippingTableViewCell" rowHeight="65" id="KCe-oJ-K24" customClass="ShippingTableViewCell" customModule="goSell_SDK" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="325" height="65"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KCe-oJ-K24" id="vb6-hV-oBf">
@@ -1332,7 +1332,7 @@
                                                     <rect key="frame" x="50" y="0.0" width="325" height="99.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaxTableViewCell" rowHeight="100" id="4F7-uc-jXy" customClass="TaxTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaxTableViewCell" rowHeight="100" id="4F7-uc-jXy" customClass="TaxTableViewCell" customModule="goSell_SDK" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="325" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4F7-uc-jXy" id="jGW-3P-TVl">
@@ -1526,13 +1526,13 @@
         <!--Case Selection Table View Controller-->
         <scene sceneID="O4v-61-Vi9">
             <objects>
-                <tableViewController id="zA3-Yt-RtT" customClass="CaseSelectionTableViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zA3-Yt-RtT" customClass="CaseSelectionTableViewController" customModule="goSell_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dSu-RM-6As">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TitleTableViewCell" id="uwZ-OW-lSb" customClass="TitleTableViewCell" customModule="goSellSDKExample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TitleTableViewCell" id="uwZ-OW-lSb" customClass="TitleTableViewCell" customModule="goSell_SDK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uwZ-OW-lSb" id="hTu-j3-ie9">
@@ -1571,7 +1571,7 @@
         <!--Tax View Controller-->
         <scene sceneID="jbM-Ds-wX6">
             <objects>
-                <tableViewController id="FcR-nv-3eT" customClass="TaxViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="FcR-nv-3eT" customClass="TaxViewController" customModule="goSell_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GOG-uQ-pFB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1792,7 +1792,7 @@
         <!--Customers List View Controller-->
         <scene sceneID="kbb-hm-fDi">
             <objects>
-                <tableViewController id="YM3-SX-OoW" customClass="CustomersListViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="YM3-SX-OoW" customClass="CustomersListViewController" customModule="goSell_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SbV-1r-chs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1961,7 +1961,7 @@
         <!--Root View Controller-->
         <scene sceneID="SOD-M5-RUG">
             <objects>
-                <tableViewController id="z0X-YC-Yc7" customClass="CustomerViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="z0X-YC-Yc7" customClass="CustomerViewController" customModule="goSell_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aQn-vp-NrK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
