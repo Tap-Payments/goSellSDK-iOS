@@ -21,6 +21,8 @@ internal class BaseCollectionViewCell: UICollectionViewCell {
             
             glowingCell.prepareForGlowing()
         }
+		
+		self.updateLayoutDirectionIfRequired()
     }
     
     internal override func prepareForReuse() {
@@ -31,5 +33,7 @@ internal class BaseCollectionViewCell: UICollectionViewCell {
             
             glowingCell.prepareForGlowing()
         }
+		
+		self.updateLayoutDirectionIfRequired()
     }
 }

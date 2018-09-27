@@ -51,6 +51,8 @@ internal class ExampleViewController: BaseViewController {
         super.viewDidLoad()
         
         self.title = "goSell SDK Example"
+		
+		goSellSDK.language = self.paymentSettings.sdkLanguage.localeIdentifier
         goSellSDK.mode = self.paymentSettings.sdkMode
     }
     
@@ -97,7 +99,8 @@ internal class ExampleViewController: BaseViewController {
     private var paymentSettings: Settings = Serializer.deserialize() ?? .default {
         
         didSet {
-            
+			
+			goSellSDK.language = self.paymentSettings.sdkLanguage.localeIdentifier
             goSellSDK.mode = self.paymentSettings.sdkMode
         }
     }

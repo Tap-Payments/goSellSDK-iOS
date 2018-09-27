@@ -11,18 +11,18 @@ internal class LocalizationStorage {
     // MARK: Methods
     
     internal static func alertTitleKey(for error: ErrorCode) -> String {
-        
-        return "error_\(error.rawValue)_alert_title"
+		
+        return "alert_error_\(error.rawValue)_title"
     }
     
     internal static func alertMessageKey(for error: ErrorCode) -> String {
         
-        return "error_\(error.rawValue)_alert_message"
+        return "alert_error_\(error.rawValue)_message"
     }
     
     internal static func localizedString(for key: String) -> String {
         
-        guard let data = self.localizationData[SettingsDataManager.shared.localeIdentifier] else { return key }
+        guard let data = self.localizationData[LocalizationProvider.shared.selectedLanguage] else { return key }
         
         if let result = data[key] {
             

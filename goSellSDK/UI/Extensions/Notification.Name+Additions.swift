@@ -6,7 +6,9 @@
 //
 
 internal extension Notification.Name {
-    
+	
+	internal static let sdkLanguageChanged			= Notification.Name("TapSDKLanguageChangedNotification")
+	internal static let sdkLayoutDirectionChanged	= Notification.Name("TapSDKLayoutDirectionChangedNotification")
     internal static let paymentOptionsModelsUpdated = Notification.Name("TapPaymentOptionsUpdatedNotification")
-    internal static let payButtonStateChanged = Notification.Name("TapPayButtonStateChangedNotification")
+    internal static let payButtonStateChanged       = Notification.Name("TapPayButtonStateChangedNotification")
 }

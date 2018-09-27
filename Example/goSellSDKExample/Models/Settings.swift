@@ -5,8 +5,10 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct	Foundation.NSLocale.Locale
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
+import class	goSellSDK.goSellSDK
 import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
@@ -17,12 +19,20 @@ internal final class Settings: Encodable {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal static let `default` = Settings(sdkMode: .sandbox, transactionMode: .purchase, currency: try! Currency(isoCode: "kwd"), customer: nil, shippingList: [], taxes: [])
+	internal static let `default` = Settings(sdkLanguage: Language(localeIdentifier: Locale.LocaleIdentifier.en),
+											 sdkMode: .sandbox,
+											 transactionMode: .purchase,
+											 currency: try! Currency(isoCode: "kwd"),
+											 customer: nil,
+											 shippingList: [],
+											 taxes: [])
     
     internal var currency: Currency
     
     internal var customer: EnvironmentCustomer?
-    
+	
+	internal var sdkLanguage: Language
+	
     internal var sdkMode: SDKMode
     
     internal var transactionMode: TransactionMode
@@ -33,8 +43,9 @@ internal final class Settings: Encodable {
     
     // MARK: Methods
     
-    internal init(sdkMode: SDKMode, transactionMode: TransactionMode, currency: Currency, customer: EnvironmentCustomer?, shippingList: [Shipping], taxes: [Tax]) {
-        
+	internal init(sdkLanguage: Language, sdkMode: SDKMode, transactionMode: TransactionMode, currency: Currency, customer: EnvironmentCustomer?, shippingList: [Shipping], taxes: [Tax]) {
+		
+		self.sdkLanguage 		= sdkLanguage
         self.sdkMode            = sdkMode
         self.transactionMode    = transactionMode
         self.currency           = currency
@@ -46,7 +57,8 @@ internal final class Settings: Encodable {
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
-        
+		
+		case sdkLanguage		= "sdk_language"
         case sdkMode            = "sdk_mode"
         case transactionMode    = "mode"
         case currency           = "currency"
@@ -62,7 +74,8 @@ extension Settings: Decodable {
     internal convenience init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+		
+		let sdkLanguage		= try container.decodeIfPresent(Language.self, forKey: .sdkLanguage) ?? Language(localeIdentifier: goSellSDK.language)
         let sdkMode         = try container.decodeIfPresent(SDKMode.self, forKey: .sdkMode) ?? Settings.default.sdkMode
         let transactionMode = try container.decode(TransactionMode.self, forKey: .transactionMode)
         let currency        = try container.decode(Currency.self, forKey: .currency)
@@ -95,7 +108,7 @@ extension Settings: Decodable {
             }
         }
         
-        self.init(sdkMode: sdkMode, transactionMode: transactionMode, currency: currency, customer: envCustomer, shippingList: shippingList, taxes: taxes)
+		self.init(sdkLanguage: sdkLanguage, sdkMode: sdkMode, transactionMode: transactionMode, currency: currency, customer: envCustomer, shippingList: shippingList, taxes: taxes)
     }
 }
 

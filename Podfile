@@ -18,6 +18,8 @@ def shared_pods
     pod 'TapAdditionsKit/SwiftStandartLibrary/OptionSet'
     pod 'TapAdditionsKit/SwiftStandartLibrary/String'
     pod 'TapAdditionsKit/Tap/TypeAlias'
+	pod 'TapAdditionsKit/UIKit/UIEdgeInsets'
+    pod 'TapAdditionsKit/UIKit/UIButton'
     pod 'TapAdditionsKit/UIKit/NSLayoutConstraint'
     pod 'TapAdditionsKit/UIKit/UINavigationController'
     pod 'TapAdditionsKit/UIKit/UIResponder'

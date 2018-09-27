@@ -9,7 +9,10 @@ import class UIKit.UITableViewCell.UITableViewCell
 
 /// Base Table View Cell.
 internal class BaseTableViewCell: UITableViewCell {
-    
+	
+	// MARK: - Internal -
+	// MARK: Methods
+	
     internal override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -23,6 +26,8 @@ internal class BaseTableViewCell: UITableViewCell {
             
             glowingCell.prepareForGlowing()
         }
+		
+		self.updateLayoutDirectionIfRequired()
     }
     
     internal override func prepareForReuse() {
@@ -33,5 +38,7 @@ internal class BaseTableViewCell: UITableViewCell {
             
             glowingCell.prepareForGlowing()
         }
+		
+		self.updateLayoutDirectionIfRequired()
     }
 }

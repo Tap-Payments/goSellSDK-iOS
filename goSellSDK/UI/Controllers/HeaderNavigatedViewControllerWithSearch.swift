@@ -80,7 +80,13 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
     }
     
     internal func searchViewTextChanged(_ text: String) {}
-    
+	
+	internal override func localizationChanged() {
+		
+		super.localizationChanged()
+		self.updateSearchFieldLocalization()
+	}
+	
     // MARK: - Private -
     
     private struct Constants {
@@ -138,6 +144,20 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         let shadowOpacity = searchViewRelativeSize > 0.5 ? 0.0 : desiredOpacity
         self.searchView?.layer.shadowOpacity = Float(shadowOpacity)
     }
+	
+	private func updateSearchFieldLocalization() {
+		
+		guard let searchField = self.searchView?.searchField else { return }
+		guard let searchPlaceholder = searchField.attributedPlaceholder, searchPlaceholder.length > 0 else { return }
+		
+		let attributes = searchPlaceholder.attributes(at: 0, effectiveRange: nil)
+		
+		let placeholderText = LocalizationProvider.shared.localizedString(for: .search_bar_placeholder)
+		let placeholder = NSAttributedString(string: placeholderText, attributes: attributes)
+		
+		searchField.attributedPlaceholder = placeholder
+		searchField.localizedTextAlignment = .leading
+	}
 }
 
 // MARK: - UIScrollViewDelegate

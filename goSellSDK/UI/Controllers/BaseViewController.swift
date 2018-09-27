@@ -19,8 +19,8 @@ import var      UIKit.UIWindow.UIKeyboardAnimationDurationUserInfoKey
 import var      UIKit.UIWindow.UIKeyboardFrameEndUserInfoKey
 
 /// Base View Controller.
-internal class BaseViewController: UIViewController {
-    
+internal class BaseViewController: UIViewController, LocalizationObserver, LayoutDirectionObserver {
+	
     // MARK: - Internal -
     // MARK: Properties
     
@@ -38,9 +38,11 @@ internal class BaseViewController: UIViewController {
         
         return InterfaceOrientationManager.shared.preferredInterfaceOrientationForPresentation(of: self)
     }
+	
+	internal var viewToUpdateLayoutDirection: UIView { return self.view }
     
     // MARK: Methods
-    
+
     internal override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -49,6 +51,12 @@ internal class BaseViewController: UIViewController {
             
             self.addKeyboardObserver()
         }
+		
+		self.localizationChanged()
+		self.startMonitoringLocalizationChanges()
+		
+		self.view.updateLayoutDirectionIfRequired()
+		self.startMonitoringLayoutDirectionChanges()
     }
     
     internal override func viewDidDisappear(_ animated: Bool) {
@@ -57,11 +65,17 @@ internal class BaseViewController: UIViewController {
             
             self.removeKeyboardObserver()
         }
+		
+		self.stopMonitoringLocalizationChanges()
+		self.stopMonitoringLayoutDirectionChanges()
+		
         super.viewDidDisappear(animated)
     }
     
     internal func performAdditionalAnimationsAfterKeyboardLayoutFinished() { }
-    
+	
+	internal func localizationChanged() {}
+	
     // MARK: - Private -
     // MARK: Properties
     
@@ -71,21 +85,19 @@ internal class BaseViewController: UIViewController {
     // MARK: Methods
     
     private func addKeyboardObserver() {
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillChangeFrame(_:)),
-                                               name: UIResponder.keyboardWillChangeFrameNotification,
-                                               object: nil)
+		
+		NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillChangeFrameNotification, object: nil, queue: .main) { [weak self] (notification) in
+			
+			self?.keyboardWillChangeFrame(notification)
+		}
     }
+	
+	private func removeKeyboardObserver() {
+		
+		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+	}
     
-    private func removeKeyboardObserver() {
-        
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillChangeFrameNotification,
-                                                  object: nil)
-    }
-    
-    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+	private func keyboardWillChangeFrame(_ notification: Notification) {
         
         performOnMainThread { [weak self] in
             

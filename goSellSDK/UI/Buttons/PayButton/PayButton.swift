@@ -5,8 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import class TapNibView.TapNibView
-import class UIKit.UIButton.UIButton
+import class	TapNibView.TapNibView
+import class 	UIKit.UIButton.UIButton
+import class 	UIKit.UIView.UIView
 
 /// Pay button.
 @objcMembers public final class PayButton: TapNibView {
@@ -59,7 +60,28 @@ import class UIKit.UIButton.UIButton
         
         self.calculateDisplayedAmount()
     }
-    
+	
+	public override func didMoveToSuperview() {
+		
+		super.didMoveToSuperview()
+		
+		if self.superview != nil {
+			
+			self.updateLayoutDirectionIfRequired()
+			self.startMonitoringLayoutDirectionChanges()
+		}
+	}
+	
+	public override func willMove(toSuperview newSuperview: UIView?) {
+		
+		super.willMove(toSuperview: newSuperview)
+		
+		if newSuperview == nil {
+			
+			self.stopMonitoringLayoutDirectionChanges()
+		}
+	}
+	
     // MARK: - Internal -
     // MARK: Properties
     
@@ -106,4 +128,13 @@ extension PayButton: PayButtonInternalImplementation {
         
         self.updateDisplayedAmount()
     }
+}
+
+// MARK: - LayoutDirectionObserver
+extension PayButton: LayoutDirectionObserver {
+	
+	internal var viewToUpdateLayoutDirection: UIView {
+		
+		return self
+	}
 }

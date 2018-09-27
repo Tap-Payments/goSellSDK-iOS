@@ -29,6 +29,7 @@ import enum     UIKit.UITextInputTraits.UIKeyboardType
 import struct   UIKit.UITextInputTraits.UITextContentType
 import protocol UIKit.UITextInputTraits.UITextInputTraits
 import class    UIKit.UITouch.UITouch
+import enum		UIKit.UIView.UISemanticContentAttribute
 import class    UIKit.UIView.UIView
 import struct   UIKit.UIView.UIViewKeyframeAnimationOptions
 
@@ -70,6 +71,16 @@ internal final class OTPInputView: TapNibView {
             self.setOTPCode(newValue, wholeAtOnce: false)
         }
     }
+	
+	@available(iOS 9.0, *)
+	internal override var semanticContentAttribute: UISemanticContentAttribute {
+		
+		get {
+			
+			return .forceLeftToRight
+		}
+		set {}
+	}
     
     // MARK: Methods
     

@@ -25,9 +25,15 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
         super.headerNavigationViewLoaded(headerView)
         
         headerView.iconImage = Theme.current.settings.cardInputFieldsSettings.scanIcon
-        headerView.title = "Scanning Card"
     }
-    
+	
+	internal override func localizationChanged() {
+		
+		super.localizationChanged()
+		
+		self.headerNavigationView?.setLocalizedText(.card_scanning_screen_title)
+	}
+	
     // MARK: - Private -
     // MARK: Properties
     
@@ -39,7 +45,7 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
             self.scannerView?.scanExpiry                    = true
             self.scannerView?.scannedImageDuration          = 0.0
             self.scannerView?.hideCardIOLogo                = true
-            self.scannerView?.languageOrLocale              = SettingsDataManager.shared.localeIdentifier
+            self.scannerView?.languageOrLocale              = LocalizationProvider.shared.selectedLanguage
             self.scannerView?.detectionMode                 = .cardImageAndNumber
             self.scannerView?.guideColor                    = .hex("#2ACE00")
             self.scannerView?.allowFreelyRotatingCardGuide  = true

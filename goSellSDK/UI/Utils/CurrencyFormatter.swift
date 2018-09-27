@@ -18,7 +18,7 @@ internal final class CurrencyFormatter {
     /// - Parameters:
     ///   - amountedCurrency: Amounted currency.
     ///   - locale: Locale.
-    internal func format(_ amountedCurrency: AmountedCurrency, with locale: Locale = .enUS, displayCurrency: Bool = true) -> String {
+    internal func format(_ amountedCurrency: AmountedCurrency, with locale: Locale = LocalizationProvider.shared.selectedLocale, displayCurrency: Bool = true) -> String {
         
         let result: String = synchronized(self.currencyFormatter) {
             

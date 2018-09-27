@@ -9,16 +9,17 @@ internal class GroupTableViewCellModel: TableViewCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties
-    
-    internal let title: String
+	
+	internal let key: LocalizationKey
     
     internal weak var cell: GroupTableViewCell?
     
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, title: String) {
-        
-        self.title = title
+	internal init(indexPath: IndexPath, key: LocalizationKey) {
+		
+		self.key = key
+		
         super.init(indexPath: indexPath)
     }
 }

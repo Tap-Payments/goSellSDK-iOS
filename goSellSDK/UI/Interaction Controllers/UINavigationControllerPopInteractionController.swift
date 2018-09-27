@@ -77,7 +77,7 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
         let recognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgePanDetected(_:)))
         recognizer.delegate = self
         
-        recognizer.edges = SettingsDataManager.shared.layoutDirection == UIUserInterfaceLayoutDirection.leftToRight ? UIRectEdge.left : UIRectEdge.right
+        recognizer.edges = LocalizationProvider.shared.layoutDirection == UIUserInterfaceLayoutDirection.leftToRight ? UIRectEdge.left : UIRectEdge.right
         
         self.viewController.view.addGestureRecognizer(recognizer)
     }
@@ -91,15 +91,18 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
             self.begin()
             
         case .changed:
-            
+			
+			let ltr = LocalizationProvider.shared.layoutDirection == .leftToRight
+			let viewWidth = self.viewController.view.bounds.size.width
+			
             let translation             = recognizer.translation(in: recognizer.view?.window).x
             let velocity                = recognizer.velocity(in: recognizer.view?.window).x
-            let maxTranslation          = self.viewController.view.bounds.size.width
+			let maxTranslation          = ltr ? viewWidth : -viewWidth
             let edgeTranslation         = maxTranslation * Constants.edgeTranslationPercentageToFinishTransition
             let animationProgress       = clamp(value: translation / maxTranslation, low: 0.0, high: 1.0)
             let translationIfReleased   = translation + velocity * self.duration
             
-            self.shouldCompleteTransitionOnGestureFinish = translationIfReleased >= edgeTranslation
+			self.shouldCompleteTransitionOnGestureFinish = ltr ? translationIfReleased >= edgeTranslation : translationIfReleased <= edgeTranslation
             self.update(animationProgress)
             
         case .cancelled:

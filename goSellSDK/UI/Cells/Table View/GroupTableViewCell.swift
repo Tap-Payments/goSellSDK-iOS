@@ -26,7 +26,7 @@ internal class GroupTableViewCell: BaseTableViewCell {
 extension GroupTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
-    
-        self.titleLabel?.text = self.model?.title
+		
+		self.titleLabel?.setLocalizedText(self.model?.key)
     }
 }

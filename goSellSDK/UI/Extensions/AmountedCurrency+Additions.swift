@@ -6,7 +6,10 @@
 //
 
 internal extension AmountedCurrency {
-    
+	
+	// MARK: - Internal -
+	// MARK: Properties
+	
     internal var displayValue: String {
         
         return CurrencyFormatter.shared.format(self)
@@ -14,7 +17,15 @@ internal extension AmountedCurrency {
     
     internal var readableCurrencyName: String {
         
-        let locale = Locale(identifier: SettingsDataManager.shared.localeIdentifier)
-        return locale.localizedString(forCurrencyCode: self.currency.isoCode) ?? self.currency.isoCode
+        let locale = LocalizationProvider.shared.selectedLocale
+		
+		if let currencyName = locale.localizedString(forCurrencyCode: self.currency.isoCode) {
+			
+			return currencyName.prefix(1).capitalized + currencyName.dropFirst()
+		}
+		else {
+			
+			return self.currency.isoCode
+		}
     }
 }

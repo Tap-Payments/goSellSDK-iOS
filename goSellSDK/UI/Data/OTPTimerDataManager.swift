@@ -12,7 +12,11 @@ internal class OTPTimerDataManager {
     // MARK: - Internal -
     
     internal typealias TickClosure = (OTPTimerState) -> Void
-    
+	
+	// MARK: Properties
+	
+	internal private(set) lazy var state: OTPTimerState = .ticking(self.resendInterval)
+	
     // MARK: Methods
     
     internal init() {
@@ -94,21 +98,23 @@ internal class OTPTimerDataManager {
             
             self.invalidateTimer()
             
-            let state: OTPTimerState = self.remainingAttemptsCount > 0 ? .notTicking : .attemptsFinished
-            self.dispatchTickClosureOnMainThread(tickClosure, with: state)
+            self.state = self.remainingAttemptsCount > 0 ? .notTicking : .attemptsFinished
         }
         else {
             
-            let state: OTPTimerState = .ticking(self.remainingTime)
-            self.dispatchTickClosureOnMainThread(tickClosure, with: state)
+            self.state = .ticking(self.remainingTime)
         }
+		
+		self.dispatchTickClosureOnMainThread(tickClosure)
     }
     
-    private func dispatchTickClosureOnMainThread(_ closure: @escaping TickClosure, with state: OTPTimerState) {
+    private func dispatchTickClosureOnMainThread(_ closure: @escaping TickClosure) {
         
-        performOnMainThread {
-            
-            closure(state)
+        performOnMainThread { [weak self] in
+			
+			guard let strongSelf = self else { return }
+			
+            closure(strongSelf.state)
         }
     }
 }

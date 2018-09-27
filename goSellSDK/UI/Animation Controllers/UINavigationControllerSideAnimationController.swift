@@ -49,7 +49,7 @@ internal final class UINavigationControllerSideAnimationController: NSObject {
     
     private var willAnimateToTheLeft: Bool {
         
-        let layoutDirection = SettingsDataManager.shared.layoutDirection
+        let layoutDirection = LocalizationProvider.shared.layoutDirection
         
         switch self.operation {
             

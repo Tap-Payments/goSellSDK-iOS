@@ -94,16 +94,11 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var expirationDateTextField: EditableTextInsetsTextField?
     @IBOutlet private weak var expirationDateEditableView: TapEditableView?
     
-    @IBOutlet private weak var cvvTextField: EditableTextInsetsTextField? {
-        
-        didSet {
-        
-            self.cvvTextField?.textInsets = Constants.cvvFieldInsets
-        }
-    }
+    @IBOutlet private weak var cvvTextField: EditableTextInsetsTextField?
     
     @IBOutlet private weak var nameOnCardTextField: EditableTextInsetsTextField?
-    
+	
+	@IBOutlet private weak var saveCardDescriptionLabel: UILabel?
     @IBOutlet private weak var saveCardSwitch: UISwitch?
     
     @IBOutlet private var controls: [UIView]?
@@ -199,6 +194,7 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 
     internal func updateContent(animated: Bool) {
 
+		self.updateLocalization()
         self.updateTableViewContent(animated)
         
         var shouldForceLayout = false
@@ -226,6 +222,31 @@ extension CardInputTableViewCell: LoadingWithModelCell {
         self.cardScannerButton?.setImage(self.model?.scanButtonImage, for: .normal)
     }
 
+	private func updateLocalization() {
+		
+		self.cardNumberTextField?.localizedTextAlignment 		= .leading
+		self.expirationDateTextField?.localizedTextAlignment 	= .leading
+		self.cvvTextField?.localizedTextAlignment 				= .leading
+		self.addressOnCardLabel?.localizedTextAlignment 		= .leading
+		self.nameOnCardTextField?.localizedTextAlignment 		= .leading
+		self.saveCardDescriptionLabel?.localizedTextAlignment	= .leading
+		
+		self.cardNumberTextField?.localizedClearButtonPosition 		= .right
+		self.expirationDateTextField?.localizedClearButtonPosition 	= .right
+		self.cvvTextField?.localizedClearButtonPosition 			= .right
+		self.nameOnCardTextField?.localizedClearButtonPosition 		= .right
+		
+		self.cardNumberTextField?.setLocalizedText		(for: .placeholder, key: .card_input_card_number_placeholder)
+		self.expirationDateTextField?.setLocalizedText	(for: .placeholder, key: .card_input_expiration_date_placeholder)
+		self.cvvTextField?.setLocalizedText				(for: .placeholder, key: .card_input_cvv_placeholder)
+		self.nameOnCardTextField?.setLocalizedText		(for: .placeholder, key: .card_input_cardholder_name_placeholder)
+		
+		self.cvvTextField?.textInsets	= Constants.cvvFieldInsets.localized
+		
+		self.addressOnCardLabel?.setLocalizedText		(.card_input_address_on_card_placeholder)
+		self.saveCardDescriptionLabel?.setLocalizedText	(.save_card_promotion_text)
+	}
+	
     private func updateTableViewContent(_ animated: Bool) {
 
         if animated {

@@ -74,7 +74,7 @@ internal class ExpirationDateValidator: CardValidator {
         
         self.updateTextFieldText(shouldClear: inputData == nil)
     }
-    
+	
     // MARK: - Private -
     // MARK: Properties
     

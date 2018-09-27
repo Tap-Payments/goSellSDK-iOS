@@ -118,7 +118,7 @@ internal final class PaymentDataManager {
     // MARK: Methods
     
     internal func canStart(with caller: PayButtonInternalImplementation) -> Bool {
-        
+		
         if self.isLoadingPaymentOptions { return false }
         
         guard let dataSource = caller.uiElement?.paymentDataSource else { return false }
@@ -356,8 +356,8 @@ internal final class PaymentDataManager {
     
     private struct Constants {
         
-        fileprivate static let recentGroupTitle = "RECENT"
-        fileprivate static let othersGroupTitle = "OTHERS"
+		fileprivate static let recentGroupModelKey: LocalizationKey = .payment_options_group_title_recent
+		fileprivate static let othersGroupModelKey: LocalizationKey = .payment_options_group_title_others
         
         fileprivate static let spaceBeforeWebPaymentOptionsIdentifier   = "space_before_web_payment_options"
         fileprivate static let spaceBetweenWebAndCardOptionsIdentifier  = "space_between_web_and_card_options"
@@ -441,9 +441,12 @@ internal final class PaymentDataManager {
     }
     
     private func showCancelPaymentAlert(with decision: @escaping TypeAlias.BooleanClosure) {
-        
-        let alert = UIAlertController(title: "Cancel Payment", message: "Would you like to cancel payment? Payment status will be undefined.", preferredStyle: .alert)
-        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+		
+		let alert = UIAlertController(titleKey: 		.alert_cancel_payment_status_undefined_title,
+									  messageKey: 		.alert_cancel_payment_status_undefined_message,
+									  preferredStyle:	.alert)
+		
+        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_no_title, style: .cancel) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 
@@ -452,7 +455,8 @@ internal final class PaymentDataManager {
             
             decision(false)
         }
-        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+		
+        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_confirm_title, style: .destructive) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 
@@ -525,7 +529,7 @@ internal final class PaymentDataManager {
         
         if displaysGroupTitles {
             
-            let recentGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), title: Constants.recentGroupTitle)
+			let recentGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), key: Constants.recentGroupModelKey)
             result.append(recentGroupModel)
         }
         
@@ -539,7 +543,7 @@ internal final class PaymentDataManager {
         
         if displaysGroupTitles {
             
-            let othersGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), title: Constants.othersGroupTitle)
+            let othersGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), key: Constants.othersGroupModelKey)
             result.append(othersGroupModel)
         }
         
@@ -601,7 +605,7 @@ internal final class PaymentDataManager {
         
         if displaysGroupTitles {
             
-            let recentGroupModel = self.groupCellModel(with: Constants.recentGroupTitle)
+            let recentGroupModel = self.groupCellModel(with: Constants.recentGroupModelKey)
             recentGroupModel.indexPath = self.nextIndexPath(for: result)
             result.append(recentGroupModel)
         }
@@ -616,7 +620,7 @@ internal final class PaymentDataManager {
         
         if displaysGroupTitles {
             
-            let othersGroupModel = self.groupCellModel(with: Constants.othersGroupTitle)
+            let othersGroupModel = self.groupCellModel(with: Constants.othersGroupModelKey)
             othersGroupModel.indexPath = self.nextIndexPath(for: result)
             result.append(othersGroupModel)
         }
@@ -660,19 +664,19 @@ internal final class PaymentDataManager {
         self.paymentOptionCellViewModels = result
     }
     
-    private func groupCellModel(with title: String) -> GroupTableViewCellModel {
+    private func groupCellModel(with key: LocalizationKey) -> GroupTableViewCellModel {
         
         let groupModels = self.cellModels(of: GroupTableViewCellModel.self)
         
         for model in groupModels {
             
-            if model.title == title {
+            if model.key == key {
                 
                 return model
             }
         }
         
-        let newModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), title: title)
+        let newModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), key: key)
         self.paymentOptionsScreenCellViewModels.append(newModel)
         
         return newModel

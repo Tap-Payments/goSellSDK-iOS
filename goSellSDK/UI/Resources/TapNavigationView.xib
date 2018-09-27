@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -62,15 +61,27 @@
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-AJ-EsN">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA3-DO-Olc" customClass="MirrorableView" customModule="goSellSDK">
                             <rect key="frame" x="0.0" y="0.0" width="45" height="66"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-AJ-EsN">
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="66"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="45" id="bqJ-Sa-gh0"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="backButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="DYI-Ao-Ukx"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="45" id="bqJ-Sa-gh0"/>
+                                <constraint firstItem="a4n-AJ-EsN" firstAttribute="leading" secondItem="VA3-DO-Olc" secondAttribute="leading" id="FVR-vT-Yj6"/>
+                                <constraint firstAttribute="trailing" secondItem="a4n-AJ-EsN" secondAttribute="trailing" id="K3o-Vx-gSF"/>
+                                <constraint firstItem="a4n-AJ-EsN" firstAttribute="top" secondItem="VA3-DO-Olc" secondAttribute="top" id="Vzd-Lb-CpT"/>
+                                <constraint firstAttribute="bottom" secondItem="a4n-AJ-EsN" secondAttribute="bottom" id="oTw-NC-1oa"/>
                             </constraints>
-                            <connections>
-                                <action selector="backButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="DYI-Ao-Ukx"/>
-                            </connections>
-                        </button>
+                        </view>
                         <view hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="0.0" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="LQb-WI-2tx">
                             <rect key="frame" x="375" y="33" width="0.0" height="0.0"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,16 +94,16 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Cza-1c-Tw7" firstAttribute="centerY" secondItem="hQg-Ba-y3u" secondAttribute="centerY" id="Am2-IB-C9D"/>
-                        <constraint firstItem="Cza-1c-Tw7" firstAttribute="leading" secondItem="a4n-AJ-EsN" secondAttribute="trailing" id="BUQ-9q-GtZ"/>
                         <constraint firstAttribute="height" constant="66" id="FpT-bF-pH4"/>
+                        <constraint firstItem="VA3-DO-Olc" firstAttribute="leading" secondItem="hQg-Ba-y3u" secondAttribute="leading" id="GeU-om-iyE"/>
                         <constraint firstAttribute="trailing" secondItem="LQb-WI-2tx" secondAttribute="trailing" id="PVu-SZ-xID"/>
                         <constraint firstItem="LQb-WI-2tx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rgh-Xg-Fz7" secondAttribute="trailing" constant="10" id="Y91-Xg-UGD"/>
+                        <constraint firstAttribute="bottom" secondItem="VA3-DO-Olc" secondAttribute="bottom" id="eou-2h-LZo"/>
+                        <constraint firstItem="VA3-DO-Olc" firstAttribute="top" secondItem="hQg-Ba-y3u" secondAttribute="top" id="fn3-VG-kCY"/>
                         <constraint firstItem="rgh-Xg-Fz7" firstAttribute="leading" secondItem="Cza-1c-Tw7" secondAttribute="trailing" id="k5O-AN-lym"/>
-                        <constraint firstItem="a4n-AJ-EsN" firstAttribute="top" secondItem="hQg-Ba-y3u" secondAttribute="top" id="mOY-bn-bae"/>
-                        <constraint firstItem="a4n-AJ-EsN" firstAttribute="leading" secondItem="hQg-Ba-y3u" secondAttribute="leading" id="n6l-6d-I1B"/>
                         <constraint firstItem="rgh-Xg-Fz7" firstAttribute="centerY" secondItem="hQg-Ba-y3u" secondAttribute="centerY" id="omm-ut-wPr"/>
-                        <constraint firstAttribute="bottom" secondItem="a4n-AJ-EsN" secondAttribute="bottom" id="pP7-3m-gXo"/>
                         <constraint firstItem="LQb-WI-2tx" firstAttribute="centerY" secondItem="hQg-Ba-y3u" secondAttribute="centerY" id="qI0-6a-1wv"/>
+                        <constraint firstItem="Cza-1c-Tw7" firstAttribute="leading" secondItem="VA3-DO-Olc" secondAttribute="trailing" id="qPg-dq-aXR"/>
                     </constraints>
                 </view>
             </subviews>

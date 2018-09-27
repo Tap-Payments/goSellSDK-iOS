@@ -129,14 +129,18 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     }
     
     private func showDeleteCardAlert(with decision: @escaping TypeAlias.BooleanClosure) {
-        
-        let alert = UIAlertController(title: "Delete Card", message: "Are you sure you would like to delete card \(self.cardNumberText)?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak alert] (action) in
+		
+		let alert = UIAlertController(titleKey: 		.alert_delete_card_title,
+									  messageKey: 		.alert_delete_card_message, self.cardNumberText,
+									  preferredStyle:	.alert)
+		
+        let cancelAction = UIAlertAction(titleKey: .alert_delete_card_btn_cancel_title, style: .cancel) { [weak alert] (action) in
             
             alert?.dismissFromSeparateWindow(true, completion: nil)
             decision(false)
         }
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak alert] (action) in
+		
+        let deleteAction = UIAlertAction(titleKey: .alert_delete_card_btn_delete_title, style: .destructive) { [weak alert] (action) in
             
             alert?.dismissFromSeparateWindow(true, completion: nil)
             decision(true)

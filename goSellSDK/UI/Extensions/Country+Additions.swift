@@ -13,7 +13,7 @@ internal extension Country {
     /// Country display name.
     internal var displayName: String {
         
-        let locale = Locale(identifier: SettingsDataManager.shared.localeIdentifier)
+        let locale = LocalizationProvider.shared.selectedLocale
         return locale.localizedString(forRegionCode: self.isoCode) ?? self.isoCode
     }
     
