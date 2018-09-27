@@ -41,8 +41,8 @@ A library that fully covers payment process inside your iOS application.
 
 To use the SDK the following requirements must be met:
 
-1. **Xcode 9.1** or newer
-2. **Swift 4.1** or newer (preinstalled with Xcode)   
+1. **Xcode 10.0** or newer
+2. **Swift 4.2** or newer (preinstalled with Xcode)   
 3. Base SDK for the target app: **iOS 8.0** or later
 
 <a name="installation"></a>
@@ -104,24 +104,30 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 <a name="setup"></a>
 # Setup
 ---
-First of all, `goSellSDK` should be set up. To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `goSellSDK`, otherwise an exception will be thrown.
+First of all, `goSellSDK` should be set up. In this section only secret key is required.
+
+<a name="setup_gosellsdk_class_properties"></a>
+## goSellSDK Class Properties
+
+Below is the list of properties in goSellSDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
+
+<a name="setup_gosellsdk_class_properties_secret_key"></a>
+### Secret Key
+
+To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `goSellSDK`, otherwise an exception will be thrown. **Required**.
 
 *Swift*:
 
 ```swift
-goSellSDK.secretKey = "YOUR_SECRET_KEY" // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+let secretKey = SecretKey(sanbox: "YOUR_SANDBOX_SECRET_KEY", production: "YOUR_PRODUCTION_SECRET_KEY") // (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+goSellSDK.secretKey = secretKey // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
 ```
 
 *Objective-C*:
 
 ```objective-c
-[goSellSDK setSecretKey:@"YOUR_SECRET_KEY"]; // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
-
-```
-or
-
-```objective-c
-goSellSDK.secretKey = @"YOUR_SECRET_KEY"; // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+SecretKey *secretKey = [[SecretKey alloc] initWithSandbox:@"YOUR_SANDBOX_SECRET_KEY" production:@"YOUR_PRODUCTION_SECRET_KEY"]; // (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+[goSellSDK setSecretKey:secretKey];
 ```
 
 Don't forget to import the framework at the beginning of the file:
@@ -143,6 +149,28 @@ or
 ```objective-c
 #import <goSellSDK/goSellSDK-Swift.h>
 ```
+
+<a name="setup_gosellsdk_class_properties_mode"></a>
+### Mode
+
+SDK mode is a mode SDK is operating in, either **sandbox** or **production**.
+
+Use this property to test your integration with the sandbox transactions.
+
+**WARNING:** Default value of this property is *production* which means your transaction are real transactions. Switch to *sandbox* while in development.
+
+<a name="setup_gosellsdk_class_properties_language"></a>
+### Language
+
+Localization language of the UI part of the SDK. This is locale identifier. 
+
+Make sure it consists only from 2 lowercased letters and is presented in the list of **availableLanguages** property of *goSellSDK* class.
+
+**Notice:** Starting from *iOS 9* SDK user interface layout direction is based on the language you select, which means that if you would like to have it in Arabic language, the UI will be switched to RTL (right-to-left).
+
+### Available Languages
+
+This property returns the list of locale identifiers the SDK is currently localized into.
 
 <a name="setup_steps"></a>
 ## Setup Steps

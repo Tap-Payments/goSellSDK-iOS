@@ -11,15 +11,15 @@
 	// MARK: - Public -
 	// MARK: Properties
 	
-	/// SDK mode. By default, `production`.
-	///
-	/// - Warning: Don't change while the payment is in progress or the payment process and status will be undefined.
-	public static var mode: SDKMode = .production
-	
 	/// Secret key.
 	///
 	/// - Warning: Don't change while the payment is in progress or the payment process and status will be undefined.
 	public static var secretKey: SecretKey = .empty
+	
+	/// SDK mode. By default, `production`.
+	///
+	/// - Warning: Don't change while the payment is in progress or the payment process and status will be undefined.
+	public static var mode: SDKMode = .production
 	
 	/// Returns the list of the languages supported by goSellSDK.
 	public static var availableLanguages: [String] {
