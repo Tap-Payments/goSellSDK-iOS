@@ -78,9 +78,9 @@ internal class TapButton: TapNibView {
         self.updateTheme(animated: false)
     }
     
-    internal func setTitle(_ title: String) {
-        
-        self.internalButton?.setTitle(title, for: .normal)
+    internal func setTitle(_ title: String?) {
+		
+		self.internalButton?.title = title
     }
     
     // MARK: - Private -
@@ -175,5 +175,14 @@ internal class TapButton: TapNibView {
             let duration = animated ? Constants.stateUpdateAnimationDuration : 0.0
             UIView.animate(withDuration: duration, animations: updates)
         }
+    }
+}
+
+// MARK: - Localizable
+extension TapButton: SingleLocalizable {
+	
+    internal func setLocalized(text: String?) {
+        
+        self.setTitle(text)
     }
 }

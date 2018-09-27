@@ -16,10 +16,10 @@ internal class AmountedCurrencyTableViewCellModel: TableViewCellViewModel {
     internal weak var cell: AmountedCurrencyTableViewCell?
     
     internal let amountedCurrency: AmountedCurrency
+	
+    internal private(set) lazy var currencyNameText: String = .empty
     
-    internal let currencyNameText: String
-    
-    internal let amountText: String
+    internal private(set) lazy var amountText: String = .empty
     
     internal var isSelected = false {
         
@@ -35,11 +35,19 @@ internal class AmountedCurrencyTableViewCellModel: TableViewCellViewModel {
     internal init(indexPath: IndexPath, amountedCurrency: AmountedCurrency) {
         
         self.amountedCurrency = amountedCurrency
-        self.currencyNameText = amountedCurrency.readableCurrencyName
-        self.amountText = amountedCurrency.displayValue
-        
+		
         super.init(indexPath: indexPath)
+		
+		self.updateLocalization()
     }
+	
+	internal func updateLocalization() {
+		
+		self.currencyNameText	= self.amountedCurrency.readableCurrencyName
+		self.amountText 		= self.amountedCurrency.displayValue
+		
+		self.updateCell(animated: false)
+	}
 }
 
 // MARK: - Filterable

@@ -16,7 +16,10 @@
     
     /// URL call failed.
     case failed
-    
+	
+	/// URL call cancelled.
+	case cancelled
+	
     /// Status unknown.
     case unknown
     
@@ -27,10 +30,11 @@
         
         switch self {
             
-        case .pending:  return "PENDING"
-        case .success:  return "SUCCESS"
-        case .failed:   return "FAILED"
-        case .unknown:  return "UNKNOWN"
+        case .pending:  	return "PENDING"
+        case .success:  	return "SUCCESS"
+        case .failed:   	return "FAILED"
+		case .cancelled:	return "CANCELLED"
+        case .unknown:  	return "UNKNOWN"
 
         }
     }
@@ -41,10 +45,11 @@
         
         switch stringValue {
             
-        case URLStatus.pending.stringValue: self = .pending
-        case URLStatus.success.stringValue: self = .success
-        case URLStatus.failed.stringValue:  self = .failed
-        case URLStatus.unknown.stringValue: self = .unknown
+        case URLStatus.pending.stringValue: 	self = .pending
+        case URLStatus.success.stringValue: 	self = .success
+        case URLStatus.failed.stringValue:  	self = .failed
+		case URLStatus.cancelled.stringValue:	self = .cancelled
+        case URLStatus.unknown.stringValue: 	self = .unknown
             
         default:
             

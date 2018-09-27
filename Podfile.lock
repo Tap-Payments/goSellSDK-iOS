@@ -40,11 +40,14 @@ PODS:
   - TapAdditionsKit/UIKit/NSLayoutConstraint (1.1):
     - TapAdditionsKit/Tap/TypeAlias
     - TapAdditionsKit/UIKit/UIView
+  - TapAdditionsKit/UIKit/UIButton (1.1):
+    - TapAdditionsKit/UIKit/UIImage
   - TapAdditionsKit/UIKit/UIColor (1.1):
     - TapAdditionsKit/SwiftStandartLibrary/Array
     - TapAdditionsKit/SwiftStandartLibrary/Int
     - TapAdditionsKit/SwiftStandartLibrary/String
   - TapAdditionsKit/UIKit/UIDevice (1.1)
+  - TapAdditionsKit/UIKit/UIEdgeInsets (1.1)
   - TapAdditionsKit/UIKit/UIImage (1.1):
     - TapAdditionsKit/CoreGraphics/CGImage
     - TapAdditionsKit/CoreGraphics/CGSize
@@ -153,6 +156,8 @@ DEPENDENCIES:
   - TapAdditionsKit/SwiftStandartLibrary/String
   - TapAdditionsKit/Tap/TypeAlias
   - TapAdditionsKit/UIKit/NSLayoutConstraint
+  - TapAdditionsKit/UIKit/UIButton
+  - TapAdditionsKit/UIKit/UIEdgeInsets
   - TapAdditionsKit/UIKit/UINavigationController
   - TapAdditionsKit/UIKit/UIResponder
   - TapAdditionsKit/UIKit/UIScreen
@@ -209,6 +214,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: eb367e92bbc62a253f1c6737099e58d926e936b8
   TapVisualEffectView: 9af2e64ccf83bd629d865dc0146f68a3ff789e8b
 
-PODFILE CHECKSUM: 56b92f1af8909f898ed173f319880decb44e98cb
+PODFILE CHECKSUM: 06b83432c54f2100e279d8292613eca7a429aa50
 
 COCOAPODS: 1.5.3

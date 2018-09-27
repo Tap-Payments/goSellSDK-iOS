@@ -226,7 +226,7 @@ internal final class APIClient {
         
         var applicationDetails = self.applicationStaticDetails
         
-        let localeIdentifier = SettingsDataManager.shared.localeIdentifier
+        let localeIdentifier = LocalizationProvider.shared.selectedLanguage
         applicationDetails[Constants.HTTPHeaderValueKey.appLocale] = localeIdentifier
         
         if let deviceID = KeychainManager.deviceID {

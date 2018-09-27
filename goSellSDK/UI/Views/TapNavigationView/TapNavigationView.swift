@@ -195,3 +195,12 @@ internal final class TapNavigationView: TapNibView {
         self.delegate?.navigationViewBackButtonClicked(self)
     }
 }
+
+// MARK: - SingleLocalizable
+extension TapNavigationView: SingleLocalizable {
+	
+	internal func setLocalized(text: String?) {
+		
+		self.title = text
+	}
+}

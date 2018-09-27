@@ -66,7 +66,20 @@ internal final class OTPViewController: SeparateWindowViewController {
         super.viewDidAppear(animated)
         self.startFirstAttemptIfNotYetStarted()
     }
-    
+	
+	internal override func localizationChanged() {
+		
+		super.localizationChanged()
+		
+		self.countdownDateFormatter.locale = LocalizationProvider.shared.selectedLocale
+		
+		self.updateResendButtonTitle(with: self.timerDataManager.state)
+		
+		self.confirmationButton?.setLocalizedText(.btn_confirm_title)
+		
+		self.updateDescriptionLabelText()
+	}
+	
     deinit {
         
         self.transitioning = nil
@@ -105,14 +118,14 @@ internal final class OTPViewController: SeparateWindowViewController {
         fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
             
             guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
-            
-            return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(dismissalFrom: from,
-                                                                                               to: to,
-                                                                                               overlaysToView: false,
-                                                                                               overlaySupport: PaymentOptionsViewController.findInHierarchy())
-                : PaymentDismissalAnimationController()
-        }
-        
+			
+			return self.shouldUseDefaultOTPAnimation ? PopupPresentationAnimationController(dismissalFrom: from,
+																							to: to,
+																							overlaysToView: false,
+																							overlaySupport: PaymentOptionsViewController.findInHierarchy())
+				: PaymentDismissalAnimationController()
+		}
+		
         fileprivate func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
             
             if
@@ -168,9 +181,6 @@ internal final class OTPViewController: SeparateWindowViewController {
         fileprivate static let updateTimerTimeInterval: TimeInterval = 1.0
         fileprivate static let resendButtonTitleDateFormat = "mm:ss"
         
-        fileprivate static let resendText:  String = "RESEND"
-        fileprivate static let confirmText: String = "CONFIRM"
-        
         @available(*, unavailable) private init() {}
     }
     
@@ -212,7 +222,6 @@ internal final class OTPViewController: SeparateWindowViewController {
             
             self.confirmationButton?.delegate = self
             self.confirmationButton?.themeSettings = Theme.current.settings.otpConfirmationButtonSettings
-            self.confirmationButton?.setTitle(Constants.confirmText)
             self.updateConfirmationButtonState()
         }
     }
@@ -228,7 +237,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     private lazy var countdownDateFormatter: DateFormatter = {
         
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: SettingsDataManager.shared.localeIdentifier)
+        formatter.locale = LocalizationProvider.shared.selectedLocale
         formatter.dateFormat = Constants.resendButtonTitleDateFormat
         
         return formatter
@@ -262,27 +271,31 @@ internal final class OTPViewController: SeparateWindowViewController {
     private func updateDescriptionLabelText() {
         
         guard let nonnullLabel = self.descriptionLabel, self.phoneNumber.length > 0 else { return }
-        
-        let descriptionText = "Please enter the OTP that has been sent to "
-        
+		
+		let descriptionText = String(format: LocalizationProvider.shared.localizedString(for: .otp_guide_text), self.phoneNumber)
+		
         let descriptionAttributes: [NSAttributedString.Key: Any] = [
             
             .font: Constants.descriptionFont,
             .foregroundColor: Constants.descriptionColor
         ]
         
-        let numberAttributes: [NSAttributedString.Key: Any] = [
-            
-            .font: Constants.descriptionFont,
-            .foregroundColor: Constants.numberColor
-        ]
+        let attributedDescriptionText = NSMutableAttributedString(string: descriptionText, attributes: descriptionAttributes)
+		
+		if let range = attributedDescriptionText.string.nsRange(of: self.phoneNumber) {
+			
+			let numberAttributes: [NSAttributedString.Key: Any] = [
+				
+				.font: Constants.descriptionFont,
+				.foregroundColor: Constants.numberColor
+			]
+			
+			let attributedMaskedNumberText = NSAttributedString(string: self.phoneNumber, attributes: numberAttributes)
+			
+			attributedDescriptionText.replaceCharacters(in: range, with: attributedMaskedNumberText)
+		}
         
-        let attributedDescriptionText = NSAttributedString(string: descriptionText, attributes: descriptionAttributes)
-        let attributedMaskedNumberText = NSAttributedString(string: self.phoneNumber, attributes: numberAttributes)
-        let result = NSMutableAttributedString(attributedString: attributedDescriptionText)
-        result.append(attributedMaskedNumberText)
-        
-        nonnullLabel.attributedText = NSAttributedString(attributedString: result)
+        nonnullLabel.attributedText = NSAttributedString(attributedString: attributedDescriptionText)
     }
     
     private func startFirstAttemptIfNotYetStarted() {
@@ -323,24 +336,26 @@ internal final class OTPViewController: SeparateWindowViewController {
             let title = self.countdownDateFormatter.string(from: remainingDate)
             
             self.resendButtonLabel?.text = title
+			self.resendButtonLabel?.localizedTextAlignment = .trailing
             self.resendButtonLabel?.font = Constants.countdownFont
             self.resendButtonLabel?.alpha = 1.0
             self.resendButton?.isEnabled = false
             
         case .notTicking:
-            
-            self.resendButtonLabel?.text = Constants.resendText
+			
+			self.resendButtonLabel?.setLocalizedText(.btn_resend_title)
+			self.resendButtonLabel?.textAlignment = .center
             self.resendButtonLabel?.font = Constants.resendFont
             self.resendButtonLabel?.alpha = 1.0
             self.resendButton?.isEnabled = true
             
         case .attemptsFinished:
-            
-            self.resendButtonLabel?.text = Constants.resendText
+			
+			self.resendButtonLabel?.setLocalizedText(.btn_resend_title)
+			self.resendButtonLabel?.textAlignment = .center
             self.resendButtonLabel?.font = Constants.resendFont
             self.resendButtonLabel?.alpha = 0.5
             self.resendButton?.isEnabled = false
-            
         }
     }
     
@@ -422,9 +437,10 @@ internal final class OTPViewController: SeparateWindowViewController {
     }
     
     private func showCancelAttemptAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
-        
-        let alert = UIAlertController(title: "Cancel", message: "Would you like to cancel payment?", preferredStyle: .alert)
-        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+		
+		let alert = UIAlertController(titleKey: .alert_cancel_payment_title, messageKey: .alert_cancel_payment_message, preferredStyle: .alert)
+		
+        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_no_title, style: .cancel) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 
@@ -433,7 +449,7 @@ internal final class OTPViewController: SeparateWindowViewController {
             
             decision(false)
         }
-        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_confirm_title, style: .destructive) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 

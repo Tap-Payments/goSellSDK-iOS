@@ -9,6 +9,7 @@ import struct   CoreGraphics.CGBase.CGFloat
 import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
+import class	goSellSDK.goSellSDK
 import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
@@ -89,8 +90,14 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             caseSelectionController.delegate = self
             
             switch reuseIdentifier {
-                
-            case Constants.sdkModelCellReuseIdentifier:
+				
+			case Constants.sdkLanguageCelReuseIdentifier:
+				
+				caseSelectionController.title = "SDK Language"
+				caseSelectionController.allValues = Language.all
+				caseSelectionController.preselectedValue = self.currentSettings?.sdkLanguage
+				
+            case Constants.sdkModeCellReuseIdentifier:
                 
                 caseSelectionController.title = "SDK Mode"
                 caseSelectionController.allValues = SDKMode.all
@@ -154,7 +161,10 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         switch reuseIdentifier {
             
-        case Constants.currencyCellReuseIdentifier, Constants.sdkModelCellReuseIdentifier, Constants.transactionModeCellReuseIdentifier:
+        case Constants.currencyCellReuseIdentifier,
+			 Constants.sdkLanguageCelReuseIdentifier,
+			 Constants.sdkModeCellReuseIdentifier,
+			 Constants.transactionModeCellReuseIdentifier:
             
             self.showCaseSelectionViewController(with: reuseIdentifier)
             
@@ -197,8 +207,9 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     // MARK: - Private -
     
     private struct Constants {
-        
-        fileprivate static let sdkModelCellReuseIdentifier          = "sdk_mode_cell"
+		
+		fileprivate static let sdkLanguageCelReuseIdentifier		= "sdk_language_cell"
+        fileprivate static let sdkModeCellReuseIdentifier          	= "sdk_mode_cell"
         fileprivate static let transactionModeCellReuseIdentifier   = "transaction_mode_cell"
         fileprivate static let currencyCellReuseIdentifier          = "currency_cell"
         fileprivate static let customerCellReuseIdentifier          = "customer_cell"
@@ -209,7 +220,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     }
     
     // MARK: Properties
-    
+	
+	@IBOutlet private weak var sdkLanguageValueLabel: UILabel?
     @IBOutlet private weak var sdkModeValueLabel: UILabel?
     @IBOutlet private weak var transactionModeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
@@ -263,7 +275,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     }
     
     private func updateWithCurrentSettings() {
-        
+		
+		self.sdkLanguageValueLabel?.text		= self.currentSettings?.sdkLanguage.description
         self.sdkModeValueLabel?.text            = self.currentSettings?.sdkMode.description
         self.transactionModeValueLabel?.text    = self.currentSettings?.transactionMode.description
         self.currencyValueLabel?.text           = self.currentSettings?.currency.localizedSymbol
@@ -391,8 +404,15 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
         guard let reuseIdentifier = self.selectedCellReuseIdentifier else { return }
         
         switch reuseIdentifier {
-            
-        case Constants.sdkModelCellReuseIdentifier:
+			
+		case Constants.sdkLanguageCelReuseIdentifier:
+			
+			if let language = value as? Language {
+				
+				self.currentSettings?.sdkLanguage = language
+			}
+			
+        case Constants.sdkModeCellReuseIdentifier:
             
             if let sdkMode = value as? SDKMode {
                 

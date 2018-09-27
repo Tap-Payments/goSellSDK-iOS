@@ -81,7 +81,6 @@ internal extension CardInputTableViewCellModel {
         case .saveCard:
             
             self.prepareSaveCardValidator(with: inputField)
-
         }
     }
     

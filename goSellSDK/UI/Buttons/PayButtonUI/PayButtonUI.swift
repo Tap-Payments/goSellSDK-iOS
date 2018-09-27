@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import class	UIKit.UIView.UIView
+
 internal class PayButtonUI: TapButton {
     
     // MARK: - Internal -
@@ -30,37 +32,39 @@ internal class PayButtonUI: TapButton {
     }
     
     // MARK: Methods
-    
-    internal override func setup() {
-        
-        super.setup()
-        
-        self.updateDisplayedStateAndAmount()
-    }
-    
+	
+	internal override func willMove(toSuperview newSuperview: UIView?) {
+		
+		super.willMove(toSuperview: newSuperview)
+		
+		self.localizationChanged()
+		if newSuperview == nil {
+			
+			self.stopMonitoringLocalizationChanges()
+		}
+		else {
+			
+			self.startMonitoringLocalizationChanges()
+		}
+	}
+	
     internal func updateDisplayedStateAndAmount() {
         
         guard let displayedAmount = self.amount, displayedAmount.amount > 0.0 else {
             
-            self.setTitle(Constants.genericTitle, forceDisabled: true)
+            self.setLocalizedText(.btn_pay_title_generic)
+            self.forceDisabled = true
+            
             return
         }
         
         let amountString = CurrencyFormatter.shared.format(displayedAmount)
-        let amountText = "PAY " + amountString
-        
-        self.setTitle(amountText, forceDisabled: false)
+		self.setLocalizedText(.btn_pay_title_amount, amountString)
+		
+        self.forceDisabled = false
     }
-    
+	
     // MARK: - Private -
-    
-    private struct Constants {
-        
-        fileprivate static let genericTitle = "PAY"
-        
-        @available(*, unavailable) private init() {}
-    }
-    
     // MARK: Methods
     
     private func setTitle(_ title: String, forceDisabled: Bool) {
@@ -68,4 +72,13 @@ internal class PayButtonUI: TapButton {
         self.forceDisabled = forceDisabled
         self.setTitle(title)
     }
+}
+
+// MARK: - LocalizationObserver
+extension PayButtonUI: LocalizationObserver {
+	
+	internal func localizationChanged() {
+		
+		self.updateDisplayedStateAndAmount()
+	}
 }

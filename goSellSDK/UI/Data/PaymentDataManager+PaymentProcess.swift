@@ -172,23 +172,23 @@ internal extension PaymentDataManager {
     private func showExtraFeesPaymentAlert(with plainAmount: AmountedCurrency, extraFeesAmount: AmountedCurrency, decision: @escaping TypeAlias.BooleanClosure) {
         
         UIResponder.resign {
-            
+			
             let totalAmount = AmountedCurrency(plainAmount.currency, plainAmount.amount + extraFeesAmount.amount, plainAmount.currencySymbol)
             
             let extraFeesAmountText = CurrencyFormatter.shared.format(extraFeesAmount)
-            let totalAmountText = CurrencyFormatter.shared.format(totalAmount)
-            
-            let title = "Confirm extra charges"
-            let message = "You will be charged an additional fee of \(extraFeesAmountText) for this type of payment, totaling an amount of \(totalAmountText)"
-            
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak alert] (action) in
+            let totalAmountText 	= CurrencyFormatter.shared.format(totalAmount)
+			
+			let alert = UIAlertController(titleKey: 		.alert_extra_charges_title,
+										  messageKey: 		.alert_extra_charges_message, extraFeesAmountText, totalAmountText,
+										  preferredStyle:	.alert)
+			
+            let cancelAction: UIAlertAction = UIAlertAction(titleKey: .alert_extra_charges_btn_cancel_title, style: .cancel) { [weak alert] (action) in
                 
                 alert?.dismissFromSeparateWindow(true, completion: nil)
                 decision(false)
             }
             
-            let confirmAction: UIAlertAction = UIAlertAction(title: "Confirm", style: .default) { [weak alert] (action) in
+            let confirmAction: UIAlertAction = UIAlertAction(titleKey: .alert_extra_charges_btn_confirm_title, style: .default) { [weak alert] (action) in
                 
                 alert?.dismissFromSeparateWindow(true, completion: nil)
                 decision(true)

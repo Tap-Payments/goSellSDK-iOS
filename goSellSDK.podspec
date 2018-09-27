@@ -12,7 +12,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
     goSellSDK.source                = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
     goSellSDK.source_files          = 'goSellSDK/**/*.{swift}'
-    goSellSDK.ios.resource_bundle   = { 'goSellSDKResources' => 'goSellSDK/UI/Resources/*.{xcassets,storyboard,xib}' }
+	goSellSDK.ios.resource_bundle   = { 'goSellSDKResources' => ['goSellSDK/UI/Resources/*.{xcassets,storyboard,xib}', 'goSellSDK/UI/Resources/Localization/*.lproj'] }
     
     goSellSDK.dependency 'CardIODynamic'
     goSellSDK.dependency 'EditableTextInsetsTextField'
@@ -27,6 +27,8 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/OptionSet'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/String'
     goSellSDK.dependency 'TapAdditionsKit/Tap/TypeAlias'
+	goSellSDK.dependency 'TapAdditionsKit/UIKit/UIEdgeInsets'
+	goSellSDK.dependency 'TapAdditionsKit/UIKit/UIButton'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/NSLayoutConstraint'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UINavigationController'
     goSellSDK.dependency 'TapAdditionsKit/UIKit/UIResponder'

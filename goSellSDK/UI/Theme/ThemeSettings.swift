@@ -5,10 +5,9 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import enum TapVisualEffectView.TapBlurEffectStyle
-import class UIKit.NSParagraphStyle.NSMutableParagraphStyle
-import class UIKit.UIImage.UIImage
-import enum UIKit.UITextInputTraits.UIKeyboardAppearance
+import enum 	TapVisualEffectView.TapBlurEffectStyle
+import class 	UIKit.UIImage.UIImage
+import enum		UIKit.UITextInputTraits.UIKeyboardAppearance
 
 internal struct ThemeSettings {
     
@@ -50,8 +49,8 @@ internal extension Theme {
         
         let lightTheme: ThemeSettings = {
            
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .left
+            let paragraphStyle = LocalizedParagraphStyle()
+            paragraphStyle.localizedAlignment = .leading
             
             let validCardInformationTextSetting         = TextThemeSettings(.helveticaNeueLight(15.0), .hex("#535353FF"), paragraphStyle)
             let invalidCardInformationTextSettings      = TextThemeSettings(.helveticaNeueLight(15.0), .hex("#EE0000FF"), paragraphStyle)

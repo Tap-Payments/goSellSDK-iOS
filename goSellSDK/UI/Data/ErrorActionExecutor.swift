@@ -33,7 +33,7 @@ internal class ErrorActionExecutor {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { [weak alert] (action) in
+        let dismissAction = UIAlertAction(titleKey: .alert_error_btn_dismiss_title, style: .default) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 
@@ -55,7 +55,7 @@ internal class ErrorActionExecutor {
         
         if retryAction != nil {
             
-            let retryAlertAction = UIAlertAction(title: "Retry", style: .cancel) { [weak alert] (action) in
+            let retryAlertAction = UIAlertAction(titleKey: .alert_error_btn_retry_title, style: .cancel) { [weak alert] (action) in
                 
                 DispatchQueue.main.async {
                     

@@ -146,9 +146,10 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     }
     
     private func showCancelAttemptAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
-        
-        let alert = UIAlertController(title: "Cancel", message: "Would you like to cancel payment?", preferredStyle: .alert)
-        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+		
+		let alert = UIAlertController(titleKey: .alert_cancel_payment_title, messageKey: .alert_cancel_payment_message, preferredStyle: .alert)
+		
+        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_no_title, style: .cancel) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 
@@ -157,7 +158,8 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             
             decision(false)
         }
-        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+		
+        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_confirm_title, style: .destructive) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 
@@ -177,9 +179,12 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     }
     
     private func showCancelAttemptUndefinedStatusAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
-        
-        let alert = UIAlertController(title: "Cancel Payment", message: "Would you like to cancel payment? Payment status will be undefined.", preferredStyle: .alert)
-        let cancelCancelAction = UIAlertAction(title: "No", style: .cancel) { [weak alert] (action) in
+		
+		let alert = UIAlertController(titleKey: 		.alert_cancel_payment_status_undefined_title,
+									  messageKey: 		.alert_cancel_payment_status_undefined_message,
+									  preferredStyle:	.alert)
+		
+        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_no_title, style: .cancel) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 
@@ -188,7 +193,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             
             decision(false)
         }
-        let confirmCancelAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak alert] (action) in
+        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_confirm_title, style: .destructive) { [weak alert] (action) in
             
             DispatchQueue.main.async {
                 

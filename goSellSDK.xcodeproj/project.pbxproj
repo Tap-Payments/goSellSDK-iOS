@@ -3,18 +3,53 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140238F7215A49BE00CF3B47 /* UIButton+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */; };
+		140238F8215A49BE00CF3B47 /* UIButton+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */; };
+		140238F9215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140238F6215A49BD00CF3B47 /* UILabel+Additions.swift */; };
+		140238FA215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140238F6215A49BD00CF3B47 /* UILabel+Additions.swift */; };
+		14128478215CD82E00C2873E /* LocalizationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128477215CD82E00C2873E /* LocalizationKey.swift */; };
+		14128479215CD82E00C2873E /* LocalizationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128477215CD82E00C2873E /* LocalizationKey.swift */; };
+		1412847E215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */; };
+		1412847F215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */; };
+		14128480215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */; };
+		14128481215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */; };
+		14128482215CD83C00C2873E /* UITextField+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847C215CD83C00C2873E /* UITextField+Additions.swift */; };
+		14128483215CD83C00C2873E /* UITextField+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847C215CD83C00C2873E /* UITextField+Additions.swift */; };
+		14128484215CD83C00C2873E /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847D215CD83C00C2873E /* UIView+Additions.swift */; };
+		14128485215CD83C00C2873E /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847D215CD83C00C2873E /* UIView+Additions.swift */; };
+		14128487215CD8A300C2873E /* LocalizationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128486215CD8A300C2873E /* LocalizationObserver.swift */; };
+		14128488215CD8A300C2873E /* LocalizationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128486215CD8A300C2873E /* LocalizationObserver.swift */; };
+		1412848A215CD8C300C2873E /* LayoutDirectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128489215CD8C300C2873E /* LayoutDirectionObserver.swift */; };
+		1412848B215CD8C300C2873E /* LayoutDirectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128489215CD8C300C2873E /* LayoutDirectionObserver.swift */; };
+		1412849D215D26D200C2873E /* LocalizedTextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412849C215D26D200C2873E /* LocalizedTextAlignment.swift */; };
+		1412849E215D26D200C2873E /* LocalizedTextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412849C215D26D200C2873E /* LocalizedTextAlignment.swift */; };
+		141284A0215D270D00C2873E /* LocalizedParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412849F215D270D00C2873E /* LocalizedParagraphStyle.swift */; };
+		141284A1215D270D00C2873E /* LocalizedParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412849F215D270D00C2873E /* LocalizedParagraphStyle.swift */; };
+		141284A5215D275700C2873E /* EditableTextInsetsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284A2215D275600C2873E /* EditableTextInsetsTextField.swift */; };
+		141284A6215D275700C2873E /* EditableTextInsetsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284A2215D275600C2873E /* EditableTextInsetsTextField.swift */; };
+		141284A7215D275700C2873E /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284A3215D275600C2873E /* UIEdgeInsets+Additions.swift */; };
+		141284A8215D275700C2873E /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284A3215D275600C2873E /* UIEdgeInsets+Additions.swift */; };
+		141284A9215D275700C2873E /* NSTextAlignment+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284A4215D275600C2873E /* NSTextAlignment+Additions.swift */; };
+		141284AA215D275700C2873E /* NSTextAlignment+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284A4215D275600C2873E /* NSTextAlignment+Additions.swift */; };
+		141284AD215D287300C2873E /* MirrorableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284AC215D287300C2873E /* MirrorableView.swift */; };
+		141284AE215D287300C2873E /* MirrorableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141284AC215D287300C2873E /* MirrorableView.swift */; };
 		1444698121594A4D009849DC /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444698021594A4D009849DC /* LocalizationProvider.swift */; };
 		1444698221594A4D009849DC /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444698021594A4D009849DC /* LocalizationProvider.swift */; };
 		14690B112155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
 		14690B122155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
 		14690B142155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
 		14690B152155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
+		14A3D313215953DE007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
+		14A3D315215954CA007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
+		14B22183215A4747003DC928 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B22182215A4747003DC928 /* Localizable.swift */; };
+		14B22184215A4747003DC928 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B22182215A4747003DC928 /* Localizable.swift */; };
 		14DF99F82147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		14DF99F92147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
+		4167590931217DEA2D403985 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
 		A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC7F2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
@@ -468,8 +503,6 @@
 		A4BD8D4420A1F6AE00EFF2CE /* Notification.Name+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3920A1F6AE00EFF2CE /* Notification.Name+Additions.swift */; };
 		A4BD8D4920A1F6AE00EFF2CE /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */; };
 		A4BD8D4A20A1F6AE00EFF2CE /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */; };
-		A4BD8D4B20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3D20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift */; };
-		A4BD8D4C20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3D20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift */; };
 		A4BD8D4D20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3E20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift */; };
 		A4BD8D4E20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3E20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift */; };
 		A4BD8D5C20A1FB3D00EFF2CE /* goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = A482F71E20853FF200AA76A4 /* goSellSDK.swift */; };
@@ -652,13 +685,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Additions.swift"; sourceTree = "<group>"; };
+		140238F6215A49BD00CF3B47 /* UILabel+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
+		14128477215CD82E00C2873E /* LocalizationKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationKey.swift; sourceTree = "<group>"; };
+		1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Additions.swift"; sourceTree = "<group>"; };
+		1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Additions.swift"; sourceTree = "<group>"; };
+		1412847C215CD83C00C2873E /* UITextField+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Additions.swift"; sourceTree = "<group>"; };
+		1412847D215CD83C00C2873E /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		14128486215CD8A300C2873E /* LocalizationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationObserver.swift; sourceTree = "<group>"; };
+		14128489215CD8C300C2873E /* LayoutDirectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDirectionObserver.swift; sourceTree = "<group>"; };
+		1412848E215CDD6300C2873E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1412849C215D26D200C2873E /* LocalizedTextAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedTextAlignment.swift; sourceTree = "<group>"; };
+		1412849F215D270D00C2873E /* LocalizedParagraphStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedParagraphStyle.swift; sourceTree = "<group>"; };
+		141284A2215D275600C2873E /* EditableTextInsetsTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableTextInsetsTextField.swift; sourceTree = "<group>"; };
+		141284A3215D275600C2873E /* UIEdgeInsets+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Additions.swift"; sourceTree = "<group>"; };
+		141284A4215D275600C2873E /* NSTextAlignment+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextAlignment+Additions.swift"; sourceTree = "<group>"; };
+		141284AC215D287300C2873E /* MirrorableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MirrorableView.swift; sourceTree = "<group>"; };
 		1444698021594A4D009849DC /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
 		14690B102155DF240033C562 /* SDKMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKMode.swift; sourceTree = "<group>"; };
 		14690B132155DF330033C562 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		14A3D312215953DE007F3565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14A3D31621595681007F3565 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14B22182215A4747003DC928 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		14DF99F72147F4B900991EB3 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		16A38A8831C7BCCD73B43B9E /* Pods-goSellSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.release.xcconfig"; sourceTree = "<group>"; };
 		48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8077B843FF020BBDBBA16684 /* Pods_goSellSDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionControllerDelegate.swift; sourceTree = "<group>"; };
 		A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupOverlaySupport.swift; sourceTree = "<group>"; };
 		A401FC8A2101DA6B002DBA73 /* CardScannerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScannerViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -776,7 +827,6 @@
 		A4694B26211B481900B335F1 /* ErrorAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorAction.swift; sourceTree = "<group>"; };
 		A4694B27211B481900B335F1 /* URLStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLStatus.swift; sourceTree = "<group>"; };
 		A46CDF342042ABEE00EA38A5 /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A46CDF362042BE6300EA38A5 /* TapNetworkManager_Carthage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapNetworkManager_Carthage.framework; path = Carthage/Build/iOS/TapNetworkManager_Carthage.framework; sourceTree = "<group>"; };
 		A473D0FE2139C24400F13B73 /* CardScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScheme.swift; sourceTree = "<group>"; };
 		A473D107213BE76800F13B73 /* FilterableByCurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableByCurrency.swift; sourceTree = "<group>"; };
 		A473D108213BE76900F13B73 /* SortableByOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortableByOrder.swift; sourceTree = "<group>"; };
@@ -906,7 +956,6 @@
 		A4BD8D3720A1F6AE00EFF2CE /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
 		A4BD8D3920A1F6AE00EFF2CE /* Notification.Name+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Additions.swift"; sourceTree = "<group>"; };
 		A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
-		A4BD8D3D20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsDataManager+Additions.swift"; sourceTree = "<group>"; };
 		A4BD8D3E20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AmountedCurrency+Additions.swift"; sourceTree = "<group>"; };
 		A4BE546720A88DF3004E979E /* HeaderSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderSettings.swift; sourceTree = "<group>"; };
 		A4BE547820A9D4ED004E979E /* GeneralImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralImages.swift; sourceTree = "<group>"; };
@@ -992,6 +1041,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */,
+				4167590931217DEA2D403985 /* Pods_goSellSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,12 +1055,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		141284AB215D287300C2873E /* MirrorableView */ = {
+			isa = PBXGroup;
+			children = (
+				141284AC215D287300C2873E /* MirrorableView.swift */,
+			);
+			path = MirrorableView;
+			sourceTree = "<group>";
+		};
+		1444698521595298009849DC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				14A3D311215953DE007F3565 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		2900C46CE6138AD739CAC575 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A46CDF362042BE6300EA38A5 /* TapNetworkManager_Carthage.framework */,
 				48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */,
-				8077B843FF020BBDBBA16684 /* Pods_goSellSDKExample.framework */,
 			);
 			name = Frameworks;
 			path = ..;
@@ -1043,6 +1107,7 @@
 				425B5EF965F041FCC57C86F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		A40D32172031E6DE0030FDDE /* Products */ = {
 			isa = PBXGroup;
@@ -1074,6 +1139,7 @@
 				A4A8545821076FED00B9DE00 /* CardsCollectionViewLayout.swift */,
 				A4BD8CF520A1F0B300EFF2CE /* CurrencyFormatter.swift */,
 				A4599123210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift */,
+				1412849F215D270D00C2873E /* LocalizedParagraphStyle.swift */,
 				A4BD8CED20A1F0B300EFF2CE /* Validators */,
 			);
 			path = Utils;
@@ -1167,6 +1233,7 @@
 		A43ED4282080CF670028C542 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1444698521595298009849DC /* Localization */,
 				A456717F20AD6C300057A504 /* Images.xcassets */,
 				A479F7282099DB5E00556E10 /* LoadingImageView.xib */,
 				A424875B20E4F071001C4FAF /* OTPInputView.xib */,
@@ -1457,6 +1524,8 @@
 		A4BD8D1720A1F3C800EFF2CE /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				14128477215CD82E00C2873E /* LocalizationKey.swift */,
+				1412849C215D26D200C2873E /* LocalizedTextAlignment.swift */,
 				A424879B20E4F3C0001C4FAF /* OTPTimerState.swift */,
 				A4A4D5F52108D2590063488E /* PaymentStatus.swift */,
 				A4F7106A20B554480064FE4B /* TextInputType.swift */,
@@ -1484,6 +1553,7 @@
 			children = (
 				A48810E220A2E92E00CDF5D4 /* LoadingImageView */,
 				A447EAFA2110524500099C07 /* MaskedWindow */,
+				141284AB215D287300C2873E /* MirrorableView */,
 				A424879120E4F2C9001C4FAF /* OTPInputView */,
 				A48810DF20A2E92E00CDF5D4 /* TapNavigationView */,
 				A43A0A6920DA4AAC006B39F1 /* WebViewProgressBar */,
@@ -1573,8 +1643,11 @@
 				A468774620DC1F8300123391 /* InstantiatableFromStoryboard.swift */,
 				A43A0A7820DA877A006B39F1 /* InteractivePopViewController.swift */,
 				A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */,
+				14128489215CD8C300C2873E /* LayoutDirectionObserver.swift */,
 				A4F7102420B550760064FE4B /* ListValue.swift */,
 				A4C0FC7D208CF44300C5FBC6 /* LoadingWithModelCell.swift */,
+				14B22182215A4747003DC928 /* Localizable.swift */,
+				14128486215CD8A300C2873E /* LocalizationObserver.swift */,
 				A401FC8C2101DA6B002DBA73 /* MerchantInformationHeaderViewControllerDelegate.swift */,
 				A4C13A8C20F4F05800037EDC /* OTPViewControllerDelegate.swift */,
 				A4BD8CE520A1F02200EFF2CE /* PaymentDataSource.swift */,
@@ -1633,13 +1706,21 @@
 				A4571EFC20FE2366006D96DC /* BillingAddressField+Additions.swift */,
 				A4D5FE1D208311FE007D52F5 /* Bundle+Additions.swift */,
 				A413DB3620AEE0E600C29C6B /* Country+Additions.swift */,
+				141284A2215D275600C2873E /* EditableTextInsetsTextField.swift */,
 				A4C13AB320F4F17500037EDC /* ExpirationDate+Additions.swift */,
 				A4BD8D3920A1F6AE00EFF2CE /* Notification.Name+Additions.swift */,
-				A4BD8D3D20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift */,
+				141284A4215D275600C2873E /* NSTextAlignment+Additions.swift */,
 				A4571EFA20FE2366006D96DC /* String+Additions.swift */,
+				1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */,
+				1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */,
+				140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */,
 				A4BD8D3720A1F6AE00EFF2CE /* UICollectionView+Additions.swift */,
+				141284A3215D275600C2873E /* UIEdgeInsets+Additions.swift */,
 				A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */,
+				140238F6215A49BD00CF3B47 /* UILabel+Additions.swift */,
 				A4D5FE1B208311B7007D52F5 /* UIStoryboard+Additions.swift */,
+				1412847C215CD83C00C2873E /* UITextField+Additions.swift */,
+				1412847D215CD83C00C2873E /* UIView+Additions.swift */,
 				A451274121369A3600825337 /* URL+Additions.swift */,
 			);
 			path = Extensions;
@@ -1753,12 +1834,14 @@
 				};
 			};
 			buildConfigurationList = A40D32102031E6DE0030FDDE /* Build configuration list for PBXProject "goSellSDK" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				ar,
 			);
 			mainGroup = A40D320C2031E6DE0030FDDE;
 			productRefGroup = A40D32172031E6DE0030FDDE /* Products */;
@@ -1781,6 +1864,7 @@
 				A424875E20E4F071001C4FAF /* OTPInputView.xib in Resources */,
 				A43ED42A2080CF870028C542 /* PayButton.xib in Resources */,
 				A479F72B2099DB5E00556E10 /* LoadingImageView.xib in Resources */,
+				14A3D313215953DE007F3565 /* Localizable.strings in Resources */,
 				A456718020AD6C300057A504 /* Images.xcassets in Resources */,
 				A4D5FE1920830ECB007D52F5 /* Payment.storyboard in Resources */,
 				A468772820DAC84900123391 /* Popups.storyboard in Resources */,
@@ -1797,6 +1881,7 @@
 				A456718120AD6C300057A504 /* Images.xcassets in Resources */,
 				A479F72C2099DB5E00556E10 /* LoadingImageView.xib in Resources */,
 				A424875F20E4F071001C4FAF /* OTPInputView.xib in Resources */,
+				14A3D315215954CA007F3565 /* Localizable.strings in Resources */,
 				A48810EF20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */,
 				A468772920DAC84900123391 /* Popups.storyboard in Resources */,
 			);
@@ -1830,6 +1915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14128480215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */,
 				A4C13A9420F4F05900037EDC /* PaymentOptionCellViewModel.swift in Sources */,
 				A4694B2C211B481900B335F1 /* URLStatus.swift in Sources */,
 				A4B6E43D20860CD800078072 /* Permissions.swift in Sources */,
@@ -1846,8 +1932,10 @@
 				A4571EFD20FE2367006D96DC /* AddressType+Additions.swift in Sources */,
 				A4571F1420FF54EE006D96DC /* WebPaymentContentViewControllerDelegate.swift in Sources */,
 				A4F7105020B553670064FE4B /* AddressDropdownFieldTableViewCellModel.swift in Sources */,
+				1412848A215CD8C300C2873E /* LayoutDirectionObserver.swift in Sources */,
 				A4C13A7F20F4EF9900037EDC /* CollectionViewCellViewModel.swift in Sources */,
 				A4A9829120D2B32000770690 /* Order.swift in Sources */,
+				140238F7215A49BE00CF3B47 /* UIButton+Additions.swift in Sources */,
 				A424879F20E4F408001C4FAF /* CardCollectionViewCellModel.swift in Sources */,
 				A4F7103120B550760064FE4B /* CardAddressDataStorage.swift in Sources */,
 				A4F7105820B553670064FE4B /* CardInputTableViewCellModel+AddressInput.swift in Sources */,
@@ -1859,15 +1947,18 @@
 				A4BD8D0D20A1F12500EFF2CE /* BaseViewController.swift in Sources */,
 				A4C13A6A20F4EF5500037EDC /* Volume.swift in Sources */,
 				A482F73B2085BC1000AA76A4 /* CreateChargeRequest.swift in Sources */,
+				1412847E215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */,
 				A4444BF920AB53C7005D9E87 /* PaymentContentViewController.swift in Sources */,
 				A4C13A7620F4EF5500037EDC /* ElectricCurrent.swift in Sources */,
 				A4BD8CDB20A1EFFE00EFF2CE /* ImageTableViewCellModel.swift in Sources */,
 				A43A0A7A20DA877B006B39F1 /* InteractivePopViewController.swift in Sources */,
 				A4599121210A04A100E941D5 /* StaticlyDestroyable.swift in Sources */,
 				A4BD8D1F20A1F48B00EFF2CE /* CurrencyCodesDataManager.swift in Sources */,
+				14128487215CD8A300C2873E /* LocalizationObserver.swift in Sources */,
 				A4F56AE8212EB92200BEAA8E /* SourceRequest.swift in Sources */,
 				A4694B1E211B47EC00B335F1 /* ErrorActionExecutor.swift in Sources */,
 				A482F7642085DAF100AA76A4 /* TapSDKKnownError.swift in Sources */,
+				141284A9215D275700C2873E /* NSTextAlignment+Additions.swift in Sources */,
 				A4BD8D2920A1F61A00EFF2CE /* ErrorConstants.swift in Sources */,
 				A4D5310F208A47C600830AD8 /* PaymentOption.swift in Sources */,
 				A4571EF320FE2337006D96DC /* BillingAddressFormat.swift in Sources */,
@@ -1878,10 +1969,12 @@
 				A4A9828920D2B32000770690 /* Response.swift in Sources */,
 				A424877920E4F0D8001C4FAF /* TapButton.swift in Sources */,
 				A4F7102D20B550760064FE4B /* TextLabelInputDataValidation.swift in Sources */,
+				14128482215CD83C00C2873E /* UITextField+Additions.swift in Sources */,
 				A4694B23211B480600B335F1 /* TrackingURL.swift in Sources */,
 				A408C05F20BC058A005E74AD /* Shipping.swift in Sources */,
 				A4C13A9B20F4F0AF00037EDC /* ExpirationDate.swift in Sources */,
 				A4BD8D3F20A1F6AE00EFF2CE /* UICollectionView+Additions.swift in Sources */,
+				141284A5215D275700C2873E /* EditableTextInsetsTextField.swift in Sources */,
 				A43A0A5520D93D5F006B39F1 /* SaveCardValidator.swift in Sources */,
 				A4A982AD20D2B34F00770690 /* ChargeStatus.swift in Sources */,
 				A4F7106020B553AF0064FE4B /* AddressFieldTableViewCell.swift in Sources */,
@@ -1894,6 +1987,7 @@
 				A4BD8D3520A1F65800EFF2CE /* UINavigationControllerSideAnimationController.swift in Sources */,
 				A4752A39208EFF5C003118DB /* EmptyTableViewCell.swift in Sources */,
 				A4A9829520D2B32000770690 /* PhoneNumber.swift in Sources */,
+				141284A7215D275700C2873E /* UIEdgeInsets+Additions.swift in Sources */,
 				A482F7472085BDA900AA76A4 /* Source.swift in Sources */,
 				A4BD8D1520A1F12500EFF2CE /* CurrencySelectionViewController.swift in Sources */,
 				A4BD8CCF20A1EF7800EFF2CE /* AmountedCurrency.swift in Sources */,
@@ -1918,6 +2012,7 @@
 				14690B142155DF330033C562 /* SecretKey.swift in Sources */,
 				A424877720E4F0D8001C4FAF /* TapButtonDelegate.swift in Sources */,
 				A4752A3D208EFF5C003118DB /* GroupTableViewCell.swift in Sources */,
+				140238F9215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */,
 				A4F7105620B553670064FE4B /* AddressTextInputFieldTableViewCellModel.swift in Sources */,
 				A413DB1D20AEE04000C29C6B /* CardValidatorDelegate.swift in Sources */,
 				A4C0FC56208CE50C00C5FBC6 /* PaymentDataManager.swift in Sources */,
@@ -1929,7 +2024,6 @@
 				A4B3FB90212467DA000C05EB /* AuthorizeAction.swift in Sources */,
 				A42758AD20A3618200D214EE /* CardScannerViewController.swift in Sources */,
 				A42487AE20E4F8BC001C4FAF /* CardsContainerTableViewCell.swift in Sources */,
-				A4BD8D4B20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift in Sources */,
 				A4C13A6620F4EF5500037EDC /* Power.swift in Sources */,
 				A4B6E43520860A0700078072 /* Route.swift in Sources */,
 				A4BD8C9F20A1EEB800EFF2CE /* CurrencySelectionTableViewCell.swift in Sources */,
@@ -1974,6 +2068,7 @@
 				A468774A20DC20C200123391 /* PopupAnimationController.swift in Sources */,
 				A4752A1D208E09CA003118DB /* EmptyTableViewCellModel.swift in Sources */,
 				A43A0A4920D93C4A006B39F1 /* PaymentDataManager+PaymentProcess.swift in Sources */,
+				141284A0215D270D00C2873E /* LocalizedParagraphStyle.swift in Sources */,
 				A4B3FB85212467B4000C05EB /* AuthorizeActionStatus.swift in Sources */,
 				A4B3FB9B21246809000C05EB /* APIClient+Retrievable.swift in Sources */,
 				A408C06120BC058A005E74AD /* SavedCard.swift in Sources */,
@@ -2039,6 +2134,7 @@
 				A4A982AF20D2B34F00770690 /* SourceType.swift in Sources */,
 				A4BD8CE120A1EFFE00EFF2CE /* CurrencySelectionTableViewCellViewModel.swift in Sources */,
 				A424878820E4F136001C4FAF /* UINavigationControllerPopInteractionController.swift in Sources */,
+				141284AD215D287300C2873E /* MirrorableView.swift in Sources */,
 				A413DB2820AEE08500C29C6B /* CardAddressValidator.swift in Sources */,
 				A468774720DC1F8400123391 /* InstantiatableFromStoryboard.swift in Sources */,
 				A4D5310A208A46E700830AD8 /* APIClient+PaymentTypes.swift in Sources */,
@@ -2072,7 +2168,9 @@
 				A48810E520A2E92E00CDF5D4 /* TapNavigationViewDelegate.swift in Sources */,
 				A479F71F2099DB2100556E10 /* EmailAddress.swift in Sources */,
 				A4571EF520FE2337006D96DC /* BillingAddressResponse.swift in Sources */,
+				14128484215CD83C00C2873E /* UIView+Additions.swift in Sources */,
 				A451274221369A3700825337 /* URL+Additions.swift in Sources */,
+				1412849D215D26D200C2873E /* LocalizedTextAlignment.swift in Sources */,
 				A4BD8D0020A1F0B300EFF2CE /* CVVValidator.swift in Sources */,
 				A401FC802100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */,
 				A4B6E43720860AEA00078072 /* SDKSettings.swift in Sources */,
@@ -2098,6 +2196,7 @@
 				A424878C20E4F136001C4FAF /* OTPDismissalInteractionController.swift in Sources */,
 				A4A982C320D2B5FE00770690 /* TokenType.swift in Sources */,
 				A4D5311C208A4E4400830AD8 /* PaymentOptionsResponse.swift in Sources */,
+				14128478215CD82E00C2873E /* LocalizationKey.swift in Sources */,
 				A482F7762085DD3800AA76A4 /* RSAUtils.swift in Sources */,
 				A4A8545921076FED00B9DE00 /* CardsCollectionViewLayout.swift in Sources */,
 				A4D53121208A54C400830AD8 /* ExtraFee.swift in Sources */,
@@ -2130,6 +2229,7 @@
 				A45991142109E4CB00E941D5 /* GlowingViewHandler.swift in Sources */,
 				A482F7682085DB6300AA76A4 /* APIError.swift in Sources */,
 				A4F7107020B5546A0064FE4B /* AddressFieldInputType.swift in Sources */,
+				14B22183215A4747003DC928 /* Localizable.swift in Sources */,
 				A4444BE420AB52C5005D9E87 /* HeaderNavigatedViewControllerWithSearch.swift in Sources */,
 				A4BD8D4320A1F6AE00EFF2CE /* Notification.Name+Additions.swift in Sources */,
 				A4C13A6820F4EF5500037EDC /* ElectricCharge.swift in Sources */,
@@ -2166,6 +2266,7 @@
 				A408C06A20BC05B9005E74AD /* CountableCasesEnum.swift in Sources */,
 				A4571F1520FF54EE006D96DC /* WebPaymentContentViewControllerDelegate.swift in Sources */,
 				A4571F0220FE2367006D96DC /* Address+Additions.swift in Sources */,
+				141284A6215D275700C2873E /* EditableTextInsetsTextField.swift in Sources */,
 				A4A9829B20D2B33D00770690 /* APIClient+Token.swift in Sources */,
 				A4A9828220D2B32000770690 /* CreateTokenSavedCard.swift in Sources */,
 				A4BD8D9020A1FB5500EFF2CE /* WebPaymentViewController.swift in Sources */,
@@ -2253,13 +2354,16 @@
 				A4BD8D7A20A1FB3D00EFF2CE /* Crypter.swift in Sources */,
 				14690B122155DF240033C562 /* SDKMode.swift in Sources */,
 				A408C06220BC058A005E74AD /* SavedCard.swift in Sources */,
+				1412849E215D26D200C2873E /* LocalizedTextAlignment.swift in Sources */,
 				A424876520E4F0A2001C4FAF /* TapButtonSettings.swift in Sources */,
 				A408C04320BC0563005E74AD /* AmountModificatorType.swift in Sources */,
 				A48810EC20A2E92E00CDF5D4 /* LoadingImageView.swift in Sources */,
 				A43A0A5C20D93E3F006B39F1 /* ViewControllerOperation.swift in Sources */,
 				A4C13A8B20F4EFC600037EDC /* PaymentOptionTableCellViewModel.swift in Sources */,
+				140238F8215A49BE00CF3B47 /* UIButton+Additions.swift in Sources */,
 				A4BD8D7B20A1FB3D00EFF2CE /* RSAUtils.swift in Sources */,
 				A4444BE320AB52C5005D9E87 /* HeaderNavigatedViewController.swift in Sources */,
+				1412847F215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */,
 				A4F7107120B5546A0064FE4B /* AddressFieldInputType.swift in Sources */,
 				14DF99F92147F4B900991EB3 /* Customer.swift in Sources */,
 				A413DB3820AEE0E700C29C6B /* Country+Additions.swift in Sources */,
@@ -2279,12 +2383,14 @@
 				A42758B320A361B500D214EE /* PaymentDataManager+CardScanning.swift in Sources */,
 				A4A8545A21076FED00B9DE00 /* CardsCollectionViewLayout.swift in Sources */,
 				A4BD8D8520A1FB3D00EFF2CE /* EmptyTableViewCellModel.swift in Sources */,
+				141284AA215D275700C2873E /* NSTextAlignment+Additions.swift in Sources */,
 				A4BD8D8620A1FB3D00EFF2CE /* GroupTableViewCellModel.swift in Sources */,
 				A451273E2134431400825337 /* Acquirer.swift in Sources */,
 				A468773F20DC1F1600123391 /* StatusPopupViewController.swift in Sources */,
 				A424879A20E4F396001C4FAF /* OTPTimerDataManager.swift in Sources */,
 				A4F7103E20B553000064FE4B /* AddressField.swift in Sources */,
 				A424877620E4F0D8001C4FAF /* PayButtonUI.swift in Sources */,
+				141284AE215D287300C2873E /* MirrorableView.swift in Sources */,
 				A424877420E4F0D8001C4FAF /* PayButton.swift in Sources */,
 				A4694B1F211B47EC00B335F1 /* ErrorActionExecutor.swift in Sources */,
 				A424878020E4F100001C4FAF /* CardCollectionViewCellLoading.swift in Sources */,
@@ -2303,6 +2409,7 @@
 				A4571EFE20FE2367006D96DC /* AddressType+Additions.swift in Sources */,
 				A4F7102A20B550760064FE4B /* ListValue.swift in Sources */,
 				A4B3FB9E21246809000C05EB /* APIClient+Authorize.swift in Sources */,
+				14128479215CD82E00C2873E /* LocalizationKey.swift in Sources */,
 				A42758AA20A3615200D214EE /* CardInputTableViewCellModel+CardScanning.swift in Sources */,
 				A4BD8C9C20A1EEB800EFF2CE /* AmountedCurrencyTableViewCell.swift in Sources */,
 				A4C13A9520F4F05900037EDC /* PaymentOptionCellViewModel.swift in Sources */,
@@ -2329,9 +2436,12 @@
 				A4BD8CD020A1EF7800EFF2CE /* AmountedCurrency.swift in Sources */,
 				A4B3FB84212467B4000C05EB /* TransactionMode.swift in Sources */,
 				A424877820E4F0D8001C4FAF /* TapButtonDelegate.swift in Sources */,
+				141284A1215D270D00C2873E /* LocalizedParagraphStyle.swift in Sources */,
 				A4BD8D4020A1F6AE00EFF2CE /* UICollectionView+Additions.swift in Sources */,
 				A447EB002110524500099C07 /* MaskedWindowContentProvider.swift in Sources */,
 				A4BD8D2A20A1F61A00EFF2CE /* ErrorConstants.swift in Sources */,
+				14128485215CD83C00C2873E /* UIView+Additions.swift in Sources */,
+				140238FA215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */,
 				A4599125210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift in Sources */,
 				A4BE546D20A88DF3004E979E /* HeaderSettings.swift in Sources */,
 				A4B3FB82212467B3000C05EB /* AuthorizeActionType.swift in Sources */,
@@ -2358,6 +2468,7 @@
 				A4BD8CE220A1EFFE00EFF2CE /* CurrencySelectionTableViewCellViewModel.swift in Sources */,
 				A4D5310B208A46E700830AD8 /* APIClient+PaymentTypes.swift in Sources */,
 				A4C13AAF20F4F10E00037EDC /* PaymentDataManager+Utils.swift in Sources */,
+				14128488215CD8A300C2873E /* LocalizationObserver.swift in Sources */,
 				A4BD8CE920A1F02200EFF2CE /* BindingWithModelCell.swift in Sources */,
 				A413DB2420AEE04000C29C6B /* TextInputDataValidation.swift in Sources */,
 				A4BD8D2220A1F48B00EFF2CE /* PaymentDataManager+PaymentOptionsSelection.swift in Sources */,
@@ -2390,6 +2501,7 @@
 				A4571F1320FF54EE006D96DC /* PopupPresentationSupport.swift in Sources */,
 				A48810E620A2E92E00CDF5D4 /* TapNavigationViewDelegate.swift in Sources */,
 				A4BD8D0720A1F0B300EFF2CE /* CurrencyFormatter.swift in Sources */,
+				141284A8215D275700C2873E /* UIEdgeInsets+Additions.swift in Sources */,
 				A4F7105920B553670064FE4B /* CardInputTableViewCellModel+AddressInput.swift in Sources */,
 				A4A9829820D2B32000770690 /* TransactionDetails.swift in Sources */,
 				A4BD8CF720A1F0B300EFF2CE /* BatchUpdates.swift in Sources */,
@@ -2401,6 +2513,7 @@
 				A4F7105520B553670064FE4B /* AddressFieldTableViewCellModel.swift in Sources */,
 				A4BD8D0120A1F0B300EFF2CE /* CVVValidator.swift in Sources */,
 				A4BD8CCE20A1EF7800EFF2CE /* Quantity.swift in Sources */,
+				14128483215CD83C00C2873E /* UITextField+Additions.swift in Sources */,
 				A42487AF20E4F8BC001C4FAF /* CardsContainerTableViewCell.swift in Sources */,
 				A4BD8CEB20A1F02200EFF2CE /* PaymentDataSource.swift in Sources */,
 				A468774B20DC20C200123391 /* PopupAnimationController.swift in Sources */,
@@ -2408,7 +2521,6 @@
 				A4A982B420D2B34F00770690 /* AddressFormat.swift in Sources */,
 				A451274321369A3700825337 /* URL+Additions.swift in Sources */,
 				A4444BEB20AB52D9005D9E87 /* Filterable.swift in Sources */,
-				A4BD8D4C20A1F6AE00EFF2CE /* SettingsDataManager+Additions.swift in Sources */,
 				A4F7103B20B550AD0064FE4B /* AddressFieldsDataManager+CountrySelection.swift in Sources */,
 				A4A9828020D2B32000770690 /* Reference.swift in Sources */,
 				A4A9828820D2B32000770690 /* CreateTokenWithSavedCardRequest.swift in Sources */,
@@ -2430,6 +2542,7 @@
 				A4B3FB7B21246796000C05EB /* AuthorizeProtocol.swift in Sources */,
 				A4BD8CD820A1EFFE00EFF2CE /* CardInputTableViewCellModel+DataValidation.swift in Sources */,
 				A4D53122208A54C400830AD8 /* ExtraFee.swift in Sources */,
+				1412848B215CD8C300C2873E /* LayoutDirectionObserver.swift in Sources */,
 				A473D10F213BE7C600F13B73 /* BrandWithScheme.swift in Sources */,
 				A424879D20E4F3C0001C4FAF /* OTPTimerState.swift in Sources */,
 				A413DB3320AEE0B900C29C6B /* PaymentDataManager+AddressInput.swift in Sources */,
@@ -2446,6 +2559,7 @@
 				A424877020E4F0D8001C4FAF /* PayButtonProtocol.swift in Sources */,
 				A4F7104A20B553260064FE4B /* CountrySelectionViewController.swift in Sources */,
 				A4C13A8620F4EF9900037EDC /* PaymentOptionCollectionCellViewModel.swift in Sources */,
+				14128481215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */,
 				A4444BE520AB52C5005D9E87 /* HeaderNavigatedViewControllerWithSearch.swift in Sources */,
 				A479F71E2099DB2100556E10 /* PaymentOptionsRequest.swift in Sources */,
 				A4A9829020D2B32000770690 /* CreateTokenWithCardDataRequest.swift in Sources */,
@@ -2459,11 +2573,25 @@
 				A4444BE920AB52D9005D9E87 /* DataManagerWithFilteredData.swift in Sources */,
 				A4A9829220D2B32000770690 /* Order.swift in Sources */,
 				A4571EEA20FE2304006D96DC /* AddressFieldsDataManagerLoadingListener.swift in Sources */,
+				14B22184215A4747003DC928 /* Localizable.swift in Sources */,
 				A42487A620E4F41C001C4FAF /* BaseCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		14A3D311215953DE007F3565 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14A3D312215953DE007F3565 /* en */,
+				14A3D31621595681007F3565 /* ru */,
+				1412848E215CDD6300C2873E /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A40D32282031E6DE0030FDDE /* Debug */ = {
@@ -2653,7 +2781,8 @@
 				OTHER_SWIFT_FLAGS = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
@@ -2683,7 +2812,11 @@
 				INFOPLIST_FILE = goSellSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2709,7 +2842,11 @@
 				INFOPLIST_FILE = goSellSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2737,7 +2874,11 @@
 				INFOPLIST_FILE = "$(SRCROOT)/goSellSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = goSellSDK;
 				SKIP_INSTALL = YES;
@@ -2765,7 +2906,11 @@
 				INFOPLIST_FILE = "$(SRCROOT)/goSellSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = goSellSDK;
 				SKIP_INSTALL = YES;

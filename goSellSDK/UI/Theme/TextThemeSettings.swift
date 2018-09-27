@@ -18,8 +18,8 @@ internal struct TextThemeSettings {
     
     internal let color: UIColor
     
-    internal let paragraphStyle: NSParagraphStyle
-    
+    internal let paragraphStyle: LocalizedParagraphStyle
+	
     internal var asStringAttributes: [NSAttributedString.Key: Any] {
         
         return [
@@ -32,7 +32,7 @@ internal struct TextThemeSettings {
     
     // MARK: Methods
     
-    internal init(_ font: UIFont, _ color: UIColor, _ paragraphStyle: NSParagraphStyle) {
+    internal init(_ font: UIFont, _ color: UIColor, _ paragraphStyle: LocalizedParagraphStyle) {
         
         self.font = font
         self.color = color

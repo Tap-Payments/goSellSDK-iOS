@@ -66,7 +66,12 @@ internal class CurrencyCodesDataManager {
         
         self.allData.forEach { $0.isSelected = $0 === model }
     }
-    
+	
+	internal func updateLocalization() {
+		
+		self.allData.forEach { $0.updateLocalization() }
+	}
+	
     // MARK: - Private -
     // MARK: Properties
     

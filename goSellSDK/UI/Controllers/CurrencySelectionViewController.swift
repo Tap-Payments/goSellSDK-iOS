@@ -51,13 +51,14 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         super.searchViewTextChanged(text)
         self.dataManager?.setFilter(text)
     }
-    
-    internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
-        
-        super.headerNavigationViewLoaded(headerView)
-        
-        headerView.title = "Select Currency"
-    }
+	
+	internal override func localizationChanged() {
+		
+		super.localizationChanged()
+		
+		self.headerNavigationView?.setLocalizedText(.currency_selection_screen_title)
+		self.dataManager?.updateLocalization()
+	}
     
     // MARK: - Fileprivate -
     // MARK: Methods
