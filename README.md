@@ -16,9 +16,10 @@ A library that fully covers payment process inside your iOS application.
 
 1. [Requirements](#requirements)
 2. [Installation](#installation)
-    1. [Installation with CocoaPods](#installation_with_cocoapods)
+   1. [Installation with CocoaPods](#installation_with_cocoapods)
 3. [Setup](#setup)
-    1. [Setup Steps](#setup_steps)
+    1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
+    2. [Setup Steps](#setup_steps)
 4. [Usage](#usage)
     1. [Pay Button](#pay_button)
         1. [Pay Button Placement](#pay_button_placement)
