@@ -71,8 +71,8 @@ internal class CardholderNameValidator: CardValidator {
     // MARK: Methods
     
     private func setupTextField() {
-        
-        self.textField.keyboardAppearance = Theme.current.settings.keyboardStyle
+		
+        self.textField.keyboardAppearance = Theme.current.commonStyle.keyboardAppearance.uiKeyboardAppearance
         self.textField.delegate = self.textFieldDelegate
         self.textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
     }
@@ -99,9 +99,9 @@ extension CardholderNameValidator: TextFieldInputDataValidation {
         return self.cardholderName
     }
     
-    internal var textInputFieldPlaceholderText: String {
-        
-        return "Name on Card"
+    internal var textInputFieldPlaceholderText: LocalizationKey {
+		
+        return .card_input_cardholder_name_placeholder
     }
     
     internal func updateSpecificInputFieldAttributes() { }
@@ -126,7 +126,7 @@ fileprivate extension CardholderNameValidator {
 extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDelegate {
     
     fileprivate func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+		
         let resultString = (textField.attributedText?.string ?? String.empty).replacing(range: range, withString: string).uppercased()
         
         var valid = true
@@ -143,7 +143,7 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
         
         if canReplace {
             
-            textField.attributedText = NSAttributedString(string: resultString, attributes: Theme.current.settings.cardInputFieldsSettings.valid.asStringAttributes)
+            textField.attributedText = NSAttributedString(string: resultString, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
             
             if let rangeStart = textField.position(from: textField.beginningOfDocument, offset: range.location + string.length),
                let rangeEnd = textField.position(from: rangeStart, offset: 0) {
@@ -154,7 +154,7 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
             textField.sendActions(for: .editingChanged)
         }
         
-        return false
+        return true
     }
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {

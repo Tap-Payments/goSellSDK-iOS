@@ -57,7 +57,7 @@ internal class LoadingImageView: TapNibView {
         
         didSet {
             
-            self.activityIndicator?.animationDuration = Theme.current.settings.loaderAnimationDuration
+            self.activityIndicator?.animationDuration = Theme.current.commonStyle.loaderAnimationDuration
         }
     }
     

@@ -29,9 +29,8 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
     internal override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        self.loadTheme()
-        self.updateMerchantTitleLabel()
+		
+        self.updateMerchantLabelTitle()
         self.loadMerchantLogo()
         self.setupShadow()
     }
@@ -43,7 +42,28 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
         self.backgroundOpacity = opacity
         self.view.layer.shadowOpacity = Float(opacity)
     }
-    
+	
+	internal override func localizationChanged() {
+		
+		super.localizationChanged()
+		self.titleLabel?.setTextStyle(Theme.current.merchantHeaderStyle.titleStyle)
+	}
+	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		
+		let merchantHeaderStyle = Theme.current.merchantHeaderStyle
+		
+		self.titleLabel?.setTextStyle(merchantHeaderStyle.titleStyle)
+		
+		self.backgroundView?.backgroundColor	= merchantHeaderStyle.backgroundColor
+		self.iconView?.placeholderImage 		= merchantHeaderStyle.placeholderLogo
+		self.iconView?.loaderColor 				= merchantHeaderStyle.logoLoaderColor
+		
+		self.closeButton?.setImage(Theme.current.commonStyle.icons.closeImage, for: .normal)
+	}
+	
     // MARK: - Private -
     // MARK: Properties
     
@@ -79,7 +99,7 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
         self.delegate?.merchantInformationHeaderViewControllerCloseButtonClicked(self)
     }
     
-    private func updateMerchantTitleLabel() {
+    private func updateMerchantLabelTitle() {
         
         self.titleLabel?.text = self.merchant?.name
     }
@@ -109,22 +129,11 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
         }
     }
     
-    private func loadTheme() {
-        
-        let headerSettings = Theme.current.settings.headerSettings
-        
-        self.backgroundView?.backgroundColor = headerSettings.backgroundColor
-        self.iconView?.placeholderImage = headerSettings.placeholderLogo
-        self.iconView?.loaderColor = headerSettings.logoLoaderColor
-        self.titleLabel?.textColor = headerSettings.textColor
-        self.closeButton?.setImage(headerSettings.closeImage, for: .normal)
-    }
-    
     private func setupShadow() {
         
-        self.view.layer.shadowOpacity = 0.0
-        self.view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        self.view.layer.shadowRadius = 1.0
-        self.view.layer.shadowColor = UIColor.lightGray.cgColor
+        self.view.layer.shadowOpacity	= 0.0
+        self.view.layer.shadowOffset 	= CGSize(width: 0.0, height: 1.0)
+        self.view.layer.shadowRadius 	= 1.0
+        self.view.layer.shadowColor 	= UIColor.lightGray.cgColor
     }
 }

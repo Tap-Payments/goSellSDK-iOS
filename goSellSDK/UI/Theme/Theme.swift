@@ -5,16 +5,52 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-/// Theme.
-internal enum Theme {
+internal struct Theme: Decodable {
     
-    /// Light theme.
-    case light
-    
-    // MARK: - Internal -
-    
-    internal static var current: Theme {
-        
-        return PaymentDataManager.shared.currentTheme
-    }
+	// MARK: - Internal -
+	// MARK: Properties
+	
+	internal static var current: Theme {
+		
+		return ThemeManager.shared.currentTheme
+	}
+	
+	internal let name: String
+	
+	internal let isDefault: Bool
+	
+	internal let buttonStyles: [TapButtonStyle]
+	
+	internal let merchantHeaderStyle: MerchantHeaderStyle
+	
+	internal let paymentOptionsCellStyle: PaymentOptionCellsStyle
+	
+	internal let navigationBarStyle: NavigationBarStyle
+	
+	internal let searchBarStyle: SearchBarStyle
+	
+	internal let caseSelectionCellStyle: CaseSelectionCellStyle
+	
+	internal let otpScreenStyle: OTPScreenStyle
+	
+	internal let statusPopupStyle: StatusPopupStyle
+	
+	internal let commonStyle: CommonStyle
+	
+	// MARK: - Private -
+	
+	private enum CodingKeys: String, CodingKey {
+		
+		case name						= "name"
+		case isDefault					= "default"
+		case buttonStyles				= "tap_buttons"
+		case merchantHeaderStyle		= "merchant_header"
+		case paymentOptionsCellStyle	= "payment_option_cells"
+		case navigationBarStyle			= "navigation_bar"
+		case searchBarStyle				= "search_bar"
+		case caseSelectionCellStyle		= "case_selection_cell"
+		case otpScreenStyle				= "otp_screen"
+		case statusPopupStyle			= "status_popup"
+		case commonStyle				= "common"
+	}
 }

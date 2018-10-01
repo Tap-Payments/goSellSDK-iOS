@@ -41,8 +41,11 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
         
-        self.currencyNameLabel?.text = self.model?.currencyNameText
-        self.amountLabel?.text = self.model?.amountText
+        self.currencyNameLabel?.text	= self.model?.currencyNameText
+        self.amountLabel?.text 			= self.model?.amountText
+		
+		self.currencyNameLabel?.setTextStyle(Theme.current.caseSelectionCellStyle.title)
+		self.amountLabel?.setTextStyle(Theme.current.caseSelectionCellStyle.value)
         
         self.updateSelectionState(animated: animated)
     }

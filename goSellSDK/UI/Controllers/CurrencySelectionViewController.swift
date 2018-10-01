@@ -59,6 +59,13 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
 		self.headerNavigationView?.setLocalizedText(.currency_selection_screen_title)
 		self.dataManager?.updateLocalization()
 	}
+	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		
+		
+	}
     
     // MARK: - Fileprivate -
     // MARK: Methods

@@ -30,8 +30,6 @@ internal final class PaymentDataManager {
         }
     }
     
-    internal private(set) lazy var currentTheme: Theme = .light
-    
     internal var supportedCurrencies: [AmountedCurrency] {
         
         return self.paymentOptionsResponse?.supportedCurrenciesAmounts ?? []
@@ -210,7 +208,6 @@ internal final class PaymentDataManager {
             else if let nonnullResponse = response {
                 
                 self?.paymentOptionsResponse = nonnullResponse
-                self?.currentTheme = caller?.theme ?? .light
             }
             
             caller?.paymentDataManagerDidStopLoadingPaymentOptions(with: error == nil)

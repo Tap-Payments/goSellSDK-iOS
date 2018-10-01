@@ -232,3 +232,18 @@
 
 "alert_error_btn_retry_title"	= "Повторить";
 "alert_error_btn_dismiss_title"	= "Закрыть";
+
+// MARK: Payment Statuses
+
+"payment_status_initiated" 		= "Началось";
+"payment_status_in_progress"	= "В процессе";
+"payment_status_abandoned" 		= "Заброшено";
+"payment_status_cancelled" 		= "Отменено";
+"payment_status_failed" 		= "Неуспешно";
+"payment_status_declined" 		= "Отказано";
+"payment_status_restricted" 	= "Ограничено";
+"payment_status_captured" 		= "Захвачено";
+"payment_status_authorized" 	= "Одобрено";
+"payment_status_void" 			= "Недействительно";
+
+"payment_status_successful"		= "Успешно";

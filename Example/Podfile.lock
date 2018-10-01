@@ -1,11 +1,11 @@
 PODS:
   - CardIODynamic (5.4.1)
-  - Crashlytics (3.10.7):
-    - Fabric (~> 1.7.11)
+  - Crashlytics (3.10.8):
+    - Fabric (~> 1.7.12)
   - EditableTextInsetsTextField (1.0.2):
     - TapAdditionsKit/Foundation/Locale (= 1.1)
     - TapAdditionsKit/UIKit/UIView (= 1.1)
-  - Fabric (1.7.11)
+  - Fabric (1.7.12)
   - goSellSDK (2.0):
     - CardIODynamic
     - EditableTextInsetsTextField
@@ -33,6 +33,7 @@ PODS:
     - TapApplication
     - TapCardValidator
     - TapEditableView
+    - TapFontsKit
     - TapGLKit/LinearGradientView
     - TapGLKit/TapActivityIndicatorView
     - TapKeychain
@@ -138,6 +139,10 @@ PODS:
   - TapCardValidator (1.2.3)
   - TapEditableView (1.0.2):
     - TapAdditionsKit/Tap/ClassProtocol (= 1.1)
+  - TapFontsKit (1.0):
+    - TapAdditionsKit/Foundation/Bundle
+    - TapAdditionsKit/Foundation/Locale
+    - TapSwiftFixes/Threading
   - TapGLKit/AnimatedView (1.0.1):
     - TapAdditionsKit/SwiftStandartLibrary/Comparable (= 1.1)
     - TapGLKit/Core
@@ -197,6 +202,7 @@ SPEC REPOS:
     - TapApplication
     - TapCardValidator
     - TapEditableView
+    - TapFontsKit
     - TapGLKit
     - TapKeychain
     - TapNetworkManager
@@ -212,15 +218,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
-  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Crashlytics: 058dc1ba579f6c100bc60a6878703779bff383c4
   EditableTextInsetsTextField: ab320199ec6d1c55629a26c02673a1a9858d88d6
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
-  goSellSDK: b8ac0463defa1033396906b9e57ae2c717b11333
+  Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
+  goSellSDK: b93ad6b45872b2fbb8b2d95663927a70e8dc33ef
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   TapAdditionsKit: 140a088872313f07b047d803e7fa513a1f8d4f6d
   TapApplication: 11ec265f821c3aee5ef537d7ed9e753b149e911f
   TapCardValidator: bf13a8ca74e10c5cdeac4ce3335b09592d7e2f38
   TapEditableView: 43a140b49378787631931d63427755bb5a3a62f6
+  TapFontsKit: 8ef06256c08bd27e44bd10e6b7537b44f4c6be2f
   TapGLKit: 1a433496167fd572983b946adb04854573f96cb3
   TapKeychain: 811bb5185b8fd9f81c705c637d2801500e95bbd4
   TapNetworkManager: 4fc08ceff53a511c69ac7184dd12ed7a7e603f78
@@ -230,6 +237,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: eb367e92bbc62a253f1c6737099e58d926e936b8
   TapVisualEffectView: 9af2e64ccf83bd629d865dc0146f68a3ff789e8b
 
-PODFILE CHECKSUM: 5776f97b9a190e85e2383e690a32cf70206af3e5
+PODFILE CHECKSUM: 49abd91ec7a22e0b6009c1c1d9dc53b5307a3bc1
 
 COCOAPODS: 1.5.3

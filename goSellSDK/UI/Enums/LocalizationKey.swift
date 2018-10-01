@@ -234,4 +234,19 @@ internal enum LocalizationKey: String {
 	
 	case alert_error_btn_retry_title	= "alert_error_btn_retry_title"
 	case alert_error_btn_dismiss_title	= "alert_error_btn_dismiss_title"
+	
+	// MARK: Payment Statuses
+	
+	case payment_status_initiated	= "payment_status_initiated"
+	case payment_status_in_progress	= "payment_status_in_progress"
+	case payment_status_abandoned	= "payment_status_abandoned"
+	case payment_status_cancelled	= "payment_status_cancelled"
+	case payment_status_failed		= "payment_status_failed"
+	case payment_status_declined	= "payment_status_declined"
+	case payment_status_restricted	= "payment_status_restricted"
+	case payment_status_captured	= "payment_status_captured"
+	case payment_status_authorized	= "payment_status_authorized"
+	case payment_status_void		= "payment_status_void"
+	
+	case payment_status_successful	= "payment_status_successful"
 }

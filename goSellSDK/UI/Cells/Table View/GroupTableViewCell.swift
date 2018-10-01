@@ -28,5 +28,6 @@ extension GroupTableViewCell: LoadingWithModelCell {
     internal func updateContent(animated: Bool) {
 		
 		self.titleLabel?.setLocalizedText(self.model?.key)
+		self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.group.titleStyle)
     }
 }

@@ -7,6 +7,16 @@
 
 import class	UIKit.UILabel.UILabel
 
+extension UILabel {
+	
+	internal func setTextStyle(_ textStyle: TextStyle) {
+		
+		self.textAlignment	= textStyle.alignment.textAlignment
+		self.font 			= textStyle.font.localized
+		self.textColor	 	= textStyle.color
+	}
+}
+
 extension UILabel: SingleLocalizable {
 	
 	// MARK: - Internal -

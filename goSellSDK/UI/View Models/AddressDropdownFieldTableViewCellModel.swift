@@ -21,8 +21,8 @@ internal class AddressDropdownFieldTableViewCellModel: AddressFieldTableViewCell
     }
     
     internal var arrowImage: UIImage {
-        
-        return Theme.current.settings.generalImages.arrowRight
+		
+		return Theme.current.commonStyle.icons.arrowRight
     }
     
     internal var preselectedValue: ListValue? {

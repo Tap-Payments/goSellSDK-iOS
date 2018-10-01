@@ -80,6 +80,18 @@ internal final class OTPViewController: SeparateWindowViewController {
 		self.updateDescriptionLabelText()
 	}
 	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		
+		let settings = Theme.current.otpScreenStyle
+		
+		self.otpInputView?.setDigitsStyle(settings.digits)
+		self.updateDescriptionLabelText()
+		self.updateResendButtonTitle(with: self.timerDataManager.state)
+		self.dismissalArrowImageView?.image = settings.arrowIcon
+	}
+	
     deinit {
         
         self.transitioning = nil
@@ -221,7 +233,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         didSet {
             
             self.confirmationButton?.delegate = self
-            self.confirmationButton?.themeSettings = Theme.current.settings.otpConfirmationButtonSettings
+			self.confirmationButton?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == .confirmOTP })!
             self.updateConfirmationButtonState()
         }
     }
@@ -272,25 +284,21 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         guard let nonnullLabel = self.descriptionLabel, self.phoneNumber.length > 0 else { return }
 		
-		let descriptionText = String(format: LocalizationProvider.shared.localizedString(for: .otp_guide_text), self.phoneNumber)
+		let numberString = "\u{202A}\(self.phoneNumber)\u{202C}"
 		
-        let descriptionAttributes: [NSAttributedString.Key: Any] = [
-            
-            .font: Constants.descriptionFont,
-            .foregroundColor: Constants.descriptionColor
-        ]
+		let descriptionText = String(format: LocalizationProvider.shared.localizedString(for: .otp_guide_text), numberString)
+		
+		let themeSettings = Theme.current.otpScreenStyle
+		
+		let descriptionAttributes = themeSettings.descriptionText.asStringAttributes
         
         let attributedDescriptionText = NSMutableAttributedString(string: descriptionText, attributes: descriptionAttributes)
 		
-		if let range = attributedDescriptionText.string.nsRange(of: self.phoneNumber) {
+		if let range = attributedDescriptionText.string.nsRange(of: numberString) {
 			
-			let numberAttributes: [NSAttributedString.Key: Any] = [
-				
-				.font: Constants.descriptionFont,
-				.foregroundColor: Constants.numberColor
-			]
+			let numberAttributes = themeSettings.descriptionNumber.asStringAttributes
 			
-			let attributedMaskedNumberText = NSAttributedString(string: self.phoneNumber, attributes: numberAttributes)
+			let attributedMaskedNumberText = NSAttributedString(string: numberString, attributes: numberAttributes)
 			
 			attributedDescriptionText.replaceCharacters(in: range, with: attributedMaskedNumberText)
 		}
@@ -327,7 +335,9 @@ internal final class OTPViewController: SeparateWindowViewController {
     }
     
     private func updateResendButtonTitle(with state: OTPTimerState) {
-        
+		
+		let themeSettings = Theme.current.otpScreenStyle
+		
         switch state {
             
         case .ticking(let remainingSeconds):
@@ -336,24 +346,24 @@ internal final class OTPViewController: SeparateWindowViewController {
             let title = self.countdownDateFormatter.string(from: remainingDate)
             
             self.resendButtonLabel?.text = title
-			self.resendButtonLabel?.localizedTextAlignment = .trailing
-            self.resendButtonLabel?.font = Constants.countdownFont
+			self.resendButtonLabel?.setTextStyle(themeSettings.timer)
+			
             self.resendButtonLabel?.alpha = 1.0
             self.resendButton?.isEnabled = false
             
         case .notTicking:
 			
 			self.resendButtonLabel?.setLocalizedText(.btn_resend_title)
-			self.resendButtonLabel?.textAlignment = .center
-            self.resendButtonLabel?.font = Constants.resendFont
+			self.resendButtonLabel?.setTextStyle(themeSettings.resend)
+			
             self.resendButtonLabel?.alpha = 1.0
             self.resendButton?.isEnabled = true
             
         case .attemptsFinished:
 			
 			self.resendButtonLabel?.setLocalizedText(.btn_resend_title)
-			self.resendButtonLabel?.textAlignment = .center
-            self.resendButtonLabel?.font = Constants.resendFont
+			self.resendButtonLabel?.setTextStyle(themeSettings.resend)
+			
             self.resendButtonLabel?.alpha = 0.5
             self.resendButton?.isEnabled = false
         }

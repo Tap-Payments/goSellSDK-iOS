@@ -19,7 +19,7 @@ import var      UIKit.UIWindow.UIKeyboardAnimationDurationUserInfoKey
 import var      UIKit.UIWindow.UIKeyboardFrameEndUserInfoKey
 
 /// Base View Controller.
-internal class BaseViewController: UIViewController, LocalizationObserver, LayoutDirectionObserver {
+internal class BaseViewController: UIViewController, LocalizationObserver, LayoutDirectionObserver, ThemeObserver {
 	
     // MARK: - Internal -
     // MARK: Properties
@@ -57,6 +57,9 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 		
 		self.view.updateLayoutDirectionIfRequired()
 		self.startMonitoringLayoutDirectionChanges()
+		
+		self.themeChanged()
+		self.startMonitoringThemeChanges()
     }
     
     internal override func viewDidDisappear(_ animated: Bool) {
@@ -68,6 +71,7 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 		
 		self.stopMonitoringLocalizationChanges()
 		self.stopMonitoringLayoutDirectionChanges()
+		self.stopMonitoringThemeChanges()
 		
         super.viewDidDisappear(animated)
     }
@@ -75,6 +79,7 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
     internal func performAdditionalAnimationsAfterKeyboardLayoutFinished() { }
 	
 	internal func localizationChanged() {}
+	internal func themeChanged() {}
 	
     // MARK: - Private -
     // MARK: Properties

@@ -109,7 +109,13 @@ internal final class TapNavigationView: TapNibView {
         self.updateIconLayout()
         self.updateRightViewLayout()
     }
-    
+	
+	internal func setStyle(_ style: NavigationBarStyle) {
+		
+		self.backButton?.setImage(style.backIcon, for: .normal)
+		self.titleLabel?.setTextStyle(style.titleStyle)
+	}
+	
     // MARK: - Private -
     
     private struct Constants {
@@ -121,13 +127,7 @@ internal final class TapNavigationView: TapNibView {
     
     // MARK: Properties
     
-    @IBOutlet private weak var backButton: UIButton? {
-        
-        didSet {
-            
-            self.backButton?.setImage(Theme.current.settings.generalImages.arrowLeft, for: .normal)
-        }
-    }
+    @IBOutlet private weak var backButton: UIButton?
     
     @IBOutlet private weak var iconImageView: UIImageView?
     

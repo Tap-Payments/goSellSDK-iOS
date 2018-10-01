@@ -112,7 +112,9 @@ internal class CardNumberValidator: CardValidator {
     // MARK: Methods
     
     private func setupTextField() {
-        
+		
+		self.textField.keyboardAppearance = Theme.current.commonStyle.keyboardAppearance.uiKeyboardAppearance
+		
         if #available(iOS 10.0, *) {
             
             self.textField.keyboardType = .asciiCapableNumberPad
@@ -122,10 +124,6 @@ internal class CardNumberValidator: CardValidator {
             
             self.textField.keyboardType = .numberPad
         }
-        
-        
-        
-        self.textField.keyboardAppearance = Theme.current.settings.keyboardStyle
         
         self.textField.delegate = self.textFieldDelegate
         self.textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
@@ -190,7 +188,7 @@ internal class CardNumberValidator: CardValidator {
             
             let cardBrand = brand ?? self.recognizedCardType.brand
             
-            let attributedText = self.textField.attributedText ?? NSAttributedString(string: .empty, attributes: Theme.current.settings.cardInputFieldsSettings.valid.asStringAttributes)
+            let attributedText = self.textField.attributedText ?? NSAttributedString(string: .empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
             
             let trimRange = NSRange(location: 0, length: min(attributedText.length, TapCardValidator.CardValidator.maximalCardNumberLength(for: brand)))
             let trimmedText = attributedText.attributedSubstring(from: trimRange)
@@ -242,9 +240,9 @@ extension CardNumberValidator: TextFieldInputDataValidation {
         return self.cardNumber
     }
     
-    internal var textInputFieldPlaceholderText: String {
+    internal var textInputFieldPlaceholderText: LocalizationKey {
         
-        return "Card Number"
+        return .card_input_card_number_placeholder
     }
     
     internal func updateSpecificInputFieldAttributes() {

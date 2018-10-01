@@ -72,6 +72,11 @@ internal class CurrencyCodesDataManager {
 		self.allData.forEach { $0.updateLocalization() }
 	}
 	
+	internal func updateTheme() {
+		
+		self.allData.forEach { $0.updateTheme() }
+	}
+	
     // MARK: - Private -
     // MARK: Properties
     

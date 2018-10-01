@@ -122,6 +122,11 @@ internal final class OTPInputView: TapNibView {
             }
         }
     }
+	
+	internal func setDigitsStyle(_ style: TextStyle) {
+		
+		self.otpLabels?.forEach { $0.setTextStyle(style) }
+	}
     
     // MARK: - Private -
     

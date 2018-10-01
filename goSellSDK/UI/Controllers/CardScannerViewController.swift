@@ -23,8 +23,8 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
     internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
         
         super.headerNavigationViewLoaded(headerView)
-        
-        headerView.iconImage = Theme.current.settings.cardInputFieldsSettings.scanIcon
+		
+		headerView.iconImage = Theme.current.paymentOptionsCellStyle.card.scanIcon
     }
 	
 	internal override func localizationChanged() {

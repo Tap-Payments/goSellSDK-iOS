@@ -214,7 +214,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
 		let valid = addressValidator?.isDataValid ?? false
 		
-		let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
+		let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
 		
 		let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
 		return settings.color
@@ -226,10 +226,10 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		let hasInputData = addressValidator?.hasInputDataForCurrentAddressFormat ?? false
 		let valid = addressValidator?.isDataValid ?? false
 		
-		let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
+		let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
 		
 		let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
-		return settings.font
+		return settings.font.localized
 	}
 	
 	internal var addressOnCardText: String {
@@ -239,22 +239,22 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		if hasInputData {
 			
 			let addressValidator = self.validator(of: .addressOnCard) as? CardAddressValidator
-			return addressValidator?.displayText ?? "Address on Card"
+			return addressValidator?.displayText ?? LocalizationProvider.shared.localizedString(for: LocalizationKey.card_input_address_on_card_placeholder)
 		}
 		else {
 			
-			return "Address on Card"
+			return LocalizationProvider.shared.localizedString(for: LocalizationKey.card_input_address_on_card_placeholder)
 		}
 	}
 	
 	internal var addressOnCardArrowImage: UIImage {
 		
-		return Theme.current.settings.generalImages.arrowRight
+		return Theme.current.commonStyle.icons.arrowRight
 	}
 	
 	internal var scanButtonImage: UIImage {
 		
-		return Theme.current.settings.cardInputFieldsSettings.scanIcon
+		return Theme.current.paymentOptionsCellStyle.card.scanIcon
 	}
 	
 	internal var isScanButtonVisible: Bool {

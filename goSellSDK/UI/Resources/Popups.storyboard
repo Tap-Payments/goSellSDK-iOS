@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +29,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-y2-vBG">
-                                        <rect key="frame" x="25" y="297" width="325" height="72.5"/>
+                                        <rect key="frame" x="25" y="297.5" width="325" height="72.5"/>
                                         <subviews>
                                             <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-86-atf" customClass="TapActivityIndicatorView" customModule="TapGLKit">
                                                 <rect key="frame" x="144" y="0.0" width="37" height="37"/>
@@ -126,7 +125,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark_green" translatesAutoresizingMaskIntoConstraints="NO" id="9T4-0d-0G1">
-                                                <rect key="frame" x="22" y="25" width="20" height="14"/>
+                                                <rect key="frame" x="22.5" y="25.5" width="20" height="14"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -137,7 +136,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gb-Pr-Ezo">
-                                        <rect key="frame" x="72" y="15.5" width="243" height="35.5"/>
+                                        <rect key="frame" x="72" y="15" width="243" height="35.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alz-Wh-jSU">
                                                 <rect key="frame" x="0.0" y="0.0" width="42" height="20"/>
@@ -160,7 +159,7 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Alz-Wh-jSU" secondAttribute="trailing" id="Iry-Nt-2yh"/>
                                             <constraint firstItem="Alz-Wh-jSU" firstAttribute="leading" secondItem="6gb-Pr-Ezo" secondAttribute="leading" id="YQq-j8-RPb"/>
                                             <constraint firstItem="Alz-Wh-jSU" firstAttribute="top" secondItem="6gb-Pr-Ezo" secondAttribute="top" id="bNb-ha-q3f"/>
-                                            <constraint firstItem="8KV-bP-nnU" firstAttribute="top" secondItem="Alz-Wh-jSU" secondAttribute="bottom" id="xo1-f5-aSs"/>
+                                            <constraint firstItem="8KV-bP-nnU" firstAttribute="top" secondItem="Alz-Wh-jSU" secondAttribute="bottom" priority="999" id="xo1-f5-aSs"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRZ-Wb-aQM">
@@ -178,6 +177,7 @@
                                     <constraint firstItem="5Dk-oD-NAg" firstAttribute="top" secondItem="uMM-Dc-dru" secondAttribute="top" id="94M-TO-kce"/>
                                     <constraint firstAttribute="bottom" secondItem="5Dk-oD-NAg" secondAttribute="bottom" id="Fj5-Xs-BLi"/>
                                     <constraint firstItem="5Dk-oD-NAg" firstAttribute="leading" secondItem="uMM-Dc-dru" secondAttribute="leading" id="IfQ-m6-gJW"/>
+                                    <constraint firstItem="6gb-Pr-Ezo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uMM-Dc-dru" secondAttribute="top" id="KNW-Qz-wzu"/>
                                     <constraint firstAttribute="bottom" secondItem="uRZ-Wb-aQM" secondAttribute="bottom" id="Lk5-uR-40P"/>
                                     <constraint firstAttribute="height" constant="65" id="NiP-8w-fUL"/>
                                     <constraint firstItem="uRZ-Wb-aQM" firstAttribute="leading" secondItem="6gb-Pr-Ezo" secondAttribute="trailing" constant="10" id="RsY-hS-eEl"/>
@@ -185,6 +185,7 @@
                                     <constraint firstItem="6gb-Pr-Ezo" firstAttribute="centerY" secondItem="uMM-Dc-dru" secondAttribute="centerY" id="cGx-TU-IYA"/>
                                     <constraint firstItem="6gb-Pr-Ezo" firstAttribute="leading" secondItem="5Dk-oD-NAg" secondAttribute="trailing" constant="7" id="daq-mP-nmV"/>
                                     <constraint firstAttribute="trailing" secondItem="uRZ-Wb-aQM" secondAttribute="trailing" id="pEC-Z7-QGl"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6gb-Pr-Ezo" secondAttribute="bottom" id="pkV-4m-ENb"/>
                                 </constraints>
                             </view>
                         </subviews>

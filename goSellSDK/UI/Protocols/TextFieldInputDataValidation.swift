@@ -10,14 +10,14 @@ import class UIKit.UITextField.UITextField
 internal protocol TextFieldInputDataValidation: TextInputDataValidation {
     
     var textInputField: UITextField { get }
-    var textInputFieldPlaceholderText: String { get }
+    var textInputFieldPlaceholderText: LocalizationKey { get }
 }
 
 internal extension TextFieldInputDataValidation {
     
     internal func updateInputFieldTextAndAttributes() {
         
-        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
+        let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
         let textSettings = self.isDataValid || self.textInputField.isEditing ? cardInputSettings.valid : cardInputSettings.invalid
         let textAttributes = textSettings.asStringAttributes
         
@@ -28,7 +28,9 @@ internal extension TextFieldInputDataValidation {
         self.textInputField.selectedTextRange = selectedRange
         
         let placeholderAttributes = cardInputSettings.placeholder.asStringAttributes
-        self.textInputField.attributedPlaceholder = NSAttributedString(string: self.textInputFieldPlaceholderText, attributes: placeholderAttributes)
+		let placeholderText = LocalizationProvider.shared.localizedString(for: self.textInputFieldPlaceholderText)
+		
+        self.textInputField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: placeholderAttributes)
         
         self.updateSpecificInputFieldAttributes()
     }

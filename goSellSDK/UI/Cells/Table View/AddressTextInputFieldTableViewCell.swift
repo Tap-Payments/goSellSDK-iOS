@@ -38,7 +38,7 @@ extension AddressTextInputFieldTableViewCell: LoadingWithModelCell {
     
     private func updateTextFieldKeyboard() {
         
-        self.inputTextField?.keyboardAppearance = Theme.current.settings.keyboardStyle
+        self.inputTextField?.keyboardAppearance = Theme.current.commonStyle.keyboardAppearance.uiKeyboardAppearance
         
         guard let nonnullModel = self.model else { return }
         

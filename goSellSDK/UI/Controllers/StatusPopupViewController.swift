@@ -25,14 +25,14 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
     // MARK: Properties
-    
-    internal var iconImage: UIImage? {
-        
-        didSet {
-            
-            self.updateIconImage()
-        }
-    }
+	
+	internal var success: Bool = false {
+		
+		didSet {
+			
+			self.updateIconImage()
+		}
+	}
     
     internal var titleText: String? {
         
@@ -70,7 +70,29 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
         self.cancelPreviousDismissalRequest()
         super.hide(animated: animated, async: async, completion: completion)
     }
-    
+	
+	internal override func localizationChanged() {
+		
+		super.localizationChanged()
+		
+		let theme = Theme.current.statusPopupStyle
+		
+		self.titleLabel?.setTextStyle(theme.titleStyle)
+		self.subtitleLabel?.setTextStyle(theme.subtitleStyle)
+	}
+	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		
+		let theme = Theme.current.statusPopupStyle
+		
+		self.titleLabel?.setTextStyle(theme.titleStyle)
+		self.subtitleLabel?.setTextStyle(theme.subtitleStyle)
+		
+		self.updateIconImage()
+	}
+	
     deinit {
         
         self.transitioning = nil
@@ -141,8 +163,10 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     // MARK: Methods
     
     private func updateIconImage() {
-        
-        self.iconImageView?.image = self.iconImage
+		
+		let theme = Theme.current.statusPopupStyle
+		
+		self.iconImageView?.image = self.success ? theme.successImage : theme.failureImage
     }
     
     private func updateTitleText() {

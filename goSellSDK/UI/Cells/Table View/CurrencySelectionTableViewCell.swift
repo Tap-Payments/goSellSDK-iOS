@@ -29,10 +29,16 @@ internal class CurrencySelectionTableViewCell: BaseTableViewCell {
 extension CurrencySelectionTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
-        
-        self.transactionCurrencyLabel?.text = self.model?.displayedTransactionCurrencyText
-        self.userSelectedCurrencyLabel?.text = self.model?.displayedUserCurrencyText
-        self.billImageView?.image = self.model?.billImage
-        self.arrowImageView?.image = self.model?.arrowImage
+		
+		let style = Theme.current.paymentOptionsCellStyle.currency
+		
+        self.transactionCurrencyLabel?.text		= self.model?.displayedTransactionCurrencyText
+		self.transactionCurrencyLabel?.setTextStyle(style.transactionCurrencyTextStyle)
+		
+        self.userSelectedCurrencyLabel?.text	= self.model?.displayedUserCurrencyText
+		self.userSelectedCurrencyLabel?.setTextStyle(style.selectedCurrencyTextStyle)
+		
+        self.billImageView?.image 	= self.model?.billImage
+        self.arrowImageView?.image	= self.model?.arrowImage
     }
 }

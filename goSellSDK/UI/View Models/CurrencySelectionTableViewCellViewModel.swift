@@ -27,13 +27,13 @@ internal class CurrencySelectionTableViewCellViewModel: TableViewCellViewModel {
     }
     
     internal var billImage: UIImage {
-        
-        return Theme.current.settings.billIcon
+		
+		return Theme.current.paymentOptionsCellStyle.currency.billIcon
     }
     
     internal var arrowImage: UIImage {
-        
-        return Theme.current.settings.generalImages.arrowRight
+		
+		return Theme.current.commonStyle.icons.arrowRight
     }
     
     internal weak var cell: CurrencySelectionTableViewCell?

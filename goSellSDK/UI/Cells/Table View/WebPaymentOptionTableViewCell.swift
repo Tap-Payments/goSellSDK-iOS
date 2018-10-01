@@ -34,6 +34,8 @@ extension WebPaymentOptionTableViewCell: LoadingWithModelCell {
     internal func updateContent(animated: Bool) {
         
         self.titleLabel?.text       = self.model?.title
+		self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
+		
         self.iconImageView?.image   = self.model?.iconImage
         self.arrowImageView?.image  = self.model?.arrowImage
     }

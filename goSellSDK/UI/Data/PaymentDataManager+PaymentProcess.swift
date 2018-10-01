@@ -593,7 +593,7 @@ internal extension PaymentDataManager {
         let popup           = StatusPopupViewController.shared
         popup.titleText     = status.localizedDescription
         popup.subtitleText  = nil
-        popup.iconImage     = .named("ic_x_red", in: .goSellSDKResources)
+		popup.success		= false
         
         popup.display { [weak popup] in
             
@@ -607,9 +607,9 @@ internal extension PaymentDataManager {
         let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
         
         let popup           = StatusPopupViewController.shared
-        popup.titleText     = "Successful"
+        popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_successful)
         popup.subtitleText  = receiptNumber
-        popup.iconImage     = .named("ic_checkmark_green", in: .goSellSDKResources)
+		popup.success		= true
         
         popup.display { [weak popup] in
             
@@ -618,3 +618,4 @@ internal extension PaymentDataManager {
         }
     }
 }
+

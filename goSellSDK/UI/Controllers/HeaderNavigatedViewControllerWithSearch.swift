@@ -84,7 +84,13 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
 	internal override func localizationChanged() {
 		
 		super.localizationChanged()
-		self.updateSearchFieldLocalization()
+		self.searchView?.searchField.setLocalizedText(for: .placeholder, key: .search_bar_placeholder)
+	}
+	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		self.searchView?.setStyle(Theme.current.searchBarStyle)
 	}
 	
     // MARK: - Private -
@@ -144,20 +150,6 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         let shadowOpacity = searchViewRelativeSize > 0.5 ? 0.0 : desiredOpacity
         self.searchView?.layer.shadowOpacity = Float(shadowOpacity)
     }
-	
-	private func updateSearchFieldLocalization() {
-		
-		guard let searchField = self.searchView?.searchField else { return }
-		guard let searchPlaceholder = searchField.attributedPlaceholder, searchPlaceholder.length > 0 else { return }
-		
-		let attributes = searchPlaceholder.attributes(at: 0, effectiveRange: nil)
-		
-		let placeholderText = LocalizationProvider.shared.localizedString(for: .search_bar_placeholder)
-		let placeholder = NSAttributedString(string: placeholderText, attributes: attributes)
-		
-		searchField.attributedPlaceholder = placeholder
-		searchField.localizedTextAlignment = .leading
-	}
 }
 
 // MARK: - UIScrollViewDelegate
@@ -178,7 +170,6 @@ extension HeaderNavigatedViewControllerWithSearch: UIScrollViewDelegate {
         
         let scaleY = visibleSearchViewPart / height
         self.updateSearchViewShadowOpacity(for: scaleY)
-        self.updateHeaderShadowOpacity(with: scrollView.contentOffset.y)
     }
 }
 

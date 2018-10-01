@@ -20,7 +20,7 @@ internal class AmountedCurrencyTableViewCellModel: TableViewCellViewModel {
     internal private(set) lazy var currencyNameText: String = .empty
     
     internal private(set) lazy var amountText: String = .empty
-    
+	
     internal var isSelected = false {
         
         didSet {
@@ -45,6 +45,11 @@ internal class AmountedCurrencyTableViewCellModel: TableViewCellViewModel {
 		
 		self.currencyNameText	= self.amountedCurrency.readableCurrencyName
 		self.amountText 		= self.amountedCurrency.displayValue
+		
+		self.updateCell(animated: false)
+	}
+	
+	internal func updateTheme() {
 		
 		self.updateCell(animated: false)
 	}

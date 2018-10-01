@@ -40,23 +40,10 @@
     
     // MARK: - Internal -
     // MARK: Properties
-    
+	
     internal var localizedDescription: String {
-        
-        switch self {
-            
-        case .initiated:    return "Initiated"
-        case .inProgress:   return "In Progress"
-        case .abandoned:    return "Abandoned"
-        case .cancelled:    return "Cancelled"
-        case .failed:       return "Failed"
-        case .declined:     return "Declined"
-        case .restricted:   return "Restricted"
-        case .captured:     return "Captured"
-        case .authorized:   return "Authorized"
-        case .void:         return "Void"
-
-        }
+		
+		return LocalizationProvider.shared.localizedString(for: self.descriptionLocalizationKey)
     }
     
     // MARK: - Private -
@@ -79,6 +66,24 @@
 
         }
     }
+	
+	private var descriptionLocalizationKey: LocalizationKey {
+		
+		switch self {
+			
+		case .initiated:    return .payment_status_initiated
+		case .inProgress:   return .payment_status_in_progress
+		case .abandoned:    return .payment_status_abandoned
+		case .cancelled:    return .payment_status_cancelled
+		case .failed:       return .payment_status_failed
+		case .declined:     return .payment_status_declined
+		case .restricted:   return .payment_status_restricted
+		case .captured:     return .payment_status_captured
+		case .authorized:   return .payment_status_authorized
+		case .void:         return .payment_status_void
+			
+		}
+	}
     
     // MARK: Methods
     
