@@ -40,8 +40,8 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
     }
     
     internal var arrowImage: UIImage {
-        
-        return Theme.current.settings.generalImages.arrowRight
+		
+		return Theme.current.commonStyle.icons.arrowRight
     }
     
     internal override var isReadyForPayment: Bool {

@@ -88,7 +88,7 @@ internal class CVVValidator: CardValidator {
             self.textField.keyboardType = .numberPad
         }
         
-        self.textField.keyboardAppearance = Theme.current.settings.keyboardStyle
+        self.textField.keyboardAppearance = Theme.current.commonStyle.keyboardAppearance.uiKeyboardAppearance
         
         self.textField.delegate = self.textFieldDelegate
         self.textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
@@ -115,9 +115,9 @@ extension CVVValidator: TextFieldInputDataValidation {
         return self.cvv
     }
     
-    internal var textInputFieldPlaceholderText: String {
+    internal var textInputFieldPlaceholderText: LocalizationKey {
         
-        return "CVV"
+        return .card_input_cvv_placeholder
     }
     
     internal func updateSpecificInputFieldAttributes() { }
@@ -149,7 +149,7 @@ extension CVVValidator.CVVTextFieldDelegate: UITextFieldDelegate {
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        textField.attributedText = NSAttributedString(string: .empty, attributes: Theme.current.settings.cardInputFieldsSettings.valid.asStringAttributes)
+        textField.attributedText = NSAttributedString(string: .empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
         
         self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()

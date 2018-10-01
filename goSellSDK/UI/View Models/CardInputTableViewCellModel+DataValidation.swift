@@ -80,7 +80,7 @@ internal extension CardInputTableViewCellModel {
             
         case .saveCard:
             
-            self.prepareSaveCardValidator(with: inputField)
+			self.prepareSaveCardValidator(with: inputField, descriptionLabel: displayLabel)
         }
     }
     
@@ -202,14 +202,19 @@ internal extension CardInputTableViewCellModel {
         self.finishSettingUp(validator)
     }
     
-    private func prepareSaveCardValidator(with inputField: UIResponder?) {
+	private func prepareSaveCardValidator(with inputField: UIResponder?, descriptionLabel: UILabel?) {
         
         guard let saveCardSwitch = inputField as? UISwitch else {
             
             fatalError("Save card input field should be a switch.")
         }
-        
-        let validator = SaveCardValidator(switch: saveCardSwitch)
+		
+		guard let label = descriptionLabel else {
+			
+			fatalError("Description label cannot be nil.")
+		}
+		
+		let validator = SaveCardValidator(switch: saveCardSwitch, label: label)
         
         self.finishSettingUp(validator)
     }
@@ -269,6 +274,11 @@ extension CardInputTableViewCellModel: CardValidatorDelegate {
     internal func validationStateChanged(to valid: Bool, on type: ValidationType) {
         
         PaymentDataManager.shared.updatePayButtonStateAndAmount()
+		
+		if type == .cardNumber {
+			
+			(self.validator(of: .saveCard) as? SaveCardValidator)?.canSaveCard = valid
+		}
     }
 }
 

@@ -68,16 +68,6 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     private struct Constants {
         
         fileprivate static let cardNumberMaskingSymbols = "●●●●"
-        fileprivate static let checkmarkImage: UIImage = {
-            
-            guard let result = UIImage.named("ic_checkmark_green_small", in: .goSellSDKResources) else {
-                
-                fatalError("Failed to load image.")
-            }
-            
-            return result
-        }()
-        
         @available(*, unavailable) private init() {}
     }
     
@@ -208,12 +198,12 @@ extension CardCollectionViewCellModel: CardCollectionViewCellLoading {
     
     internal var checkmarkImage: UIImage {
         
-        return Constants.checkmarkImage
+        return Theme.current.paymentOptionsCellStyle.savedCard.checkmarkIcon
     }
     
     internal var deleteCardImage: UIImage {
-        
-        return Theme.current.settings.generalImages.closeImage
+		
+		return Theme.current.commonStyle.icons.closeImage
     }
     
     internal func deleteCardButtonClicked() {

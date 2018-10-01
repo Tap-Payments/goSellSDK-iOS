@@ -12,7 +12,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
     goSellSDK.source                = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
     goSellSDK.source_files          = 'goSellSDK/**/*.{swift}'
-	goSellSDK.ios.resource_bundle   = { 'goSellSDKResources' => ['goSellSDK/UI/Resources/*.{xcassets,storyboard,xib}', 'goSellSDK/UI/Resources/Localization/*.lproj'] }
+	goSellSDK.ios.resource_bundle   = { 'goSellSDKResources' => ['goSellSDK/UI/Resources/*.{xcassets,storyboard,xib,json}', 'goSellSDK/UI/Resources/Localization/*.lproj'] }
     
     goSellSDK.dependency 'CardIODynamic'
     goSellSDK.dependency 'EditableTextInsetsTextField'
@@ -40,6 +40,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.dependency 'TapApplication'
     goSellSDK.dependency 'TapCardValidator'
     goSellSDK.dependency 'TapEditableView'
+	goSellSDK.dependency 'TapFontsKit'
     goSellSDK.dependency 'TapGLKit/LinearGradientView'
     goSellSDK.dependency 'TapGLKit/TapActivityIndicatorView'
     goSellSDK.dependency 'TapKeychain'

@@ -40,7 +40,19 @@ internal class HeaderNavigatedViewController: BaseViewController {
         headerView.delegate = self
         self.setupHeaderShadow(for: headerView)
     }
-    
+	
+	internal override func localizationChanged() {
+		
+		super.localizationChanged()
+		self.headerNavigationView?.setStyle(Theme.current.navigationBarStyle)
+	}
+	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		self.headerNavigationView?.setStyle(Theme.current.navigationBarStyle)
+	}
+	
     internal func updateHeaderShadowOpacity(with contentOverlapping: CGFloat) {
         
         guard let nonnullHeaderView = self.headerNavigationView else { return }

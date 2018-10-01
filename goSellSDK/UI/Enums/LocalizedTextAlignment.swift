@@ -7,15 +7,15 @@
 
 import enum UIKit.NSText.NSTextAlignment
 
-internal enum LocalizedTextAlignment {
+internal enum LocalizedTextAlignment: String, Decodable {
 	
-	case left
-	case center
-	case right
-	case leading
-	case trailing
-	case natural
-	case justified
+	case left 		= "left"
+	case center 	= "center"
+	case right 		= "right"
+	case leading 	= "leading"
+	case trailing 	= "trailing"
+	case natural 	= "natural"
+	case justified	= "justified"
 	
 	// MARK: Properties
 	

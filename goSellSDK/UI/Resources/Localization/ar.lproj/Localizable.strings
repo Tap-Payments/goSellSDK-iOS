@@ -12,16 +12,16 @@
 
 // MARK: Payment Option Group Titles
 
-"payment_options_group_title_recent" = "مستخدم حديثاً";//check
-"payment_options_group_title_others" = "آخر";//check
+"payment_options_group_title_recent" = "مستخدم حديثاً";
+"payment_options_group_title_others" = "آخر";
 
 // MARK: Card Input Fields Placeholders
 
 "card_input_card_number_placeholder" 		= "رقم البطاقة";
-"card_input_expiration_date_placeholder" 	= "شش/سس"; //check
+"card_input_expiration_date_placeholder" 	= "شش/سس";
 "card_input_cvv_placeholder" 				= "الرمز الأمني";
 "card_input_cardholder_name_placeholder"	= "الاسم الموجود على البطاقة";
-"card_input_address_on_card_placeholder"	= "عنوان الدفع";//check عنوان البطاقة
+"card_input_address_on_card_placeholder"	= "عنوان الدفع";
 
 // MARK: Save Card Placeholders
 
@@ -30,7 +30,7 @@
 // MARK: Screen Titles
 
 "currency_selection_screen_title" 	= "اختر العملة";
-"card_scanning_screen_title"		= "تصوير البطاقة";//check
+"card_scanning_screen_title"		= "تصوير البطاقة";
 
 // MARK: Search Bar
 
@@ -38,7 +38,7 @@
 
 // MARK: OTP Screen
 
-"otp_guide_text"	= "الرجاء إدخال الرقم المرسل إلى %@";//check
+"otp_guide_text"	= "الرجاء إدخال الرقم المرسل إلى %@";
 "btn_confirm_title"	= "تأكيد";
 "btn_resend_title"	= "إعادة إرسال";
 
@@ -232,3 +232,18 @@
 
 "alert_error_btn_retry_title"	= "Retry";
 "alert_error_btn_dismiss_title"	= "Dismiss";
+
+// MARK: Payment Statuses
+
+"payment_status_initiated" 		= "Initiated";
+"payment_status_in_progress"	= "In Progress";
+"payment_status_abandoned" 		= "Abandoned";
+"payment_status_cancelled" 		= "Cancelled";
+"payment_status_failed" 		= "Failed";
+"payment_status_declined" 		= "Declined";
+"payment_status_restricted" 	= "Restricted";
+"payment_status_captured" 		= "Captured";
+"payment_status_authorized" 	= "Authorized";
+"payment_status_void" 			= "Void";
+
+"payment_status_successful"		= "Successful";

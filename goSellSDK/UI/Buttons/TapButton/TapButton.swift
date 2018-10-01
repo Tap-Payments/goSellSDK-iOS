@@ -43,7 +43,7 @@ internal class TapButton: TapNibView {
         return .goSellSDKResources
     }
     
-    internal var themeSettings: TapButtonSettings = Theme.current.settings.payButtonSettings {
+	internal var themeStyle: TapButtonStyle = Theme.current.buttonStyles.first! {
         
         didSet {
             
@@ -97,8 +97,8 @@ internal class TapButton: TapNibView {
     @IBOutlet private weak var loader: TapActivityIndicatorView? {
         
         didSet {
-            
-            self.loader?.animationDuration = Theme.current.settings.loaderAnimationDuration
+			
+			self.loader?.animationDuration = Theme.current.commonStyle.loaderAnimationDuration
             self.loader?.startingProgress = 0.0
         }
     }
@@ -111,7 +111,14 @@ internal class TapButton: TapNibView {
         }
     }
     
-    @IBOutlet private weak var securityButton: UIButton?
+	@IBOutlet private weak var securityButton: UIButton? {
+		
+		didSet {
+			
+			self.securityButton?.contentMode = .center
+			self.securityButton?.imageView?.contentMode = .center
+		}
+	}
     
     private var isHighlighted = false
     
@@ -157,7 +164,7 @@ internal class TapButton: TapNibView {
                 
                 let enabled = strongSelf.isEnabled && !strongSelf.forceDisabled
                 
-                let settings = strongSelf.themeSettings
+                let settings = strongSelf.themeStyle
                 let stateSettings = enabled ? (strongSelf.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
                 
                 strongSelf.layer.backgroundColor = stateSettings.backgroundColor.cgColor
@@ -165,11 +172,10 @@ internal class TapButton: TapNibView {
                 strongSelf.loader?.usesCustomColors = true
                 strongSelf.loader?.outterCircleColor = stateSettings.loaderColor
                 strongSelf.loader?.innerCircleColor = stateSettings.loaderColor
-                
-                strongSelf.internalButton?.titleLabel?.font = stateSettings.textFont
-                strongSelf.internalButton?.setTitleColor(stateSettings.textColor, for: strongSelf.isHighlighted ? .highlighted : .normal)
-                
-                strongSelf.securityButton?.setImage(stateSettings.securityIcon, for: strongSelf.isHighlighted ? .highlighted : .normal)
+				
+				strongSelf.securityButton?.setImage(stateSettings.securityIcon, for: strongSelf.isHighlighted ? .highlighted : .normal)
+				
+				strongSelf.internalButton?.setTitleStyle(stateSettings.titleStyle)
             }
             
             let duration = animated ? Constants.stateUpdateAnimationDuration : 0.0

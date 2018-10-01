@@ -115,7 +115,7 @@ internal class ExpirationDateValidator: CardValidator {
     
     private func inputFieldDidEndEditing() {
         
-        let textSettings = Theme.current.settings.cardInputFieldsSettings
+        let textSettings = Theme.current.paymentOptionsCellStyle.card.textInput
         
         let attributes = self.isDataValid ? textSettings.valid : textSettings.invalid
         self.updateTextFieldText(shouldClear: false, attributes: attributes.asStringAttributes)
@@ -135,7 +135,7 @@ internal class ExpirationDateValidator: CardValidator {
                 return
             }
             
-            let stringAttributes = attributes ?? Theme.current.settings.cardInputFieldsSettings.valid.asStringAttributes
+            let stringAttributes = attributes ?? Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes
             self.textField.attributedText = NSAttributedString(string: date.inputFieldRepresentation, attributes: stringAttributes)
         }
         
@@ -187,8 +187,8 @@ extension ExpirationDateValidator: TapEditableViewDelegate {
     }
 }
 
-// MARK: - TextInputDataValidation
-extension ExpirationDateValidator: TextInputDataValidation {
+// MARK: - TextFieldInputDataValidation
+extension ExpirationDateValidator: TextFieldInputDataValidation {
     
     internal var textInputField: UITextField {
         
@@ -200,9 +200,9 @@ extension ExpirationDateValidator: TextInputDataValidation {
         return self.expirationDate?.inputFieldRepresentation ?? .empty
     }
     
-    internal var textInputFieldPlaceholderText: String {
+    internal var textInputFieldPlaceholderText: LocalizationKey {
         
-        return "MM/YY"
+        return .card_input_expiration_date_placeholder
     }
     
     internal func updateSpecificInputFieldAttributes() { }

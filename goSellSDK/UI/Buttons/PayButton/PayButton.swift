@@ -81,13 +81,6 @@ import class 	UIKit.UIView.UIView
 			self.stopMonitoringLayoutDirectionChanges()
 		}
 	}
-	
-    // MARK: - Internal -
-    // MARK: Properties
-    
-    /// Theme of the payment controller. Default is light.
-    /// Currently not available for modification until we add another theme.
-    internal let controllerTheme: Theme = .light
     
     // MARK: - Private -
     // MARK: Properties
@@ -113,11 +106,6 @@ extension PayButton: TapButtonDelegate {
 
 // MARK: - PayButtonInternalImplementation
 extension PayButton: PayButtonInternalImplementation {
-    
-    internal var theme: Theme {
-        
-        return self.controllerTheme
-    }
     
     internal var uiElement: PayButtonUI? {
         

@@ -16,9 +16,9 @@ internal extension TextLabelInputDataValidation {
     
     internal func updateInputFieldTextAndAttributes() {
         
-        let cardInputSettings = Theme.current.settings.cardInputFieldsSettings
-        let textSettings = self.isDataValid ? cardInputSettings.valid : cardInputSettings.invalid
-        let textAttributes = textSettings.asStringAttributes
+        let cardInputStyle	= Theme.current.paymentOptionsCellStyle.card.textInput
+        let textSettings 	= self.isDataValid ? cardInputStyle.valid : cardInputStyle.invalid
+        let textAttributes 	= textSettings.asStringAttributes
         
         self.labelField.attributedText = NSAttributedString(string: self.textInputFieldText, attributes: textAttributes)
         

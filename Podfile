@@ -31,6 +31,7 @@ def shared_pods
     pod 'TapApplication'
     pod 'TapCardValidator'
     pod 'TapEditableView'
+	pod 'TapFontsKit'
     pod 'TapGLKit/TapActivityIndicatorView'
     pod 'TapGLKit/LinearGradientView'
     pod 'TapKeychain'

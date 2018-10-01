@@ -42,7 +42,7 @@ internal final class PlainAmountTableViewCell: SelectableCell {
     // MARK: - Private -
     // MARK: Properties
     
-    @IBOutlet private weak var amountTextField: UITextField?
+	@IBOutlet private weak var amountTextField: UITextField?
     
     // MARK: Methods
     

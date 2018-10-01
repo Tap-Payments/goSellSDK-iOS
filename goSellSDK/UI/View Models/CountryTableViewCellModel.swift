@@ -22,8 +22,8 @@ internal class CountryTableViewCellModel: TableViewCellViewModel {
     }
     
     internal var checkmarkImage: UIImage {
-        
-        return Theme.current.settings.generalImages.checkmarkImage
+		
+		return Theme.current.commonStyle.icons.checkmarkImage
     }
     
     internal var isSelected = false {

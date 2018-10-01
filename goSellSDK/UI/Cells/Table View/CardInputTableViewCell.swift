@@ -310,9 +310,9 @@ extension CardInputTableViewCell: BindingWithModelCell {
             self.model?.bind(nil, displayLabel: addressLabel, for: .addressOnCard)
         }
         
-        if let saveCardSwitch = self.saveCardSwitch {
+        if let saveCardSwitch = self.saveCardSwitch, let descriptionLabel = self.saveCardDescriptionLabel {
             
-            self.model?.bind(saveCardSwitch, displayLabel: nil, for: .saveCard)
+            self.model?.bind(saveCardSwitch, displayLabel: descriptionLabel, for: .saveCard)
         }
         
         self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true, forceLayout: false)
