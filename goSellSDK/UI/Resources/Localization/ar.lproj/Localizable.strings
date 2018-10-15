@@ -244,6 +244,8 @@
 "payment_status_restricted" 	= "Restricted";
 "payment_status_captured" 		= "Captured";
 "payment_status_authorized" 	= "Authorized";
+"payment_status_unknown"		= "Unknown";
 "payment_status_void" 			= "Void";
 
-"payment_status_successful"		= "Successful";
+"payment_status_alert_successful"	= "Successful";
+"payment_status_alert_failed"		= "Failed";
