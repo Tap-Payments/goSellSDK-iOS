@@ -34,7 +34,10 @@
     
     /// Authorize succeed.
     case authorized
-    
+	
+	/// Charge status is unknown.
+	case unknown
+	
     /// Charge/authorize void.
     case void
     
@@ -62,6 +65,7 @@
         case .restricted:   return "RESTRICTED"
         case .captured:     return "CAPTURED"
         case .authorized:   return "AUTHORIZED"
+		case .unknown:		return "UNKNOWN"
         case .void:         return "VOID"
 
         }
@@ -80,6 +84,7 @@
 		case .restricted:   return .payment_status_restricted
 		case .captured:     return .payment_status_captured
 		case .authorized:   return .payment_status_authorized
+		case .unknown:		return .payment_status_unknown
 		case .void:         return .payment_status_void
 			
 		}
@@ -100,6 +105,7 @@
         case ChargeStatus.restricted.stringValue:   self = .restricted
         case ChargeStatus.captured.stringValue:     self = .captured
         case ChargeStatus.authorized.stringValue:   self = .authorized
+		case ChargeStatus.unknown.stringValue:		self = .unknown
         case ChargeStatus.void.stringValue:         self = .void
             
         default:

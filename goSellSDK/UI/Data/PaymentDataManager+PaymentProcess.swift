@@ -458,7 +458,7 @@ internal extension PaymentDataManager {
                 self.openPaymentURL(url, for: paymentOption, binNumber: cardBIN)
             }
             
-        case .inProgress, .abandoned, .cancelled, .failed, .declined, .restricted, .void:
+        case .inProgress, .abandoned, .cancelled, .failed, .declined, .restricted, .unknown, .void:
             
             self.paymentFailure(with: nonnullChargeOrAuthorize.status, chargeOrAuthorize: nonnullChargeOrAuthorize, error: error)
             
@@ -591,7 +591,7 @@ internal extension PaymentDataManager {
         let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
         
         let popup           = StatusPopupViewController.shared
-        popup.titleText     = status.localizedDescription
+        popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_alert_failed)
         popup.subtitleText  = nil
 		popup.success		= false
         
@@ -607,7 +607,7 @@ internal extension PaymentDataManager {
         let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
         
         let popup           = StatusPopupViewController.shared
-        popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_successful)
+        popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_alert_successful)
         popup.subtitleText  = receiptNumber
 		popup.success		= true
         

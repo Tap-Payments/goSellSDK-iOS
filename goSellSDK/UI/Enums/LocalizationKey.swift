@@ -246,7 +246,9 @@ internal enum LocalizationKey: String {
 	case payment_status_restricted	= "payment_status_restricted"
 	case payment_status_captured	= "payment_status_captured"
 	case payment_status_authorized	= "payment_status_authorized"
+	case payment_status_unknown		= "payment_status_unknown"
 	case payment_status_void		= "payment_status_void"
 	
-	case payment_status_successful	= "payment_status_successful"
+	case payment_status_alert_successful	= "payment_status_alert_successful"
+	case payment_status_alert_failed		= "payment_status_alert_failed"
 }
