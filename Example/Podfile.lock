@@ -1,11 +1,11 @@
 PODS:
   - CardIODynamic (5.4.1)
-  - Crashlytics (3.10.8):
-    - Fabric (~> 1.7.12)
+  - Crashlytics (3.11.0):
+    - Fabric (~> 1.8.0)
   - EditableTextInsetsTextField (1.0.2):
     - TapAdditionsKit/Foundation/Locale (= 1.1)
     - TapAdditionsKit/UIKit/UIView (= 1.1)
-  - Fabric (1.7.12)
+  - Fabric (1.8.0)
   - goSellSDK (2.0):
     - CardIODynamic
     - EditableTextInsetsTextField
@@ -218,9 +218,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
-  Crashlytics: 058dc1ba579f6c100bc60a6878703779bff383c4
+  Crashlytics: 1448070c1d2731ab71ea7c3faf84ac0f69657287
   EditableTextInsetsTextField: ab320199ec6d1c55629a26c02673a1a9858d88d6
-  Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
+  Fabric: 4ac1cdfef3004ccd83ce0959b91eda8a6e37df72
   goSellSDK: b93ad6b45872b2fbb8b2d95663927a70e8dc33ef
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   TapAdditionsKit: 140a088872313f07b047d803e7fa513a1f8d4f6d
