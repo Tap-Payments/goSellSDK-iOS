@@ -24,36 +24,47 @@
     case null
     
     // MARK: - Private -
-    // MARK: Properties
-    
-    private var stringValue: String {
-        
-        switch self {
-            
-        case .debitCard:        return "DEBIT_CARD"
-        case .creditCard:       return "CREDIT_CARD"
-        case .prepaidCard:      return "PREPAID_CARD"
-        case .prepaidWallet:    return "PREPAID_WALLET"
-        case .null:             return "null"
-
-        }
-    }
-    
+	
+	private struct RawValues {
+		
+		fileprivate static let table: [SourcePaymentType: [String]] = [
+		
+			.debitCard:		RawValues.debitCard,
+			.creditCard:	RawValues.creditCard,
+			.prepaidCard:	RawValues.prepaidCard,
+			.prepaidWallet:	RawValues.prepaidWallet,
+			.null:			RawValues.null
+		]
+		
+		private static let debitCard		= ["DEBIT_CARD",		"DEBIT"]
+		private static let creditCard		= ["CREDIT_CARD",		"CREDIT"]
+		private static let prepaidCard		= ["PREPAID_CARD",		"PREPAID"]
+		private static let prepaidWallet	= ["PREPAID_WALLET",	"WALLET"]
+		private static let null				= ["null"]
+		
+		@available(*, unavailable) private init() {}
+	}
+	
+	// MARK: Properties
+	
+	private var stringValue: String {
+		
+		return RawValues.table[self]!.first!
+	}
+	
     // MARK: Methods
     
     private init(_ stringValue: String) throws {
-        
-        switch stringValue {
-            
-        case SourcePaymentType.debitCard.stringValue:       self = .debitCard
-        case SourcePaymentType.creditCard.stringValue:      self = .creditCard
-        case SourcePaymentType.prepaidCard.stringValue:     self = .prepaidCard
-        case SourcePaymentType.prepaidWallet.stringValue:   self = .prepaidWallet
-
-        default:
-            
-            throw ErrorUtils.createEnumStringInitializationError(for: SourcePaymentType.self, value: stringValue)
-        }
+		
+		for (type, rawValues) in RawValues.table {
+			
+			guard rawValues.contains(stringValue) else { continue }
+			
+			self = type
+			return
+		}
+		
+		throw ErrorUtils.createEnumStringInitializationError(for: SourcePaymentType.self, value: stringValue)
     }
 }
 

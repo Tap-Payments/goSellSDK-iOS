@@ -154,7 +154,7 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
             textField.sendActions(for: .editingChanged)
         }
         
-        return true
+        return false
     }
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
