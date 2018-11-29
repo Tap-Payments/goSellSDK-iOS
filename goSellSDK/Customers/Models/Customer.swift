@@ -57,6 +57,6 @@
         case phone              = "phone"
         case metadata           = "metadata"
         case creationDate       = "created"
-        case isLiveMode         = "livemode"
+        case isLiveMode         = "live_mode"
     }
 }

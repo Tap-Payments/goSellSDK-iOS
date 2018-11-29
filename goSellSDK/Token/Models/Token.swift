@@ -68,7 +68,7 @@ import class Foundation.NSObject.NSObject
         case type           = "type"
         case creationDate   = "created"
         case clientIP       = "client_ip"
-        case isLiveMode     = "livemode"
+        case isLiveMode     = "live_mode"
         case isUsed         = "used"
     }
 }
