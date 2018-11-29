@@ -70,3 +70,4 @@ goSellSDK.png
 docs/docsets/goSellSDK.docset/Contents/Resources/Documents/undocumented.json
 docs/undocumented.json
 Carthage
+.DS_Store
