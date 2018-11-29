@@ -1,7 +1,7 @@
 PODS:
-  - TapNetworkManager (1.1.2):
-    - TapNetworkManager/Core (= 1.1.2)
-  - TapNetworkManager/Core (1.1.2)
+  - TapNetworkManager (1.2.2):
+    - TapNetworkManager/Core (= 1.2.2)
+  - TapNetworkManager/Core (1.2.2)
 
 DEPENDENCIES:
   - TapNetworkManager
@@ -11,8 +11,8 @@ SPEC REPOS:
     - TapNetworkManager
 
 SPEC CHECKSUMS:
-  TapNetworkManager: 71a438f203e09f92f0e851b1d24bec332c96bb8f
+  TapNetworkManager: a28c0de9b6ef1d4ff04150cea55b2e7a89e46131
 
 PODFILE CHECKSUM: 60064d1b77e03afaf8bcd96c5d23a9853015faa5
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
