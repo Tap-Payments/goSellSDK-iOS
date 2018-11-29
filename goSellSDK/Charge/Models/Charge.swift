@@ -170,7 +170,7 @@ import struct Foundation.NSURL.URL
         case descriptionText        = "description"
         case failureCode            = "failure_code"
         case failureMessage         = "failure_message"
-        case isLiveMode             = "livemode"
+        case isLiveMode             = "live_mode"
         case metadata               = "metadata"
         case isPaid                 = "paid"
         case receiptEmail           = "receipt_email"
