@@ -40,7 +40,7 @@ internal extension PaymentDataManager {
         if let paymentOption = self.selectedPaymentOptionCellViewModel?.paymentOption {
         
             let extraFeeAmount = self.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
-            
+			
             let amount = AmountedCurrency(amountedCurrency.currency,
                                           amountedCurrency.amount + extraFeeAmount,
                                           amountedCurrency.currencySymbol)
