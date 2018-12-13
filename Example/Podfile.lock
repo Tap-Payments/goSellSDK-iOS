@@ -1,11 +1,11 @@
 PODS:
   - CardIODynamic (5.4.1)
-  - Crashlytics (3.11.0):
-    - Fabric (~> 1.8.0)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
   - EditableTextInsetsTextField (1.0.2):
     - TapAdditionsKit/Foundation/Locale (= 1.1)
     - TapAdditionsKit/UIKit/UIView (= 1.1)
-  - Fabric (1.8.0)
+  - Fabric (1.9.0)
   - goSellSDK (2.0):
     - CardIODynamic
     - EditableTextInsetsTextField
@@ -44,7 +44,7 @@ PODS:
     - TapSearchView
     - TapSwiftFixes/Threading
     - TapVisualEffectView
-  - SDWebImage/Core (4.4.2)
+  - SDWebImage/Core (4.4.3)
   - TapAdditionsKit/CoreGraphics/CGContext (1.1)
   - TapAdditionsKit/CoreGraphics/CGImage (1.1):
     - TapAdditionsKit/CoreGraphics/CGContext
@@ -158,10 +158,10 @@ PODS:
   - TapGLKit/TapActivityIndicatorView (1.0.1):
     - TapGLKit/AnimatedView
   - TapKeychain (1.0.1)
-  - TapNetworkManager/Core (1.2.1)
-  - TapNetworkManager/ImageLoading (1.2.1):
+  - TapNetworkManager/Core (1.2.2)
+  - TapNetworkManager/ImageLoading (1.2.2):
     - SDWebImage/Core (>= 4.4)
-    - TapAdditionsKit/Foundation/URLSession (= 1.1)
+    - TapAdditionsKit/Foundation/URLSession (>= 1.1)
     - TapNetworkManager/Core
   - TapNibView (1.0.1.1):
     - TapAdditionsKit/ObjectiveC/NSObject (= 1.1)
@@ -218,11 +218,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
-  Crashlytics: 1448070c1d2731ab71ea7c3faf84ac0f69657287
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   EditableTextInsetsTextField: ab320199ec6d1c55629a26c02673a1a9858d88d6
-  Fabric: 4ac1cdfef3004ccd83ce0959b91eda8a6e37df72
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   goSellSDK: b93ad6b45872b2fbb8b2d95663927a70e8dc33ef
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   TapAdditionsKit: 140a088872313f07b047d803e7fa513a1f8d4f6d
   TapApplication: 11ec265f821c3aee5ef537d7ed9e753b149e911f
   TapCardValidator: bf13a8ca74e10c5cdeac4ce3335b09592d7e2f38
@@ -230,7 +230,7 @@ SPEC CHECKSUMS:
   TapFontsKit: 8ef06256c08bd27e44bd10e6b7537b44f4c6be2f
   TapGLKit: 1a433496167fd572983b946adb04854573f96cb3
   TapKeychain: 811bb5185b8fd9f81c705c637d2801500e95bbd4
-  TapNetworkManager: 4fc08ceff53a511c69ac7184dd12ed7a7e603f78
+  TapNetworkManager: a28c0de9b6ef1d4ff04150cea55b2e7a89e46131
   TapNibView: 32659d2d4337575bf5efc200784e3681dff07a83
   TapResponderChainInputView: 95c14b388f940bf319847c2bb4592308a7d8cc6f
   TapSearchView: 411f97f5e97da98dfa99ee4e263131171a927b38
