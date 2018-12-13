@@ -42,7 +42,8 @@ internal final class WebPaymentContentViewController: BaseViewController {
     }
     
     deinit {
-        
+		
+		self.progressBar?.unbindFromWebView()
         self.webView.scrollView.delegate = nil
     }
     
