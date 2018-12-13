@@ -58,6 +58,11 @@ import class    WebKit.WKWebView.WKWebView
         
         self.webView = webView
     }
+	
+	internal func unbindFromWebView() {
+		
+		self.webView = nil
+	}
     
     internal override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
@@ -112,33 +117,42 @@ import class    WebKit.WKWebView.WKWebView
     }
     
     private weak var webView: WKWebView? {
-        
+		
         didSet {
-            
-            self.addObservers()
+			
+			self.updateObservers(oldValue, newWebView: self.webView)
             self.updateProgress()
         }
     }
     
     // MARK: Methods
-    
-    private func addObservers() {
-        
-        guard let nonnullWebView = self.webView else { return }
-        
+	
+	private func updateObservers(_ oldWebview: WKWebView?, newWebView: WKWebView?) {
+		
+		if let nonnullOldWebView = oldWebview {
+			
+			self.removeObservers(from: nonnullOldWebView)
+		}
+		
+		if let nonnullNewWebView = newWebView {
+			
+			self.addObservers(on: nonnullNewWebView)
+		}
+	}
+	
+	private func addObservers(on webview: WKWebView) {
+		
         Constants.observableKeyPaths.forEach {
             
-            nonnullWebView.addObserver(self, forKeyPath: $0, options: .new, context: nil)
+            webview.addObserver(self, forKeyPath: $0, options: .new, context: nil)
         }
     }
     
-    private func removeObservers() {
-        
-        guard let nonnullWebView = self.webView else { return }
-        
+	private func removeObservers(from webview: WKWebView) {
+		
         Constants.observableKeyPaths.forEach {
             
-            nonnullWebView.removeObserver(self, forKeyPath: $0)
+            webview.removeObserver(self, forKeyPath: $0)
         }
     }
     
