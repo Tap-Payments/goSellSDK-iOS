@@ -70,7 +70,10 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         aSearchView.layer.shadowOpacity = 0.0
         aSearchView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         aSearchView.layer.shadowRadius = 1.0
-        aSearchView.layer.shadowColor = UIColor(hex: "B5B5B5A8")?.cgColor
+        aSearchView.layer.shadowColor = Constants.searchViewShadowColor?.cgColor
+		
+		self.searchViewHeightConstraint?.constant = Constants.headerViewAndSearchBarOverlapping + Constants.shadowHeight
+		aSearchView.layout()
     }
     
     internal func bothTableViewAndSearchViewLoaded(_ aTableView: UITableView, searchView aSearchView: TapSearchView) {
@@ -99,10 +102,17 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         
         fileprivate static let headerViewAndSearchBarOverlapping: CGFloat = 4.0
         fileprivate static let shadowHeight: CGFloat = 2.0
+		fileprivate static let searchViewShadowColor = UIColor(hex: "B5B5B5A8")
         
         @available(*, unavailable) private init() {}
     }
-    
+	
+	private enum SearchViewState {
+		
+		case active
+		case collapsed
+	}
+	
     // MARK: Properties
     
     @IBOutlet private weak var searchView: TapSearchView? {
@@ -122,16 +132,37 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
     }
     
     @IBOutlet private weak var searchViewHeightConstraint: NSLayoutConstraint?
-    
+	
+	private var searchViewState: SearchViewState = .collapsed {
+		
+		didSet {
+			
+			self.updateTableViewContentInset()
+		}
+	}
+	
+	private var canSearchViewBeCollapsed: Bool {
+		
+		guard let sView = self.searchView else { return true }
+		return (sView.searchField.text?.length ?? 0) == 0
+	}
+	
     // MARK: Methods
     
     private func updateTableViewContentInset() {
         
         guard let nonnullTableView = self.tableView else { return }
         guard let searchHeight = self.searchView?.intrinsicContentSize.height else { return }
-        
-        let topInset = searchHeight - Constants.headerViewAndSearchBarOverlapping
-        
+		
+		var topInset: CGFloat
+		
+		switch self.searchViewState {
+			
+		case .active:		topInset = searchHeight - Constants.headerViewAndSearchBarOverlapping
+		case .collapsed:	topInset = Constants.shadowHeight
+			
+		}
+		
         let desiredInset = UIEdgeInsets(top: topInset, left: 0.0, bottom: 0.0, right: 0.0)
         if nonnullTableView.contentInset != desiredInset {
             
@@ -156,21 +187,39 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
 extension HeaderNavigatedViewControllerWithSearch: UIScrollViewDelegate {
     
     internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        guard scrollView === self.tableView else { return }
-        guard let height = self.searchView?.intrinsicContentSize.height else { return }
-        
-        let maximalVisiblePart = Constants.headerViewAndSearchBarOverlapping + Constants.shadowHeight
-        let realHiddenSearchViewHeight = scrollView.contentInset.top + scrollView.contentOffset.y
-        let desiredHiddenHeight: CGFloat = clamp(value: realHiddenSearchViewHeight, low: 0.0, high: height)
-        let desiredVisibleHeight = height - desiredHiddenHeight
-        
-        let visibleSearchViewPart = max(maximalVisiblePart, desiredVisibleHeight)
-        self.searchViewHeightConstraint?.constant = visibleSearchViewPart
-        
-        let scaleY = visibleSearchViewPart / height
-        self.updateSearchViewShadowOpacity(for: scaleY)
+		
+		if let searchViewHeightAndScale = self.visibleSearchViewHeightAndScale(basedOn: scrollView) {
+			
+			self.searchViewHeightConstraint?.constant = searchViewHeightAndScale.0
+			self.updateSearchViewShadowOpacity(for: searchViewHeightAndScale.1)
+		}
     }
+	
+	internal func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		
+		if let searchViewHeightAndScale = self.visibleSearchViewHeightAndScale(basedOn: scrollView) {
+			
+			let collapsing = scrollView.panGestureRecognizer.velocity(in: scrollView).y <= 0.0
+			
+			self.searchViewState = searchViewHeightAndScale.1 < 1.0 && collapsing && self.canSearchViewBeCollapsed ? .collapsed : .active
+		}
+	}
+	
+	private func visibleSearchViewHeightAndScale(basedOn scrollView: UIScrollView) -> (CGFloat, CGFloat)? {
+	
+		guard scrollView === self.tableView else { return nil }
+		guard let height = self.searchView?.intrinsicContentSize.height else { return nil }
+		
+		let minimalVisiblePart = Constants.headerViewAndSearchBarOverlapping + Constants.shadowHeight
+		
+		let emptySpace = self.canSearchViewBeCollapsed ? Constants.headerViewAndSearchBarOverlapping - scrollView.contentOffset.y : height
+		let desiredSearchViewHeight: CGFloat = clamp(value: emptySpace, low: minimalVisiblePart, high: height)
+		
+		let scaleY = desiredSearchViewHeight / height
+		
+		return (desiredSearchViewHeight, scaleY)
+		
+	}
 }
 
 // MARK: - TapSearchUpdating
