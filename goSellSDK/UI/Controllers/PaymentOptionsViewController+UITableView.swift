@@ -100,6 +100,10 @@ extension PaymentOptionsViewController: UITableViewDelegate {
             
             groupModel.updateCell()
         }
+		else if let groupWithButtonModel = model as? GroupWithButtonTableViewCellModel {
+			
+			groupWithButtonModel.updateCell()
+		}
         else if let cardsContainerCellModel = model as? CardsContainerTableViewCellModel {
             
             cardsContainerCellModel.updateCell()
