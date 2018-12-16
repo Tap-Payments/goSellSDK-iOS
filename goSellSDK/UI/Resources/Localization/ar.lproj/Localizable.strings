@@ -5,6 +5,11 @@
   Copyright © 2018 Tap Payments. All rights reserved.
 */
 
+// MARK: Common
+
+"common_edit"	= "Edit";
+"common_cancel"	= "Cancel";
+
 // MARK: Pay Button Titles
 
 "btn_pay_title_generic"	= "ادفع";
