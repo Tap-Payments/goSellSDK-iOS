@@ -7,6 +7,11 @@
 
 internal enum LocalizationKey: String {
 	
+	// MARK: Common
+	
+	case common_edit	= "common_edit"
+	case common_cancel	= "common_cancel"
+	
 	// MARK: Pay Button Titles
 	
     case btn_pay_title_generic 	= "btn_pay_title_generic"

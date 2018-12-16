@@ -51,11 +51,16 @@ extension PaymentOptionsViewController: UITableViewDataSource {
             let cell = emptyCellModel.dequeueCell(from: tableView)
             return cell
         }
-        if let groupCellModel = model as? GroupTableViewCellModel {
+        else if let groupCellModel = model as? GroupTableViewCellModel {
             
             let cell = groupCellModel.dequeueCell(from: tableView)
             return cell
         }
+		else if let groupWithButtonCellModel = model as? GroupWithButtonTableViewCellModel {
+			
+			let cell = groupWithButtonCellModel.dequeueCell(from: tableView)
+			return cell
+		}
         else if let cardsContainerCellModel = model as? CardsContainerTableViewCellModel {
             
             let cell = cardsContainerCellModel.dequeueCell(from: tableView)

@@ -110,6 +110,9 @@ internal final class PaymentDataManager {
             
             let savedCardsModels = self.cellModels(of: CardsContainerTableViewCellModel.self).first?.collectionViewCellModels ?? []
             savedCardsModels.forEach { $0.isDeleteCellMode = self.isInDeleteSavedCardsMode }
+			
+			let recentGroupModel = self.cellModels(of: GroupWithButtonTableViewCellModel.self).first
+			recentGroupModel?.updateButtonTitle(self.isInDeleteSavedCardsMode)
         }
     }
     
@@ -523,10 +526,10 @@ internal final class PaymentDataManager {
         let hasCardPaymentOptions = cardPaymentOptions.count > 0
         let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions
         let displaysGroupTitles = hasSavedCards && hasOtherPaymentOptions
-        
+		
         if displaysGroupTitles {
-            
-			let recentGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), key: Constants.recentGroupModelKey)
+			
+			let recentGroupModel = GroupWithButtonTableViewCellModel(indexPath: self.nextIndexPath(for: result), key: Constants.recentGroupModelKey)
             result.append(recentGroupModel)
         }
         
@@ -602,7 +605,7 @@ internal final class PaymentDataManager {
         
         if displaysGroupTitles {
             
-            let recentGroupModel = self.groupCellModel(with: Constants.recentGroupModelKey)
+            let recentGroupModel = self.groupWithButtonCellModel(with: Constants.recentGroupModelKey)
             recentGroupModel.indexPath = self.nextIndexPath(for: result)
             result.append(recentGroupModel)
         }
@@ -662,22 +665,30 @@ internal final class PaymentDataManager {
     }
     
     private func groupCellModel(with key: LocalizationKey) -> GroupTableViewCellModel {
-        
-        let groupModels = self.cellModels(of: GroupTableViewCellModel.self)
-        
-        for model in groupModels {
-            
-            if model.key == key {
-                
-                return model
-            }
-        }
-        
+		
+		if let existing = self.cellModels(of: GroupTableViewCellModel.self).first(where: { $0.key == key }) {
+			
+			return existing
+		}
+		
         let newModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), key: key)
         self.paymentOptionsScreenCellViewModels.append(newModel)
         
         return newModel
     }
+	
+	private func groupWithButtonCellModel(with key: LocalizationKey) -> GroupWithButtonTableViewCellModel {
+		
+		if let existing = self.cellModels(of: GroupWithButtonTableViewCellModel.self).first(where: { $0.key == key }) {
+			
+			return existing
+		}
+		
+		let newModel = GroupWithButtonTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), key: key)
+		self.paymentOptionsScreenCellViewModels.append(newModel)
+		
+		return newModel
+	}
     
     private func webPaymentCellModel(with paymentOption: PaymentOption) -> WebPaymentOptionTableViewCellModel {
         

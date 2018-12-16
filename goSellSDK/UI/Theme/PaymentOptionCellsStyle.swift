@@ -14,6 +14,8 @@ internal struct PaymentOptionCellsStyle: Decodable {
 	
 	internal let group: GroupCellStyle
 	
+	internal let groupWithButton: GroupWithButtonCellStyle
+	
 	internal let web: WebCellStyle
 	
 	internal let card: CardCellStyle
@@ -24,10 +26,11 @@ internal struct PaymentOptionCellsStyle: Decodable {
 	
 	private enum CodingKeys: String, CodingKey {
 		
-		case currency	= "currency"
-		case group 		= "group"
-		case web		= "web"
-		case card		= "card"
-		case savedCard	= "saved_card"
+		case currency			= "currency"
+		case group 				= "group"
+		case groupWithButton	= "group_button"
+		case web				= "web"
+		case card				= "card"
+		case savedCard			= "saved_card"
 	}
 }
