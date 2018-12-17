@@ -91,7 +91,7 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let model = PaymentDataManager.shared.paymentOptionViewModel(at: indexPath)
-        
+
         if let currencyModel = model as? CurrencySelectionTableViewCellViewModel {
             
             currencyModel.updateCell()

@@ -102,7 +102,9 @@ internal final class PaymentDataManager {
     internal var isInDeleteSavedCardsMode: Bool = false {
         
         didSet {
-            
+			
+			guard self.isInDeleteSavedCardsMode != oldValue else { return }
+			
             if self.isInDeleteSavedCardsMode {
                 
                 self.deselectAllPaymentOptionsModels()

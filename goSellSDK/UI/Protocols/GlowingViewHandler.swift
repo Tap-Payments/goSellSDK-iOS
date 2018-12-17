@@ -94,12 +94,12 @@ internal extension GlowingViewHandler {
     
     fileprivate var glowColorToApply: UIColor {
         
-        return self.glowColor ?? GlowingCellConstants.defaultGlowColor
+        return self.glowColor ?? Theme.current.paymentOptionsCellStyle.glowStyle.color
     }
     
     fileprivate var glowRadiusToApply: CGFloat {
         
-        return self.glowRadius ?? GlowingCellConstants.defaultGlowRadius
+        return self.glowRadius ?? Theme.current.paymentOptionsCellStyle.glowStyle.radius
     }
     
     // MARK: Methods
@@ -123,7 +123,7 @@ internal extension GlowingViewHandler {
         let animation                   = CABasicAnimation(keyPath: keypathString)
         animation.fromValue             = fromValue
         animation.toValue               = toValue
-        animation.duration              = GlowingCellConstants.glowAnimationDuration
+        animation.duration              = Theme.current.paymentOptionsCellStyle.glowStyle.animationDuration
         animation.isRemovedOnCompletion = true
         
         let layerModificationClosure: TypeAlias.ArgumentlessClosure = { [weak theLayer] in
@@ -199,14 +199,4 @@ extension AlwaysGlowingViewHandler {
         
         return self.createAnimation(for: keyPath, from: fromValue, to: toValue, on: self.glowingView.layer)
     }
-}
-
-private struct GlowingCellConstants {
-    
-    fileprivate static let glowAnimationDuration: TimeInterval = 0.3
-    
-    fileprivate static let defaultGlowColor: UIColor = .hex("#2ACE00FF")!
-    fileprivate static let defaultGlowRadius: CGFloat = 3.0
-    
-    @available(*, unavailable) private init() {}
 }

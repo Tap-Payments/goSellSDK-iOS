@@ -5,6 +5,8 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
+import struct	TapAdditionsKit.TypeAlias
+
 internal class GroupWithButtonTableViewCell: BaseTableViewCell {
 	
 	// MARK: - Internal -
@@ -13,6 +15,14 @@ internal class GroupWithButtonTableViewCell: BaseTableViewCell {
 	internal weak var model: GroupWithButtonTableViewCellModel?
 	
 	// MARK: - Private -
+	
+	private struct Constants {
+		
+		fileprivate static let labelTextChangeAnimationDuration: TimeInterval = 0.3
+		
+		@available(*, unavailable) private init() {}
+	}
+	
 	// MARK: Properties
 	
 	@IBOutlet private weak var titleLabel: UILabel?
@@ -32,10 +42,21 @@ extension GroupWithButtonTableViewCell: LoadingWithModelCell {
 	
 	internal func updateContent(animated: Bool) {
 		
-		self.titleLabel?.setLocalizedText(self.model?.key)
-		self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.groupWithButton.titleStyle)
+		if let nonnullTitleLabel = self.titleLabel {
+			
+			nonnullTitleLabel.setLocalizedText(self.model?.key)
+			nonnullTitleLabel.setTextStyle(Theme.current.paymentOptionsCellStyle.groupWithButton.titleStyle)
+		}
 		
-		self.buttonLabel?.setLocalizedText(self.model?.buttonKey)
-		self.buttonLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.groupWithButton.buttonTitleStyle)
+		if let nonnullButtonLabel = self.buttonLabel {
+			
+			UIView.fadeOutUpdateAndFadeIn(view:		nonnullButtonLabel,
+										  with:		animated ? Constants.labelTextChangeAnimationDuration : 0.0,
+										  update:	{ (label) in
+				
+				label.setLocalizedText(self.model?.buttonKey)
+				label.setTextStyle(Theme.current.paymentOptionsCellStyle.groupWithButton.buttonTitleStyle)
+			})
+		}
 	}
 }
