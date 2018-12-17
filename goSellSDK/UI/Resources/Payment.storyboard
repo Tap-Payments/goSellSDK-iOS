@@ -63,7 +63,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q54-VW-1wv">
-                                <rect key="frame" x="0.0" y="110" width="375" height="702"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="608"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="FQa-YX-yrw" kind="embed" id="ZNO-Es-KPw"/>
@@ -76,7 +76,7 @@
                                     <segue destination="XgQ-HN-1pH" kind="embed" id="N1R-aP-ZDF"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-mu-d3E">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-mu-d3E" userLabel="Pay Button Container View">
                                 <rect key="frame" x="0.0" y="718" width="375" height="94"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoP-JX-Gmp" customClass="PayButtonUI" customModule="goSellSDK">
@@ -107,7 +107,7 @@
                             <constraint firstAttribute="trailing" secondItem="Q54-VW-1wv" secondAttribute="trailing" id="SYZ-TJ-msG"/>
                             <constraint firstAttribute="bottom" secondItem="06k-K0-N3y" secondAttribute="bottom" id="VUE-MO-wtp"/>
                             <constraint firstItem="jhd-Cg-nmV" firstAttribute="top" secondItem="5S9-1v-ZoR" secondAttribute="top" id="YZQ-h1-CsF"/>
-                            <constraint firstItem="06k-K0-N3y" firstAttribute="top" secondItem="Q54-VW-1wv" secondAttribute="bottom" id="cgQ-aW-hON"/>
+                            <constraint firstItem="Ilc-mu-d3E" firstAttribute="top" secondItem="Q54-VW-1wv" secondAttribute="bottom" id="fx3-ao-jnm"/>
                             <constraint firstItem="jhd-Cg-nmV" firstAttribute="bottom" secondItem="0hf-mb-iOV" secondAttribute="bottom" constant="66" id="grM-h2-0WC"/>
                             <constraint firstItem="jhd-Cg-nmV" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="kg0-ak-COX"/>
                             <constraint firstItem="Q54-VW-1wv" firstAttribute="top" secondItem="jhd-Cg-nmV" secondAttribute="bottom" id="lRF-zh-1Kj"/>
@@ -135,11 +135,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ehY-Mr-X6y"/>
                     </layoutGuides>
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="97J-1F-F3l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UF-ah-N5p">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CurrencySelectionTableViewCell" rowHeight="65" id="dLV-6v-LDa" customClass="CurrencySelectionTableViewCell" customModule="goSellSDK">
@@ -270,81 +270,8 @@
                                             <segue destination="sHo-Rf-yPg" kind="show" id="Fp8-MW-fC6"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyTableViewCell" rowHeight="19" id="0cC-xr-BG2" customClass="EmptyTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="66" width="375" height="19"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0cC-xr-BG2" id="glB-gR-uDc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="19"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyd-ee-lWI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1" height="19"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="1" id="stJ-KZ-hKa"/>
-                                                        <constraint firstAttribute="height" constant="19" id="y9v-DA-f1S"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstItem="tyd-ee-lWI" firstAttribute="leading" secondItem="glB-gR-uDc" secondAttribute="leading" id="1E2-gW-WKM"/>
-                                                <constraint firstAttribute="bottom" secondItem="tyd-ee-lWI" secondAttribute="bottom" id="P2d-Fu-bqQ"/>
-                                                <constraint firstItem="tyd-ee-lWI" firstAttribute="top" secondItem="glB-gR-uDc" secondAttribute="top" id="bFD-0T-69f"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupTableViewCell" rowHeight="40" id="9V9-og-wK4" customClass="GroupTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="85" width="375" height="40"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9V9-og-wK4" id="mY4-lT-FCj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nqu-dU-Per">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
-                                                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CK4-Vj-qgZ">
-                                                    <rect key="frame" x="0.0" y="30" width="375" height="10"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="10" id="nMB-WO-fL1"/>
-                                                    </constraints>
-                                                </view>
-                                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTHERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QM-pg-oXV">
-                                                    <rect key="frame" x="19.999999999999996" y="20" width="51.666666666666657" height="10"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.34901960784313724" green="0.34901960784313724" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstItem="CK4-Vj-qgZ" firstAttribute="top" secondItem="0QM-pg-oXV" secondAttribute="bottom" id="2X0-SS-sxZ"/>
-                                                <constraint firstItem="Nqu-dU-Per" firstAttribute="height" secondItem="CK4-Vj-qgZ" secondAttribute="height" multiplier="2" id="7UG-aq-zfA"/>
-                                                <constraint firstItem="Nqu-dU-Per" firstAttribute="leading" secondItem="mY4-lT-FCj" secondAttribute="leading" id="AFi-vw-bbE"/>
-                                                <constraint firstAttribute="bottom" secondItem="CK4-Vj-qgZ" secondAttribute="bottom" id="HLt-jF-mVv"/>
-                                                <constraint firstItem="CK4-Vj-qgZ" firstAttribute="leading" secondItem="mY4-lT-FCj" secondAttribute="leading" id="KOL-Ll-bCw"/>
-                                                <constraint firstItem="Nqu-dU-Per" firstAttribute="top" secondItem="mY4-lT-FCj" secondAttribute="top" id="MCa-hX-EF0"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nqu-dU-Per" secondAttribute="trailing" id="Q2F-c3-MPD"/>
-                                                <constraint firstItem="0QM-pg-oXV" firstAttribute="leading" secondItem="mY4-lT-FCj" secondAttribute="leading" constant="20" id="SSz-qU-0Ne"/>
-                                                <constraint firstItem="CK4-Vj-qgZ" firstAttribute="top" secondItem="0QM-pg-oXV" secondAttribute="bottom" id="WPA-c0-NPG"/>
-                                                <constraint firstAttribute="trailing" secondItem="CK4-Vj-qgZ" secondAttribute="trailing" id="fIB-7p-mVK"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0QM-pg-oXV" secondAttribute="trailing" constant="20" id="kOG-Oo-2PR"/>
-                                                <constraint firstItem="0QM-pg-oXV" firstAttribute="top" secondItem="Nqu-dU-Per" secondAttribute="bottom" id="lHp-CN-puU"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="titleLabel" destination="0QM-pg-oXV" id="AH9-LU-qs8"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupWithButtonTableViewCell" rowHeight="40" id="mMr-aQ-ijc" customClass="GroupWithButtonTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="125" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="66" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mMr-aQ-ijc" id="G61-B2-auk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
@@ -413,7 +340,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardsContainerTableViewCell" rowHeight="112" id="XOj-km-jj7" customClass="CardsContainerTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="165" width="375" height="112"/>
+                                        <rect key="frame" x="0.0" y="106" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XOj-km-jj7" id="r50-Df-cFw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
@@ -595,8 +522,55 @@
                                             <outlet property="cardsCollectionView" destination="TqD-nr-IjH" id="ab1-aA-Blz"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupTableViewCell" rowHeight="40" id="9V9-og-wK4" customClass="GroupTableViewCell" customModule="goSellSDK">
+                                        <rect key="frame" x="0.0" y="218" width="375" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9V9-og-wK4" id="mY4-lT-FCj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nqu-dU-Per">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CK4-Vj-qgZ">
+                                                    <rect key="frame" x="0.0" y="30" width="375" height="10"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="nMB-WO-fL1"/>
+                                                    </constraints>
+                                                </view>
+                                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTHERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QM-pg-oXV">
+                                                    <rect key="frame" x="19.999999999999996" y="20" width="51.666666666666657" height="10"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.34901960784313724" green="0.34901960784313724" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="CK4-Vj-qgZ" firstAttribute="top" secondItem="0QM-pg-oXV" secondAttribute="bottom" id="2X0-SS-sxZ"/>
+                                                <constraint firstItem="Nqu-dU-Per" firstAttribute="height" secondItem="CK4-Vj-qgZ" secondAttribute="height" multiplier="2" id="7UG-aq-zfA"/>
+                                                <constraint firstItem="Nqu-dU-Per" firstAttribute="leading" secondItem="mY4-lT-FCj" secondAttribute="leading" id="AFi-vw-bbE"/>
+                                                <constraint firstAttribute="bottom" secondItem="CK4-Vj-qgZ" secondAttribute="bottom" id="HLt-jF-mVv"/>
+                                                <constraint firstItem="CK4-Vj-qgZ" firstAttribute="leading" secondItem="mY4-lT-FCj" secondAttribute="leading" id="KOL-Ll-bCw"/>
+                                                <constraint firstItem="Nqu-dU-Per" firstAttribute="top" secondItem="mY4-lT-FCj" secondAttribute="top" id="MCa-hX-EF0"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nqu-dU-Per" secondAttribute="trailing" id="Q2F-c3-MPD"/>
+                                                <constraint firstItem="0QM-pg-oXV" firstAttribute="leading" secondItem="mY4-lT-FCj" secondAttribute="leading" constant="20" id="SSz-qU-0Ne"/>
+                                                <constraint firstItem="CK4-Vj-qgZ" firstAttribute="top" secondItem="0QM-pg-oXV" secondAttribute="bottom" id="WPA-c0-NPG"/>
+                                                <constraint firstAttribute="trailing" secondItem="CK4-Vj-qgZ" secondAttribute="trailing" id="fIB-7p-mVK"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0QM-pg-oXV" secondAttribute="trailing" constant="20" id="kOG-Oo-2PR"/>
+                                                <constraint firstItem="0QM-pg-oXV" firstAttribute="top" secondItem="Nqu-dU-Per" secondAttribute="bottom" id="lHp-CN-puU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="0QM-pg-oXV" id="AH9-LU-qs8"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WebPaymentOptionTableViewCell" rowHeight="46" id="t9U-Rf-tdf" customClass="WebPaymentOptionTableViewCell" customModule="goSellSDK">
-                                        <rect key="frame" x="0.0" y="277" width="375" height="46"/>
+                                        <rect key="frame" x="0.0" y="258" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t9U-Rf-tdf" id="MPz-fP-UKt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
@@ -687,6 +661,32 @@
                                             <outlet property="iconImageView" destination="nJf-Xq-wqY" id="tR0-P7-yyQ"/>
                                             <outlet property="titleLabel" destination="3W4-2g-Y8O" id="gaY-Ou-sQz"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyTableViewCell" rowHeight="19" id="0cC-xr-BG2" customClass="EmptyTableViewCell" customModule="goSellSDK">
+                                        <rect key="frame" x="0.0" y="304" width="375" height="19"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0cC-xr-BG2" id="glB-gR-uDc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyd-ee-lWI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1" height="19"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="1" id="stJ-KZ-hKa"/>
+                                                        <constraint firstAttribute="height" constant="19" id="y9v-DA-f1S"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="tyd-ee-lWI" firstAttribute="leading" secondItem="glB-gR-uDc" secondAttribute="leading" id="1E2-gW-WKM"/>
+                                                <constraint firstAttribute="bottom" secondItem="tyd-ee-lWI" secondAttribute="bottom" id="P2d-Fu-bqQ"/>
+                                                <constraint firstItem="tyd-ee-lWI" firstAttribute="top" secondItem="glB-gR-uDc" secondAttribute="top" id="bFD-0T-69f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CardInputTableViewCell" rowHeight="192" id="w9J-dN-6b9" customClass="CardInputTableViewCell" customModule="goSellSDK">
                                         <rect key="frame" x="0.0" y="323" width="375" height="192"/>
@@ -1097,7 +1097,7 @@
                             <constraint firstAttribute="trailing" secondItem="5UF-ah-N5p" secondAttribute="trailing" id="Dun-Zn-glp"/>
                             <constraint firstItem="5UF-ah-N5p" firstAttribute="leading" secondItem="97J-1F-F3l" secondAttribute="leading" id="JJC-G4-u5J"/>
                             <constraint firstItem="5UF-ah-N5p" firstAttribute="top" secondItem="97J-1F-F3l" secondAttribute="top" id="bNm-bP-Me1"/>
-                            <constraint firstItem="5UF-ah-N5p" firstAttribute="height" secondItem="97J-1F-F3l" secondAttribute="height" id="mWO-Ej-lf6"/>
+                            <constraint firstAttribute="bottom" secondItem="5UF-ah-N5p" secondAttribute="bottom" id="kkW-IK-lZe"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="convertsAutoresizingMaskIntoConstraints" value="NO"/>
@@ -1122,11 +1122,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ic4-0k-AyT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hIP-c7-hKt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eN-m5-xOh">
-                                <rect key="frame" x="0.0" y="110" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="464"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyTableViewCell" rowHeight="30" id="xfw-Zp-0P0" customClass="EmptyTableViewCell" customModule="goSellSDK">
@@ -1321,11 +1321,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Dnb-nE-to0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wcp-HR-n3m">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y5m-CM-ewQ">
-                                <rect key="frame" x="0.0" y="110" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="464"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1442,11 +1442,11 @@
                         <viewControllerLayoutGuide type="bottom" id="PP4-1A-r0F"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0fC-Iy-KcF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ley-Dk-vza">
-                                <rect key="frame" x="0.0" y="110" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="464"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1598,7 +1598,7 @@
                         <viewControllerLayoutGuide type="bottom" id="5fc-OZ-iIR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vrW-ef-f5Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tex-ci-kaS" customClass="TapNavigationView" customModule="goSellSDK">
@@ -1606,7 +1606,7 @@
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-fy-Zeg" customClass="CardIOView">
-                                <rect key="frame" x="0.0" y="110" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="464"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -1640,11 +1640,11 @@
                         <viewControllerLayoutGuide type="bottom" id="CKf-50-3tm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="b2g-2N-ZiD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHN-fy-CJA">
-                                <rect key="frame" x="0.0" y="110" width="375" height="592"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="rmA-J8-h48" kind="embed" id="rU0-K6-wi7"/>

@@ -33,7 +33,7 @@ internal class GroupWithButtonTableViewCellModel: TableViewCellViewModel {
 	internal func updateButtonTitle(_ isInEditMode: Bool) {
 		
 		self.buttonKey = isInEditMode ? .common_cancel : .common_edit
-		self.updateCell()
+		self.updateCell(animated: true)
 	}
 }
 

@@ -22,6 +22,12 @@ internal class PaymentOptionsViewController: BaseViewController {
         self.subscribeNotifications()
     }
 
+	internal override func viewDidLayoutSubviews() {
+		
+		super.viewDidLayoutSubviews()
+		self.updateMask()
+	}
+	
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -49,6 +55,7 @@ internal class PaymentOptionsViewController: BaseViewController {
     internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
         
         PaymentDataManager.shared.paymentOptionsControllerKeyboardLayoutFinished()
+		self.updateMask()
     }
     
     internal func showWebPaymentViewController() {
@@ -58,13 +65,32 @@ internal class PaymentOptionsViewController: BaseViewController {
             self.performSegue(withIdentifier: "\(WebPaymentViewController.className)Segue", sender: self)
         }
     }
+	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		
+		let glowingInset = Theme.current.paymentOptionsCellStyle.glowStyle.radius
+		let topInset	= glowingInset
+		let bottomInset = glowingInset + Constants.tableViewBottomGradientHeight
+		self.paymentOptionsTableView?.contentInset = UIEdgeInsets(top: topInset, left: 0.0, bottom: bottomInset, right: 0.0)
+	}
     
     deinit {
         
         self.unsubscribeNotifications()
+		self.tableViewGradientLayer.delegate = nil
     }
     
     // MARK: - Private -
+	
+	private struct Constants {
+		
+		fileprivate static let tableViewBottomGradientHeight: CGFloat = 8.0
+		
+		@available(*, unavailable) private init() {}
+	}
+	
     // MARK: Properties
     
     @IBOutlet private weak var paymentOptionsTableView: UITableView? {
@@ -72,12 +98,24 @@ internal class PaymentOptionsViewController: BaseViewController {
         didSet {
             
             PaymentDataManager.shared.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
-            self.paymentOptionsTableView?.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
         }
     }
     
     @IBOutlet private weak var tableViewTopOffsetConstraint: NSLayoutConstraint?
-    
+	
+	private lazy var tableViewGradientLayer: CAGradientLayer = {
+		
+		let gradient = CAGradientLayer()
+		
+		gradient.shouldRasterize	= true
+		gradient.colors				= [UIColor.black.cgColor, UIColor.clear.cgColor]
+		gradient.delegate			= self
+		gradient.type				= .axial
+		gradient.endPoint			= CGPoint(x: 0.5, y: 1.0)
+		
+		return gradient
+	}()
+	
     // MARK: Methods
     
     private func subscribeNotifications() {
@@ -97,6 +135,31 @@ internal class PaymentOptionsViewController: BaseViewController {
             self.paymentOptionsTableView?.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
+	
+	private func updateMask() {
+		
+		let height = self.view.bounds.height
+		guard height > Constants.tableViewBottomGradientHeight else { return }
+		
+		self.tableViewGradientLayer.frame = self.view.bounds
+		self.tableViewGradientLayer.startPoint = CGPoint(x: 0.5, y: (height - Constants.tableViewBottomGradientHeight) / height)
+	
+		if self.view.layer.mask !== self.tableViewGradientLayer {
+
+			self.view.layer.mask = self.tableViewGradientLayer
+		}
+	}
+}
+
+// MARK: - CALayerDelegate
+extension PaymentOptionsViewController: CALayerDelegate {
+	
+	internal func action(for layer: CALayer, forKey event: String) -> CAAction? {
+		
+		guard layer === self.tableViewGradientLayer else { return nil }
+		
+		return NSNull()
+	}
 }
 
 // MARK: - PopupOverlaySupport
