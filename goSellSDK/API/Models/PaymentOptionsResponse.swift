@@ -6,7 +6,7 @@
 //
 
 /// Payment Options Response model.
-internal struct PaymentOptionsResponse: IdentifiableWithString, Decodable {
+internal struct PaymentOptionsResponse: IdentifiableWithString {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -44,4 +44,50 @@ internal struct PaymentOptionsResponse: IdentifiableWithString, Decodable {
         case supportedCurrenciesAmounts = "supported_currencies"
         case savedCards                 = "cards"
     }
+	
+	// MARK: Methods
+	
+	private init(identifier:					String,
+				 orderIdentifier:				String,
+				 object:						String,
+				 paymentOptions:				[PaymentOption],
+				 currency:						Currency,
+				 supportedCurrenciesAmounts:	[AmountedCurrency],
+				 savedCards:					[SavedCard]?) {
+		
+		self.identifier					= identifier
+		self.orderIdentifier			= orderIdentifier
+		self.object						= object
+		self.paymentOptions				= paymentOptions
+		self.currency					= currency
+		self.supportedCurrenciesAmounts	= supportedCurrenciesAmounts
+		self.savedCards					= savedCards
+	}
+}
+
+// MARK: - Decodable
+extension PaymentOptionsResponse: Decodable {
+	
+	internal init(from decoder: Decoder) throws {
+		
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		
+		let identifier 					= try container.decode(String.self, forKey: .identifier)
+		let orderIdentifier				= try container.decode(String.self, forKey: .orderIdentifier)
+		let object						= try container.decode(String.self, forKey: .object)
+		var paymentOptions				= try container.decode([PaymentOption].self, forKey: .paymentOptions)
+		let currency					= try container.decode(Currency.self, forKey: .currency)
+		let supportedCurrenciesAmounts	= try container.decode([AmountedCurrency].self, forKey: .supportedCurrenciesAmounts)
+		let savedCards					= try container.decodeIfPresent([SavedCard].self, forKey: .savedCards)
+		
+		paymentOptions = paymentOptions.filter { $0.brand != .unknown }
+		
+		self.init(identifier:					identifier,
+				  orderIdentifier:				orderIdentifier,
+				  object:						object,
+				  paymentOptions:				paymentOptions,
+				  currency:						currency,
+				  supportedCurrenciesAmounts:	supportedCurrenciesAmounts,
+				  savedCards:					savedCards)
+	}
 }
