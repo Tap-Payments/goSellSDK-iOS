@@ -119,23 +119,21 @@ internal final class OTPViewController: SeparateWindowViewController {
             }
             
             guard let to = presented as? PopupPresentationAnimationController.PopupPresentationViewController else { return nil }
-            
-            return self.shouldUseDefaultOTPAnimation    ? PopupPresentationAnimationController(presentationFrom: presenting,
-                                                                                               to: to,
-                                                                                               overlaysFromView: false,
-                                                                                               overlaySupport: PaymentOptionsViewController.findInHierarchy())
-                : PaymentPresentationAnimationController()
+
+			return PopupPresentationAnimationController(presentationFrom: presenting,
+														to: to,
+														overlaysFromView: false,
+														overlaySupport: PaymentOptionsViewController.findInHierarchy())
         }
         
         fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
             
             guard let from = dismissed as? UIViewController & PopupPresentationSupport, let to = from.presentingViewController else { return nil }
-			
-			return self.shouldUseDefaultOTPAnimation ? PopupPresentationAnimationController(dismissalFrom: from,
-																							to: to,
-																							overlaysToView: false,
-																							overlaySupport: PaymentOptionsViewController.findInHierarchy())
-				: PaymentDismissalAnimationController()
+
+			return PopupPresentationAnimationController(dismissalFrom: from,
+														to: to,
+														overlaysToView: false,
+														overlaySupport: PaymentOptionsViewController.findInHierarchy())
 		}
 		
         fileprivate func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {

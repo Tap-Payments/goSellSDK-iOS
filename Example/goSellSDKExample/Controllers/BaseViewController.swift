@@ -18,7 +18,14 @@ import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 
 internal class BaseViewController: UIViewController {
-    
+	
+	// MARK: - Internal -
+	// MARK: Properties
+	
+	internal var ignoresKeyboardEventsWhenWindowIsNotKey = false
+	
+	// MARK: Methods
+	
     internal override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -64,7 +71,9 @@ internal class BaseViewController: UIViewController {
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: Notification) {
-        
+		
+		if let controllerWindow = self.view.window, self.ignoresKeyboardEventsWhenWindowIsNotKey && !controllerWindow.isKeyWindow { return }
+		
         performOnMainThread { [weak self] in
             
             guard let strongSelf = self else { return }
@@ -75,11 +84,11 @@ internal class BaseViewController: UIViewController {
             
             endKeyboardFrame = window.convert(endKeyboardFrame, to: strongSelf.view)
             
-            let screenSize = window.bounds.size
-            
-            let keyboardIsShown = screenSize.height > endKeyboardFrame.origin.y
-            let offset = keyboardIsShown ? endKeyboardFrame.size.height : 0.0
-            
+            let screenSize = strongSelf.view.bounds.size
+			
+			let offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
+			let keyboardIsShown = offset > 0.0
+			
             let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
             var animationCurve: UIView.AnimationOptions
             if let animationCurveRawValue = ((userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {
