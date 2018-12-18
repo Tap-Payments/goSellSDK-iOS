@@ -173,6 +173,21 @@ Make sure it consists only from 2 lowercased letters and is presented in the lis
 
 This property returns the list of locale identifiers the SDK is currently localized into.
 
+Currently we support the following languages:
+
+<table>
+	<th style="text-align:center">Language</th><th style="text-align:center">Locale Identifier</th>
+	<tr>
+		<td>Arabic</td><td>ar</td>
+	</tr>
+	<tr>
+		<td>English</td><td>en</td>
+	</tr>
+	<tr>
+		<td>Russian</td><td>ru</td>
+	</tr>
+</table>
+
 <a name="setup_steps"></a>
 ## Setup Steps
 
