@@ -112,9 +112,9 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             
             presentationSupport = fromController as? UIViewController & PopupPresentationSupport
         }
-        
-        guard let nonnullPresentationSupport: UIViewController & PopupPresentationSupport = presentationSupport else { return }
-        
+		
+		guard let nonnullPresentationSupport = presentationSupport else { return }
+		
         let layoutView: UIView = nonnullPresentationSupport.viewToLayout
         let finalFrame: CGRect = transitionContext.finalFrame(for: nonnullPresentationSupport)
         layoutView.frame = finalFrame
@@ -139,6 +139,7 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             finalConstant = finalFrame.height
             initialAlpha = 1.0
             bottomViewInitialTopOffset = -finalFrame.height
+			
             bottomViewFinalTopOffset = 0.0
         }
         
@@ -148,10 +149,13 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
         layoutView.layout()
         
         
-        if !self.overlaysBottomView {
-            
-            self.overlaySupport?.topOffsetOverlayConstraint?.constant = bottomViewInitialTopOffset
-            self.overlaySupport?.layoutView.layout()
+        if let nonnullOverlaySupport = self.overlaySupport, !self.overlaysBottomView {
+			
+			let offset = fromView.convert(finalFrame, to: nonnullOverlaySupport.layoutView).origin.y
+			bottomViewInitialTopOffset = max(bottomViewInitialTopOffset - offset, -nonnullOverlaySupport.layoutView.bounds.size.height)
+			
+            nonnullOverlaySupport.topOffsetOverlayConstraint?.constant = bottomViewInitialTopOffset
+            nonnullOverlaySupport.layoutView.layout()
         }
         
         let backgroundColor: CGColor? = layoutView.layer.backgroundColor
@@ -160,26 +164,13 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             layoutView.layer.backgroundColor = UIColor.clear.cgColor
         }
         
-        let blurView: TapVisualEffectView? = layoutView.subview(ofClass: TapVisualEffectView.self)
-        blurView?.style = self.operation == .presentation ? .none : .light
-        
         let animations: TypeAlias.ArgumentlessClosure = {
             
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0) {
-                
-                if self.operation == .presentation {
-                    
-                    layoutView.layer.backgroundColor = backgroundColor
-                    layoutView.alpha = 1.0
-                    blurView?.style = .light
-                }
-                else {
-                    
-                    layoutView.layer.backgroundColor = UIColor.clear.cgColor
-                    layoutView.alpha = 1.0
-                    blurView?.style = .none
-                }
-                
+				
+				layoutView.alpha = 1.0
+				layoutView.layer.backgroundColor = self.operation == .presentation ? backgroundColor : UIColor.clear.cgColor
+				
                 nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = finalConstant
                 layoutView.layout()
                 
@@ -201,7 +192,30 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             let success: Bool = finished && !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(success)
         }
+		
+		if let blurView = layoutView.subview(ofClass: TapVisualEffectView.self) {
+		
+			self.animate(blurView, with: animationDuration)
+		}
     }
+	
+	private func animate(_ blurView: TapVisualEffectView, with duration: TimeInterval) {
+		
+		blurView.style = self.operation == .presentation ? .none : .light
+		
+		let animations: TypeAlias.ArgumentlessClosure = {
+			
+			UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0) {
+				
+				blurView.style = self.operation == .presentation ? .light : .none
+			}
+		}
+		
+		let animationOption: UIView.KeyframeAnimationOptions = UIView.KeyframeAnimationOptions(.curveEaseOut)
+		let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
+		
+		UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)
+	}
 }
 
 // MARK: - InteractiveTransitionControllerDelegate

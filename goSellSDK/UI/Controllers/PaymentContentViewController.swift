@@ -32,7 +32,13 @@ internal class PaymentContentViewController: BaseViewController {
     }
     
     // MARK: Methods
-    
+	
+	internal override func viewDidLoad() {
+		
+		super.viewDidLoad()
+		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
+	}
+	
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)

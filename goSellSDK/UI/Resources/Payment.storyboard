@@ -1097,7 +1097,7 @@
                             <constraint firstAttribute="trailing" secondItem="5UF-ah-N5p" secondAttribute="trailing" id="Dun-Zn-glp"/>
                             <constraint firstItem="5UF-ah-N5p" firstAttribute="leading" secondItem="97J-1F-F3l" secondAttribute="leading" id="JJC-G4-u5J"/>
                             <constraint firstItem="5UF-ah-N5p" firstAttribute="top" secondItem="97J-1F-F3l" secondAttribute="top" id="bNm-bP-Me1"/>
-                            <constraint firstAttribute="bottom" secondItem="5UF-ah-N5p" secondAttribute="bottom" id="kkW-IK-lZe"/>
+                            <constraint firstItem="5UF-ah-N5p" firstAttribute="height" secondItem="97J-1F-F3l" secondAttribute="height" id="rqA-Ou-mTR"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="convertsAutoresizingMaskIntoConstraints" value="NO"/>

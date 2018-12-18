@@ -141,8 +141,17 @@ internal class PaymentOptionsViewController: BaseViewController {
 		let height = self.view.bounds.height
 		guard height > Constants.tableViewBottomGradientHeight else { return }
 		
-		self.tableViewGradientLayer.frame = self.view.bounds
-		self.tableViewGradientLayer.startPoint = CGPoint(x: 0.5, y: (height - Constants.tableViewBottomGradientHeight) / height)
+		if self.tableViewGradientLayer.frame != self.view.bounds {
+			
+			self.tableViewGradientLayer.frame = self.view.bounds
+		}
+		
+		let startPoint = CGPoint(x: 0.5, y: (height - Constants.tableViewBottomGradientHeight) / height)
+		
+		if self.tableViewGradientLayer.startPoint != startPoint {
+			
+			self.tableViewGradientLayer.startPoint = startPoint
+		}
 	
 		if self.view.layer.mask !== self.tableViewGradientLayer {
 

@@ -51,6 +51,7 @@ internal class ExampleViewController: BaseViewController {
         super.viewDidLoad()
         
         self.title = "goSell SDK Example"
+		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
 		
 		goSellSDK.language = self.paymentSettings.sdkLanguage.localeIdentifier
         goSellSDK.mode = self.paymentSettings.sdkMode

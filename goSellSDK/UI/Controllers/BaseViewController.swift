@@ -23,7 +23,9 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 	
     // MARK: - Internal -
     // MARK: Properties
-    
+	
+	internal var ignoresKeyboardEventsWhenWindowIsNotKey = false
+	
     internal override var shouldAutorotate: Bool {
         
         return InterfaceOrientationManager.shared.viewControllerShouldAutorotate(self)
@@ -103,61 +105,63 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 	}
     
 	private func keyboardWillChangeFrame(_ notification: Notification) {
-        
-        performOnMainThread { [weak self] in
-            
-            guard let strongSelf = self else { return }
-            guard let userInfo = notification.userInfo else { return }
-            
-            guard let window = strongSelf.view.window else { return }
-            guard var endKeyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-            
-            endKeyboardFrame = window.convert(endKeyboardFrame, to: strongSelf.view)
-            
-            let screenSize = window.bounds.size
-            
-            let keyboardIsShown = screenSize.height > endKeyboardFrame.origin.y
-            let offset = keyboardIsShown ? endKeyboardFrame.size.height : 0.0
-            
-            let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
-            var animationCurve: UIView.AnimationOptions
-            if let animationCurveRawValue = ((userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {
-                
-                let allPossibleCurves: [UIView.AnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
-                let allPossibleRawValues = allPossibleCurves.map { $0.rawValue }
-                if allPossibleRawValues.contains(animationCurveRawValue), let curve = UIView.AnimationCurve(rawValue: animationCurveRawValue) {
-                    
-                    animationCurve = UIView.AnimationOptions(curve)
-                }
-                else {
-                    
-                    animationCurve = keyboardIsShown ? .curveEaseOut : .curveEaseIn
-                }
-            }
-            else {
-                
-                animationCurve = keyboardIsShown ? .curveEaseOut : .curveEaseIn
-            }
-            
-            let animationOptions: UIView.AnimationOptions = [
-                
-                .beginFromCurrentState,
-                animationCurve
-            ]
-            
-            let animations = { [weak strongSelf] in
-                
-                guard let strongerSelf = strongSelf else { return }
-                
-                strongerSelf.topKeyboardOffsetConstraint?.constant = -offset
-                strongerSelf.bottomKeyboardOffsetConstraint?.constant = offset
-                
-                strongerSelf.view.layout()
-                
-                strongerSelf.performAdditionalAnimationsAfterKeyboardLayoutFinished()
-            }
-            
-            UIView.animate(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)
-        }
-    }
+		
+		if let controllerWindow = self.view.window, self.ignoresKeyboardEventsWhenWindowIsNotKey && !controllerWindow.isKeyWindow { return }
+		
+		performOnMainThread { [weak self] in
+			
+			guard let strongSelf = self else { return }
+			guard let userInfo = notification.userInfo else { return }
+			
+			guard let window = strongSelf.view.window else { return }
+			guard var endKeyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+			
+			endKeyboardFrame = window.convert(endKeyboardFrame, to: strongSelf.view)
+			
+			let screenSize = strongSelf.view.bounds.size
+			
+			let offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
+			let keyboardIsShown = offset > 0.0
+			
+			let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
+			var animationCurve: UIView.AnimationOptions
+			if let animationCurveRawValue = ((userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {
+				
+				let allPossibleCurves: [UIView.AnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
+				let allPossibleRawValues = allPossibleCurves.map { $0.rawValue }
+				if allPossibleRawValues.contains(animationCurveRawValue), let curve = UIView.AnimationCurve(rawValue: animationCurveRawValue) {
+					
+					animationCurve = UIView.AnimationOptions(curve)
+				}
+				else {
+					
+					animationCurve = keyboardIsShown ? .curveEaseOut : .curveEaseIn
+				}
+			}
+			else {
+				
+				animationCurve = keyboardIsShown ? .curveEaseOut : .curveEaseIn
+			}
+			
+			let animationOptions: UIView.AnimationOptions = [
+				
+				.beginFromCurrentState,
+				animationCurve
+			]
+			
+			let animations = { [weak strongSelf] in
+				
+				guard let strongerSelf = strongSelf else { return }
+				
+				strongerSelf.topKeyboardOffsetConstraint?.constant = -offset
+				strongerSelf.bottomKeyboardOffsetConstraint?.constant = offset
+				
+				strongerSelf.view.layout()
+				
+				strongerSelf.performAdditionalAnimationsAfterKeyboardLayoutFinished()
+			}
+			
+			UIView.animate(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)
+		}
+	}
 }
