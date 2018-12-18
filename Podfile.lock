@@ -95,7 +95,7 @@ PODS:
     - TapAdditionsKit/Tap/ClassProtocol (= 1.1)
     - TapAdditionsKit/UIKit/UIViewController (= 1.1)
     - TapSwiftFixes/Threading (= 1.0.5)
-  - TapCardValidator (1.2.3)
+  - TapCardValidator (1.2.4)
   - TapEditableView (1.0.2):
     - TapAdditionsKit/Tap/ClassProtocol (= 1.1)
   - TapFontsKit (1.0):
@@ -209,7 +209,7 @@ SPEC CHECKSUMS:
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   TapAdditionsKit: 140a088872313f07b047d803e7fa513a1f8d4f6d
   TapApplication: 11ec265f821c3aee5ef537d7ed9e753b149e911f
-  TapCardValidator: bf13a8ca74e10c5cdeac4ce3335b09592d7e2f38
+  TapCardValidator: adb6bf15c55610bfc6ee8252b2ee405223a9a6d2
   TapEditableView: 43a140b49378787631931d63427755bb5a3a62f6
   TapFontsKit: 8ef06256c08bd27e44bd10e6b7537b44f4c6be2f
   TapGLKit: 1a433496167fd572983b946adb04854573f96cb3

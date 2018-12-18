@@ -72,11 +72,13 @@ extension PaymentOption: Decodable {
         let imageURL            = try container.decode          (URL.self,          forKey: .imageURL)
         let paymentType         = try container.decode          (PaymentType.self,  forKey: .paymentType)
         let sourceIdentifier    = try container.decodeIfPresent (String.self,       forKey: .sourceIdentifier)
-        let supportedCardBrands = try container.decode          ([CardBrand].self,  forKey: .supportedCardBrands)
+        var supportedCardBrands = try container.decode          ([CardBrand].self,  forKey: .supportedCardBrands)
         let extraFees           = try container.decodeIfPresent ([ExtraFee].self,   forKey: .extraFees) ?? []
         let supportedCurrencies = try container.decode          ([Currency].self,   forKey: .supportedCurrencies)
         let orderBy             = try container.decode          (Int.self,          forKey: .orderBy)
-        
+		
+		supportedCardBrands = supportedCardBrands.filter { $0 != .unknown }
+		
         self.init(identifier: identifier,
                   brand: brand,
                   title: title,
