@@ -5,25 +5,29 @@
 //  Copyright © 2018 Tap Payments. All rights reserved.
 //
 
-import struct TapAdditionsKit.TypeAlias
-import class UIKit.UITableView.UITableView
-import class UIKit.UIView.UIView
+import struct	TapAdditionsKit.TypeAlias
+import class	UIKit.UITableView.UITableView
+import class	UIKit.UIView.UIView
 
 /// Protocol to handle dynamic cell layout changes in the corresponding model.
-internal protocol DynamicLayoutTableViewCellModel {
-    
-    var tableView: UITableView? { get }
-}
+internal protocol DynamicLayoutTableViewCellModel where Self: TableViewCellViewModel {}
 
-internal extension DynamicLayoutTableViewCellModel where Self: TableViewCellViewModel {
+internal extension DynamicLayoutTableViewCellModel {
     
     internal func updateCellLayout(animated: Bool, with code: @escaping TypeAlias.ArgumentlessClosure) {
-        
+		
+		guard let nonnullTableView = self.tableView else { return }
+		
         let closure: TypeAlias.ArgumentlessClosure = {
 
-            self.tableView?.beginUpdates()
+			let contentOffset = nonnullTableView.contentOffset
+			
+            nonnullTableView.beginUpdates()
             code()
-            self.tableView?.endUpdates()
+            nonnullTableView.endUpdates()
+			
+			nonnullTableView.contentOffset = contentOffset
+			nonnullTableView.removeAllAnimations(includeSubviews: false)
         }
 
         if animated {
