@@ -189,13 +189,21 @@ internal class CardNumberValidator: CardValidator {
             let cardBrand = brand ?? self.recognizedCardType.brand
             
             let attributedText = self.textField.attributedText ?? NSAttributedString(string: .empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
-            
-            let trimRange = NSRange(location: 0, length: min(attributedText.length, TapCardValidator.CardValidator.maximalCardNumberLength(for: brand)))
-            let trimmedText = attributedText.attributedSubstring(from: trimRange)
-            
+			
+			var text: NSAttributedString
+			if cardBrand == .unknown {
+				
+				text = attributedText
+			}
+			else {
+			
+            	let trimRange = NSRange(location: 0, length: min(attributedText.length, TapCardValidator.CardValidator.maximalCardNumberLength(for: cardBrand)))
+            	text = attributedText.attributedSubstring(from: trimRange)
+			}
+			
             let selectedRange = self.textField.selectedTextRange
 
-            self.textField.attributedText = self.applySpacings(for: trimmedText, cardBrand: cardBrand)
+            self.textField.attributedText = self.applySpacings(for: text, cardBrand: cardBrand)
             self.textField.selectedTextRange = selectedRange
         }
     }
