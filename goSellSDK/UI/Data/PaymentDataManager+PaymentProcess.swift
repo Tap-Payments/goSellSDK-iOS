@@ -360,8 +360,6 @@ internal extension PaymentDataManager {
         let requires3DSecure    = self.chargeRequires3DSecure || (self.externalDataSource?.require3DSecure ?? false)
         let receiptSettings     = self.externalDataSource?.receiptSettings ?? nil
         
-        
-        
         let mode = self.externalDataSource?.mode ?? .purchase
         switch mode {
             
