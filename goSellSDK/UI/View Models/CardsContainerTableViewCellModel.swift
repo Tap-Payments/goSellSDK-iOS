@@ -24,16 +24,17 @@ internal class CardsContainerTableViewCellModel: TableViewCellViewModel {
     
     // MARK: Methods
     
-    internal init(indexPath: IndexPath, cards: [SavedCard], currency: Currency) {
-        
-        self.cards = cards
+    internal init(indexPath: IndexPath, cards: [SavedCard]) {
+		
         super.init(indexPath: indexPath)
         
-        self.updateData()
+		self.updateData(with: cards)
     }
     
-    internal func updateData() {
-        
+	internal func updateData(with cards: [SavedCard]) {
+		
+		self.cards = cards
+		
         self.collectionViewCellModels = self.generateCollectionViewCellModels(with: self.cards)
     }
     
@@ -45,7 +46,7 @@ internal class CardsContainerTableViewCellModel: TableViewCellViewModel {
     // MARK: - Private -
     // MARK: Properties
     
-    private let cards: [SavedCard]
+    private var cards: [SavedCard] = []
 }
 
 // MARK: - SingleCellModel

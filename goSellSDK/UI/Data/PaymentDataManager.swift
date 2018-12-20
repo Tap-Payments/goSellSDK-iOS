@@ -537,9 +537,7 @@ internal final class PaymentDataManager {
         
         if hasSavedCards {
             
-            let cardsContainerCellModel = CardsContainerTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                           cards: savedCards,
-                                                                           currency: self.selectedCurrency.currency)
+            let cardsContainerCellModel = CardsContainerTableViewCellModel(indexPath: self.nextIndexPath(for: result), cards: savedCards)
             result.append(cardsContainerCellModel)
         }
         
@@ -616,7 +614,7 @@ internal final class PaymentDataManager {
             
             let cardsContainerModel = self.cardsContainerCellModel
             cardsContainerModel.indexPath = self.nextIndexPath(for: result)
-            cardsContainerModel.updateData()
+			cardsContainerModel.updateData(with: savedCards)
             result.append(cardsContainerModel)
         }
         
