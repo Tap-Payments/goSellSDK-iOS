@@ -79,8 +79,19 @@ internal class ErrorActionExecutor {
         }
         
         DispatchQueue.main.async {
-            
-            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+			
+			alert.showOnSeparateWindow(below: .statusBar) { [unowned alert] (separateWindowRootController) in
+				
+				let supportedOrientations = InterfaceOrientationManager.shared.supportedInterfaceOrientations(for: separateWindowRootController)
+				let canAutorotate = InterfaceOrientationManager.shared.viewControllerShouldAutorotate(separateWindowRootController)
+				let preferredOrientation = InterfaceOrientationManager.shared.preferredInterfaceOrientationForPresentation(of: separateWindowRootController)
+				
+				separateWindowRootController.canAutorotate					= canAutorotate
+				separateWindowRootController.allowedInterfaceOrientations	= supportedOrientations
+				separateWindowRootController.preferredInterfaceOrientation	= preferredOrientation
+				
+				separateWindowRootController.present(alert, animated: true, completion: nil)
+			}
         }
     }
 }
