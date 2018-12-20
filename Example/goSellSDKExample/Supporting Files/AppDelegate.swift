@@ -24,8 +24,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         Serializer.markAllCustomersAsSandboxIfNotYet()
-        
-        goSellSDK.secretKey = SecretKey(sandbox:    "sk_test_IpaGWuwyK9nNSQX8Cb47l0kg",
-                                        production: "sk_live_uh9nzNxZl4JS0E3bDRgpvGmQ")
+		
+		goSellSDK.secretKey = SecretKey(sandbox:	"sk_test_kovrMB0mupFJXfNZWx6Etg5y",
+										production:	"sk_live_QglH8V7Fw6NPAom4qRcynDK2")
     }
 }
