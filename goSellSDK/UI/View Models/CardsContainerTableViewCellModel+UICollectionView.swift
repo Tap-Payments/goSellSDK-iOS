@@ -38,7 +38,7 @@ internal extension CardsContainerTableViewCellModel {
             
             let firstCardCurrencyIsSelected = firstCard.currency == currency
             let secondCardCurrencyIsSelected = secondCard.currency == currency
-            
+			
             if firstCardCurrencyIsSelected && secondCardCurrencyIsSelected {
                 
                 return firstCard.orderBy < secondCard.orderBy
