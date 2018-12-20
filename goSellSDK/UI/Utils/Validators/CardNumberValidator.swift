@@ -37,15 +37,18 @@ internal class CardNumberValidator: CardValidator {
     }
     
     internal override var isValid: Bool {
-        
-        if let validationState = self.previousRecognizedType?.validationState {
-            
-            return validationState == .valid
-        }
-        else {
-            
-            return false
-        }
+		
+		guard let recognizedType = self.previousRecognizedType, recognizedType.validationState == .valid else { return false }
+		
+		if self.availableCardBrands.contains(recognizedType.brand) { return true }
+		if let schemeBrand = recognizedType.scheme?.cardBrand {
+			
+			return self.availableCardBrands.contains(schemeBrand)
+		}
+		else {
+			
+			return false
+		}
     }
     
     // MARK: Methods
