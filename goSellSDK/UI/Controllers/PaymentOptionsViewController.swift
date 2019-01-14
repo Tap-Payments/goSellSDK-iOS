@@ -2,11 +2,18 @@
 //  PaymentOptionsViewController.swift
 //  goSellSDK
 //
-//  Copyright © 2018 Tap Payments. All rights reserved.
+//  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import struct	CoreGraphics.CGBase.CGFloat
+import struct	CoreGraphics.CGGeometry.CGPoint
+import class	QuartzCore.CAGradientLayer.CAGradientLayer
+import protocol	QuartzCore.CALayer.CAAction
+import class	QuartzCore.CALayer.CALayer
+import protocol	QuartzCore.CALayer.CALayerDelegate
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class	UIKit.UIColor.UIColor
 import struct   UIKit.UIGeometry.UIEdgeInsets
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UITableView.UITableView

@@ -97,12 +97,19 @@
 		14690B152155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
 		14A3D313215953DE007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
 		14A3D315215954CA007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
+		14A95ED721ECD17700F91D83 /* GlowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95ED521ECD17700F91D83 /* GlowStyle.swift */; };
+		14A95ED821ECD17700F91D83 /* GlowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95ED521ECD17700F91D83 /* GlowStyle.swift */; };
+		14A95ED921ECD17700F91D83 /* GroupWithButtonCellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95ED621ECD17700F91D83 /* GroupWithButtonCellStyle.swift */; };
+		14A95EDA21ECD17700F91D83 /* GroupWithButtonCellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95ED621ECD17700F91D83 /* GroupWithButtonCellStyle.swift */; };
+		14A95EDC21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95EDB21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift */; };
+		14A95EDD21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95EDB21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift */; };
+		14A95EDF21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95EDE21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift */; };
+		14A95EE021ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95EDE21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift */; };
 		14B22183215A4747003DC928 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B22182215A4747003DC928 /* Localizable.swift */; };
 		14B22184215A4747003DC928 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B22182215A4747003DC928 /* Localizable.swift */; };
 		14DF99F82147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		14DF99F92147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
-		509A3BC707A13885117D828A /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC7F2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC802100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */; };
@@ -778,6 +785,10 @@
 		14690B132155DF330033C562 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 		14A3D312215953DE007F3565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A3D31621595681007F3565 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14A95ED521ECD17700F91D83 /* GlowStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowStyle.swift; sourceTree = "<group>"; };
+		14A95ED621ECD17700F91D83 /* GroupWithButtonCellStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupWithButtonCellStyle.swift; sourceTree = "<group>"; };
+		14A95EDB21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupWithButtonTableViewCellModel.swift; sourceTree = "<group>"; };
+		14A95EDE21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupWithButtonTableViewCell.swift; sourceTree = "<group>"; };
 		14B22182215A4747003DC928 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		14DF99F72147F4B900991EB3 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		16A38A8831C7BCCD73B43B9E /* Pods-goSellSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.release.xcconfig"; sourceTree = "<group>"; };
@@ -1110,7 +1121,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */,
-				509A3BC707A13885117D828A /* Pods_goSellSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,6 +1350,7 @@
 				A4BD8C9920A1EEB800EFF2CE /* CurrencySelectionTableViewCell.swift */,
 				A4752A34208EFF5C003118DB /* EmptyTableViewCell.swift */,
 				A4752A38208EFF5C003118DB /* GroupTableViewCell.swift */,
+				14A95EDE21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift */,
 				A4BD8C9A20A1EEB800EFF2CE /* ImageTableViewCell.swift */,
 				A4752A36208EFF5C003118DB /* WebPaymentOptionTableViewCell.swift */,
 			);
@@ -1571,7 +1582,9 @@
 				141284F621611AE900C2873E /* CommonStyle.swift */,
 				141284C62160FF1C00C2873E /* CurrencySelectionCellStyle.swift */,
 				141284C32160FF0E00C2873E /* Font.swift */,
+				14A95ED521ECD17700F91D83 /* GlowStyle.swift */,
 				141284D821610DB100C2873E /* GroupCellStyle.swift */,
+				14A95ED621ECD17700F91D83 /* GroupWithButtonCellStyle.swift */,
 				141284CF2161027200C2873E /* HexColor.swift */,
 				141284F921611B1600C2873E /* KeyboardAppearance.swift */,
 				A4BE546720A88DF3004E979E /* MerchantHeaderStyle.swift */,
@@ -1698,6 +1711,7 @@
 				A4BD8CD620A1EFFE00EFF2CE /* CurrencySelectionTableViewCellViewModel.swift */,
 				A4752A1C208E09C9003118DB /* EmptyTableViewCellModel.swift */,
 				A4C0FC60208CEC7900C5FBC6 /* GroupTableViewCellModel.swift */,
+				14A95EDB21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift */,
 				A4BD8CD320A1EFFE00EFF2CE /* ImageTableViewCellModel.swift */,
 				A4C13A7D20F4EF9900037EDC /* PaymentOptionCollectionCellViewModel.swift */,
 				A4C13A8920F4EFC500037EDC /* PaymentOptionTableCellViewModel.swift */,
@@ -2196,6 +2210,7 @@
 				A4C0FC5F208CEC4900C5FBC6 /* ViewModel.swift in Sources */,
 				A4A9828320D2B32000770690 /* Address.swift in Sources */,
 				A4571F0120FE2367006D96DC /* Address+Additions.swift in Sources */,
+				14A95EDC21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift in Sources */,
 				A456717420AD69EC0057A504 /* BINDataManager.swift in Sources */,
 				A4C13A8720F4EF9900037EDC /* CardsContainerTableViewCellModel.swift in Sources */,
 				A424879420E4F2C9001C4FAF /* OTPInputViewDelegate.swift in Sources */,
@@ -2278,6 +2293,7 @@
 				A4C13A7220F4EF5500037EDC /* Mass.swift in Sources */,
 				141284D02161027200C2873E /* HexColor.swift in Sources */,
 				A48810E520A2E92E00CDF5D4 /* TapNavigationViewDelegate.swift in Sources */,
+				14A95ED921ECD17700F91D83 /* GroupWithButtonCellStyle.swift in Sources */,
 				A479F71F2099DB2100556E10 /* EmailAddress.swift in Sources */,
 				A4571EF520FE2337006D96DC /* BillingAddressResponse.swift in Sources */,
 				14128484215CD83C00C2873E /* UIView+Additions.swift in Sources */,
@@ -2299,6 +2315,8 @@
 				A4F7103820B550AD0064FE4B /* CountriesDataManager.swift in Sources */,
 				A4A9828120D2B32000770690 /* CreateTokenSavedCard.swift in Sources */,
 				A40DBCA52088C031005B170B /* PaymentOptionsViewController.swift in Sources */,
+				14A95ED721ECD17700F91D83 /* GlowStyle.swift in Sources */,
+				14A95EDF21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift in Sources */,
 				141284DF21610EA700C2873E /* CardCellStyle.swift in Sources */,
 				A4D5FE1320827680007D52F5 /* PaymentViewController.swift in Sources */,
 				A4B3FB81212467B3000C05EB /* AuthorizeActionType.swift in Sources */,
@@ -2392,12 +2410,14 @@
 				A4BD8D9120A1FB5500EFF2CE /* PaymentDataManager.swift in Sources */,
 				A408C06820BC05B9005E74AD /* InitializableWithString.swift in Sources */,
 				A4BD8D9220A1FB5500EFF2CE /* Bundle+Additions.swift in Sources */,
+				14A95EDA21ECD17700F91D83 /* GroupWithButtonCellStyle.swift in Sources */,
 				A43A0A6820DA4A82006B39F1 /* WebPaymentURLDecision.swift in Sources */,
 				A4BD8D9320A1FB5500EFF2CE /* UIStoryboard+Additions.swift in Sources */,
 				A4BD8D9420A1FB5500EFF2CE /* LoadingWithModelCell.swift in Sources */,
 				A473D10A213BE76900F13B73 /* FilterableByCurrency.swift in Sources */,
 				A4444BFA20AB53C7005D9E87 /* PaymentContentViewController.swift in Sources */,
 				A401FC952101DA6D002DBA73 /* CountrySelectionViewControllerDelegate.swift in Sources */,
+				14A95EDD21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift in Sources */,
 				A4BD8D9520A1FB5500EFF2CE /* SingleCellModel.swift in Sources */,
 				A4BD8D5C20A1FB3D00EFF2CE /* goSellSDK.swift in Sources */,
 				A4F7103720B550AD0064FE4B /* AddressFieldsDataManager.swift in Sources */,
@@ -2484,6 +2504,7 @@
 				A408C04320BC0563005E74AD /* AmountModificatorType.swift in Sources */,
 				A48810EC20A2E92E00CDF5D4 /* LoadingImageView.swift in Sources */,
 				A43A0A5C20D93E3F006B39F1 /* ViewControllerOperation.swift in Sources */,
+				14A95EE021ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift in Sources */,
 				A4C13A8B20F4EFC600037EDC /* PaymentOptionTableCellViewModel.swift in Sources */,
 				140238F8215A49BE00CF3B47 /* UIButton+Additions.swift in Sources */,
 				A4BD8D7B20A1FB3D00EFF2CE /* RSAUtils.swift in Sources */,
@@ -2624,6 +2645,7 @@
 				A4A9828E20D2B32000770690 /* Token.swift in Sources */,
 				A48810E820A2E92E00CDF5D4 /* TapNavigationView.swift in Sources */,
 				A4A982B020D2B34F00770690 /* SourceType.swift in Sources */,
+				14A95ED821ECD17700F91D83 /* GlowStyle.swift in Sources */,
 				A4D5311D208A4E4400830AD8 /* PaymentOptionsResponse.swift in Sources */,
 				A4C13A6D20F4EF5500037EDC /* _ObjCMeasurement.swift in Sources */,
 				A4BD8CA220A1EEB800EFF2CE /* ImageTableViewCell.swift in Sources */,

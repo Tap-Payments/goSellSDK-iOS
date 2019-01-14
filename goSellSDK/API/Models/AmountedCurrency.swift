@@ -2,7 +2,7 @@
 //  AmountedCurrency.swift
 //  goSellSDK
 //
-//  Copyright © 2018 Tap Payments. All rights reserved.
+//  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
 /// Structure holding currency and the amount.
