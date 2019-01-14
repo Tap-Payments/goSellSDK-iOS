@@ -2,7 +2,7 @@
 //  PaymentItemViewController.swift
 //  goSellSDKExample
 //
-//  Copyright © 2018 Tap Payments. All rights reserved.
+//  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
 import struct   CoreGraphics.CGBase.CGFloat
