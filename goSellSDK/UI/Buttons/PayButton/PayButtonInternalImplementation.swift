@@ -2,9 +2,10 @@
 //  PayButtonInternalImplementation.swift
 //  goSellSDK
 //
-//  Copyright © 2018 Tap Payments. All rights reserved.
+//  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import class	UIKit.UIResponder.UIResponder
 import class    UIKit.UIStoryboard.UIStoryboard
 import class    UIKit.UIView.UIView
 import var      UIKit.UIWindow.UIWindowLevelStatusBar

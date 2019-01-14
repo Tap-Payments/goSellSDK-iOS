@@ -2,7 +2,7 @@
 //  TapSDKError.swift
 //  goSellSDK
 //
-//  Copyright © 2018 Tap Payments. All rights reserved.
+//  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
 /// Base abstract class for errors.
