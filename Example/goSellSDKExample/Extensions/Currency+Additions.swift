@@ -2,7 +2,7 @@
 //  Currency+Additions.swift
 //  goSellSDKExample
 //
-//  Copyright © 2018 Tap Payments. All rights reserved.
+//  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
 import struct   Foundation.NSLocale.Locale
