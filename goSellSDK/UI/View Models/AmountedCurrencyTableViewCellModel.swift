@@ -17,9 +17,9 @@ internal class AmountedCurrencyTableViewCellModel: TableViewCellViewModel {
     
     internal let amountedCurrency: AmountedCurrency
 	
-    internal private(set) lazy var currencyNameText: String = .empty
+    internal private(set) lazy var currencyNameText: String = .tap_empty
     
-    internal private(set) lazy var amountText: String = .empty
+    internal private(set) lazy var amountText: String = .tap_empty
 	
     internal var isSelected = false {
         
@@ -60,7 +60,7 @@ extension AmountedCurrencyTableViewCellModel: Filterable {
     
     internal func matchesFilter(_ filterText: String) -> Bool {
         
-        return self.currencyNameText.containsIgnoringCase(filterText) || self.amountedCurrency.currency.isoCode.containsIgnoringCase(filterText)
+        return self.currencyNameText.tap_containsIgnoringCase(filterText) || self.amountedCurrency.currency.isoCode.tap_containsIgnoringCase(filterText)
     }
 }
 

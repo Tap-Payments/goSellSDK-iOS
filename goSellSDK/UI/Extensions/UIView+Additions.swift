@@ -14,19 +14,19 @@ internal extension UIView {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal func updateLayoutDirectionIfRequired() {
+	internal func tap_updateLayoutDirectionIfRequired() {
 		
 		if #available(iOS 9.0, *) {
 			
 			let requiredContentAttribute: UISemanticContentAttribute = LocalizationProvider.shared.layoutDirection == .rightToLeft ? .forceRightToLeft : .forceLeftToRight
 			if requiredContentAttribute != self.semanticContentAttribute {
 				
-				self.applySemanticContentAttribute(requiredContentAttribute)
+				self.tap_applySemanticContentAttribute(requiredContentAttribute)
 			}
 		}
 	}
 	
-	internal static func fadeOutUpdateAndFadeIn<T>(view: T, with duration: TimeInterval, delay: TimeInterval = 0.0, update: @escaping (T) -> Void, completion: ((Bool) -> Void)? = nil) where T: UIView {
+	internal static func tap_fadeOutUpdateAndFadeIn<T>(view: T, with duration: TimeInterval, delay: TimeInterval = 0.0, update: @escaping (T) -> Void, completion: ((Bool) -> Void)? = nil) where T: UIView {
 		
 		let fadeDuration = 0.5 * duration
 		

@@ -54,12 +54,12 @@ internal class AddressTextInputFieldTableViewCellModel: AddressFieldTableViewCel
         
         self.textField?.delegate = delegate
         
-        self.textField?.manualToolbarPreviousButtonHandler = {
+        self.textField?.tap_manualToolbarPreviousButtonHandler = {
             
             self.dataManager?.makePreviousModelFirstResponder(for: self)
         }
         
-        self.textField?.manualToolbarNextButtonHandler = {
+        self.textField?.tap_manualToolbarNextButtonHandler = {
             
             self.dataManager?.makeNextModelFirstResponder(for: self)
         }

@@ -28,7 +28,7 @@ import class    WebKit.WKWebView.WKWebView
         }
     }
     
-    @IBInspectable internal var progressColor: UIColor = .hex("535353") {
+    @IBInspectable internal var progressColor: UIColor = .tap_hex("535353") {
         
         didSet {
             
@@ -169,7 +169,7 @@ import class    WebKit.WKWebView.WKWebView
                 
                 self.progressConstraint?.constant = progressWidth
                 self.contentView?.alpha = alpha
-                self.layout()
+                self.tap_layout()
             }
             
             let duration = animated ? Constants.progressChangeAnimationDuration : 0.0

@@ -171,7 +171,7 @@ internal extension PaymentDataManager {
     
     private func showExtraFeesPaymentAlert(with plainAmount: AmountedCurrency, extraFeesAmount: AmountedCurrency, decision: @escaping TypeAlias.BooleanClosure) {
         
-        UIResponder.resign {
+        UIResponder.tap_resign {
 			
             let totalAmount = AmountedCurrency(plainAmount.currency, plainAmount.amount + extraFeesAmount.amount, plainAmount.currencySymbol)
             
@@ -184,13 +184,13 @@ internal extension PaymentDataManager {
 			
             let cancelAction: UIAlertAction = UIAlertAction(titleKey: .alert_extra_charges_btn_cancel_title, style: .cancel) { [weak alert] (action) in
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
                 decision(false)
             }
             
             let confirmAction: UIAlertAction = UIAlertAction(titleKey: .alert_extra_charges_btn_confirm_title, style: .default) { [weak alert] (action) in
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
                 decision(true)
             }
             
@@ -199,7 +199,7 @@ internal extension PaymentDataManager {
             
             DispatchQueue.main.async {
                 
-                alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+                alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
             }
         }
     }
@@ -229,7 +229,7 @@ internal extension PaymentDataManager {
     
     private func loadingControllerFrame(coveringHeader: Bool) -> CGRect {
         
-        let topOffset = PaymentContentViewController.findInHierarchy()?.paymentOptionsContainerTopOffset ?? 0.0
+        let topOffset = PaymentContentViewController.tap_findInHierarchy()?.paymentOptionsContainerTopOffset ?? 0.0
         let screenBounds = UIScreen.main.bounds
         var result = screenBounds
         result.origin.y += topOffset
@@ -267,7 +267,7 @@ internal extension PaymentDataManager {
     
     private func callTokenAPI(with request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
         
-        UIResponder.current?.resignFirstResponder()
+        UIResponder.tap_current?.resignFirstResponder()
         
         self.isExecutingAPICalls = true
         self.payButtonUI?.startLoader()
@@ -489,25 +489,25 @@ internal extension PaymentDataManager {
             
         case .web:
             
-            if let alreadyOpenedWebPaymentController = WebPaymentViewController.findInHierarchy() {
+            if let alreadyOpenedWebPaymentController = WebPaymentViewController.tap_findInHierarchy() {
                 
                 self.prepareWebPaymentController(alreadyOpenedWebPaymentController)
             }
             else {
                 
-                PaymentOptionsViewController.findInHierarchy()?.showWebPaymentViewController()
+                PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController()
             }
         }
     }
     
     private func closeWebPaymentScreen() {
         
-        if let popupController = WebPaymentPopupViewController.findInHierarchy() {
+        if let popupController = WebPaymentPopupViewController.tap_findInHierarchy() {
             
             popupController.hide()
         }
         
-        if let pushedController = WebPaymentViewController.findInHierarchy() {
+        if let pushedController = WebPaymentViewController.tap_findInHierarchy() {
             
             pushedController.navigationController?.popViewController(animated: true)
         }

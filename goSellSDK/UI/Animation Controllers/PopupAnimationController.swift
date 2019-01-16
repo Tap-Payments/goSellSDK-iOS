@@ -95,7 +95,7 @@ extension PopupAnimationController: UIViewControllerAnimatedTransitioning {
         
         let animationDuration = self.transitionDuration(using: transitionContext)
         
-        let easeInOutOption = UIView.KeyframeAnimationOptions(.curveEaseInOut)
+		let easeInOutOption = UIView.KeyframeAnimationOptions(tap_animationOptions: .curveEaseInOut)
         let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, easeInOutOption]
         let animations: TypeAlias.ArgumentlessClosure = {
             

@@ -17,7 +17,7 @@ internal class AddressDropdownFieldTableViewCellModel: AddressFieldTableViewCell
     
     internal var preselectedValueText: String {
         
-        return self.preselectedValue?.displayValue ?? .empty
+        return self.preselectedValue?.displayValue ?? .tap_empty
     }
     
     internal var arrowImage: UIImage {

@@ -14,6 +14,6 @@ internal final class HexColor: UIColor, Decodable {
 		let container = try decoder.singleValueContainer()
 		let hex = try container.decode(String.self)
 		
-		self.init(hex: hex)!
+		self.init(tap_hex: hex)!
 	}
 }

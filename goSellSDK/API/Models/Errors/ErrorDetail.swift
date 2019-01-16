@@ -15,7 +15,7 @@
     public private(set) var code: ErrorCode = .unknown
     
     /// Error description.
-    public private(set) var descriptionText: String = .empty
+    public private(set) var descriptionText: String = .tap_empty
     
     /// Generated error title.
     public var title: String {
@@ -34,7 +34,7 @@
     
     internal convenience init(code: ErrorCode) {
         
-        self.init(code: code, description: .empty)
+        self.init(code: code, description: .tap_empty)
     }
     
     internal init(code: ErrorCode, description: String) {
@@ -61,7 +61,7 @@ extension ErrorDetail: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let code = try container.decodeInt(forKey: .code)
+        let code = try container.tap_decodeInt(forKey: .code)
         let errorCode = ErrorCode(rawValue: code) ?? .unknown
         
         let descriptionText = try container.decode(String.self, forKey: .descriptionText)

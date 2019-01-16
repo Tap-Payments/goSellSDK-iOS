@@ -17,7 +17,7 @@ internal extension InstantiatableFromStoryboard {
     
     internal static func instantiate() -> Self {
         
-        let identifier = self.className
+        let identifier = self.tap_className
         guard let result = self.hostingStoryboard.instantiateViewController(withIdentifier: identifier) as? Self else {
             
             fatalError("Unable to load \(identifier) from storyboard.")

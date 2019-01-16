@@ -5,12 +5,15 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import TapResponderChainInputView
-
-import func     TapAdditionsKit.clamp
+import struct	CoreGraphics.CGBase.CGFloat
+import func     TapAdditionsKit.tap_clamp
 import protocol TapAdditionsKit.ClassProtocol
 import class    TapEditableView.TapEditableView
 import protocol TapEditableView.TapEditableViewDelegate
+import class	UIKit.UIPickerView.UIPickerView
+import protocol	UIKit.UIPickerView.UIPickerViewDataSource
+import protocol	UIKit.UIPickerView.UIPickerViewDelegate
+import class	UIKit.UITextField.UITextField
 
 /// Expiration Date Validator class.
 internal class ExpirationDateValidator: CardValidator {
@@ -32,8 +35,8 @@ internal class ExpirationDateValidator: CardValidator {
         guard let nonnullExpirationDate = self.expirationDate else { return false }
         
         let currentDate = Date()
-        let month = currentDate.month
-        let year = currentDate.year % 100
+        let month = currentDate.tap_month
+        let year = currentDate.tap_year % 100
         
         if year < nonnullExpirationDate.year {
             
@@ -158,8 +161,8 @@ internal class ExpirationDateValidator: CardValidator {
         let maximalMonthIndex = picker.numberOfRows(inComponent: ExpirationDatePickerHandler.DatePickerComponent.month.rawValue) - 1
         let maximalYearIndex = picker.numberOfRows(inComponent: ExpirationDatePickerHandler.DatePickerComponent.year.rawValue) - 1
         
-        let monthIndex  = clamp(value: minimalMonthIndex,   low: nonnullExpirationDate.month - 1,                                       high: maximalMonthIndex)
-        let yearIndex   = clamp(value: minimalYearIndex,    low: nonnullExpirationDate.year - ExpirationDatePickerHandler.currentYear,  high: maximalYearIndex)
+        let monthIndex  = tap_clamp(value: minimalMonthIndex,   low: nonnullExpirationDate.month - 1,                                       high: maximalMonthIndex)
+        let yearIndex   = tap_clamp(value: minimalYearIndex,    low: nonnullExpirationDate.year - ExpirationDatePickerHandler.currentYear,  high: maximalYearIndex)
         
         picker.selectRow(monthIndex, inComponent: ExpirationDatePickerHandler.DatePickerComponent.month.rawValue, animated: animated)
         picker.selectRow(yearIndex, inComponent: ExpirationDatePickerHandler.DatePickerComponent.year.rawValue, animated: animated)
@@ -173,7 +176,7 @@ extension ExpirationDateValidator: TapEditableViewDelegate {
         
         if #available(iOS 9.0, *) {
             
-            editableView.inputView?.applySemanticContentAttribute(.forceLeftToRight)
+            editableView.inputView?.tap_applySemanticContentAttribute(.forceLeftToRight)
         }
         
         self.inputFieldDidBeginEditing()
@@ -197,7 +200,7 @@ extension ExpirationDateValidator: TextFieldInputDataValidation {
     
     internal var textInputFieldText: String {
         
-        return self.expirationDate?.inputFieldRepresentation ?? .empty
+        return self.expirationDate?.inputFieldRepresentation ?? .tap_empty
     }
     
     internal var textInputFieldPlaceholderText: LocalizationKey {
@@ -268,7 +271,7 @@ fileprivate extension ExpirationDateValidator {
             
             private static let numberFormatter: NumberFormatter  = {
                
-                let formatter = NumberFormatter(locale: Locale.enUS)
+                let formatter = NumberFormatter(locale: .tap_enUS)
                 formatter.groupingSeparator = ""
                 formatter.numberStyle = .decimal
                 
@@ -288,7 +291,7 @@ fileprivate extension ExpirationDateValidator {
             @available(*, unavailable) private init() {}
         }
         
-        fileprivate static var currentYear: Int = Date().year
+        fileprivate static var currentYear: Int = Date().tap_year
     }
 }
 

@@ -67,7 +67,7 @@ import class 	UIKit.UIView.UIView
 		
 		if self.superview != nil {
 			
-			self.updateLayoutDirectionIfRequired()
+			self.tap_updateLayoutDirectionIfRequired()
 			self.startMonitoringLayoutDirectionChanges()
 		}
 	}

@@ -41,7 +41,7 @@ internal extension SingleCellModel where CellClass: UITableViewCell {
     
     internal func dequeueCell(from tableView: UITableView) -> CellClass {
         
-        let reuseIdentifier: String = CellClass.className
+        let reuseIdentifier: String = CellClass.tap_className
         
         if let loadedCell: CellClass = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? CellClass {
             
@@ -65,7 +65,7 @@ internal extension SingleCellModel where CellClass: UICollectionViewCell {
     
     internal func dequeueCell(from collectionView: UICollectionView, for indexPath: IndexPath) -> CellClass {
         
-        let reuseIdentifier = CellClass.className
+        let reuseIdentifier = CellClass.tap_className
         
         if let loadedCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CellClass {
             

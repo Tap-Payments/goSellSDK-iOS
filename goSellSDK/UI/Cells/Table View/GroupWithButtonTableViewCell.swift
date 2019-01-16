@@ -53,12 +53,12 @@ extension GroupWithButtonTableViewCell: LoadingWithModelCell {
 		
 		if let nonnullButtonLabel = self.buttonLabel {
 			
-			UIView.fadeOutUpdateAndFadeIn(view:		nonnullButtonLabel,
-										  with:		animated ? Constants.labelTextChangeAnimationDuration : 0.0,
-										  update:	{ (label) in
-				
-				label.setLocalizedText(self.model?.buttonKey)
-				label.setTextStyle(Theme.current.paymentOptionsCellStyle.groupWithButton.buttonTitleStyle)
+			UIView.tap_fadeOutUpdateAndFadeIn(view:		nonnullButtonLabel,
+											  with:		animated ? Constants.labelTextChangeAnimationDuration : 0.0,
+											  update:	{ (label) in
+												
+												label.setLocalizedText(self.model?.buttonKey)
+												label.setTextStyle(Theme.current.paymentOptionsCellStyle.groupWithButton.buttonTitleStyle)
 			})
 		}
 	}

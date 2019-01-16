@@ -69,7 +69,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             decision(willCancelPayment)
         }
         
-        if contentViewController.isLoading || LoadingViewController.findInHierarchy() != nil {
+        if contentViewController.isLoading || LoadingViewController.tap_findInHierarchy() != nil {
          
             self.showCancelAttemptUndefinedStatusAlert(localDecision)
         }
@@ -135,7 +135,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     private func updateHeaderTitle() {
         
-        if let bankName = self.binInformation?.bank, bankName.length > 0 {
+        if let bankName = self.binInformation?.bank, bankName.tap_length > 0 {
             
             self.headerNavigationView?.title = bankName
         }
@@ -153,7 +153,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(false)
@@ -163,7 +163,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(true)
@@ -174,7 +174,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
     
@@ -188,7 +188,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(false)
@@ -197,7 +197,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(true)
@@ -208,7 +208,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
 }
@@ -227,7 +227,7 @@ extension WebPaymentViewController: InteractiveTransitionControllerDelegate {
     
     internal var canStartInteractiveTransition: Bool {
         
-        return LoadingViewController.findInHierarchy() == nil
+        return LoadingViewController.tap_findInHierarchy() == nil
     }
     
     internal func canFinishInteractiveTransition(_ decision: @escaping TypeAlias.BooleanClosure) {

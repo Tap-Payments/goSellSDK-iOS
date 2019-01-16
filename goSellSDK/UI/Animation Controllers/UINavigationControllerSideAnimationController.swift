@@ -119,7 +119,7 @@ extension UINavigationControllerSideAnimationController: UIViewControllerAnimate
         }
         
         let animationDuration = self.transitionDuration(using: transitionContext)
-        let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, UIView.KeyframeAnimationOptions(.curveEaseInOut)]
+		let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, UIView.KeyframeAnimationOptions(tap_animationOptions: .curveEaseInOut)]
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations) { (finished) in
             
             transitionContext.completeTransition(finished && !transitionContext.transitionWasCancelled)

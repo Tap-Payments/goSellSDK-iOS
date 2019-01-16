@@ -6,7 +6,7 @@
 //
 
 import struct   CoreGraphics.CGBase.CGFloat
-import func     TapAdditionsKit.clamp
+import func     TapAdditionsKit.tap_clamp
 import struct   UIKit.UIGeometry.UIRectEdge
 import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
 import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate
@@ -99,7 +99,7 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
             let velocity                = recognizer.velocity(in: recognizer.view?.window).x
 			let maxTranslation          = ltr ? viewWidth : -viewWidth
             let edgeTranslation         = maxTranslation * Constants.edgeTranslationPercentageToFinishTransition
-            let animationProgress       = clamp(value: translation / maxTranslation, low: 0.0, high: 1.0)
+            let animationProgress       = tap_clamp(value: translation / maxTranslation, low: 0.0, high: 1.0)
             let translationIfReleased   = translation + velocity * self.duration
             
 			self.shouldCompleteTransitionOnGestureFinish = ltr ? translationIfReleased >= edgeTranslation : translationIfReleased <= edgeTranslation

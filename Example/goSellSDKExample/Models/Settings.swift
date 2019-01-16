@@ -19,7 +19,7 @@ internal final class Settings: Encodable {
     // MARK: - Internal -
     // MARK: Properties
     
-	internal static let `default` = Settings(sdkLanguage: Language(localeIdentifier: Locale.LocaleIdentifier.en),
+	internal static let `default` = Settings(sdkLanguage: Language(localeIdentifier: Locale.TapLocaleIdentifier.en),
 											 sdkMode: .sandbox,
 											 transactionMode: .purchase,
 											 currency: try! Currency(isoCode: "kwd"),

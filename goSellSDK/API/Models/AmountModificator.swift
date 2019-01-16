@@ -55,7 +55,7 @@
         
         guard self.type == .percents else {
             
-            fatalError("normalizedValue should never be called on \(AmountModificator.className) if it's type is not percentBased")
+            fatalError("normalizedValue should never be called on \(AmountModificator.tap_className) if it's type is not percentBased")
         }
         
         return 0.01 * self.value

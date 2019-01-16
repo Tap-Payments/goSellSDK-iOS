@@ -25,11 +25,11 @@ extension Country: Filterable {
     
     internal func matchesFilter(_ filterText: String) -> Bool {
         
-        if self.isoCode.containsIgnoringCase(filterText) {
+        if self.isoCode.tap_containsIgnoringCase(filterText) {
             
             return true
         }
-        if self.displayName.containsIgnoringCase(filterText) {
+        if self.displayName.tap_containsIgnoringCase(filterText) {
             
             return true
         }

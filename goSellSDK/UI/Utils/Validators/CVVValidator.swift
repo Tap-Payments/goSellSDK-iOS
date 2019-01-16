@@ -30,12 +30,12 @@ internal class CVVValidator: CardValidator {
     /// CVV code.
     internal var cvv: String {
         
-        return self.textField.attributedText?.string ?? .empty
+        return self.textField.attributedText?.string ?? .tap_empty
     }
     
     internal override var isValid: Bool {
     
-        return self.cvv.length == self.requiredCVVLength
+        return self.cvv.tap_length == self.requiredCVVLength
     }
     
     // MARK: Methods
@@ -143,13 +143,13 @@ extension CVVValidator.CVVTextFieldDelegate: UITextFieldDelegate {
     
     fileprivate func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let resultString = (textField.attributedText?.string ?? String.empty).replacing(range: range, withString: string)
-        return resultString.containsOnlyInternationalDigits && Int(resultString.length) <= self.validator.requiredCVVLength
+        let resultString = (textField.attributedText?.string ?? .tap_empty).tap_replacing(range: range, withString: string)
+        return resultString.tap_containsOnlyInternationalDigits && Int(resultString.tap_length) <= self.validator.requiredCVVLength
     }
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        textField.attributedText = NSAttributedString(string: .empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
+        textField.attributedText = NSAttributedString(string: .tap_empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
         
         self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()

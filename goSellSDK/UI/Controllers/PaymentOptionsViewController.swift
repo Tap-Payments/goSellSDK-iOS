@@ -69,7 +69,7 @@ internal class PaymentOptionsViewController: BaseViewController {
         
         DispatchQueue.main.async {
             
-            self.performSegue(withIdentifier: "\(WebPaymentViewController.className)Segue", sender: self)
+            self.performSegue(withIdentifier: "\(WebPaymentViewController.tap_className)Segue", sender: self)
         }
     }
 	
@@ -127,12 +127,12 @@ internal class PaymentOptionsViewController: BaseViewController {
     
     private func subscribeNotifications() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(paymentOptionsUpdated(_:)), name: .paymentOptionsModelsUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(paymentOptionsUpdated(_:)), name: .tap_paymentOptionsModelsUpdated, object: nil)
     }
     
     private func unsubscribeNotifications() {
         
-        NotificationCenter.default.removeObserver(self, name: .paymentOptionsModelsUpdated, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .tap_paymentOptionsModelsUpdated, object: nil)
     }
     
     @objc private func paymentOptionsUpdated(_ notification: Notification) {
@@ -196,7 +196,7 @@ extension PaymentOptionsViewController: PopupOverlaySupport {
         return {
             
             let overlapping = operation == .presentation ? self.view.bounds.height : 0.0
-            MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(overlapping)
+            MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(overlapping)
         }
     }
 }

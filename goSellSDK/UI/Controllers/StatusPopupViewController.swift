@@ -117,7 +117,7 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     private struct Constants {
         
         fileprivate static let contentHeight: CGFloat = 65.0
-        fileprivate static let closeButtonImage: UIImage = .named("ic_close", in: .goSellSDKResources)!
+        fileprivate static let closeButtonImage: UIImage = .tap_named("ic_close", in: .goSellSDKResources)!
         
         @available(*, unavailable) private init() {}
     }

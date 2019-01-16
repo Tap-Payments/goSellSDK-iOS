@@ -93,18 +93,18 @@ extension TokenizedCard: Decodable {
         
         let container           = try decoder.container(keyedBy: CodingKeys.self)
     
-        let identifier         = try container.decode                      (String.self,       forKey: .identifier)
-        let object             = try container.decode                      (String.self,       forKey: .object)
-        let lastFourDigits     = try container.decode                      (String.self,       forKey: .lastFourDigits)
-        let expirationMonth    = try container.decode                      (Int.self,          forKey: .expirationMonth)
-        let expirationYear     = try container.decode                      (Int.self,          forKey: .expirationYear)
-        let binNumber          = try container.decode                      (String.self,       forKey: .binNumber)
-        let brand              = try container.decode                      (CardBrand.self,    forKey: .brand)
-        let funding            = try container.decode                      (String.self,       forKey: .funding)
-        let cardholderName     = try container.decode                      (String.self,       forKey: .cardholderName)
-        let customerIdentifier = try container.decodeIfPresent             (String.self,       forKey: .customerIdentifier)
-        let fingerprint        = try container.decode                      (String.self,       forKey: .fingerprint)
-        let address            = try container.decodeIfPresentAndNotEmpty  (Address.self,      forKey: .address)
+        let identifier         = try container.decode                      		(String.self,       forKey: .identifier)
+        let object             = try container.decode                      		(String.self,       forKey: .object)
+        let lastFourDigits     = try container.decode                      		(String.self,       forKey: .lastFourDigits)
+        let expirationMonth    = try container.decode                      		(Int.self,          forKey: .expirationMonth)
+        let expirationYear     = try container.decode                      		(Int.self,          forKey: .expirationYear)
+        let binNumber          = try container.decode                      		(String.self,       forKey: .binNumber)
+        let brand              = try container.decode                      		(CardBrand.self,    forKey: .brand)
+        let funding            = try container.decode                      		(String.self,       forKey: .funding)
+        let cardholderName     = try container.decode                      		(String.self,       forKey: .cardholderName)
+        let customerIdentifier = try container.decodeIfPresent             		(String.self,       forKey: .customerIdentifier)
+        let fingerprint        = try container.decode                      		(String.self,       forKey: .fingerprint)
+        let address            = try container.tap_decodeIfPresentAndNotEmpty	(Address.self,      forKey: .address)
         
         self.init(identifier:           identifier,
                   object:               object,

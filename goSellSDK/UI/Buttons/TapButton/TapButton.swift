@@ -74,13 +74,13 @@ internal class TapButton: TapNibView {
         
         super.setup()
         
-        self.cornerRadius = 0.5 * min(self.bounds.width, self.bounds.height)
+        self.tap_cornerRadius = 0.5 * min(self.bounds.width, self.bounds.height)
         self.updateTheme(animated: false)
     }
     
     internal func setTitle(_ title: String?) {
 		
-		self.internalButton?.title = title
+		self.internalButton?.tap_title = title
     }
     
     // MARK: - Private -

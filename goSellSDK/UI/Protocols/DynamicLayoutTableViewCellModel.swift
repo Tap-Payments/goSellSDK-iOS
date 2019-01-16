@@ -27,7 +27,7 @@ internal extension DynamicLayoutTableViewCellModel {
             nonnullTableView.endUpdates()
 			
 			nonnullTableView.contentOffset = contentOffset
-			nonnullTableView.removeAllAnimations(includeSubviews: false)
+			nonnullTableView.tap_removeAllAnimations(includeSubviews: false)
         }
 
         if animated {

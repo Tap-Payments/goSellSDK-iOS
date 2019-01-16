@@ -38,7 +38,7 @@ internal class PaymentViewController: SeparateWindowViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if let navigationController = segue.destination as? UINavigationController, navigationController.rootViewController is PaymentContentViewController {
+        if let navigationController = segue.destination as? UINavigationController, navigationController.tap_rootViewController is PaymentContentViewController {
             
             navigationController.delegate = self.animationsHandler
             navigationController.transitioningDelegate = self.animationsHandler
@@ -71,7 +71,7 @@ internal class PaymentViewController: SeparateWindowViewController {
         
         DispatchQueue.main.async { [unowned self] in
             
-            self.performSegue(withIdentifier: "\(PaymentContentViewController.className)Segue", sender: self)
+            self.performSegue(withIdentifier: "\(PaymentContentViewController.tap_className)Segue", sender: self)
         }
         
         self.hasShownPaymentController = true

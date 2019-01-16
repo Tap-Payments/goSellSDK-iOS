@@ -170,14 +170,14 @@ internal class AddressFieldsDataManager {
         let previousInputField = self.previousModelInputField(for: model)
         let nextInputField = self.nextModelInputField(for: model)
         
-        previousInputField?.nextField = modelInputField
+        previousInputField?.tap_nextField = modelInputField
         previousInputField?.returnKeyType = modelInputField == nil ? .done : .next
         
-        nextInputField?.previousField = modelInputField
+        nextInputField?.tap_previousField = modelInputField
         
-        modelInputField?.previousField = previousInputField
+        modelInputField?.tap_previousField = previousInputField
         
-        modelInputField?.nextField = nextInputField
+        modelInputField?.tap_nextField = nextInputField
         modelInputField?.returnKeyType = nextInputField == nil ? .done : .next
     }
     
@@ -270,7 +270,7 @@ internal class AddressFieldsDataManager {
                     result.append(topEmptyCell)
                     
                     let dropdownIndexPath = self.nextIndexPath(for: result)
-                    let countries = type(of: self).cachedAddressFieldsData?.countryFormats.allKeys ?? Country.all
+                    let countries = type(of: self).cachedAddressFieldsData?.countryFormats.tap_allKeys ?? Country.all
                     
                     let dropdownCell = AddressDropdownFieldTableViewCellModel(indexPath: dropdownIndexPath,
                                                                               field: field,
@@ -351,7 +351,7 @@ internal class AddressFieldsDataManager {
                                                options: [.usesLineFragmentOrigin, .usesDeviceMetrics],
                                                attributes: [.font: Constants.descriptionFont],
                                                context: nil)
-            return boundingRect.size.ceiled.width
+            return boundingRect.size.tap_ceiled.width
         }
         
         guard let maxWidth = widths.max() else { return }

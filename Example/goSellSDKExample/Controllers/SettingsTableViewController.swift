@@ -75,12 +75,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             customersListController.mode                = self.currentSettings?.sdkMode ?? .sandbox
             customersListController.selectedCustomer    = self.currentSettings?.customer
         }
-        else if let taxController = (segue.destination as? UINavigationController)?.rootViewController as? TaxViewController {
+        else if let taxController = (segue.destination as? UINavigationController)?.tap_rootViewController as? TaxViewController {
             
             taxController.delegate  = self
             taxController.tax       = self.selectedTax
         }
-        else if let shippingController = (segue.destination as? UINavigationController)?.rootViewController as? ShippingViewController {
+        else if let shippingController = (segue.destination as? UINavigationController)?.tap_rootViewController as? ShippingViewController {
             
             shippingController.delegate = self
             shippingController.shipping = self.selectedShipping
@@ -472,9 +472,9 @@ extension SettingsTableViewController.TaxesTableViewHandler: UITableViewDataSour
     
     fileprivate func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaxTableViewCell.className) as? TaxTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaxTableViewCell.tap_className) as? TaxTableViewCell else {
             
-            fatalError("Failed to load \(TaxTableViewCell.className) from storyboard.")
+            fatalError("Failed to load \(TaxTableViewCell.tap_className) from storyboard.")
         }
         
         return cell
@@ -538,9 +538,9 @@ extension SettingsTableViewController.ShippingTableViewHandler: UITableViewDataS
     
     fileprivate func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ShippingTableViewCell.className) as? ShippingTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ShippingTableViewCell.tap_className) as? ShippingTableViewCell else {
             
-            fatalError("Failed to load \(ShippingTableViewCell.className) from storyboard.")
+            fatalError("Failed to load \(ShippingTableViewCell.tap_className) from storyboard.")
         }
         
         return cell

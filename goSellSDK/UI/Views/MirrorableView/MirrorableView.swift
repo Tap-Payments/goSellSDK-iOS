@@ -18,7 +18,7 @@ internal class MirrorableView: UIView {
 		
 		if self.superview != nil {
 			
-			self.updateLayoutDirectionIfRequired()
+			self.tap_updateLayoutDirectionIfRequired()
 			self.updateTransformIfRequired()
 			self.startMonitoringLayoutDirectionChanges()
 		}

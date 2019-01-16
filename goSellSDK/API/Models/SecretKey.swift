@@ -35,5 +35,5 @@
     // MARK: - Internal -
     // MARK: Properties
     
-    internal static let empty: SecretKey = SecretKey(sandbox: .empty, production: .empty)
+    internal static let empty: SecretKey = SecretKey(sandbox: .tap_empty, production: .tap_empty)
 }

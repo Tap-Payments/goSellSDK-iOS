@@ -27,6 +27,6 @@ internal class TableViewCellViewModel: CellViewModel {
     
     internal func manuallySelectCellAndCallTableViewDelegate() {
         
-        self.tableView?.selectRow(at: self.indexPath, animated: true, scrollPosition: .none, callDelegate: true)
+        self.tableView?.tap_selectRow(at: self.indexPath, animated: true, scrollPosition: .none, callDelegate: true)
     }
 }

@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapAdditionsKit.UIButtonAdditions
-import class 	UIKit.UIButton.UIButton
+import class	TapAdditionsKit.UIButton
 
 internal extension UIButton {
 	
@@ -23,6 +22,6 @@ extension UIButton: SingleLocalizable {
 	
 	internal func setLocalized(text: String?) {
 		
-		self.title = text
+		self.tap_title = text
 	}
 }

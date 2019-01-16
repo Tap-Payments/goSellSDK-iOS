@@ -6,7 +6,7 @@
 //
 
 import struct   CoreGraphics.CGBase.CGFloat
-import func     TapAdditionsKit.clamp
+import func     TapAdditionsKit.tap_clamp
 import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
 import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate
 import class    UIKit.UIPanGestureRecognizer.UIPanGestureRecognizer
@@ -29,7 +29,7 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
         
         let presentingController = self.viewController.presentingViewController
         
-        let responder = self.viewController.view.firstResponder
+        let responder = self.viewController.view.tap_firstResponder
         responder?.resignFirstResponder()
         
         self.firstResponderOnMomentOfDismissal = responder
@@ -93,7 +93,7 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
             let velocity = recognizer.velocity(in: window).y
             let maxTranslation = self.viewController.view.bounds.size.height
             let edgeTranslation = maxTranslation * Constants.translationPercentageToFinishTransition
-            let animationProgress = clamp(value: translation / maxTranslation, low: 0.0, high: 1.0)
+            let animationProgress = tap_clamp(value: translation / maxTranslation, low: 0.0, high: 1.0)
             let translationIfReleased = translation + velocity * self.duration
             
             self.shouldCompleteTransitionOnGestureFinish = translationIfReleased >= edgeTranslation

@@ -67,12 +67,12 @@ internal class ExampleViewController: BaseViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if let paymentController = (segue.destination as? UINavigationController)?.rootViewController as? PaymentItemViewController {
+        if let paymentController = (segue.destination as? UINavigationController)?.tap_rootViewController as? PaymentItemViewController {
             
             paymentController.delegate = self
             paymentController.paymentItem = self.selectedPaymentItem
         }
-        else if let settingsController = (segue.destination as? UINavigationController)?.rootViewController as? SettingsTableViewController {
+        else if let settingsController = (segue.destination as? UINavigationController)?.tap_rootViewController as? SettingsTableViewController {
             
             settingsController.delegate = self
             settingsController.settings = self.paymentSettings
@@ -85,7 +85,7 @@ internal class ExampleViewController: BaseViewController {
         
         DispatchQueue.main.async {
             
-            self.performSegue(withIdentifier: "\(PaymentItemViewController.className)Segue", sender: self)
+            self.performSegue(withIdentifier: "\(PaymentItemViewController.tap_className)Segue", sender: self)
         }
     }
     

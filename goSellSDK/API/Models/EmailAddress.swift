@@ -22,7 +22,7 @@
     /// - Throws: error in case if email address is invalid.
     public required init(emailAddressString: String) throws {
         
-        guard emailAddressString.isValidEmailAddress else {
+        guard emailAddressString.tap_isValidEmailAddress else {
             
             let userInfo = [ErrorConstants.UserInfoKeys.emailAddress: emailAddressString]
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidEmail.rawValue, userInfo: userInfo)

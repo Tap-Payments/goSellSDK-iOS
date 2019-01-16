@@ -115,7 +115,7 @@ internal final class PaymentItemsTableViewHandler: NSObject {
         }
         else {
             
-            let amountModel = PlainAmountTableViewCellModel(amountString: .empty, changeObserver: self)
+            let amountModel = PlainAmountTableViewCellModel(amountString: .tap_empty, changeObserver: self)
             result.append(amountModel)
         }
         
@@ -130,7 +130,7 @@ internal final class PaymentItemsTableViewHandler: NSObject {
     private func deselectAllCellsForModels(of modelType: TableViewCellModel.Type) {
         
         self.cellModels.forEach { if type(of: $0) == modelType { $0.isSelected = false } }
-        self.tableView.reloadVisibleCells()
+        self.tableView.tap_reloadVisibleCells()
     }
 }
 
@@ -154,7 +154,7 @@ extension PaymentItemsTableViewHandler: UITableViewDataSource {
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let model = self.cellModels[indexPath.row]
-        return tableView.dequeueReusableCell(withIdentifier: type(of: model).cellClass.className)!
+        return tableView.dequeueReusableCell(withIdentifier: type(of: model).cellClass.tap_className)!
     }
 }
 
@@ -163,7 +163,7 @@ extension PaymentItemsTableViewHandler: UIScrollViewDelegate {
     
     internal func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
-        UIResponder.resign()
+        UIResponder.tap_resign()
     }
 }
 

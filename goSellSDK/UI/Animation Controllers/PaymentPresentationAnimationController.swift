@@ -69,7 +69,7 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
         
         toView.frame = startFrame
         
-        let blurView = self.animatesBlur ? fromView.subview(ofClass: TapVisualEffectView.self) : nil
+        let blurView = self.animatesBlur ? fromView.tap_subview(ofClass: TapVisualEffectView.self) : nil
         blurView?.style = .none
         
         let animations: TypeAlias.ArgumentlessClosure = {

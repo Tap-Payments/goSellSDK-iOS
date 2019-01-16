@@ -116,7 +116,7 @@ extension CardsContainerTableViewCellModel.CardsContainerTableViewCellModelColle
         let cellModel = self.cardCellModel(at: indexPath)
         cellModel.collectionViewDidSelectCell(collectionView)
         
-        self.model.tableView?.selectRow(at: self.model.indexPath, animated: true, scrollPosition: .none, callDelegate: true)
+        self.model.tableView?.tap_selectRow(at: self.model.indexPath, animated: true, scrollPosition: .none, callDelegate: true)
     }
     
     internal func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

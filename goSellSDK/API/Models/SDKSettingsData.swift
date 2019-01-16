@@ -59,7 +59,7 @@ extension SDKSettingsData: Decodable {
 		let merchant			= try container.decode(Merchant.self, 				forKey: .merchant)
 		let internalSettings	= try container.decode(InternalSDKSettings.self,	forKey: .internalSettings)
 		
-		let permissions 	= try container.decodeIfPresent(Permissions.self,	forKey: .permissions) ?? .none
+		let permissions 	= try container.decodeIfPresent(Permissions.self,	forKey: .permissions) ?? .tap_none
 		let deviceID 		= try container.decodeIfPresent(String.self,		forKey: .deviceID)
 		let sessionToken	= try container.decodeIfPresent(String.self,		forKey: .sessionToken)
 		

@@ -16,7 +16,7 @@ internal extension ThemeObserver {
 	
 	internal func startMonitoringThemeChanges() {
 		
-		NotificationCenter.default.addObserver(forName: .sdkThemeChanged, object: nil, queue: .main) { [weak self] _ in
+		NotificationCenter.default.addObserver(forName: .tap_sdkThemeChanged, object: nil, queue: .main) { [weak self] _ in
 			
 			self?.themeChanged()
 		}
@@ -24,6 +24,6 @@ internal extension ThemeObserver {
 	
 	internal func stopMonitoringThemeChanges() {
 		
-		NotificationCenter.default.removeObserver(self, name: .sdkThemeChanged, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .tap_sdkThemeChanged, object: nil)
 	}
 }

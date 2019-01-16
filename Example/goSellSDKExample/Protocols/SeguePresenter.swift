@@ -16,7 +16,7 @@ internal extension SeguePresenter {
         
         DispatchQueue.main.async {
             
-            self.performSegue(withIdentifier: "\(controller.className)Segue", sender: self)
+            self.performSegue(withIdentifier: "\(controller.tap_className)Segue", sender: self)
         }
     }
 }

@@ -83,7 +83,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if let taxController = (segue.destination as? UINavigationController)?.rootViewController as? TaxViewController {
+        if let taxController = (segue.destination as? UINavigationController)?.tap_rootViewController as? TaxViewController {
             
             taxController.delegate = self
             taxController.tax = self.selectedTax
@@ -314,7 +314,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         
         self.currentPaymentItem.descriptionText = self.descriptionTextView?.text
         
-        if let quantityValue = self.quantityValueTextField?.text?.decimalValue, quantityValue > 0.0 {
+        if let quantityValue = self.quantityValueTextField?.text?.tap_decimalValue, quantityValue > 0.0 {
             
             self.currentPaymentItem.quantity.value = quantityValue
         }
@@ -323,7 +323,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
             self.currentPaymentItem.quantity.value = 0.0
         }
         
-        if let amountPerUnit = self.amountPerUnitTextField?.text?.decimalValue, amountPerUnit > 0.0 {
+        if let amountPerUnit = self.amountPerUnitTextField?.text?.tap_decimalValue, amountPerUnit > 0.0 {
             
             self.currentPaymentItem.amountPerUnit = amountPerUnit
         }
@@ -334,7 +334,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         
         if let discountType = self.currentPaymentItem.discount?.type {
             
-            let discountValue = self.discountValueTextField?.text?.decimalValue ?? 0.0
+            let discountValue = self.discountValueTextField?.text?.tap_decimalValue ?? 0.0
             self.currentPaymentItem.discount = AmountModificator(type: discountType, value: discountValue)
         }
         else {
@@ -470,7 +470,7 @@ extension PaymentItemViewController: CaseSelectionTableViewControllerDelegate {
             }
             else {
                 
-                let discountValue = self.discountValueTextField?.text?.decimalValue ?? 0.0
+                let discountValue = self.discountValueTextField?.text?.tap_decimalValue ?? 0.0
                 self.currentPaymentItem.discount = AmountModificator(type: type, value: discountValue)
             }
             
@@ -499,9 +499,9 @@ extension PaymentItemViewController.TaxesTableViewHandler: UITableViewDataSource
     
     fileprivate func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaxTableViewCell.className) as? TaxTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaxTableViewCell.tap_className) as? TaxTableViewCell else {
             
-            fatalError("Failed to load \(TaxTableViewCell.className) from storyboard.")
+            fatalError("Failed to load \(TaxTableViewCell.tap_className) from storyboard.")
         }
         
         return cell

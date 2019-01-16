@@ -73,7 +73,7 @@ extension PaymentDismissalAnimationController: UIViewControllerAnimatedTransitio
             finalFrame.origin.y = finalFrame.maxY
         }
         
-        let blurView = self.animatesBlur ? toView.subview(ofClass: TapVisualEffectView.self) : nil
+        let blurView = self.animatesBlur ? toView.tap_subview(ofClass: TapVisualEffectView.self) : nil
         
         let animations: TypeAlias.ArgumentlessClosure = {
             

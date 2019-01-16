@@ -17,14 +17,14 @@ extension PaymentOptionsViewController: UIScrollViewDelegate {
     
     internal func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
-        self.view.firstResponder?.resignFirstResponder()
+        self.view.tap_firstResponder?.resignFirstResponder()
     }
     
     internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         DispatchQueue.main.async {
             
-            MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
+            MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
         }
     }
 }

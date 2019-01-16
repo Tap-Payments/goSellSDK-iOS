@@ -60,10 +60,10 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
             
         else { return }
     
-        NSLayoutConstraint.reactivate(inCaseIf: nonnullModel.isSelected,
-                                      constraintsToDisableOnSuccess: nonnullConstraintsToDisableWhenSelected,
-                                      constraintsToEnableOnSuccess: nonnullConstraintsToEnableWhenSelected,
-                                      viewToLayout: self,
-                                      animationDuration: animated ? Constants.selectionAnimationDuration : 0.0)
-    }
+		NSLayoutConstraint.tap_reactivate(inCaseIf:							nonnullModel.isSelected,
+										  constraintsToDisableOnSuccess:	nonnullConstraintsToDisableWhenSelected,
+										  constraintsToEnableOnSuccess:		nonnullConstraintsToEnableWhenSelected,
+										  viewToLayout:						self,
+										  animationDuration:				animated ? Constants.selectionAnimationDuration : 0.0)
+	}
 }

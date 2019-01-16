@@ -8,7 +8,6 @@
 import struct   Foundation.NSDecimal.Decimal
 import struct   Foundation.NSRange.NSRange
 import class    Foundation.NSScanner.Scanner
-import struct   TapAdditionsKit.UIResponderAdditions
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UITextField.UITextField
 import protocol UIKit.UITextField.UITextFieldDelegate
@@ -48,12 +47,12 @@ internal final class PlainAmountTableViewCell: SelectableCell {
     
     @IBAction private func doneButtonTouchUpInside(_ sender: Any) {
         
-        UIResponder.resign()
+        UIResponder.tap_resign()
     }
     
     @IBAction private func textFieldEditingChanged(_ sender: Any) {
         
-        self.textChangeListener?.textChanged(self.amountTextField?.text ?? .empty)
+        self.textChangeListener?.textChanged(self.amountTextField?.text ?? .tap_empty)
     }
 }
 
@@ -62,9 +61,9 @@ extension PlainAmountTableViewCell: UITextFieldDelegate {
     
     internal func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let desiredString = textField.text?.replacing(range: range, withString: string) ?? .empty
+        let desiredString = textField.text?.tap_replacing(range: range, withString: string) ?? .tap_empty
         
-        if desiredString.length > 0 {
+        if desiredString.tap_length > 0 {
             
             let scanner = Scanner(string: desiredString)
             let isDecimal = scanner.scanDecimal(nil) && scanner.isAtEnd

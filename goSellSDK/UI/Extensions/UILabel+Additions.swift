@@ -22,11 +22,11 @@ extension UILabel: SingleLocalizable {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var localizedTextAlignment: LocalizedTextAlignment {
+	internal var tap_localizedTextAlignment: LocalizedTextAlignment {
 		
 		get {
 			
-			return self.textAlignment.localizedTextAlignment
+			return self.textAlignment.tap_localizedTextAlignment
 		}
 		set {
 			
