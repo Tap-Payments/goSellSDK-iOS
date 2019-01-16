@@ -98,7 +98,7 @@ internal class ShippingViewController: ModalNavigationTableViewController {
         
         self.currentShipping.descriptionText = self.descriptionTextView?.text
         
-        if let amount = self.amountTextField?.text?.decimalValue, amount > 0.0 {
+        if let amount = self.amountTextField?.text?.tap_decimalValue, amount > 0.0 {
             
             self.currentShipping.amount = amount
         }

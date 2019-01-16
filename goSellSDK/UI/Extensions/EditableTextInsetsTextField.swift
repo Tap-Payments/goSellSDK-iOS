@@ -6,14 +6,13 @@
 //
 
 import class	EditableTextInsetsTextField.EditableTextInsetsTextField
-import enum 	EditableTextInsetsTextField.TextFieldClearButtonPosition
 
 internal extension EditableTextInsetsTextField {
 	
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var localizedClearButtonPosition: TextFieldClearButtonPosition {
+	internal var localizedClearButtonPosition: EditableTextInsetsTextField.ClearButtonPosition {
 		
 		get {
 			
@@ -23,12 +22,16 @@ internal extension EditableTextInsetsTextField {
 			
 			let ltr = LocalizationProvider.shared.layoutDirection == .leftToRight
 			
+			var desiredPosition: EditableTextInsetsTextField.ClearButtonPosition
+			
 			switch newValue {
 				
-			case .left:		self.clearButtonPosition = ltr ? .left 	: .right
-			case .right:	self.clearButtonPosition = ltr ? .right	: .left
-
+			case .left:		desiredPosition = ltr ? .left 	: .right
+			case .right:	desiredPosition = ltr ? .right	: .left
+				
 			}
+			
+			self.clearButtonPosition = desiredPosition
 		}
 	}
 }

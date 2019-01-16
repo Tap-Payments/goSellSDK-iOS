@@ -254,7 +254,7 @@ internal class ErrorDataManager {
              .invalidBINNumber,
              .cancel:
             
-            return .none
+            return .tap_none
         }
     }
 }

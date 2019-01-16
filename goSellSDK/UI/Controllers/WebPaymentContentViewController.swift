@@ -101,7 +101,7 @@ internal final class WebPaymentContentViewController: BaseViewController {
     private func addWebViewOnScreen() {
         
         self.webView.navigationDelegate = self
-        self.webViewContainer?.addSubviewWithConstraints(self.webView)
+        self.webViewContainer?.tap_addSubviewWithConstraints(self.webView)
     }
     
     private func loadURLIfNotYetLoaded() {

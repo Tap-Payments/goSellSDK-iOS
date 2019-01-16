@@ -46,7 +46,7 @@ internal class CardAddressValidator: CardValidator {
             
             let orderedDisplayData: [BillingAddressField] = format.fields.sorted { $0.displayOrder < $1.displayOrder }
             var filledFields: [String] = orderedDisplayData.compactMap { self.inputData[$0.name] as? String }
-            filledFields = filledFields.filter { $0.length > 0 }
+            filledFields = filledFields.filter { $0.tap_length > 0 }
             
             if filledFields.count == 0 { return Constants.placeholderDisplayText }
             

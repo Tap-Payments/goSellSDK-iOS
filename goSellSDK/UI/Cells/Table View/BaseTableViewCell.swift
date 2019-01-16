@@ -27,7 +27,7 @@ internal class BaseTableViewCell: UITableViewCell {
             glowingCell.prepareForGlowing()
         }
 		
-		self.updateLayoutDirectionIfRequired()
+		self.tap_updateLayoutDirectionIfRequired()
     }
     
     internal override func prepareForReuse() {
@@ -39,6 +39,6 @@ internal class BaseTableViewCell: UITableViewCell {
             glowingCell.prepareForGlowing()
         }
 		
-		self.updateLayoutDirectionIfRequired()
+		self.tap_updateLayoutDirectionIfRequired()
     }
 }

@@ -67,7 +67,7 @@ internal class CurrencySelectionTableViewCellViewModel: TableViewCellViewModel {
     
     private func updateDisplayedTexts(updateContent: Bool = false) {
         
-        self.displayedTransactionCurrencyText = self.transactionCurrency == self.userSelectedCurrency ? .empty : self.transactionCurrency.displayValue
+        self.displayedTransactionCurrencyText = self.transactionCurrency == self.userSelectedCurrency ? .tap_empty : self.transactionCurrency.displayValue
         self.displayedUserCurrencyText = self.userSelectedCurrency.displayValue
         
         if updateContent {

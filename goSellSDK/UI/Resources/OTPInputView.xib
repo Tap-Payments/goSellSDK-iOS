@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,7 +34,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                                     <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
@@ -49,13 +49,13 @@
                         <constraint firstItem="T27-m8-cyR" firstAttribute="leading" secondItem="Pef-VL-6AP" secondAttribute="leading" id="V11-dz-r8i"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_borderWidth">
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                        <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                             <color key="value" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -74,7 +74,7 @@
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                                     <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
@@ -88,13 +88,13 @@
                         <constraint firstItem="sK0-z0-dyw" firstAttribute="leading" secondItem="wW3-7i-vIH" secondAttribute="leading" id="ify-VS-PQ3"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_borderWidth">
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                        <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                             <color key="value" red="0.80784313730000001" green="0.80784313730000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -113,7 +113,7 @@
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                                     <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
@@ -127,13 +127,13 @@
                         <constraint firstItem="OjU-9z-4Hh" firstAttribute="top" secondItem="9NS-G3-XzX" secondAttribute="top" id="mEr-uL-ygX"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_borderWidth">
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                        <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                             <color key="value" red="0.80784313730000001" green="0.80784313730000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -152,7 +152,7 @@
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                                     <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
@@ -166,13 +166,13 @@
                         <constraint firstAttribute="bottom" secondItem="0cY-DZ-H16" secondAttribute="bottom" id="los-w1-XxD"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_borderWidth">
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                        <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                             <color key="value" red="0.80784313730000001" green="0.80784313730000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -191,7 +191,7 @@
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                                     <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
@@ -205,13 +205,13 @@
                         <constraint firstItem="6mE-Yj-Qwb" firstAttribute="leading" secondItem="AiF-ZT-jBD" secondAttribute="leading" id="q7h-uq-QeL"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_borderWidth">
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                        <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                             <color key="value" red="0.80784313730000001" green="0.80784313730000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -230,7 +230,7 @@
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                                     <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
@@ -244,13 +244,13 @@
                         <constraint firstAttribute="bottom" secondItem="de6-lx-Av1" secondAttribute="bottom" id="Pao-ox-8UC"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                        <userDefinedRuntimeAttribute type="number" keyPath="tap_borderWidth">
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                        <userDefinedRuntimeAttribute type="color" keyPath="tap_borderColor">
                             <color key="value" red="0.80784313730000001" green="0.80784313730000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>

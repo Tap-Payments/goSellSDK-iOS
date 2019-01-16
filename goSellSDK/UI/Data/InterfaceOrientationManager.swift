@@ -19,17 +19,17 @@ internal final class InterfaceOrientationManager {
     
     internal func viewControllerShouldAutorotate(_ controller: UIViewController) -> Bool {
         
-        return UIDevice.current.isIPad
+        return UIDevice.current.tap_isIPad
     }
     
     internal func supportedInterfaceOrientations(for controller: UIViewController) -> UIInterfaceOrientationMask {
         
-        return UIDevice.current.isIPad ? .all : .portrait
+        return UIDevice.current.tap_isIPad ? .all : .portrait
     }
     
     internal func preferredInterfaceOrientationForPresentation(of controller: UIViewController) -> UIInterfaceOrientation {
         
-        return UIDevice.current.isIPad ? UIApplication.shared.statusBarOrientation : .portrait
+        return UIDevice.current.tap_isIPad ? UIApplication.shared.statusBarOrientation : .portrait
     }
     
     // MARK: - Fileprivate -

@@ -62,14 +62,14 @@ internal class PaymentContentViewController: BaseViewController {
         
         DispatchQueue.main.async {
             
-            self.hideKeyboard {
+            self.tap_hideKeyboard {
                 
                 PaymentDismissalAnimationController.usesFadeAnimation = usesFadeAnimation
                 
                 let presentingController = self.presentingViewController as? PaymentViewController
                 self.dismiss(animated: true) {
 
-                    presentingController?.dismissFromSeparateWindow(false, completion: completion)
+                    presentingController?.tap_dismissFromSeparateWindow(false, completion: completion)
                 }
             }
         }

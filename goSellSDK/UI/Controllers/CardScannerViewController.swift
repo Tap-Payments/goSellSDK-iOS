@@ -47,7 +47,7 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
             self.scannerView?.hideCardIOLogo                = true
             self.scannerView?.languageOrLocale              = LocalizationProvider.shared.selectedLanguage
             self.scannerView?.detectionMode                 = .cardImageAndNumber
-            self.scannerView?.guideColor                    = .hex("#2ACE00")
+            self.scannerView?.guideColor                    = .tap_hex("#2ACE00")
             self.scannerView?.allowFreelyRotatingCardGuide  = true
         }
     }

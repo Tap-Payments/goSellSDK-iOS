@@ -24,16 +24,16 @@ internal class SeparateWindowViewController: BaseViewController {
         
         let showClosure: TypeAlias.ArgumentlessClosure = {
             
-            self.showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled, windowClass: MaskedWindow.self, below: .statusBar) { [unowned self] (rootController) in
+            self.tap_showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled, windowClass: MaskedWindow.self, below: .statusBar) { [unowned self] (rootController) in
                 
                 (rootController.view.window as? MaskedWindow)?.contentProvider = self
                 rootController.present(self, animated: animated, completion: completion)
             }
         }
         
-        if let firstResponder = UIResponder.current {
+        if let firstResponder = UIResponder.tap_current {
             
-            firstResponder.resignFirstResponder(showClosure)
+            firstResponder.tap_resignFirstResponder(showClosure)
         }
         else {
             
@@ -51,9 +51,9 @@ internal class SeparateWindowViewController: BaseViewController {
                 return
             }
             
-            strongSelf.hideKeyboard {
+            strongSelf.tap_hideKeyboard {
                 
-                strongSelf.dismissFromSeparateWindow(animated, completion: completion)
+                strongSelf.tap_dismissFromSeparateWindow(animated, completion: completion)
             }
         }
         

@@ -16,12 +16,12 @@ internal class CardholderNameValidator: CardValidator {
     
     internal var cardholderName: String {
         
-        return self.textField.attributedText?.string ?? .empty
+        return self.textField.attributedText?.string ?? .tap_empty
     }
     
     internal override var isValid: Bool {
         
-        return self.cardholderName.isValidCardholderName
+        return self.cardholderName.tap_isValidCardholderName
     }
     
     // MARK: Methods
@@ -127,7 +127,7 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
     
     fileprivate func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		
-        let resultString = (textField.attributedText?.string ?? String.empty).replacing(range: range, withString: string).uppercased()
+        let resultString = (textField.attributedText?.string ?? .tap_empty).tap_replacing(range: range, withString: string).uppercased()
         
         var valid = true
         for character in resultString {
@@ -139,13 +139,13 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
             }
         }
         
-        let canReplace = valid && resultString.length <= CardholderNameValidator.Constants.maximalCardholderNameLength
+        let canReplace = valid && resultString.tap_length <= CardholderNameValidator.Constants.maximalCardholderNameLength
         
         if canReplace {
             
             textField.attributedText = NSAttributedString(string: resultString, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
             
-            if let rangeStart = textField.position(from: textField.beginningOfDocument, offset: range.location + string.length),
+            if let rangeStart = textField.position(from: textField.beginningOfDocument, offset: range.location + string.tap_length),
                let rangeEnd = textField.position(from: rangeStart, offset: 0) {
                 
                 textField.selectedTextRange = textField.textRange(from: rangeStart, to: rangeEnd)

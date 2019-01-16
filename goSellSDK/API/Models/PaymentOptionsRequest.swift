@@ -90,7 +90,7 @@ extension PaymentOptionsRequest: Encodable {
         
         try container.encode            (self.currency      , forKey: .currency)
         
-        if self.customer?.length ?? 0 > 0 {
+        if self.customer?.tap_length ?? 0 > 0 {
             
             try container.encodeIfPresent   (self.customer      , forKey: .customer)
         }

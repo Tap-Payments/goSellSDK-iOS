@@ -34,7 +34,7 @@ internal final class LocalizationProvider {
 			self.selectedLocale = Locale(identifier: self.selectedLanguage)
 			self.selectedLanguageBundle = self.obtainBundleForCurrentLanguage()
 			
-			NotificationCenter.default.post(name: .sdkLanguageChanged, object: nil)
+			NotificationCenter.default.post(name: .tap_sdkLanguageChanged, object: nil)
 			
 			self.postLayoutDirectionChangeNotificationIfLayoutDirectionChanged(compareTo: oldValue)
 		}
@@ -73,7 +73,7 @@ internal final class LocalizationProvider {
 	
 	private static func obtainInitialSDKLanguage() -> String {
 		
-		return LocalizationProvider.bundle.developmentLocalization ?? Locale.LocaleIdentifier.en
+		return LocalizationProvider.bundle.developmentLocalization ?? Locale.TapLocaleIdentifier.en
 	}
 	
 	private func obtainBundleForCurrentLanguage() -> Bundle {
@@ -96,7 +96,7 @@ internal final class LocalizationProvider {
 		let oldDirection: UIUserInterfaceLayoutDirection = Locale.characterDirection(forLanguage: oldLanguage) == .rightToLeft ? .rightToLeft : .leftToRight
 		if oldDirection != self.layoutDirection {
 			
-			NotificationCenter.default.post(name: .sdkLayoutDirectionChanged, object: nil)
+			NotificationCenter.default.post(name: .tap_sdkLayoutDirectionChanged, object: nil)
 			
 			self.updateResponderChainInputViewLayoutDirection()
 		}

@@ -28,7 +28,7 @@ internal final class APIClient {
         
         let secretKey = self.sdkSecretKey
         
-        guard secretKey.length > 0 else {
+        guard secretKey.tap_length > 0 else {
             
             fatalError("Secret key must be set in order to use goSellSDK.")
         }
@@ -117,7 +117,7 @@ internal final class APIClient {
         
         do {
             
-            modelDictionary = try model.asDictionary()
+            modelDictionary = try model.tap_asDictionary()
         }
         catch let error {
             

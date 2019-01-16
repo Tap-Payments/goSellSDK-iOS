@@ -31,9 +31,9 @@ internal final class CurrencyFormatter {
             let positiveFormat: String? = self.currencyFormatter.positiveFormat
             let negativeFormat: String? = self.currencyFormatter.negativeFormat
             
-            let currencySymbol: String = displayCurrency ? amountedCurrency.currencySymbol : String.empty
+            let currencySymbol: String = displayCurrency ? amountedCurrency.currencySymbol : .tap_empty
             
-            self.currencyFormatter.locale = Locale.enUS
+            self.currencyFormatter.locale = Locale.tap_enUS
             
             self.currencyFormatter.positiveFormat = positiveFormat
             self.currencyFormatter.negativeFormat = negativeFormat
@@ -54,7 +54,7 @@ internal final class CurrencyFormatter {
         return result
     }
     
-    internal func localizedCurrencySymbol(for currencyCode: String, locale: Locale = .enUS) -> String {
+    internal func localizedCurrencySymbol(for currencyCode: String, locale: Locale = .tap_enUS) -> String {
         
         var currencySymbol: String = (locale as NSLocale).displayName(forKey: .currencySymbol, value: currencyCode) ?? currencyCode
         self.optionallyHardcodeCurrencySymbol(&currencySymbol)
@@ -67,7 +67,7 @@ internal final class CurrencyFormatter {
     
     private lazy var currencyFormatter: NumberFormatter = {
         
-        let formatter: NumberFormatter          = NumberFormatter(locale: .enUS)
+        let formatter: NumberFormatter          = NumberFormatter(locale: .tap_enUS)
         formatter.numberStyle                   = .currency
         formatter.allowsFloats                  = true
         formatter.alwaysShowsDecimalSeparator   = true

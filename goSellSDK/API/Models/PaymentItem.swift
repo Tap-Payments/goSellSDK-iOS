@@ -129,7 +129,7 @@ extension PaymentItem: Encodable {
         
         try container.encodeIfPresent(self.title            , forKey: .title            )
         
-        if self.descriptionText?.length ?? 0 > 0 {
+        if self.descriptionText?.tap_length ?? 0 > 0 {
             
             try container.encodeIfPresent(self.descriptionText, forKey: .descriptionText)
         }

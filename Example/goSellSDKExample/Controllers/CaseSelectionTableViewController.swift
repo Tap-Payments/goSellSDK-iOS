@@ -29,7 +29,7 @@ internal class CaseSelectionTableViewController: UITableViewController {
     internal var allValues: [Value] = []
     
     // MARK: Methods
-    
+	
     internal override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -43,9 +43,9 @@ internal class CaseSelectionTableViewController: UITableViewController {
     
     internal override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.tap_className) as? TitleTableViewCell else {
             
-            fatalError("Failed to load \(TitleTableViewCell.className) from storyboard.")
+            fatalError("Failed to load \(TitleTableViewCell.tap_className) from storyboard.")
         }
         
         return cell

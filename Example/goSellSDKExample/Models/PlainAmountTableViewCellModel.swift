@@ -24,7 +24,7 @@ internal class PlainAmountTableViewCellModel: TableViewCellModel {
     
     internal var amount: Decimal {
         
-        return self.amountString.decimalValue ?? 0
+        return self.amountString.tap_decimalValue ?? 0
     }
     
     internal override class var cellClass: UITableViewCell.Type {

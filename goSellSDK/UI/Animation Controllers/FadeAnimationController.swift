@@ -96,13 +96,13 @@ extension FadeAnimationController: UIViewControllerAnimatedTransitioning {
             
         case .presentation:
             
-            blurView            = toView.subview(ofClass: TapVisualEffectView.self)
+            blurView            = toView.tap_subview(ofClass: TapVisualEffectView.self)
             initialBlurStyle    = .none
             finalBlurStyle      = blurView?.style ?? .none
             
         case .dismissal:
             
-            blurView            = fromView.subview(ofClass: TapVisualEffectView.self)
+            blurView            = fromView.tap_subview(ofClass: TapVisualEffectView.self)
             initialBlurStyle    = blurView?.style ?? .none
             finalBlurStyle      = .none
         }

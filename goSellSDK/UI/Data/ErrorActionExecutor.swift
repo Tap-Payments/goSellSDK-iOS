@@ -39,7 +39,7 @@ internal class ErrorActionExecutor {
                 
                 if let nonnullAlert = alert {
                     
-                    nonnullAlert.dismissFromSeparateWindow(true) {
+                    nonnullAlert.tap_dismissFromSeparateWindow(true) {
                         
                         completion?(false)
                     }
@@ -61,7 +61,7 @@ internal class ErrorActionExecutor {
                     
                     if let nonnullAlert = alert {
                         
-                        nonnullAlert.dismissFromSeparateWindow(true) {
+                        nonnullAlert.tap_dismissFromSeparateWindow(true) {
                             
                             completion?(true)
                         }
@@ -80,7 +80,7 @@ internal class ErrorActionExecutor {
         
         DispatchQueue.main.async {
 			
-			alert.showOnSeparateWindow(below: .statusBar) { [unowned alert] (separateWindowRootController) in
+			alert.tap_showOnSeparateWindow(below: .statusBar) { [unowned alert] (separateWindowRootController) in
 				
 				let supportedOrientations = InterfaceOrientationManager.shared.supportedInterfaceOrientations(for: separateWindowRootController)
 				let canAutorotate = InterfaceOrientationManager.shared.viewControllerShouldAutorotate(separateWindowRootController)

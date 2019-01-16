@@ -7,7 +7,7 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGSize
-import func     TapAdditionsKit.clamp
+import func     TapAdditionsKit.tap_clamp
 import class    TapNetworkManager.TapImageLoader
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIColor.UIColor
@@ -37,7 +37,7 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
     
     internal func updateBackgroundOpacityBasedOnScrollContentOverlapping(_ overlapping: CGFloat) {
         
-        let opacity = clamp(value: 2.0 * overlapping / self.view.bounds.height, low: 0.0, high: 1.0)
+        let opacity = tap_clamp(value: 2.0 * overlapping / self.view.bounds.height, low: 0.0, high: 1.0)
         
         self.backgroundOpacity = opacity
         self.view.layer.shadowOpacity = Float(opacity)

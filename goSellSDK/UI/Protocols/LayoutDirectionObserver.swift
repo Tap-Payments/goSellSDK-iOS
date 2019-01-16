@@ -18,16 +18,16 @@ internal extension LayoutDirectionObserver {
 	
 	internal func startMonitoringLayoutDirectionChanges() {
 		
-		NotificationCenter.default.addObserver(forName: .sdkLayoutDirectionChanged, object: nil, queue: .main) { [weak self] _ in
+		NotificationCenter.default.addObserver(forName: .tap_sdkLayoutDirectionChanged, object: nil, queue: .main) { [weak self] _ in
 			
-			self?.viewToUpdateLayoutDirection.updateLayoutDirectionIfRequired()
+			self?.viewToUpdateLayoutDirection.tap_updateLayoutDirectionIfRequired()
 			self?.layoutDirectionChanged()
 		}
 	}
 	
 	internal func stopMonitoringLayoutDirectionChanges() {
 		
-		NotificationCenter.default.removeObserver(self, name: .sdkLayoutDirectionChanged, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .tap_sdkLayoutDirectionChanged, object: nil)
 	}
 	
 	internal func layoutDirectionChanged() {}

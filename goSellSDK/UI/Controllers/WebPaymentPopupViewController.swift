@@ -180,7 +180,7 @@ extension WebPaymentPopupViewController: WebPaymentContentViewControllerDelegate
     
     internal func webPaymentContentViewController(_ controller: WebPaymentContentViewController, webViewDidScroll contentOffset: CGPoint) {
         
-        MerchantInformationHeaderViewController.findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(contentOffset.y)
+        MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(contentOffset.y)
     }
     
     internal func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController) {

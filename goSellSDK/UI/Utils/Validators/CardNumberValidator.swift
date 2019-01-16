@@ -33,7 +33,7 @@ internal class CardNumberValidator: CardValidator {
     
     internal var cardNumber: String {
         
-        return self.textField.attributedText?.string ?? .empty
+        return self.textField.attributedText?.string ?? .tap_empty
     }
     
     internal override var isValid: Bool {
@@ -191,7 +191,7 @@ internal class CardNumberValidator: CardValidator {
             
             let cardBrand = brand ?? self.recognizedCardType.brand
             
-            let attributedText = self.textField.attributedText ?? NSAttributedString(string: .empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
+            let attributedText = self.textField.attributedText ?? NSAttributedString(string: .tap_empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
 			
 			var text: NSAttributedString
 			if cardBrand == .unknown {
@@ -284,10 +284,10 @@ extension CardNumberValidator.CardNumberTextFieldDelegate: UITextFieldDelegate {
     
     fileprivate func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let desiredText = textField.attributedText?.string.replacing(range: range, withString: string) ?? .empty
+        let desiredText = textField.attributedText?.string.tap_replacing(range: range, withString: string) ?? .tap_empty
         let numberOnlyText = desiredText.trimmingCharacters(in: .whitespaces)
         
-        return numberOnlyText.containsOnlyInternationalDigits
+        return numberOnlyText.tap_containsOnlyInternationalDigits
     }
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {

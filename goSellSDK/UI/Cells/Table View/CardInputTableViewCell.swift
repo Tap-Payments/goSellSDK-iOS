@@ -54,7 +54,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         
         if !selected {
             
-            self.firstResponder?.resignFirstResponder()
+            self.tap_firstResponder?.resignFirstResponder()
             self.controls?.forEach { $0.isUserInteractionEnabled = false }
         }
         
@@ -118,7 +118,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     private func enableUserInteractionAndUpdateToolbarInAllControls() {
         
         self.controls?.forEach { $0.isUserInteractionEnabled = true }
-        self.controls?.forEach { $0.updateToolbarButtonsState() }
+        self.controls?.forEach { $0.tap_updateToolbarButtonsState() }
     }
     
     @discardableResult private func updateCardScannerButtonVisibility(animated: Bool, layout: Bool) -> Bool {
@@ -135,14 +135,14 @@ internal class CardInputTableViewCell: BaseTableViewCell {
             self.cardScannerButton?.alpha = (self.model?.isScanButtonVisible ?? false) ? 1.0 : 0.0
         }
         
-        return NSLayoutConstraint.reactivate(inCaseIf: self.model?.isScanButtonVisible ?? false,
-                                             constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfScanningEnabled,
-                                             constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfScanningEnabled,
-                                             viewToLayout: layout ? self.contentView : nil,
-                                             animationDuration: animated ? self.contentView.layer.longestAnimationDuration : 0.0,
-                                             additionalAnimations: scanButtonAlphaAnimation)
-    }
-    
+		return NSLayoutConstraint.tap_reactivate(inCaseIf: self.model?.isScanButtonVisible ?? false,
+												 constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfScanningEnabled,
+												 constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfScanningEnabled,
+												 viewToLayout: layout ? self.contentView : nil,
+												 animationDuration: animated ? self.contentView.layer.tap_longestAnimationDuration : 0.0,
+												 additionalAnimations: scanButtonAlphaAnimation)
+	}
+	
     @discardableResult private func updateAddressOnCardFieldVisibility(animated: Bool, layout: Bool) -> Bool {
         
         guard
@@ -152,12 +152,12 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         
         else { return false }
         
-        return NSLayoutConstraint.reactivate(inCaseIf: self.model?.displaysAddressFields ?? false,
-                                             constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfAddressRequired,
-                                             constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfAddressRequired,
-                                             viewToLayout: layout ? self.contentView : nil,
-                                             animationDuration: animated ? self.contentView.layer.longestAnimationDuration : 0.0)
-    }
+		return NSLayoutConstraint.tap_reactivate(inCaseIf: self.model?.displaysAddressFields ?? false,
+												 constraintsToDisableOnSuccess: nonnullConstraintsToDeactivateIfAddressRequired,
+												 constraintsToEnableOnSuccess: nonnullConstraintsToActivateIfAddressRequired,
+												 viewToLayout: layout ? self.contentView : nil,
+												 animationDuration: animated ? self.contentView.layer.tap_longestAnimationDuration : 0.0)
+	}
     
     @discardableResult private func updateSaveCardSectionVisibility(animated: Bool, layout: Bool) -> Bool {
         
@@ -178,11 +178,11 @@ internal class CardInputTableViewCell: BaseTableViewCell {
             saveCardContainerHeightConstraint.constant = containerHeight
             if layout {
                 
-                self.layout()
+                self.tap_layout()
             }
         }
         
-        let animationDuration = animated ? self.contentView.layer.longestAnimationDuration : 0.0
+        let animationDuration = animated ? self.contentView.layer.tap_longestAnimationDuration : 0.0
         UIView.animate(withDuration: animationDuration, animations: animations)
         
         return true
@@ -195,7 +195,6 @@ extension CardInputTableViewCell: LoadingWithModelCell {
     internal func updateContent(animated: Bool) {
 
 		self.updateLocalization()
-        self.updateTableViewContent(animated)
         
         var shouldForceLayout = false
         
@@ -215,7 +214,9 @@ extension CardInputTableViewCell: LoadingWithModelCell {
         
         self.updateAddressOnCardLabelHeightConstraint()
         self.updateSectionsVisibility(animated: animated, updateConstraintsOnly: false, forceLayout: shouldForceLayout)
-        
+		
+		self.updateTableViewContent(animated)
+		
         self.setGlowing(self.model?.isSelected ?? false)
         
         self.addressOnCardArrowImageView?.image = self.model?.addressOnCardArrowImage
@@ -224,12 +225,12 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 
 	private func updateLocalization() {
 		
-		self.cardNumberTextField?.localizedTextAlignment 		= .leading
-		self.expirationDateTextField?.localizedTextAlignment 	= .leading
-		self.cvvTextField?.localizedTextAlignment 				= .leading
-		self.addressOnCardLabel?.localizedTextAlignment 		= .leading
-		self.nameOnCardTextField?.localizedTextAlignment 		= .leading
-		self.saveCardDescriptionLabel?.localizedTextAlignment	= .leading
+		self.cardNumberTextField?.tap_localizedTextAlignment 		= .leading
+		self.expirationDateTextField?.tap_localizedTextAlignment 	= .leading
+		self.cvvTextField?.tap_localizedTextAlignment 				= .leading
+		self.addressOnCardLabel?.tap_localizedTextAlignment 		= .leading
+		self.nameOnCardTextField?.tap_localizedTextAlignment 		= .leading
+		self.saveCardDescriptionLabel?.tap_localizedTextAlignment	= .leading
 		
 		self.cardNumberTextField?.localizedClearButtonPosition 		= .right
 		self.expirationDateTextField?.localizedClearButtonPosition 	= .right
@@ -241,7 +242,7 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 		self.cvvTextField?.setLocalizedText				(for: .placeholder, key: .card_input_cvv_placeholder)
 		self.nameOnCardTextField?.setLocalizedText		(for: .placeholder, key: .card_input_cardholder_name_placeholder)
 		
-		self.cvvTextField?.textInsets	= Constants.cvvFieldInsets.localized
+		self.cvvTextField?.textInsets	= Constants.cvvFieldInsets.tap_localized
 		
 		self.addressOnCardLabel?.setLocalizedText		(.card_input_address_on_card_placeholder)
 		self.saveCardDescriptionLabel?.setLocalizedText	(.save_card_promotion_text)
@@ -358,7 +359,7 @@ extension CardInputTableViewCell: BindingWithModelCell {
                 
                 let animations: TypeAlias.ArgumentlessClosure = {
                     
-                    self.layout()
+                    self.tap_layout()
                 }
                 
                 if animated {

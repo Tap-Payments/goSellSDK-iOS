@@ -46,7 +46,7 @@ internal struct ExpirationDate {
     
     private mutating func updateYearToReal() {
         
-        let currentYear = Date().year
+        let currentYear = Date().tap_year
         
         if self.year < currentYear {
             
@@ -62,8 +62,8 @@ extension ExpirationDate: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let m = try container.decodeInt(forKey: .month)
-        let y = try container.decodeInt(forKey: .year)
+        let m = try container.tap_decodeInt(forKey: .month)
+        let y = try container.tap_decodeInt(forKey: .year)
         
         self.init(month: m, year: y)
     }

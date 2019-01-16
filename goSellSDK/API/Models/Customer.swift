@@ -115,7 +115,7 @@
         
         guard let otherCustomer = object as? Customer else { return false }
         
-        if let firstIdentifier = self.identifier, let otherIdentifier = otherCustomer.identifier, firstIdentifier.length > 0, otherIdentifier.length > 0 {
+        if let firstIdentifier = self.identifier, let otherIdentifier = otherCustomer.identifier, firstIdentifier.tap_length > 0, otherIdentifier.tap_length > 0 {
             
             return firstIdentifier == otherIdentifier
         }
@@ -158,7 +158,7 @@
     
     private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String?, middleName: String?, lastName: String?) throws {
         
-        guard ( (identifier?.length ?? 0) > 0 ) || (emailAddress != nil && phoneNumber != nil && ( (firstName?.length ?? 0) > 0 )) else {
+        guard ( (identifier?.tap_length ?? 0) > 0 ) || (emailAddress != nil && phoneNumber != nil && ( (firstName?.tap_length ?? 0) > 0 )) else {
             
             let userInfo = [ErrorConstants.UserInfoKeys.customerInfo: "Failed to create the customer: Either identifier shouldn't be nil or email address, phone number and at least first name shouldn't be nil."]
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidCustomerInfo.rawValue, userInfo: userInfo)
@@ -177,24 +177,24 @@
     
     private func validateFields() {
         
-        if let identifier = self.identifier, identifier.length == 0 {
+        if let identifier = self.identifier, identifier.tap_length == 0 {
             
             self.identifier = nil
         }
         
         if let trimmedFirstName = self.firstName?.trimmingCharacters(in: .whitespacesAndNewlines) {
             
-            self.firstName = trimmedFirstName.length > 0 ? trimmedFirstName : nil
+            self.firstName = trimmedFirstName.tap_length > 0 ? trimmedFirstName : nil
         }
         
         if let trimmedMiddleName = self.middleName?.trimmingCharacters(in: .whitespacesAndNewlines) {
             
-            self.middleName = trimmedMiddleName.length > 0 ? trimmedMiddleName : nil
+            self.middleName = trimmedMiddleName.tap_length > 0 ? trimmedMiddleName : nil
         }
         
         if let trimmedLastName = self.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
             
-            self.lastName = trimmedLastName.length > 0 ? trimmedLastName : nil
+            self.lastName = trimmedLastName.tap_length > 0 ? trimmedLastName : nil
         }
     }
 }

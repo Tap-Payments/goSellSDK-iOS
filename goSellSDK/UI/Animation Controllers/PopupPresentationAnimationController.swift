@@ -146,7 +146,7 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
         layoutView.alpha = initialAlpha
         
         nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = initialConstant
-        layoutView.layout()
+        layoutView.tap_layout()
         
         
         if let nonnullOverlaySupport = self.overlaySupport, !self.overlaysBottomView {
@@ -155,7 +155,7 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
 			bottomViewInitialTopOffset = max(bottomViewInitialTopOffset - offset, -nonnullOverlaySupport.layoutView.bounds.size.height)
 			
             nonnullOverlaySupport.topOffsetOverlayConstraint?.constant = bottomViewInitialTopOffset
-            nonnullOverlaySupport.layoutView.layout()
+            nonnullOverlaySupport.layoutView.tap_layout()
         }
         
         let backgroundColor: CGColor? = layoutView.layer.backgroundColor
@@ -172,19 +172,19 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
 				layoutView.layer.backgroundColor = self.operation == .presentation ? backgroundColor : UIColor.clear.cgColor
 				
                 nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = finalConstant
-                layoutView.layout()
+                layoutView.tap_layout()
                 
                 if !self.overlaysBottomView {
                     
                     self.overlaySupport?.topOffsetOverlayConstraint?.constant = bottomViewFinalTopOffset
                     self.overlaySupport?.additionalAnimations(for: self.operation)()
-                    self.overlaySupport?.layoutView.layout()
+                    self.overlaySupport?.layoutView.tap_layout()
                 }
             }
         }
         
         let animationDuration: TimeInterval = self.transitionDuration(using: transitionContext)
-        let animationOption: UIView.KeyframeAnimationOptions = UIView.KeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveLinear)
+		let animationOption: UIView.KeyframeAnimationOptions = UIView.KeyframeAnimationOptions(tap_animationOptions: self.operation == .presentation ? .curveEaseOut : .curveLinear)
         let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
         
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations) { (finished) in
@@ -193,7 +193,7 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
             transitionContext.completeTransition(success)
         }
 		
-		if let blurView = layoutView.subview(ofClass: TapVisualEffectView.self) {
+		if let blurView = layoutView.tap_subview(ofClass: TapVisualEffectView.self) {
 		
 			self.animate(blurView, with: animationDuration)
 		}
@@ -211,7 +211,7 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
 			}
 		}
 		
-		let animationOption: UIView.KeyframeAnimationOptions = UIView.KeyframeAnimationOptions(.curveEaseOut)
+		let animationOption: UIView.KeyframeAnimationOptions = UIView.KeyframeAnimationOptions(tap_animationOptions: .curveEaseOut)
 		let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
 		
 		UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)
@@ -225,7 +225,7 @@ extension PopupPresentationAnimationController: InteractiveTransitionControllerD
         
         guard let presentationSupport = self.fromViewController as? PopupPresentationSupport else { return }
         
-        self.firstResponderOnMomentOfDismissal = presentationSupport.viewToLayout.firstResponder
+        self.firstResponderOnMomentOfDismissal = presentationSupport.viewToLayout.tap_firstResponder
     }
     
     internal func interactiveTransitionDidCancel() {
@@ -242,7 +242,7 @@ extension PopupPresentationAnimationController: InteractiveTransitionControllerD
         }
         
         let animationDuration = self.transitionDuration(using: nil)
-        let animationOption = UIView.KeyframeAnimationOptions(self.operation == .presentation ? .curveEaseOut : .curveEaseIn)
+		let animationOption = UIView.KeyframeAnimationOptions(tap_animationOptions: self.operation == .presentation ? .curveEaseOut : .curveEaseIn)
         let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
         
         UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)

@@ -129,13 +129,13 @@ extension CardCollectionViewCell: LoadingWithModelCell {
         if let smallImageView = self.smallIconImageView, let smallImage = self.model?.smallImage {
             
             smallImageView.image = smallImage
-            smallImageView.contentMode = smallImage.bestContentMode(toFit: smallImageView.bounds.size)
+            smallImageView.contentMode = smallImage.tap_bestContentMode(toFit: smallImageView.bounds.size)
         }
         
         if let bigImageView = self.bigIconImageView, let bigImage = self.model?.bigImage {
             
             bigImageView.image = bigImage
-            bigImageView.contentMode = bigImage.bestContentMode(toFit: bigImageView.bounds.size)
+            bigImageView.contentMode = bigImage.tap_bestContentMode(toFit: bigImageView.bounds.size)
         }
         
         if self.model?.isDeleteCellMode ?? false {

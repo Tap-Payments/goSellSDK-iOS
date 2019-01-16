@@ -287,18 +287,18 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
     
     internal func cardNumberValidator(_ validator: CardNumberValidator, cardNumberInputChanged cardNumber: String) {
         
-        if cardNumber.length < Constants.binNumberLength {
+        if cardNumber.tap_length < Constants.binNumberLength {
             
             self.actualBinDataUpdated(nil)
             return
         }
         
-        BINDataManager.shared.retrieveBINData(for: cardNumber.substring(to: Constants.binNumberLength)) { (response) in
+        BINDataManager.shared.retrieveBINData(for: cardNumber.tap_substring(to: Constants.binNumberLength)) { (response) in
             
             let inputCardNumber = validator.cardNumber
             let outputBINNumber = response.binNumber
-            let inputTrimmedTo6Characters = inputCardNumber.length < Constants.binNumberLength ? .empty : inputCardNumber.substring(to: Constants.binNumberLength)
-            let outputTrimmedTo6Characters = outputBINNumber.length < Constants.binNumberLength ? .empty : outputBINNumber.substring(to: Constants.binNumberLength)
+            let inputTrimmedTo6Characters = inputCardNumber.tap_length < Constants.binNumberLength ? String.tap_empty : inputCardNumber.tap_substring(to: Constants.binNumberLength)
+            let outputTrimmedTo6Characters = outputBINNumber.tap_length < Constants.binNumberLength ? String.tap_empty : outputBINNumber.tap_substring(to: Constants.binNumberLength)
             if inputTrimmedTo6Characters == outputTrimmedTo6Characters {
                 
                 self.actualBinDataUpdated(response)

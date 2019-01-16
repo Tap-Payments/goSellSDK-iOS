@@ -153,10 +153,10 @@ internal final class OTPInputView: TapNibView {
     
     private var displayedOTPCode: String {
         
-        guard let nonnullOTPLabels = self.otpLabels else { return .empty }
+        guard let nonnullOTPLabels = self.otpLabels else { return .tap_empty }
         
         let orderedOTPLabels = nonnullOTPLabels.sorted { $0.tag < $1.tag }
-        let texts = orderedOTPLabels.map { $0.text ?? .empty }
+        let texts = orderedOTPLabels.map { $0.text ?? .tap_empty }
         
         return texts.joined()
     }
@@ -165,7 +165,7 @@ internal final class OTPInputView: TapNibView {
     
     private var currentInputState: Bool {
         
-        return self.otp.length == Constants.otpCodeLength
+        return self.otp.tap_length == Constants.otpCodeLength
     }
     
     // MARK: Methods
@@ -186,12 +186,12 @@ internal final class OTPInputView: TapNibView {
         
         let truncatedCode = String(code.prefix(Constants.otpCodeLength))
         let texts = truncatedCode.map { String($0) }
-        let length = truncatedCode.length
+        let length = truncatedCode.tap_length
         
         self.otpLabels?.enumerated().forEach {
             
-            let desiredText = $0.offset < length ? texts[$0.offset] : .empty
-            let previousText = $0.element.text ?? .empty
+            let desiredText = $0.offset < length ? texts[$0.offset] : .tap_empty
+            let previousText = $0.element.text ?? .tap_empty
             
             self.animateLabelTextChange($0.element, from: previousText, to: desiredText)
         }
@@ -201,7 +201,7 @@ internal final class OTPInputView: TapNibView {
         
         guard from != to else { return }
         
-        let appearance = from.length < to.length
+        let appearance = from.tap_length < to.tap_length
         
         let animations: TypeAlias.ArgumentlessClosure = {
             
@@ -298,17 +298,17 @@ extension OTPInputView: UIKeyInput {
     
     internal var hasText: Bool {
         
-        return self.otp.length > 0
+        return self.otp.tap_length > 0
     }
     
     internal func insertText(_ text: String) {
         
-        guard text.containsOnlyInternationalDigits else { return }
-        if text.length == Constants.otpCodeLength {
+        guard text.tap_containsOnlyInternationalDigits else { return }
+        if text.tap_length == Constants.otpCodeLength {
             
             self.setOTPCode(text, wholeAtOnce: true)
         }
-        else if text.length == 1 && self.otp.length < Constants.otpCodeLength {
+        else if text.tap_length == 1 && self.otp.tap_length < Constants.otpCodeLength {
             
             self.otp += text
         }
@@ -327,20 +327,20 @@ extension OTPInputView: UITextInput {
     internal func text(in range: UITextRange) -> String? {
         
         let nsRange = self.convertToNSRange(range)
-        return self.otp.substring(with: nsRange)
+        return self.otp.tap_substring(with: nsRange)
     }
     
     internal func replace(_ range: UITextRange, withText text: String) {
         
         let nsRange = self.convertToNSRange(range)
-        self.otp.replace(range: nsRange, withString: text)
+        self.otp.tap_replace(range: nsRange, withString: text)
     }
     
     internal var selectedTextRange: UITextRange? {
         
         get {
             
-            guard let start = self.position(from: self.beginningOfDocument, offset: self.otp.length) else { return nil }
+            guard let start = self.position(from: self.beginningOfDocument, offset: self.otp.tap_length) else { return nil }
             return self.textRange(from: start, to: start)
         }
         set {}
@@ -371,7 +371,7 @@ extension OTPInputView: UITextInput {
     
     internal var endOfDocument: UITextPosition {
         
-        return TextPosition(position: max(self.otp.length - 1, 0))!
+        return TextPosition(position: max(self.otp.tap_length - 1, 0))!
     }
     
     internal func textRange(from fromPosition: UITextPosition, to toPosition: UITextPosition) -> UITextRange? {
@@ -479,7 +479,7 @@ extension OTPInputView: UITextInput {
         }
         
         let rectCenters = rects.map { CGPoint(x: $0.midX, y: $0.midY) }
-        let distancePoints = rectCenters.map { $0.subtract(point) }
+        let distancePoints = rectCenters.map { $0.tap_subtract(point) }
         let distances = distancePoints.map { sqrt($0.x * $0.x + $0.y * $0.y) }
         
         var minimalDistanceIndex = 0
@@ -615,7 +615,7 @@ private extension OTPInputView {
         fileprivate override var writingDirection: UITextWritingDirection { return self._writingDirection }
         
         fileprivate override var containsStart: Bool { return (self.range.start as? TextPosition)?.position == 0 }
-        fileprivate override var containsEnd: Bool { return (self.range.end as? TextPosition)?.position == self.inputView?.otp.length }
+        fileprivate override var containsEnd: Bool { return (self.range.end as? TextPosition)?.position == self.inputView?.otp.tap_length }
         fileprivate override var isVertical: Bool { return false }
         
         fileprivate init(inputView: OTPInputView, rect: CGRect, writingDirection: UITextWritingDirection, range: TextRange) {

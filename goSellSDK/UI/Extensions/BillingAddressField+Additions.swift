@@ -30,7 +30,7 @@ internal extension BillingAddressField {
 
             case .digits:
 
-                return string.containsOnlyDigits
+                return string.tap_containsOnlyDigits
 
             case .text:
 

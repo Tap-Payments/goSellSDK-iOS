@@ -58,7 +58,7 @@ extension Language: Decodable {
 		}
 		catch _ {
 			
-			localeIdentifier = Locale.LocaleIdentifier.en
+			localeIdentifier = Locale.TapLocaleIdentifier.en
 		}
 		
 		self.init(localeIdentifier: localeIdentifier)

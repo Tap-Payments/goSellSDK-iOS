@@ -16,7 +16,7 @@ internal extension LocalizationObserver {
 	
 	internal func startMonitoringLocalizationChanges() {
 		
-		NotificationCenter.default.addObserver(forName: .sdkLanguageChanged, object: nil, queue: .main) { [weak self] _ in
+		NotificationCenter.default.addObserver(forName: .tap_sdkLanguageChanged, object: nil, queue: .main) { [weak self] _ in
 			
 			self?.localizationChanged()
 		}
@@ -24,6 +24,6 @@ internal extension LocalizationObserver {
 	
 	internal func stopMonitoringLocalizationChanges() {
 		
-		NotificationCenter.default.removeObserver(self, name: .sdkLanguageChanged, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .tap_sdkLanguageChanged, object: nil)
 	}
 }

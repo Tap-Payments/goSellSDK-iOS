@@ -12,12 +12,12 @@ internal extension UIEdgeInsets {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var localized: UIEdgeInsets {
+	internal var tap_localized: UIEdgeInsets {
 		
 		switch LocalizationProvider.shared.layoutDirection {
 			
 		case .leftToRight: return self
-		case .rightToLeft: return self.mirrored
+		case .rightToLeft: return self.tap_mirrored
 			
 		}
 	}

@@ -7,7 +7,7 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGSize
-import func     TapAdditionsKit.clamp
+import func     TapAdditionsKit.tap_clamp
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIView.UIView
@@ -57,7 +57,7 @@ internal class HeaderNavigatedViewController: BaseViewController {
         
         guard let nonnullHeaderView = self.headerNavigationView else { return }
         
-        let opacity = clamp(value: 2.0 * contentOverlapping / nonnullHeaderView.bounds.height, low: 0.0, high: 1.0)
+        let opacity = tap_clamp(value: 2.0 * contentOverlapping / nonnullHeaderView.bounds.height, low: 0.0, high: 1.0)
         nonnullHeaderView.layer.shadowOpacity = Float(opacity)
     }
     

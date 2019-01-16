@@ -59,7 +59,7 @@ internal extension PayButtonInternalImplementation {
         
         guard PaymentDataManager.shared.canStart(with: self) else { return }
 		
-		UIResponder.resign()
+		UIResponder.tap_resign()
 		
         PaymentDataManager.shared.start(with: self)
     }
@@ -82,7 +82,7 @@ internal extension PayButtonInternalImplementation {
             controller.payButton = selfAsView
         }
         
-        controller.showOnSeparateWindow(below: .statusBar) { [unowned controller] (rootController) in
+        controller.tap_showOnSeparateWindow(below: .statusBar) { [unowned controller] (rootController) in
             
             rootController.allowedInterfaceOrientations = .portrait
             rootController.preferredInterfaceOrientation = .portrait

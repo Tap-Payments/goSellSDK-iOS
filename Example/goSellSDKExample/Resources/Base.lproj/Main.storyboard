@@ -2048,7 +2048,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <outlet property="nextField" destination="MRM-iX-nDS" id="3sx-AG-v6g"/>
+                                                        <outlet property="tap_nextField" destination="MRM-iX-nDS" id="p5F-2p-Gdz"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2089,8 +2089,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <outlet property="nextField" destination="hgh-1S-2r4" id="ob0-mS-79J"/>
-                                                        <outlet property="previousField" destination="a2K-Sa-xFb" id="VHj-wV-QwX"/>
+                                                        <outlet property="tap_nextField" destination="hgh-1S-2r4" id="ob0-mS-79J"/>
+                                                        <outlet property="tap_previousField" destination="a2K-Sa-xFb" id="VHj-wV-QwX"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2131,8 +2131,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <outlet property="nextField" destination="jcJ-go-aOi" id="WIQ-PD-PvN"/>
-                                                        <outlet property="previousField" destination="MRM-iX-nDS" id="Itf-3i-lpN"/>
+                                                        <outlet property="tap_nextField" destination="jcJ-go-aOi" id="WIQ-PD-PvN"/>
+                                                        <outlet property="tap_previousField" destination="MRM-iX-nDS" id="Itf-3i-lpN"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2173,8 +2173,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     <connections>
-                                                        <outlet property="nextField" destination="xaF-JE-Enh" id="84y-Lu-R6H"/>
-                                                        <outlet property="previousField" destination="hgh-1S-2r4" id="fkl-W5-Qdy"/>
+                                                        <outlet property="tap_nextField" destination="xaF-JE-Enh" id="84y-Lu-R6H"/>
+                                                        <outlet property="tap_previousField" destination="hgh-1S-2r4" id="fkl-W5-Qdy"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2215,8 +2215,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     <connections>
-                                                        <outlet property="nextField" destination="pww-Do-uxP" id="yZy-UU-0qb"/>
-                                                        <outlet property="previousField" destination="jcJ-go-aOi" id="O8a-NL-d4X"/>
+                                                        <outlet property="tap_nextField" destination="pww-Do-uxP" id="yZy-UU-0qb"/>
+                                                        <outlet property="tap_previousField" destination="jcJ-go-aOi" id="O8a-NL-d4X"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2257,7 +2257,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     <connections>
-                                                        <outlet property="previousField" destination="xaF-JE-Enh" id="ZQ6-0w-lyr"/>
+                                                        <outlet property="tap_previousField" destination="xaF-JE-Enh" id="ZQ6-0w-lyr"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>

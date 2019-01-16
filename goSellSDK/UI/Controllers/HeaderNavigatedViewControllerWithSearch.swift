@@ -9,7 +9,7 @@ import struct   CoreGraphics.CGAffineTransform.CGAffineTransform
 import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGPoint
 import struct   CoreGraphics.CGGeometry.CGSize
-import func     TapAdditionsKit.clamp
+import func     TapAdditionsKit.tap_clamp
 import protocol TapSearchView.TapSearchUpdating
 import class    TapSearchView.TapSearchView
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
@@ -73,7 +73,7 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         aSearchView.layer.shadowColor = Constants.searchViewShadowColor?.cgColor
 		
 		self.searchViewHeightConstraint?.constant = Constants.headerViewAndSearchBarOverlapping + Constants.shadowHeight
-		aSearchView.layout()
+		aSearchView.tap_layout()
     }
     
     internal func bothTableViewAndSearchViewLoaded(_ aTableView: UITableView, searchView aSearchView: TapSearchView) {
@@ -102,7 +102,7 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         
         fileprivate static let headerViewAndSearchBarOverlapping: CGFloat = 4.0
         fileprivate static let shadowHeight: CGFloat = 2.0
-		fileprivate static let searchViewShadowColor = UIColor(hex: "B5B5B5A8")
+		fileprivate static let searchViewShadowColor = UIColor(tap_hex: "B5B5B5A8")
         
         @available(*, unavailable) private init() {}
     }
@@ -144,7 +144,7 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
 	private var canSearchViewBeCollapsed: Bool {
 		
 		guard let sView = self.searchView else { return true }
-		return (sView.searchField.text?.length ?? 0) == 0
+		return (sView.searchField.text?.tap_length ?? 0) == 0
 	}
 	
     // MARK: Methods
@@ -213,7 +213,7 @@ extension HeaderNavigatedViewControllerWithSearch: UIScrollViewDelegate {
 		let minimalVisiblePart = Constants.headerViewAndSearchBarOverlapping + Constants.shadowHeight
 		
 		let emptySpace = self.canSearchViewBeCollapsed ? Constants.headerViewAndSearchBarOverlapping - scrollView.contentOffset.y : height
-		let desiredSearchViewHeight: CGFloat = clamp(value: emptySpace, low: minimalVisiblePart, high: height)
+		let desiredSearchViewHeight: CGFloat = tap_clamp(value: emptySpace, low: minimalVisiblePart, high: height)
 		
 		let scaleY = desiredSearchViewHeight / height
 		

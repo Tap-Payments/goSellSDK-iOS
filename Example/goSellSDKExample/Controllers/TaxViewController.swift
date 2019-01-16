@@ -123,7 +123,7 @@ internal class TaxViewController: ModalNavigationTableViewController {
         
         self.currentTax.descriptionText = self.descriptionTextView?.text
         
-        if let amount = self.valueTextField?.text?.decimalValue, amount > 0.0 {
+        if let amount = self.valueTextField?.text?.tap_decimalValue, amount > 0.0 {
             
             self.currentTax.amount.value = amount
         }

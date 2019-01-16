@@ -20,7 +20,7 @@ internal class PayButtonUI: TapButton {
     
     internal override class var nibName: String {
         
-        return TapButton.className
+        return TapButton.tap_className
     }
     
     internal var amount: AmountedCurrency? {

@@ -71,7 +71,7 @@ internal final class TapNavigationView: TapNibView {
             
             if let newRightView = newValue {
                 
-                nonnullHolder.addSubviewWithConstraints(newRightView)
+                nonnullHolder.tap_addSubviewWithConstraints(newRightView)
             }
             
             self.updateRightViewLayout()
@@ -158,7 +158,7 @@ internal final class TapNavigationView: TapNibView {
             self.rightViewHolder?.isHidden = !iconVisible
         }
         
-        NSLayoutConstraint.reactivate(inCaseIf: iconVisible,
+        NSLayoutConstraint.tap_reactivate(inCaseIf: iconVisible,
                                       constraintsToDisableOnSuccess: nonnullFailureConstraints,
                                       constraintsToEnableOnSuccess: nonnullSuccessConstraints,
                                       viewToLayout: self,
@@ -167,7 +167,7 @@ internal final class TapNavigationView: TapNibView {
         
         if let nonnullImage = self.iconImageView?.image, let size = self.iconImageView?.bounds.size {
             
-            self.iconImageView?.contentMode = nonnullImage.bestContentMode(toFit: size)
+            self.iconImageView?.contentMode = nonnullImage.tap_bestContentMode(toFit: size)
         }
     }
     
@@ -182,7 +182,7 @@ internal final class TapNavigationView: TapNibView {
             self.rightViewHolder?.isHidden = !rightViewAvailable
         }
         
-        NSLayoutConstraint.reactivate(inCaseIf: rightViewAvailable,
+        NSLayoutConstraint.tap_reactivate(inCaseIf: rightViewAvailable,
                                       constraintsToDisableOnSuccess: constraintsToDisableIfRightViewAvailable,
                                       constraintsToEnableOnSuccess: [],
                                       viewToLayout: self,

@@ -11,12 +11,12 @@ internal extension UITextField {
 	
 	internal func setTextStyle(_ textStyle: TextStyle, _ placeholderStyle: TextStyle) {
 		
-		let attributedPlaceholder = NSAttributedString(string: self.placeholder ?? .empty, attributes: placeholderStyle.asStringAttributes)
+		let attributedPlaceholder = NSAttributedString(string: self.placeholder ?? .tap_empty, attributes: placeholderStyle.asStringAttributes)
 		self.attributedPlaceholder = attributedPlaceholder
 		
-		self.font 					= textStyle.font.localized
-		self.localizedTextAlignment	= textStyle.alignment
-		self.textColor 				= textStyle.color
+		self.font 						= textStyle.font.localized
+		self.tap_localizedTextAlignment	= textStyle.alignment
+		self.textColor 					= textStyle.color
 	}
 }
 
@@ -32,11 +32,11 @@ extension UITextField: Localizable {
 	
 	// MARK: Properties
 	
-	internal var localizedTextAlignment: LocalizedTextAlignment {
+	internal var tap_localizedTextAlignment: LocalizedTextAlignment {
 		
 		get {
 			
-			return self.textAlignment.localizedTextAlignment
+			return self.textAlignment.tap_localizedTextAlignment
 		}
 		set {
 			
@@ -56,7 +56,7 @@ extension UITextField: Localizable {
 				
 				let mutableText = NSMutableAttributedString(attributedString: nonnullAttributedText)
 				mutableText.replaceCharacters(in:	NSRange(location: 0, length: mutableText.length),
-											  with:	text ?? .empty)
+											  with:	text ?? .tap_empty)
 				self.attributedText = NSAttributedString(attributedString: mutableText)
 			}
 			else {
@@ -71,7 +71,7 @@ extension UITextField: Localizable {
 				
 				let mutablePlaceholder = NSMutableAttributedString(attributedString: nonnullAttributedPlaceholder)
 				mutablePlaceholder.replaceCharacters(in:	NSRange(location: 0, length: mutablePlaceholder.length),
-													 with:	text ?? .empty)
+													 with:	text ?? .tap_empty)
 				self.attributedPlaceholder = NSAttributedString(attributedString: mutablePlaceholder)
 			}
 			else {

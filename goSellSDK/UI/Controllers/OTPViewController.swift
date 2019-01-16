@@ -123,7 +123,7 @@ internal final class OTPViewController: SeparateWindowViewController {
 			return PopupPresentationAnimationController(presentationFrom: presenting,
 														to: to,
 														overlaysFromView: false,
-														overlaySupport: PaymentOptionsViewController.findInHierarchy())
+														overlaySupport: PaymentOptionsViewController.tap_findInHierarchy())
         }
         
         fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -133,7 +133,7 @@ internal final class OTPViewController: SeparateWindowViewController {
 			return PopupPresentationAnimationController(dismissalFrom: from,
 														to: to,
 														overlaysToView: false,
-														overlaySupport: PaymentOptionsViewController.findInHierarchy())
+														overlaySupport: PaymentOptionsViewController.tap_findInHierarchy())
 		}
 		
         fileprivate func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
@@ -170,7 +170,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         fileprivate static let dismissalArrowImage: UIImage = {
            
-            guard let result = UIImage.named("ic_close_otp", in: .goSellSDKResources) else {
+            guard let result = UIImage.tap_named("ic_close_otp", in: .goSellSDKResources) else {
                 
                 fatalError("Failed to load \"ic_close_otp\" icon from the resources bundle.")
             }
@@ -182,11 +182,11 @@ internal final class OTPViewController: SeparateWindowViewController {
         fileprivate static let countdownFont:       UIFont  = .helveticaNeueRegular(13.0)
         fileprivate static let resendFont:          UIFont  = .helveticaNeueMedium(13.0)
         
-        fileprivate static let descriptionColor:    UIColor = .hex("535353")
-        fileprivate static let numberColor:         UIColor = .hex("1584FC")
+        fileprivate static let descriptionColor:    UIColor = .tap_hex("535353")
+        fileprivate static let numberColor:         UIColor = .tap_hex("1584FC")
         
-        fileprivate static let resendColor:             UIColor = .hex("007AFF")
-        fileprivate static let resendHighlightedColor:  UIColor = .hex("0D61E7")
+        fileprivate static let resendColor:             UIColor = .tap_hex("007AFF")
+        fileprivate static let resendHighlightedColor:  UIColor = .tap_hex("0D61E7")
         
         fileprivate static let updateTimerTimeInterval: TimeInterval = 1.0
         fileprivate static let resendButtonTitleDateFormat = "mm:ss"
@@ -253,7 +253,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         return formatter
     }()
     
-    private var phoneNumber: String = .empty {
+    private var phoneNumber: String = .tap_empty {
         
         didSet {
             
@@ -280,7 +280,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     private func updateDescriptionLabelText() {
         
-        guard let nonnullLabel = self.descriptionLabel, self.phoneNumber.length > 0 else { return }
+        guard let nonnullLabel = self.descriptionLabel, self.phoneNumber.tap_length > 0 else { return }
 		
 		let numberString = "\u{202A}\(self.phoneNumber)\u{202C}"
 		
@@ -292,7 +292,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         let attributedDescriptionText = NSMutableAttributedString(string: descriptionText, attributes: descriptionAttributes)
 		
-		if let range = attributedDescriptionText.string.nsRange(of: numberString) {
+		if let range = attributedDescriptionText.string.tap_nsRange(of: numberString) {
 			
 			let numberAttributes = themeSettings.descriptionNumber.asStringAttributes
 			
@@ -452,7 +452,7 @@ internal final class OTPViewController: SeparateWindowViewController {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(false)
@@ -461,7 +461,7 @@ internal final class OTPViewController: SeparateWindowViewController {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(true)
@@ -472,7 +472,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
 }

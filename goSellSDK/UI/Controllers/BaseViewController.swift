@@ -57,7 +57,7 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 		self.localizationChanged()
 		self.startMonitoringLocalizationChanges()
 		
-		self.view.updateLayoutDirectionIfRequired()
+		self.view.tap_updateLayoutDirectionIfRequired()
 		self.startMonitoringLayoutDirectionChanges()
 		
 		self.themeChanged()
@@ -131,7 +131,7 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 				let allPossibleRawValues = allPossibleCurves.map { $0.rawValue }
 				if allPossibleRawValues.contains(animationCurveRawValue), let curve = UIView.AnimationCurve(rawValue: animationCurveRawValue) {
 					
-					animationCurve = UIView.AnimationOptions(curve)
+					animationCurve = UIView.AnimationOptions(tap_curve: curve)
 				}
 				else {
 					
@@ -156,7 +156,7 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 				strongerSelf.topKeyboardOffsetConstraint?.constant = -offset
 				strongerSelf.bottomKeyboardOffsetConstraint?.constant = offset
 				
-				strongerSelf.view.layout()
+				strongerSelf.view.tap_layout()
 				
 				strongerSelf.performAdditionalAnimationsAfterKeyboardLayoutFinished()
 			}

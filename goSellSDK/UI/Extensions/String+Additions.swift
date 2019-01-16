@@ -10,6 +10,6 @@ extension String: Transformable {
     internal init?(untransformedValue: Any?) {
         
         guard let stringValue = untransformedValue as? String else { return nil }
-        self.init(rawValue: stringValue)
+        self.init(stringValue)
     }
 }

@@ -61,7 +61,7 @@ internal class CustomersListViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        if let customerController = (segue.destination as? UINavigationController)?.rootViewController as? CustomerViewController {
+        if let customerController = (segue.destination as? UINavigationController)?.tap_rootViewController as? CustomerViewController {
             
             customerController.delegate = self
             customerController.customer = self.customerForCustomerController
@@ -75,9 +75,9 @@ internal class CustomersListViewController: UITableViewController {
     
     internal override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomerTableViewCell.className) as? CustomerTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomerTableViewCell.tap_className) as? CustomerTableViewCell else {
             
-            fatalError("Failed to load \(CustomerTableViewCell.className) from storyboard.")
+            fatalError("Failed to load \(CustomerTableViewCell.tap_className) from storyboard.")
         }
         
         return cell

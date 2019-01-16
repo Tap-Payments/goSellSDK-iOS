@@ -100,8 +100,8 @@ internal final class LoadingViewController: SeparateWindowViewController {
             
             self.loader?.animationDuration  = Theme.current.commonStyle.loaderAnimationDuration
             self.loader?.usesCustomColors   = true
-            self.loader?.outterCircleColor  = .hex("535353")
-            self.loader?.innerCircleColor   = .hex("535353")
+            self.loader?.outterCircleColor  = .tap_hex("535353")
+            self.loader?.innerCircleColor   = .tap_hex("535353")
             self.loader?.startAnimating()
         }
     }

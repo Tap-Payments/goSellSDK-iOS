@@ -30,14 +30,14 @@
         let isd = PhoneNumber.extractISDNumber(from: isdNumber)
         let number = phoneNumber
         
-        guard isd.length > 0 && isd.containsOnlyInternationalDigits else {
+        guard isd.tap_length > 0 && isd.tap_containsOnlyInternationalDigits else {
             
             let userInfo = [ErrorConstants.UserInfoKeys.isdNumber: isd]
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidISDNumber.rawValue, userInfo: userInfo)
             throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil)
         }
         
-        guard number.length > 0 && number.containsOnlyInternationalDigits else {
+        guard number.tap_length > 0 && number.tap_containsOnlyInternationalDigits else {
             
             let userInfo = [ErrorConstants.UserInfoKeys.phoneNumber: number]
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidPhoneNumber.rawValue, userInfo: userInfo)
@@ -109,7 +109,7 @@
         
         let prefixesToRemove = [Constants.plusSign, Constants.doubleZero]
         
-        prefixesToRemove.forEach { result.removePrefix($0) }
+        prefixesToRemove.forEach { result.tap_removePrefix($0) }
         
         return result
     }

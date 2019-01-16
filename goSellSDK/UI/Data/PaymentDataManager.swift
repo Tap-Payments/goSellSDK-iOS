@@ -26,7 +26,7 @@ internal final class PaymentDataManager {
         didSet {
             
             self.restorePaymentOptionSelection()
-            NotificationCenter.default.post(name: .paymentOptionsModelsUpdated, object: nil)
+            NotificationCenter.default.post(name: .tap_paymentOptionsModelsUpdated, object: nil)
         }
     }
     
@@ -325,7 +325,7 @@ internal final class PaymentDataManager {
         
         KnownStaticallyDestroyableTypes.destroyAllDelayedDestroyableInstances {
             
-            if let paymentContentController = PaymentContentViewController.findInHierarchy() {
+            if let paymentContentController = PaymentContentViewController.tap_findInHierarchy() {
                 
                 paymentContentController.hide(usingFadeAnimation: withFadeAnimation) {
                     
@@ -452,7 +452,7 @@ internal final class PaymentDataManager {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(false)
@@ -462,7 +462,7 @@ internal final class PaymentDataManager {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
             
             decision(true)
@@ -473,7 +473,7 @@ internal final class PaymentDataManager {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
     
@@ -484,7 +484,7 @@ internal final class PaymentDataManager {
             
             DispatchQueue.main.async {
                 
-                alert?.dismissFromSeparateWindow(true, completion: nil)
+                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             }
         }
         
@@ -492,7 +492,7 @@ internal final class PaymentDataManager {
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
     

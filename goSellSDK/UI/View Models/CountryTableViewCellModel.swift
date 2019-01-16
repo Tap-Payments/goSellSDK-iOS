@@ -49,7 +49,7 @@ extension CountryTableViewCellModel: Filterable {
     
     internal func matchesFilter(_ filterText: String) -> Bool {
         
-        return self.country.isoCode.containsIgnoringCase(filterText) || self.country.displayInTheListValue.containsIgnoringCase(filterText)
+        return self.country.isoCode.tap_containsIgnoringCase(filterText) || self.country.displayInTheListValue.tap_containsIgnoringCase(filterText)
     }
 }
 

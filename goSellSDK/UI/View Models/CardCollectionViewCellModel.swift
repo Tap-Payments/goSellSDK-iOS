@@ -126,13 +126,13 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
 		
         let cancelAction = UIAlertAction(titleKey: .alert_delete_card_btn_cancel_title, style: .cancel) { [weak alert] (action) in
             
-            alert?.dismissFromSeparateWindow(true, completion: nil)
+            alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             decision(false)
         }
 		
         let deleteAction = UIAlertAction(titleKey: .alert_delete_card_btn_delete_title, style: .destructive) { [weak alert] (action) in
             
-            alert?.dismissFromSeparateWindow(true, completion: nil)
+            alert?.tap_dismissFromSeparateWindow(true, completion: nil)
             decision(true)
         }
         
@@ -141,7 +141,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         
         DispatchQueue.main.async {
             
-            alert.showOnSeparateWindow(true, below: .statusBar, completion: nil)
+            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
         }
     }
     
@@ -187,7 +187,7 @@ extension CardCollectionViewCellModel: CardCollectionViewCellLoading {
         }
         else {
             
-            return .empty
+            return .tap_empty
         }
     }
     
