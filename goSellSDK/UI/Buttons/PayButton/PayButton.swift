@@ -10,7 +10,7 @@ import class 	UIKit.UIButton.UIButton
 import class 	UIKit.UIView.UIView
 
 /// Pay button.
-@objcMembers public final class PayButton: TapNibView {
+@objcMembers public final class PayButton: TapNibView, PayButtonInternalImplementation {
     
     // MARK: - Public -
     // MARK: Properties
@@ -26,24 +26,6 @@ import class 	UIKit.UIView.UIView
         set {
             
             self.ui?.isEnabled = newValue
-        }
-    }
-    
-    /// Payment data source.
-    @IBOutlet public weak var dataSource: PaymentDataSource? {
-        
-        didSet {
-            
-            self.ui?.paymentDataSource = self.dataSource
-        }
-    }
-    
-    /// Payment delegate.
-    @IBOutlet public weak var delegate: PaymentDelegate? {
-     
-        didSet {
-            
-            self.ui?.paymentDelegate = self.delegate
         }
     }
     
@@ -81,36 +63,95 @@ import class 	UIKit.UIView.UIView
 			self.stopMonitoringLayoutDirectionChanges()
 		}
 	}
-    
+	
+	// MARK: - Internal -
+	// MARK: Properties
+	
+	internal var uiElement: PayButtonUI? {
+		
+		return self.ui
+	}
+	
+	internal private(set) lazy var session: InternalSession = {
+		
+		let result = InternalSession(self)
+		result.delegate = self.sessionDelegate
+		
+		return result
+	}()
+	
     // MARK: - Private -
     // MARK: Properties
-    
+	
+	private lazy var sessionDelegate: SessionDelegateProxy = {
+		
+		let result = SessionDelegateProxy()
+		result.middlemanDelegate = self
+		
+		return result
+	}()
+	
     @IBOutlet private weak var ui: PayButtonUI? {
         
         didSet {
             
             self.ui?.delegate = self
-            self.ui?.paymentDataSource = self.dataSource
         }
     }
 }
 
-// MARK: - TapButtonDelegate
-extension PayButton: TapButtonDelegate {
-    
-    internal func securityButtonTouchUpInside() {
-        
-        self.buttonTouchUpInside()
-    }
+// MARK: - SessionProtocol
+extension PayButton: SessionProtocol {
+	
+	/// Payment data source.
+	@IBOutlet public var dataSource: SessionDataSource? {
+		
+		get {
+			
+			return self.session.dataSource
+		}
+		set {
+			
+			self.session.dataSource = newValue
+		}
+	}
+	
+	/// Payment delegate.
+	@IBOutlet public var delegate: SessionDelegate? {
+		
+		get {
+			
+			return self.sessionDelegate.originalDelegate
+		}
+		set {
+			
+			self.sessionDelegate.originalDelegate = newValue
+		}
+	}
 }
 
-// MARK: - PayButtonInternalImplementation
-extension PayButton: PayButtonInternalImplementation {
-    
-    internal var uiElement: PayButtonUI? {
-        
-        return self.ui
-    }
+// MARK: - SessionDelegate
+extension PayButton: SessionDelegate {
+	
+	public func sessionIsStarting(_ session: SessionProtocol) {
+
+		self.uiElement?.startLoader()
+	}
+
+	public func sessionCancelled(_ session: SessionProtocol) {
+
+		self.uiElement?.stopLoader()
+	}
+
+	public func sessionHasStarted(_ session: SessionProtocol) {
+
+		self.uiElement?.stopLoader()
+	}
+
+	public func sessionHasFailedToStart(_ session: SessionProtocol) {
+
+		self.uiElement?.stopLoader()
+	}
 }
 
 // MARK: - LayoutDirectionObserver

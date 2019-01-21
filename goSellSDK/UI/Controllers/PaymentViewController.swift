@@ -11,6 +11,7 @@ import class    TapVisualEffectView.TapVisualEffectView
 import class    UIKit.UINavigationController.UINavigationController
 import protocol UIKit.UINavigationController.UINavigationControllerDelegate
 import enum     UIKit.UINavigationController.UINavigationControllerOperation
+import class	UIKit.UIStoryboard.UIStoryboard
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
@@ -22,10 +23,6 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitionin
 internal class PaymentViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
-	// MARK: Properties
-	
-	internal weak var payButton: (PayButtonProtocol & UIView)?
-	
     // MARK: Methods
     
     internal override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +71,15 @@ internal class PaymentViewController: SeparateWindowViewController {
         
         self.hasShownPaymentController = true
     }
+}
+
+// MARK: - InstantiatableFromStoryboard
+extension PaymentViewController: InstantiatableFromStoryboard {
+	
+	internal static var hostingStoryboard: UIStoryboard {
+		
+		return .goSellSDKPayment
+	}
 }
 
 // MARK: - TransitionAnimationsHandler

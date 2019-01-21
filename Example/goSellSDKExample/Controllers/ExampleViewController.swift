@@ -17,14 +17,15 @@ import class    goSellSDK.EmailAddress
 import class    goSellSDK.goSellSDK
 import class    goSellSDK.PayButton
 import protocol goSellSDK.PayButtonProtocol
-import protocol goSellSDK.PaymentDataSource
-import protocol goSellSDK.PaymentDelegate
 import class    goSellSDK.PaymentItem
 import class    goSellSDK.PhoneNumber
 import class    goSellSDK.Quantity
 import class    goSellSDK.Receipt
 import class    goSellSDK.Reference
 import enum		goSellSDK.SDKAppearanceMode
+import protocol goSellSDK.SessionDataSource
+import protocol goSellSDK.SessionDelegate
+import protocol	goSellSDK.SessionProtocol
 import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
@@ -211,8 +212,8 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
     }
 }
 
-// MARK: - PaymentDataSource
-extension ExampleViewController: PaymentDataSource {
+// MARK: - SessionDataSource
+extension ExampleViewController: SessionDataSource {
     
     internal var currency: Currency? {
         
@@ -270,10 +271,11 @@ extension ExampleViewController: PaymentDataSource {
     }
 }
 
-// MARK: - PaymentDelegate
-extension ExampleViewController: PaymentDelegate {
-    
-    internal func paymentSucceed(_ charge: Charge, payButton: PayButtonProtocol) {
+
+// MARK: - SessionDelegate
+extension ExampleViewController: SessionDelegate {
+	
+	internal func paymentSucceed(_ charge: Charge, on session: SessionProtocol) {
         
         // payment succeed, saving the customer for reuse.
         
@@ -283,7 +285,7 @@ extension ExampleViewController: PaymentDelegate {
         }
     }
     
-    internal func authorizationSucceed(_ authorize: Authorize, payButton: PayButtonProtocol) {
+    internal func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol) {
         
         // authorization succeed, saving the customer for reuse.
         
@@ -293,21 +295,49 @@ extension ExampleViewController: PaymentDelegate {
         }
     }
     
-    internal func paymentFailed(with charge: Charge?, error: TapSDKError?, payButton: PayButtonProtocol) {
+    internal func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol) {
         
         // payment failed, payment screen closed.
     }
     
-    internal func authorizationFailed(with authorization: Authorize?, error: TapSDKError?, payButton: PayButtonProtocol) {
+    internal func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol) {
         
         // authorization failed, payment screen closed.
     }
     
-    internal func paymentCancelled(_ payButton: PayButtonProtocol) {
+    internal func sessionCancelled(_ session: SessionProtocol) {
         
         // payment cancelled (user manually closed the payment screen).
     }
-    
+	
+	internal func cardSaved(on session: SessionProtocol) {
+		
+		// card successfully saved.
+	}
+	
+	internal func cardSavingFailed(with error: TapSDKError?, on session: SessionProtocol) {
+		
+		// card failed to save.
+	}
+	
+	internal func sessionIsStarting(_ session: SessionProtocol) {
+		
+		// session is about to start, but UI is not yet shown.
+	}
+	
+	internal func sessionHasStarted(_ session: SessionProtocol) {
+		
+		// session has started, UI is shown (or showing)
+	}
+	
+	internal func sessionHasFailedToStart(_ session: SessionProtocol) {
+		
+		// session has failed to start.
+	}
+	
+	// MARK: - Private -
+	// MARK: Methods
+	
     private func saveCustomer(_ customerID: String) {
         
         if let nonnullCustomer = self.customer {

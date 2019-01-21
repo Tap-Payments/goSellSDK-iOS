@@ -15,7 +15,21 @@ internal extension PaymentDataManager {
     
     // MARK: - Internal -
     // MARK: Methods
-    
+	
+	internal func showPaymentController() {
+		
+		let controller = PaymentViewController.instantiate()
+		
+		controller.tap_showOnSeparateWindow(below: .statusBar) { [unowned controller] (rootController) in
+			
+			rootController.allowedInterfaceOrientations = .portrait
+			rootController.preferredInterfaceOrientation = .portrait
+			rootController.canAutorotate = false
+			
+			rootController.present(controller, animated: false, completion: nil)
+		}
+	}
+	
     internal func startPaymentProcess(with paymentOption: PaymentOptionCellViewModel) {
         
         let amount = self.selectedCurrency
@@ -185,7 +199,7 @@ internal extension PaymentDataManager {
     }
     
     // MARK: Methods
-    
+	
     private func showExtraFeesPaymentAlert(with plainAmount: AmountedCurrency, extraFeesAmount: AmountedCurrency, decision: @escaping TypeAlias.BooleanClosure) {
         
         UIResponder.tap_resign {
@@ -267,7 +281,7 @@ internal extension PaymentDataManager {
     
     private func startPaymentProcess(with savedCard: SavedCard, paymentOption: PaymentOption) {
         
-        guard let customerIdentifier = self.externalDataSource?.customer?.identifier, let cardIdentifier = savedCard.identifier else { return }
+        guard let customerIdentifier = self.externalSession?.dataSource?.customer?.identifier, let cardIdentifier = savedCard.identifier else { return }
         
         let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
         let request = CreateTokenWithSavedCardRequest(savedCard: card)
@@ -356,18 +370,25 @@ internal extension PaymentDataManager {
 		}
     }
     
-    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String?, saveCard: Bool?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
-        
+    private func callChargeOrAuthorizeAPI(with source:						SourceRequest,
+										  paymentOption:					PaymentOption,
+										  cardBIN:							String?,
+										  saveCard:							Bool?,
+										  loader:							LoadingViewSupport?,
+										  retryAction:						@escaping TypeAlias.ArgumentlessClosure,
+										  alertDismissButtonClickHandler:	TypeAlias.ArgumentlessClosure?) {
+		
         guard
-            
-            let customer    = self.externalDataSource?.customer,
+			
+			let dataSource	= self.externalSession?.dataSource,
+			let customer	= dataSource.customer,
             let orderID     = self.orderIdentifier else {
                 
                 fatalError("This case should never happen.")
         }
-        
+		
         var post: TrackingURL? = nil
-        if let postURL = self.externalDataSource?.postURL, let nonnullPostURL = postURL {
+        if let postURL = dataSource.postURL, let nonnullPostURL = postURL {
             
             post = TrackingURL(url: nonnullPostURL)
         }
@@ -376,15 +397,15 @@ internal extension PaymentDataManager {
         let fee                 = self.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
         let order               = Order(identifier: orderID)
         let redirect            = TrackingURL(url: PaymentProcessConstants.returnURL)
-        let paymentDescription  = self.externalDataSource?.paymentDescription ?? nil
-        let paymentMetadata     = self.externalDataSource?.paymentMetadata ?? nil
-        let reference           = self.externalDataSource?.paymentReference ?? nil
+        let paymentDescription  = dataSource.paymentDescription ?? nil
+        let paymentMetadata     = dataSource.paymentMetadata ?? nil
+        let reference           = dataSource.paymentReference ?? nil
         let shouldSaveCard      = saveCard ?? false
-        let statementDescriptor = self.externalDataSource?.paymentStatementDescriptor ?? nil
-        let requires3DSecure    = self.chargeRequires3DSecure || (self.externalDataSource?.require3DSecure ?? false)
-        let receiptSettings     = self.externalDataSource?.receiptSettings ?? nil
+        let statementDescriptor = dataSource.paymentStatementDescriptor ?? nil
+        let requires3DSecure    = self.chargeRequires3DSecure || (dataSource.require3DSecure ?? false)
+        let receiptSettings     = dataSource.receiptSettings ?? nil
         
-        let mode = self.externalDataSource?.mode ?? .purchase
+        let mode = dataSource.mode ?? .default
         switch mode {
             
         case .purchase:
@@ -411,12 +432,17 @@ internal extension PaymentDataManager {
                 self?.payButtonUI?.stopLoader()
                 self?.isExecutingAPICalls = false
                 
-                self?.handleChargeOrAuthorizeResponse(charge, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+                self?.handleChargeOrAuthorizeResponse(									charge,
+													  error:							error,
+													  paymentOption:					paymentOption,
+													  cardBIN:							cardBIN,
+													  retryAction:						retryAction,
+													  alertDismissButtonClickHandler:	alertDismissButtonClickHandler)
             }
             
         case .authorizeCapture:
             
-            let authorizeAction = self.externalDataSource?.authorizeAction ?? .default
+            let authorizeAction = dataSource.authorizeAction ?? .default
             
             let authorizeRequest = CreateAuthorizeRequest(amount:                 amountedCurrency.amount,
                                                           currency:               amountedCurrency.currency,
@@ -441,7 +467,12 @@ internal extension PaymentDataManager {
                 self?.payButtonUI?.stopLoader()
                 self?.isExecutingAPICalls = false
                 
-                self?.handleChargeOrAuthorizeResponse(authorize, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+                self?.handleChargeOrAuthorizeResponse(									authorize,
+													  error:							error,
+													  paymentOption:					paymentOption,
+													  cardBIN:							cardBIN,
+													  retryAction:						retryAction,
+													  alertDismissButtonClickHandler:	alertDismissButtonClickHandler)
             }
 			
 		case .cardSaving:
@@ -450,7 +481,12 @@ internal extension PaymentDataManager {
         }
     }
     
-    private func handleChargeOrAuthorizeResponse<T: ChargeProtocol>(_ chargeOrAuthorize: T?, error: TapSDKError?, paymentOption: PaymentOption, cardBIN: String?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+    private func handleChargeOrAuthorizeResponse<T: ChargeProtocol>(_ chargeOrAuthorize:			T?,
+																	error:							TapSDKError?,
+																	paymentOption:					PaymentOption,
+																	cardBIN:						String?,
+																	retryAction:					@escaping TypeAlias.ArgumentlessClosure,
+																	alertDismissButtonClickHandler:	TypeAlias.ArgumentlessClosure?) {
         
         if let nonnullError = error {
             
@@ -617,20 +653,8 @@ internal extension PaymentDataManager {
                 self.closePayment(with: .chargeFailure(charge, error), fadeAnimation: false, force: false, completion: nil)
             }
             else {
-                
-                let mode = self.externalDataSource?.mode ?? .purchase
 				
-				var status: PaymentStatus
-				
-                switch mode {
-                    
-                case .purchase:         status = .chargeFailure(nil, error)
-                case .authorizeCapture: status = .authorizationFailure(nil, error)
-				case .cardSaving:		status = .cardSaveFailure(error)
-                
-                }
-				
-				self.closePayment(with: status, fadeAnimation: false, force: false, completion: nil)
+				ErrorActionExecutor.closePayment(with: error, nil)
             }
         }
     }

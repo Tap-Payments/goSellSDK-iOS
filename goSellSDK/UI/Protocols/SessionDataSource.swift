@@ -1,12 +1,12 @@
 //
-//  PaymentDataSource.swift
+//  SessionDataSource.swift
 //  goSellSDK
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
 /// Payment data source.
-@objc public protocol PaymentDataSource: class, NSObjectProtocol {
+@objc public protocol SessionDataSource: class, NSObjectProtocol {
     
     /// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
     var currency: Currency? { get }
