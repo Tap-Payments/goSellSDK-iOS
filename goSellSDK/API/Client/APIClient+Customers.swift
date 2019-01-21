@@ -1,24 +1,23 @@
 //
-//  APIClient+Customer.swift
+//  APIClient+Customers.swift
 //  goSellSDK
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapNetworkManager.TapBodyModel
-import class	TapNetworkManager.TapNetworkRequestOperation
+import struct   TapNetworkManager.TapBodyModel
+import class    TapNetworkManager.TapNetworkRequestOperation
 
 internal extension APIClient {
 	
-	// MARK: - Internal -
 	// MARK: Methods
 	
-	/// Creates the customer with the given `request`.
+	/// Creates customer with the given customer request.
 	///
 	/// - Parameters:
-	///   - request: Customer creation request.
-	///   - completion: Completion that will be called when request finishes.
-	internal func createCustomer(with request: CreateCustomerRequest, completion: @escaping Completion<Customer>) {
+	///   - request: Customer request.
+	///   - completion: Completion that will be called once request finishes.
+	internal func createCustomer(with request: Customer.Request, completion: @escaping Completion<Customer>) {
 		
 		guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
 		
