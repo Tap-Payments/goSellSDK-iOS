@@ -7,7 +7,6 @@
 
 import struct   TapAdditionsKit.TypeAlias
 import enum     TapCardValidator.CardBrand
-import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 /// Payment data manager.
 internal final class PaymentDataManager {
@@ -52,9 +51,7 @@ internal final class PaymentDataManager {
     
     internal var lastSelectedPaymentOption: PaymentOptionCellViewModel?
     
-    internal private(set) var externalDataSource: PaymentDataSource?
-    internal private(set) var externalDelegate: PaymentDelegate?
-    internal private(set) var payButton: PayButtonProtocol?
+	internal private(set) var externalSession: SessionProtocol?
     
     internal var orderIdentifier: String? {
         
@@ -120,78 +117,86 @@ internal final class PaymentDataManager {
 	
     // MARK: Methods
     
-    internal func canStart(with caller: PayButtonInternalImplementation) -> Bool {
+    internal func canStart(_ session: SessionProtocol) -> Bool {
 		
         if self.isLoadingPaymentOptions { return false }
         
-        guard let dataSource = caller.uiElement?.paymentDataSource, dataSource.customer != nil else { return false }
+        guard let dataSource = session.dataSource, dataSource.customer != nil else { return false }
 		
-		let mode = dataSource.mode ?? .purchase
+		let mode = dataSource.mode ?? .default
 		switch mode {
 			
 		case .purchase, .authorizeCapture:
 			
 			if dataSource.currency == nil { return false }
-			
-			let itemsCount = (caller.uiElement?.paymentDataSource?.items ?? [])?.count ?? 0
-			if itemsCount > 0 {
-				
-				let items = (dataSource.items ?? []) ?? []
-				let taxes = dataSource.taxes ?? []
-				let shipping = dataSource.shipping ?? []
-				
-				let totalAmount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
-				
-				return totalAmount > 0
-			}
-			else {
-				
-				return (dataSource.amount ?? 0) > 0
-			}
+			return (self.calculateDisplayedAmount(for: session) ?? .zero).decimalValue > 0.0
 			
 		case .cardSaving:
 			
 			return true
 		}
 	}
-    
-    internal func start(with caller: PayButtonInternalImplementation) {
+	
+	internal func calculateDisplayedAmount(for session: SessionProtocol) -> NSDecimalNumber? {
+		
+		guard
+			
+			let nonnullDataSource = session.dataSource,
+			nonnullDataSource.mode != .cardSaving
+			
+		else { return nil }
+		
+		var amount: Decimal
+		if let optionalItems = nonnullDataSource.items, let items = optionalItems, items.count > 0 {
+			
+			let taxes		= nonnullDataSource.taxes		?? nil
+			let shipping	= nonnullDataSource.shipping	?? nil
+			
+			amount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
+		}
+		else {
+			
+			amount = nonnullDataSource.amount ?? 0.0
+		}
+		
+		return NSDecimalNumber(decimal: amount)
+	}
+	
+    @discardableResult internal func start(_ session: SessionProtocol) -> Bool {
         
-        guard !self.isLoadingPaymentOptions else { return }
+        guard !self.isLoadingPaymentOptions else { return false }
         
-        guard let nonnullDataSource = caller.uiElement?.paymentDataSource else {
+        guard let nonnullDataSource = session.dataSource else {
             
             self.showMissingInformationAlert(with: "Error", message: "Payment data source cannot be nil.")
-            return
+            return false
         }
         
         guard let currency = nonnullDataSource.currency else {
             
             self.showMissingInformationAlert(with: "Error", message: "Currency must be provided.")
-            return
+            return false
         }
         
         guard let customer = nonnullDataSource.customer else {
             
             self.showMissingInformationAlert(with: "Error", message: "Customer information must be provided.")
-            return
+            return false
         }
         
         let itemsCount = (nonnullDataSource.items ?? [])?.count ?? 0
         guard nonnullDataSource.amount != nil || itemsCount > 0 else {
             
             self.showMissingInformationAlert(with: "Error", message: "Either amount or items should be implemented in payment data source. If items is implemented, number of items should be > 0.")
-            return
+            return false
         }
 		
-		let appearanceMode	= nonnullDataSource.appearance ?? .default
-		let transactionMode	= nonnullDataSource.mode        ?? .purchase
+		let appearanceMode	= nonnullDataSource.appearance	?? .default
+		let transactionMode	= nonnullDataSource.mode        ?? .default
 		let shipping        = nonnullDataSource.shipping    ?? nil
 		let taxes           = nonnullDataSource.taxes       ?? nil
-        
-        self.externalDataSource = nonnullDataSource
-        self.externalDelegate   = caller.uiElement?.paymentDelegate
-        self.payButton          = caller
+		
+		self.externalSession	= session
 		self.appearance			= AppearanceMode(appearanceMode, transactionMode)
 		
         let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
@@ -203,32 +208,38 @@ internal final class PaymentDataManager {
                                                    customer:        customer.identifier)
         
         self.isLoadingPaymentOptions = true
+		
+		session.delegate?.sessionIsStarting?(session)
         
-        caller.paymentDataManagerDidStartLoadingPaymentOptions()
-        
-        APIClient.shared.getPaymentOptions(with: paymentRequest) { [weak self, weak caller] (response, error) in
-            
-            self?.isLoadingPaymentOptions = false
+        APIClient.shared.getPaymentOptions(with: paymentRequest) { [weak self, weak session] (response, error) in
+			
+			guard let strongSelf = self, let nonnullSession = session else { return }
+			
+            strongSelf.isLoadingPaymentOptions = false
             
             if let nonnullError = error {
-                
-                let retryAction = {
-                    
-                    if let nonnullSelf = self, let nonnullCaller = caller {
-                        
-                        nonnullSelf.start(with: nonnullCaller)
-                    }
-                }
-                
-                ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: nil)
-            }
+				
+				let retryAction: TypeAlias.ArgumentlessClosure = {
+					
+					strongSelf.start(nonnullSession)
+				}
+				
+				strongSelf.paymentOptionsResponse = nil
+				nonnullSession.delegate?.sessionHasFailedToStart?(nonnullSession)
+				
+				ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: nil)
+			}
             else if let nonnullResponse = response {
-                
-                self?.paymentOptionsResponse = nonnullResponse
+				
+                strongSelf.paymentOptionsResponse = nonnullResponse
+				
+				strongSelf.showPaymentController()
+				
+				nonnullSession.delegate?.sessionHasStarted?(nonnullSession)
             }
-            
-            caller?.paymentDataManagerDidStopLoadingPaymentOptions(with: error == nil)
         }
+		
+		return true
     }
     
     internal func paymentOptionViewModel(at indexPath: IndexPath) -> CellViewModel {
@@ -306,34 +317,34 @@ internal final class PaymentDataManager {
     }
     
     private func reportDelegateOnPaymentCompletion(with status: PaymentStatus) {
-        
-        guard let button = self.payButton else { return }
+		
+		guard let session = self.externalSession, let delegate = session.delegate else { return }
         
         switch status {
             
         case .cancelled:
-            
-            self.externalDelegate?.paymentCancelled?(button)
+			
+			delegate.sessionCancelled?(session)
             
         case .successfulCharge(let charge):
-            
-            self.externalDelegate?.paymentSucceed?(charge, payButton: button)
+			
+			delegate.paymentSucceed?(charge, on: session)
             
         case .successfulAuthorize(let authorize):
-            
-            self.externalDelegate?.authorizationSucceed?(authorize, payButton: button)
+			
+			delegate.authorizationSucceed?(authorize, on: session)
             
         case .chargeFailure(let charge, let error):
-            
-            self.externalDelegate?.paymentFailed?(with: charge, error: error, payButton: button)
+			
+			delegate.paymentFailed?(with: charge, error: error, on: session)
             
         case .authorizationFailure(let authorize, let error):
-            
-            self.externalDelegate?.authorizationFailed?(with: authorize, error: error, payButton: button)
+			
+			delegate.authorizationFailed?(with: authorize, error: error, on: session)
 			
 		case .cardSaveFailure(let error):
 			
-			self.externalDelegate?.cardSavingFailed?(with: error)
+			delegate.cardSavingFailed?(with: error, on: session)
         }
     }
     
@@ -389,9 +400,9 @@ internal final class PaymentDataManager {
     }
     
     // MARK: Properties
-    
-    private var isLoadingPaymentOptions = false
-    
+	
+	private var isLoadingPaymentOptions = false
+	
     private var isCallingPaymentAPI: Bool {
         
         let activeRoutes = Set(APIClient.shared.activeRequests.compactMap { Route(rawValue: $0.path) })

@@ -12,7 +12,7 @@
         <!--Payment View Controller-->
         <scene sceneID="x15-8f-r2u">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="wPo-3k-AO1" customClass="PaymentViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentViewController" modalPresentationStyle="overFullScreen" id="wPo-3k-AO1" customClass="PaymentViewController" customModule="goSellSDK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t9V-Ui-QNG"/>
                         <viewControllerLayoutGuide type="bottom" id="z90-Ab-ZW2"/>

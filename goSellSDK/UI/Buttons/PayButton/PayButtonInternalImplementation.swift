@@ -5,16 +5,10 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	UIKit.UIResponder.UIResponder
-import class    UIKit.UIStoryboard.UIStoryboard
-import class    UIKit.UIView.UIView
-import var      UIKit.UIWindow.UIWindowLevelStatusBar
-
-internal protocol PayButtonInternalImplementation: PayButtonProtocol {
-    
-    var dataSource: PaymentDataSource? { get }
-    
-    var uiElement: PayButtonUI? { get }
+internal protocol PayButtonInternalImplementation: PayButtonProtocol, SessionProtocol, TapButtonDelegate {
+	
+	var session:	InternalSession	{ get }
+    var uiElement:	PayButtonUI?	{ get }
     
     func updateDisplayedState()
 }
@@ -33,7 +27,7 @@ internal extension PayButtonInternalImplementation {
 	
 	internal func updateAppearance() {
 		
-		let mode = self.dataSource?.mode ?? .purchase
+		let mode = self.session.dataSource?.mode ?? .default
 		let type: TapButtonStyle.ButtonType
 		
 		switch mode {
@@ -41,7 +35,7 @@ internal extension PayButtonInternalImplementation {
 		case .purchase, .authorizeCapture:
 			
 			type = .pay
-			self.calculateDisplayedAmount()
+			self.updateDisplayedAmount()
 			
 		case .cardSaving:
 			
@@ -53,77 +47,29 @@ internal extension PayButtonInternalImplementation {
 		self.uiElement?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == type })!
 	}
 	
-    internal func calculateDisplayedAmount() {
-        
-        guard PaymentDataManager.shared.canStart(with: self), let currency = self.dataSource?.currency else {
-            
-            self.uiElement?.amount = nil
-            return
-        }
-        
-        var amount: Decimal
-        if let optionalItems = self.dataSource?.items, let items = optionalItems, items.count > 0 {
-            
-            let taxes = self.dataSource?.taxes ?? nil
-            let shipping = self.dataSource?.shipping ?? nil
-            
-            amount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
-        }
-        else {
-            
-            amount = self.dataSource?.amount ?? 0.0
-        }
-        
-        self.uiElement?.amount = AmountedCurrency(currency, amount)
+    internal func updateDisplayedAmount() {
+		
+		var amountedCurrency: AmountedCurrency?
+		
+		if let amount = self.session.calculateDisplayedAmount(), let currency = self.session.dataSource?.currency {
+			
+			amountedCurrency = AmountedCurrency(currency, amount.decimalValue)
+		}
+		else {
+			
+			amountedCurrency = nil
+		}
+		
+		self.uiElement?.amount = amountedCurrency
     }
-    
+	
     internal func buttonTouchUpInside() {
-        
-        guard PaymentDataManager.shared.canStart(with: self) else { return }
 		
-		UIResponder.tap_resign()
+		self.session.start()
+    }
+	
+	internal func securityButtonTouchUpInside() {
 		
-        PaymentDataManager.shared.start(with: self)
-    }
-    
-    internal func paymentDataManagerDidStartLoadingPaymentOptions() {
-        
-        self.uiElement?.startLoader()
-    }
-    
-    internal func paymentDataManagerDidStopLoadingPaymentOptions(with success: Bool) {
-        
-        self.uiElement?.stopLoader()
-        
-        guard success else { return }
-        
-        let controller = self.instantiatePaymentContainerController()
-        
-        if let selfAsView = self as? UIView & PayButtonProtocol {
-            
-            controller.payButton = selfAsView
-        }
-        
-        controller.tap_showOnSeparateWindow(below: .statusBar) { [unowned controller] (rootController) in
-            
-            rootController.allowedInterfaceOrientations = .portrait
-            rootController.preferredInterfaceOrientation = .portrait
-            rootController.canAutorotate = false
-            
-            rootController.present(controller, animated: false, completion: nil)
-        }
-    }
-    
-    // MARK: - Private -
-    // MARK: Methods
-    
-    private func instantiatePaymentContainerController() -> PaymentViewController {
-        
-        guard let controller = UIStoryboard.goSellSDKPayment.instantiateInitialViewController() as? PaymentViewController else {
-            
-            fatalError("Failed to instantiate \(PaymentViewController.self) from storyboard.")
-        }
-        
-        return controller
-    }
+		self.buttonTouchUpInside()
+	}
 }

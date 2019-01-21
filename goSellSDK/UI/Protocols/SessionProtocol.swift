@@ -1,0 +1,16 @@
+//
+//  SessionProtocol.swift
+//  goSellSDK
+//
+//  Copyright © 2019 Tap Payments. All rights reserved.
+//
+
+/// Session interface.
+@objc public protocol SessionProtocol {
+	
+	/// Session data source.
+	var dataSource: SessionDataSource? { get set }
+	
+	/// Session delegate.
+	var delegate: SessionDelegate? { get set }
+}

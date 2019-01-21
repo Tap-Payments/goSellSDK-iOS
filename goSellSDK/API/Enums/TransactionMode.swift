@@ -17,6 +17,12 @@
 	/// Mode to save the card only.
 	@objc(CardSaving) case cardSaving
 	
+	// MARK: - Internal -
+	// MARK: Properties
+	
+	/// Default transaction mode.
+	internal static let `default`: TransactionMode = .purchase
+	
     // MARK: - Private -
     // MARK: Properties
     

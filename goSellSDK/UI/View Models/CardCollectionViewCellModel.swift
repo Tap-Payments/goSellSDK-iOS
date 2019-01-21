@@ -144,9 +144,11 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         
         guard
 			
-			let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier,
+			let customerIdentifier = PaymentDataManager.shared.externalSession?.dataSource?.customer?.identifier,
 			let cardIdentifier = self.card.identifier,
-			let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
+			let paymentContentController = PaymentContentViewController.tap_findInHierarchy()
+			
+		else { return }
 		
 		LoadingView.show(in: paymentContentController, animated: true)
 		
