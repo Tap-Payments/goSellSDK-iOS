@@ -6,19 +6,13 @@
 //
 
 /// Enum defining SDK mode.
-@objc public enum SDKMode: Int {
+@objc public enum SDKMode: Int, CaseIterable {
     
     /// Sandbox mode.
     @objc(Sandbox)      case sandbox
     
     /// Production mode.
     @objc(Production)   case production
-}
-
-// MARK: - CountableCasesEnum
-extension SDKMode: CountableCasesEnum {
-    
-    public static let all: [SDKMode] = [.sandbox, .production]
 }
 
 // MARK: - CustomStringConvertible
@@ -30,6 +24,7 @@ extension SDKMode: CustomStringConvertible {
             
         case .sandbox:      return "Sandbox"
         case .production:   return "Production"
+
         }
     }
 }

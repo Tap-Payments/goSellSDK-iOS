@@ -13,10 +13,6 @@
 		140238FA215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140238F6215A49BD00CF3B47 /* UILabel+Additions.swift */; };
 		14128478215CD82E00C2873E /* LocalizationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128477215CD82E00C2873E /* LocalizationKey.swift */; };
 		14128479215CD82E00C2873E /* LocalizationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14128477215CD82E00C2873E /* LocalizationKey.swift */; };
-		1412847E215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */; };
-		1412847F215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */; };
-		14128480215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */; };
-		14128481215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */; };
 		14128482215CD83C00C2873E /* UITextField+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847C215CD83C00C2873E /* UITextField+Additions.swift */; };
 		14128483215CD83C00C2873E /* UITextField+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847C215CD83C00C2873E /* UITextField+Additions.swift */; };
 		14128484215CD83C00C2873E /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1412847D215CD83C00C2873E /* UIView+Additions.swift */; };
@@ -95,6 +91,36 @@
 		14690B122155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
 		14690B142155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
 		14690B152155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
+		1495974D21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */; };
+		1495974E21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */; };
+		1495975221F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */; };
+		1495975321F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */; };
+		1495975421F5420000DFA0A2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975121F5420000DFA0A2 /* LoadingView.swift */; };
+		1495975521F5420000DFA0A2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975121F5420000DFA0A2 /* LoadingView.swift */; };
+		1495975721F5425B00DFA0A2 /* TapAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975621F5425B00DFA0A2 /* TapAlertController.swift */; };
+		1495975821F5425B00DFA0A2 /* TapAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975621F5425B00DFA0A2 /* TapAlertController.swift */; };
+		1495975A21F542A400DFA0A2 /* AppearanceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975921F542A400DFA0A2 /* AppearanceStyle.swift */; };
+		1495975B21F542A400DFA0A2 /* AppearanceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975921F542A400DFA0A2 /* AppearanceStyle.swift */; };
+		1495975D21F542D700DFA0A2 /* StatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975C21F542D700DFA0A2 /* StatusBarStyle.swift */; };
+		1495975E21F542D700DFA0A2 /* StatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975C21F542D700DFA0A2 /* StatusBarStyle.swift */; };
+		1495976021F5436800DFA0A2 /* SeparateWindowRootViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975F21F5436700DFA0A2 /* SeparateWindowRootViewController+Additions.swift */; };
+		1495976121F5436800DFA0A2 /* SeparateWindowRootViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975F21F5436700DFA0A2 /* SeparateWindowRootViewController+Additions.swift */; };
+		1495976321F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976221F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift */; };
+		1495976421F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976221F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift */; };
+		1495976621F5446800DFA0A2 /* ViewControllerLayoutListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976521F5446800DFA0A2 /* ViewControllerLayoutListener.swift */; };
+		1495976721F5446800DFA0A2 /* ViewControllerLayoutListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976521F5446800DFA0A2 /* ViewControllerLayoutListener.swift */; };
+		1495976A21F5452E00DFA0A2 /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976821F5452D00DFA0A2 /* AppearanceMode.swift */; };
+		1495976B21F5452E00DFA0A2 /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976821F5452D00DFA0A2 /* AppearanceMode.swift */; };
+		1495976C21F5452E00DFA0A2 /* SDKAppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */; };
+		1495976D21F5452E00DFA0A2 /* SDKAppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */; };
+		149AC19A21ED0F5A002D31A7 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19721ED0F59002D31A7 /* Metadata.swift */; };
+		149AC19B21ED0F5A002D31A7 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19721ED0F59002D31A7 /* Metadata.swift */; };
+		149AC19C21ED0F5A002D31A7 /* CreateCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */; };
+		149AC19D21ED0F5A002D31A7 /* CreateCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */; };
+		149AC19E21ED0F5A002D31A7 /* CreateCustomerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19921ED0F5A002D31A7 /* CreateCustomerRequest.swift */; };
+		149AC19F21ED0F5A002D31A7 /* CreateCustomerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19921ED0F5A002D31A7 /* CreateCustomerRequest.swift */; };
+		149AC1A121ED0F94002D31A7 /* APIClient+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC1A021ED0F94002D31A7 /* APIClient+Customer.swift */; };
+		149AC1A221ED0F94002D31A7 /* APIClient+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC1A021ED0F94002D31A7 /* APIClient+Customer.swift */; };
 		14A3D313215953DE007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
 		14A3D315215954CA007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
 		14A95ED721ECD17700F91D83 /* GlowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95ED521ECD17700F91D83 /* GlowStyle.swift */; };
@@ -134,8 +160,6 @@
 		A408C06420BC058A005E74AD /* Tax.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C05C20BC058A005E74AD /* Tax.swift */; };
 		A408C06720BC05B9005E74AD /* InitializableWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C06520BC05B9005E74AD /* InitializableWithString.swift */; };
 		A408C06820BC05B9005E74AD /* InitializableWithString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C06520BC05B9005E74AD /* InitializableWithString.swift */; };
-		A408C06920BC05B9005E74AD /* CountableCasesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C06620BC05B9005E74AD /* CountableCasesEnum.swift */; };
-		A408C06A20BC05B9005E74AD /* CountableCasesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C06620BC05B9005E74AD /* CountableCasesEnum.swift */; };
 		A408C06C20BC05D3005E74AD /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C06B20BC05D2005E74AD /* KeychainManager.swift */; };
 		A408C06D20BC05D3005E74AD /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C06B20BC05D2005E74AD /* KeychainManager.swift */; };
 		A40D32272031E6DE0030FDDE /* goSellSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = A40D32192031E6DE0030FDDE /* goSellSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -741,8 +765,6 @@
 		140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Additions.swift"; sourceTree = "<group>"; };
 		140238F6215A49BD00CF3B47 /* UILabel+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
 		14128477215CD82E00C2873E /* LocalizationKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationKey.swift; sourceTree = "<group>"; };
-		1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Additions.swift"; sourceTree = "<group>"; };
-		1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Additions.swift"; sourceTree = "<group>"; };
 		1412847C215CD83C00C2873E /* UITextField+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Additions.swift"; sourceTree = "<group>"; };
 		1412847D215CD83C00C2873E /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		14128486215CD8A300C2873E /* LocalizationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationObserver.swift; sourceTree = "<group>"; };
@@ -783,6 +805,21 @@
 		1444698021594A4D009849DC /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
 		14690B102155DF240033C562 /* SDKMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKMode.swift; sourceTree = "<group>"; };
 		14690B132155DF330033C562 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContentViewController.swift; sourceTree = "<group>"; };
+		1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewSupport.swift; sourceTree = "<group>"; };
+		1495975121F5420000DFA0A2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		1495975621F5425B00DFA0A2 /* TapAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapAlertController.swift; sourceTree = "<group>"; };
+		1495975921F542A400DFA0A2 /* AppearanceStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceStyle.swift; sourceTree = "<group>"; };
+		1495975C21F542D700DFA0A2 /* StatusBarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarStyle.swift; sourceTree = "<group>"; };
+		1495975F21F5436700DFA0A2 /* SeparateWindowRootViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SeparateWindowRootViewController+Additions.swift"; sourceTree = "<group>"; };
+		1495976221F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizablePaymentContainerViewController.swift; sourceTree = "<group>"; };
+		1495976521F5446800DFA0A2 /* ViewControllerLayoutListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLayoutListener.swift; sourceTree = "<group>"; };
+		1495976821F5452D00DFA0A2 /* AppearanceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
+		1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKAppearanceMode.swift; sourceTree = "<group>"; };
+		149AC19721ED0F59002D31A7 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
+		149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCardRequest.swift; sourceTree = "<group>"; };
+		149AC19921ED0F5A002D31A7 /* CreateCustomerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCustomerRequest.swift; sourceTree = "<group>"; };
+		149AC1A021ED0F94002D31A7 /* APIClient+Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Customer.swift"; sourceTree = "<group>"; };
 		14A3D312215953DE007F3565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A3D31621595681007F3565 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A95ED521ECD17700F91D83 /* GlowStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowStyle.swift; sourceTree = "<group>"; };
@@ -805,7 +842,6 @@
 		A408C05B20BC058A005E74AD /* SavedCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedCard.swift; sourceTree = "<group>"; };
 		A408C05C20BC058A005E74AD /* Tax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tax.swift; sourceTree = "<group>"; };
 		A408C06520BC05B9005E74AD /* InitializableWithString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializableWithString.swift; sourceTree = "<group>"; };
-		A408C06620BC05B9005E74AD /* CountableCasesEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountableCasesEnum.swift; sourceTree = "<group>"; };
 		A408C06B20BC05D2005E74AD /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		A40D32162031E6DE0030FDDE /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A40D32192031E6DE0030FDDE /* goSellSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = goSellSDK.h; sourceTree = "<group>"; };
@@ -1150,6 +1186,15 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		1495974F21F5420000DFA0A2 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */,
+				1495975121F5420000DFA0A2 /* LoadingView.swift */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		2900C46CE6138AD739CAC575 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,7 +1445,9 @@
 				A482F7372085BC0F00AA76A4 /* Charge.swift */,
 				A4444BEF20AB535F005D9E87 /* Country.swift */,
 				A4B3FB87212467D8000C05EB /* CreateAuthorizeRequest.swift */,
+				149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */,
 				A482F7382085BC0F00AA76A4 /* CreateChargeRequest.swift */,
+				149AC19921ED0F5A002D31A7 /* CreateCustomerRequest.swift */,
 				A4A9827520D2B31C00770690 /* CreateTokenCard.swift */,
 				A4A9827320D2B31B00770690 /* CreateTokenSavedCard.swift */,
 				A4A9827A20D2B31E00770690 /* CreateTokenWithCardDataRequest.swift */,
@@ -1409,11 +1456,11 @@
 				14DF99F72147F4B900991EB3 /* Customer.swift */,
 				A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */,
 				A479F7152099DB2100556E10 /* EmailAddress.swift */,
-				A482F75E2085DAD500AA76A4 /* Errors */,
 				A4C13A9820F4F0AE00037EDC /* ExpirationDate.swift */,
 				A4D53120208A54C400830AD8 /* ExtraFee.swift */,
 				A4BD8CC820A1EF7700EFF2CE /* InternalSDKSettings.swift */,
 				A479F7172099DB2100556E10 /* Merchant.swift */,
+				149AC19721ED0F59002D31A7 /* Metadata.swift */,
 				A4A9827B20D2B31F00770690 /* Order.swift */,
 				A479F7182099DB2100556E10 /* PaymentItem.swift */,
 				A4D5310E208A47C600830AD8 /* PaymentOption.swift */,
@@ -1436,6 +1483,7 @@
 				A4A9827C20D2B31F00770690 /* TokenizedCard.swift */,
 				A4694B22211B480600B335F1 /* TrackingURL.swift */,
 				A4A9827E20D2B31F00770690 /* TransactionDetails.swift */,
+				A482F75E2085DAD500AA76A4 /* Errors */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1480,7 +1528,6 @@
 				A4B3FB7021246796000C05EB /* Authenticatable.swift */,
 				A4B3FB7221246796000C05EB /* AuthorizeProtocol.swift */,
 				A4B3FB7121246796000C05EB /* ChargeProtocol.swift */,
-				A408C06620BC05B9005E74AD /* CountableCasesEnum.swift */,
 				A4A982B820D2B36A00770690 /* CreateTokenRequest.swift */,
 				A4A982B720D2B36A00770690 /* EmptyInitializable.swift */,
 				A4B3FB7321246796000C05EB /* IdentifiableWithString.swift */,
@@ -1503,6 +1550,7 @@
 				A456717C20AD6AA30057A504 /* APIClient+BIN.swift */,
 				A4A8545221076D6B00B9DE00 /* APIClient+Card.swift */,
 				A482F7522085CEF000AA76A4 /* APIClient+Charges.swift */,
+				149AC1A021ED0F94002D31A7 /* APIClient+Customer.swift */,
 				A40F5FD32085F27D001D6A9A /* APIClient+Initialization.swift */,
 				A4D53109208A46E700830AD8 /* APIClient+PaymentTypes.swift */,
 				A4B3FB9721246808000C05EB /* APIClient+Retrievable.swift */,
@@ -1576,6 +1624,7 @@
 		A4BD8CA320A1EF0200EFF2CE /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				1495975921F542A400DFA0A2 /* AppearanceStyle.swift */,
 				141284DE21610EA700C2873E /* CardCellStyle.swift */,
 				141284F02161132500C2873E /* CaseSelectionCellStyle.swift */,
 				A4BE547820A9D4ED004E979E /* CommonImages.swift */,
@@ -1625,10 +1674,13 @@
 		A4BD8D1720A1F3C800EFF2CE /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				1495976821F5452D00DFA0A2 /* AppearanceMode.swift */,
 				14128477215CD82E00C2873E /* LocalizationKey.swift */,
 				1412849C215D26D200C2873E /* LocalizedTextAlignment.swift */,
 				A424879B20E4F3C0001C4FAF /* OTPTimerState.swift */,
 				A4A4D5F52108D2590063488E /* PaymentStatus.swift */,
+				1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */,
+				1495975C21F542D700DFA0A2 /* StatusBarStyle.swift */,
 				A4F7106A20B554480064FE4B /* TextInputType.swift */,
 				A4BD8D1820A1F3C800EFF2CE /* ValidationType.swift */,
 				A43A0A5A20D93E3F006B39F1 /* ViewControllerOperation.swift */,
@@ -1653,6 +1705,7 @@
 			isa = PBXGroup;
 			children = (
 				A48810E220A2E92E00CDF5D4 /* LoadingImageView */,
+				1495974F21F5420000DFA0A2 /* LoadingView */,
 				A447EAFA2110524500099C07 /* MaskedWindow */,
 				141284AB215D287300C2873E /* MirrorableView */,
 				A424879120E4F2C9001C4FAF /* OTPInputView */,
@@ -1751,6 +1804,7 @@
 				14B22182215A4747003DC928 /* Localizable.swift */,
 				14128486215CD8A300C2873E /* LocalizationObserver.swift */,
 				A401FC8C2101DA6B002DBA73 /* MerchantInformationHeaderViewControllerDelegate.swift */,
+				1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */,
 				A4C13A8C20F4F05800037EDC /* OTPViewControllerDelegate.swift */,
 				A4BD8CE520A1F02200EFF2CE /* PaymentDataSource.swift */,
 				A4C13A8D20F4F05900037EDC /* PaymentDelegate.swift */,
@@ -1764,10 +1818,11 @@
 				A4F7102520B550760064FE4B /* TextFieldInputDataValidation.swift */,
 				A413DB1B20AEE04000C29C6B /* TextInputDataValidation.swift */,
 				A4F7102620B550760064FE4B /* TextLabelInputDataValidation.swift */,
+				141284FF21612DE300C2873E /* ThemeObserver.swift */,
 				A4571EE820FE2304006D96DC /* Transformable.swift */,
+				1495976521F5446800DFA0A2 /* ViewControllerLayoutListener.swift */,
 				A4571F1120FF54EE006D96DC /* WebPaymentContentViewControllerDelegate.swift */,
 				A45991102109E4CB00E941D5 /* WobblingViewHandler.swift */,
-				141284FF21612DE300C2873E /* ThemeObserver.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1791,8 +1846,10 @@
 				A40DBCA22088C031005B170B /* PaymentOptionsViewController.swift */,
 				A4BD8D0920A1F12500EFF2CE /* PaymentOptionsViewController+UITableView.swift */,
 				A4D5FE1220827680007D52F5 /* PaymentViewController.swift */,
+				1495976221F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift */,
 				A468773A20DC1F1500123391 /* SeparateWindowViewController.swift */,
 				A468773B20DC1F1600123391 /* StatusPopupViewController.swift */,
+				1495975621F5425B00DFA0A2 /* TapAlertController.swift */,
 				A4571F1620FF54FE006D96DC /* WebPaymentContentViewController.swift */,
 				A4571F1720FF54FE006D96DC /* WebPaymentPopupViewController.swift */,
 				A40DBCA12088C031005B170B /* WebPaymentViewController.swift */,
@@ -1813,12 +1870,11 @@
 				A4C13AB320F4F17500037EDC /* ExpirationDate+Additions.swift */,
 				A4BD8D3920A1F6AE00EFF2CE /* Notification.Name+Additions.swift */,
 				141284A4215D275600C2873E /* NSTextAlignment+Additions.swift */,
+				1495975F21F5436700DFA0A2 /* SeparateWindowRootViewController+Additions.swift */,
 				A4571EFA20FE2366006D96DC /* String+Additions.swift */,
 				141284FC2161255E00C2873E /* TapBlurEffectStyle+Additions.swift */,
 				141284C92160FF7600C2873E /* TapFont+Additions.swift */,
 				14128502216132AA00C2873E /* TapSearchView+Additions.swift */,
-				1412847A215CD83C00C2873E /* UIAlertAction+Additions.swift */,
-				1412847B215CD83C00C2873E /* UIAlertController+Additions.swift */,
 				140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */,
 				A4BD8D3720A1F6AE00EFF2CE /* UICollectionView+Additions.swift */,
 				141284A3215D275600C2873E /* UIEdgeInsets+Additions.swift */,
@@ -2023,7 +2079,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14128480215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */,
 				A4C13A9420F4F05900037EDC /* PaymentOptionCellViewModel.swift in Sources */,
 				A4694B2C211B481900B335F1 /* URLStatus.swift in Sources */,
 				A4B6E43D20860CD800078072 /* Permissions.swift in Sources */,
@@ -2056,7 +2111,6 @@
 				A4BD8D0D20A1F12500EFF2CE /* BaseViewController.swift in Sources */,
 				A4C13A6A20F4EF5500037EDC /* Volume.swift in Sources */,
 				A482F73B2085BC1000AA76A4 /* CreateChargeRequest.swift in Sources */,
-				1412847E215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */,
 				A4444BF920AB53C7005D9E87 /* PaymentContentViewController.swift in Sources */,
 				A4C13A7620F4EF5500037EDC /* ElectricCurrent.swift in Sources */,
 				A4BD8CDB20A1EFFE00EFF2CE /* ImageTableViewCellModel.swift in Sources */,
@@ -2068,6 +2122,7 @@
 				A4694B1E211B47EC00B335F1 /* ErrorActionExecutor.swift in Sources */,
 				A482F7642085DAF100AA76A4 /* TapSDKKnownError.swift in Sources */,
 				141284A9215D275700C2873E /* NSTextAlignment+Additions.swift in Sources */,
+				149AC19E21ED0F5A002D31A7 /* CreateCustomerRequest.swift in Sources */,
 				A4BD8D2920A1F61A00EFF2CE /* ErrorConstants.swift in Sources */,
 				A4D5310F208A47C600830AD8 /* PaymentOption.swift in Sources */,
 				A4571EF320FE2337006D96DC /* BillingAddressFormat.swift in Sources */,
@@ -2090,6 +2145,7 @@
 				A4F7106020B553AF0064FE4B /* AddressFieldTableViewCell.swift in Sources */,
 				A447EB022110542800099C07 /* InterfaceOrientationManager.swift in Sources */,
 				A4A9827F20D2B32000770690 /* Reference.swift in Sources */,
+				1495976621F5446800DFA0A2 /* ViewControllerLayoutListener.swift in Sources */,
 				A4A982BB20D2B36A00770690 /* CreateTokenRequest.swift in Sources */,
 				A4C13A9F20F4F0AF00037EDC /* Authentication.swift in Sources */,
 				A4A982B320D2B34F00770690 /* AddressFormat.swift in Sources */,
@@ -2113,14 +2169,17 @@
 				A4C13A6E20F4EF5500037EDC /* Duration.swift in Sources */,
 				A48810E920A2E92E00CDF5D4 /* LoadingImageViewState.swift in Sources */,
 				A424877120E4F0D8001C4FAF /* PayButtonInternalImplementation.swift in Sources */,
+				1495975421F5420000DFA0A2 /* LoadingView.swift in Sources */,
 				A42758B720A48CE400D214EE /* PaymentDataManager+PayButton.swift in Sources */,
 				A4BD8CF620A1F0B300EFF2CE /* BatchUpdates.swift in Sources */,
 				A4F7103A20B550AD0064FE4B /* AddressFieldsDataManager+CountrySelection.swift in Sources */,
+				149AC19C21ED0F5A002D31A7 /* CreateCardRequest.swift in Sources */,
 				A42487A520E4F41C001C4FAF /* BaseCollectionViewCell.swift in Sources */,
 				A479F7232099DB2100556E10 /* Merchant.swift in Sources */,
 				14690B142155DF330033C562 /* SecretKey.swift in Sources */,
 				A424877720E4F0D8001C4FAF /* TapButtonDelegate.swift in Sources */,
 				A4752A3D208EFF5C003118DB /* GroupTableViewCell.swift in Sources */,
+				1495976A21F5452E00DFA0A2 /* AppearanceMode.swift in Sources */,
 				140238F9215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */,
 				A4F7105620B553670064FE4B /* AddressTextInputFieldTableViewCellModel.swift in Sources */,
 				141284D32161061400C2873E /* ResourceImage.swift in Sources */,
@@ -2199,6 +2258,7 @@
 				A4C13A9620F4F05900037EDC /* DynamicLayoutTableViewCellModel.swift in Sources */,
 				A4F7105420B553670064FE4B /* AddressFieldTableViewCellModel.swift in Sources */,
 				A4C13AA620F4F0CD00037EDC /* AuthenticationStatus.swift in Sources */,
+				1495975D21F542D700DFA0A2 /* StatusBarStyle.swift in Sources */,
 				A4F7102920B550760064FE4B /* ListValue.swift in Sources */,
 				A4BD8D2B20A1F61A00EFF2CE /* InternalError.swift in Sources */,
 				A4BD8CE820A1F02200EFF2CE /* BindingWithModelCell.swift in Sources */,
@@ -2213,6 +2273,7 @@
 				14A95EDC21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift in Sources */,
 				A456717420AD69EC0057A504 /* BINDataManager.swift in Sources */,
 				A4C13A8720F4EF9900037EDC /* CardsContainerTableViewCellModel.swift in Sources */,
+				149AC19A21ED0F5A002D31A7 /* Metadata.swift in Sources */,
 				A424879420E4F2C9001C4FAF /* OTPInputViewDelegate.swift in Sources */,
 				A4B3FB94212467DA000C05EB /* Authorize.swift in Sources */,
 				A4A982A920D2B34F00770690 /* SourceObject.swift in Sources */,
@@ -2231,6 +2292,7 @@
 				A4BE546C20A88DF3004E979E /* MerchantHeaderStyle.swift in Sources */,
 				A4694B1C211B47EC00B335F1 /* LocalizationStorage.swift in Sources */,
 				A4A982AB20D2B34F00770690 /* AddressType.swift in Sources */,
+				1495974D21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */,
 				A4BD8C9D20A1EEB800EFF2CE /* BaseTableViewCell.swift in Sources */,
 				1412850021612DE300C2873E /* ThemeObserver.swift in Sources */,
 				A424877F20E4F100001C4FAF /* CardCollectionViewCellLoading.swift in Sources */,
@@ -2254,7 +2316,6 @@
 				A4B3FB7621246796000C05EB /* Authenticatable.swift in Sources */,
 				A4752A3A208EFF5C003118DB /* CardInputTableViewCell.swift in Sources */,
 				A4C13A9020F4F05900037EDC /* OTPViewControllerDelegate.swift in Sources */,
-				A408C06920BC05B9005E74AD /* CountableCasesEnum.swift in Sources */,
 				141284F12161132500C2873E /* CaseSelectionCellStyle.swift in Sources */,
 				A4A982AF20D2B34F00770690 /* SourceType.swift in Sources */,
 				A4BD8CE120A1EFFE00EFF2CE /* CurrencySelectionTableViewCellViewModel.swift in Sources */,
@@ -2265,6 +2326,7 @@
 				A4D5310A208A46E700830AD8 /* APIClient+PaymentTypes.swift in Sources */,
 				A482F73120853FF200AA76A4 /* goSellSDK.swift in Sources */,
 				A4444BF220AB535F005D9E87 /* BINResponse.swift in Sources */,
+				1495975721F5425B00DFA0A2 /* TapAlertController.swift in Sources */,
 				141284CA2160FF7600C2873E /* TapFont+Additions.swift in Sources */,
 				A4A4D5F62108D2590063488E /* PaymentStatus.swift in Sources */,
 				A4A9828520D2B32000770690 /* CreateTokenCard.swift in Sources */,
@@ -2280,6 +2342,7 @@
 				A4F56AEE212EB96600BEAA8E /* ErrorUtils.swift in Sources */,
 				A4A9828B20D2B32000770690 /* Receipt.swift in Sources */,
 				A4F56AEB212EB94A00BEAA8E /* OptionallyIdentifiableWithString.swift in Sources */,
+				149AC1A121ED0F94002D31A7 /* APIClient+Customer.swift in Sources */,
 				A4F7105E20B553AF0064FE4B /* AddressDropdownFieldTableViewCell.swift in Sources */,
 				A4F7106D20B554480064FE4B /* TextInputType.swift in Sources */,
 				A48810E720A2E92E00CDF5D4 /* TapNavigationView.swift in Sources */,
@@ -2294,6 +2357,7 @@
 				141284D02161027200C2873E /* HexColor.swift in Sources */,
 				A48810E520A2E92E00CDF5D4 /* TapNavigationViewDelegate.swift in Sources */,
 				14A95ED921ECD17700F91D83 /* GroupWithButtonCellStyle.swift in Sources */,
+				1495975A21F542A400DFA0A2 /* AppearanceStyle.swift in Sources */,
 				A479F71F2099DB2100556E10 /* EmailAddress.swift in Sources */,
 				A4571EF520FE2337006D96DC /* BillingAddressResponse.swift in Sources */,
 				14128484215CD83C00C2873E /* UIView+Additions.swift in Sources */,
@@ -2314,6 +2378,7 @@
 				A424876220E4F0A2001C4FAF /* TapButtonStateStyle.swift in Sources */,
 				A4F7103820B550AD0064FE4B /* CountriesDataManager.swift in Sources */,
 				A4A9828120D2B32000770690 /* CreateTokenSavedCard.swift in Sources */,
+				1495975221F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */,
 				A40DBCA52088C031005B170B /* PaymentOptionsViewController.swift in Sources */,
 				14A95ED721ECD17700F91D83 /* GlowStyle.swift in Sources */,
 				14A95EDF21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift in Sources */,
@@ -2327,6 +2392,7 @@
 				A479F71D2099DB2100556E10 /* PaymentOptionsRequest.swift in Sources */,
 				A424876420E4F0A2001C4FAF /* TapButtonStyle.swift in Sources */,
 				A424878C20E4F136001C4FAF /* OTPDismissalInteractionController.swift in Sources */,
+				1495976021F5436800DFA0A2 /* SeparateWindowRootViewController+Additions.swift in Sources */,
 				A4A982C320D2B5FE00770690 /* TokenType.swift in Sources */,
 				A4D5311C208A4E4400830AD8 /* PaymentOptionsResponse.swift in Sources */,
 				14128478215CD82E00C2873E /* LocalizationKey.swift in Sources */,
@@ -2366,12 +2432,14 @@
 				141284EE216112C300C2873E /* SearchBarStyle.swift in Sources */,
 				A4444BE420AB52C5005D9E87 /* HeaderNavigatedViewControllerWithSearch.swift in Sources */,
 				A4BD8D4320A1F6AE00EFF2CE /* Notification.Name+Additions.swift in Sources */,
+				1495976C21F5452E00DFA0A2 /* SDKAppearanceMode.swift in Sources */,
 				A4C13A6820F4EF5500037EDC /* ElectricCharge.swift in Sources */,
 				A4B3FB7821246796000C05EB /* ChargeProtocol.swift in Sources */,
 				A413DB1F20AEE04000C29C6B /* DataValidation.swift in Sources */,
 				A4C0FC7E208CF44300C5FBC6 /* LoadingWithModelCell.swift in Sources */,
 				A473D109213BE76900F13B73 /* FilterableByCurrency.swift in Sources */,
 				A4694B20211B47EC00B335F1 /* ErrorDataManager.swift in Sources */,
+				1495976321F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift in Sources */,
 				A4444BE820AB52D9005D9E87 /* DataManagerWithFilteredData.swift in Sources */,
 				A4A982A720D2B34F00770690 /* SourceChannel.swift in Sources */,
 				A424878A20E4F136001C4FAF /* BaseInteractionController.swift in Sources */,
@@ -2397,7 +2465,6 @@
 				A4BD8D8F20A1FB5500EFF2CE /* PaymentViewController.swift in Sources */,
 				A408C06020BC058A005E74AD /* Shipping.swift in Sources */,
 				A4F7106120B553AF0064FE4B /* AddressFieldTableViewCell.swift in Sources */,
-				A408C06A20BC05B9005E74AD /* CountableCasesEnum.swift in Sources */,
 				A4571F1520FF54EE006D96DC /* WebPaymentContentViewControllerDelegate.swift in Sources */,
 				A4571F0220FE2367006D96DC /* Address+Additions.swift in Sources */,
 				141284A6215D275700C2873E /* EditableTextInsetsTextField.swift in Sources */,
@@ -2411,10 +2478,12 @@
 				A408C06820BC05B9005E74AD /* InitializableWithString.swift in Sources */,
 				A4BD8D9220A1FB5500EFF2CE /* Bundle+Additions.swift in Sources */,
 				14A95EDA21ECD17700F91D83 /* GroupWithButtonCellStyle.swift in Sources */,
+				149AC19B21ED0F5A002D31A7 /* Metadata.swift in Sources */,
 				A43A0A6820DA4A82006B39F1 /* WebPaymentURLDecision.swift in Sources */,
 				A4BD8D9320A1FB5500EFF2CE /* UIStoryboard+Additions.swift in Sources */,
 				A4BD8D9420A1FB5500EFF2CE /* LoadingWithModelCell.swift in Sources */,
 				A473D10A213BE76900F13B73 /* FilterableByCurrency.swift in Sources */,
+				1495975321F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */,
 				A4444BFA20AB53C7005D9E87 /* PaymentContentViewController.swift in Sources */,
 				A401FC952101DA6D002DBA73 /* CountrySelectionViewControllerDelegate.swift in Sources */,
 				14A95EDD21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift in Sources */,
@@ -2455,6 +2524,7 @@
 				A4BD8D6A20A1FB3D00EFF2CE /* CreateChargeRequest.swift in Sources */,
 				A45991132109E4CB00E941D5 /* WobblingViewHandler.swift in Sources */,
 				A4C13AA920F4F0CD00037EDC /* AuthenticationRequirer.swift in Sources */,
+				1495976D21F5452E00DFA0A2 /* SDKAppearanceMode.swift in Sources */,
 				A4BD8D6C20A1FB3D00EFF2CE /* SDKSettings.swift in Sources */,
 				A43A0A5620D93D5F006B39F1 /* SaveCardValidator.swift in Sources */,
 				A48810EA20A2E92E00CDF5D4 /* LoadingImageViewState.swift in Sources */,
@@ -2471,6 +2541,7 @@
 				A4BD8D6E20A1FB3D00EFF2CE /* Source.swift in Sources */,
 				A468773D20DC1F1600123391 /* SeparateWindowViewController.swift in Sources */,
 				A4A9828620D2B32000770690 /* CreateTokenCard.swift in Sources */,
+				1495975B21F542A400DFA0A2 /* AppearanceStyle.swift in Sources */,
 				A4C13A7520F4EF5500037EDC /* Length.swift in Sources */,
 				A4C13A6720F4EF5500037EDC /* Power.swift in Sources */,
 				A4BD8D7020A1FB3D00EFF2CE /* APIError.swift in Sources */,
@@ -2509,10 +2580,10 @@
 				140238F8215A49BE00CF3B47 /* UIButton+Additions.swift in Sources */,
 				A4BD8D7B20A1FB3D00EFF2CE /* RSAUtils.swift in Sources */,
 				A4444BE320AB52C5005D9E87 /* HeaderNavigatedViewController.swift in Sources */,
-				1412847F215CD83C00C2873E /* UIAlertAction+Additions.swift in Sources */,
 				A4F7107120B5546A0064FE4B /* AddressFieldInputType.swift in Sources */,
 				14DF99F92147F4B900991EB3 /* Customer.swift in Sources */,
 				A413DB3820AEE0E700C29C6B /* Country+Additions.swift in Sources */,
+				1495975821F5425B00DFA0A2 /* TapAlertController.swift in Sources */,
 				A43A0A6C20DA4AAD006B39F1 /* WebViewProgressBar.swift in Sources */,
 				A4F7105720B553670064FE4B /* AddressTextInputFieldTableViewCellModel.swift in Sources */,
 				141284C52160FF0E00C2873E /* Font.swift in Sources */,
@@ -2557,6 +2628,7 @@
 				A4B3FB7521246796000C05EB /* Retrievable.swift in Sources */,
 				A4571EFE20FE2367006D96DC /* AddressType+Additions.swift in Sources */,
 				A4F7102A20B550760064FE4B /* ListValue.swift in Sources */,
+				1495976421F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift in Sources */,
 				A4B3FB9E21246809000C05EB /* APIClient+Authorize.swift in Sources */,
 				14128479215CD82E00C2873E /* LocalizationKey.swift in Sources */,
 				A42758AA20A3615200D214EE /* CardInputTableViewCellModel+CardScanning.swift in Sources */,
@@ -2579,6 +2651,7 @@
 				A456717520AD69EC0057A504 /* BINDataManager.swift in Sources */,
 				A4F7102C20B550760064FE4B /* TextFieldInputDataValidation.swift in Sources */,
 				A4BD8CDC20A1EFFE00EFF2CE /* ImageTableViewCellModel.swift in Sources */,
+				149AC1A221ED0F94002D31A7 /* APIClient+Customer.swift in Sources */,
 				A4F7105F20B553AF0064FE4B /* AddressDropdownFieldTableViewCell.swift in Sources */,
 				A4C13A8820F4EF9900037EDC /* CardsContainerTableViewCellModel.swift in Sources */,
 				A4BD8D2020A1F48B00EFF2CE /* CurrencyCodesDataManager.swift in Sources */,
@@ -2593,10 +2666,12 @@
 				A4BD8D2A20A1F61A00EFF2CE /* ErrorConstants.swift in Sources */,
 				14128485215CD83C00C2873E /* UIView+Additions.swift in Sources */,
 				141284C82160FF1C00C2873E /* CurrencySelectionCellStyle.swift in Sources */,
+				1495976121F5436800DFA0A2 /* SeparateWindowRootViewController+Additions.swift in Sources */,
 				140238FA215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */,
 				A4599125210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift in Sources */,
 				1412850B216257D600C2873E /* StatusPopupStyle.swift in Sources */,
 				A4BE546D20A88DF3004E979E /* MerchantHeaderStyle.swift in Sources */,
+				1495974E21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */,
 				A4B3FB82212467B3000C05EB /* AuthorizeActionType.swift in Sources */,
 				A4571F1B20FF54FE006D96DC /* WebPaymentPopupViewController.swift in Sources */,
 				A401FC812100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */,
@@ -2657,6 +2732,7 @@
 				A401FC912101DA6D002DBA73 /* CurrencySelectionViewControllerDelegate.swift in Sources */,
 				A4571F1320FF54EE006D96DC /* PopupPresentationSupport.swift in Sources */,
 				A48810E620A2E92E00CDF5D4 /* TapNavigationViewDelegate.swift in Sources */,
+				1495976B21F5452E00DFA0A2 /* AppearanceMode.swift in Sources */,
 				A4BD8D0720A1F0B300EFF2CE /* CurrencyFormatter.swift in Sources */,
 				141284A8215D275700C2873E /* UIEdgeInsets+Additions.swift in Sources */,
 				A4F7105920B553670064FE4B /* CardInputTableViewCellModel+AddressInput.swift in Sources */,
@@ -2673,6 +2749,7 @@
 				14128483215CD83C00C2873E /* UITextField+Additions.swift in Sources */,
 				A42487AF20E4F8BC001C4FAF /* CardsContainerTableViewCell.swift in Sources */,
 				A4BD8CEB20A1F02200EFF2CE /* PaymentDataSource.swift in Sources */,
+				1495976721F5446800DFA0A2 /* ViewControllerLayoutListener.swift in Sources */,
 				A468774B20DC20C200123391 /* PopupAnimationController.swift in Sources */,
 				A401FC932101DA6D002DBA73 /* MerchantInformationHeaderViewControllerDelegate.swift in Sources */,
 				A4A982B420D2B34F00770690 /* AddressFormat.swift in Sources */,
@@ -2685,6 +2762,7 @@
 				A45991152109E4CB00E941D5 /* GlowingViewHandler.swift in Sources */,
 				A4571EF620FE2337006D96DC /* BillingAddressResponse.swift in Sources */,
 				A4BD8CFD20A1F0B300EFF2CE /* ExpirationDateValidator.swift in Sources */,
+				149AC19D21ED0F5A002D31A7 /* CreateCardRequest.swift in Sources */,
 				A4BD8D2C20A1F61A00EFF2CE /* InternalError.swift in Sources */,
 				141284BC2160FBEF00C2873E /* ThemesContainer.swift in Sources */,
 				A4F7106320B553AF0064FE4B /* AddressTextInputFieldTableViewCell.swift in Sources */,
@@ -2709,6 +2787,7 @@
 				A4571EF420FE2337006D96DC /* BillingAddressFormat.swift in Sources */,
 				A43A0A4D20D93C61006B39F1 /* LoadingViewController.swift in Sources */,
 				A4571F0020FE2367006D96DC /* String+Additions.swift in Sources */,
+				1495975521F5420000DFA0A2 /* LoadingView.swift in Sources */,
 				A413DB2220AEE04000C29C6B /* CardBrandChangeReporting.swift in Sources */,
 				A4C13AA020F4F0AF00037EDC /* Authentication.swift in Sources */,
 				A4B3FB95212467DA000C05EB /* Authorize.swift in Sources */,
@@ -2718,10 +2797,10 @@
 				A4F7104A20B553260064FE4B /* CountrySelectionViewController.swift in Sources */,
 				A4C13A8620F4EF9900037EDC /* PaymentOptionCollectionCellViewModel.swift in Sources */,
 				141284EC2161112D00C2873E /* NavigationBarStyle.swift in Sources */,
-				14128481215CD83C00C2873E /* UIAlertController+Additions.swift in Sources */,
 				A4444BE520AB52C5005D9E87 /* HeaderNavigatedViewControllerWithSearch.swift in Sources */,
 				A479F71E2099DB2100556E10 /* PaymentOptionsRequest.swift in Sources */,
 				A4A9829020D2B32000770690 /* CreateTokenWithCardDataRequest.swift in Sources */,
+				1495975E21F542D700DFA0A2 /* StatusBarStyle.swift in Sources */,
 				A413DB2020AEE04000C29C6B /* DataValidation.swift in Sources */,
 				A4F56AEF212EB96600BEAA8E /* ErrorUtils.swift in Sources */,
 				A4C13A7320F4EF5500037EDC /* Mass.swift in Sources */,
@@ -2732,6 +2811,7 @@
 				A424878920E4F136001C4FAF /* UINavigationControllerPopInteractionController.swift in Sources */,
 				A4444BE920AB52D9005D9E87 /* DataManagerWithFilteredData.swift in Sources */,
 				A4A9829220D2B32000770690 /* Order.swift in Sources */,
+				149AC19F21ED0F5A002D31A7 /* CreateCustomerRequest.swift in Sources */,
 				A4571EEA20FE2304006D96DC /* AddressFieldsDataManagerLoadingListener.swift in Sources */,
 				14B22184215A4747003DC928 /* Localizable.swift in Sources */,
 				A42487A620E4F41C001C4FAF /* BaseCollectionViewCell.swift in Sources */,

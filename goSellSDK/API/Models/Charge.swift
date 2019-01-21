@@ -68,7 +68,7 @@
     
     /// Set of key/value pairs that you can attach to an object.
     /// It can be useful for storing additional information about the object in a structured format.
-    public private(set) var metadata: [String: String]?
+    public private(set) var metadata: Metadata?
     
     /// Charge reference.
     public private(set) var reference: Reference?
@@ -118,7 +118,7 @@
     
     // MARK: Methods
     
-    private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: [String: String]?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
+    private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
         
         self.identifier             = identifier
         self.apiVersion             = apiVersion
@@ -172,7 +172,7 @@ extension Charge: Decodable {
         let requires3DSecure    = try container.decode          (Bool.self,                 forKey: .requires3DSecure)
         let transactionDetails  = try container.decode          (TransactionDetails.self,   forKey: .transactionDetails)
         let descriptionText     = try container.decodeIfPresent (String.self,               forKey: .descriptionText)
-        let metadata            = try container.decodeIfPresent ([String: String].self,     forKey: .metadata)
+        let metadata            = try container.decodeIfPresent (Metadata.self,				forKey: .metadata)
         let reference           = try container.decodeIfPresent (Reference.self,            forKey: .reference)
         let receiptSettings     = try container.decodeIfPresent (Receipt.self,              forKey: .receiptSettings)
         let acquirer            = try container.decodeIfPresent (Acquirer.self,             forKey: .acquirer)

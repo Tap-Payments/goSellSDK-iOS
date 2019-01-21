@@ -56,7 +56,7 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
             let toView = toController.view
         
         else { return }
-        
+		
         let containerView = transitionContext.containerView
         
         containerView.addSubview(fromView)
@@ -74,11 +74,11 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
         
         let animations: TypeAlias.ArgumentlessClosure = {
             
-            toView.frame = finalFrame
-            blurView?.style = Theme.current.commonStyle.blurStyle
-        }
-        
-        let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseOut]
+			toView.frame = finalFrame
+			blurView?.style = Theme.current.commonStyle.blurStyle[PaymentDataManager.shared.appearance]
+		}
+		
+		let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseOut]
         UIView.animate(withDuration: Constants.animationDuration, delay: 0.0, options: options, animations: animations) { _ in
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

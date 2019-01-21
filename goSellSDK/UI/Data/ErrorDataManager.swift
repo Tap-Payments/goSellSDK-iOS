@@ -109,6 +109,7 @@ internal class ErrorDataManager {
         case .invalidAuthorizeActionType:   return .invalidAuthorizeAutoScheduleType
         case .invalidCurrency:              return .invalidCurrency
         case .invalidCustomerInfo:          return .missingCustomerIDOrCustomerInformation
+		case .customerAlreadyExists:		return .customerAlreadyExists
         case .invalidEmail:                 return .invalidEmailAddress
         case .invalidISDNumber:             return .invalidPhoneNumberCountryCode
         case .invalidPhoneNumber:           return .invalidPhoneNumber
@@ -174,6 +175,7 @@ internal class ErrorDataManager {
              .invalidCustomerID,
              .customerNotFound,
              .customerIDMismatch,
+			 .customerAlreadyExists,
              .redirectURLMissing,
              .redirectURLInvalid,
              .invalidMerchantOrderReference,

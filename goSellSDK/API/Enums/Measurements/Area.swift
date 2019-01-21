@@ -6,7 +6,7 @@
 //
 
 /// Area measurement unit.
-@objc(MeasurementArea) public enum Area: Int {
+@objc(MeasurementArea) public enum Area: Int, CaseIterable {
     
     /// Square megameters.
     @objc(SquareMegameters)
@@ -113,28 +113,6 @@ extension Area: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension Area: CountableCasesEnum {
-    
-    public static let all: [Area] = [
-        
-        .squareMegameters,
-        .squareKilometers,
-        .squareMeters,
-        .squareCentimeters,
-        .squareMillimeters,
-        .squareMicrometers,
-        .squareNanometers,
-        .squareInches,
-        .squareFeet,
-        .squareYards,
-        .squareMiles,
-        .acres,
-        .ares,
-        .hectares
-    ]
 }
 
 // MARK: - CustomStringConvertible

@@ -14,6 +14,7 @@ import class    TapVisualEffectView.TapVisualEffectView
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UIScreen.UIScreen
 import class    UIKit.UIStoryboard.UIStoryboard
+import class	UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
@@ -174,4 +175,13 @@ extension LoadingViewController: Singleton {
         
         return instance
     }
+}
+
+// MARK: - LoadingViewSupport
+extension LoadingViewController: LoadingViewSupport {
+	
+	internal var loadingViewContainer: UIView {
+		
+		return self.view
+	}
 }

@@ -13,7 +13,10 @@
     
     /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
     var customer: Customer? { get }
-    
+	
+	/// SDK appearance mode. If not implemented it will be treated as `default`.
+	@objc optional var appearance: SDKAppearanceMode { get }
+	
     /// Payment/Authorization amount.
     /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` is preferred and amount is calculated from them.
     ///         If `taxes` and/or `shipping` is implemented, it will affect the value you pass in this property.
@@ -40,7 +43,7 @@
     @objc optional var paymentDescription: String? { get }
     
     /// Additional information you would like to pass along with the transaction.
-    @objc optional var paymentMetadata: [String: String]? { get }
+    @objc optional var paymentMetadata: Metadata? { get }
     
     /// Payment reference. Implement this property to keep a reference to the transaction on your backend.
     @objc optional var paymentReference: Reference? { get }

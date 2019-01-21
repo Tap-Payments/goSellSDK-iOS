@@ -6,7 +6,7 @@
 //
 
 /// Volume measurement unit.
-@objc(MeasurementVolume) public enum Volume: Int {
+@objc(MeasurementVolume) public enum Volume: Int, CaseIterable {
     
     /// Megaliters.
     @objc(Megaliters)
@@ -215,45 +215,6 @@ extension Volume: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension Volume: CountableCasesEnum {
-    
-    public static let all: [Volume] = [
-        
-        .megaliters,
-        .kiloliters,
-        .liters,
-        .deciliters,
-        .centiliters,
-        .milliliters,
-        .cubicKilometers,
-        .cubicMeters,
-        .cubicDecimeters,
-        .cubicCentimeters,
-        .cubicMillimeters,
-        .cubicInches,
-        .cubicFeet,
-        .cubicYards,
-        .cubicMiles,
-        .acreFeet,
-        .bushels,
-        .teaspoons,
-        .tablespoons,
-        .fluidOunces,
-        .cups,
-        .pints,
-        .quarts,
-        .gallons,
-        .imperialTeaspoons,
-        .imperialTablespoons,
-        .imperialFluidOunces,
-        .imperialPints,
-        .imperialQuarts,
-        .imperialGallons,
-        .metricCups
-    ]
 }
 
 // MARK: - CustomStringConvertible

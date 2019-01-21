@@ -22,7 +22,9 @@ internal final class TapNavigationView: TapNibView {
     
     // MARK: - Internal -
     // MARK: Properties
-    
+	
+	internal static let preferredHeight = Constants.height
+	
     /// Delegate
     internal weak var delegate: TapNavigationViewDelegate?
     

@@ -5,13 +5,15 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import struct	CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGPoint
+import struct	CoreGraphics.CGGeometry.CGSize
 import struct   TapAdditionsKit.TypeAlias
 import class    TapNetworkManager.TapImageLoader
-import class    UIKit.UIAlertController.UIAlertAction
-import class    UIKit.UIAlertController.UIAlertController
+import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIImage.UIImage
 import class    UIKit.UIScreen.UIScreen
+import class	UIKit.UIStoryboard.UIStoryboard
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UIView.UIView
 import var      UIKit.UIWindow.UIWindowLevelStatusBar
@@ -19,6 +21,37 @@ import var      UIKit.UIWindow.UIWindowLevelStatusBar
 internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     // MARK: - Internal -
+	// MARK: Properties
+	
+	internal override var preferredStatusBarStyle: UIStatusBarStyle {
+		
+		return Theme.current.commonStyle.statusBar[.fullscreen].uiStatusBarStyle
+	}
+	
+	internal override var preferredContentSize: CGSize {
+		
+		get {
+		
+			return UIScreen.main.bounds.size
+		}
+		set {
+			
+			super.preferredContentSize = UIScreen.main.bounds.size
+		}
+	}
+	
+	internal override var contentTopOffset: CGFloat {
+		
+		if let contentView = self.contentContainerView {
+			
+			return contentView.frame.origin.y
+		}
+		else {
+			
+			return self.view.convert(self.view.bounds, to: self.view.window).origin.y
+		}
+	}
+	
     // MARK: Methods
     
     internal func setup(with paymentOption: PaymentOption, url: URL?, binInformation: BINResponse?) {
@@ -81,6 +114,8 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     // MARK: - Private -
     // MARK: Properties
+	
+	@IBOutlet private weak var contentContainerView: UIView?
     
     private var paymentOption: PaymentOption?
     private var binInformation: BINResponse?
@@ -147,69 +182,47 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     
     private func showCancelAttemptAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
 		
-		let alert = UIAlertController(titleKey: .alert_cancel_payment_title, messageKey: .alert_cancel_payment_message, preferredStyle: .alert)
+		let alert = TapAlertController(titleKey: .alert_cancel_payment_title, messageKey: .alert_cancel_payment_message, preferredStyle: .alert)
 		
-        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_no_title, style: .cancel) { [weak alert] (action) in
+        let cancelCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_btn_no_title, style: .cancel) { [weak alert] (action) in
             
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
+            alert?.hide()
             decision(false)
         }
 		
-        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_confirm_title, style: .destructive) { [weak alert] (action) in
+        let confirmCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_btn_confirm_title, style: .destructive) { [weak alert] (action) in
             
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
+            alert?.hide()
             decision(true)
         }
         
         alert.addAction(cancelCancelAction)
         alert.addAction(confirmCancelAction)
         
-        DispatchQueue.main.async {
-            
-            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
-        }
+        alert.show()
     }
     
     private func showCancelAttemptUndefinedStatusAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
 		
-		let alert = UIAlertController(titleKey: 		.alert_cancel_payment_status_undefined_title,
-									  messageKey: 		.alert_cancel_payment_status_undefined_message,
-									  preferredStyle:	.alert)
+		let alert = TapAlertController(titleKey: 		.alert_cancel_payment_status_undefined_title,
+									   messageKey: 		.alert_cancel_payment_status_undefined_message,
+									   preferredStyle:	.alert)
 		
-        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_no_title, style: .cancel) { [weak alert] (action) in
-            
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
+		let cancelCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_status_undefined_btn_no_title, style: .cancel) { [weak alert] (action) in
+			
+            alert?.hide()
             decision(false)
         }
-        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_confirm_title, style: .destructive) { [weak alert] (action) in
+        let confirmCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_status_undefined_btn_confirm_title, style: .destructive) { [weak alert] (action) in
             
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
+            alert?.hide()
             decision(true)
         }
         
         alert.addAction(cancelCancelAction)
         alert.addAction(confirmCancelAction)
         
-        DispatchQueue.main.async {
-            
-            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
-        }
+        alert.show()
     }
 }
 
@@ -234,4 +247,22 @@ extension WebPaymentViewController: InteractiveTransitionControllerDelegate {
         
         self.requestToPop(decision)
     }
+}
+
+// MARK: - InstantiatableFromStoryboard
+extension WebPaymentViewController: InstantiatableFromStoryboard {
+	
+	internal static var hostingStoryboard: UIStoryboard {
+		
+		return .goSellSDKPayment
+	}
+}
+
+// MARK: - LoadingViewSupport
+extension WebPaymentViewController: LoadingViewSupport {
+	
+	internal var loadingViewContainer: UIView {
+		
+		return self.contentContainerView ?? self.view
+	}
 }

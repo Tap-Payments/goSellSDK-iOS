@@ -12,6 +12,7 @@ internal enum InternalError: Int {
     case invalidAuthorizeActionType
     case invalidCurrency
     case invalidCustomerInfo
+	case customerAlreadyExists
     case invalidEmail
     case invalidISDNumber
     case invalidPhoneNumber

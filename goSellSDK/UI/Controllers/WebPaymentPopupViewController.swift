@@ -24,20 +24,23 @@ internal final class WebPaymentPopupViewController: SeparateWindowViewController
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func show(with topOffset: CGFloat, with url: URL) {
+	internal static func show(with topOffset: CGFloat, with url: URL, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         let controller = self.createAndSetupController()
         controller.initialURL = url
         
-        controller.showExternally(topOffset: topOffset)
+		controller.showExternally(topOffset: topOffset, completion: completion)
     }
     
     internal override func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
-        
+		
         super.hide(animated: animated, async: async) {
             
             WebPaymentPopupViewController.destroyInstance()
-            completion?()
+			ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeWindowedBack {
+				
+			 	completion?()
+			}
         }
     }
     
@@ -177,12 +180,7 @@ extension WebPaymentPopupViewController: Singleton {
 
 // MARK: - WebPaymentContentViewControllerDelegate
 extension WebPaymentPopupViewController: WebPaymentContentViewControllerDelegate {
-    
-    internal func webPaymentContentViewController(_ controller: WebPaymentContentViewController, webViewDidScroll contentOffset: CGPoint) {
-        
-        MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(contentOffset.y)
-    }
-    
+	
     internal func webPaymentContentViewControllerRequestedDismissal(_ controller: WebPaymentContentViewController) {
         
         self.hide()
@@ -201,4 +199,13 @@ extension WebPaymentPopupViewController: PopupPresentationSupport {
         
         return self.view
     }
+}
+
+// MARK: - LoadingViewSupport
+extension WebPaymentPopupViewController: LoadingViewSupport {
+	
+	internal var loadingViewContainer: UIView {
+		
+		return self.view
+	}
 }

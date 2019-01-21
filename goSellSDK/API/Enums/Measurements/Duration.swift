@@ -6,7 +6,7 @@
 //
 
 /// Duration measurement unit.
-@objc(MeasurementDuration) public enum Duration: Int {
+@objc(MeasurementDuration) public enum Duration: Int, CaseIterable {
     
     /// Seconds.
     @objc(Seconds)
@@ -77,22 +77,6 @@ extension Duration: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension Duration: CountableCasesEnum {
-    
-    public static let all: [Duration] = [
-        
-        .seconds,
-        .minutes,
-        .hours,
-        .days,
-        .weeks,
-        .months,
-        .quarters,
-        .years
-    ]
 }
 
 // MARK: - CustomStringConvertible

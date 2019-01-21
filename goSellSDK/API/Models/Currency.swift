@@ -96,10 +96,10 @@
     private static let allISOCodes = Locale.isoCurrencyCodes.map { $0.lowercased() }
 }
 
-// MARK: - CountableCasesEnum
-extension Currency: CountableCasesEnum {
+// MARK: - CaseIterable
+extension Currency: CaseIterable {
     
-    public static let all: [Currency] = Currency.allISOCodes.compactMap { try? Currency(isoCode: $0) }
+    public static let allCases: [Currency] = Currency.allISOCodes.compactMap { try? Currency(isoCode: $0) }
 }
 
 // MARK: - Encodable
@@ -122,4 +122,13 @@ extension Currency: Decodable {
         
         try self.init(isoCode: code)
     }
+}
+
+// MARK: - NSCopying
+extension Currency: NSCopying {
+	
+	public func copy(with zone: NSZone? = nil) -> Any {
+		
+		return try! Currency(isoCode: self.isoCode)
+	}
 }

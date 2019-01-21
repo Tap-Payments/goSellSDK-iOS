@@ -173,8 +173,8 @@ extension CardCollectionViewCell: AlwaysGlowingViewHandler {
     }
     
     internal var standartGlowColor: UIColor {
-        
-        return UIColor.black.withAlphaComponent(0.08)
+		
+		return Theme.current.paymentOptionsCellStyle.alwaysGlowStyle.color
     }
 }
 

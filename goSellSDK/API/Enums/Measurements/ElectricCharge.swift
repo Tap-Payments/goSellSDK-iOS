@@ -6,7 +6,7 @@
 //
 
 /// Electric charge measurement unit.
-@objc(MeasurementElectricCharge) public enum ElectricCharge: Int {
+@objc(MeasurementElectricCharge) public enum ElectricCharge: Int, CaseIterable {
     
     /// Coulombs.
     @objc(Coulombs)
@@ -65,20 +65,6 @@ extension ElectricCharge: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension ElectricCharge: CountableCasesEnum {
-    
-    public static let all: [ElectricCharge] = [
-        
-        .coulombs,
-        .megaampereHours,
-        .kiloampereHours,
-        .ampereHours,
-        .milliampereHours,
-        .microampereHours
-    ]
 }
 
 // MARK: - CustomStringConvertible

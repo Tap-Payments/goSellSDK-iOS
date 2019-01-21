@@ -6,7 +6,7 @@
 //
 
 /// Mass measurement unit.
-@objc(MeasurementMass) public enum Mass: Int {
+@objc(MeasurementMass) public enum Mass: Int, CaseIterable {
     
     /// Kilograms.
     @objc(Kilograms)
@@ -125,30 +125,6 @@ extension Mass: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension Mass: CountableCasesEnum {
-    
-    public static let all: [Mass] = [
-        
-        .kilograms,
-        .grams,
-        .decigrams,
-        .centigrams,
-        .milligrams,
-        .micrograms,
-        .nanograms,
-        .picograms,
-        .ounces,
-        .pounds,
-        .stones,
-        .metricTons,
-        .shortTons,
-        .carats,
-        .ouncesTroy,
-        .slugs
-    ]
 }
 
 // MARK: - CustomStringConvertible

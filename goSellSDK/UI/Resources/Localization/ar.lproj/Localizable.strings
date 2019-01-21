@@ -15,6 +15,11 @@
 "btn_pay_title_generic"	= "ادفع";
 "btn_pay_title_amount"	= "ادفع %@";
 
+// MARK: Save Button Title
+
+"btn_save_title" = "SAVE CARD";
+"btn_save_action_title" = "SAVE";
+
 // MARK: Payment Option Group Titles
 
 "payment_options_group_title_recent" = "مستخدم حديثاً";

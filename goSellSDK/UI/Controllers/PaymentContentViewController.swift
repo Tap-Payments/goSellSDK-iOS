@@ -7,8 +7,10 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 import struct   CoreGraphics.CGGeometry.CGRect
+import struct	CoreGraphics.CGGeometry.CGSize
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
+import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
@@ -18,18 +20,33 @@ internal class PaymentContentViewController: BaseViewController {
     
     // MARK: - Internal -
     // MARK: Properties
-    
-    internal var paymentOptionsContainerTopOffset: CGFloat {
-        
-        if let frame = self.paymentOptionsContainerView?.frame {
-            
-            return frame.origin.y
-        }
-        else {
-            
-            return 0.0
-        }
-    }
+	
+	internal override var preferredStatusBarStyle: UIStatusBarStyle {
+		
+		return Theme.current.commonStyle.statusBar[PaymentDataManager.shared.appearance].uiStatusBarStyle
+	}
+	
+	/// Layout listener.
+	internal weak var layoutListener: ViewControllerLayoutListener?
+	
+	internal override var preferredContentSize: CGSize {
+		
+		get {
+			
+			let headerSize = self.headerViewController?.preferredContentSize ?? .zero
+			let paymentOptionsSize = self.paymentOptionsViewController?.preferredContentSize ?? .zero
+			let payButtonContainerSize = self.payButtonContainerView?.bounds.size ?? .zero
+			
+			let width = ceil(max(headerSize.width, paymentOptionsSize.width, payButtonContainerSize.width))
+			let height = ceil(headerSize.height + paymentOptionsSize.height + payButtonContainerSize.height)
+			
+			return CGSize(width: width, height: height)
+		}
+		set {
+			
+			super.preferredContentSize = newValue
+		}
+	}
     
     // MARK: Methods
 	
@@ -39,12 +56,20 @@ internal class PaymentContentViewController: BaseViewController {
 		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
 	}
 	
+	internal override func viewDidLayoutSubviews() {
+		
+		super.viewDidLayoutSubviews()
+		
+		self.layoutListener?.viewControllerViewDidLayoutSubviews(self)
+	}
+	
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
         
         if let merchantHeaderController = segue.destination as? MerchantInformationHeaderViewController {
-            
+			
+			self.headerViewController = merchantHeaderController
             merchantHeaderController.delegate = self
         }
         else if let paymentOptionsController = segue.destination as? PaymentOptionsViewController {
@@ -79,7 +104,9 @@ internal class PaymentContentViewController: BaseViewController {
     // MARK: Properties
     
     @IBOutlet private weak var paymentOptionsContainerView: UIView?
-    
+	@IBOutlet private weak var loadingContainerView: UIView?
+	
+	@IBOutlet private weak var payButtonContainerView: UIView?
     @IBOutlet private weak var payButtonUI: PayButtonUI? {
         
         didSet {
@@ -90,8 +117,9 @@ internal class PaymentContentViewController: BaseViewController {
             }
         }
     }
-    
-    private weak var paymentOptionsViewController: PaymentOptionsViewController?
+	
+	private weak var headerViewController: BaseViewController?
+    private weak var paymentOptionsViewController: BaseViewController?
 }
 
 // MARK: - MerchantInformationHeaderViewControllerDelegate
@@ -101,4 +129,29 @@ extension PaymentContentViewController: MerchantInformationHeaderViewControllerD
         
         PaymentDataManager.shared.closePayment(with: .cancelled, fadeAnimation: false, force: false, completion: nil)
     }
+}
+
+// MARK: - NavigationContentViewController
+extension PaymentContentViewController: NavigationContentViewController {
+	
+	internal var contentTopOffset: CGFloat {
+		
+		if let frame = self.paymentOptionsContainerView?.frame {
+			
+			return self.view.convert(frame, to: self.view.window).origin.y
+		}
+		else {
+			
+			return 0.0
+		}
+	}
+}
+
+// MARK: - LoadingViewSupport
+extension PaymentContentViewController: LoadingViewSupport {
+	
+	internal var loadingViewContainer: UIView {
+		
+		return self.loadingContainerView ?? self.view
+	}
 }

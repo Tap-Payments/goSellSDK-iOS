@@ -7,9 +7,8 @@
 
 import struct   CoreGraphics.CGBase.CGFloat
 import struct   TapAdditionsKit.TypeAlias
-import class    UIKit.UIAlertController.UIAlertAction
-import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
+import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIFont.UIFont
@@ -29,6 +28,13 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitionin
 internal final class OTPViewController: SeparateWindowViewController {
     
     // MARK: - Internal -
+	// MARK: Properties
+	
+	internal override var preferredStatusBarStyle: UIStatusBarStyle {
+		
+		return Theme.current.commonStyle.statusBar[.fullscreen].uiStatusBarStyle
+	}
+	
     // MARK: Methods
     
     internal static func show(with topOffset: CGFloat = 0.0, with phoneNumber: String, delegate: OTPViewControllerDelegate) {
@@ -53,11 +59,15 @@ internal final class OTPViewController: SeparateWindowViewController {
     }
     
     internal override func hide(animated: Bool = true, async: Bool = true, completion: TypeAlias.ArgumentlessClosure? = nil) {
-        
+		
         super.hide(animated: animated, async: async) {
             
             OTPViewController.destroyInstance()
-            completion?()
+			
+			ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeWindowedBack {
+				
+				completion?()
+			}
         }
     }
     
@@ -446,34 +456,39 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     private func showCancelAttemptAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
 		
-		let alert = UIAlertController(titleKey: .alert_cancel_payment_title, messageKey: .alert_cancel_payment_message, preferredStyle: .alert)
+		let alert = TapAlertController(titleKey: .alert_cancel_payment_title, messageKey: .alert_cancel_payment_message, preferredStyle: .alert)
 		
-        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_no_title, style: .cancel) { [weak alert] (action) in
-            
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
-            decision(false)
+        let cancelCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_btn_no_title, style: .cancel) { [weak alert] (action) in
+			
+			guard let nonnullAlert = alert else {
+				
+				decision(false)
+				return
+			}
+			
+			nonnullAlert.hide {
+				
+				decision(false)
+			}
         }
-        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_btn_confirm_title, style: .destructive) { [weak alert] (action) in
-            
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
-            decision(true)
+        let confirmCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_btn_confirm_title, style: .destructive) { [weak alert] (action) in
+			
+			guard let nonnullAlert = alert else {
+				
+				decision(true)
+				return
+			}
+			
+			nonnullAlert.hide {
+				
+				decision(true)
+			}
         }
         
         alert.addAction(cancelCancelAction)
         alert.addAction(confirmCancelAction)
         
-        DispatchQueue.main.async {
-            
-            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
-        }
+        alert.show()
     }
 }
 
@@ -577,4 +592,13 @@ extension OTPViewController: PopupPresentationSupport {
         
         return self.view
     }
+}
+
+// MARK: - LoadingViewSupport
+extension OTPViewController: LoadingViewSupport {
+	
+	internal var loadingViewContainer: UIView {
+		
+		return self.view
+	}
 }

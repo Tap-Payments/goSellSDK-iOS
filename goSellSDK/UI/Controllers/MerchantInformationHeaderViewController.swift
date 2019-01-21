@@ -12,6 +12,7 @@ import class    TapNetworkManager.TapImageLoader
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UILabel.UILabel
+import class	UIKit.UIScreen.UIScreen
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 
@@ -20,7 +21,19 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
     
     // MARK: - Internal -
     // MARK: Properties
-    
+	
+	internal override var preferredContentSize: CGSize {
+		
+		get {
+			
+			return CGSize(width: (self.view.window?.screen ?? UIScreen.main).bounds.width, height: Constants.preferredContentHeight)
+		}
+		set {
+			
+			super.preferredContentSize = newValue
+		}
+	}
+	
     /// Delegate
     internal weak var delegate: MerchantInformationHeaderViewControllerDelegate?
     
@@ -34,7 +47,7 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
         self.loadMerchantLogo()
         self.setupShadow()
     }
-    
+	
     internal func updateBackgroundOpacityBasedOnScrollContentOverlapping(_ overlapping: CGFloat) {
         
         let opacity = tap_clamp(value: 2.0 * overlapping / self.view.bounds.height, low: 0.0, high: 1.0)
@@ -65,6 +78,14 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
 	}
 	
     // MARK: - Private -
+	
+	private struct Constants {
+		
+		fileprivate static let preferredContentHeight: CGFloat = 66.0
+		
+		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+	}
+	
     // MARK: Properties
     
     @IBOutlet private weak var iconView: LoadingImageView?

@@ -36,12 +36,12 @@
                     </view>
                     <connections>
                         <outlet property="blurView" destination="O64-xJ-5Na" id="xG9-o9-Vmq"/>
-                        <segue destination="V7x-AH-OD3" kind="show" identifier="PaymentContentViewControllerSegue" id="7R3-JG-rS1"/>
+                        <segue destination="qgJ-8J-Z5T" kind="show" identifier="ResizablePaymentContainerViewControllerSegue" id="HUD-et-1iH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vt0-ad-XYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-674" y="-118"/>
+            <point key="canvasLocation" x="-1666" y="-118"/>
         </scene>
         <!--Payment Content View Controller-->
         <scene sceneID="dnA-gb-3IH">
@@ -76,7 +76,7 @@
                                     <segue destination="XgQ-HN-1pH" kind="embed" id="N1R-aP-ZDF"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-mu-d3E" userLabel="Pay Button Container View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-mu-d3E">
                                 <rect key="frame" x="0.0" y="718" width="375" height="94"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoP-JX-Gmp" customClass="PayButtonUI" customModule="goSellSDK">
@@ -95,17 +95,24 @@
                                     <constraint firstItem="NoP-JX-Gmp" firstAttribute="leading" secondItem="Ilc-mu-d3E" secondAttribute="leading" constant="8" id="eVG-Hj-ql4"/>
                                 </constraints>
                             </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzK-Be-2h9">
+                                <rect key="frame" x="0.0" y="110" width="375" height="702"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uzK-Be-2h9" secondAttribute="trailing" id="0dy-3n-5Qj"/>
                             <constraint firstItem="Ilc-mu-d3E" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="5ut-ko-auU"/>
                             <constraint firstAttribute="trailing" secondItem="jhd-Cg-nmV" secondAttribute="trailing" id="FIa-eX-4ac"/>
                             <constraint firstItem="Q54-VW-1wv" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="Fg2-LP-Fpu"/>
                             <constraint firstAttribute="trailing" secondItem="Ilc-mu-d3E" secondAttribute="trailing" id="HbW-1V-WOW"/>
                             <constraint firstItem="06k-K0-N3y" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="KXe-0e-dsI"/>
                             <constraint firstAttribute="trailing" secondItem="06k-K0-N3y" secondAttribute="trailing" id="L9X-UV-X1E"/>
+                            <constraint firstItem="uzK-Be-2h9" firstAttribute="top" secondItem="jhd-Cg-nmV" secondAttribute="bottom" id="RLN-vQ-mPm"/>
                             <constraint firstAttribute="trailing" secondItem="Q54-VW-1wv" secondAttribute="trailing" id="SYZ-TJ-msG"/>
                             <constraint firstAttribute="bottom" secondItem="06k-K0-N3y" secondAttribute="bottom" id="VUE-MO-wtp"/>
+                            <constraint firstItem="uzK-Be-2h9" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="Xid-bp-kNP"/>
                             <constraint firstItem="jhd-Cg-nmV" firstAttribute="top" secondItem="5S9-1v-ZoR" secondAttribute="top" id="YZQ-h1-CsF"/>
                             <constraint firstItem="Ilc-mu-d3E" firstAttribute="top" secondItem="Q54-VW-1wv" secondAttribute="bottom" id="fx3-ao-jnm"/>
                             <constraint firstItem="jhd-Cg-nmV" firstAttribute="bottom" secondItem="0hf-mb-iOV" secondAttribute="bottom" constant="66" id="grM-h2-0WC"/>
@@ -113,11 +120,13 @@
                             <constraint firstItem="Q54-VW-1wv" firstAttribute="top" secondItem="jhd-Cg-nmV" secondAttribute="bottom" id="lRF-zh-1Kj"/>
                             <constraint firstItem="L0E-Nd-yE1" firstAttribute="top" secondItem="Ilc-mu-d3E" secondAttribute="top" priority="999" constant="60" id="qS4-3Y-M38"/>
                             <constraint firstItem="06k-K0-N3y" firstAttribute="top" secondItem="Ilc-mu-d3E" secondAttribute="bottom" id="wcs-SZ-VX3"/>
+                            <constraint firstAttribute="bottom" secondItem="uzK-Be-2h9" secondAttribute="bottom" id="wik-QZ-jfK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aG3-A1-a3g"/>
                     <connections>
-                        <outlet property="bottomKeyboardOffsetConstraint" destination="VUE-MO-wtp" id="oST-dU-gwm"/>
+                        <outlet property="loadingContainerView" destination="uzK-Be-2h9" id="NyP-Rn-DSt"/>
+                        <outlet property="payButtonContainerView" destination="Ilc-mu-d3E" id="ep9-XP-wXk"/>
                         <outlet property="payButtonUI" destination="NoP-JX-Gmp" id="u9b-Yx-RpZ"/>
                         <outlet property="paymentOptionsContainerView" destination="Q54-VW-1wv" id="kbI-2O-C01"/>
                     </connections>
@@ -1111,7 +1120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LzQ-2a-D6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1401" y="624"/>
+            <point key="canvasLocation" x="1452" y="624"/>
         </scene>
         <!--Address Input View Controller-->
         <scene sceneID="DQx-BL-CFr">
@@ -1457,7 +1466,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFb-46-cNi">
+                                                <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFb-46-cNi">
                                                     <rect key="frame" x="0.0" y="44" width="375" height="1"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -1524,6 +1533,7 @@
                                         <connections>
                                             <outlet property="amountLabel" destination="2ta-3M-q15" id="lbm-ui-M88"/>
                                             <outlet property="currencyNameLabel" destination="PVX-p7-BEy" id="bEr-FR-f6L"/>
+                                            <outlet property="separatorView" destination="qFb-46-cNi" id="cMN-FT-JKR"/>
                                             <outletCollection property="constraintsToEnableWhenSelected" destination="nPK-wq-3qD" collectionClass="NSMutableArray" id="H8x-L1-Ktd"/>
                                             <outletCollection property="constraintsToDisableWhenSelected" destination="ENF-Cb-Y6c" collectionClass="NSMutableArray" id="ccD-uJ-qkL"/>
                                         </connections>
@@ -1574,10 +1584,48 @@
             </objects>
             <point key="canvasLocation" x="2958" y="-170"/>
         </scene>
+        <!--Resizable Payment Container View Controller-->
+        <scene sceneID="U0d-xm-aa9">
+            <objects>
+                <viewController modalPresentationStyle="overFullScreen" id="qgJ-8J-Z5T" customClass="ResizablePaymentContainerViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sl0-zJ-HQI"/>
+                        <viewControllerLayoutGuide type="bottom" id="XZq-Rr-YiB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AYf-G8-hG9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3h-yT-Uq4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <connections>
+                                    <segue destination="V7x-AH-OD3" kind="embed" id="I4R-Ux-Esf"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i3h-yT-Uq4" secondAttribute="trailing" id="93e-aZ-Ows"/>
+                            <constraint firstAttribute="bottom" secondItem="i3h-yT-Uq4" secondAttribute="bottom" id="L36-NA-tSR"/>
+                            <constraint firstItem="i3h-yT-Uq4" firstAttribute="top" secondItem="AYf-G8-hG9" secondAttribute="top" id="Qpi-tq-YXx"/>
+                            <constraint firstItem="i3h-yT-Uq4" firstAttribute="leading" secondItem="AYf-G8-hG9" secondAttribute="leading" id="vTz-5F-ggJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomContentOffsetConstraint" destination="L36-NA-tSR" id="4SZ-lg-Fk5"/>
+                        <outlet property="bottomKeyboardOffsetConstraint" destination="L36-NA-tSR" id="bba-yC-l20"/>
+                        <outlet property="contentContainerView" destination="i3h-yT-Uq4" id="DNQ-hD-MWw"/>
+                        <outlet property="topContentOffsetConstraint" destination="Qpi-tq-YXx" id="AxH-vy-9jn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WGz-7u-PFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-758" y="-118"/>
+        </scene>
         <!--Base Navigation Controller-->
         <scene sceneID="4vL-di-S09">
             <objects>
-                <navigationController modalPresentationStyle="overCurrentContext" navigationBarHidden="YES" id="V7x-AH-OD3" customClass="BaseNavigationController" customModule="goSellSDK" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" modalPresentationStyle="overCurrentContext" navigationBarHidden="YES" id="V7x-AH-OD3" customClass="BaseNavigationController" customModule="goSellSDK" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Y4-6z-yxo">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1606,7 +1654,7 @@
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-fy-Zeg" customClass="CardIOView">
-                                <rect key="frame" x="0.0" y="110" width="375" height="478"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -1616,7 +1664,7 @@
                             <constraint firstAttribute="trailing" secondItem="tex-ci-kaS" secondAttribute="trailing" id="ExD-NK-Pb7"/>
                             <constraint firstItem="iam-fy-Zeg" firstAttribute="leading" secondItem="vrW-ef-f5Z" secondAttribute="leading" id="LO8-FN-kP9"/>
                             <constraint firstAttribute="trailing" secondItem="iam-fy-Zeg" secondAttribute="trailing" id="OJU-rK-JcR"/>
-                            <constraint firstAttribute="bottom" secondItem="iam-fy-Zeg" secondAttribute="bottom" constant="20" symbolic="YES" id="WMF-b1-jFA"/>
+                            <constraint firstAttribute="bottom" secondItem="iam-fy-Zeg" secondAttribute="bottom" id="WMF-b1-jFA"/>
                             <constraint firstItem="tex-ci-kaS" firstAttribute="top" secondItem="vrW-ef-f5Z" secondAttribute="top" id="f8z-MI-DaH"/>
                             <constraint firstItem="tex-ci-kaS" firstAttribute="bottom" secondItem="3cP-JY-oW1" secondAttribute="bottom" constant="66" id="fTb-7w-saQ"/>
                             <constraint firstItem="tex-ci-kaS" firstAttribute="leading" secondItem="vrW-ef-f5Z" secondAttribute="leading" id="w6H-tW-bod"/>
@@ -1634,7 +1682,7 @@
         <!--Web Payment View Controller-->
         <scene sceneID="v34-Ns-eGR">
             <objects>
-                <viewController id="vWe-pD-xt1" customClass="WebPaymentViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebPaymentViewController" id="vWe-pD-xt1" customClass="WebPaymentViewController" customModule="goSellSDK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tMf-mL-ha7"/>
                         <viewControllerLayoutGuide type="bottom" id="CKf-50-3tm"/>
@@ -1668,8 +1716,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentContainerView" destination="fHN-fy-CJA" id="rAe-Aa-J3O"/>
                         <outlet property="headerNavigationView" destination="Hv5-Vi-uK6" id="a2f-GS-Qh9"/>
-                        <outlet property="progressBar" destination="Jhb-xZ-fUC" id="8tl-66-lFG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDK-tN-NjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1698,13 +1746,31 @@
                                             <segue destination="rmA-J8-h48" kind="embed" id="06D-E8-sJc"/>
                                         </connections>
                                     </containerView>
+                                    <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvf-HD-M1g" customClass="LinearGradientView" customModule="TapGLKit">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="sDj-Ty-A85"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="topToBottom" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </glkView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="GWg-vG-dIX" secondAttribute="trailing" id="1CR-SB-vav"/>
+                                    <constraint firstAttribute="trailing" secondItem="pvf-HD-M1g" secondAttribute="trailing" id="5cg-HO-mIE"/>
                                     <constraint firstItem="GWg-vG-dIX" firstAttribute="leading" secondItem="18g-o1-rJa" secondAttribute="leading" id="NdX-x4-lUa"/>
                                     <constraint firstItem="GWg-vG-dIX" firstAttribute="top" secondItem="18g-o1-rJa" secondAttribute="top" id="QvO-v3-f8e"/>
                                     <constraint firstItem="GWg-vG-dIX" firstAttribute="height" secondItem="18g-o1-rJa" secondAttribute="height" id="kdI-Y7-aus"/>
+                                    <constraint firstItem="pvf-HD-M1g" firstAttribute="leading" secondItem="18g-o1-rJa" secondAttribute="leading" id="kv9-RQ-I89"/>
+                                    <constraint firstItem="pvf-HD-M1g" firstAttribute="top" secondItem="18g-o1-rJa" secondAttribute="top" id="qJz-NF-ku8"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1740,8 +1806,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6Y-rc-m1g">
-                                <rect key="frame" x="0.0" y="778" width="375" height="34"/>
+                                <rect key="frame" x="0.0" y="812" width="375" height="0.0"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="ueE-Ak-0eQ"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYk-bh-ISq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -1754,11 +1823,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <subviews>
                                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oum-mw-XlO" userLabel="Bottom Layout Guide Placeholder">
-                                                <rect key="frame" x="0.0" y="778" width="375" height="34"/>
+                                                <rect key="frame" x="0.0" y="812" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgA-Fa-sab">
-                                                <rect key="frame" x="0.0" y="778" width="375" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="812" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="7yp-4X-JoM"/>
@@ -1869,7 +1938,7 @@
                                                 </constraints>
                                             </scrollView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfM-f5-uut" customClass="TapButton" customModule="goSellSDK">
-                                                <rect key="frame" x="8" y="726" width="359" height="44"/>
+                                                <rect key="frame" x="8" y="760" width="359" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Cxe-zd-b0d"/>
@@ -1923,9 +1992,14 @@
                             <constraint firstAttribute="trailing" secondItem="hYk-bh-ISq" secondAttribute="trailing" id="qaI-XQ-E0d"/>
                             <constraint firstAttribute="bottom" secondItem="hYk-bh-ISq" secondAttribute="bottom" id="uhx-kJ-Aqg"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="eyt-fI-dw8"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="bottomKeyboardOffsetConstraint" destination="SII-E2-ysj" id="YXo-cc-9dj"/>
+                        <outlet property="bottomKeyboardOffsetConstraint" destination="SII-E2-ysj" id="2HV-1o-99m"/>
                         <outlet property="confirmationButton" destination="MfM-f5-uut" id="tYy-NL-iDr"/>
                         <outlet property="contentMaskView" destination="hYk-bh-ISq" id="ChF-6N-eHf"/>
                         <outlet property="contentViewTopOffsetConstraint" destination="Ex5-T3-I5i" id="vKu-48-LdR"/>
@@ -2029,7 +2103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7T3-Cq-jxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791" y="406"/>
+            <point key="canvasLocation" x="767" y="440"/>
         </scene>
         <!--Web Payment Content View Controller-->
         <scene sceneID="2Ex-hr-r6l">

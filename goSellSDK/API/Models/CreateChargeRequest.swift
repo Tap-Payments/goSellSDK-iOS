@@ -45,7 +45,7 @@ internal class CreateChargeRequest: Encodable {
     /// It can be useful for storing additional information about the object in a structured format.
     /// Individual keys can be unset by posting an empty value to them.
     /// All keys can be unset by posting an empty value to metadata.
-    internal private(set) var metadata: [String: String]?
+    internal private(set) var metadata: Metadata?
     
     /// Merchant reference object.
     internal private(set) var reference: Reference?
@@ -87,7 +87,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-    internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, descriptionText: String?, metadata: [String: String]?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
+    internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, descriptionText: String?, metadata: Metadata?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
         
         self.amount                 = amount
         self.currency               = currency

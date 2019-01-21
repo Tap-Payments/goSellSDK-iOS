@@ -11,6 +11,7 @@ import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
 import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate
 import class    UIKit.UIPanGestureRecognizer.UIPanGestureRecognizer
 import class    UIKit.UIResponder.UIResponder
+import class	UIKit.UIView.UIView
 
 internal final class OTPDismissalInteractionController: BaseInteractionController {
     
@@ -30,8 +31,12 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
         let presentingController = self.viewController.presentingViewController
         
         let responder = self.viewController.view.tap_firstResponder
-        responder?.resignFirstResponder()
-        
+		
+		UIView.animate(withDuration: 0.25) {
+			
+			responder?.resignFirstResponder()
+		}
+		
         self.firstResponderOnMomentOfDismissal = responder
         
         self.viewController.dismiss(animated: animated) {
@@ -47,13 +52,19 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
     
     internal override func cancel() {
         
-        super.cancel()
-        self.firstResponderOnMomentOfDismissal?.becomeFirstResponder()
-    }
-    
-    // MARK: - Private -
-    
-    private struct Constants {
+		super.cancel()
+		
+		if let window = (self.firstResponderOnMomentOfDismissal as? UIView)?.window, !window.isKeyWindow {
+			
+			window.makeKey()
+		}
+		
+		self.firstResponderOnMomentOfDismissal?.becomeFirstResponder()
+	}
+	
+	// MARK: - Private -
+	
+	private struct Constants {
         
         fileprivate static let translationPercentageToFinishTransition: CGFloat = 0.4
         

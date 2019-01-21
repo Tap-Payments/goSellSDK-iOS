@@ -6,7 +6,7 @@
 //
 
 /// Power measurement unit.
-@objc(MeasurementPower) public enum Power: Int {
+@objc(MeasurementPower) public enum Power: Int, CaseIterable {
     
     /// Terawatts.
     @objc(Terawatts)
@@ -99,26 +99,6 @@ extension Power: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension Power: CountableCasesEnum {
-    
-    public static let all: [Power] = [
-        
-        .terawatts,
-        .gigawatts,
-        .megawatts,
-        .kilowatts,
-        .watts,
-        .milliwatts,
-        .microwatts,
-        .nanowatts,
-        .picowatts,
-        .femtowatts,
-        .mechanicalHorsepower,
-        .metricHorsepower
-    ]
 }
 
 // MARK: - CustomStringConvertible

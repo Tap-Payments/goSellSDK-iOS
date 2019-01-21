@@ -40,6 +40,11 @@
     
     /// Notifies the receiver that payment has been cancelled by the user.
     ///
-    /// - Parameter payButton: Button which has initiated the payment/authorization
+    /// - Parameter payButton: Button which has initiated the payment/authorization/card saving.
     @objc optional func paymentCancelled(_ payButton: PayButtonProtocol)
+	
+	/// Notifies the receiver that card saving process has failed.
+	///
+	/// - Parameter error: Error that has occured.
+	@objc optional func cardSavingFailed(with error: TapSDKError?)
 }

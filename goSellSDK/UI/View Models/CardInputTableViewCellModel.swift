@@ -12,8 +12,10 @@ import struct   TapCardValidator.DefinedCardBrand
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIFont.UIFont
 import class    UIKit.UIImage.UIImage
+import class	UIKit.UIResponder.UIResponder
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
+import class	UIKit.UIView.UIView
 
 /// View model that handles manual card input table view cell.
 internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
@@ -152,11 +154,18 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 			
 			CardIOUtilities.preload()
 		}
+		
+		self.addObservers()
 	}
 	
 	internal func connectionFinished() {
 		
 		self.cell?.bindContent()
+	}
+	
+	deinit {
+		
+		self.removeObservers()
 	}
 	
 	// MARK: - Private -
@@ -191,6 +200,28 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 		let iconURLs = self.paymentOptions.map { $0.imageURL }
 		self.tableViewCellModels = type(of: self).generateTableViewCellModels(with: iconURLs)
 		self.updateDisplayedTableViewCellModels()
+	}
+	
+	private func addObservers() {
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+	}
+	
+	private func removeObservers() {
+		
+		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+	}
+	
+	@objc private func keyboardWillShow(_ notification: Notification?) {
+		
+		guard let nonnullCell = self.cell, let responder = UIResponder.tap_current as? UIView, responder.isDescendant(of: nonnullCell) else { return }
+		
+		DispatchQueue.main.async { [weak self] in
+			
+			guard let strongSelf = self else { return }
+			
+			strongSelf.tableView?.scrollToRow(at: strongSelf.indexPath, at: .none, animated: true)
+		}
 	}
 }
 
