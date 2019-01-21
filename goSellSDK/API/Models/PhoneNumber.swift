@@ -139,3 +139,12 @@ extension PhoneNumber: Decodable {
         try self.init(isdNumber: isdNumber, phoneNumber: phoneNumber)
     }
 }
+
+// MARK: - NSCopying
+extension PhoneNumber: NSCopying {
+	
+	public func copy(with zone: NSZone? = nil) -> Any {
+		
+		return try! PhoneNumber(isdNumber: self.isdNumber, phoneNumber: self.phoneNumber)
+	}
+}

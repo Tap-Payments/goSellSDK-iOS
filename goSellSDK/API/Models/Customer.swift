@@ -6,7 +6,7 @@
 //
 
 /// Customer model.
-@objcMembers public final class Customer: NSObject, Decodable {
+@objcMembers public final class Customer: NSObject, Decodable, OptionallyIdentifiableWithString {
     
     // MARK: - Public -
     // MARK: Properties
@@ -28,7 +28,22 @@
     
     /// Customer's last name.
     public var lastName: String?
-    
+	
+	/// An arbitrary string attached to the object. Often useful for displaying to users.
+	public var descriptionText: String?
+	
+	/// Set of key/value pairs that you can attach to an object. It can be useful for storing additional information about the object in a structured format.
+	public var metadata: Metadata?
+	
+	/// Customer title.
+	public var title: String?
+	
+	/// Customer's nationality.
+	public var nationality: String?
+	
+	/// Currency in which customer can be charged.
+	public var currency: Currency?
+	
     // MARK: Methods
     
     /// Initializes the customer with email address, phone number and a name.
@@ -144,12 +159,17 @@
     
     private enum CodingKeys: String, CodingKey {
         
-        case identifier     = "id"
-        case emailAddress   = "email"
-        case phoneNumber    = "phone"
-        case firstName      = "first_name"
-        case middleName     = "middle_name"
-        case lastName       = "last_name"
+        case identifier     	= "id"
+        case emailAddress   	= "email"
+        case phoneNumber    	= "phone"
+        case firstName      	= "first_name"
+        case middleName     	= "middle_name"
+        case lastName       	= "last_name"
+		case descriptionText	= "description"
+		case metadata			= "metadata"
+		case title				= "title"
+		case nationality		= "nationality"
+		case currency			= "currency"
     }
     
     // MARK: Methods
@@ -196,6 +216,21 @@
             
             self.lastName = trimmedLastName.tap_length > 0 ? trimmedLastName : nil
         }
+		
+		if let trimmedDescription = self.descriptionText?.trimmingCharacters(in: .whitespacesAndNewlines) {
+			
+			self.descriptionText = trimmedDescription.tap_length > 0 ? trimmedDescription : nil
+		}
+		
+		if let trimmedTitle = self.title?.trimmingCharacters(in: .whitespacesAndNewlines) {
+			
+			self.title = trimmedTitle.tap_length > 0 ? trimmedTitle : nil
+		}
+		
+		if let trimmedNationality = self.nationality?.trimmingCharacters(in: .whitespacesAndNewlines) {
+			
+			self.nationality = trimmedNationality.tap_length > 0 ? trimmedNationality : nil
+		}
     }
 }
 
@@ -208,8 +243,24 @@ extension Customer: NSCopying {
     /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
-        let emailAddressCopy = self.emailAddress?.copy() as? EmailAddress
-        return try! Customer(identifier: self.identifier, emailAddress: emailAddressCopy, phoneNumber: self.phoneNumber, firstName: self.firstName, middleName: self.middleName, lastName: self.lastName)
+        let emailAddressCopy	= self.emailAddress?.copy() as? EmailAddress
+		let phoneNumberCopy		= self.phoneNumber?.copy() as? PhoneNumber
+		let currencyCopy		= self.currency?.copy() as? Currency
+		
+		let result = try! Customer(identifier:		self.identifier,
+								   emailAddress:	emailAddressCopy,
+								   phoneNumber:		phoneNumberCopy,
+								   firstName:		self.firstName,
+								   middleName:		self.middleName,
+								   lastName:		self.lastName)
+		
+		result.descriptionText	= self.descriptionText
+		result.metadata			= self.metadata
+		result.title			= self.title
+		result.nationality		= self.nationality
+		result.currency			= currencyCopy
+		
+		return result
     }
 }
 
@@ -228,5 +279,10 @@ extension Customer: Encodable {
         try container.encodeIfPresent(self.firstName,       forKey: .firstName)
         try container.encodeIfPresent(self.middleName,      forKey: .middleName)
         try container.encodeIfPresent(self.lastName,        forKey: .lastName)
+		try container.encodeIfPresent(self.descriptionText, forKey: .descriptionText)
+		try container.encodeIfPresent(self.metadata,		forKey: .metadata)
+		try container.encodeIfPresent(self.title,			forKey: .title)
+		try container.encodeIfPresent(self.nationality,		forKey: .nationality)
+		try container.encodeIfPresent(self.currency,		forKey: .currency)
     }
 }

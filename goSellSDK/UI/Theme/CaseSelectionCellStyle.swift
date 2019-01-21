@@ -14,11 +14,14 @@ internal struct CaseSelectionCellStyle: Decodable {
 	
 	internal let value: TextStyle
 	
+	internal let separator: AppearanceStyle<HexColor>
+	
 	// MARK: - Private -
 	
 	private enum CodingKeys: String, CodingKey {
 		
-		case title = "title_style"
-		case value = "value_style"
+		case title		= "title_style"
+		case value		= "value_style"
+		case separator	= "separator_color"
 	}
 }

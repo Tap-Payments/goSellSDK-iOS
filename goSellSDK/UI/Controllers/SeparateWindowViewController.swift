@@ -16,6 +16,16 @@ import var      UIKit.UIWindow.UIWindowLevelStatusBar
 internal class SeparateWindowViewController: BaseViewController {
     
     // MARK: - Internal -
+	// MARK: Properties
+	
+	internal private(set) var topOffset: CGFloat = 0.0 {
+		
+		didSet {
+			
+			self.topOffsetMaskConstraint?.constant = self.topOffset
+		}
+	}
+	
     // MARK: Methods
     
     internal func showExternally(animated: Bool = true, userInteractionEnabled: Bool = true, topOffset: CGFloat = 0.0, completion: TypeAlias.ArgumentlessClosure? = nil) {
@@ -72,14 +82,6 @@ internal class SeparateWindowViewController: BaseViewController {
     
     @IBOutlet private weak var contentMaskView: UIView?
     @IBOutlet private weak var topOffsetMaskConstraint: NSLayoutConstraint? {
-        
-        didSet {
-            
-            self.topOffsetMaskConstraint?.constant = self.topOffset
-        }
-    }
-    
-    private var topOffset: CGFloat = 0.0 {
         
         didSet {
             

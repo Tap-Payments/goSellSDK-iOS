@@ -21,10 +21,14 @@ import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitionin
 /// Payment View Controller.
 internal class PaymentViewController: SeparateWindowViewController {
     
-    // MARK: - Public -
+    // MARK: - Internal -
+	// MARK: Properties
+	
+	internal weak var payButton: (PayButtonProtocol & UIView)?
+	
     // MARK: Methods
     
-    public override func viewDidAppear(_ animated: Bool) {
+    internal override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         
@@ -34,21 +38,15 @@ internal class PaymentViewController: SeparateWindowViewController {
         }
     }
     
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
-        
-        if let navigationController = segue.destination as? UINavigationController, navigationController.tap_rootViewController is PaymentContentViewController {
-            
-            navigationController.delegate = self.animationsHandler
-            navigationController.transitioningDelegate = self.animationsHandler
-        }
+		
+		if let resizableContainerController = segue.destination as? ResizablePaymentContainerViewController {
+			
+			resizableContainerController.transitioningDelegate = self.animationsHandler
+		}
     }
-    
-    // MARK: - Internal -
-    // MARK: Properties
-    
-    internal weak var payButton: (PayButtonProtocol & UIView)?
     
     // MARK: - Private -
     // MARK: Properties
@@ -71,7 +69,7 @@ internal class PaymentViewController: SeparateWindowViewController {
         
         DispatchQueue.main.async { [unowned self] in
             
-            self.performSegue(withIdentifier: "\(PaymentContentViewController.tap_className)Segue", sender: self)
+            self.performSegue(withIdentifier: "\(ResizablePaymentContainerViewController.tap_className)Segue", sender: self)
         }
         
         self.hasShownPaymentController = true
@@ -81,58 +79,16 @@ internal class PaymentViewController: SeparateWindowViewController {
 // MARK: - TransitionAnimationsHandler
 extension PaymentViewController {
     
-    fileprivate class TransitionAnimationsHandler: NSObject {
-        
-        fileprivate var usesFadeDismissalAnimation: Bool = false
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension PaymentViewController.TransitionAnimationsHandler: UIViewControllerTransitioningDelegate {
-    
-    fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return PaymentPresentationAnimationController()
-    }
-    
-    fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return PaymentDismissalAnimationController()
-    }
-}
-
-// MARK: - UINavigationControllerDelegate
-extension PaymentViewController.TransitionAnimationsHandler: UINavigationControllerDelegate {
-    
-    fileprivate func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        if operation == .push {
-            
-            if let headerController = toVC as? HeaderNavigatedViewController {
-                
-                let interactivePopTransition = UINavigationControllerPopInteractionController(viewController: headerController)
-                headerController.interactivePopTransition = interactivePopTransition
-            }
-        }
-        
-        return UINavigationControllerSideAnimationController(operation: operation, from: fromVC, to: toVC)
-    }
-    
-    fileprivate func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        
-        if
-            let sideAnimationController     = animationController as? UINavigationControllerSideAnimationController,
-            let interactiveViewController   = sideAnimationController.fromViewController as? InteractivePopViewController,
-            let interactiveTransition       = interactiveViewController.interactivePopTransition,
-            
-            interactiveTransition.isInteracting,
-            sideAnimationController.operation == .pop {
-            
-            return interactiveTransition
-        }
-        else {
-            
-            return nil
-        }
+    private class TransitionAnimationsHandler: NSObject, UIViewControllerTransitioningDelegate {
+		
+		fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+			
+			return PaymentPresentationAnimationController()
+		}
+		
+		fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+			
+			return PaymentDismissalAnimationController()
+		}
     }
 }

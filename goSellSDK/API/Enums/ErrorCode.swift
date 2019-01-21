@@ -227,7 +227,10 @@
     
     /// Operation cancelled.
     case cancel                                 = 8201
-    
+	
+	/// Customer already exists.
+	case customerAlreadyExists					= 8301
+	
     /// Unknown error.
     case unknown                                = 9999
 }

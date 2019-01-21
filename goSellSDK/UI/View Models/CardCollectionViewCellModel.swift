@@ -7,8 +7,6 @@
 
 import struct   TapAdditionsKit.TypeAlias
 import class    TapNetworkManager.TapImageLoader
-import class    UIKit.UIAlertController.UIAlertAction
-import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.UIImage.UIImage
 import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
@@ -120,40 +118,42 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     private func showDeleteCardAlert(with decision: @escaping TypeAlias.BooleanClosure) {
 		
-		let alert = UIAlertController(titleKey: 		.alert_delete_card_title,
-									  messageKey: 		.alert_delete_card_message, self.cardNumberText,
-									  preferredStyle:	.alert)
+		let alert = TapAlertController(titleKey: 		.alert_delete_card_title,
+									   messageKey: 		.alert_delete_card_message, self.cardNumberText,
+									   preferredStyle:	.alert)
 		
-        let cancelAction = UIAlertAction(titleKey: .alert_delete_card_btn_cancel_title, style: .cancel) { [weak alert] (action) in
-            
-            alert?.tap_dismissFromSeparateWindow(true, completion: nil)
+		let cancelAction = TapAlertController.Action(titleKey: .alert_delete_card_btn_cancel_title, style: .cancel) { [weak alert] (action) in
+			
+			alert?.hide()
             decision(false)
         }
 		
-        let deleteAction = UIAlertAction(titleKey: .alert_delete_card_btn_delete_title, style: .destructive) { [weak alert] (action) in
-            
-            alert?.tap_dismissFromSeparateWindow(true, completion: nil)
+        let deleteAction = TapAlertController.Action(titleKey: .alert_delete_card_btn_delete_title, style: .destructive) { [weak alert] (action) in
+			
+			alert?.hide()
             decision(true)
         }
         
         alert.addAction(cancelAction)
         alert.addAction(deleteAction)
         
-        DispatchQueue.main.async {
-            
-            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
-        }
+        alert.show()
     }
     
     private func deleteCard() {
         
-        guard let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier, let cardIdentifier = self.card.identifier else { return }
-        
-        let loader = PaymentDataManager.shared.showLoadingController(false)
-        APIClient.shared.deleteCard(with: cardIdentifier, from: customerIdentifier) { [weak loader, weak self] (response, error) in
-            
-            loader?.hide(animated: true, async: true, fromDestroyInstance: false)
-            
+        guard
+			
+			let customerIdentifier = PaymentDataManager.shared.externalDataSource?.customer?.identifier,
+			let cardIdentifier = self.card.identifier,
+			let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
+		
+		LoadingView.show(in: paymentContentController, animated: true)
+		
+        APIClient.shared.deleteCard(with: cardIdentifier, from: customerIdentifier) { [weak self] (response, error) in
+			
+			paymentContentController.hideLoader()
+			
             if let nonnullError = error {
                 
                 ErrorDataManager.handle(nonnullError, retryAction: { self?.deleteCard() }, alertDismissButtonClickHandler: nil)

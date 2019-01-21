@@ -6,7 +6,7 @@
 //
 
 /// Electric current mesurement unit.
-@objc(MeasurementElectricCurrent) public enum ElectricCurrent: Int {
+@objc(MeasurementElectricCurrent) public enum ElectricCurrent: Int, CaseIterable {
     
     /// Megaamperes.
     @objc(Megaamperes)
@@ -59,19 +59,6 @@ extension ElectricCurrent: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension ElectricCurrent: CountableCasesEnum {
-    
-    public static let all: [ElectricCurrent] = [
-        
-        .megaamperes,
-        .kiloamperes,
-        .amperes,
-        .milliamperes,
-        .microamperes
-    ]
 }
 
 // MARK: - CustomStringConvertible

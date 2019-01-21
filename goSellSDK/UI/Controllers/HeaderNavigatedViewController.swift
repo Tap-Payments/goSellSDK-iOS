@@ -13,11 +13,11 @@ import class    UIKit.UIColor.UIColor
 import class    UIKit.UIView.UIView
 
 /// Base view controller for all view controllers that have navigation controller and a navigation bar with `TapNavigationView` inside it.
-internal class HeaderNavigatedViewController: BaseViewController {
+internal class HeaderNavigatedViewController: BaseViewController, NavigationContentViewController {
     
     // MARK: - Internal -
     // MARK: Properties
-    
+	
     internal var headerHasShadowInitially: Bool { return true }
     
     @IBOutlet internal var headerNavigationView: TapNavigationView? {
@@ -32,7 +32,20 @@ internal class HeaderNavigatedViewController: BaseViewController {
     }
 	
     internal var interactivePopTransition: UINavigationControllerPopInteractionController?
-    
+	
+	internal var contentTopOffset: CGFloat {
+		
+		if let headerView = self.headerNavigationView {
+			
+			let headerFrame = headerView.convert(headerView.bounds, to: self.view.window)
+			return headerFrame.origin.y + headerFrame.size.height
+		}
+		else {
+			
+			return self.view.convert(self.view.bounds, to: self.view.window).origin.y + TapNavigationView.preferredHeight
+		}
+	}
+	
     // MARK: Methods
     
     internal func headerNavigationViewLoaded(_ headerView: TapNavigationView) {

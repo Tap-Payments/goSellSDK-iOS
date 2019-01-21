@@ -24,6 +24,7 @@ import class    goSellSDK.PhoneNumber
 import class    goSellSDK.Quantity
 import class    goSellSDK.Receipt
 import class    goSellSDK.Reference
+import enum		goSellSDK.SDKAppearanceMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
@@ -91,7 +92,7 @@ internal class ExampleViewController: BaseViewController {
     
     internal func updatePayButtonAmount() {
         
-        self.payButton?.updateDisplayedAmount()
+        self.payButton?.updateDisplayedState()
     }
     
     // MARK: - Private -
@@ -237,7 +238,12 @@ extension ExampleViewController: PaymentDataSource {
         
         return self.paymentSettings.transactionMode
     }
-    
+	
+	internal var appearance: SDKAppearanceMode {
+		
+		return self.paymentSettings.appearanceMode
+	}
+	
     internal var taxes: [Tax]? {
 
         return self.paymentSettings.taxes

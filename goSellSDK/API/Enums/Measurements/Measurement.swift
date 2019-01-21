@@ -136,22 +136,22 @@ extension Measurement: CustomStringConvertible {
     }
 }
 
-// MARK: - CountableCasesEnum
-extension Measurement: CountableCasesEnum {
+// MARK: - CaseIterable
+extension Measurement: CaseIterable {
     
-    public static var all: [Measurement] {
+    public static var allCases: [Measurement] {
         
         var result: [Measurement] = []
         
-        Area.all.forEach            { result.append(.area($0))              }
-        Duration.all.forEach        { result.append(.duration($0))          }
-        ElectricCharge.all.forEach  { result.append(.electricCharge($0))    }
-        ElectricCurrent.all.forEach { result.append(.electricCurrent($0))   }
-        Energy.all.forEach          { result.append(.energy($0))            }
-        Length.all.forEach          { result.append(.length($0))            }
-        Mass.all.forEach            { result.append(.mass($0))              }
-        Power.all.forEach           { result.append(.power($0))             }
-        Volume.all.forEach          { result.append(.volume($0))            }
+        Area.allCases.forEach            { result.append(.area($0))              }
+        Duration.allCases.forEach        { result.append(.duration($0))          }
+        ElectricCharge.allCases.forEach  { result.append(.electricCharge($0))    }
+        ElectricCurrent.allCases.forEach { result.append(.electricCurrent($0))   }
+        Energy.allCases.forEach          { result.append(.energy($0))            }
+        Length.allCases.forEach          { result.append(.length($0))            }
+        Mass.allCases.forEach            { result.append(.mass($0))              }
+        Power.allCases.forEach           { result.append(.power($0))             }
+        Volume.allCases.forEach          { result.append(.volume($0))            }
         
         result.append(.units)
         

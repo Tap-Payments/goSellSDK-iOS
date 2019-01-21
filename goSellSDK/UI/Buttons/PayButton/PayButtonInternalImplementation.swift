@@ -16,7 +16,7 @@ internal protocol PayButtonInternalImplementation: PayButtonProtocol {
     
     var uiElement: PayButtonUI? { get }
     
-    func updateDisplayedStateAndAmount()
+    func updateDisplayedState()
 }
 
 internal extension PayButtonInternalImplementation {
@@ -30,7 +30,29 @@ internal extension PayButtonInternalImplementation {
     }
     
     // MARK: Methods
-    
+	
+	internal func updateAppearance() {
+		
+		let mode = self.dataSource?.mode ?? .purchase
+		let type: TapButtonStyle.ButtonType
+		
+		switch mode {
+			
+		case .purchase, .authorizeCapture:
+			
+			type = .pay
+			self.calculateDisplayedAmount()
+			
+		case .cardSaving:
+			
+			type = .save
+			self.uiElement?.forceDisabled = false
+			self.uiElement?.setLocalizedText(.btn_save_title)
+		}
+		
+		self.uiElement?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == type })!
+	}
+	
     internal func calculateDisplayedAmount() {
         
         guard PaymentDataManager.shared.canStart(with: self), let currency = self.dataSource?.currency else {

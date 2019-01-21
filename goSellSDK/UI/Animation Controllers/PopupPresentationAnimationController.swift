@@ -116,7 +116,23 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
 		guard let nonnullPresentationSupport = presentationSupport else { return }
 		
         let layoutView: UIView = nonnullPresentationSupport.viewToLayout
-        let finalFrame: CGRect = transitionContext.finalFrame(for: nonnullPresentationSupport)
+		let finalFrame: CGRect = transitionContext.finalFrame(for: nonnullPresentationSupport)
+		
+		var additionalOffset: CGFloat = 0.0
+		if let bottomView = self.overlaySupport?.bottomOverlayView, !self.overlaysBottomView {
+
+			switch self.operation {
+
+			case .presentation:
+
+				additionalOffset = fromView.bounds.size.height - bottomView.convert(bottomView.bounds, to: fromView).maxY
+
+			case .dismissal:
+
+				additionalOffset = finalFrame.size.height - bottomView.bounds.size.height
+			}
+		}
+		
         layoutView.frame = finalFrame
         
         var initialConstant: CGFloat
@@ -127,18 +143,18 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
         
         if self.operation == .presentation {
             
-            initialConstant = finalFrame.height
+            initialConstant = finalFrame.height - additionalOffset
             finalConstant = 0.0
             initialAlpha = 0.0
             bottomViewInitialTopOffset = 0.0
-            bottomViewFinalTopOffset = -finalFrame.height
+            bottomViewFinalTopOffset = -finalFrame.height + additionalOffset
         }
         else {
             
             initialConstant = 0.0
-            finalConstant = finalFrame.height
+            finalConstant = finalFrame.height - additionalOffset
             initialAlpha = 1.0
-            bottomViewInitialTopOffset = -finalFrame.height
+            bottomViewInitialTopOffset = -finalFrame.height + additionalOffset
 			
             bottomViewFinalTopOffset = 0.0
         }
@@ -147,14 +163,11 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
         
         nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = initialConstant
         layoutView.tap_layout()
-        
-        
+		
         if let nonnullOverlaySupport = self.overlaySupport, !self.overlaysBottomView {
 			
-			let offset = fromView.convert(finalFrame, to: nonnullOverlaySupport.layoutView).origin.y
-			bottomViewInitialTopOffset = max(bottomViewInitialTopOffset - offset, -nonnullOverlaySupport.layoutView.bounds.size.height)
-			
             nonnullOverlaySupport.topOffsetOverlayConstraint?.constant = bottomViewInitialTopOffset
+			nonnullOverlaySupport.bottomOffsetOverlayConstraint?.constant = -bottomViewInitialTopOffset
             nonnullOverlaySupport.layoutView.tap_layout()
         }
         
@@ -174,11 +187,12 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
                 nonnullPresentationSupport.presentationAnimationAnimatingConstraint?.constant = finalConstant
                 layoutView.tap_layout()
                 
-                if !self.overlaysBottomView {
+                if let nonnullOverlaySupport = self.overlaySupport, !self.overlaysBottomView {
                     
-                    self.overlaySupport?.topOffsetOverlayConstraint?.constant = bottomViewFinalTopOffset
-                    self.overlaySupport?.additionalAnimations(for: self.operation)()
-                    self.overlaySupport?.layoutView.tap_layout()
+                    nonnullOverlaySupport.topOffsetOverlayConstraint?.constant = bottomViewFinalTopOffset
+					nonnullOverlaySupport.bottomOffsetOverlayConstraint?.constant = -bottomViewFinalTopOffset
+                    nonnullOverlaySupport.additionalAnimations(for: self.operation)()
+                    nonnullOverlaySupport.layoutView.tap_layout()
                 }
             }
         }

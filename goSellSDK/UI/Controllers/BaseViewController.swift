@@ -24,6 +24,18 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
     // MARK: - Internal -
     // MARK: Properties
 	
+	internal override var modalPresentationCapturesStatusBarAppearance: Bool {
+		
+		get {
+			
+			return true
+		}
+		set {
+			
+			super.modalPresentationCapturesStatusBarAppearance = true
+		}
+	}
+	
 	internal var ignoresKeyboardEventsWhenWindowIsNotKey = false
 	
     internal override var shouldAutorotate: Bool {
@@ -62,6 +74,8 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 		
 		self.themeChanged()
 		self.startMonitoringThemeChanges()
+		
+		self.setNeedsStatusBarAppearanceUpdate()
     }
     
     internal override func viewDidDisappear(_ animated: Bool) {
@@ -88,12 +102,16 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
     
     @IBOutlet private weak var topKeyboardOffsetConstraint: NSLayoutConstraint?
     @IBOutlet private weak var bottomKeyboardOffsetConstraint: NSLayoutConstraint?
-    
+	
+	private var keyboardObserver: NSObjectProtocol?
+	
     // MARK: Methods
     
     private func addKeyboardObserver() {
 		
-		NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillChangeFrameNotification, object: nil, queue: .main) { [weak self] (notification) in
+		guard self.keyboardObserver == nil else { return }
+		
+		self.keyboardObserver = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillChangeFrameNotification, object: nil, queue: .main) { [weak self] (notification) in
 			
 			self?.keyboardWillChangeFrame(notification)
 		}
@@ -101,7 +119,9 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 	
 	private func removeKeyboardObserver() {
 		
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+		guard let nonnullKeyboardObserver = self.keyboardObserver else { return }
+		
+		NotificationCenter.default.removeObserver(nonnullKeyboardObserver, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 	}
     
 	private func keyboardWillChangeFrame(_ notification: Notification) {
@@ -124,6 +144,7 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 			let keyboardIsShown = offset > 0.0
 			
 			let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
+			
 			var animationCurve: UIView.AnimationOptions
 			if let animationCurveRawValue = ((userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {
 				

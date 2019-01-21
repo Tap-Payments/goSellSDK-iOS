@@ -13,7 +13,19 @@ internal class BaseNavigationController: UINavigationController {
     
     // MARK: - Internal -
     // MARK: Properties
-    
+	
+	internal override var modalPresentationCapturesStatusBarAppearance: Bool {
+		
+		get {
+			
+			return true
+		}
+		set {
+			
+			super.modalPresentationCapturesStatusBarAppearance = true
+		}
+	}
+	
     internal override var shouldAutorotate: Bool {
         
         return InterfaceOrientationManager.shared.viewControllerShouldAutorotate(self)

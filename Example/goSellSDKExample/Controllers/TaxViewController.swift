@@ -63,7 +63,7 @@ internal class TaxViewController: ModalNavigationTableViewController {
         if let caseSelectionController = segue.destination as? CaseSelectionTableViewController {
             
             caseSelectionController.delegate = self
-            caseSelectionController.allValues = AmountModificatorType.all
+            caseSelectionController.allValues = AmountModificatorType.allCases
             caseSelectionController.preselectedValue = self.currentTax.amount.type
             
             caseSelectionController.title = "Tax Type"

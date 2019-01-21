@@ -7,8 +7,6 @@
 
 import struct   CoreGraphics.CGGeometry.CGRect
 import struct   TapAdditionsKit.TypeAlias
-import class    UIKit.UIAlertController.UIAlertAction
-import class    UIKit.UIAlertController.UIAlertController
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIScreen.UIScreen
 import var      UIKit.UIWindow.UIWindowLevelStatusBar
@@ -81,22 +79,41 @@ internal extension PaymentDataManager {
     
     internal func webPaymentProcessFinished(_ chargeOrAuthorizeID: String) {
         
-        guard let paymentOption = self.currentPaymentOption, let chargeOrAuthorize = self.currentChargeOrAuthorize else { return }
-        
-        let loader = self.showLoadingController(false)
+        guard
+			
+			let paymentOption = self.currentPaymentOption,
+			let chargeOrAuthorize = self.currentChargeOrAuthorize,
+			let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
+		
+		LoadingView.show(in: paymentContentController, animated: true)
+		
         let retryAction: TypeAlias.ArgumentlessClosure = { [weak self] in
             
             self?.webPaymentProcessFinished(chargeOrAuthorizeID)
         }
-        
+		
         if chargeOrAuthorize is Charge {
 
-            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Charge.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction, alertDismissButtonClickHandler: nil)
+            self.continuePaymentWithCurrentChargeOrAuthorize(with:								chargeOrAuthorizeID,
+															 of:								Charge.self,
+															 paymentOption:						paymentOption,
+															 loader:							paymentContentController,
+															 retryAction:						retryAction,
+															 alertDismissButtonClickHandler:	nil)
         }
         else if chargeOrAuthorize is Authorize {
 
-            self.continuePaymentWithCurrentChargeOrAuthorize(with: chargeOrAuthorizeID, of: Authorize.self, paymentOption: paymentOption, loader: loader, retryAction: retryAction, alertDismissButtonClickHandler: nil)
+            self.continuePaymentWithCurrentChargeOrAuthorize(with:								chargeOrAuthorizeID,
+															 of:								Authorize.self,
+															 paymentOption:						paymentOption,
+															 loader:							paymentContentController,
+															 retryAction:						retryAction,
+															 alertDismissButtonClickHandler:	nil)
         }
+		else {
+			
+			return
+		}
     }
     
     internal func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
@@ -178,29 +195,26 @@ internal extension PaymentDataManager {
             let extraFeesAmountText = CurrencyFormatter.shared.format(extraFeesAmount)
             let totalAmountText 	= CurrencyFormatter.shared.format(totalAmount)
 			
-			let alert = UIAlertController(titleKey: 		.alert_extra_charges_title,
-										  messageKey: 		.alert_extra_charges_message, extraFeesAmountText, totalAmountText,
-										  preferredStyle:	.alert)
+			let alert = TapAlertController(titleKey: 		.alert_extra_charges_title,
+										   messageKey: 		.alert_extra_charges_message, extraFeesAmountText, totalAmountText,
+										   preferredStyle:	.alert)
 			
-            let cancelAction: UIAlertAction = UIAlertAction(titleKey: .alert_extra_charges_btn_cancel_title, style: .cancel) { [weak alert] (action) in
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
+			let cancelAction = TapAlertController.Action(titleKey: .alert_extra_charges_btn_cancel_title, style: .cancel) { [weak alert] (action) in
+				
+				alert?.hide()
                 decision(false)
             }
             
-            let confirmAction: UIAlertAction = UIAlertAction(titleKey: .alert_extra_charges_btn_confirm_title, style: .default) { [weak alert] (action) in
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
+            let confirmAction = TapAlertController.Action(titleKey: .alert_extra_charges_btn_confirm_title, style: .default) { [weak alert] (action) in
+				
+				alert?.hide()
                 decision(true)
             }
             
             alert.addAction(cancelAction)
             alert.addAction(confirmAction)
             
-            DispatchQueue.main.async {
-                
-                alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
-            }
+            alert.show()
         }
     }
     
@@ -228,8 +242,10 @@ internal extension PaymentDataManager {
     }
     
     private func loadingControllerFrame(coveringHeader: Bool) -> CGRect {
-        
-        let topOffset = PaymentContentViewController.tap_findInHierarchy()?.paymentOptionsContainerTopOffset ?? 0.0
+		
+		let currentController = ResizablePaymentContainerViewController.tap_findInHierarchy()?.currentContentViewController as? NavigationContentViewController
+		
+        let topOffset = currentController?.contentTopOffset ?? 0.0
         let screenBounds = UIScreen.main.bounds
         var result = screenBounds
         result.origin.y += topOffset
@@ -311,28 +327,36 @@ internal extension PaymentDataManager {
         
         let source = SourceRequest(identifier: sourceIdentifier)
         
-        self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil)
-        
-        self.isExecutingAPICalls = true
-        let loader = self.showLoadingController(false)
-        
-        let alertDissmissClosure = { self.closeWebPaymentScreen() }
-        
-        let retryAction: TypeAlias.ArgumentlessClosure = {
-            
-            self.startPaymentProcess(withWebPaymentOption: paymentOption)
-        }
-        
-        self.callChargeOrAuthorizeAPI(with:                             source,
-                                      paymentOption:                    paymentOption,
-                                      cardBIN:                          nil,
-                                      saveCard:                         nil,
-                                      loader:                           loader,
-                                      retryAction:                      retryAction,
-                                      alertDismissButtonClickHandler:   alertDissmissClosure)
+		self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil) {
+			
+			self.isExecutingAPICalls = true
+			
+			let loaderContainer: LoadingViewSupport? = WebPaymentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
+			
+			if let nonnullLoadingContainer = loaderContainer {
+				
+				LoadingView.show(in: nonnullLoadingContainer, animated: true)
+			}
+			
+			
+			let alertDissmissClosure = { self.closeWebPaymentScreen() }
+			
+			let retryAction: TypeAlias.ArgumentlessClosure = {
+				
+				self.startPaymentProcess(withWebPaymentOption: paymentOption)
+			}
+			
+			self.callChargeOrAuthorizeAPI(with:                             source,
+										  paymentOption:                    paymentOption,
+										  cardBIN:                          nil,
+										  saveCard:                         nil,
+										  loader:                           loaderContainer,
+										  retryAction:                      retryAction,
+										  alertDismissButtonClickHandler:   alertDissmissClosure)
+		}
     }
     
-    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String?, saveCard: Bool?, loader: LoadingViewController?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+    private func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String?, saveCard: Bool?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         guard
             
@@ -382,8 +406,8 @@ internal extension PaymentDataManager {
                                                     receipt:                receiptSettings)
             
             APIClient.shared.createCharge(with: chargeRequest) { [weak self] (charge, error) in
-                
-                loader?.hide(animated: true, async: true, fromDestroyInstance: false)
+				
+                loader?.hideLoader()
                 self?.payButtonUI?.stopLoader()
                 self?.isExecutingAPICalls = false
                 
@@ -412,13 +436,17 @@ internal extension PaymentDataManager {
                                                           authorizeAction:        authorizeAction)
             
             APIClient.shared.createAuthorize(with: authorizeRequest) { [weak self] (authorize, error) in
-                
-                loader?.hide(animated: true, async: true, fromDestroyInstance: false)
+				
+				loader?.hideLoader()
                 self?.payButtonUI?.stopLoader()
                 self?.isExecutingAPICalls = false
                 
                 self?.handleChargeOrAuthorizeResponse(authorize, error: error, paymentOption: paymentOption, cardBIN: cardBIN, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
             }
+			
+		case .cardSaving:
+			
+			fatalError("Internal SDK error. Attempt to charge in card saving mode.")
         }
     }
     
@@ -472,7 +500,7 @@ internal extension PaymentDataManager {
         self.openWebPaymentScreen(for: paymentOption, url: url, binNumber: binNumber)
     }
     
-    private func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL?, binNumber: String?) {
+	private func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL?, binNumber: String?, completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         self.currentPaymentOption = paymentOption
         self.currentPaymentCardBINNumber = binNumber
@@ -481,21 +509,35 @@ internal extension PaymentDataManager {
             
         case .card:
             
-            guard let nonnullURL = url else { return }
-            
-            let webPopupControllerFrame = self.loadingControllerFrame(coveringHeader: false)
-            
-            WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL)
+            guard let nonnullURL = url else {
+			
+				completion?()
+				return
+			}
+			
+			ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen { [weak self] in
+				
+				guard let strongSelf = self else {
+					
+					completion?()
+					return
+				}
+				
+				let webPopupControllerFrame = strongSelf.loadingControllerFrame(coveringHeader: false)
+				
+				WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL, completion: completion)
+			}
             
         case .web:
             
             if let alreadyOpenedWebPaymentController = WebPaymentViewController.tap_findInHierarchy() {
                 
                 self.prepareWebPaymentController(alreadyOpenedWebPaymentController)
+				completion?()
             }
             else {
                 
-                PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController()
+                PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
             }
         }
     }
@@ -516,16 +558,19 @@ internal extension PaymentDataManager {
     private func openOTPScreen(with phoneNumber: String, for paymentOption: PaymentOption) {
         
         self.currentPaymentOption = paymentOption
-        
-        let otpControllerFrame = self.loadingControllerFrame(coveringHeader: false)
-        OTPViewController.show(with: otpControllerFrame.minY, with: phoneNumber, delegate: self)
+		
+		ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen {
+			
+			let otpControllerFrame = self.loadingControllerFrame(coveringHeader: false)
+			OTPViewController.show(with: otpControllerFrame.minY, with: phoneNumber, delegate: self)
+		}
     }
     
-    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewController?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+    private func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         
         APIClient.shared.retrieveObject(with: identifier) { (returnChargeOrAuthorize: T?, error: TapSDKError?) in
-            
-            loader?.hide(animated: true, async: true, fromDestroyInstance: false)
+			
+			loader?.hideLoader()
             
             self.handleChargeOrAuthorizeResponse(                                   returnChargeOrAuthorize,
                                                  error:                             error,
@@ -574,12 +619,18 @@ internal extension PaymentDataManager {
             else {
                 
                 let mode = self.externalDataSource?.mode ?? .purchase
+				
+				var status: PaymentStatus
+				
                 switch mode {
                     
-                case .purchase:         self.closePayment(with: .chargeFailure(nil, error), fadeAnimation: false, force: false, completion: nil)
-                case .authorizeCapture: self.closePayment(with: .authorizationFailure(nil, error), fadeAnimation: false, force: false, completion: nil)
+                case .purchase:         status = .chargeFailure(nil, error)
+                case .authorizeCapture: status = .authorizationFailure(nil, error)
+				case .cardSaving:		status = .cardSaveFailure(error)
                 
                 }
+				
+				self.closePayment(with: status, fadeAnimation: false, force: false, completion: nil)
             }
         }
     }

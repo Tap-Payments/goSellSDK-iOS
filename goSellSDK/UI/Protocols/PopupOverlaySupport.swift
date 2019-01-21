@@ -13,6 +13,8 @@ import class    UIKit.UIView.UIView
 internal protocol PopupOverlaySupport: ClassProtocol {
     
     var topOffsetOverlayConstraint: NSLayoutConstraint? { get }
+	var bottomOffsetOverlayConstraint: NSLayoutConstraint? { get }
+	var bottomOverlayView: UIView? { get }
     var layoutView: UIView { get }
     
     func additionalAnimations(for operation: ViewControllerOperation) -> TypeAlias.ArgumentlessClosure

@@ -16,16 +16,20 @@ extension PaymentDataManager: OTPViewControllerDelegate {
     internal func otpViewControllerResendButtonTouchUpInside(_ controller: OTPViewController) {
         
         guard self.currentChargeOrAuthorize is Charge || self.currentChargeOrAuthorize is Authorize else { return }
-        
-        let loader = self.showLoadingController(false)
-        
+		
+		LoadingView.show(in: controller, animated: true, descriptionText: nil)
+		
         if let chargeObject = self.currentChargeOrAuthorize as? Charge {
             
             APIClient.shared.requestAuthentication(for: chargeObject) { [weak self] (response, error) in
                 
-                guard let strongSelf = self else { return }
+                guard let strongSelf = self else {
+					
+					controller.hideLoader()
+					return
+				}
                 
-                strongSelf.handleAuthenticationResponse(response, error: error, loader: loader, otpController: controller) { [weak strongSelf] in
+                strongSelf.handleAuthenticationResponse(response, error: error, loader: controller, otpController: controller) { [weak strongSelf] in
                     
                     strongSelf?.otpViewControllerResendButtonTouchUpInside(controller)
                 }
@@ -34,15 +38,23 @@ extension PaymentDataManager: OTPViewControllerDelegate {
         else if let authorizeObject = self.currentChargeOrAuthorize as? Authorize {
             
             APIClient.shared.requestAuthentication(for: authorizeObject) { [weak self] (response, error) in
+				
+				guard let strongSelf = self else {
+					
+					controller.hideLoader()
+					return
+				}
                 
-                guard let strongSelf = self else { return }
-                
-                strongSelf.handleAuthenticationResponse(response, error: error, loader: loader, otpController: controller) { [weak strongSelf] in
+                strongSelf.handleAuthenticationResponse(response, error: error, loader: controller, otpController: controller) { [weak strongSelf] in
                     
                     strongSelf?.otpViewControllerResendButtonTouchUpInside(controller)
                 }
             }
         }
+		else {
+			
+			controller.hideLoader()
+		}
     }
     
     internal func otpViewController(_ controller: OTPViewController, didEnter code: String) {
@@ -86,7 +98,7 @@ extension PaymentDataManager: OTPViewControllerDelegate {
     // MARK: - Private -
     // MARK: Properties
     
-    private func handleAuthenticationResponse<T: ChargeProtocol>(_ authenticatable: T?, error: TapSDKError?, loader: LoadingViewController, otpController: OTPViewController, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+    private func handleAuthenticationResponse<T: ChargeProtocol>(_ authenticatable: T?, error: TapSDKError?, loader: LoadingViewSupport, otpController: OTPViewController, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
         
         let shouldHideOTP = self.shouldHideOTP(for: authenticatable) && error == nil
         var loaderDismissed = false
@@ -97,8 +109,8 @@ extension PaymentDataManager: OTPViewControllerDelegate {
             guard loaderDismissed && otpDismissed else { return }
             self?.handleChargeOrAuthorizeResponse(authenticatable, error: error, retryAction: retryAction)
         }
-        
-        loader.hide(animated: true, async: true, fromDestroyInstance: false) {
+		
+		loader.hideLoader {
             
             loaderDismissed = true
             dismissalCompletionClosure()

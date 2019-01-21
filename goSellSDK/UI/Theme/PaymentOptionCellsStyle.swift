@@ -24,6 +24,8 @@ internal struct PaymentOptionCellsStyle: Decodable {
 	
 	internal let glowStyle: GlowStyle
 	
+	internal let alwaysGlowStyle: GlowStyle
+	
 	// MARK: - Private -
 	
 	private enum CodingKeys: String, CodingKey {
@@ -35,5 +37,6 @@ internal struct PaymentOptionCellsStyle: Decodable {
 		case card				= "card"
 		case savedCard			= "saved_card"
 		case glowStyle			= "glow_style"
+		case alwaysGlowStyle	= "always_glow_style"
 	}
 }

@@ -7,6 +7,7 @@
 
 import struct	CoreGraphics.CGBase.CGFloat
 import struct	CoreGraphics.CGGeometry.CGPoint
+import struct	CoreGraphics.CGGeometry.CGSize
 import class	QuartzCore.CAGradientLayer.CAGradientLayer
 import protocol	QuartzCore.CALayer.CAAction
 import class	QuartzCore.CALayer.CALayer
@@ -22,7 +23,10 @@ import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 
 internal class PaymentOptionsViewController: BaseViewController {
-    
+	
+	// MARK: - Internal -
+	// MARK: Methods
+	
     internal override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -65,11 +69,14 @@ internal class PaymentOptionsViewController: BaseViewController {
 		self.updateMask()
     }
     
-    internal func showWebPaymentViewController() {
+	internal func showWebPaymentViewController(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         DispatchQueue.main.async {
-            
-            self.performSegue(withIdentifier: "\(WebPaymentViewController.tap_className)Segue", sender: self)
+			
+			let controller = WebPaymentViewController.instantiate()
+			PaymentDataManager.shared.prepareWebPaymentController(controller)
+			
+			self.navigationController?.tap_pushViewController(controller, animated: true, completion: completion)
         }
     }
 	
@@ -87,6 +94,7 @@ internal class PaymentOptionsViewController: BaseViewController {
         
         self.unsubscribeNotifications()
 		self.tableViewGradientLayer.delegate = nil
+		self.tableViewContentSizeObservation = nil
     }
     
     // MARK: - Private -
@@ -105,10 +113,14 @@ internal class PaymentOptionsViewController: BaseViewController {
         didSet {
             
             PaymentDataManager.shared.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
+			
+			self.addTableViewContentSizeObserver()
         }
     }
     
     @IBOutlet private weak var tableViewTopOffsetConstraint: NSLayoutConstraint?
+	
+	private var tableViewContentSizeObservation: NSKeyValueObservation?
 	
 	private lazy var tableViewGradientLayer: CAGradientLayer = {
 		
@@ -142,6 +154,17 @@ internal class PaymentOptionsViewController: BaseViewController {
             self.paymentOptionsTableView?.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
+	
+	private func addTableViewContentSizeObserver() {
+		
+		guard let nonnullTableView = self.paymentOptionsTableView else { return }
+		
+		self.tableViewContentSizeObservation = nonnullTableView.observe(\.contentSize, options: .new) { (tableView, change) in
+			
+			self.preferredContentSize = CGSize(width:	tableView.contentSize.width		+ tableView.contentInset.left	+ tableView.contentInset.right,
+											   height:	tableView.contentSize.height	+ tableView.contentInset.top	+ tableView.contentInset.bottom)
+		}
+	}
 	
 	private func updateMask() {
 		
@@ -185,6 +208,16 @@ extension PaymentOptionsViewController: PopupOverlaySupport {
         
         return self.tableViewTopOffsetConstraint
     }
+	
+	internal var bottomOffsetOverlayConstraint: NSLayoutConstraint? {
+		
+		return nil
+	}
+	
+	internal var bottomOverlayView: UIView? {
+		
+		return self.paymentOptionsTableView
+	}
     
     internal var layoutView: UIView {
         

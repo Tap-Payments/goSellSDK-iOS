@@ -6,7 +6,7 @@
 //
 
 /// Energy measurement unit.
-@objc(MeasurementEnergy) public enum Energy: Int {
+@objc(MeasurementEnergy) public enum Energy: Int, CaseIterable {
     
     /// Kilojoules.
     @objc(Kilojoules)
@@ -59,19 +59,6 @@ extension Energy: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension Energy: CountableCasesEnum {
-    
-    public static let all: [Energy] = [
-        
-        .kilojoules,
-        .joules,
-        .kilocalories,
-        .calories,
-        .kilowattHours
-    ]
 }
 
 // MARK: - CustomStringConvertible

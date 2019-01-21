@@ -76,18 +76,14 @@ internal final class SaveCardValidator: CardValidator {
 		self.descriptionLabel.setTextStyle(Theme.current.paymentOptionsCellStyle.card.saveCard.textStyle)
 	}
     
-    @objc private func switchValueChanged(_ sender: Any) {
+	@objc private func switchValueChanged(_ sender: Any) {
 		
-		CATransaction.setCompletionBlock { [weak self] in
+		let strongSelf = self
+		if strongSelf.shouldSaveCard && !strongSelf.canSaveCard {
 			
-			guard let strongSelf = self else { return }
-			
-			if strongSelf.shouldSaveCard && !strongSelf.canSaveCard {
-				
-				strongSelf.saveCardSwitch.setOn(false, animated: true)
-			}
-			
-			strongSelf.delegate?.cardValidator(strongSelf, inputDataChanged: strongSelf.shouldSaveCard)
+			strongSelf.saveCardSwitch.setOn(false, animated: true)
 		}
-    }
+		
+		strongSelf.delegate?.cardValidator(strongSelf, inputDataChanged: strongSelf.shouldSaveCard)
+	}
 }

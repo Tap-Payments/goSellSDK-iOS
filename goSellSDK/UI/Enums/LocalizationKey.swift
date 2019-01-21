@@ -17,6 +17,11 @@ internal enum LocalizationKey: String {
     case btn_pay_title_generic 	= "btn_pay_title_generic"
     case btn_pay_title_amount	= "btn_pay_title_amount"
 	
+	// MARK: Save Button Title
+	
+	case btn_save_title			= "btn_save_title"
+	case btn_save_action_title	= "btn_save_action_title"
+	
 	// MARK: Payment Option Group Titles
 	
 	case payment_options_group_title_recent = "payment_options_group_title_recent"

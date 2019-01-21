@@ -5,15 +5,35 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class CardIO.CardIOCreditCardInfo.CardIOCreditCardInfo
-import class CardIO.CardIOView.CardIOView
-import protocol CardIO.CardIOViewDelegate.CardIOViewDelegate
-import class UIKit.UIViewController.UIViewController
+import class	CardIO.CardIOCreditCardInfo.CardIOCreditCardInfo
+import class	CardIO.CardIOView.CardIOView
+import protocol	CardIO.CardIOViewDelegate.CardIOViewDelegate
+import struct	CoreGraphics.CGGeometry.CGSize
+import enum		UIKit.UIApplication.UIStatusBarStyle
+import class	UIKit.UIScreen.UIScreen
+import class	UIKit.UIViewController.UIViewController
 
 internal class CardScannerViewController: HeaderNavigatedViewController {
     
     // MARK: - Internal -
     // MARK: Properties
+	
+	internal override var preferredStatusBarStyle: UIStatusBarStyle {
+		
+		return Theme.current.commonStyle.statusBar[.fullscreen].uiStatusBarStyle
+	}
+	
+	internal override var preferredContentSize: CGSize {
+		
+		get {
+			
+			return UIScreen.main.bounds.size
+		}
+		set {
+			
+			super.preferredContentSize = UIScreen.main.bounds.size
+		}
+	}
     
     /// Delegate.
     internal weak var delegate: CardScannerViewControllerDelegate?

@@ -10,6 +10,7 @@ import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
 import class	goSellSDK.goSellSDK
+import enum		goSellSDK.SDKAppearanceMode
 import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
@@ -94,25 +95,31 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			case Constants.sdkLanguageCelReuseIdentifier:
 				
 				caseSelectionController.title = "SDK Language"
-				caseSelectionController.allValues = Language.all
+				caseSelectionController.allValues = Language.allCases
 				caseSelectionController.preselectedValue = self.currentSettings?.sdkLanguage
 				
             case Constants.sdkModeCellReuseIdentifier:
                 
                 caseSelectionController.title = "SDK Mode"
-                caseSelectionController.allValues = SDKMode.all
+                caseSelectionController.allValues = SDKMode.allCases
                 caseSelectionController.preselectedValue = self.currentSettings?.sdkMode
-                
+				
+			case Constants.appearanceModeCellReuseIdentifier:
+				
+				caseSelectionController.title = "Appearance Mode"
+				caseSelectionController.allValues = SDKAppearanceMode.allCases
+				caseSelectionController.preselectedValue = self.currentSettings?.appearanceMode
+				
             case Constants.transactionModeCellReuseIdentifier:
                 
                 caseSelectionController.title = "Transaction Mode"
-                caseSelectionController.allValues = TransactionMode.all
+                caseSelectionController.allValues = TransactionMode.allCases
                 caseSelectionController.preselectedValue = self.currentSettings?.transactionMode
                 
             case Constants.currencyCellReuseIdentifier:
                 
                 caseSelectionController.title = "Currency"
-                caseSelectionController.allValues = Currency.all
+                caseSelectionController.allValues = Currency.allCases
                 caseSelectionController.preselectedValue = self.currentSettings?.currency
                 
             default:
@@ -164,6 +171,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         case Constants.currencyCellReuseIdentifier,
 			 Constants.sdkLanguageCelReuseIdentifier,
 			 Constants.sdkModeCellReuseIdentifier,
+			 Constants.appearanceModeCellReuseIdentifier,
 			 Constants.transactionModeCellReuseIdentifier:
             
             self.showCaseSelectionViewController(with: reuseIdentifier)
@@ -210,6 +218,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		
 		fileprivate static let sdkLanguageCelReuseIdentifier		= "sdk_language_cell"
         fileprivate static let sdkModeCellReuseIdentifier          	= "sdk_mode_cell"
+		fileprivate static let appearanceModeCellReuseIdentifier	= "appearance_mode_cell"
         fileprivate static let transactionModeCellReuseIdentifier   = "transaction_mode_cell"
         fileprivate static let currencyCellReuseIdentifier          = "currency_cell"
         fileprivate static let customerCellReuseIdentifier          = "customer_cell"
@@ -223,6 +232,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	
 	@IBOutlet private weak var sdkLanguageValueLabel: UILabel?
     @IBOutlet private weak var sdkModeValueLabel: UILabel?
+	@IBOutlet private weak var appearanceModeValueLabel: UILabel?
     @IBOutlet private weak var transactionModeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
     @IBOutlet private weak var customerNameLabel: UILabel?
@@ -278,6 +288,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		
 		self.sdkLanguageValueLabel?.text		= self.currentSettings?.sdkLanguage.description
         self.sdkModeValueLabel?.text            = self.currentSettings?.sdkMode.description
+		self.appearanceModeValueLabel?.text		= self.currentSettings?.appearanceMode.description
         self.transactionModeValueLabel?.text    = self.currentSettings?.transactionMode.description
         self.currencyValueLabel?.text           = self.currentSettings?.currency.localizedSymbol
         
@@ -423,6 +434,13 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
                     self.currentSettings?.customer = nil
                 }
             }
+			
+		case Constants.appearanceModeCellReuseIdentifier:
+			
+			if let appearanceMode = value as? SDKAppearanceMode {
+				
+				self.currentSettings?.appearanceMode = appearanceMode
+			}
             
         case Constants.transactionModeCellReuseIdentifier:
             

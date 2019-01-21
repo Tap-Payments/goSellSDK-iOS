@@ -55,10 +55,10 @@ import class 	UIKit.UIView.UIView
     
     // MARK: Methods
     
-    /// Updates displayed amount.
-    public func updateDisplayedAmount() {
-        
-        self.calculateDisplayedAmount()
+    /// Updates displayed state.
+    public func updateDisplayedState() {
+		
+		self.updateAppearance()
     }
 	
 	public override func didMoveToSuperview() {
@@ -110,11 +110,6 @@ extension PayButton: PayButtonInternalImplementation {
     internal var uiElement: PayButtonUI? {
         
         return self.ui
-    }
-    
-    internal func updateDisplayedStateAndAmount() {
-        
-        self.updateDisplayedAmount()
     }
 }
 

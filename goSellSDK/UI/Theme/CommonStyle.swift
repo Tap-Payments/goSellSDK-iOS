@@ -14,7 +14,9 @@ internal struct CommonStyle: Decodable {
 	
 	internal let loaderAnimationDuration: TimeInterval
 	internal let keyboardAppearance: KeyboardAppearance
-	internal let blurStyle: TapBlurEffectStyle
+	internal let statusBar: AppearanceStyle<StatusBarStyle>
+	internal let blurStyle: AppearanceStyle<TapBlurEffectStyle>
+	internal let backgroundColor: AppearanceStyle<HexColor>
 	internal let icons: CommonImages
 	
 	// MARK: - Private -
@@ -23,7 +25,9 @@ internal struct CommonStyle: Decodable {
 		
 		case loaderAnimationDuration 	= "loader_animation_duration"
 		case keyboardAppearance			= "keyboard_appearance"
+		case statusBar					= "status_bar"
 		case blurStyle					= "blur_style"
+		case backgroundColor			= "background_color"
 		case icons						= "icons"
 	}
 }

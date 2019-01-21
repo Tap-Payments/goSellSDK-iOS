@@ -7,8 +7,6 @@
 
 import struct   TapAdditionsKit.TypeAlias
 import enum     TapCardValidator.CardBrand
-import class    UIKit.UIAlertController.UIAlertAction
-import class    UIKit.UIAlertController.UIAlertController
 import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 /// Payment data manager.
@@ -117,33 +115,45 @@ internal final class PaymentDataManager {
 			recentGroupModel?.updateButtonTitle(self.isInDeleteSavedCardsMode)
         }
     }
-    
+	
+	internal var appearance: AppearanceMode = .fullscreen
+	
     // MARK: Methods
     
     internal func canStart(with caller: PayButtonInternalImplementation) -> Bool {
 		
         if self.isLoadingPaymentOptions { return false }
         
-        guard let dataSource = caller.uiElement?.paymentDataSource else { return false }
-        
-        if dataSource.currency == nil || dataSource.customer == nil { return false }
-        
-        let itemsCount = (caller.uiElement?.paymentDataSource?.items ?? [])?.count ?? 0
-        if itemsCount > 0 {
-            
-            let items = (dataSource.items ?? []) ?? []
-            let taxes = dataSource.taxes ?? []
-            let shipping = dataSource.shipping ?? []
-            
-            let totalAmount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
-            
-            return totalAmount > 0
-        }
-        else {
-            
-            return (dataSource.amount ?? 0) > 0
-        }
-    }
+        guard let dataSource = caller.uiElement?.paymentDataSource, dataSource.customer != nil else { return false }
+		
+		let mode = dataSource.mode ?? .purchase
+		switch mode {
+			
+		case .purchase, .authorizeCapture:
+			
+			if dataSource.currency == nil { return false }
+			
+			let itemsCount = (caller.uiElement?.paymentDataSource?.items ?? [])?.count ?? 0
+			if itemsCount > 0 {
+				
+				let items = (dataSource.items ?? []) ?? []
+				let taxes = dataSource.taxes ?? []
+				let shipping = dataSource.shipping ?? []
+				
+				let totalAmount = AmountCalculator.totalAmount(of: items, with: taxes, and: shipping)
+				
+				return totalAmount > 0
+			}
+			else {
+				
+				return (dataSource.amount ?? 0) > 0
+			}
+			
+		case .cardSaving:
+			
+			return true
+		}
+	}
     
     internal func start(with caller: PayButtonInternalImplementation) {
         
@@ -173,15 +183,17 @@ internal final class PaymentDataManager {
             self.showMissingInformationAlert(with: "Error", message: "Either amount or items should be implemented in payment data source. If items is implemented, number of items should be > 0.")
             return
         }
+		
+		let appearanceMode	= nonnullDataSource.appearance ?? .default
+		let transactionMode	= nonnullDataSource.mode        ?? .purchase
+		let shipping        = nonnullDataSource.shipping    ?? nil
+		let taxes           = nonnullDataSource.taxes       ?? nil
         
         self.externalDataSource = nonnullDataSource
         self.externalDelegate   = caller.uiElement?.paymentDelegate
         self.payButton          = caller
-        
-        let transactionMode = nonnullDataSource.mode        ?? .purchase
-        let shipping        = nonnullDataSource.shipping    ?? nil
-        let taxes           = nonnullDataSource.taxes       ?? nil
-        
+		self.appearance			= AppearanceMode(appearanceMode, transactionMode)
+		
         let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
                                                    amount:          nonnullDataSource.amount,
                                                    items:           nonnullDataSource.items ?? [],
@@ -318,6 +330,10 @@ internal final class PaymentDataManager {
         case .authorizationFailure(let authorize, let error):
             
             self.externalDelegate?.authorizationFailed?(with: authorize, error: error, payButton: button)
+			
+		case .cardSaveFailure(let error):
+			
+			self.externalDelegate?.cardSavingFailed?(with: error)
         }
     }
     
@@ -345,14 +361,19 @@ internal final class PaymentDataManager {
         
         guard let cardIndex = self.paymentOptionsResponse?.savedCards?.index(of: card) else { return }
         self.paymentOptionsResponse?.savedCards?.remove(at: cardIndex)
-        
-        if self.paymentOptionsResponse?.savedCards?.count ?? 0 == 0 {
-            
-            self.isInDeleteSavedCardsMode = false
-        }
-        
-        self.generatePaymentOptionCellViewModels()
-    }
+		
+		let remainingNumberOfCards = self.paymentOptionsResponse?.savedCards?.count ?? 0
+		if remainingNumberOfCards == 0 {
+			
+			self.isInDeleteSavedCardsMode = false
+			
+			self.generatePaymentOptionCellViewModels()
+		}
+		else {
+			
+			self.cardsContainerCellModel.updateData(with: self.paymentOptionsResponse?.savedCards ?? [])
+		}
+	}
     
     // MARK: - Private -
     
@@ -444,56 +465,39 @@ internal final class PaymentDataManager {
     
     private func showCancelPaymentAlert(with decision: @escaping TypeAlias.BooleanClosure) {
 		
-		let alert = UIAlertController(titleKey: 		.alert_cancel_payment_status_undefined_title,
-									  messageKey: 		.alert_cancel_payment_status_undefined_message,
-									  preferredStyle:	.alert)
+		let alert = TapAlertController(titleKey: 		.alert_cancel_payment_status_undefined_title,
+									   messageKey: 		.alert_cancel_payment_status_undefined_message,
+									   preferredStyle:	.alert)
 		
-        let cancelCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_no_title, style: .cancel) { [weak alert] (action) in
+		let cancelCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_status_undefined_btn_no_title, style: .cancel) { [weak alert] (action) in
             
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
+            alert?.hide()
             decision(false)
         }
 		
-        let confirmCancelAction = UIAlertAction(titleKey: .alert_cancel_payment_status_undefined_btn_confirm_title, style: .destructive) { [weak alert] (action) in
+        let confirmCancelAction = TapAlertController.Action(titleKey: .alert_cancel_payment_status_undefined_btn_confirm_title, style: .destructive) { [weak alert] (action) in
             
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
-            
+            alert?.hide()
             decision(true)
         }
         
         alert.addAction(cancelCancelAction)
         alert.addAction(confirmCancelAction)
         
-        DispatchQueue.main.async {
-            
-            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
-        }
+        alert.show()
     }
     
     private func showMissingInformationAlert(with title: String, message: String) {
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close", style: .default) { [weak alert] (action) in
+        let alert = TapAlertController(title: title, message: message, preferredStyle: .alert)
+        let closeAction = TapAlertController.Action(title: "Close", style: .default) { [weak alert] (action) in
             
-            DispatchQueue.main.async {
-                
-                alert?.tap_dismissFromSeparateWindow(true, completion: nil)
-            }
+           alert?.hide()
         }
         
         alert.addAction(closeAction)
         
-        DispatchQueue.main.async {
-            
-            alert.tap_showOnSeparateWindow(true, below: .statusBar, completion: nil)
-        }
+        alert.show()
     }
     
     private func paymentOptions(of type: PaymentType) -> [PaymentOption] {

@@ -6,8 +6,6 @@
 //
 
 import struct   TapAdditionsKit.TypeAlias
-import class    UIKit.UIAlertController.UIAlertAction
-import class    UIKit.UIAlertController.UIAlertController
 import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal class ErrorActionExecutor {
@@ -23,6 +21,7 @@ internal class ErrorActionExecutor {
             
         case .purchase:         status = .chargeFailure(nil, error)
         case .authorizeCapture: status = .authorizationFailure(nil, error)
+		case .cardSaving:		status = .cardSaveFailure(error)
             
         }
         
@@ -31,31 +30,28 @@ internal class ErrorActionExecutor {
     
     internal static func showAlert(with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure?, completion: TypeAlias.BooleanClosure? = nil) {
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = TapAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let dismissAction = UIAlertAction(titleKey: .alert_error_btn_dismiss_title, style: .default) { [weak alert] (action) in
-            
-            DispatchQueue.main.async {
-                
-                if let nonnullAlert = alert {
-                    
-                    nonnullAlert.tap_dismissFromSeparateWindow(true) {
-                        
-                        completion?(false)
-                    }
-                }
-                else {
-                    
-                    completion?(false)
-                }
-            }
-        }
-        
-        alert.addAction(dismissAction)
+        let dismissAction = TapAlertController.Action(titleKey: .alert_error_btn_dismiss_title, style: .default) { [weak alert] (action) in
+			
+			if let nonnullAlert = alert {
+				
+				nonnullAlert.hide {
+					
+					completion?(false)
+				}
+			}
+			else {
+				
+				completion?(false)
+			}
+		}
+		
+		alert.addAction(dismissAction)
         
         if retryAction != nil {
             
-            let retryAlertAction = UIAlertAction(titleKey: .alert_error_btn_retry_title, style: .cancel) { [weak alert] (action) in
+            let retryAlertAction = TapAlertController.Action(titleKey: .alert_error_btn_retry_title, style: .cancel) { [weak alert] (action) in
                 
                 DispatchQueue.main.async {
                     
@@ -77,21 +73,7 @@ internal class ErrorActionExecutor {
             
             alert.addAction(retryAlertAction)
         }
-        
-        DispatchQueue.main.async {
-			
-			alert.tap_showOnSeparateWindow(below: .statusBar) { [unowned alert] (separateWindowRootController) in
-				
-				let supportedOrientations = InterfaceOrientationManager.shared.supportedInterfaceOrientations(for: separateWindowRootController)
-				let canAutorotate = InterfaceOrientationManager.shared.viewControllerShouldAutorotate(separateWindowRootController)
-				let preferredOrientation = InterfaceOrientationManager.shared.preferredInterfaceOrientationForPresentation(of: separateWindowRootController)
-				
-				separateWindowRootController.canAutorotate					= canAutorotate
-				separateWindowRootController.allowedInterfaceOrientations	= supportedOrientations
-				separateWindowRootController.preferredInterfaceOrientation	= preferredOrientation
-				
-				separateWindowRootController.present(alert, animated: true, completion: nil)
-			}
-        }
+		
+		alert.show()
     }
 }

@@ -31,6 +31,7 @@ internal class AmountedCurrencyTableViewCell: BaseTableViewCell {
     
     @IBOutlet private weak var currencyNameLabel: UILabel?
     @IBOutlet private weak var amountLabel: UILabel?
+	@IBOutlet private weak var separatorView: UIView?
     
     @IBOutlet private var constraintsToDisableWhenSelected: [NSLayoutConstraint]?
     @IBOutlet private var constraintsToEnableWhenSelected: [NSLayoutConstraint]?
@@ -44,9 +45,13 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
         self.currencyNameLabel?.text	= self.model?.currencyNameText
         self.amountLabel?.text 			= self.model?.amountText
 		
-		self.currencyNameLabel?.setTextStyle(Theme.current.caseSelectionCellStyle.title)
-		self.amountLabel?.setTextStyle(Theme.current.caseSelectionCellStyle.value)
-        
+		let cellStyle = Theme.current.caseSelectionCellStyle
+		
+		self.currencyNameLabel?.setTextStyle(cellStyle.title)
+		self.amountLabel?.setTextStyle(cellStyle.value)
+		
+		self.separatorView?.backgroundColor = cellStyle.separator[PaymentDataManager.shared.appearance]
+		
         self.updateSelectionState(animated: animated)
     }
     

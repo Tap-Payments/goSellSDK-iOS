@@ -9,15 +9,13 @@
 ///
 /// - percentBased: Percent-based modification.
 /// - fixedAmount: Fixed amount modification.
-@objc public enum AmountModificatorType: Int {
+@objc public enum AmountModificatorType: Int, CaseIterable {
     
     /// Percent-based modification.
-    @objc(Percents)
-    case percents
+    @objc(Percents) case percents
     
     /// Fixed amount modification.
-    @objc(FixedAmount)
-    case fixedAmount
+    @objc(FixedAmount) case fixedAmount
     
     // MARK: - Private -
     
@@ -56,15 +54,6 @@
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidAmountModificatorType.rawValue, userInfo: userInfo)
             throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil)
         }
-    }
-}
-
-// MARK: - CountableCasesEnum
-extension AmountModificatorType: CountableCasesEnum {
-    
-    public static var all: [AmountModificatorType] {
-        
-        return [.percents, .fixedAmount]
     }
 }
 

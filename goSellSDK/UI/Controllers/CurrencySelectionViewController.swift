@@ -7,6 +7,7 @@
 
 import struct   TapAdditionsKit.TypeAlias
 import func     TapSwiftFixes.performOnMainThread
+import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIImageView.UIImageView
 import class    UIKit.UILabel.UILabel
@@ -19,7 +20,12 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
     
     // MARK: - Internal -
     // MARK: Properties
-    
+	
+	internal override var preferredStatusBarStyle: UIStatusBarStyle {
+		
+		return Theme.current.commonStyle.statusBar[PaymentDataManager.shared.appearance].uiStatusBarStyle
+	}
+	
     internal weak var delegate: CurrencySelectionViewControllerDelegate?
     
     // MARK: Methods

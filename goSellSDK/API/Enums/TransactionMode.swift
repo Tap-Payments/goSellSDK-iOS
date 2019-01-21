@@ -6,14 +6,17 @@
 //
 
 /// Transaction mode.
-@objc public enum TransactionMode: Int {
+@objc public enum TransactionMode: Int, CaseIterable {
     
     /// Regular payment transaction.
     @objc(Purchase) case purchase
     
     /// Only authorizing the payment and capturing the amount.
     @objc(AuthorizeCapture) case authorizeCapture
-    
+	
+	/// Mode to save the card only.
+	@objc(CardSaving) case cardSaving
+	
     // MARK: - Private -
     // MARK: Properties
     
@@ -23,6 +26,7 @@
             
         case .purchase:         return "PURCHASE"
         case .authorizeCapture: return "AUTHORIZE_CAPTURE"
+		case .cardSaving:		return "SAVE_CARD"
 
         }
     }
@@ -40,18 +44,16 @@
         case TransactionMode.authorizeCapture.stringRepresentation:
             
             self = .authorizeCapture
-            
+			
+		case TransactionMode.cardSaving.stringRepresentation:
+			
+			self = .cardSaving
+			
         default:
             
             self = .purchase
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension TransactionMode: CountableCasesEnum {
-    
-    public static let all: [TransactionMode] = [.purchase, .authorizeCapture]
 }
 
 // MARK: - CustomStringConvertible
@@ -61,8 +63,9 @@ extension TransactionMode: CustomStringConvertible {
         
         switch self {
             
-        case .purchase: return "Payment"
-        case .authorizeCapture: return "Authorize only"
+        case .purchase:			return "Payment"
+        case .authorizeCapture:	return "Authorize only"
+		case .cardSaving:		return "Save Card"
 
         }
     }

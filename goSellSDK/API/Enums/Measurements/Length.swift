@@ -6,7 +6,7 @@
 //
 
 /// Length measurement unit.
-@objc(MeasurementLength) public enum Length: Int {
+@objc(MeasurementLength) public enum Length: Int, CaseIterable {
     
     /// Megameters.
     @objc(Megameters)
@@ -161,36 +161,6 @@ extension Length: InitializableWithString {
             
         }
     }
-}
-
-// MARK: - CountableCasesEnum
-extension Length: CountableCasesEnum {
-    
-    public static let all: [Length] = [
-        
-        .megameters,
-        .kilometers,
-        .hectometers,
-        .decameters,
-        .meters,
-        .decimeters,
-        .centimeters,
-        .millimeters,
-        .micrometers,
-        .nanometers,
-        .picometers,
-        .inches,
-        .feet,
-        .yards,
-        .miles,
-        .scandinavianMiles,
-        .lightYears,
-        .nauticalMiles,
-        .fathoms,
-        .furlongs,
-        .astronomicalUnits,
-        .parsecs
-    ]
 }
 
 // MARK: - CustomStringConvertible

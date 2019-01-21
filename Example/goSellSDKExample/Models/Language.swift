@@ -6,7 +6,6 @@
 //
 
 import struct	Foundation.NSLocale.Locale
-import protocol	goSellSDK.CountableCasesEnum
 import class	goSellSDK.goSellSDK
 
 internal struct Language {
@@ -27,10 +26,10 @@ extension Language: CustomStringConvertible {
 	}
 }
 
-// MARK: - CountableCasesEnum
-extension Language: CountableCasesEnum {
+// MARK: - CaseIterable
+extension Language: CaseIterable {
 	
-	internal static let all: [Language] = goSellSDK.availableLanguages.map { Language(localeIdentifier: $0) }
+	internal static let allCases: [Language] = goSellSDK.availableLanguages.map { Language(localeIdentifier: $0) }
 }
 
 // MARK: - Encodable

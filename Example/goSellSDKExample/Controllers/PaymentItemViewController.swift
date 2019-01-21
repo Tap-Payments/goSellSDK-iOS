@@ -108,42 +108,42 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                     
                 case .area(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .duration(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .electricCharge(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .electricCurrent(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .energy(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .length(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .mass(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .power(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                     
                 case .units:
@@ -152,7 +152,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                     
                 case .volume(let measurement):
                     
-                    caseSelectionController.allValues = type(of: measurement).all
+                    caseSelectionController.allValues = type(of: measurement).allCases
                     caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
                 }
                 
@@ -160,7 +160,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                 
                 caseSelectionController.title = "Discount Type"
                 
-                caseSelectionController.allValues = AmountModificatorType.all
+                caseSelectionController.allValues = AmountModificatorType.allCases
                 caseSelectionController.preselectedValue = self.currentPaymentItem.discount?.type
                 
             default:
