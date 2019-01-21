@@ -24,6 +24,7 @@ internal final class Settings: Encodable {
 											 sdkMode:			.sandbox,
 											 appearanceMode:	.default,
 											 transactionMode:	.purchase,
+											 isThreeDSecure:	false,
 											 currency:			try! Currency(isoCode: "kwd"),
 											 customer:			nil,
 											 shippingList:		[],
@@ -40,19 +41,22 @@ internal final class Settings: Encodable {
 	internal var appearanceMode: SDKAppearanceMode
 	
     internal var transactionMode: TransactionMode
-    
+	
+	internal var isThreeDSecure: Bool
+	
     internal var shippingList: [Shipping]
     
     internal var taxes: [Tax]
     
     // MARK: Methods
     
-	internal init(sdkLanguage: Language, sdkMode: SDKMode, appearanceMode: SDKAppearanceMode, transactionMode: TransactionMode, currency: Currency, customer: EnvironmentCustomer?, shippingList: [Shipping], taxes: [Tax]) {
+	internal init(sdkLanguage: Language, sdkMode: SDKMode, appearanceMode: SDKAppearanceMode, transactionMode: TransactionMode, isThreeDSecure: Bool, currency: Currency, customer: EnvironmentCustomer?, shippingList: [Shipping], taxes: [Tax]) {
 		
 		self.sdkLanguage 		= sdkLanguage
         self.sdkMode            = sdkMode
 		self.appearanceMode		= appearanceMode
         self.transactionMode    = transactionMode
+		self.isThreeDSecure		= isThreeDSecure
         self.currency           = currency
         self.customer           = customer
         self.shippingList       = shippingList
@@ -67,6 +71,7 @@ internal final class Settings: Encodable {
         case sdkMode            = "sdk_mode"
 		case appearanceMode		= "appearance_mode"
         case transactionMode    = "mode"
+		case isThreeDSecure		= "3d_secure"
         case currency           = "currency"
         case customer           = "customer"
         case shippingList       = "shippingList"
@@ -85,6 +90,7 @@ extension Settings: Decodable {
         let sdkMode         = try container.decodeIfPresent(SDKMode.self, forKey: .sdkMode) ?? Settings.default.sdkMode
 		let appearanceMode	= try container.decodeIfPresent(SDKAppearanceMode.self, forKey: .appearanceMode) ?? Settings.default.appearanceMode
         let transactionMode = try container.decode(TransactionMode.self, forKey: .transactionMode)
+		let isThreeDSecure	= try container.decodeIfPresent(Bool.self, forKey: .isThreeDSecure) ?? false
         let currency        = try container.decode(Currency.self, forKey: .currency)
         var envCustomer     = try container.decodeIfPresent(EnvironmentCustomer.self, forKey: .customer)
         let shippingList    = try container.decode([Shipping].self, forKey: .shippingList)
@@ -115,7 +121,7 @@ extension Settings: Decodable {
             }
         }
         
-		self.init(sdkLanguage: sdkLanguage, sdkMode: sdkMode, appearanceMode: appearanceMode, transactionMode: transactionMode, currency: currency, customer: envCustomer, shippingList: shippingList, taxes: taxes)
+		self.init(sdkLanguage: sdkLanguage, sdkMode: sdkMode, appearanceMode: appearanceMode, transactionMode: transactionMode, isThreeDSecure: isThreeDSecure, currency: currency, customer: envCustomer, shippingList: shippingList, taxes: taxes)
     }
 }
 

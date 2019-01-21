@@ -256,7 +256,7 @@ extension ExampleViewController: PaymentDataSource {
     
     internal var require3DSecure: Bool {
         
-        return true
+        return self.paymentSettings.isThreeDSecure
     }
     
     internal var receiptSettings: Receipt? {

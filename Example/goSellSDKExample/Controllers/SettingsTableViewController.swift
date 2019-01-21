@@ -16,9 +16,12 @@ import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
 import class    ObjectiveC.NSObject.NSObject
+import enum		UIKit.NSText.NSTextAlignment
+import class	UIKit.UIApplication.UIApplication
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
+import class	UIKit.UISwitch.UISwitch
 import class    UIKit.UITableView.UITableView
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
@@ -63,6 +66,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     internal override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+		self.updateAlignments()
         self.updateWithCurrentSettings()
     }
     
@@ -236,7 +240,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var transactionModeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
     @IBOutlet private weak var customerNameLabel: UILabel?
-    
+	@IBOutlet private weak var threeDSecureSwitch: UISwitch?
+	
     @IBOutlet private weak var shippingTableView: UITableView? {
         
         didSet {
@@ -291,6 +296,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.appearanceModeValueLabel?.text		= self.currentSettings?.appearanceMode.description
         self.transactionModeValueLabel?.text    = self.currentSettings?.transactionMode.description
         self.currencyValueLabel?.text           = self.currentSettings?.currency.localizedSymbol
+		self.threeDSecureSwitch?.isOn			= self.currentSettings?.isThreeDSecure ?? Settings.default.isThreeDSecure
         
         if let name = self.currentSettings?.customer?.customer.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
            let surname = self.currentSettings?.customer?.customer.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
@@ -302,7 +308,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             self.customerNameLabel?.text = nil
         }
     }
-    
+	
+	@IBAction private func threeDSecureSwitchValueChanged(_ sender: Any) {
+		
+		self.currentSettings?.isThreeDSecure = self.threeDSecureSwitch?.isOn ?? Settings.default.isThreeDSecure
+	}
+	
     @IBAction private func addTaxButtonTouchUpInside(_ sender: Any) {
         
         if let selectedTaxIndexPath = self.taxesTableView?.indexPathForSelectedRow {
@@ -344,6 +355,18 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         self.selectedShipping = shipping
         self.show(ShippingViewController.self)
     }
+	
+	private func updateAlignments() {
+		
+		let trailing: NSTextAlignment = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight ? .right : .left
+		
+		self.sdkLanguageValueLabel?.textAlignment		= trailing
+		self.sdkModeValueLabel?.textAlignment			= trailing
+		self.appearanceModeValueLabel?.textAlignment	= trailing
+		self.transactionModeValueLabel?.textAlignment	= trailing
+		self.currencyValueLabel?.textAlignment			= trailing
+		self.customerNameLabel?.textAlignment			= trailing
+	}
 }
 
 // MARK: - SeguePresenter
