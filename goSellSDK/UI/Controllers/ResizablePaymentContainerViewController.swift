@@ -36,7 +36,7 @@ internal class ResizablePaymentContainerViewController: BaseViewController {
 		}
 		else {
 			
-			return Theme.current.commonStyle.statusBar[PaymentDataManager.shared.appearance].uiStatusBarStyle
+			return Theme.current.commonStyle.statusBar[PaymentProcess.shared.dataManager.appearance].uiStatusBarStyle
 		}
 	}
 	
@@ -73,7 +73,7 @@ internal class ResizablePaymentContainerViewController: BaseViewController {
 		
 		self.setNeedsStatusBarAppearanceUpdate()
 		
-		self.contentContainerView?.backgroundColor = Theme.current.commonStyle.backgroundColor[PaymentDataManager.shared.appearance]
+		self.contentContainerView?.backgroundColor = Theme.current.commonStyle.backgroundColor[PaymentProcess.shared.dataManager.appearance]
 	}
 	
 	internal func makeFullscreen(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
@@ -123,7 +123,7 @@ internal class ResizablePaymentContainerViewController: BaseViewController {
 			let topOffsetConstraint = self.topContentOffsetConstraint,
 			let bottomOffsetConstraint = self.bottomContentOffsetConstraint,
 			
-			PaymentDataManager.shared.appearance == .windowed,
+			PaymentProcess.shared.dataManager.appearance == .windowed,
 			appliedSize.tap_area > 0.0
 			
 		else {
@@ -198,7 +198,7 @@ private extension ResizablePaymentContainerViewController {
 			
 			if operation == .push {
 				
-				if let headerController = toVC as? HeaderNavigatedViewController, PaymentDataManager.shared.appearance == .fullscreen {
+				if let headerController = toVC as? HeaderNavigatedViewController, PaymentProcess.shared.dataManager.appearance == .fullscreen {
 					
 					let interactivePopTransition = UINavigationControllerPopInteractionController(viewController: headerController)
 					headerController.interactivePopTransition = interactivePopTransition

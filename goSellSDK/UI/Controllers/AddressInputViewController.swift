@@ -64,7 +64,7 @@ extension AddressInputViewController: AddressFieldsDataManagerLoadingListener {
     
     internal func addressFieldsDataManagerDidStartLoadingFormats() {
         
-        self.loader = PaymentDataManager.shared.showLoadingController(false)
+        self.loader = PaymentProcess.shared.showLoadingController(false)
     }
     
     internal func addressFieldsDataManagerDidStopLoadingFormats() {

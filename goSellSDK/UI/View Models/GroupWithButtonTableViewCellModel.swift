@@ -27,7 +27,7 @@ internal class GroupWithButtonTableViewCellModel: TableViewCellViewModel {
 	
 	internal func buttonClicked() {
 		
-		PaymentDataManager.shared.isInDeleteSavedCardsMode = !PaymentDataManager.shared.isInDeleteSavedCardsMode
+		PaymentProcess.shared.dataManager.isInDeleteSavedCardsMode = !PaymentProcess.shared.dataManager.isInDeleteSavedCardsMode
 	}
 	
 	internal func updateButtonTitle(_ isInEditMode: Bool) {

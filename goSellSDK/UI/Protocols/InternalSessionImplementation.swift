@@ -13,7 +13,7 @@ internal extension InternalSessionImplementation {
 	
 	internal var implementationCanStart: Bool {
 		
-		return PaymentDataManager.shared.canStart(self)
+		return PaymentProcess.Validation.canStart(using: self)
 	}
 	
 	internal func implementationStart() -> Bool {
@@ -25,12 +25,12 @@ internal extension InternalSessionImplementation {
 			UIResponder.tap_resign()
 		}
 		
-		return PaymentDataManager.shared.start(self)
+		return PaymentProcess.shared.start(self)
 	}
 	
 	internal func implementationCalculateDisplayedAmount() -> NSDecimalNumber? {
 		
 		guard self.implementationCanStart else { return nil }
-		return PaymentDataManager.shared.calculateDisplayedAmount(for: self)
+		return PaymentProcess.AmountCalculator.totalAmount(for: self)
 	}
 }

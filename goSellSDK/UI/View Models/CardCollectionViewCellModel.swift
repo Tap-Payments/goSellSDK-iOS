@@ -28,8 +28,8 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     }
     
     internal override var paymentOption: PaymentOption? {
-        
-        return PaymentDataManager.shared.paymentOptions.first(where: { $0.identifier == self.card.paymentOptionIdentifier } )
+		
+		return PaymentProcess.shared.dataManager.paymentOptions.first(where: { $0.identifier == self.card.paymentOptionIdentifier } )
     }
     
     internal var isDeleteCellMode: Bool {
@@ -42,8 +42,8 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
             
             guard self.storedIsInDeleteCellMode != newValue else { return }
             self.storedIsInDeleteCellMode = newValue
-            
-            PaymentDataManager.shared.isInDeleteSavedCardsMode = newValue
+			
+			PaymentProcess.shared.dataManager.isInDeleteSavedCardsMode = newValue
             
             self.updateCell(animated: true)
         }
@@ -95,7 +95,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     private func loadCardImages() {
         
-        guard let cardBrandLogoURL = PaymentDataManager.shared.iconURL(for: self.card.brand, scheme: self.card.scheme) else { return }
+        guard let cardBrandLogoURL = PaymentProcess.shared.dataManager.iconURL(for: self.card.brand, scheme: self.card.scheme) else { return }
         
         TapImageLoader.shared.downloadImage(from: cardBrandLogoURL) { [weak self] (image, error) in
             
@@ -144,7 +144,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         
         guard
 			
-			let customerIdentifier = PaymentDataManager.shared.externalSession?.dataSource?.customer?.identifier,
+			let customerIdentifier = PaymentProcess.shared.externalSession?.dataSource?.customer?.identifier,
 			let cardIdentifier = self.card.identifier,
 			let paymentContentController = PaymentContentViewController.tap_findInHierarchy()
 			
@@ -184,8 +184,8 @@ extension CardCollectionViewCellModel: CardCollectionViewCellLoading {
     internal var currencyLabelText: String {
         
         if let currency = self.card.currency {
-            
-            return PaymentDataManager.shared.currencySymbol(for: currency)
+			
+			return PaymentProcess.shared.dataManager.currencySymbol(for: currency)
         }
         else {
             

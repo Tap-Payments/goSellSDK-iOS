@@ -50,7 +50,7 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
 		self.currencyNameLabel?.setTextStyle(cellStyle.title)
 		self.amountLabel?.setTextStyle(cellStyle.value)
 		
-		self.separatorView?.backgroundColor = cellStyle.separator[PaymentDataManager.shared.appearance]
+		self.separatorView?.backgroundColor = cellStyle.separator[PaymentProcess.shared.dataManager.appearance]
 		
         self.updateSelectionState(animated: animated)
     }

@@ -5,10 +5,11 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-internal protocol PayButtonInternalImplementation: PayButtonProtocol, SessionProtocol, TapButtonDelegate {
+internal protocol PayButtonInternalImplementation: PayButtonProtocol, SessionProtocol {
 	
-	var session:	InternalSession	{ get }
-    var uiElement:	PayButtonUI?	{ get }
+	var session:	InternalSession						{ get }
+    var uiElement:	TapButton?							{ get }
+	var handler:	PaymentProcess.TapButtonHandler?	{ get set }
     
     func updateDisplayedState()
 }
@@ -16,38 +17,40 @@ internal protocol PayButtonInternalImplementation: PayButtonProtocol, SessionPro
 internal extension PayButtonInternalImplementation {
     
     // MARK: - Internal -
-    // MARK: Properties
-    
-    internal var canBeHighlighted: Bool {
-        
-        return !PaymentDataManager.shared.isExecutingAPICalls
-    }
-    
     // MARK: Methods
 	
 	internal func updateAppearance() {
 		
-		let mode = self.session.dataSource?.mode ?? .default
-		let type: TapButtonStyle.ButtonType
-		
-		switch mode {
+		if self.updateHandlerIfRequired() {
 			
-		case .purchase, .authorizeCapture:
-			
-			type = .pay
-			self.updateDisplayedAmount()
-			
-		case .cardSaving:
-			
-			type = .save
-			self.uiElement?.forceDisabled = false
-			self.uiElement?.setLocalizedText(.btn_save_title)
+			self.handler?.buttonStyle = self.requiredButtonType
+			self.handler?.updateButtonState()
 		}
-		
-		self.uiElement?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == type })!
 	}
 	
-    internal func updateDisplayedAmount() {
+	// MARK: - Private -
+	// MARK: Properties
+	
+	private var transactionMode: TransactionMode {
+		
+		let mode = self.session.dataSource?.mode ?? .default
+		
+		return mode
+	}
+	
+	private var requiredButtonType: TapButtonStyle.ButtonType {
+		
+		let mode = self.transactionMode
+		let type: TapButtonStyle.ButtonType = mode == .cardSaving ? .save : .pay
+		
+		return type
+	}
+	
+	private var amount: AmountedCurrency? {
+		
+		let mode = self.transactionMode
+		
+		guard mode == .purchase || mode == .authorizeCapture else { return nil }
 		
 		var amountedCurrency: AmountedCurrency?
 		
@@ -60,16 +63,64 @@ internal extension PayButtonInternalImplementation {
 			amountedCurrency = nil
 		}
 		
-		self.uiElement?.amount = amountedCurrency
-    }
+		return amountedCurrency
+	}
 	
-    internal func buttonTouchUpInside() {
+	private var canSave: Bool {
 		
-		self.session.start()
-    }
+		return PaymentProcess.Validation.canStart(using: self.session)
+	}
 	
-	internal func securityButtonTouchUpInside() {
+	// MARK: Methods
+	
+	private func updateHandlerIfRequired() -> Bool {
 		
-		self.buttonTouchUpInside()
+		let type = self.requiredButtonType
+		
+		switch type {
+			
+		case .pay:
+			
+			if let existing = self.handler as? PaymentProcess.PayButtonHandler {
+				
+				existing.amount = self.amount
+				return true
+			}
+			else {
+				
+				let payHandler = PaymentProcess.PayButtonHandler()
+				payHandler.clickCallback = { self.session.start() }
+				payHandler.amount = self.amount
+				payHandler.setButton(self.uiElement)
+				payHandler.buttonStyle = type
+				
+				self.handler = payHandler
+				
+				return false
+			}
+			
+		case .save:
+			
+			if let existing = self.handler as? PaymentProcess.SaveButtonHandler {
+				
+				existing.makeButtonEnabled(self.canSave)
+				return true
+			}
+			else {
+				
+				let saveHandler = PaymentProcess.SaveButtonHandler()
+				saveHandler.clickCallback = { self.session.start() }
+				saveHandler.setButton(self.uiElement)
+				saveHandler.buttonStyle = type
+				
+				self.handler = saveHandler
+				
+				return false
+			}
+			
+		case .confirmOTP:
+			
+			fatalError("Impossible case here.")
+		}
 	}
 }
