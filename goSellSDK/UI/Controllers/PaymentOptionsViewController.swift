@@ -46,26 +46,26 @@ internal class PaymentOptionsViewController: BaseViewController {
         self.view.endEditing(true)
         
         if let currencySelectionController = segue.destination as? CurrencySelectionViewController {
-            
-            PaymentDataManager.shared.prepareCurrencySelectionController(currencySelectionController)
+			
+			PaymentProcess.shared.currencySelectionHandler.prepareCurrencySelectionController(currencySelectionController)
         }
         else if let cardScannerController = segue.destination as? CardScannerViewController {
-            
-            PaymentDataManager.shared.prepareCardScannerController(cardScannerController)
+			
+			PaymentProcess.shared.cardScannerHandler.prepareCardScannerController(cardScannerController)
         }
         else if let addressInputController = segue.destination as? AddressInputViewController {
-            
-            PaymentDataManager.shared.prepareAddressInputController(addressInputController)
+			
+			PaymentProcess.shared.addressInputHandler.prepareAddressInputController(addressInputController)
         }
         else if let webPaymentController = segue.destination as? WebPaymentViewController {
-            
-            PaymentDataManager.shared.prepareWebPaymentController(webPaymentController)
+			
+			PaymentProcess.shared.webPaymentHandler.prepareWebPaymentController(webPaymentController)
         }
     }
     
     internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
         
-        PaymentDataManager.shared.paymentOptionsControllerKeyboardLayoutFinished()
+        PaymentProcess.shared.paymentOptionsControllerKeyboardLayoutFinished()
 		self.updateMask()
     }
     
@@ -74,7 +74,7 @@ internal class PaymentOptionsViewController: BaseViewController {
         DispatchQueue.main.async {
 			
 			let controller = WebPaymentViewController.instantiate()
-			PaymentDataManager.shared.prepareWebPaymentController(controller)
+			PaymentProcess.shared.webPaymentHandler.prepareWebPaymentController(controller)
 			
 			self.navigationController?.tap_pushViewController(controller, animated: true, completion: completion)
         }
@@ -111,8 +111,8 @@ internal class PaymentOptionsViewController: BaseViewController {
     @IBOutlet private weak var paymentOptionsTableView: UITableView? {
         
         didSet {
-            
-            PaymentDataManager.shared.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
+			
+			PaymentProcess.shared.viewModelsHandler.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
 			
 			self.addTableViewContentSizeObserver()
         }

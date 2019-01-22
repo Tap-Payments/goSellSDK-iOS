@@ -154,7 +154,25 @@
         
         return lhs.isEqual(rhs)
     }
-    
+	
+	// MARK: - Internal -
+	// MARK: Methods
+	
+	internal func validateFields() {
+		
+		if let identifier = self.identifier, identifier.tap_length == 0 {
+			
+			self.identifier = nil
+		}
+		
+		self.firstName			= self.firstName?.tap_trimWhitespacesAndNewlines(nullifyIfResultIsEmpty: true)
+		self.middleName			= self.middleName?.tap_trimWhitespacesAndNewlines(nullifyIfResultIsEmpty: true)
+		self.lastName			= self.lastName?.tap_trimWhitespacesAndNewlines(nullifyIfResultIsEmpty: true)
+		self.descriptionText	= self.descriptionText?.tap_trimWhitespacesAndNewlines(nullifyIfResultIsEmpty: true)
+		self.title				= self.title?.tap_trimWhitespacesAndNewlines(nullifyIfResultIsEmpty: true)
+		self.nationality		= self.nationality?.tap_trimWhitespacesAndNewlines(nullifyIfResultIsEmpty: true)
+	}
+	
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -177,60 +195,24 @@
     @available(*, unavailable) private override init() { super.init() }
     
     private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String?, middleName: String?, lastName: String?) throws {
-        
-        guard ( (identifier?.tap_length ?? 0) > 0 ) || (emailAddress != nil && phoneNumber != nil && ( (firstName?.tap_length ?? 0) > 0 )) else {
+		
+		self.identifier		= identifier
+		self.emailAddress	= emailAddress
+		self.phoneNumber	= phoneNumber
+		self.firstName		= firstName
+		self.middleName		= middleName
+		self.lastName		= lastName
+		
+		super.init()
+		
+		self.validateFields()
+		
+		guard PaymentProcess.Validation.isCustomerValid(self) else {
             
             let userInfo = [ErrorConstants.UserInfoKeys.customerInfo: "Failed to create the customer: Either identifier shouldn't be nil or email address, phone number and at least first name shouldn't be nil."]
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidCustomerInfo.rawValue, userInfo: userInfo)
             throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil)
         }
-        
-        self.identifier     = identifier
-        self.emailAddress   = emailAddress
-        self.phoneNumber    = phoneNumber
-        self.firstName      = firstName?.trimmingCharacters(in: .whitespacesAndNewlines)
-        self.middleName     = middleName?.trimmingCharacters(in: .whitespacesAndNewlines)
-        self.lastName       = lastName?.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        super.init()
-    }
-    
-    private func validateFields() {
-        
-        if let identifier = self.identifier, identifier.tap_length == 0 {
-            
-            self.identifier = nil
-        }
-        
-        if let trimmedFirstName = self.firstName?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            
-            self.firstName = trimmedFirstName.tap_length > 0 ? trimmedFirstName : nil
-        }
-        
-        if let trimmedMiddleName = self.middleName?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            
-            self.middleName = trimmedMiddleName.tap_length > 0 ? trimmedMiddleName : nil
-        }
-        
-        if let trimmedLastName = self.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            
-            self.lastName = trimmedLastName.tap_length > 0 ? trimmedLastName : nil
-        }
-		
-		if let trimmedDescription = self.descriptionText?.trimmingCharacters(in: .whitespacesAndNewlines) {
-			
-			self.descriptionText = trimmedDescription.tap_length > 0 ? trimmedDescription : nil
-		}
-		
-		if let trimmedTitle = self.title?.trimmingCharacters(in: .whitespacesAndNewlines) {
-			
-			self.title = trimmedTitle.tap_length > 0 ? trimmedTitle : nil
-		}
-		
-		if let trimmedNationality = self.nationality?.trimmingCharacters(in: .whitespacesAndNewlines) {
-			
-			self.nationality = trimmedNationality.tap_length > 0 ? trimmedNationality : nil
-		}
     }
 }
 

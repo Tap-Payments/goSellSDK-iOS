@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVg-Lf-eqc" customClass="PayButtonUI" customModule="goSellSDK">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVg-Lf-eqc" customClass="TapButton" customModule="goSellSDK">
                     <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>

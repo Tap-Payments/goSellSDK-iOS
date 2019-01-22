@@ -51,14 +51,13 @@ internal class PaymentOptionTableCellViewModel: TableViewCellViewModel, PaymentO
     internal override func tableViewDidSelectCell(_ sender: UITableView) {
         
         super.tableViewDidSelectCell(sender)
-		
-        PaymentDataManager.shared.deselectAllPaymentOptionsModels(except: self)
+        PaymentProcess.shared.viewModelsHandler.deselectAllPaymentOptionsModels(except: self)
     }
     
     internal override func tableViewDidDeselectCell(_ sender: UITableView) {
         
         super.tableViewDidDeselectCell(sender)
-        PaymentDataManager.shared.deselectPaymentOption(self)
+        PaymentProcess.shared.viewModelsHandler.deselectPaymentOption(self)
     }
     
     // MARK: - Private -

@@ -79,7 +79,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-mu-d3E">
                                 <rect key="frame" x="0.0" y="718" width="375" height="94"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoP-JX-Gmp" customClass="PayButtonUI" customModule="goSellSDK">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoP-JX-Gmp" customClass="TapButton" customModule="goSellSDK">
                                         <rect key="frame" x="8" y="8" width="359" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

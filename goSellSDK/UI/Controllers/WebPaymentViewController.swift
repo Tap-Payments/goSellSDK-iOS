@@ -95,7 +95,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
             if willCancelPayment {
                 
                 APIClient.shared.cancelAllRequests()
-                PaymentDataManager.shared.paymentCancelled()
+                PaymentProcess.shared.dataManager.paymentCancelled()
                 contentViewController.cancelLoading()
             }
             

@@ -67,7 +67,9 @@ import class 	UIKit.UIView.UIView
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var uiElement: PayButtonUI? {
+	internal var handler: PaymentProcess.TapButtonHandler?
+	
+	internal var uiElement: TapButton? {
 		
 		return self.ui
 	}
@@ -91,13 +93,7 @@ import class 	UIKit.UIView.UIView
 		return result
 	}()
 	
-    @IBOutlet private weak var ui: PayButtonUI? {
-        
-        didSet {
-            
-            self.ui?.delegate = self
-        }
-    }
+    @IBOutlet private weak var ui: TapButton?
 }
 
 // MARK: - SessionProtocol

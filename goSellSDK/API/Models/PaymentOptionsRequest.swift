@@ -30,24 +30,30 @@ internal struct PaymentOptionsRequest {
     
     // MARK: Methods
     
-    internal init(transactionMode: TransactionMode, amount: Decimal?, items: [PaymentItem]?, shipping: [Shipping]?, taxes: [Tax]?, currency: Currency, customer: String?) {
+	internal init(transactionMode:	TransactionMode,
+				  amount:			Decimal?,
+				  items:			[PaymentItem]?,
+				  shipping:			[Shipping]?,
+				  taxes:			[Tax]?,
+				  currency:			Currency,
+				  customer:			String?) {
         
         self.transactionMode    = transactionMode
         self.shipping           = shipping
         self.taxes              = taxes
         self.currency           = currency
         self.customer           = customer
-        
-        if let nonnullItems = items, nonnullItems.count > 0 {
-            
-            self.items = items
-            self.totalAmount = AmountCalculator.totalAmount(of: nonnullItems, with: taxes, and: shipping)
-        }
-        else {
-            
-            self.items = nil
-            self.totalAmount = AmountCalculator.totalAmount(of: [], with: taxes, and: shipping) + (amount ?? 0)
-        }
+		
+		if let nonnullItems = items, nonnullItems.count > 0 {
+			
+			self.items = items
+		}
+		else {
+			
+			self.items = nil
+		}
+		
+		self.totalAmount = PaymentProcess.AmountCalculator.totalAmount(of: items, with: taxes, and: shipping, plainAmount: amount)
     }
     
     // MARK: - Private -

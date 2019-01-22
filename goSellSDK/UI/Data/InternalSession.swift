@@ -39,7 +39,7 @@ internal class InternalSession: SessionProtocol, InternalSessionImplementation {
 	
 	private var canStart: Bool {
 		
-		return PaymentDataManager.shared.canStart(self)
+		return self.implementationCanStart
 	}
 }
 
