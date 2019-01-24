@@ -7,9 +7,9 @@
 
 internal protocol PayButtonInternalImplementation: PayButtonProtocol, SessionProtocol {
 	
-	var session:	InternalSession						{ get }
-    var uiElement:	TapButton?							{ get }
-	var handler:	PaymentProcess.TapButtonHandler?	{ get set }
+	var session:	InternalSession			{ get }
+    var uiElement:	TapButton?				{ get }
+	var handler:	WrappedAndTypeErased?	{ get set }
     
     func updateDisplayedState()
 }
@@ -23,12 +23,24 @@ internal extension PayButtonInternalImplementation {
 		
 		if self.updateHandlerIfRequired() {
 			
-			self.handler?.buttonStyle = self.requiredButtonType
-			self.handler?.updateButtonState()
+			if let payHandler: PayButtonHandler = self.handler?.unwrapped() {
+				
+				payHandler.buttonStyle = self.requiredButtonType
+				payHandler.updateButtonState()
+			}
+			else if let saveHandler: SaveButtonHandler = self.handler?.unwrapped() {
+				
+				saveHandler.buttonStyle = self.requiredButtonType
+				saveHandler.updateButtonState()
+			}
 		}
 	}
 	
 	// MARK: - Private -
+	
+	private typealias PayButtonHandler	= Process.TapButtonHandler<PaymentClass>
+	private typealias SaveButtonHandler	= Process.TapButtonHandler<CardSavingClass>
+	
 	// MARK: Properties
 	
 	private var transactionMode: TransactionMode {
@@ -68,7 +80,7 @@ internal extension PayButtonInternalImplementation {
 	
 	private var canSave: Bool {
 		
-		return PaymentProcess.Validation.canStart(using: self.session)
+		return Process.Validation.canStart(using: self.session)
 	}
 	
 	// MARK: Methods
@@ -81,39 +93,39 @@ internal extension PayButtonInternalImplementation {
 			
 		case .pay:
 			
-			if let existing = self.handler as? PaymentProcess.PayButtonHandler {
+			if let existing: PayButtonHandler = self.handler?.unwrapped() {
 				
 				existing.amount = self.amount
 				return true
 			}
 			else {
 				
-				let payHandler = PaymentProcess.PayButtonHandler()
+				let payHandler = PayButtonHandler()
 				payHandler.clickCallback = { self.session.start() }
 				payHandler.amount = self.amount
 				payHandler.setButton(self.uiElement)
 				payHandler.buttonStyle = type
 				
-				self.handler = payHandler
+				self.handler = WrappedAndTypeErased(payHandler)
 				
 				return false
 			}
 			
 		case .save:
 			
-			if let existing = self.handler as? PaymentProcess.SaveButtonHandler {
+			if let existing: SaveButtonHandler = self.handler?.unwrapped() {
 				
 				existing.makeButtonEnabled(self.canSave)
 				return true
 			}
 			else {
 				
-				let saveHandler = PaymentProcess.SaveButtonHandler()
+				let saveHandler = SaveButtonHandler()
 				saveHandler.clickCallback = { self.session.start() }
 				saveHandler.setButton(self.uiElement)
 				saveHandler.buttonStyle = type
 				
-				self.handler = saveHandler
+				self.handler = WrappedAndTypeErased(saveHandler)
 				
 				return false
 			}

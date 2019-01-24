@@ -32,12 +32,12 @@ public extension PaymentItem {
     /// Taxes amount.
     public var taxesAmount: Decimal {
         
-        return PaymentProcess.AmountCalculator.taxes(on: self.plainAmount - self.discountAmount, with: self.taxes ?? [])
+        return Process.NonGenericAmountCalculator.taxes(on: self.plainAmount - self.discountAmount, with: self.taxes ?? [])
     }
     
     /// Total item amount.
     public var totalItemAmount: Decimal {
         
-        return PaymentProcess.AmountCalculator.totalAmount(of: self)
+        return Process.NonGenericAmountCalculator.totalAmount(of: self)
     }
 }

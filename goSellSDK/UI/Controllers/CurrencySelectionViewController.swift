@@ -23,7 +23,7 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
 	
 	internal override var preferredStatusBarStyle: UIStatusBarStyle {
 		
-		return Theme.current.commonStyle.statusBar[PaymentProcess.shared.dataManager.appearance].uiStatusBarStyle
+		return Theme.current.commonStyle.statusBar[Process.shared.appearance].uiStatusBarStyle
 	}
 	
     internal weak var delegate: CurrencySelectionViewControllerDelegate?

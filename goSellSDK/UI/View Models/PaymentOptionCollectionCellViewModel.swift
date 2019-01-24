@@ -50,13 +50,13 @@ internal class PaymentOptionCollectionCellViewModel: CollectionViewCellViewModel
     internal override func collectionViewDidSelectCell(_ sender: UICollectionView) {
         
         super.collectionViewDidSelectCell(sender)
-        PaymentProcess.shared.viewModelsHandler.deselectAllPaymentOptionsModels(except: self)
+        Process.shared.viewModelsHandlerInterface.deselectAllPaymentOptionsModels(except: self)
     }
     
     internal override func collectionViewDidDeselectCell(_ sender: UICollectionView) {
         
         super.collectionViewDidDeselectCell(sender)
-        PaymentProcess.shared.viewModelsHandler.deselectPaymentOption(self)
+        Process.shared.viewModelsHandlerInterface.deselectPaymentOption(self)
     }
     
     // MARK: - Private -

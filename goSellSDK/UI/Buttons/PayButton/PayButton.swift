@@ -67,7 +67,7 @@ import class 	UIKit.UIView.UIView
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var handler: PaymentProcess.TapButtonHandler?
+	internal var handler: WrappedAndTypeErased?
 	
 	internal var uiElement: TapButton? {
 		

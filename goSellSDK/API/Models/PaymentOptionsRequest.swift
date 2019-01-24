@@ -11,7 +11,7 @@ internal struct PaymentOptionsRequest {
     // MARK: Properties
     
     /// Transaction mode.
-    internal let transactionMode: TransactionMode
+    internal let transactionMode: TransactionMode?
     
     /// Items to pay for.
     internal let items: [PaymentItem]?
@@ -23,19 +23,24 @@ internal struct PaymentOptionsRequest {
     internal var taxes: [Tax]?
     
     /// Items currency.
-    internal let currency: Currency
+    internal let currency: Currency?
     
     /// Customer (payer).
     internal var customer: String?
     
     // MARK: Methods
-    
-	internal init(transactionMode:	TransactionMode,
+	
+	internal init(customer: String?) {
+		
+		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, customer: customer)
+	}
+	
+	internal init(transactionMode:	TransactionMode?,
 				  amount:			Decimal?,
 				  items:			[PaymentItem]?,
 				  shipping:			[Shipping]?,
 				  taxes:			[Tax]?,
-				  currency:			Currency,
+				  currency:			Currency?,
 				  customer:			String?) {
         
         self.transactionMode    = transactionMode
@@ -53,7 +58,7 @@ internal struct PaymentOptionsRequest {
 			self.items = nil
 		}
 		
-		self.totalAmount = PaymentProcess.AmountCalculator.totalAmount(of: items, with: taxes, and: shipping, plainAmount: amount)
+		self.totalAmount = Process.NonGenericAmountCalculator.totalAmount(of: items, with: taxes, and: shipping, plainAmount: amount)
     }
     
     // MARK: - Private -
@@ -80,9 +85,9 @@ extension PaymentOptionsRequest: Encodable {
     internal func encode(to encoder: Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode            (self.transactionMode,  forKey: .transactionMode)
-        try container.encodeIfPresent(self.items,            forKey: .items)
+		
+        try container.encodeIfPresent(self.transactionMode, forKey: .transactionMode)
+        try container.encodeIfPresent(self.items, forKey: .items)
         
         if self.shipping?.count ?? 0 > 0 {
             
@@ -94,13 +99,16 @@ extension PaymentOptionsRequest: Encodable {
             try container.encodeIfPresent(self.taxes, forKey: .taxes)
         }
         
-        try container.encode            (self.currency      , forKey: .currency)
+        try container.encodeIfPresent(self.currency, forKey: .currency)
         
         if self.customer?.tap_length ?? 0 > 0 {
             
-            try container.encodeIfPresent   (self.customer      , forKey: .customer)
+            try container.encodeIfPresent(self.customer, forKey: .customer)
         }
-        
-        try container.encode            (self.totalAmount   , forKey: .totalAmount)
+		
+		if self.totalAmount > 0.0 {
+			
+			try container.encodeIfPresent(self.totalAmount, forKey: .totalAmount)
+		}
     }
 }

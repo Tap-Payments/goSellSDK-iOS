@@ -15,7 +15,7 @@ internal class ErrorActionExecutor {
     
     internal static func closePayment(with error: TapSDKError?, _ completion: TypeAlias.ArgumentlessClosure?) {
 		
-        let mode =  PaymentProcess.shared.externalSession?.dataSource?.mode ?? TransactionMode.default
+        let mode =  Process.shared.transactionMode
         var status: PaymentStatus
 		
         switch mode {
@@ -26,7 +26,7 @@ internal class ErrorActionExecutor {
             
         }
         
-        PaymentProcess.shared.closePayment(with: status, fadeAnimation: false, force: true, completion: completion)
+        Process.shared.closePayment(with: status, fadeAnimation: false, force: true, completion: completion)
     }
     
     internal static func showAlert(with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure?, completion: TypeAlias.BooleanClosure? = nil) {

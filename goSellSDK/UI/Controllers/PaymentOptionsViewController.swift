@@ -47,25 +47,25 @@ internal class PaymentOptionsViewController: BaseViewController {
         
         if let currencySelectionController = segue.destination as? CurrencySelectionViewController {
 			
-			PaymentProcess.shared.currencySelectionHandler.prepareCurrencySelectionController(currencySelectionController)
+			Process.shared.currencySelectionHandlerInterface.prepareCurrencySelectionController(currencySelectionController)
         }
         else if let cardScannerController = segue.destination as? CardScannerViewController {
 			
-			PaymentProcess.shared.cardScannerHandler.prepareCardScannerController(cardScannerController)
+			Process.shared.cardScannerHandlerInterface.prepareCardScannerController(cardScannerController)
         }
         else if let addressInputController = segue.destination as? AddressInputViewController {
 			
-			PaymentProcess.shared.addressInputHandler.prepareAddressInputController(addressInputController)
+			Process.shared.addressInputHandlerInterface.prepareAddressInputController(addressInputController)
         }
         else if let webPaymentController = segue.destination as? WebPaymentViewController {
 			
-			PaymentProcess.shared.webPaymentHandler.prepareWebPaymentController(webPaymentController)
+			Process.shared.webPaymentHandlerInterface.prepareWebPaymentController(webPaymentController)
         }
     }
     
     internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
         
-        PaymentProcess.shared.paymentOptionsControllerKeyboardLayoutFinished()
+        Process.shared.paymentOptionsControllerKeyboardLayoutFinished()
 		self.updateMask()
     }
     
@@ -74,7 +74,7 @@ internal class PaymentOptionsViewController: BaseViewController {
         DispatchQueue.main.async {
 			
 			let controller = WebPaymentViewController.instantiate()
-			PaymentProcess.shared.webPaymentHandler.prepareWebPaymentController(controller)
+			Process.shared.webPaymentHandlerInterface.prepareWebPaymentController(controller)
 			
 			self.navigationController?.tap_pushViewController(controller, animated: true, completion: completion)
         }
@@ -112,9 +112,12 @@ internal class PaymentOptionsViewController: BaseViewController {
         
         didSet {
 			
-			PaymentProcess.shared.viewModelsHandler.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
+			Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
 			
-			self.addTableViewContentSizeObserver()
+			if self.paymentOptionsTableView != nil {
+				
+				self.addTableViewContentSizeObserver()
+			}
         }
     }
     

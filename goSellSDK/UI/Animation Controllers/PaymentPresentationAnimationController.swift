@@ -75,7 +75,7 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
         let animations: TypeAlias.ArgumentlessClosure = {
             
 			toView.frame = finalFrame
-			blurView?.style = Theme.current.commonStyle.blurStyle[PaymentProcess.shared.dataManager.appearance]
+			blurView?.style = Theme.current.commonStyle.blurStyle[Process.shared.appearance]
 		}
 		
 		let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseOut]

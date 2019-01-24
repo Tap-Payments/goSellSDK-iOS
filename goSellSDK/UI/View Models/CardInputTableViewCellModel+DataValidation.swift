@@ -273,7 +273,7 @@ extension CardInputTableViewCellModel: CardValidatorDelegate {
     
     internal func validationStateChanged(to valid: Bool, on type: ValidationType) {
 		
-		PaymentProcess.shared.buttonHandler.updateButtonState()
+		Process.shared.buttonHandlerInterface.updateButtonState()
 		
 		if type == .cardNumber {
 			

@@ -63,8 +63,8 @@ internal class AddressInputViewController: HeaderNavigatedViewController {
 extension AddressInputViewController: AddressFieldsDataManagerLoadingListener {
     
     internal func addressFieldsDataManagerDidStartLoadingFormats() {
-        
-        self.loader = PaymentProcess.shared.showLoadingController(false)
+		
+        self.loader = Process.shared.showLoadingController(false)
     }
     
     internal func addressFieldsDataManagerDidStopLoadingFormats() {

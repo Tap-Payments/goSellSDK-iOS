@@ -29,7 +29,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     internal override var paymentOption: PaymentOption? {
 		
-		return PaymentProcess.shared.dataManager.paymentOptions.first(where: { $0.identifier == self.card.paymentOptionIdentifier } )
+		return Process.shared.dataManagerInterface.paymentOptions.first(where: { $0.identifier == self.card.paymentOptionIdentifier } )
     }
     
     internal var isDeleteCellMode: Bool {
@@ -43,7 +43,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
             guard self.storedIsInDeleteCellMode != newValue else { return }
             self.storedIsInDeleteCellMode = newValue
 			
-			PaymentProcess.shared.dataManager.isInDeleteSavedCardsMode = newValue
+			Process.shared.dataManagerInterface.isInDeleteSavedCardsMode = newValue
             
             self.updateCell(animated: true)
         }
@@ -95,7 +95,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     
     private func loadCardImages() {
         
-        guard let cardBrandLogoURL = PaymentProcess.shared.dataManager.iconURL(for: self.card.brand, scheme: self.card.scheme) else { return }
+        guard let cardBrandLogoURL = Process.shared.dataManagerInterface.iconURL(for: self.card.brand, scheme: self.card.scheme) else { return }
         
         TapImageLoader.shared.downloadImage(from: cardBrandLogoURL) { [weak self] (image, error) in
             
@@ -144,7 +144,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         
         guard
 			
-			let customerIdentifier = PaymentProcess.shared.externalSession?.dataSource?.customer?.identifier,
+			let customerIdentifier = Process.shared.externalSession?.dataSource?.customer?.identifier,
 			let cardIdentifier = self.card.identifier,
 			let paymentContentController = PaymentContentViewController.tap_findInHierarchy()
 			
@@ -185,7 +185,7 @@ extension CardCollectionViewCellModel: CardCollectionViewCellLoading {
         
         if let currency = self.card.currency {
 			
-			return PaymentProcess.shared.dataManager.currencySymbol(for: currency)
+			return Process.shared.dataManagerInterface.currencySymbol(for: currency)
         }
         else {
             

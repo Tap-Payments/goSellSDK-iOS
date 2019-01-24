@@ -207,7 +207,7 @@
 		
 		self.validateFields()
 		
-		guard PaymentProcess.Validation.isCustomerValid(self) else {
+		guard Process.Validation.isCustomerValid(self) else {
             
             let userInfo = [ErrorConstants.UserInfoKeys.customerInfo: "Failed to create the customer: Either identifier shouldn't be nil or email address, phone number and at least first name shouldn't be nil."]
             let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidCustomerInfo.rawValue, userInfo: userInfo)

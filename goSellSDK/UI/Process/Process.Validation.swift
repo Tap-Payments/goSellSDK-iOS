@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-internal extension PaymentProcess {
+internal extension Process {
 	
 	internal final class Validation {
 		
@@ -14,7 +14,7 @@ internal extension PaymentProcess {
 		
 		internal static func canStart(using session: SessionProtocol) -> Bool {
 			
-			if PaymentProcess.shared.dataManager.isLoadingPaymentOptions { return false }
+			if Process.hasAliveInstance && Process.shared.dataManagerInterface.isLoadingPaymentOptions { return false }
 			
 			guard let dataSource = session.dataSource, let customer = dataSource.customer, self.isCustomerValid(customer) else { return false }
 			
@@ -22,7 +22,7 @@ internal extension PaymentProcess {
 			if mode == .cardSaving { return true }
 			
 			if dataSource.currency == nil { return false }
-			return (AmountCalculator.totalAmount(for: session) ?? .zero).decimalValue > 0.0
+			return (AmountCalculator<PaymentClass>.totalAmount(for: session) ?? .zero).decimalValue > 0.0
 		}
 		
 		internal static func isCustomerValid(_ customer: Customer) -> Bool {
