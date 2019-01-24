@@ -40,7 +40,7 @@ internal class CardsContainerTableViewCellModel: TableViewCellViewModel {
     
     internal func deleteCardModel(_ model: CardCollectionViewCellModel) {
 		
-		PaymentProcess.shared.dataManager.updateUIByRemoving(model.card)
+		Process.shared.dataManagerInterface.updateUIByRemoving(model.card)
     }
     
     // MARK: - Private -

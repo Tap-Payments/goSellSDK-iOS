@@ -299,7 +299,7 @@ extension ExampleViewController: SessionDelegate {
         
         // payment failed, payment screen closed.
     }
-    
+	
     internal func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol) {
         
         // authorization failed, payment screen closed.

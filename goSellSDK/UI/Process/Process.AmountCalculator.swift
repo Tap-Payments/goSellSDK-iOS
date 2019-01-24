@@ -1,13 +1,13 @@
 //
-//  PaymentProcess.AmountCalculator.swift
+//  Process.AmountCalculator.swift
 //  goSellSDK
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-internal extension PaymentProcess {
+internal extension Process {
 	
-	internal final class AmountCalculator {
+	internal class NonGenericAmountCalculator {
 		
 		// MARK: - Internal -
 		// MARK: Methods
@@ -75,37 +75,45 @@ internal extension PaymentProcess {
 			return result
 		}
 		
-		internal static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
-			
-			var result: Decimal = 0.0
-			
-			extraFees.forEach { fee in
-				
-				switch fee.type {
-					
-				case .fixedAmount:
-					
-					if let feeAmountedCurrency = PaymentProcess.shared.dataManager.supportedCurrencies.first(where: { $0.currency == fee.currency }) {
-						
-						result += currency.amount * fee.value / feeAmountedCurrency.amount
-					}
-					else {
-						
-						fatalError("Currency \(fee.currency) is not a supported currency!")
-					}
-					
-				case .percents:
-					
-					result += currency.amount * fee.normalizedValue
-				}
-			}
-			
-			return result
-		}
-		
 		// MARK: - Private -
 		// MARK: Methods
 		
 		@available(*, unavailable) private init() { fatalError("This class cannot be instantiated.") }
+	}
+	
+	internal final class AmountCalculator<Mode: ProcessMode>: NonGenericAmountCalculator {}
+}
+
+internal extension Process.AmountCalculator where Mode: Payment {
+	
+	// MARK: - Internal -
+	// MARK: Methods
+	
+	internal static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
+		
+		var result: Decimal = 0.0
+		
+		extraFees.forEach { fee in
+			
+			switch fee.type {
+				
+			case .fixedAmount:
+				
+				if let feeAmountedCurrency = Process.shared.dataManagerInterface.supportedCurrencies.first(where: { $0.currency == fee.currency }) {
+					
+					result += currency.amount * fee.value / feeAmountedCurrency.amount
+				}
+				else {
+					
+					fatalError("Currency \(fee.currency) is not a supported currency!")
+				}
+				
+			case .percents:
+				
+				result += currency.amount * fee.normalizedValue
+			}
+		}
+		
+		return result
 	}
 }

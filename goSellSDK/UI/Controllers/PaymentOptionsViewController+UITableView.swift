@@ -5,12 +5,12 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class UIKit.UIScrollView.UIScrollView
-import protocol UIKit.UIScrollView.UIScrollViewDelegate
-import class UIKit.UITableView.UITableView
-import protocol UIKit.UITableView.UITableViewDataSource
-import protocol UIKit.UITableView.UITableViewDelegate
-import class UIKit.UITableViewCell.UITableViewCell
+import class	UIKit.UIScrollView.UIScrollView
+import protocol	UIKit.UIScrollView.UIScrollViewDelegate
+import class	UIKit.UITableView.UITableView
+import protocol	UIKit.UITableView.UITableViewDataSource
+import protocol	UIKit.UITableView.UITableViewDelegate
+import class	UIKit.UITableViewCell.UITableViewCell
 
 // MARK: - UIScrollViewDelegate
 extension PaymentOptionsViewController: UIScrollViewDelegate {
@@ -22,11 +22,11 @@ extension PaymentOptionsViewController: UIScrollViewDelegate {
     
     internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        DispatchQueue.main.async {
-            
-            MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
-        }
-    }
+		DispatchQueue.main.async {
+			
+			MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
+		}
+	}
 }
 
 // MARK: - UITableViewDataSource
@@ -34,12 +34,12 @@ extension PaymentOptionsViewController: UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return PaymentProcess.shared.viewModelsHandler.paymentOptionCellViewModels.count
+        return Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels.count
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let model = PaymentProcess.shared.viewModelsHandler.paymentOptionViewModel(at: indexPath)
+        let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: indexPath)
         
         if let currencyCellModel = model as? CurrencySelectionTableViewCellViewModel {
             
@@ -90,7 +90,7 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        let model = PaymentProcess.shared.viewModelsHandler.paymentOptionViewModel(at: indexPath)
+        let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: indexPath)
 
         if let currencyModel = model as? CurrencySelectionTableViewCellViewModel {
             
@@ -120,19 +120,19 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        let model = PaymentProcess.shared.viewModelsHandler.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel
+        let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel
         return model?.indexPathOfCellToSelect
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let model = PaymentProcess.shared.viewModelsHandler.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else { return }
+        guard let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else { return }
         model.tableViewDidSelectCell(tableView)
     }
     
     internal func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        guard let model = PaymentProcess.shared.viewModelsHandler.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else { return }
+        guard let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else { return }
         model.tableViewDidDeselectCell(tableView)
     }
 }

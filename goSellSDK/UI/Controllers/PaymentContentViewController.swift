@@ -23,7 +23,7 @@ internal class PaymentContentViewController: BaseViewController {
 	
 	internal override var preferredStatusBarStyle: UIStatusBarStyle {
 		
-		return Theme.current.commonStyle.statusBar[PaymentProcess.shared.dataManager.appearance].uiStatusBarStyle
+		return Theme.current.commonStyle.statusBar[Process.shared.appearance].uiStatusBarStyle
 	}
 	
 	/// Layout listener.
@@ -113,7 +113,7 @@ internal class PaymentContentViewController: BaseViewController {
             
             if let nonnullPayButton = self.payButtonUI {
 				
-				PaymentProcess.shared.buttonHandler.setButton(nonnullPayButton)
+				Process.shared.buttonHandlerInterface.setButton(nonnullPayButton)
             }
         }
     }
@@ -127,7 +127,7 @@ extension PaymentContentViewController: MerchantInformationHeaderViewControllerD
     
     internal func merchantInformationHeaderViewControllerCloseButtonClicked(_ controller: MerchantInformationHeaderViewController) {
         
-        PaymentProcess.shared.closePayment(with: .cancelled, fadeAnimation: false, force: false, completion: nil)
+        Process.shared.closePayment(with: .cancelled, fadeAnimation: false, force: false, completion: nil)
     }
 }
 

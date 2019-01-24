@@ -5,11 +5,11 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct TapAdditionsKit.TypeAlias
-import class UIKit.NSLayoutConstraint.NSLayoutConstraint
-import class UIKit.UIImageView.UIImageView
-import class UIKit.UILabel.UILabel
-import class UIKit.UIView.UIView
+import struct	TapAdditionsKit.TypeAlias
+import class	UIKit.NSLayoutConstraint.NSLayoutConstraint
+import class	UIKit.UIImageView.UIImageView
+import class	UIKit.UILabel.UILabel
+import class	UIKit.UIView.UIView
 
 internal class AmountedCurrencyTableViewCell: BaseTableViewCell {
     
@@ -50,7 +50,7 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
 		self.currencyNameLabel?.setTextStyle(cellStyle.title)
 		self.amountLabel?.setTextStyle(cellStyle.value)
 		
-		self.separatorView?.backgroundColor = cellStyle.separator[PaymentProcess.shared.dataManager.appearance]
+		self.separatorView?.backgroundColor = cellStyle.separator[Process.shared.appearance]
 		
         self.updateSelectionState(animated: animated)
     }

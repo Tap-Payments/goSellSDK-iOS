@@ -15,7 +15,7 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
     internal let identifier: String
     
     /// Order identifier.
-    internal private(set) var orderIdentifier: String
+    internal private(set) var orderIdentifier: String?
     
     /// Object type.
     internal let object: String
@@ -35,20 +35,21 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
-        
+		
+		case currency                   = "currency"
         case identifier                 = "id"
+		case object                     = "object"
+		case paymentOptions             = "payment_methods"
+		case supportedCurrenciesAmounts = "supported_currencies"
+		
         case orderIdentifier            = "order_id"
-        case object                     = "object"
-        case paymentOptions             = "payment_methods"
-        case currency                   = "currency"
-        case supportedCurrenciesAmounts = "supported_currencies"
         case savedCards                 = "cards"
     }
 	
 	// MARK: Methods
 	
 	private init(identifier:					String,
-				 orderIdentifier:				String,
+				 orderIdentifier:				String?,
 				 object:						String,
 				 paymentOptions:				[PaymentOption],
 				 currency:						Currency,
@@ -73,7 +74,7 @@ extension PaymentOptionsResponse: Decodable {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		
 		let identifier 					= try container.decode(String.self, forKey: .identifier)
-		let orderIdentifier				= try container.decode(String.self, forKey: .orderIdentifier)
+		let orderIdentifier				= try container.decodeIfPresent(String.self, forKey: .orderIdentifier)
 		let object						= try container.decode(String.self, forKey: .object)
 		var paymentOptions				= try container.decode([PaymentOption].self, forKey: .paymentOptions)
 		let currency					= try container.decode(Currency.self, forKey: .currency)

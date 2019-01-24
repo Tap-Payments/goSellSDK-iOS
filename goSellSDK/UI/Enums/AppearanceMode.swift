@@ -17,9 +17,9 @@ internal enum AppearanceMode: String, Decodable {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal init(_ publicAppearanceMode: SDKAppearanceMode, _ transactionMode: TransactionMode) {
+	internal init(publicAppearance: SDKAppearanceMode, transactionMode: TransactionMode) {
 		
-		switch publicAppearanceMode {
+		switch publicAppearance {
 			
 		case .fullscreen:	self = .fullscreen
 		case .windowed:		self = .windowed

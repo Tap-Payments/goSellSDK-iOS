@@ -124,7 +124,7 @@ extension WebPaymentContentViewController: WKNavigationDelegate {
             return
         }
         
-        let decision = PaymentProcess.shared.webPaymentHandler.decision(forWebPayment: url)
+        let decision = Process.shared.webPaymentHandlerInterface.decision(forWebPayment: url)
         if decision.shouldLoad {
             
             self.lastAttemptedURL = url
@@ -132,9 +132,9 @@ extension WebPaymentContentViewController: WKNavigationDelegate {
         
         decisionHandler(decision.shouldLoad ? .allow : .cancel)
         
-        if decision.redirectionFinished, let chargeOrAuthorizeID = decision.tapID {
+        if decision.redirectionFinished, let tapID = decision.tapID {
             
-            PaymentProcess.shared.webPaymentHandler.webPaymentProcessFinished(chargeOrAuthorizeID)
+            Process.shared.webPaymentHandlerInterface.webPaymentProcessFinished(tapID)
         }
         
         if decision.shouldCloseWebPaymentScreen {

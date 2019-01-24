@@ -30,8 +30,8 @@ internal extension CardsContainerTableViewCellModel {
     internal func generateCollectionViewCellModels(with cards: [SavedCard]) -> [CardCollectionViewCellModel] {
         
         var result: [CardCollectionViewCellModel] = []
-        
-        let amountedCurrency = PaymentProcess.shared.dataManager.selectedCurrency
+		
+		let amountedCurrency = Process.shared.dataManagerInterface.selectedCurrency
         let currency = amountedCurrency.currency
         
         let cardsSortingClosure: (SavedCard, SavedCard) -> Bool = { (firstCard, secondCard) in
