@@ -123,6 +123,8 @@
 		1432429821F9FB41003B5E5D /* WrappedAndTypeErased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432429621F9FB40003B5E5D /* WrappedAndTypeErased.swift */; };
 		1432429A21F9FBA5003B5E5D /* Bool+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432429921F9FBA5003B5E5D /* Bool+Additions.swift */; };
 		1432429B21F9FBA5003B5E5D /* Bool+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432429921F9FBA5003B5E5D /* Bool+Additions.swift */; };
+		1433816921FA3E8F00E0B90B /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1433816821FA3E8F00E0B90B /* LoadingView.xib */; };
+		1433816A21FA3E8F00E0B90B /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1433816821FA3E8F00E0B90B /* LoadingView.xib */; };
 		1444698121594A4D009849DC /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444698021594A4D009849DC /* LocalizationProvider.swift */; };
 		1444698221594A4D009849DC /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444698021594A4D009849DC /* LocalizationProvider.swift */; };
 		14690B112155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
@@ -851,6 +853,7 @@
 		1432427321F9FB14003B5E5D /* Process.DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.DataManager.swift; sourceTree = "<group>"; };
 		1432429621F9FB40003B5E5D /* WrappedAndTypeErased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrappedAndTypeErased.swift; sourceTree = "<group>"; };
 		1432429921F9FBA5003B5E5D /* Bool+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Additions.swift"; sourceTree = "<group>"; };
+		1433816821FA3E8F00E0B90B /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		1444698021594A4D009849DC /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
 		14690B102155DF240033C562 /* SDKMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKMode.swift; sourceTree = "<group>"; };
 		14690B132155DF330033C562 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
@@ -1420,17 +1423,18 @@
 		A43ED4282080CF670028C542 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1444698521595298009849DC /* Localization */,
 				A456717F20AD6C300057A504 /* Images.xcassets */,
 				A479F7282099DB5E00556E10 /* LoadingImageView.xib */,
+				1433816821FA3E8F00E0B90B /* LoadingView.xib */,
+				1444698521595298009849DC /* Localization */,
 				A424875B20E4F071001C4FAF /* OTPInputView.xib */,
 				A43ED4292080CF870028C542 /* PayButton.xib */,
 				A4D5FE1820830ECB007D52F5 /* Payment.storyboard */,
 				A468772720DAC84900123391 /* Popups.storyboard */,
 				A424875A20E4F071001C4FAF /* TapButton.xib */,
 				A48810ED20A2E93C00CDF5D4 /* TapNavigationView.xib */,
-				A43A0A6F20DA4B0A006B39F1 /* WebViewProgressBar.xib */,
 				141284B42160E4D400C2873E /* themes.json */,
+				A43A0A6F20DA4B0A006B39F1 /* WebViewProgressBar.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2090,6 +2094,7 @@
 				14A3D313215953DE007F3565 /* Localizable.strings in Resources */,
 				A456718020AD6C300057A504 /* Images.xcassets in Resources */,
 				A4D5FE1920830ECB007D52F5 /* Payment.storyboard in Resources */,
+				1433816921FA3E8F00E0B90B /* LoadingView.xib in Resources */,
 				A468772820DAC84900123391 /* Popups.storyboard in Resources */,
 				A424875C20E4F071001C4FAF /* TapButton.xib in Resources */,
 			);
@@ -2108,6 +2113,7 @@
 				14A3D315215954CA007F3565 /* Localizable.strings in Resources */,
 				A48810EF20A2E93C00CDF5D4 /* TapNavigationView.xib in Resources */,
 				A468772920DAC84900123391 /* Popups.storyboard in Resources */,
+				1433816A21FA3E8F00E0B90B /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
