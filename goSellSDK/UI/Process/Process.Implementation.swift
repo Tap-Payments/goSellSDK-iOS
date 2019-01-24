@@ -67,27 +67,11 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		}
 	}()
 	
-	internal private(set) lazy var webPaymentHandler: Process.WebPaymentHandler = {
-		
-		if HandlerMode.self is Payment.Type {
-			
-			return Process.PaymentWebPaymentHandler(process: self)
-		}
-		else if HandlerMode.self is CardSaving.Type {
-			
-			return Process.CardSavingWebPaymentHandler(process: self)
-		}
-		else {
-			
-			fatalError("Unknown mode.")
-		}
-	}()
-	
 	internal private(set) lazy var cardScannerHandler	= Process.CardScannerHandler(process: self)
 	internal private(set) lazy var addressInputHandler	= Process.AddressInputHandler(process: self)
 	internal private(set) lazy var otpHandler			= Process.OTPHandler(process: self)
-	
-	internal private(set) lazy var buttonHandler			= Process.TapButtonProcessHandler	<HandlerMode, __ProcessImplementation>(process: self)
+	internal private(set) lazy var webPaymentHandler	= Process.WebPaymentHandler(process: self)
+	internal private(set) lazy var buttonHandler		= Process.TapButtonProcessHandler	<HandlerMode, __ProcessImplementation>(process: self)
 	
 	
 	internal var dataManagerInterface: DataManagerInterface { return self.dataManager }
@@ -107,10 +91,16 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	}
 	
 	internal func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String?) {
-		fatalError("Should be implemented in subclass.")
+		
+		self.dataManager.urlToLoadInWebPaymentController = url
+		self.openWebPaymentScreen(for: paymentOption, url: url, binNumber: binNumber)
 	}
 	
 	internal func continuePaymentWithCurrentChargeOrAuthorize<T>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) where T : ChargeProtocol {
+		fatalError("Should be implemented in subclass.")
+	}
+	
+	func continueCardSaving(with identifier: String, paymentOption: PaymentOption, binNumber: String?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
 		fatalError("Should be implemented in subclass.")
 	}
 	
@@ -119,6 +109,14 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	}
 	
 	internal func paymentFailure(with status: ChargeStatus, chargeOrAuthorize: ChargeProtocol, error: TapSDKError?) {
+		fatalError("Should be implemented in subclass.")
+	}
+	
+	internal func cardSavingSuccess(with cardVerification: CardVerification) {
+		fatalError("Should be implemented in subclass.")
+	}
+	
+	internal func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?) {
 		fatalError("Should be implemented in subclass.")
 	}
 	
@@ -228,6 +226,38 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		alert.show()
 	}
 	
+	fileprivate func showSuccessPopup(with subtitle: String, completion: @escaping TypeAlias.ArgumentlessClosure) {
+		
+		let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
+		
+		let popup           = StatusPopupViewController.shared
+		popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_alert_successful)
+		popup.subtitleText  = subtitle
+		popup.success		= true
+		
+		popup.display { [weak popup] in
+			
+			popup?.idleDisappearanceTimeInterval = disappearanceTime
+			completion()
+		}
+	}
+	
+	fileprivate func showFailurePopup(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
+		
+		let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
+		
+		let popup           = StatusPopupViewController.shared
+		popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_alert_failed)
+		popup.subtitleText  = nil
+		popup.success		= false
+		
+		popup.display { [weak popup] in
+			
+			popup?.idleDisappearanceTimeInterval = disappearanceTime
+			completion()
+		}
+	}
+	
 	fileprivate func forceClosePayment(withFadeAnimation: Bool, completion: TypeAlias.ArgumentlessClosure?) {
 		
 		var sharedProcess: Process? = Process.shared
@@ -261,6 +291,48 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		}
 	}
 	
+	fileprivate func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL?, binNumber: String?, completion: TypeAlias.ArgumentlessClosure? = nil) {
+		
+		self.dataManager.currentPaymentOption			= paymentOption
+		self.dataManager.currentPaymentCardBINNumber	= binNumber
+		
+		switch paymentOption.paymentType {
+			
+		case .card:
+			
+			guard let nonnullURL = url else {
+				
+				completion?()
+				return
+			}
+			
+			ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen { [weak self] in
+				
+				guard let strongSelf = self else {
+					
+					completion?()
+					return
+				}
+				
+				let webPopupControllerFrame = strongSelf.loadingControllerFrame(coveringHeader: false)
+				
+				WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL, completion: completion)
+			}
+			
+		case .web:
+			
+			if let alreadyOpenedWebPaymentController = WebPaymentViewController.tap_findInHierarchy() {
+				
+				self.webPaymentHandler.prepareWebPaymentController(alreadyOpenedWebPaymentController)
+				completion?()
+			}
+			else {
+				
+				PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
+			}
+		}
+	}
+	
 	fileprivate func reportDelegateOnPaymentCompletion(with status: PaymentStatus) {
 		
 		guard let session = self.process.externalSession, let delegate = session.delegate else { return }
@@ -279,6 +351,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 			
 			delegate.authorizationSucceed?(authorize, on: session)
 			
+		case .successfulCardSave(let cardVerification):
+			
+			delegate.cardSaved?(cardVerification, on: session)
+			
 		case .chargeFailure(let charge, let error):
 			
 			delegate.paymentFailed?(with: charge, error: error, on: session)
@@ -290,6 +366,7 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		case .cardSaveFailure(let error):
 			
 			delegate.cardSavingFailed?(with: error, on: session)
+			
 		}
 	}
 }
@@ -322,12 +399,6 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			
 			self.forceStartPayment(with: paymentOption)
 		}
-	}
-	
-	internal override func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String?) {
-		
-		self.dataManager.urlToLoadInWebPaymentController = url
-		self.openWebPaymentScreen(for: paymentOption, url: url, binNumber: binNumber)
 	}
 	
 	internal override func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
@@ -371,12 +442,12 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			return
 		}
 		
-		self.showPaymentSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
+		self.showSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
 	}
 	
 	internal override func paymentFailure(with status: ChargeStatus, chargeOrAuthorize: ChargeProtocol, error: TapSDKError?) {
 		
-		self.showPaymentFailurePopup(with: status) {
+		self.showFailurePopup {
 			
 			if let authorize = chargeOrAuthorize as? Authorize {
 				
@@ -552,80 +623,6 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 													  alertDismissButtonClickHandler:   alertDissmissClosure)
 		}
 	}
-	
-	private func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL?, binNumber: String?, completion: TypeAlias.ArgumentlessClosure? = nil) {
-		
-		self.dataManager.currentPaymentOption			= paymentOption
-		self.dataManager.currentPaymentCardBINNumber	= binNumber
-		
-		switch paymentOption.paymentType {
-			
-		case .card:
-			
-			guard let nonnullURL = url else {
-				
-				completion?()
-				return
-			}
-			
-			ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen { [weak self] in
-				
-				guard let strongSelf = self else {
-					
-					completion?()
-					return
-				}
-				
-				let webPopupControllerFrame = strongSelf.loadingControllerFrame(coveringHeader: false)
-				
-				WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL, completion: completion)
-			}
-			
-		case .web:
-			
-			if let alreadyOpenedWebPaymentController = WebPaymentViewController.tap_findInHierarchy() {
-				
-				self.webPaymentHandler.prepareWebPaymentController(alreadyOpenedWebPaymentController)
-				completion?()
-			}
-			else {
-				
-				PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
-			}
-		}
-	}
-	
-	private func showPaymentFailurePopup(with status: ChargeStatus, completion: @escaping TypeAlias.ArgumentlessClosure) {
-		
-		let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
-		
-		let popup           = StatusPopupViewController.shared
-		popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_alert_failed)
-		popup.subtitleText  = nil
-		popup.success		= false
-		
-		popup.display { [weak popup] in
-			
-			popup?.idleDisappearanceTimeInterval = disappearanceTime
-			completion()
-		}
-	}
-	
-	private func showPaymentSuccessPopup(with receiptNumber: String, completion: @escaping TypeAlias.ArgumentlessClosure) {
-		
-		let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
-		
-		let popup           = StatusPopupViewController.shared
-		popup.titleText     = LocalizationProvider.shared.localizedString(for: .payment_status_alert_successful)
-		popup.subtitleText  = receiptNumber
-		popup.success		= true
-		
-		popup.display { [weak popup] in
-			
-			popup?.idleDisappearanceTimeInterval = disappearanceTime
-			completion()
-		}
-	}
 }
 
 internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode> {
@@ -658,6 +655,34 @@ internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process
 		self.forceClosePayment(withFadeAnimation: fadeAnimation) {
 			
 			localCompletion(true)
+		}
+	}
+	
+	internal override func continueCardSaving(with identifier: String, paymentOption: PaymentOption, binNumber: String?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+		
+		APIClient.shared.retrieveObject(with: identifier) { (cardVerification: CardVerification?, error: TapSDKError?) in
+			
+			loader?.hideLoader()
+			
+			self.dataManager.handleCardVerificationResponse(cardVerification, error: error, binNumber: binNumber, retryAction: retryAction)
+		}
+	}
+	
+	internal override func cardSavingSuccess(with cardVerification: CardVerification) {
+		
+		let popupAppearanceCompletionClosure: TypeAlias.ArgumentlessClosure = { [weak self] in
+			
+			self?.closePayment(with: .successfulCardSave(cardVerification), fadeAnimation: true, force: false, completion: nil)
+		}
+		
+		self.showSuccessPopup(with: .tap_empty, completion: popupAppearanceCompletionClosure)
+	}
+	
+	internal override func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?) {
+		
+		self.showFailurePopup {
+			
+			self.closePayment(with: .cardSaveFailure(error), fadeAnimation: false, force: false, completion: nil)
 		}
 	}
 }

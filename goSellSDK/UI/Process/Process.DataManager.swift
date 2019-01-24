@@ -24,6 +24,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	var currentPaymentCardBINNumber: String? { get }
 	var urlToLoadInWebPaymentController: URL? { get }
 	var currentChargeOrAuthorize: ChargeProtocol? { get }
+	var currentVerification: CardVerification? { get }
 	
 	var isExecutingAPICalls: Bool { get }
 	var isCallingPaymentAPI: Bool { get }
@@ -63,6 +64,11 @@ internal protocol DataManagerInterface: ClassProtocol {
 															cardBIN:						String?,
 															retryAction:					@escaping TypeAlias.ArgumentlessClosure,
 															alertDismissButtonClickHandler:	TypeAlias.ArgumentlessClosure?)
+	
+	func handleCardVerificationResponse(_ cardVerification:	CardVerification?,
+										error:				TapSDKError?,
+										binNumber:			String?,
+										retryAction:		@escaping TypeAlias.ArgumentlessClosure)
 }
 
 internal extension Process {
@@ -83,6 +89,7 @@ internal extension Process {
 		internal var currentPaymentCardBINNumber: String?
 		internal var urlToLoadInWebPaymentController: URL?
 		internal var currentChargeOrAuthorize: ChargeProtocol?
+		internal var currentVerification: CardVerification?
 		
 		internal var userSelectedCurrency: AmountedCurrency?
 		
@@ -151,6 +158,18 @@ internal extension Process {
 		internal var isChargeOrAuthorizeInProgress: Bool {
 			
 			fatalError("Should be implemented in subclass.")
+		}
+		
+		internal var requires3DSecure: Bool {
+			
+			if let permissions = SettingsDataManager.shared.settings?.permissions {
+				
+				return !permissions.contains(.non3DSecureTransactions)
+			}
+			else {
+				
+				return true
+			}
 		}
 		
 		// MARK: Methods
@@ -236,6 +255,10 @@ internal extension Process {
 			fatalError("Must be implemented in extension")
 		}
 		
+		internal func handleCardVerificationResponse(_ cardVerification: CardVerification?, error: TapSDKError?, binNumber: String?, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+			fatalError("Must be implemented in extension")
+		}
+		
 		internal func updateUIByRemoving(_ card: SavedCard) {
 			
 			fatalError("Must be implemented in extension")
@@ -279,19 +302,7 @@ internal extension Process {
 				}
 				else if let nonnullToken = token {
 					
-					let source = SourceRequest(token: nonnullToken)
-					let retryAction: TypeAlias.ArgumentlessClosure = {
-						
-						self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
-					}
-					
-					self?.callChargeOrAuthorizeAPI(with:                            source,
-												   paymentOption:                   paymentOption,
-												   cardBIN:                         nonnullToken.card.binNumber,
-												   saveCard:                        saveCard,
-												   loader:                          nil,
-												   retryAction:                     retryAction,
-												   alertDismissButtonClickHandler:  nil)
+					self?.didReceive(nonnullToken, from: request, paymentOption: paymentOption, saveCard: saveCard)
 				}
 				else {
 					
@@ -299,6 +310,11 @@ internal extension Process {
 					self?.isExecutingAPICalls = false
 				}
 			}
+		}
+		
+		internal func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
+			
+			fatalError("Needs to be implemented in subclasses")
 		}
 		
 		private func showMissingInformationAlert(with title: String, message: String) {
@@ -317,8 +333,6 @@ internal extension Process {
 	
 	internal final class PaymentDataManager: DataManager {
 	
-//	internal final class PaymentDataManager<Mode, ProcessClass>: Process.DataManager<Mode, ProcessClass> where ProcessClass: ProcessGenericInterface, ProcessClass.HandlerMode == Mode, Mode: Payment {
-		
 		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
 			
 			guard let nonnullDataSource = session.dataSource else {
@@ -460,6 +474,23 @@ internal extension Process {
 			}
 		}
 		
+		internal override func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
+			
+			let source = SourceRequest(token: token)
+			let retryAction: TypeAlias.ArgumentlessClosure = {
+				
+				self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
+			}
+			
+			self.callChargeOrAuthorizeAPI(with:                            source,
+										  paymentOption:                   paymentOption,
+										  cardBIN:                         token.card.binNumber,
+										  saveCard:                        saveCard,
+										  loader:                          nil,
+										  retryAction:                     retryAction,
+										  alertDismissButtonClickHandler:  nil)
+		}
+		
 		internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
 														paymentOption:					PaymentOption,
 														cardBIN:						String?,
@@ -494,7 +525,7 @@ internal extension Process {
 			let reference           = dataSource.paymentReference ?? nil
 			let shouldSaveCard      = saveCard ?? false
 			let statementDescriptor = dataSource.paymentStatementDescriptor ?? nil
-			let requires3DSecure    = self.chargeRequires3DSecure || (dataSource.require3DSecure ?? false)
+			let requires3DSecure    = self.requires3DSecure || (dataSource.require3DSecure ?? false)
 			let receiptSettings     = dataSource.receiptSettings ?? nil
 			
 			let mode = dataSource.mode ?? .default
@@ -659,17 +690,7 @@ internal extension Process {
 		// MARK: - Private -
 		// MARK: Properties
 		
-		private var chargeRequires3DSecure: Bool {
-			
-			if let permissions = SettingsDataManager.shared.settings?.permissions {
-				
-				return !permissions.contains(.non3DSecureTransactions)
-			}
-			else {
-				
-				return true
-			}
-		}
+		
 		
 		// MARK: Methods
 		
@@ -691,7 +712,21 @@ internal extension Process {
 	}
 	
 	internal final class CardSavingDataManager: DataManager {
-	
+		
+		private var _currentPaymentOption: PaymentOption?
+		
+		internal override var currentPaymentOption: PaymentOption? {
+			
+			get {
+				
+				return self._currentPaymentOption ?? self.process.viewModelsHandlerInterface.cardPaymentOptionsCellModel.paymentOption
+			}
+			set {
+				
+				self._currentPaymentOption = newValue
+			}
+		}
+		
 		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
 			
 			guard let nonnullDataSource = session.dataSource else {
@@ -709,6 +744,80 @@ internal extension Process {
 			let paymentRequest = PaymentOptionsRequest(customer: customer.identifier)
 			
 			return paymentRequest
+		}
+		
+		internal override func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
+			
+			let retryAction: TypeAlias.ArgumentlessClosure = {
+				
+				self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
+			}
+			
+			self.callCardVerificationAPI(with: token, saveCard: saveCard, retryAction: retryAction)
+		}
+		
+		private func callCardVerificationAPI(with token: Token, saveCard: Bool?, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+			
+			guard let dataSource = self.process.process.externalSession?.dataSource, let customer = dataSource.customer else {
+				
+				fatalError("This case should never happen.")
+			}
+			
+			let requires3DSecure    = self.requires3DSecure || (dataSource.require3DSecure ?? false)
+			let shouldSaveCard      = saveCard ?? false
+			let metadata			= dataSource.paymentMetadata ?? nil
+			let source				= SourceRequest(token: token)
+			let redirect            = TrackingURL(url: self.process.webPaymentHandlerInterface.returnURL)
+			let currency			= self.selectedCurrency.currency
+			
+			let verificationRequest = CreateCardVerificationRequest(is3DSecureRequired:	requires3DSecure,
+																	shouldSaveCard:		shouldSaveCard,
+																	metadata:			metadata,
+																	customer:			customer,
+																	currency:			currency,
+																	source:				source,
+																	redirect:			redirect)
+			
+			APIClient.shared.createCardVerification(with: verificationRequest) { [weak self] (response, error) in
+				
+				self?.process.buttonHandlerInterface.stopButtonLoader()
+				self?.isExecutingAPICalls = false
+				
+				self?.handleCardVerificationResponse(response, error: error, binNumber: token.card.binNumber, retryAction: retryAction)
+			}
+		}
+		
+		internal override func handleCardVerificationResponse(_ cardVerification: CardVerification?, error: TapSDKError?, binNumber: String?, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
+			
+			guard let paymentOption = self.currentPaymentOption else { return }
+			
+			if let nonnullError = error {
+				
+				ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: nil)
+				return
+			}
+			
+			guard let nonnullVerification = cardVerification else { return }
+			
+			self.currentVerification = cardVerification
+			
+			switch nonnullVerification.status {
+				
+			case .initiated:
+				
+				if let url = nonnullVerification.transactionDetails.url {
+					
+					self.process.openPaymentURL(url, for: paymentOption, binNumber: binNumber)
+				}
+				
+			case .invalid:
+				
+				self.process.cardSavingFailure(with: nonnullVerification, error: error)
+				
+			case .valid:
+				
+				self.process.cardSavingSuccess(with: nonnullVerification)
+			}
 		}
 	}
 }
