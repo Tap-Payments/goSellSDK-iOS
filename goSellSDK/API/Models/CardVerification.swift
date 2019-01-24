@@ -5,36 +5,36 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-internal struct CardVerification: Decodable, IdentifiableWithString {
+@objcMembers public class CardVerification: NSObject, Decodable, IdentifiableWithString {
 	
-	// MARK: - Internal -
+	// MARK: - Public -
 	// MARK: Properties
 	
-	internal let identifier: String
+	public let identifier: String
 	
-	internal let object: String
+	public let object: String
 	
-	internal let isLiveMode: Bool
+	public let isLiveMode: Bool
 	
-	internal let status: CardVerificationStatus
+	public let status: CardVerificationStatus
 	
-	internal let currency: Currency
+	public let currency: Currency
 	
-	internal let is3DSecureRequired: Bool
+	public let is3DSecureRequired: Bool
 	
-	internal let shouldSaveCard: Bool
+	public let shouldSaveCard: Bool
 	
-	internal let metadata: Metadata?
+	public let metadata: Metadata?
 	
-	internal let transactionDetails: TransactionDetails
+	public let transactionDetails: TransactionDetails
 	
-	internal let customer: Customer
+	public let customer: Customer
 	
-	internal let source: Source
+	public let source: Source
 	
-	internal let redirect: TrackingURL
+	public let redirect: TrackingURL
 	
-	internal let card: SavedCard
+	public let card: SavedCard
 	
 	// MARK: - Private -
 	
@@ -56,51 +56,11 @@ internal struct CardVerification: Decodable, IdentifiableWithString {
 	}
 }
 
-/*
-{
-"id": "vry_Bc2e2420191742r4MD2201766",
-"object": "verify_card",
-"live_mode": false,
-"api_version": "V2",
-"status": "INITIATED",
-"currency": "KWD",
-"threeDSecure": true,
-"save_card": false,
-"metadata": {
-"sample string 1": "sample string 2",
-"sample string 3": "sample string 4"
-},
-"transaction": {
-"timezone": "UTC+03:00",
-"created": "1548178946657",
-"url": "https://sandbox.payments.tap.company/test_gosell/v2/payment/response.aspx?auth=r7HqRZZYgyKPcnRCVuQxp8UBseBHVTXxo0s5kUKhfCI%3d&sess=Y%2bZSFDgls44%3d&token=r7HqRZZYgyKPcnRCVuQxp8UBseBHVTXxMUEkVPp9vLFduJ2Ph2pxhw%3d%3d"
-},
-"customer": {
-"first_name": "sample",
-"middle_name": "sample",
-"last_name": "a",
-"email": "test@test.com",
-"phone": {
-"country_code": "965",
-"number": "50000000"
+// MARK: - Retrievable
+extension CardVerification: Retrievable {
+	
+	internal static var retrieveRoute: Route {
+		
+		return .cardVerification
+	}
 }
-},
-"source": {
-"object": "token",
-"id": "tok_Dok1cb5REfSvdB0y9MKG4i8e"
-},
-"redirect": {
-"status": "PENDING",
-"url": "https://test.com"
-},
-"card": {
-"object": "card",
-"first_six": "512345",
-"last_four": "0008"
-},
-"risk": false,
-"issuer": false,
-"promo": false,
-"loyalty": false
-}
-*/

@@ -271,6 +271,30 @@ extension Process: ProcessInterface {
 		}
 	}
 	
+	internal func cardSavingSuccess(with cardVerification: CardVerification) {
+		
+		if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
+			
+			cardSaving.cardSavingSuccess(with: cardVerification)
+		}
+		else {
+			
+			fatalError("Wrong implementation.")
+		}
+	}
+	
+	internal func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?) {
+		
+		if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
+			
+			cardSaving.cardSavingFailure(with: cardVerification, error: error)
+		}
+		else {
+			
+			fatalError("Wrong implementation.")
+		}
+	}
+	
 	internal func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String?) {
 		
 		if let payment: PaymentImplementation = self.wrappedImplementation.implementation() {
@@ -296,6 +320,22 @@ extension Process: ProcessInterface {
 		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
 			
 			cardSaving.continuePaymentWithCurrentChargeOrAuthorize(with: identifier, of: type, paymentOption: paymentOption, loader: loader, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+		}
+		else {
+			
+			fatalError("Wrong implementation.")
+		}
+	}
+	
+	internal func continueCardSaving(with identifier: String, paymentOption: PaymentOption, binNumber: String?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+		
+		if let payment: PaymentImplementation = self.wrappedImplementation.implementation() {
+			
+			payment.continueCardSaving(with: identifier, paymentOption: paymentOption, binNumber: binNumber, loader: loader, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+		}
+		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
+			
+			cardSaving.continueCardSaving(with: identifier, paymentOption: paymentOption, binNumber: binNumber, loader: loader, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
 		}
 		else {
 			

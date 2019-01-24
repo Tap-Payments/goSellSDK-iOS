@@ -70,13 +70,13 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 		}
 	}
 	
-	internal func cardSaved(on session: SessionProtocol) {
+	internal func cardSaved(_ cardVerification: CardVerification, on session: SessionProtocol) {
 		
 		let targetSession = self.targetSession(for: session)
 		
 		self.removeNilDelegatesAndSynchronized { theDelegates in
 			
-			theDelegates.forEach { $0.cardSaved?(on: targetSession) }
+			theDelegates.forEach { $0.cardSaved?(cardVerification, on: targetSession) }
 		}
 	}
 	

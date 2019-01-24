@@ -18,6 +18,8 @@ internal struct CreateCardVerificationRequest: Encodable {
 	
 	internal let customer: Customer
 	
+	internal let currency: Currency
+	
 	internal let source: SourceRequest
 	
 	internal let redirect: TrackingURL
@@ -30,36 +32,8 @@ internal struct CreateCardVerificationRequest: Encodable {
 		case shouldSaveCard		= "save_card"
 		case metadata			= "metadata"
 		case customer			= "customer"
+		case currency			= "currency"
 		case source				= "source"
 		case redirect			= "redirect"
 	}
 }
-
-/*
-{
-"threeDSecure": true, — optional
-"save_card": false,— optional
-"metadata": { — optional
-"sample string 1": "sample string 2",
-"sample string 3": "sample string 4"
-},
-"customer": { — required, if save card, true
-"id": "",
-"first_name": "sample",
-"middle_name": "sample",
-"last_name": "a",
-"email": "test@test.com"
-},
-"source": { —required
-"id": "tok_9elMw7JGtbKgEXqaRs06Pk13"
-},
-"redirect": { —required, if threeDsecure check done by Tap
-"url": "https://test.com"
-},
-"card": true,
-"risk": true,
-"issuer": true,
-"promo": true,
-"loyalty": true
-}
-*/

@@ -22,6 +22,7 @@ internal protocol ProcessInterface: ClassProtocol {
 	func openOTPScreen(with phoneNumber: String, for paymentOption: PaymentOption)
 	func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String?)
 	func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?)
+	func continueCardSaving(with identifier: String, paymentOption: PaymentOption, binNumber: String?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?)
 	func showPaymentController()
 	
 	func loadingControllerFrame(coveringHeader: Bool) -> CGRect
@@ -29,6 +30,9 @@ internal protocol ProcessInterface: ClassProtocol {
 	
 	func paymentSuccess(with chargeOrAuthorize: ChargeProtocol)
 	func paymentFailure(with status: ChargeStatus, chargeOrAuthorize: ChargeProtocol, error: TapSDKError?)
+	
+	func cardSavingSuccess(with cardVerification: CardVerification)
+	func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?)
 }
 
 internal protocol ProcessGenericInterface: ProcessInterface {

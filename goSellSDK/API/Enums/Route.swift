@@ -26,7 +26,7 @@ internal enum Route: String {
         
         switch self {
             
-        case .charges, .authorize:
+        case .charges, .authorize, .cardVerification:
             
             decoder.dateDecodingStrategy = .custom { (aDecoder) -> Date in
                 

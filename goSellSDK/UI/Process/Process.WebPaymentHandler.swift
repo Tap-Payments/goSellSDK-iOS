@@ -18,7 +18,7 @@ internal protocol WebPaymentHandlerInterface {
 
 internal extension Process {
 	
-	internal class WebPaymentHandler: WebPaymentHandlerInterface {
+	internal final class WebPaymentHandler: WebPaymentHandlerInterface {
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -32,7 +32,7 @@ internal extension Process {
 		
 		// MARK: Methods
 		
-		required internal init(process: ProcessInterface) {
+		internal init(process: ProcessInterface) {
 			
 			self.process = process
 		}
@@ -67,22 +67,9 @@ internal extension Process {
 		
 		internal func webPaymentProcessFinished(_ tapID: String) {
 			
-			fatalError("Must be implemented in subclasses.")
-		}
-		
-		// MARK: - Private -
-		
-		fileprivate typealias Constants = __WebPaymentHandlerConstants
-	}
-	
-	internal final class PaymentWebPaymentHandler: WebPaymentHandler {
-	
-		internal override func webPaymentProcessFinished(_ tapID: String) {
-			
 			guard
 				
 				let paymentOption = self.process.dataManagerInterface.currentPaymentOption,
-				let chargeOrAuthorize = self.process.dataManagerInterface.currentChargeOrAuthorize,
 				let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
 			
 			LoadingView.show(in: paymentContentController, animated: true)
@@ -92,33 +79,41 @@ internal extension Process {
 				self?.webPaymentProcessFinished(tapID)
 			}
 			
-			if chargeOrAuthorize is Charge {
+			if let chargeOrAuthorize = self.process.dataManagerInterface.currentChargeOrAuthorize {
 				
-				self.process.continuePaymentWithCurrentChargeOrAuthorize(with:								tapID,
-																		 of:								Charge.self,
-																		 paymentOption:						paymentOption,
-																		 loader:							paymentContentController,
-																		 retryAction:						retryAction,
-																		 alertDismissButtonClickHandler:	nil)
+				if chargeOrAuthorize is Charge {
+					
+					self.process.continuePaymentWithCurrentChargeOrAuthorize(with:								tapID,
+																			 of:								Charge.self,
+																			 paymentOption:						paymentOption,
+																			 loader:							paymentContentController,
+																			 retryAction:						retryAction,
+																			 alertDismissButtonClickHandler:	nil)
+				}
+				else if chargeOrAuthorize is Authorize {
+					
+					self.process.continuePaymentWithCurrentChargeOrAuthorize(with:								tapID,
+																			 of:								Authorize.self,
+																			 paymentOption:						paymentOption,
+																			 loader:							paymentContentController,
+																			 retryAction:						retryAction,
+																			 alertDismissButtonClickHandler:	nil)
+				}
 			}
-			else if chargeOrAuthorize is Authorize {
+			else if self.process.dataManagerInterface.currentVerification != nil {
 				
-				self.process.continuePaymentWithCurrentChargeOrAuthorize(with:								tapID,
-																		 of:								Authorize.self,
-																		 paymentOption:						paymentOption,
-																		 loader:							paymentContentController,
-																		 retryAction:						retryAction,
-																		 alertDismissButtonClickHandler:	nil)
+				self.process.continueCardSaving(with:							tapID,
+												paymentOption:					paymentOption,
+												binNumber: 						nil,
+												loader:							paymentContentController,
+												retryAction:					retryAction,
+												alertDismissButtonClickHandler:	nil)
 			}
 		}
-	}
-	
-	internal final class CardSavingWebPaymentHandler: WebPaymentHandler {
 		
-		internal override func webPaymentProcessFinished(_ tapID: String) {
-			
-			
-		}
+		// MARK: - Private -
+		
+		fileprivate typealias Constants = __WebPaymentHandlerConstants
 	}
 }
 
