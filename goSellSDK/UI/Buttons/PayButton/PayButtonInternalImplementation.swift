@@ -111,7 +111,7 @@ internal extension PayButtonInternalImplementation {
 				return false
 			}
 			
-		case .save:
+		case .save, .draewilSave:
 			
 			if let existing: SaveButtonHandler = self.handler?.unwrapped() {
 				

@@ -288,7 +288,7 @@ internal extension Process.TapButtonProcessHandler where Mode: CardSaving {
 	
 	internal func updateSaveProcessButtonState() {
 		
-		self.buttonStyle = .save
+		self.buttonStyle = .draewilSave
 		self.button?.setLocalizedText(.btn_save_action_title)
 		
 		guard let selectedPaymentViewModel = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel else {

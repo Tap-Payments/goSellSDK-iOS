@@ -261,4 +261,7 @@ internal enum LocalizationKey: String {
 	
 	case payment_status_alert_successful	= "payment_status_alert_successful"
 	case payment_status_alert_failed		= "payment_status_alert_failed"
+	
+	case title_header_save_card = "title_header_save_card"
+	case saved_cards_usage_description = "saved_cards_usage_description"
 }

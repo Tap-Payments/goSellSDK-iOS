@@ -146,7 +146,7 @@ internal class TapButton: TapNibView {
         self.delegate?.securityButtonTouchUpInside()
     }
     
-    private func updateStateUI(animated: Bool) {
+    internal func updateStateUI(animated: Bool) {
         
         let enabled = self.isEnabled && !self.forceDisabled
         self.internalButton?.isEnabled = enabled

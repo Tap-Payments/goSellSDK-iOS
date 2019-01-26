@@ -139,7 +139,7 @@ PODS:
   - TapCardValidator (1.2.4)
   - TapEditableView (1.0.3):
     - TapAdditionsKit/Tap/ClassProtocol (>= 1.2)
-  - TapFontsKit (1.0.1):
+  - TapFontsKit (1.0.3):
     - TapAdditionsKit/Foundation/Bundle (>= 1.2)
     - TapAdditionsKit/Foundation/Locale (>= 1.2)
     - TapSwiftFixes/Threading (>= 1.0.5)
@@ -227,7 +227,7 @@ SPEC CHECKSUMS:
   TapApplication: 7cc6f890af56ab7fe349802305920fd290869bd5
   TapCardValidator: adb6bf15c55610bfc6ee8252b2ee405223a9a6d2
   TapEditableView: abf320c9eec11d884fb2ca568132205c066d8504
-  TapFontsKit: a2bd7e7f46eee62b76c82dfc2cfc3835528219d9
+  TapFontsKit: b0c66f824f65d9c80db1ee057e399d16803ee354
   TapGLKit: 25fd29c844d4ee0e6a3690a68f4ccb5f35653e9c
   TapKeychain: 8140de1166dbe9b4ef053fbb9c569e9772e11926
   TapNetworkManager: d2ee58272b8a5c829ffd001fed82d4c98d8a8fda

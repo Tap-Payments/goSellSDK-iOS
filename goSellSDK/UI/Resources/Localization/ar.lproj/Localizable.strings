@@ -5,6 +5,9 @@
   Copyright © 2019 Tap Payments. All rights reserved.
 */
 
+"title_header_save_card" = "Enter Card Details";
+"saved_cards_usage_description" = "Saved cards will only be used with your approval, you can remove them at any time";
+
 // MARK: Common
 
 "common_edit"	= "تعديل";

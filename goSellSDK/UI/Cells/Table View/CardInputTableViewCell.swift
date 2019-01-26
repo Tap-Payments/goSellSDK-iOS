@@ -245,7 +245,17 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 		self.cvvTextField?.textInsets	= Constants.cvvFieldInsets.tap_localized
 		
 		self.addressOnCardLabel?.setLocalizedText		(.card_input_address_on_card_placeholder)
-		self.saveCardDescriptionLabel?.setLocalizedText	(.save_card_promotion_text)
+		
+		if Process.shared.transactionMode == .cardSaving {
+			
+			self.saveCardDescriptionLabel?.setLocalizedText(.saved_cards_usage_description)
+		}
+		else {
+			
+			self.saveCardDescriptionLabel?.setLocalizedText	(.save_card_promotion_text)
+		}
+		
+		self.saveCardDescriptionLabel?.font = Font(.other("AvenirNext-Regular"), 12.0).localized
 	}
 	
     private func updateTableViewContent(_ animated: Bool) {
