@@ -285,7 +285,8 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 	
 	internal var scanButtonImage: UIImage {
 		
-		return Theme.current.paymentOptionsCellStyle.card.scanIcon
+		let image = Theme.current.paymentOptionsCellStyle.card.scanIcon
+		return image
 	}
 	
 	internal var isScanButtonVisible: Bool {

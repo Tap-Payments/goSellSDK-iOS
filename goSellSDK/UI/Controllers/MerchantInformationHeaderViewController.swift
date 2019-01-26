@@ -60,6 +60,7 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
 		
 		super.localizationChanged()
 		self.titleLabel?.setTextStyle(Theme.current.merchantHeaderStyle.titleStyle)
+		self.titleLabel?.setLocalizedText(.title_header_save_card)
 	}
 	
 	internal override func themeChanged() {
@@ -121,8 +122,7 @@ internal class MerchantInformationHeaderViewController: BaseViewController {
     }
     
     private func updateMerchantLabelTitle() {
-        
-        self.titleLabel?.text = self.merchant?.name
+		
     }
     
     private func loadMerchantLogo() {

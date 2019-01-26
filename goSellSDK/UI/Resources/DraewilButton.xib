@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TapButton" customModule="goSellSDK">
+            <connections>
+                <outlet property="internalButton" destination="7lX-ev-Iua" id="PV1-Rh-28j"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7lX-ev-Iua">
+                    <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
+                    <connections>
+                        <action selector="internalButtonHighlighted:" destination="-1" eventType="touchDown" id="YMA-IR-rpJ"/>
+                        <action selector="internalButtonHighlighted:" destination="-1" eventType="touchDragEnter" id="Ye9-75-IPm"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchUpInside" id="2dK-JR-U9z"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchDragExit" id="390-rh-ta4"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchUpOutside" id="XLH-pa-SeJ"/>
+                        <action selector="internalButtonLostHighlight:" destination="-1" eventType="touchCancel" id="bCb-4a-t7V"/>
+                        <action selector="internalButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="BcX-Xd-scp"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="7lX-ev-Iua" secondAttribute="trailing" id="LLC-KR-r8P"/>
+                <constraint firstItem="7lX-ev-Iua" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WU2-ck-6eM"/>
+                <constraint firstItem="7lX-ev-Iua" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Wrd-Qi-DO7"/>
+                <constraint firstAttribute="bottom" secondItem="7lX-ev-Iua" secondAttribute="bottom" id="ghM-2Z-mUr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
+                    <real key="value" value="22"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+        </view>
+    </objects>
+</document>

@@ -156,6 +156,57 @@
 						"alignment": "center"
 					}
 				}
+			},
+			{
+				"type": "draewil_save",
+				"enabled": {
+					
+					"background_color": "#1E56A0",
+					"loader_color": "#ffffff",
+					"security_icon": "btn_security",
+					"title_style": {
+						
+						"font": {
+							
+							"typeface": "AvenirNext-Medium",
+							"size": 17.0
+						},
+						"color": "#ffffff",
+						"alignment": "center"
+					}
+				},
+				"disabled": {
+					
+					"background_color": "#E1E2E752",
+					"loader_color": "#ffffff",
+					"security_icon": "btn_security",
+					"title_style": {
+						
+						"font": {
+							
+							"typeface": "AvenirNext-Medium",
+							"size": 17.0
+						},
+						"color": "#43496A",
+						"alignment": "center"
+					}
+				},
+				"highlighted": {
+					
+					"background_color": "#0E3680",
+					"loader_color": "#ffffff",
+					"security_icon": "btn_security",
+					"title_style": {
+						
+						"font": {
+							
+							"typeface": "AvenirNext-Medium",
+							"size": 17.0
+						},
+						"color": "#ffffff",
+						"alignment": "center"
+					}
+				}
 			}
 		],
 		
@@ -167,7 +218,7 @@
 				
 				"font": {
 					
-					"typeface": "helvetica-neue-regular",
+					"typeface": "AvenirNext-Medium",
 					"size": 17.0
 				},
 				"color": "#535353",
@@ -260,7 +311,7 @@
 						
 						"font": {
 							
-							"typeface": "helvetica-neue-light",
+							"typeface": "AvenirNext-Medium",
 							"size": 15.0
 						},
 						"color": "#535353",
@@ -270,7 +321,7 @@
 						
 						"font": {
 							
-							"typeface": "helvetica-neue-light",
+							"typeface": "AvenirNext-Medium",
 							"size": 15.0
 						},
 						"color": "#ee0000",
@@ -280,7 +331,7 @@
 						
 						"font": {
 							
-							"typeface": "helvetica-neue-light",
+							"typeface": "AvenirNext-Regular",
 							"size": 15.0
 						},
 						"color": "#bdbdbd",
@@ -337,7 +388,7 @@
 				
 				"font": {
 					
-					"typeface": "helvetica-neue-regular",
+					"typeface": "AvenirNext-Medium",
 					"size": 19.0
 				},
 				"color": "#535353",

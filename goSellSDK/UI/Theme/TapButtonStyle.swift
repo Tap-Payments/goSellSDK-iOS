@@ -19,6 +19,14 @@ internal struct TapButtonStyle: Decodable {
 	
     internal let highlighted: TapButtonStateStyle
 	
+	internal init(type: ButtonType, enabled: TapButtonStateStyle, disabled: TapButtonStateStyle, highlighted: TapButtonStateStyle) {
+		
+		self.type = type
+		self.enabled = enabled
+		self.disabled = disabled
+		self.highlighted = highlighted
+	}
+	
 	// MARK: - Private -
 	
 	private enum CodingKeys: String, CodingKey {
@@ -37,5 +45,6 @@ internal extension TapButtonStyle {
 		case pay 		= "pay"
 		case confirmOTP	= "confirm_otp"
 		case save		= "save"
+		case draewilSave = "draewil_save"
 	}
 }

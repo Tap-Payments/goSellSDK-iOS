@@ -18,7 +18,7 @@ internal struct TapButtonStateStyle: Decodable {
     
     internal let loaderColor: HexColor
 	
-	internal let securityIcon: ResourceImage
+	internal let securityIcon: ResourceImage?
 	
 	internal let titleStyle: TextStyle
 	
