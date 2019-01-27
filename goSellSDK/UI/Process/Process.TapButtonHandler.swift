@@ -83,12 +83,12 @@ internal extension Process {
 			}
 		}
 		
-		internal final func startButtonLoader() {
+		internal func startButtonLoader() {
 			
 			self.button?.startLoader()
 		}
 		
-		internal final func stopButtonLoader() {
+		internal func stopButtonLoader() {
 			
 			self.button?.stopLoader()
 		}
@@ -222,6 +222,18 @@ internal extension Process {
 			
 			self.init(process: process)
 			self.setButton(button)
+		}
+		
+		internal override func startButtonLoader() {
+			
+			guard let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
+			LoadingView.show(in: paymentContentController, animated: true)
+		}
+		
+		internal override func stopButtonLoader() {
+			
+			guard let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
+			paymentContentController.hideLoader()
 		}
 	}
 }
