@@ -442,12 +442,19 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			return
 		}
 		
-		self.showSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
+		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
+		
+			self.showSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
+		}
+		else {
+			
+			popupAppearanceCompletionClosure()
+		}
 	}
 	
 	internal override func paymentFailure(with status: ChargeStatus, chargeOrAuthorize: ChargeProtocol, error: TapSDKError?) {
 		
-		self.showFailurePopup {
+		let completion: TypeAlias.ArgumentlessClosure = {
 			
 			if let authorize = chargeOrAuthorize as? Authorize {
 				
@@ -461,6 +468,15 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 				
 				ErrorActionExecutor.closePayment(with: error, nil)
 			}
+		}
+		
+		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
+			
+			self.showFailurePopup(completion)
+		}
+		else {
+		
+			completion()
 		}
 	}
 	
@@ -675,14 +691,30 @@ internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process
 			self?.closePayment(with: .successfulCardSave(cardVerification), fadeAnimation: true, force: false, completion: nil)
 		}
 		
-		self.showSuccessPopup(with: .tap_empty, completion: popupAppearanceCompletionClosure)
+		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
+			
+			self.showSuccessPopup(with: .tap_empty, completion: popupAppearanceCompletionClosure)
+		}
+		else {
+			
+			popupAppearanceCompletionClosure()
+		}
 	}
 	
 	internal override func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?) {
 		
-		self.showFailurePopup {
+		let completion: TypeAlias.ArgumentlessClosure = {
 			
 			self.closePayment(with: .cardSaveFailure(error), fadeAnimation: false, force: false, completion: nil)
+		}
+		
+		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
+			
+			self.showFailurePopup(completion)
+		}
+		else {
+			
+			completion()
 		}
 	}
 }

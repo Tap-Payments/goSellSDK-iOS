@@ -3,7 +3,7 @@ PODS:
   - EditableTextInsetsTextField (1.0.4):
     - TapAdditionsKit/Foundation/Locale (>= 1.2)
     - TapAdditionsKit/UIKit/UIView (>= 1.2)
-  - SDWebImage/Core (4.4.3)
+  - SDWebImage/Core (4.4.4)
   - TapAdditionsKit/CoreGraphics/CGContext (1.2)
   - TapAdditionsKit/CoreGraphics/CGImage (1.2):
     - TapAdditionsKit/CoreGraphics/CGContext
@@ -98,7 +98,7 @@ PODS:
   - TapCardValidator (1.2.4)
   - TapEditableView (1.0.3):
     - TapAdditionsKit/Tap/ClassProtocol (>= 1.2)
-  - TapFontsKit (1.0.3):
+  - TapFontsKit (1.0.4):
     - TapAdditionsKit/Foundation/Bundle (>= 1.2)
     - TapAdditionsKit/Foundation/Locale (>= 1.2)
     - TapSwiftFixes/Threading (>= 1.0.5)
@@ -206,12 +206,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextField: bf1e6ef6ea7678b6d769e0cbbdb7f3c34aea5e3a
-  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SDWebImage: c00ec18ab25d10e5ffac109b0f78d1b4341c9691
   TapAdditionsKit: ec0e7e864ad1590e0c2f62230100e2621499458f
   TapApplication: 7cc6f890af56ab7fe349802305920fd290869bd5
   TapCardValidator: adb6bf15c55610bfc6ee8252b2ee405223a9a6d2
   TapEditableView: abf320c9eec11d884fb2ca568132205c066d8504
-  TapFontsKit: b0c66f824f65d9c80db1ee057e399d16803ee354
+  TapFontsKit: 982f2ebfb6b6fda3e35acef575d8f240011f0c39
   TapGLKit: 25fd29c844d4ee0e6a3690a68f4ccb5f35653e9c
   TapKeychain: 8140de1166dbe9b4ef053fbb9c569e9772e11926
   TapNetworkManager: d2ee58272b8a5c829ffd001fed82d4c98d8a8fda

@@ -255,7 +255,7 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 			self.saveCardDescriptionLabel?.setLocalizedText	(.save_card_promotion_text)
 		}
 		
-		self.saveCardDescriptionLabel?.font = Font(.other("AvenirNext-Regular"), 12.0).localized
+		self.saveCardDescriptionLabel?.font = Font(.system("AvenirNext-Regular"), 12.0).localized
 	}
 	
     private func updateTableViewContent(_ animated: Bool) {
