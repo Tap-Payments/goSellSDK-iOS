@@ -39,7 +39,7 @@ extension TapFont: Decodable {
 		"helvetica-neue-light-ar": 		.arabicHelveticaNeueLight,
 		"helvetica-neue-regular-ar":	.arabicHelveticaNeueRegular,
 		"helvetica-neue-bold-ar": 		.arabicHelveticaNeueBold,
-		"AvenirNext-Medium":			.other("AvenirNext-Medium"),
-		"AvenirNext-Regular":			.other("AvenirNext-Regular"),
+		"AvenirNext-Medium":			.system("AvenirNext-Medium"),
+		"AvenirNext-Regular":			.system("AvenirNext-Regular"),
 	]
 }

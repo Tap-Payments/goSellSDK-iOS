@@ -7,15 +7,18 @@
 
 /// Payment data source.
 @objc public protocol SessionDataSource: class, NSObjectProtocol {
-    
+	
+	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
+	var customer: Customer? { get }
+	
     /// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
-    var currency: Currency? { get }
-    
-    /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
-    var customer: Customer? { get }
+    @objc optional var currency: Currency? { get }
 	
 	/// SDK appearance mode. If not implemented it will be treated as `default`.
 	@objc optional var appearance: SDKAppearanceMode { get }
+	
+	/// Defines if success/failure popup appear after the transaction finishes.
+	@objc optional var showsStatusPopups: Bool { get }
 	
     /// Payment/Authorization amount.
     /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` is preferred and amount is calculated from them.
