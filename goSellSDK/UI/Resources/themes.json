@@ -161,8 +161,8 @@
 		
 		"merchant_header": {
 			
-			"logo_placeholder": "ic_merchant_logo_placeholder",
-			"logo_loader_color": "#535353",
+			"background_color": "#f7f7f7",
+			"back_icon": "ic_arrow_left",
 			"title_style": {
 				
 				"font": {
@@ -173,7 +173,11 @@
 				"color": "#535353",
 				"alignment": "leading"
 			},
-			"background_color": "#f7f7f7"
+			"icon_style": {
+				
+				"placeholder": "ic_merchant_logo_placeholder",
+				"corner_radius": 23
+			}
 		},
 		
 		"payment_option_cells": {
@@ -332,6 +336,7 @@
 		
 		"navigation_bar": {
 			
+			"background_color": "#f7f7f7",
 			"back_icon": "ic_arrow_left",
 			"title_style": {
 				

@@ -59,17 +59,8 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         self.paymentOption  = paymentOption
         self.binInformation = binInformation
         self.initialURL     = url
-        
-        self.loadIcon()
-        self.updateHeaderTitle()
-    }
-    
-    internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
-        
-        super.headerNavigationViewLoaded(headerView)
-        
-        self.updateHeaderIcon()
-        self.updateHeaderTitle()
+		
+		self.headerNavigationView?.updateContentAndLayout(animated: true)
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,14 +118,6 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         }
     }
     
-    private var iconImage: UIImage? {
-        
-        didSet {
-            
-            self.updateHeaderIcon()
-        }
-    }
-    
     private weak var contentController: WebPaymentContentViewController? {
         
         didSet {
@@ -151,33 +134,6 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         guard let controller = self.contentController, let url = self.initialURL else { return }
         
         controller.setup(with: url)
-    }
-    
-    private func loadIcon() {
-        
-        guard let nonnullImageURL = self.binInformation?.bankLogoURL ?? self.paymentOption?.imageURL else { return }
-        
-        TapImageLoader.shared.downloadImage(from: nonnullImageURL) { (image, error) in
-            
-            self.iconImage = image
-        }
-    }
-    
-    private func updateHeaderIcon() {
-        
-        self.headerNavigationView?.iconImage = self.iconImage
-    }
-    
-    private func updateHeaderTitle() {
-        
-        if let bankName = self.binInformation?.bank, bankName.tap_length > 0 {
-            
-            self.headerNavigationView?.title = bankName
-        }
-        else {
-            
-            self.headerNavigationView?.title = self.paymentOption?.title
-        }
     }
     
     private func showCancelAttemptAlert(_ decision: @escaping TypeAlias.BooleanClosure) {
@@ -224,6 +180,44 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         
         alert.show()
     }
+}
+
+// MARK: - TapNavigationView.DataSource
+extension WebPaymentViewController: TapNavigationView.DataSource {
+	
+	internal func navigationViewCanGoBack(_ navigationView: TapNavigationView) -> Bool {
+		
+		return (self.navigationController?.viewControllers.count ?? 0) > 1
+	}
+	
+	internal func navigationViewIconPlaceholder(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
+		
+		if let imageURL = self.binInformation?.bankLogoURL ?? self.paymentOption?.imageURL {
+			
+			return .remote(imageURL)
+		}
+		else {
+			
+			return nil
+		}
+	}
+	
+	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
+		
+		if let bankName = self.binInformation?.bank, bankName.tap_length > 0 {
+			
+			return bankName
+		}
+		else {
+			
+			return self.paymentOption?.title
+		}
+	}
 }
 
 // MARK: - WebPaymentContentViewControllerDelegate

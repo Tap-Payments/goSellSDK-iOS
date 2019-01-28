@@ -11,12 +11,13 @@ import struct	CoreGraphics.CGGeometry.CGSize
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
 import enum		UIKit.UIApplication.UIStatusBarStyle
+import class	UIKit.UIScreen.UIScreen
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 
 /// Payment Content View Controller.
-internal class PaymentContentViewController: BaseViewController {
+internal class PaymentContentViewController: HeaderNavigatedViewController {
     
     // MARK: - Internal -
     // MARK: Properties
@@ -26,6 +27,12 @@ internal class PaymentContentViewController: BaseViewController {
 		return Theme.current.commonStyle.statusBar[Process.shared.appearance].uiStatusBarStyle
 	}
 	
+	internal override var headerHasShadowInitially: Bool {
+		
+		return false
+//		return Process.shared.appearance == .fullscreen
+	}
+	
 	/// Layout listener.
 	internal weak var layoutListener: ViewControllerLayoutListener?
 	
@@ -33,12 +40,12 @@ internal class PaymentContentViewController: BaseViewController {
 		
 		get {
 			
-			let headerSize = self.headerViewController?.preferredContentSize ?? .zero
-			let paymentOptionsSize = self.paymentOptionsViewController?.preferredContentSize ?? .zero
-			let payButtonContainerSize = self.payButtonContainerView?.bounds.size ?? .zero
+			let headerHeight = TapNavigationView.preferredHeight
+			let paymentOptionsHeight = self.paymentOptionsViewController?.preferredContentSize.height ?? 0.0
+			let payButtonContainerHeight = self.payButtonContainerView?.bounds.size.height ?? 0.0
 			
-			let width = ceil(max(headerSize.width, paymentOptionsSize.width, payButtonContainerSize.width))
-			let height = ceil(headerSize.height + paymentOptionsSize.height + payButtonContainerSize.height)
+			let width = (self.view.window?.screen ?? UIScreen.main).bounds.size.width
+			let height = ceil(headerHeight + paymentOptionsHeight + payButtonContainerHeight)
 			
 			return CGSize(width: width, height: height)
 		}
@@ -47,7 +54,18 @@ internal class PaymentContentViewController: BaseViewController {
 			super.preferredContentSize = newValue
 		}
 	}
-    
+	
+	internal override var headerStyle: NavigationBarStyle {
+		
+		var style = Theme.current.merchantHeaderStyle
+		if Process.shared.appearance == .windowed {
+			
+			style.backgroundColor = HexColor(tap_hex: "#ffffff")!
+		}
+		
+		return style
+	}
+	
     // MARK: Methods
 	
 	internal override func viewDidLoad() {
@@ -64,21 +82,16 @@ internal class PaymentContentViewController: BaseViewController {
 	}
 	
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        super.prepare(for: segue, sender: sender)
-        
-        if let merchantHeaderController = segue.destination as? MerchantInformationHeaderViewController {
+		
+		super.prepare(for: segue, sender: sender)
+		
+		if let paymentOptionsController = segue.destination as? PaymentOptionsViewController {
 			
-			self.headerViewController = merchantHeaderController
-            merchantHeaderController.delegate = self
-        }
-        else if let paymentOptionsController = segue.destination as? PaymentOptionsViewController {
-            
-            self.paymentOptionsViewController = paymentOptionsController
-        }
-    }
-    
-    internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
+			self.paymentOptionsViewController = paymentOptionsController
+		}
+	}
+	
+	internal override func performAdditionalAnimationsAfterKeyboardLayoutFinished() {
         
         self.paymentOptionsViewController?.performAdditionalAnimationsAfterKeyboardLayoutFinished()
     }
@@ -99,6 +112,11 @@ internal class PaymentContentViewController: BaseViewController {
             }
         }
     }
+	
+	internal override func close() {
+		
+		Process.shared.closePayment(with: .cancelled, fadeAnimation: false, force: false, completion: nil)
+	}
     
     // MARK: - Private -
     // MARK: Properties
@@ -118,33 +136,7 @@ internal class PaymentContentViewController: BaseViewController {
         }
     }
 	
-	private weak var headerViewController: BaseViewController?
     private weak var paymentOptionsViewController: BaseViewController?
-}
-
-// MARK: - MerchantInformationHeaderViewControllerDelegate
-extension PaymentContentViewController: MerchantInformationHeaderViewControllerDelegate {
-    
-    internal func merchantInformationHeaderViewControllerCloseButtonClicked(_ controller: MerchantInformationHeaderViewController) {
-        
-        Process.shared.closePayment(with: .cancelled, fadeAnimation: false, force: false, completion: nil)
-    }
-}
-
-// MARK: - NavigationContentViewController
-extension PaymentContentViewController: NavigationContentViewController {
-	
-	internal var contentTopOffset: CGFloat {
-		
-		if let frame = self.paymentOptionsContainerView?.frame {
-			
-			return self.view.convert(frame, to: self.view.window).origin.y
-		}
-		else {
-			
-			return 0.0
-		}
-	}
 }
 
 // MARK: - LoadingViewSupport
@@ -153,5 +145,79 @@ extension PaymentContentViewController: LoadingViewSupport {
 	internal var loadingViewContainer: UIView {
 		
 		return self.loadingContainerView ?? self.view
+	}
+}
+
+// MARK: - TapNavigationView.DataSource
+extension PaymentContentViewController: TapNavigationView.DataSource {
+	
+	internal func navigationViewCanGoBack(_ navigationView: TapNavigationView) -> Bool {
+		
+		return (self.navigationController?.viewControllers.count ?? 0) > 1
+	}
+	
+	internal func navigationViewIconPlaceholder(for navigationView: TapNavigationView) -> Image? {
+		
+		switch Process.shared.transactionMode {
+		
+		case .purchase, .authorizeCapture:
+			
+			if Process.shared.appearance == .windowed { return nil }
+			
+			if let placeholder = Theme.current.merchantHeaderStyle.iconStyle?.placeholder {
+				
+				return .ready(placeholder)
+			}
+			else {
+				
+				return nil
+			}
+			
+		default:
+			
+			return nil
+		}
+	}
+	
+	internal func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
+		
+		switch Process.shared.transactionMode {
+			
+		case .purchase, .authorizeCapture:
+			
+			if Process.shared.appearance == .windowed { return nil }
+			
+			if let logoURL = SettingsDataManager.shared.settings?.merchant.logoURL {
+				
+				return .remote(logoURL)
+			}
+			
+			return nil
+			
+		case .cardSaving:
+			
+			return nil
+		}
+	}
+	
+	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
+		
+		switch Process.shared.transactionMode {
+			
+		case .purchase, .authorizeCapture:
+			
+			if Process.shared.appearance == .fullscreen {
+				
+				return SettingsDataManager.shared.settings?.merchant.name
+			}
+			else {
+				
+				return LocalizationProvider.shared.localizedString(for: .payment_screen_title_payment)
+			}
+			
+		case .cardSaving:
+			
+			return LocalizationProvider.shared.localizedString(for: .payment_screen_title_card_saving)
+		}
 	}
 }

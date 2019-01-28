@@ -48,13 +48,6 @@ internal class CountrySelectionViewController: HeaderNavigatedViewControllerWith
         self.dataManager?.setFilter(text)
     }
     
-    internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
-        
-        super.headerNavigationViewLoaded(headerView)
-        
-        headerView.title = "Select Country"
-    }
-    
     // MARK: - Fileprivate -
     // MARK: Methods
     
@@ -89,6 +82,30 @@ internal class CountrySelectionViewController: HeaderNavigatedViewControllerWith
         
         self.delegate?.countriesSelectionViewControllerDidFinish(with: manager.selectedCountry, changed: manager.hasCountryChanged)
     }
+}
+
+// MARK: - TapNavigationView.DataSource
+extension CountrySelectionViewController: TapNavigationView.DataSource {
+	
+	internal func navigationViewCanGoBack(_ navigationView: TapNavigationView) -> Bool {
+		
+		return (self.navigationController?.viewControllers.count ?? 0) > 1
+	}
+	
+	internal func navigationViewIconPlaceholder(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
+		
+		return "Select Country"
+	}
 }
 
 // MARK: - UITableViewDataSource

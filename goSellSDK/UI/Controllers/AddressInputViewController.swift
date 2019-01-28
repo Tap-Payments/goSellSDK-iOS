@@ -32,13 +32,6 @@ internal class AddressInputViewController: HeaderNavigatedViewController {
         }
     }
     
-    internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
-        
-        super.headerNavigationViewLoaded(headerView)
-        
-        headerView.title = "Address"
-    }
-    
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -81,4 +74,28 @@ extension AddressInputViewController: UIScrollViewDelegate {
         guard scrollView == self.addressFieldsTableView else { return }
         self.updateHeaderShadowOpacity(with: scrollView.contentOffset.y)
     }
+}
+
+// MARK: - TapNavigationView.DataSource
+extension AddressInputViewController: TapNavigationView.DataSource {
+	
+	internal func navigationViewCanGoBack(_ navigationView: TapNavigationView) -> Bool {
+		
+		return (self.navigationController?.viewControllers.count ?? 0) > 1
+	}
+	
+	internal func navigationViewIconPlaceholder(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
+		
+		return "Address"
+	}
 }

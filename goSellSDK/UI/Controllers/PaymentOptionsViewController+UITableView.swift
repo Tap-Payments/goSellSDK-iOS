@@ -23,8 +23,8 @@ extension PaymentOptionsViewController: UIScrollViewDelegate {
     internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
 		DispatchQueue.main.async {
-			
-			MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(scrollView.contentOffset.y)
+	
+			PaymentContentViewController.tap_findInHierarchy()?.updateHeaderShadowOpacity(with: scrollView.contentOffset.y)
 		}
 	}
 }

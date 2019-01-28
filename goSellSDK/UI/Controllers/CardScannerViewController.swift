@@ -39,20 +39,6 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
     internal weak var delegate: CardScannerViewControllerDelegate?
     
     // MARK: Methods
-    
-    internal override func headerNavigationViewLoaded(_ headerView: TapNavigationView) {
-        
-        super.headerNavigationViewLoaded(headerView)
-		
-		headerView.iconImage = Theme.current.paymentOptionsCellStyle.card.scanIcon
-    }
-	
-	internal override func localizationChanged() {
-		
-		super.localizationChanged()
-		
-		self.headerNavigationView?.setLocalizedText(.card_scanning_screen_title)
-	}
 	
     // MARK: - Private -
     // MARK: Properties
@@ -71,6 +57,30 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
             self.scannerView?.allowFreelyRotatingCardGuide  = true
         }
     }
+}
+
+// MARK: - TapNavigationView.DataSource
+extension CardScannerViewController: TapNavigationView.DataSource {
+	
+	internal func navigationViewCanGoBack(_ navigationView: TapNavigationView) -> Bool {
+		
+		return (self.navigationController?.viewControllers.count ?? 0) > 1
+	}
+	
+	internal func navigationViewIconPlaceholder(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
+		
+		return .ready(Theme.current.paymentOptionsCellStyle.card.scanIcon)
+	}
+	
+	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
+		
+		return LocalizationProvider.shared.localizedString(for: .card_scanning_screen_title)
+	}
 }
 
 // MARK: - CardIOViewDelegate

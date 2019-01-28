@@ -41,6 +41,8 @@
 
 "currency_selection_screen_title" 	= "Выберите валюту";
 "card_scanning_screen_title"		= "Сканирование карты";
+"payment_screen_title_payment"		= "Оплата";
+"payment_screen_title_card_saving"	= "Введите данные карты";
 
 // MARK: Search Bar
 

@@ -41,6 +41,8 @@
 
 "currency_selection_screen_title" 	= "Select Currency";
 "card_scanning_screen_title"		= "Scanning Card";
+"payment_screen_title_payment"		= "Checkout";
+"payment_screen_title_card_saving"	= "Enter Card Details";
 
 // MARK: Search Bar
 
