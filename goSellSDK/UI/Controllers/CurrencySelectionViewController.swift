@@ -61,16 +61,7 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
 	internal override func localizationChanged() {
 		
 		super.localizationChanged()
-		
-		self.headerNavigationView?.setLocalizedText(.currency_selection_screen_title)
 		self.dataManager?.updateLocalization()
-	}
-	
-	internal override func themeChanged() {
-		
-		super.themeChanged()
-		
-		
 	}
     
     // MARK: - Fileprivate -
@@ -128,6 +119,30 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
             self.pop()
         }
     }
+}
+
+// MARK: - TapNavigationView.DataSource
+extension CurrencySelectionViewController: TapNavigationView.DataSource {
+	
+	internal func navigationViewCanGoBack(_ navigationView: TapNavigationView) -> Bool {
+		
+		return (self.navigationController?.viewControllers.count ?? 0) > 1
+	}
+	
+	internal func navigationViewIconPlaceholder(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
+		
+		return nil
+	}
+	
+	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
+		
+		return LocalizationProvider.shared.localizedString(for: .currency_selection_screen_title)
+	}
 }
 
 // MARK: - UITableViewDataSource

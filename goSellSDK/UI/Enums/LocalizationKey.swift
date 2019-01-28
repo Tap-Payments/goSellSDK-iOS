@@ -43,6 +43,8 @@ internal enum LocalizationKey: String {
 	
 	case currency_selection_screen_title	= "currency_selection_screen_title"
 	case card_scanning_screen_title			= "card_scanning_screen_title"
+	case payment_screen_title_payment		= "payment_screen_title_payment"
+	case payment_screen_title_card_saving	= "payment_screen_title_card_saving"
 	
 	// MARK: Search Bar
 	

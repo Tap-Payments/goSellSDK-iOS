@@ -518,11 +518,15 @@ internal extension Process {
 			
 			if cardPaymentOptions.count > 0 {
 				
-				let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-															 identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
-				result.append(emptyCellModel)
+				if Process.shared.appearance == .fullscreen {
+					
+					let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+																 identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
+					result.append(emptyCellModel)
+				}
 				
-				let cardOptionsCellModel = CardInputTableViewCellModel(indexPath: self.nextIndexPath(for: result), paymentOptions: cardPaymentOptions)
+				let cardOptionsCellModel = CardInputTableViewCellModel(indexPath:		self.nextIndexPath(for: result),
+																	   paymentOptions:	cardPaymentOptions)
 				
 				result.append(cardOptionsCellModel)
 			}
@@ -545,10 +549,13 @@ internal extension Process {
 			
 			if cardPaymentOptions.count > 0 {
 				
-				let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenWebAndCardOptionsIdentifier)
-				emptyModel.indexPath = self.nextIndexPath(for: result)
-				
-				result.append(emptyModel)
+				if Process.shared.appearance == .fullscreen {
+					
+					let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenWebAndCardOptionsIdentifier)
+					emptyModel.indexPath = self.nextIndexPath(for: result)
+					
+					result.append(emptyModel)
+				}
 				
 				let cardModel = self.cardPaymentOptionsCellModel
 				cardModel.indexPath = self.nextIndexPath(for: result)

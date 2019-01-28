@@ -232,7 +232,7 @@ extension PaymentOptionsViewController: PopupOverlaySupport {
         return {
             
             let overlapping = operation == .presentation ? self.view.bounds.height : 0.0
-            MerchantInformationHeaderViewController.tap_findInHierarchy()?.updateBackgroundOpacityBasedOnScrollContentOverlapping(overlapping)
+			PaymentContentViewController.tap_findInHierarchy()?.updateHeaderShadowOpacity(with: overlapping)
         }
     }
 }

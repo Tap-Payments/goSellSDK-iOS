@@ -69,13 +69,10 @@
                                     <segue destination="FQa-YX-yrw" kind="embed" id="ZNO-Es-KPw"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-Cg-nmV">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlE-0d-Y0s" customClass="TapNavigationView" customModule="goSellSDK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="XgQ-HN-1pH" kind="embed" id="N1R-aP-ZDF"/>
-                                </connections>
-                            </containerView>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-mu-d3E">
                                 <rect key="frame" x="0.0" y="718" width="375" height="94"/>
                                 <subviews>
@@ -103,28 +100,29 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="uzK-Be-2h9" secondAttribute="trailing" id="0dy-3n-5Qj"/>
+                            <constraint firstItem="Q54-VW-1wv" firstAttribute="top" secondItem="wlE-0d-Y0s" secondAttribute="bottom" id="5A0-tc-iTJ"/>
                             <constraint firstItem="Ilc-mu-d3E" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="5ut-ko-auU"/>
-                            <constraint firstAttribute="trailing" secondItem="jhd-Cg-nmV" secondAttribute="trailing" id="FIa-eX-4ac"/>
                             <constraint firstItem="Q54-VW-1wv" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="Fg2-LP-Fpu"/>
                             <constraint firstAttribute="trailing" secondItem="Ilc-mu-d3E" secondAttribute="trailing" id="HbW-1V-WOW"/>
+                            <constraint firstItem="wlE-0d-Y0s" firstAttribute="top" secondItem="5S9-1v-ZoR" secondAttribute="top" id="JIc-u6-JrU"/>
                             <constraint firstItem="06k-K0-N3y" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="KXe-0e-dsI"/>
                             <constraint firstAttribute="trailing" secondItem="06k-K0-N3y" secondAttribute="trailing" id="L9X-UV-X1E"/>
-                            <constraint firstItem="uzK-Be-2h9" firstAttribute="top" secondItem="jhd-Cg-nmV" secondAttribute="bottom" id="RLN-vQ-mPm"/>
+                            <constraint firstItem="wlE-0d-Y0s" firstAttribute="bottom" secondItem="0hf-mb-iOV" secondAttribute="bottom" constant="66" id="OuZ-i9-xSh"/>
+                            <constraint firstItem="uzK-Be-2h9" firstAttribute="top" secondItem="wlE-0d-Y0s" secondAttribute="bottom" id="QWC-k8-q7j"/>
                             <constraint firstAttribute="trailing" secondItem="Q54-VW-1wv" secondAttribute="trailing" id="SYZ-TJ-msG"/>
+                            <constraint firstItem="wlE-0d-Y0s" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="USL-q0-Qk3"/>
                             <constraint firstAttribute="bottom" secondItem="06k-K0-N3y" secondAttribute="bottom" id="VUE-MO-wtp"/>
                             <constraint firstItem="uzK-Be-2h9" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="Xid-bp-kNP"/>
-                            <constraint firstItem="jhd-Cg-nmV" firstAttribute="top" secondItem="5S9-1v-ZoR" secondAttribute="top" id="YZQ-h1-CsF"/>
                             <constraint firstItem="Ilc-mu-d3E" firstAttribute="top" secondItem="Q54-VW-1wv" secondAttribute="bottom" id="fx3-ao-jnm"/>
-                            <constraint firstItem="jhd-Cg-nmV" firstAttribute="bottom" secondItem="0hf-mb-iOV" secondAttribute="bottom" constant="66" id="grM-h2-0WC"/>
-                            <constraint firstItem="jhd-Cg-nmV" firstAttribute="leading" secondItem="5S9-1v-ZoR" secondAttribute="leading" id="kg0-ak-COX"/>
-                            <constraint firstItem="Q54-VW-1wv" firstAttribute="top" secondItem="jhd-Cg-nmV" secondAttribute="bottom" id="lRF-zh-1Kj"/>
                             <constraint firstItem="L0E-Nd-yE1" firstAttribute="top" secondItem="Ilc-mu-d3E" secondAttribute="top" priority="999" constant="60" id="qS4-3Y-M38"/>
+                            <constraint firstAttribute="trailing" secondItem="wlE-0d-Y0s" secondAttribute="trailing" id="uWl-DD-TIX"/>
                             <constraint firstItem="06k-K0-N3y" firstAttribute="top" secondItem="Ilc-mu-d3E" secondAttribute="bottom" id="wcs-SZ-VX3"/>
                             <constraint firstAttribute="bottom" secondItem="uzK-Be-2h9" secondAttribute="bottom" id="wik-QZ-jfK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aG3-A1-a3g"/>
                     <connections>
+                        <outlet property="headerNavigationView" destination="wlE-0d-Y0s" id="FeN-xn-7dw"/>
                         <outlet property="loadingContainerView" destination="uzK-Be-2h9" id="NyP-Rn-DSt"/>
                         <outlet property="payButtonContainerView" destination="Ilc-mu-d3E" id="ep9-XP-wXk"/>
                         <outlet property="payButtonUI" destination="NoP-JX-Gmp" id="u9b-Yx-RpZ"/>
@@ -1120,7 +1118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LzQ-2a-D6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1452" y="624"/>
+            <point key="canvasLocation" x="1102" y="603"/>
         </scene>
         <!--Address Input View Controller-->
         <scene sceneID="DQx-BL-CFr">
@@ -2020,90 +2018,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1870" y="1347"/>
-        </scene>
-        <!--Merchant Information Header View Controller-->
-        <scene sceneID="YAF-wo-AZg">
-            <objects>
-                <viewController id="XgQ-HN-1pH" customClass="MerchantInformationHeaderViewController" customModule="goSellSDK" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uno-r9-2yj"/>
-                        <viewControllerLayoutGuide type="bottom" id="CEG-T1-qcr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="36V-Ua-Okv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkQ-cn-nTD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCi-WL-rg8">
-                                <rect key="frame" x="0.0" y="44" width="375" height="66"/>
-                                <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e07-h2-OIV" customClass="LoadingImageView" customModule="goSellSDK">
-                                        <rect key="frame" x="10" y="10" width="46" height="46"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="e07-h2-OIV" secondAttribute="height" multiplier="1:1" id="qfh-uD-j5a"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
-                                                <real key="value" value="23"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mol-yB-0EV">
-                                        <rect key="frame" x="66" y="22.666666666666671" width="243" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pV0-Qv-9ro">
-                                        <rect key="frame" x="319" y="10" width="46" height="46"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="pV0-Qv-9ro" secondAttribute="height" id="xeL-YZ-QMy"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="closeButtonTouchUpInside:" destination="XgQ-HN-1pH" eventType="touchUpInside" id="ML4-HT-Cwu"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="pV0-Qv-9ro" firstAttribute="top" secondItem="aCi-WL-rg8" secondAttribute="top" constant="10" id="47C-js-AHW"/>
-                                    <constraint firstItem="e07-h2-OIV" firstAttribute="top" secondItem="aCi-WL-rg8" secondAttribute="top" constant="10" id="DBl-pU-XgQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="pV0-Qv-9ro" secondAttribute="bottom" constant="10" id="Jb3-Qu-9g7"/>
-                                    <constraint firstItem="pV0-Qv-9ro" firstAttribute="leading" secondItem="Mol-yB-0EV" secondAttribute="trailing" constant="10" id="Oqb-9c-TbB"/>
-                                    <constraint firstItem="Mol-yB-0EV" firstAttribute="leading" secondItem="e07-h2-OIV" secondAttribute="trailing" constant="10" id="bFT-4b-bVo"/>
-                                    <constraint firstAttribute="bottom" secondItem="e07-h2-OIV" secondAttribute="bottom" constant="10" id="fc1-Ax-xD1"/>
-                                    <constraint firstAttribute="trailing" secondItem="pV0-Qv-9ro" secondAttribute="trailing" constant="10" id="kXn-Da-mVH"/>
-                                    <constraint firstItem="Mol-yB-0EV" firstAttribute="centerY" secondItem="aCi-WL-rg8" secondAttribute="centerY" id="rBl-KV-4vi"/>
-                                    <constraint firstItem="e07-h2-OIV" firstAttribute="leading" secondItem="aCi-WL-rg8" secondAttribute="leading" constant="10" id="yIS-xa-c6P"/>
-                                    <constraint firstAttribute="height" constant="66" id="zqq-BE-oeA"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="VkQ-cn-nTD" firstAttribute="leading" secondItem="36V-Ua-Okv" secondAttribute="leading" id="FJU-sT-kQG"/>
-                            <constraint firstItem="VkQ-cn-nTD" firstAttribute="top" secondItem="36V-Ua-Okv" secondAttribute="top" id="GWt-sg-BZe"/>
-                            <constraint firstItem="aCi-WL-rg8" firstAttribute="leading" secondItem="36V-Ua-Okv" secondAttribute="leading" id="InQ-nz-cHE"/>
-                            <constraint firstAttribute="bottom" secondItem="VkQ-cn-nTD" secondAttribute="bottom" id="Llp-zy-6yb"/>
-                            <constraint firstAttribute="trailing" secondItem="aCi-WL-rg8" secondAttribute="trailing" id="Uh5-Jv-Eat"/>
-                            <constraint firstAttribute="bottom" secondItem="aCi-WL-rg8" secondAttribute="bottom" id="fzP-KM-4yb"/>
-                            <constraint firstAttribute="trailing" secondItem="VkQ-cn-nTD" secondAttribute="trailing" id="xSh-Cr-qec"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="backgroundView" destination="VkQ-cn-nTD" id="RcO-xI-9Rh"/>
-                        <outlet property="closeButton" destination="pV0-Qv-9ro" id="tHD-MU-haD"/>
-                        <outlet property="iconView" destination="e07-h2-OIV" id="o8T-Np-anI"/>
-                        <outlet property="titleLabel" destination="Mol-yB-0EV" id="NaQ-Ab-K4R"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7T3-Cq-jxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="767" y="440"/>
         </scene>
         <!--Web Payment Content View Controller-->
         <scene sceneID="2Ex-hr-r6l">
