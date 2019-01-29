@@ -27,7 +27,10 @@ import enum TapCardValidator.CardBrand
     
     /// Card brand.
     public let brand: CardBrand
-    
+	
+	/// Card fingerprint.
+	public let fingerprint: String?
+	
     // MARK: Methods
     
     /// Checks whether two saved cards are equal.
@@ -37,8 +40,8 @@ import enum TapCardValidator.CardBrand
     ///   - rhs: Ride side.
     /// - Returns: `true` if two saved cards are equal, `false` otherwise.
     public static func == (lhs: SavedCard, rhs: SavedCard) -> Bool {
-        
-        return lhs.lastFourDigits == rhs.lastFourDigits && lhs.expiry == rhs.expiry && lhs.firstSixDigits == rhs.firstSixDigits
+		
+		return lhs.fingerprint == rhs.fingerprint
     }
     
     // MARK: - Internal -
@@ -75,6 +78,7 @@ import enum TapCardValidator.CardBrand
         case paymentOptionIdentifier    = "payment_method_id"
         case expiry                     = "expiry"
         case brand                      = "brand"
+		case fingerprint				= "fingerprint"
         case cardholderName             = "name"
         case firstSixDigits             = "first_six"
         case currency                   = "currency"
@@ -85,7 +89,7 @@ import enum TapCardValidator.CardBrand
     
     // MARK: Methods
     
-    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int) {
+	private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, fingerprint: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int) {
         
         self.identifier                 = identifier
         self.object                     = object
@@ -95,6 +99,7 @@ import enum TapCardValidator.CardBrand
         self.paymentOptionIdentifier    = paymentOptionIdentifier
         self.expiry                     = expiry
         self.cardholderName             = cardholderName
+		self.fingerprint				= fingerprint
         self.currency                   = currency
         self.scheme                     = scheme
         self.supportedCurrencies        = supportedCurrencies
@@ -111,14 +116,15 @@ extension SavedCard: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let identifier          = try container.decodeIfPresent(String.self,     forKey: .identifier)
-        let object              = try container.decode(String.self,     forKey: .object)
-        let firstSixDigits      = try container.decode(String.self,     forKey: .firstSixDigits)
-        let lastFourDigits      = try container.decode(String.self,     forKey: .lastFourDigits)
+        let identifier          = try container.decodeIfPresent(String.self,     		forKey: .identifier)
+        let object              = try container.decode(String.self,     				forKey: .object)
+        let firstSixDigits      = try container.decode(String.self,     				forKey: .firstSixDigits)
+        let lastFourDigits      = try container.decode(String.self,     				forKey: .lastFourDigits)
         let brand               = try container.decodeIfPresent(CardBrand.self,         forKey: .brand) ?? .unknown
-        let paymentOptionID     = try container.decodeIfPresent(String.self,     forKey: .paymentOptionIdentifier)
+        let paymentOptionID     = try container.decodeIfPresent(String.self,     		forKey: .paymentOptionIdentifier)
         let expiry              = try container.decodeIfPresent(ExpirationDate.self,    forKey: .expiry)
         let cardholderName      = try container.decodeIfPresent(String.self,            forKey: .cardholderName)
+		let fingerprint			= try container.decodeIfPresent(String.self,			forKey: .fingerprint)
         let currency            = try container.decodeIfPresent(Currency.self,          forKey: .currency)
         let scheme              = try container.decodeIfPresent(CardScheme.self,        forKey: .scheme)
         let supportedCurrencies = try container.decodeIfPresent([Currency].self,        forKey: .supportedCurrencies) ?? []
@@ -131,7 +137,8 @@ extension SavedCard: Decodable {
                   brand:                    brand,
                   paymentOptionIdentifier:  paymentOptionID,
                   expiry:                   expiry,
-                  cardholderName:           cardholderName,
+				  cardholderName:           cardholderName,
+				  fingerprint:				fingerprint,
                   currency:                 currency,
                   scheme:                   scheme,
                   supportedCurrencies:      supportedCurrencies,

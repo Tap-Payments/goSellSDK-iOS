@@ -231,6 +231,9 @@
 	/// Customer already exists.
 	case customerAlreadyExists					= 8301
 	
+	/// Card already exists.
+	case cardAlreadyExists						= 8302
+	
     /// Unknown error.
     case unknown                                = 9999
 }

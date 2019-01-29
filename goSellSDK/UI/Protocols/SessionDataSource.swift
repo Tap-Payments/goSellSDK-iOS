@@ -17,8 +17,13 @@
 	/// SDK appearance mode. If not implemented it will be treated as `default`.
 	@objc optional var appearance: SDKAppearanceMode { get }
 	
-	/// Defines if success/failure popup appear after the transaction finishes.
+	/// Defines if success/failure popup appears after the transaction finishes.
+	/// Default is `true`.
 	@objc optional var showsStatusPopups: Bool { get }
+	
+	/// Defines if same card can be saved more than once.
+	/// Default is `true`.
+	@objc optional var allowsToSaveSameCardMoreThanOnce: Bool { get }
 	
     /// Payment/Authorization amount.
     /// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` is preferred and amount is calculated from them.

@@ -110,6 +110,7 @@ internal class ErrorDataManager {
         case .invalidCurrency:              return .invalidCurrency
         case .invalidCustomerInfo:          return .missingCustomerIDOrCustomerInformation
 		case .customerAlreadyExists:		return .customerAlreadyExists
+		case .cardAlreadyExists:			return .cardAlreadyExists
         case .invalidEmail:                 return .invalidEmailAddress
         case .invalidISDNumber:             return .invalidPhoneNumberCountryCode
         case .invalidPhoneNumber:           return .invalidPhoneNumber
@@ -210,7 +211,8 @@ internal class ErrorDataManager {
              .captureAmountExceeds,
              .invalidCountryCode,
              .serialization,
-             .invalidEnumValue:
+             .invalidEnumValue,
+			 .cardAlreadyExists:
             
             return .alert
             

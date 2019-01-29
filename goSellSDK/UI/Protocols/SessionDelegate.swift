@@ -38,6 +38,11 @@
     ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
     @objc optional func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol)
 	
+	/// Notifies the receiver that the card was saved.
+	///
+	/// - Parameters:
+	///   - cardVerification: CardVerification object with the details.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc optional func cardSaved(_ cardVerification: CardVerification, on session: SessionProtocol)
 	
 	/// Notifies the receiver that card saving process has failed.

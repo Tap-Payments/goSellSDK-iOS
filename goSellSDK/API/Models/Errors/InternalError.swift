@@ -13,6 +13,7 @@ internal enum InternalError: Int {
     case invalidCurrency
     case invalidCustomerInfo
 	case customerAlreadyExists
+	case cardAlreadyExists
     case invalidEmail
     case invalidISDNumber
     case invalidPhoneNumber
