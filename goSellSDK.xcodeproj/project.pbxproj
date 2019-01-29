@@ -208,7 +208,6 @@
 		14DF99F82147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		14DF99F92147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
-		760F8390F301AC147A650FA4 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC7F2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC802100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */; };
@@ -399,8 +398,6 @@
 		A468774820DC1F8400123391 /* InstantiatableFromStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468774620DC1F8300123391 /* InstantiatableFromStoryboard.swift */; };
 		A468774A20DC20C200123391 /* PopupAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468774920DC20C200123391 /* PopupAnimationController.swift */; };
 		A468774B20DC20C200123391 /* PopupAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468774920DC20C200123391 /* PopupAnimationController.swift */; };
-		A4694B1C211B47EC00B335F1 /* LocalizationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4694B19211B47EC00B335F1 /* LocalizationStorage.swift */; };
-		A4694B1D211B47EC00B335F1 /* LocalizationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4694B19211B47EC00B335F1 /* LocalizationStorage.swift */; };
 		A4694B1E211B47EC00B335F1 /* ErrorActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4694B1A211B47EC00B335F1 /* ErrorActionExecutor.swift */; };
 		A4694B1F211B47EC00B335F1 /* ErrorActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4694B1A211B47EC00B335F1 /* ErrorActionExecutor.swift */; };
 		A4694B20211B47EC00B335F1 /* ErrorDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4694B1B211B47EC00B335F1 /* ErrorDataManager.swift */; };
@@ -1000,7 +997,6 @@
 		A468773B20DC1F1600123391 /* StatusPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPopupViewController.swift; sourceTree = "<group>"; };
 		A468774620DC1F8300123391 /* InstantiatableFromStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantiatableFromStoryboard.swift; sourceTree = "<group>"; };
 		A468774920DC20C200123391 /* PopupAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupAnimationController.swift; sourceTree = "<group>"; };
-		A4694B19211B47EC00B335F1 /* LocalizationStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationStorage.swift; sourceTree = "<group>"; };
 		A4694B1A211B47EC00B335F1 /* ErrorActionExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorActionExecutor.swift; sourceTree = "<group>"; };
 		A4694B1B211B47EC00B335F1 /* ErrorDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDataManager.swift; sourceTree = "<group>"; };
 		A4694B22211B480600B335F1 /* TrackingURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingURL.swift; sourceTree = "<group>"; };
@@ -1206,7 +1202,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */,
-				760F8390F301AC147A650FA4 /* Pods_goSellSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1920,7 +1915,6 @@
 				A447EB012110542700099C07 /* InterfaceOrientationManager.swift */,
 				149597B721F67C4500DFA0A2 /* InternalSession.swift */,
 				1444698021594A4D009849DC /* LocalizationProvider.swift */,
-				A4694B19211B47EC00B335F1 /* LocalizationStorage.swift */,
 				A424879820E4F396001C4FAF /* OTPTimerDataManager.swift */,
 				149597C021F67C8800DFA0A2 /* SessionDelegateProxy.swift */,
 				A43A0A6620DA4A82006B39F1 /* WebPaymentURLDecision.swift */,
@@ -2433,7 +2427,6 @@
 				A4F7105220B553670064FE4B /* CountryTableViewCellModel.swift in Sources */,
 				A4571F0E20FF54D2006D96DC /* PopupPresentationAnimationController.swift in Sources */,
 				A4A982B520D2B34F00770690 /* SourcePaymentType.swift in Sources */,
-				A4694B1C211B47EC00B335F1 /* LocalizationStorage.swift in Sources */,
 				A4A982AB20D2B34F00770690 /* AddressType.swift in Sources */,
 				1495974D21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */,
 				1495977321F5CA8700DFA0A2 /* APIClient+Customers.swift in Sources */,
@@ -2641,7 +2634,6 @@
 				A4F7103720B550AD0064FE4B /* AddressFieldsDataManager.swift in Sources */,
 				A4571F0420FE2367006D96DC /* BillingAddressField+Additions.swift in Sources */,
 				A4BD8D5D20A1FB3D00EFF2CE /* APIClient.swift in Sources */,
-				A4694B1D211B47EC00B335F1 /* LocalizationStorage.swift in Sources */,
 				A4BD8D5E20A1FB3D00EFF2CE /* APIClient+Charges.swift in Sources */,
 				A4BD8D5F20A1FB3D00EFF2CE /* APIClient+Initialization.swift in Sources */,
 				A4A982B620D2B34F00770690 /* SourcePaymentType.swift in Sources */,

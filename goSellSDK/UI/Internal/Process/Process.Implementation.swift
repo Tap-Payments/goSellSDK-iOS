@@ -632,6 +632,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			
 			self.dataManager.callChargeOrAuthorizeAPI(with:                             source,
 													  paymentOption:                    paymentOption,
+													  token:							nil,
 													  cardBIN:                          nil,
 													  saveCard:                         nil,
 													  loader:                           loaderContainer,

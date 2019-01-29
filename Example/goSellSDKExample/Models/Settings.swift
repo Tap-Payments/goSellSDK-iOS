@@ -20,15 +20,17 @@ internal final class Settings: Encodable {
     // MARK: - Internal -
     // MARK: Properties
     
-	internal static let `default` = Settings(sdkLanguage:		Language(localeIdentifier: Locale.TapLocaleIdentifier.en),
-											 sdkMode:			.sandbox,
-											 appearanceMode:	.default,
-											 transactionMode:	.purchase,
-											 isThreeDSecure:	false,
-											 currency:			try! Currency(isoCode: "kwd"),
-											 customer:			nil,
-											 shippingList:		[],
-											 taxes:				[])
+	internal static let `default` = Settings(sdkLanguage:					Language(localeIdentifier: Locale.TapLocaleIdentifier.en),
+											 sdkMode:						.sandbox,
+											 appearanceMode:				.default,
+											 transactionMode:				.purchase,
+											 isThreeDSecure:				false,
+											 canSaveSameCardMultipleTimes:	true,
+											 showsStatusPopup:				true,
+											 currency:						try! Currency(isoCode: "kwd"),
+											 customer:						nil,
+											 shippingList:					[],
+											 taxes:							[])
     
     internal var currency: Currency
     
@@ -44,38 +46,56 @@ internal final class Settings: Encodable {
 	
 	internal var isThreeDSecure: Bool
 	
+	internal var canSaveSameCardMultipleTimes: Bool
+	
+	internal var showsStatusPopup: Bool
+	
     internal var shippingList: [Shipping]
     
     internal var taxes: [Tax]
     
     // MARK: Methods
     
-	internal init(sdkLanguage: Language, sdkMode: SDKMode, appearanceMode: SDKAppearanceMode, transactionMode: TransactionMode, isThreeDSecure: Bool, currency: Currency, customer: EnvironmentCustomer?, shippingList: [Shipping], taxes: [Tax]) {
+	internal init(sdkLanguage:					Language,
+				  sdkMode:						SDKMode,
+				  appearanceMode:				SDKAppearanceMode,
+				  transactionMode:				TransactionMode,
+				  isThreeDSecure:				Bool,
+				  canSaveSameCardMultipleTimes:	Bool,
+				  showsStatusPopup:				Bool,
+				  currency:						Currency,
+				  customer:						EnvironmentCustomer?,
+				  shippingList:					[Shipping],
+				  taxes:						[Tax]) {
 		
-		self.sdkLanguage 		= sdkLanguage
-        self.sdkMode            = sdkMode
-		self.appearanceMode		= appearanceMode
-        self.transactionMode    = transactionMode
-		self.isThreeDSecure		= isThreeDSecure
-        self.currency           = currency
-        self.customer           = customer
-        self.shippingList       = shippingList
-        self.taxes              = taxes
+		self.sdkLanguage 					= sdkLanguage
+        self.sdkMode            			= sdkMode
+		self.appearanceMode					= appearanceMode
+        self.transactionMode    			= transactionMode
+		self.isThreeDSecure					= isThreeDSecure
+		self.canSaveSameCardMultipleTimes	= canSaveSameCardMultipleTimes
+		self.showsStatusPopup				= showsStatusPopup
+        self.currency           			= currency
+        self.customer           			= customer
+        self.shippingList       			= shippingList
+        self.taxes              			= taxes
     }
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
 		
-		case sdkLanguage		= "sdk_language"
-        case sdkMode            = "sdk_mode"
-		case appearanceMode		= "appearance_mode"
-        case transactionMode    = "mode"
-		case isThreeDSecure		= "3d_secure"
-        case currency           = "currency"
-        case customer           = "customer"
-        case shippingList       = "shippingList"
-        case taxes              = "taxes"
+		case sdkLanguage					= "sdk_language"
+        case sdkMode            			= "sdk_mode"
+		case appearanceMode					= "appearance_mode"
+        case transactionMode    			= "mode"
+		case isThreeDSecure					= "3d_secure"
+		case canSaveSameCardMultipleTimes	= "save_same_card_multiple_times"
+		case showsStatusPopup				= "shows_status_popup"
+        case currency           			= "currency"
+        case customer           			= "customer"
+        case shippingList       			= "shippingList"
+        case taxes              			= "taxes"
     }
 }
 
@@ -86,15 +106,17 @@ extension Settings: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
 		
-		let sdkLanguage		= try container.decodeIfPresent(Language.self, forKey: .sdkLanguage) ?? Language(localeIdentifier: goSellSDK.language)
-        let sdkMode         = try container.decodeIfPresent(SDKMode.self, forKey: .sdkMode) ?? Settings.default.sdkMode
-		let appearanceMode	= try container.decodeIfPresent(SDKAppearanceMode.self, forKey: .appearanceMode) ?? Settings.default.appearanceMode
-        let transactionMode = try container.decode(TransactionMode.self, forKey: .transactionMode)
-		let isThreeDSecure	= try container.decodeIfPresent(Bool.self, forKey: .isThreeDSecure) ?? false
-        let currency        = try container.decode(Currency.self, forKey: .currency)
-        var envCustomer     = try container.decodeIfPresent(EnvironmentCustomer.self, forKey: .customer)
-        let shippingList    = try container.decode([Shipping].self, forKey: .shippingList)
-        let taxes           = try container.decode([Tax].self, forKey: .taxes)
+		let sdkLanguage					= try container.decodeIfPresent(Language.self, forKey: .sdkLanguage) ?? Language(localeIdentifier: goSellSDK.language)
+        let sdkMode         			= try container.decodeIfPresent(SDKMode.self, forKey: .sdkMode) ?? Settings.default.sdkMode
+		let appearanceMode				= try container.decodeIfPresent(SDKAppearanceMode.self, forKey: .appearanceMode) ?? Settings.default.appearanceMode
+        let transactionMode 			= try container.decode(TransactionMode.self, forKey: .transactionMode)
+		let isThreeDSecure				= try container.decodeIfPresent(Bool.self, forKey: .isThreeDSecure) ?? Settings.default.isThreeDSecure
+		let canSaveCardMultipleTimes	= try container.decodeIfPresent(Bool.self, forKey: .canSaveSameCardMultipleTimes) ?? Settings.default.canSaveSameCardMultipleTimes
+		let showsStatusPopup			= try container.decodeIfPresent(Bool.self, forKey: .showsStatusPopup) ?? Settings.default.showsStatusPopup
+        let currency        			= try container.decode(Currency.self, forKey: .currency)
+        var envCustomer     			= try container.decodeIfPresent(EnvironmentCustomer.self, forKey: .customer)
+        let shippingList    			= try container.decode([Shipping].self, forKey: .shippingList)
+        let taxes           			= try container.decode([Tax].self, forKey: .taxes)
         
         if envCustomer == nil {
             
@@ -121,7 +143,17 @@ extension Settings: Decodable {
             }
         }
         
-		self.init(sdkLanguage: sdkLanguage, sdkMode: sdkMode, appearanceMode: appearanceMode, transactionMode: transactionMode, isThreeDSecure: isThreeDSecure, currency: currency, customer: envCustomer, shippingList: shippingList, taxes: taxes)
+		self.init(sdkLanguage:					sdkLanguage,
+				  sdkMode:						sdkMode,
+				  appearanceMode:				appearanceMode,
+				  transactionMode:				transactionMode,
+				  isThreeDSecure:				isThreeDSecure,
+				  canSaveSameCardMultipleTimes:	canSaveCardMultipleTimes,
+				  showsStatusPopup:				showsStatusPopup,
+				  currency:						currency,
+				  customer:						envCustomer,
+				  shippingList:					shippingList,
+				  taxes:						taxes)
     }
 }
 

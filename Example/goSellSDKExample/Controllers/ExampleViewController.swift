@@ -258,7 +258,17 @@ extension ExampleViewController: SessionDataSource {
         
         return self.paymentSettings.isThreeDSecure
     }
-    
+	
+	internal var allowsToSaveSameCardMoreThanOnce: Bool {
+		
+		return self.paymentSettings.canSaveSameCardMultipleTimes
+	}
+	
+	internal var showsStatusPopups: Bool {
+		
+		return self.paymentSettings.showsStatusPopup
+	}
+	
     internal var receiptSettings: Receipt? {
         
         return Receipt(email: true, sms: true)
