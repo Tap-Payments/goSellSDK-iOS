@@ -129,11 +129,8 @@ internal class ErrorDataManager {
 			
 			if action.contains(.alert) {
 				
-				let titleKey = LocalizationStorage.alertTitleKey(for: errorDetail.code)
-				let messageKey = LocalizationStorage.alertMessageKey(for: errorDetail.code)
-				
-				let alertTitle = LocalizationStorage.localizedString(for: titleKey)
-				let alertMessage = LocalizationStorage.localizedString(for: messageKey)
+				let alertTitle = LocalizationProvider.shared.localizedErrorTitle(for: errorDetail.code)
+				let alertMessage = LocalizationProvider.shared.localizedErrorMessage(for: errorDetail.code)
 				
 				let localCompletion: TypeAlias.BooleanClosure  = { (retryClicked) in
 					

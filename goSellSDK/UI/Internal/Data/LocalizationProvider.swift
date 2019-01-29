@@ -47,6 +47,28 @@ internal final class LocalizationProvider {
 		return self.selectedLanguageBundle.localizedString(forKey: key.rawValue, value: nil, table: nil)
 	}
 	
+	internal func localizedErrorTitle(for error: ErrorCode) -> String {
+		
+		guard let key = self.alertTitleKey(for: error) else {
+			
+			print("There is no localization error title for error \(error.rawValue). Please report this problem to developer.")
+			return self.localizedString(for: .alert_error_9999_title)
+		}
+		
+		return self.localizedString(for: key)
+	}
+	
+	internal func localizedErrorMessage(for error: ErrorCode) -> String {
+		
+		guard let key = self.alertMessageKey(for: error) else {
+			
+			print("There is no localization error message for error \(error.rawValue). Please report this problem to developer.")
+			return self.localizedString(for: .alert_error_9999_message)
+		}
+		
+		return self.localizedString(for: key)
+	}
+	
 	// MARK: - Private -
 	
 	private struct Constants {
@@ -105,6 +127,18 @@ internal final class LocalizationProvider {
 	private func updateResponderChainInputViewLayoutDirection()  {
 		
 		TapResponderChainInputView.globalSettings.hasRTLLayout = self.layoutDirection == .rightToLeft
+	}
+	
+	private func alertTitleKey(for error: ErrorCode) -> LocalizationKey? {
+		
+		let raw = "alert_error_\(error.rawValue)_title"
+		return LocalizationKey(rawValue: raw)
+	}
+	
+	private func alertMessageKey(for error: ErrorCode) -> LocalizationKey? {
+		
+		let raw = "alert_error_\(error.rawValue)_message"
+		return LocalizationKey(rawValue: raw)
 	}
 }
 

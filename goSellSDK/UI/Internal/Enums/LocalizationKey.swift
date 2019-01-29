@@ -241,6 +241,9 @@ internal enum LocalizationKey: String {
 	case alert_error_8200_message 	= "alert_error_8200_message"
 	case alert_error_8200_title 	= "alert_error_8200_title"
 	
+	case alert_error_8302_message	= "alert_error_8302_message";
+	case alert_error_8302_title		= "alert_error_8302_title";
+	
 	case alert_error_9999_message	= "alert_error_9999_message"
 	case alert_error_9999_title 	= "alert_error_9999_title"
 	
