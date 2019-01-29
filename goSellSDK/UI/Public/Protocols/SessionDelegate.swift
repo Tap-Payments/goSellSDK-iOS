@@ -7,37 +7,42 @@
 
 /// Payment delegate.
 @objc public protocol SessionDelegate: class, NSObjectProtocol {
-    
-    /// Notifies the receiver that payment has succeed, passing `charge` and `session` which has initiated payment as arguments.
-    ///
-    /// - Parameters:
-    ///   - charge: Successful charge object.
-    ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-    @objc optional func paymentSucceed(_ charge: Charge, on session: SessionProtocol)
-    
-    /// Notifies the receiver that authorization has succeed, passing `authorize` and `session` which has initiated authorization as arguments.
-    ///
-    /// - Parameters:
-    ///   - authorize: Successful authorization object.
-    ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-    @objc optional func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol)
-    
-    /// Notifies the receiver that charge has failed, passing `session` which has initiated the payment.
-    ///
-    /// - Parameters:
-    ///   - charge: Charge that has failed (if reached the stage of charging).
-    ///   - error: Error that has occured.
-    ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-    @objc optional func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol)
-    
-    /// Notifies the receiver that authorization has failed, passing `session` which has initiated the authorization.
-    ///
-    /// - Parameters:
-    ///   - authorize: Authorize object that has failed (if reached the stage of authorization).
-    ///   - error: Error that has occured.
-    ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-    @objc optional func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol)
 	
+	/// Notifies the receiver that payment has succeed, passing `charge` and `session` which has initiated payment as arguments.
+	///
+	/// - Parameters:
+	///   - charge: Successful charge object.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+	@objc optional func paymentSucceed(_ charge: Charge, on session: SessionProtocol)
+	
+	/// Notifies the receiver that authorization has succeed, passing `authorize` and `session` which has initiated authorization as arguments.
+	///
+	/// - Parameters:
+	///   - authorize: Successful authorization object.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+	@objc optional func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol)
+	
+	/// Notifies the receiver that charge has failed, passing `session` which has initiated the payment.
+	///
+	/// - Parameters:
+	///   - charge: Charge that has failed (if reached the stage of charging).
+	///   - error: Error that has occured.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+	@objc optional func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol)
+	
+	/// Notifies the receiver that authorization has failed, passing `session` which has initiated the authorization.
+	///
+	/// - Parameters:
+	///   - authorize: Authorize object that has failed (if reached the stage of authorization).
+	///   - error: Error that has occured.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+	@objc optional func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol)
+	
+	/// Notifies the receiver that the card was saved.
+	///
+	/// - Parameters:
+	///   - cardVerification: CardVerification object with the details.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc optional func cardSaved(_ cardVerification: CardVerification, on session: SessionProtocol)
 	
 	/// Notifies the receiver that card saving process has failed.

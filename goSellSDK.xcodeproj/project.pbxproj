@@ -208,7 +208,6 @@
 		14DF99F82147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		14DF99F92147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
-		A2A50B9BC8718DAC014C31D2 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC7F2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC802100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */; };
@@ -1206,7 +1205,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */,
-				A2A50B9BC8718DAC014C31D2 /* Pods_goSellSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

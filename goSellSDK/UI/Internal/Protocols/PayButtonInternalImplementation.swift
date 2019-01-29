@@ -66,7 +66,7 @@ internal extension PayButtonInternalImplementation {
 		
 		var amountedCurrency: AmountedCurrency?
 		
-		if let amount = self.session.calculateDisplayedAmount(), let currency = self.session.dataSource?.currency {
+		if let amount = self.session.calculateDisplayedAmount(), let nullableCurrency = self.session.dataSource?.currency, let currency = nullableCurrency {
 			
 			amountedCurrency = AmountedCurrency(currency, amount.decimalValue)
 		}

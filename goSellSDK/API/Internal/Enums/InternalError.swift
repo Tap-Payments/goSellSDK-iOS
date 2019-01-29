@@ -6,17 +6,18 @@
 //
 
 internal enum InternalError: Int {
-    
-    case invalidCountryCode = 1
-    case invalidAmountModificatorType
-    case invalidAuthorizeActionType
-    case invalidCurrency
-    case invalidCustomerInfo
+	
+	case invalidCountryCode = 1
+	case invalidAmountModificatorType
+	case invalidAuthorizeActionType
+	case invalidCurrency
+	case invalidCustomerInfo
 	case customerAlreadyExists
-    case invalidEmail
-    case invalidISDNumber
-    case invalidPhoneNumber
-    case invalidUnitOfMeasurement
-    case invalidMeasurement
-    case invalidEnumValue
+	case cardAlreadyExists
+	case invalidEmail
+	case invalidISDNumber
+	case invalidPhoneNumber
+	case invalidUnitOfMeasurement
+	case invalidMeasurement
+	case invalidEnumValue
 }
