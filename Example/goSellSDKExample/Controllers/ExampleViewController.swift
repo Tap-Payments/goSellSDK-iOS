@@ -16,7 +16,6 @@ import class    goSellSDK.Customer
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.goSellSDK
 import class    goSellSDK.PayButton
-import protocol goSellSDK.PayButtonProtocol
 import class    goSellSDK.PaymentItem
 import class    goSellSDK.PhoneNumber
 import class    goSellSDK.Quantity
