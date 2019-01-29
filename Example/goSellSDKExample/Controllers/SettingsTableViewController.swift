@@ -241,6 +241,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var currencyValueLabel: UILabel?
     @IBOutlet private weak var customerNameLabel: UILabel?
 	@IBOutlet private weak var threeDSecureSwitch: UISwitch?
+	@IBOutlet private weak var saveCardMultipleTimesSwitch: UISwitch?
+	@IBOutlet private weak var showsStatusPopupSwitch: UISwitch?
 	
     @IBOutlet private weak var shippingTableView: UITableView? {
         
@@ -297,6 +299,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         self.transactionModeValueLabel?.text    = self.currentSettings?.transactionMode.description
         self.currencyValueLabel?.text           = self.currentSettings?.currency.localizedSymbol
 		self.threeDSecureSwitch?.isOn			= self.currentSettings?.isThreeDSecure ?? Settings.default.isThreeDSecure
+		self.saveCardMultipleTimesSwitch?.isOn	= self.currentSettings?.canSaveSameCardMultipleTimes ?? Settings.default.canSaveSameCardMultipleTimes
+		self.showsStatusPopupSwitch?.isOn		= self.currentSettings?.showsStatusPopup ?? Settings.default.showsStatusPopup
         
         if let name = self.currentSettings?.customer?.customer.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
            let surname = self.currentSettings?.customer?.customer.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
@@ -312,6 +316,16 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	@IBAction private func threeDSecureSwitchValueChanged(_ sender: Any) {
 		
 		self.currentSettings?.isThreeDSecure = self.threeDSecureSwitch?.isOn ?? Settings.default.isThreeDSecure
+	}
+	
+	@IBAction private func saveCardMultipleTimesSwitchValueChanged(_ sender: Any) {
+		
+		self.currentSettings?.canSaveSameCardMultipleTimes = self.saveCardMultipleTimesSwitch?.isOn ?? Settings.default.canSaveSameCardMultipleTimes
+	}
+	
+	@IBAction private func showsStatusPopupSwitchValueChanged(_ sender: Any) {
+		
+		self.currentSettings?.showsStatusPopup = self.showsStatusPopupSwitch?.isOn ?? Settings.default.showsStatusPopup
 	}
 	
     @IBAction private func addTaxButtonTouchUpInside(_ sender: Any) {

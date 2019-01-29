@@ -48,6 +48,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	
 	func callChargeOrAuthorizeAPI(with source:						SourceRequest,
 								  paymentOption:					PaymentOption,
+								  token:							Token?,
 								  cardBIN:							String?,
 								  saveCard:							Bool?,
 								  loader:							LoadingViewSupport?,
@@ -74,8 +75,6 @@ internal protocol DataManagerInterface: ClassProtocol {
 internal extension Process {
 	
 	internal class DataManager: DataManagerInterface {
-	
-//	internal class DataManager<Mode, ProcessClass>: ProcessHandlerInterface, DataManagerInterface where ProcessClass: ProcessGenericInterface, ProcessClass.HandlerMode == Mode {
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -240,7 +239,7 @@ internal extension Process {
 			return true
 		}
 		
-		internal func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, cardBIN: String?, saveCard: Bool?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+		internal func callChargeOrAuthorizeAPI(with source: SourceRequest, paymentOption: PaymentOption, token: Token?, cardBIN: String?, saveCard: Bool?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
 			
 			fatalError("Must be implemented in extension")
 		}
@@ -315,6 +314,17 @@ internal extension Process {
 		internal func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
 			
 			fatalError("Needs to be implemented in subclasses")
+		}
+		
+		fileprivate func shouldSaveCard(with token: Token) -> Bool {
+			
+			let existingCardFingerprints = self.recentCards.compactMap { $0.fingerprint }.filter { $0.tap_length > 0 }
+			if !existingCardFingerprints.contains(token.card.fingerprint) {
+				
+				return true
+			}
+			
+			return self.process.process.externalSession?.dataSource?.allowsToSaveSameCardMoreThanOnce ?? true
 		}
 		
 		private func showMissingInformationAlert(with title: String, message: String) {
@@ -482,17 +492,19 @@ internal extension Process {
 				self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 			}
 			
-			self.callChargeOrAuthorizeAPI(with:                            source,
-										  paymentOption:                   paymentOption,
-										  cardBIN:                         token.card.binNumber,
-										  saveCard:                        saveCard,
-										  loader:                          nil,
-										  retryAction:                     retryAction,
-										  alertDismissButtonClickHandler:  nil)
+			self.callChargeOrAuthorizeAPI(with:                           	source,
+										  paymentOption:                   	paymentOption,
+										  token:							token,
+										  cardBIN:                         	token.card.binNumber,
+										  saveCard:                        	saveCard,
+										  loader:                          	nil,
+										  retryAction:                     	retryAction,
+										  alertDismissButtonClickHandler:  	nil)
 		}
 		
 		internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
 														paymentOption:					PaymentOption,
+														token:							Token?,
 														cardBIN:						String?,
 														saveCard:						Bool?,
 														loader:							LoadingViewSupport?,
@@ -523,10 +535,25 @@ internal extension Process {
 			let paymentDescription  = dataSource.paymentDescription ?? nil
 			let paymentMetadata     = dataSource.paymentMetadata ?? nil
 			let reference           = dataSource.paymentReference ?? nil
-			let shouldSaveCard      = saveCard ?? false
+			var shouldSaveCard      = saveCard ?? false
 			let statementDescriptor = dataSource.paymentStatementDescriptor ?? nil
 			let requires3DSecure    = self.requires3DSecure || (dataSource.require3DSecure ?? false)
 			let receiptSettings     = dataSource.receiptSettings ?? nil
+			
+			var canSaveCard: Bool
+			if let nonnullToken = token, self.shouldSaveCard(with: nonnullToken) {
+				
+				canSaveCard = true
+			}
+			else {
+				
+				canSaveCard = false
+			}
+			
+			if !canSaveCard {
+				
+				shouldSaveCard = false
+			}
 			
 			let mode = dataSource.mode ?? .default
 			switch mode {
@@ -748,7 +775,7 @@ internal extension Process {
 		
 		internal override func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
 			
-			if !self.canContinueCardSaving(with: token) {
+			if !self.shouldSaveCard(with: token) {
 				
 				let userInfo = [NSLocalizedFailureReasonErrorKey: "Same card already exists."]
 				let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.cardAlreadyExists.rawValue, userInfo: userInfo)
@@ -767,17 +794,6 @@ internal extension Process {
 			}
 			
 			self.callCardVerificationAPI(with: token, saveCard: saveCard, retryAction: retryAction)
-		}
-		
-		private func canContinueCardSaving(with token: Token) -> Bool {
-			
-			let existingCardFingerprints = self.recentCards.compactMap { $0.fingerprint }.filter { $0.tap_length > 0 }
-			if !existingCardFingerprints.contains(token.card.fingerprint) {
-				
-				return true
-			}
-			
-			return self.process.process.externalSession?.dataSource?.allowsToSaveSameCardMoreThanOnce ?? true
 		}
 		
 		private func callCardVerificationAPI(with token: Token, saveCard: Bool?, retryAction: @escaping TypeAlias.ArgumentlessClosure) {

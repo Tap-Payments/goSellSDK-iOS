@@ -78,12 +78,14 @@ internal final class SaveCardValidator: CardValidator {
     
 	@objc private func switchValueChanged(_ sender: Any) {
 		
-		let strongSelf = self
-		if strongSelf.shouldSaveCard && !strongSelf.canSaveCard {
+		if self.shouldSaveCard && !self.canSaveCard {
 			
-			strongSelf.saveCardSwitch.setOn(false, animated: true)
+			CATransaction.setCompletionBlock { [weak self] in
+			
+				self?.saveCardSwitch.setOn(false, animated: true)
+			}
 		}
 		
-		strongSelf.delegate?.cardValidator(strongSelf, inputDataChanged: strongSelf.shouldSaveCard)
+		self.delegate?.cardValidator(self, inputDataChanged: self.shouldSaveCard)
 	}
 }
