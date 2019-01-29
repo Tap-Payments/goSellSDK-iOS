@@ -131,9 +131,21 @@ internal class ErrorDataManager {
                 
                 let titleKey = LocalizationStorage.alertTitleKey(for: errorDetail.code)
                 let messageKey = LocalizationStorage.alertMessageKey(for: errorDetail.code)
-                
-                let alertTitle = LocalizationStorage.localizedString(for: titleKey)
-                let alertMessage = LocalizationStorage.localizedString(for: messageKey)
+				
+				guard
+					
+					let titleLocalizationKey = LocalizationKey(rawValue: titleKey),
+					let messageLocalizationKey = LocalizationKey(rawValue: messageKey)
+				
+				else {
+					
+					print("Missing localization content for error \(errorDetail.code.rawValue). Please report this problem to developer.")
+					completion?(false)
+					return
+				}
+				
+				let alertTitle = LocalizationProvider.shared.localizedString(for: titleLocalizationKey)
+                let alertMessage = LocalizationProvider.shared.localizedString(for: messageLocalizationKey)
                 
                 let localCompletion: TypeAlias.BooleanClosure  = { (retryClicked) in
                     
