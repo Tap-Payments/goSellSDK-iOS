@@ -748,12 +748,34 @@ internal extension Process {
 		
 		internal override func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
 			
+			if !self.canContinueCardSaving(with: token) {
+				
+				let userInfo = [NSLocalizedFailureReasonErrorKey: "Same card already exists."]
+				let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.cardAlreadyExists.rawValue, userInfo: userInfo)
+				let sdkError = TapSDKKnownError(type: .internal, error: underlyingError, response: nil)
+				
+				ErrorDataManager.handle(sdkError, retryAction: nil, alertDismissButtonClickHandler: nil)
+				
+				return
+			}
+			
 			let retryAction: TypeAlias.ArgumentlessClosure = {
 				
 				self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 			}
 			
 			self.callCardVerificationAPI(with: token, saveCard: saveCard, retryAction: retryAction)
+		}
+		
+		private func canContinueCardSaving(with token: Token) -> Bool {
+			
+			let existingCardFingerprints = self.recentCards.compactMap { $0.fingerprint }.filter { $0.tap_length > 0 }
+			if !existingCardFingerprints.contains(token.card.fingerprint) {
+				
+				return true
+			}
+			
+			return self.process.process.externalSession?.dataSource?.allowsToSaveSameCardMoreThanOnce ?? true
 		}
 		
 		private func callCardVerificationAPI(with token: Token, saveCard: Bool?, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
