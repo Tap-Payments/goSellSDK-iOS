@@ -15,10 +15,13 @@ import class    UIKit.UIView.UIView
 internal class TapButton: TapNibView {
     
     // MARK: - Internal -
+	
+	internal typealias Delegate = TapButtonDelegate
+	
     // MARK: Properties
     
     /// Delegate.
-    internal weak var delegate: TapButtonDelegate?
+    internal weak var delegate: Delegate?
     
     /// Defines if the receiver is enabled.
     internal var isEnabled: Bool = true {

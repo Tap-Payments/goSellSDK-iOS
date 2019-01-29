@@ -547,8 +547,8 @@ extension OTPViewController: Singleton {
     }
 }
 
-// MARK: - TapButtonDelegate
-extension OTPViewController: TapButtonDelegate {
+// MARK: - TapButton.Delegate
+extension OTPViewController: TapButton.Delegate {
     
     internal var canBeHighlighted: Bool {
         

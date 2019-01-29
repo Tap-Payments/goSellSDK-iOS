@@ -10,7 +10,7 @@ import class 	UIKit.UIButton.UIButton
 import class 	UIKit.UIView.UIView
 
 /// Pay button.
-@objcMembers public final class PayButton: TapNibView, PayButtonInternalImplementation {
+@objcMembers public final class PayButton: TapNibView {
     
     // MARK: - Public -
     // MARK: Properties
@@ -158,3 +158,6 @@ extension PayButton: LayoutDirectionObserver {
 		return self
 	}
 }
+
+// MARK: - PayButtonInternalImplementation
+extension PayButton: PayButtonInternalImplementation {}
