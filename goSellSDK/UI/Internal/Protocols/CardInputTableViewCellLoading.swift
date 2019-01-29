@@ -23,5 +23,7 @@ internal protocol CardInputTableViewCellLoading where Self: CardInputTableViewCe
     var addressOnCardArrowImage:    UIImage                                     { get }
     var scanButtonImage:            UIImage                                     { get }
     var isScanButtonVisible:        Bool                                        { get }
+	var showsSaveCardSwitch:		Bool										{ get }
     var tableViewHandler:           UITableViewDataSource & UITableViewDelegate { get }
+	var saveCardDescriptionKey:		LocalizationKey								{ get }
 }

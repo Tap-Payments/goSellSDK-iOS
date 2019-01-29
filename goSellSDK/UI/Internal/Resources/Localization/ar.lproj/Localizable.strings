@@ -35,7 +35,8 @@
 
 // MARK: Save Card Placeholders
 
-"save_card_promotion_text" = "لدفع آمن و سريع، قم بحفظ بطاقتك";
+"save_card_promotion_text"		= "لدفع آمن و سريع، قم بحفظ بطاقتك";
+"saved_cards_usage_description"	= "Saved cards will only be used with your approval, you can remove them at any time";
 
 // MARK: Screen Titles
 

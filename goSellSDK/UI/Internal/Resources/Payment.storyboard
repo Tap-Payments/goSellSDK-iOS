@@ -999,10 +999,16 @@
                                                         <constraint firstItem="Ue4-OR-hXI" firstAttribute="centerY" secondItem="9qf-OG-XOx" secondAttribute="centerY" id="4fe-tp-h2l"/>
                                                         <constraint firstItem="NiA-4S-Cdj" firstAttribute="centerY" secondItem="9qf-OG-XOx" secondAttribute="centerY" id="73t-UD-dp7"/>
                                                         <constraint firstItem="NiA-4S-Cdj" firstAttribute="leading" secondItem="Ue4-OR-hXI" secondAttribute="trailing" constant="10" id="HRs-LK-Hcc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Ue4-OR-hXI" secondAttribute="trailing" constant="14" id="W9v-Lp-snU"/>
                                                         <constraint firstAttribute="trailing" secondItem="NiA-4S-Cdj" secondAttribute="trailing" constant="14" id="r7G-Bo-tCP"/>
                                                         <constraint firstItem="Ue4-OR-hXI" firstAttribute="leading" secondItem="9qf-OG-XOx" secondAttribute="leading" id="xLf-9g-MPX"/>
                                                         <constraint firstAttribute="height" constant="55" id="xZk-ej-2ok"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="W9v-Lp-snU"/>
+                                                        </mask>
+                                                    </variation>
                                                 </view>
                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTv-8l-W8m" userLabel="Bottom Separator">
                                                     <rect key="frame" x="0.0" y="191" width="375" height="1"/>
@@ -1090,6 +1096,8 @@
                                             <outletCollection property="constraintsToDisableWhenAddressOnCardRequired" destination="rOX-0n-9HG" collectionClass="NSMutableArray" id="KJH-JM-8Wk"/>
                                             <outletCollection property="constraintsToEnableWhenAddressOnCardRequired" destination="hRL-2Y-I3h" collectionClass="NSMutableArray" id="RkQ-Pt-OSz"/>
                                             <outletCollection property="controls" destination="1Il-dr-6rZ" collectionClass="NSMutableArray" id="6e3-fy-0mg"/>
+                                            <outletCollection property="constraintsToActivateWhenSaveCardSwitchVisible" destination="HRs-LK-Hcc" collectionClass="NSMutableArray" id="lXJ-Uh-QKY"/>
+                                            <outletCollection property="constraintsToDeactivateWhenSaveCardSwitchVisible" destination="W9v-Lp-snU" collectionClass="NSMutableArray" id="L7R-AP-uSy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -37,7 +37,8 @@ internal enum LocalizationKey: String {
 	
 	// MARK: Save Card Placeholders
 	
-	case save_card_promotion_text = "save_card_promotion_text"
+	case save_card_promotion_text		= "save_card_promotion_text"
+	case saved_cards_usage_description	= "saved_cards_usage_description"
 	
 	// MARK: Screen Titles
 	
