@@ -228,7 +228,7 @@ SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   EditableTextInsetsTextField: bf1e6ef6ea7678b6d769e0cbbdb7f3c34aea5e3a
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  goSellSDK: 294b3b65f65cad9c0ffe76870e3860e3a849058d
+  goSellSDK: d280f73e64054a1658bbcdb77f7f0e8070fad631
   SDWebImage: c00ec18ab25d10e5ffac109b0f78d1b4341c9691
   TapAdditionsKit: ec0e7e864ad1590e0c2f62230100e2621499458f
   TapApplication: 7cc6f890af56ab7fe349802305920fd290869bd5
