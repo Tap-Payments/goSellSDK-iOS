@@ -288,10 +288,11 @@ internal extension Process {
 			
 			APIClient.shared.createToken(with: request) { [weak self] (token, error) in
 				
+				self?.isExecutingAPICalls = false
+				
 				if let nonnullError = error {
 					
 					self?.process.buttonHandlerInterface.stopButtonLoader()
-					self?.isExecutingAPICalls = false
 					
 					let retryAction: TypeAlias.ArgumentlessClosure = {
 						
@@ -307,7 +308,6 @@ internal extension Process {
 				else {
 					
 					self?.process.buttonHandlerInterface.stopButtonLoader()
-					self?.isExecutingAPICalls = false
 				}
 			}
 		}
@@ -751,6 +751,8 @@ internal extension Process {
 				
 				ErrorDataManager.handle(sdkError, retryAction: nil, alertDismissButtonClickHandler: nil)
 				
+				self.process.buttonHandlerInterface.stopButtonLoader()
+				
 				return
 			}
 			
@@ -779,6 +781,8 @@ internal extension Process {
 				
 				fatalError("This case should never happen.")
 			}
+			
+			self.isExecutingAPICalls = true
 			
 			let requires3DSecure    = self.requires3DSecure || (dataSource.require3DSecure ?? false)
 			let shouldSaveCard      = saveCard ?? false

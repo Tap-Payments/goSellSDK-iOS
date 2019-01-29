@@ -240,6 +240,9 @@
 "alert_error_8200_message" 	= "Network error has occured.";
 "alert_error_8200_title" 	= "Network";
 
+"alert_error_8302_message"	= "This card already exists.";
+"alert_error_8302_title"	= "Card Exists";
+
 "alert_error_9999_message" 	= "An unknown error has occured.";
 "alert_error_9999_title" 	= "Unknown Error";
 

@@ -21,7 +21,7 @@ internal class LocalizationStorage {
     }
     
     internal static func localizedString(for key: String) -> String {
-        
+		
         guard let data = self.localizationData[LocalizationProvider.shared.selectedLanguage] else { return key }
         
         if let result = data[key] {
