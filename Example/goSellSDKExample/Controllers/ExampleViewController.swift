@@ -269,6 +269,11 @@ extension ExampleViewController: SessionDataSource {
         
         return .capture(after: 8)
     }
+	
+	internal var allowsToSaveSameCardMoreThanOnce: Bool {
+		
+		return false
+	}
 }
 
 
