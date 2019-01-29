@@ -44,47 +44,6 @@ internal struct KnownStaticallyDestroyableTypes {
         }
     }
     
-//    internal static func destroyAllDelayedDestroyableInstances(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
-//
-//        guard self.delayedDestroyableButAlive.count > 0 else {
-//
-//            completion()
-//            return
-//        }
-//
-//        self.isDestroyingDelayedDestroyable = true
-//
-//        var pendingCompletions: [String: (String) -> Void] = [:]
-//
-//        let localCompletion: TypeAlias.ArgumentlessClosure = {
-//
-//            self.isDestroyingDelayedDestroyable = false
-//            self.destroyAllDelayedDestroyableInstances(completion)
-//        }
-//
-//        self.delayedDestroyableButAlive.forEach { (type) in
-//
-//            let instanceDestroyCompletion: (String) -> Void =  { (identifier) in
-//
-//                pendingCompletions.removeValue(forKey: identifier)
-//
-//                if pendingCompletions.count == 0 {
-//
-//                    localCompletion()
-//                }
-//            }
-//
-//            let typeIdentifier = String(describing: type)
-//
-//            pendingCompletions[typeIdentifier] = instanceDestroyCompletion
-//
-//            type.destroyInstance {
-//
-//                instanceDestroyCompletion(typeIdentifier)
-//            }
-//        }
-//    }
-    
     internal static func destroyAllDelayedDestroyableInstances(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
         
         guard self.delayedDestroyableButAlive.count > 0 else {

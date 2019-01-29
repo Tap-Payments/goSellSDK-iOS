@@ -6,7 +6,7 @@
 //
 
 /// SDK session class. Use this class if you don't want to place Pay Button and make it do everything for you.
-@objcMembers public final class Session: NSObject, SessionProtocol, InternalSessionImplementation {
+@objcMembers public final class Session: NSObject, SessionProtocol {
 	
 	// MARK: - Public -
 	// MARK: Properties
@@ -45,3 +45,6 @@
 		return self.implementationStart()
 	}
 }
+
+// MARK: - InternalSessionImplementation
+extension Session: InternalSessionImplementation {}

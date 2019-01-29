@@ -262,8 +262,6 @@
 		A424876320E4F0A2001C4FAF /* TapButtonStateStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876020E4F0A2001C4FAF /* TapButtonStateStyle.swift */; };
 		A424876420E4F0A2001C4FAF /* TapButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876120E4F0A2001C4FAF /* TapButtonStyle.swift */; };
 		A424876520E4F0A2001C4FAF /* TapButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876120E4F0A2001C4FAF /* TapButtonStyle.swift */; };
-		A424876F20E4F0D8001C4FAF /* PayButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876720E4F0D7001C4FAF /* PayButtonProtocol.swift */; };
-		A424877020E4F0D8001C4FAF /* PayButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876720E4F0D7001C4FAF /* PayButtonProtocol.swift */; };
 		A424877120E4F0D8001C4FAF /* PayButtonInternalImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876820E4F0D7001C4FAF /* PayButtonInternalImplementation.swift */; };
 		A424877220E4F0D8001C4FAF /* PayButtonInternalImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876820E4F0D7001C4FAF /* PayButtonInternalImplementation.swift */; };
 		A424877320E4F0D8001C4FAF /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A424876920E4F0D7001C4FAF /* PayButton.swift */; };
@@ -933,7 +931,6 @@
 		A424875B20E4F071001C4FAF /* OTPInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OTPInputView.xib; sourceTree = "<group>"; };
 		A424876020E4F0A2001C4FAF /* TapButtonStateStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapButtonStateStyle.swift; sourceTree = "<group>"; };
 		A424876120E4F0A2001C4FAF /* TapButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapButtonStyle.swift; sourceTree = "<group>"; };
-		A424876720E4F0D7001C4FAF /* PayButtonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayButtonProtocol.swift; sourceTree = "<group>"; };
 		A424876820E4F0D7001C4FAF /* PayButtonInternalImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayButtonInternalImplementation.swift; sourceTree = "<group>"; };
 		A424876920E4F0D7001C4FAF /* PayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayButton.swift; sourceTree = "<group>"; };
 		A424876D20E4F0D7001C4FAF /* TapButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapButtonDelegate.swift; sourceTree = "<group>"; };
@@ -1263,6 +1260,253 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		147951C822004AA10073B49F /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				147951CA22004AD80073B49F /* Enums */,
+				A482F76B2085DCD400AA76A4 /* Extensions */,
+				147951CB22004C7D0073B49F /* Models */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		147951C922004AAC0073B49F /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				A482F74D2085CEB000AA76A4 /* Client */,
+				147951CE22004ED70073B49F /* Data Managers */,
+				A482F7432085BD6600AA76A4 /* Enums */,
+				A482F7362085BBE700AA76A4 /* Models */,
+				A482F7482085BE4700AA76A4 /* Protocols */,
+				147951CD22004DDF0073B49F /* Utils */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		147951CA22004AD80073B49F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				A408C04120BC0563005E74AD /* AmountModificatorType.swift */,
+				A4C13AA320F4F0CD00037EDC /* AuthenticationRequirer.swift */,
+				A4C13AA220F4F0CC00037EDC /* AuthenticationStatus.swift */,
+				A4C13AA120F4F0CC00037EDC /* AuthenticationType.swift */,
+				A4B3FB80212467B3000C05EB /* AuthorizeActionStatus.swift */,
+				A4B3FB7E212467B2000C05EB /* AuthorizeActionType.swift */,
+				147951B621FF76680073B49F /* CardVerificationStatus.swift */,
+				A4A982A020D2B34E00770690 /* ChargeStatus.swift */,
+				A4694B25211B481800B335F1 /* ErrorCode.swift */,
+				14690B102155DF240033C562 /* SDKMode.swift */,
+				A4A9829D20D2B34E00770690 /* SourceChannel.swift */,
+				A4A9829E20D2B34E00770690 /* SourceObject.swift */,
+				A4A982A420D2B34F00770690 /* SourcePaymentType.swift */,
+				A4A982A120D2B34F00770690 /* SourceType.swift */,
+				A482F7562085D91A00AA76A4 /* TapSDKErrorType.swift */,
+				A4B3FB7F212467B3000C05EB /* TransactionMode.swift */,
+				A4694B27211B481900B335F1 /* URLStatus.swift */,
+				A4F7101920B550450064FE4B /* Measurements */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		147951CB22004C7D0073B49F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A451273C2134431400825337 /* Acquirer.swift */,
+				A408C05920BC058A005E74AD /* AmountModificator.swift */,
+				A4C13A9A20F4F0AF00037EDC /* Authentication.swift */,
+				A4B3FB8B212467D9000C05EB /* Authorize.swift */,
+				A4B3FB89212467D9000C05EB /* AuthorizeAction.swift */,
+				A4B3FB88212467D8000C05EB /* AuthorizeActionResponse.swift */,
+				147951B321FF76490073B49F /* CardVerification.swift */,
+				A482F7372085BC0F00AA76A4 /* Charge.swift */,
+				A479F7162099DB2100556E10 /* Currency.swift */,
+				14DF99F72147F4B900991EB3 /* Customer.swift */,
+				A479F7152099DB2100556E10 /* EmailAddress.swift */,
+				149AC19721ED0F59002D31A7 /* Metadata.swift */,
+				A479F7182099DB2100556E10 /* PaymentItem.swift */,
+				A4A9827D20D2B31F00770690 /* PhoneNumber.swift */,
+				A4BD8CC920A1EF7700EFF2CE /* Quantity.swift */,
+				A4A9827820D2B31D00770690 /* Receipt.swift */,
+				A4A9827220D2B31A00770690 /* Reference.swift */,
+				A4A9827720D2B31D00770690 /* Response.swift */,
+				A408C05B20BC058A005E74AD /* SavedCard.swift */,
+				14690B132155DF330033C562 /* SecretKey.swift */,
+				A408C05A20BC058A005E74AD /* Shipping.swift */,
+				A482F7462085BDA900AA76A4 /* Source.swift */,
+				A4F56AE7212EB92200BEAA8E /* SourceRequest.swift */,
+				A408C05C20BC058A005E74AD /* Tax.swift */,
+				A4694B22211B480600B335F1 /* TrackingURL.swift */,
+				A4A9827E20D2B31F00770690 /* TransactionDetails.swift */,
+				147951CC22004DBE0073B49F /* Errors */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		147951CC22004DBE0073B49F /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				A482F7672085DB6300AA76A4 /* APIError.swift */,
+				A482F7692085DB9C00AA76A4 /* ErrorDetail.swift */,
+				A482F75F2085DAF100AA76A4 /* TapSDKAPIError.swift */,
+				A482F7602085DAF100AA76A4 /* TapSDKError.swift */,
+				A482F7612085DAF100AA76A4 /* TapSDKKnownError.swift */,
+				A482F7652085DB1300AA76A4 /* TapSDKUnknownError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		147951CD22004DDF0073B49F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A482F7732085DD3700AA76A4 /* Crypter.swift */,
+				A408C06B20BC05D2005E74AD /* KeychainManager.swift */,
+				A482F7742085DD3800AA76A4 /* RSAUtils.swift */,
+				A4BD8D2720A1F61A00EFF2CE /* ErrorConstants.swift */,
+				A4F56AED212EB96500BEAA8E /* ErrorUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		147951CE22004ED70073B49F /* Data Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A4B6E43F2086265900078072 /* SettingsDataManager.swift */,
+			);
+			path = "Data Managers";
+			sourceTree = "<group>";
+		};
+		147951CF22004F4A0073B49F /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				A4BD8D2D20A1F65800EFF2CE /* Animation Controllers */,
+				147951D222005D800073B49F /* Buttons */,
+				A4D5FE7520834B19007D52F5 /* Cells */,
+				A4D5FE112082765C007D52F5 /* Controllers */,
+				A4C0FC54208CE4F900C5FBC6 /* Data */,
+				A4BD8D1720A1F3C800EFF2CE /* Enums */,
+				A4D5FE1A2083119D007D52F5 /* Extensions */,
+				A424878420E4F136001C4FAF /* Interaction Controllers */,
+				1432426221F9FB14003B5E5D /* Process */,
+				147951D322005D9B0073B49F /* Protocols */,
+				A43ED4282080CF670028C542 /* Resources */,
+				A4BD8CA320A1EF0200EFF2CE /* Theme */,
+				A40DBCA72088C03F005B170B /* Utils */,
+				A4BD8CED20A1F0B300EFF2CE /* Validators */,
+				A4C0FC5D208CEBF300C5FBC6 /* View Models */,
+				A4BD8D5220A1FA1900EFF2CE /* Views */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		147951D022004F500073B49F /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				A43ED4212080BC8E0028C542 /* Buttons */,
+				147951D422005F700073B49F /* Data */,
+				147951D5220060380073B49F /* Enums */,
+				147951D6220060C00073B49F /* Extensions */,
+				147951D122005D5D0073B49F /* Protocols */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		147951D122005D5D0073B49F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				149597B221F67BF200DFA0A2 /* SessionDataSource.swift */,
+				149597B121F67BF100DFA0A2 /* SessionDelegate.swift */,
+				149597AE21F67BD600DFA0A2 /* SessionProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		147951D222005D800073B49F /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A424876E20E4F0D7001C4FAF /* TapButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		147951D322005D9B0073B49F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A4571EE720FE2303006D96DC /* AddressFieldsDataManagerLoadingListener.swift */,
+				A4BD8CE420A1F02200EFF2CE /* BindingWithModelCell.swift */,
+				A4F7102820B550760064FE4B /* CardAddressDataStorage.swift */,
+				A413DB1C20AEE04000C29C6B /* CardAddressInputListener.swift */,
+				A413DB1A20AEE04000C29C6B /* CardBrandChangeReporting.swift */,
+				A424877C20E4F100001C4FAF /* CardCollectionViewCellLoading.swift */,
+				A42487B220E5036C001C4FAF /* CardInputTableViewCellLoading.swift */,
+				A401FC8A2101DA6B002DBA73 /* CardScannerViewControllerDelegate.swift */,
+				A413DB1820AEE04000C29C6B /* CardValidatorDelegate.swift */,
+				A401FC8D2101DA6D002DBA73 /* CountrySelectionViewControllerDelegate.swift */,
+				A401FC8B2101DA6B002DBA73 /* CurrencySelectionViewControllerDelegate.swift */,
+				A4444BE620AB52D9005D9E87 /* DataManagerWithFilteredData.swift */,
+				A413DB1920AEE04000C29C6B /* DataValidation.swift */,
+				A4C13A8F20F4F05900037EDC /* DynamicLayoutTableViewCellModel.swift */,
+				A4444BE720AB52D9005D9E87 /* Filterable.swift */,
+				A473D107213BE76800F13B73 /* FilterableByCurrency.swift */,
+				A45991112109E4CB00E941D5 /* GlowingViewHandler.swift */,
+				A468774620DC1F8300123391 /* InstantiatableFromStoryboard.swift */,
+				A43A0A7820DA877A006B39F1 /* InteractivePopViewController.swift */,
+				A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */,
+				149597BD21F67C6E00DFA0A2 /* InternalSessionImplementation.swift */,
+				149597C321F67CBE00DFA0A2 /* InternalSessionProtocol.swift */,
+				14128489215CD8C300C2873E /* LayoutDirectionObserver.swift */,
+				A4F7102420B550760064FE4B /* ListValue.swift */,
+				A4C0FC7D208CF44300C5FBC6 /* LoadingWithModelCell.swift */,
+				14B22182215A4747003DC928 /* Localizable.swift */,
+				14128486215CD8A300C2873E /* LocalizationObserver.swift */,
+				1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */,
+				A4C13A8C20F4F05800037EDC /* OTPViewControllerDelegate.swift */,
+				A424876820E4F0D7001C4FAF /* PayButtonInternalImplementation.swift */,
+				A4C13A8E20F4F05900037EDC /* PaymentOptionCellViewModel.swift */,
+				A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */,
+				A4571F1020FF54EE006D96DC /* PopupPresentationSupport.swift */,
+				A4C0FC8C208DFA2200C5FBC6 /* SingleCellModel.swift */,
+				A456717620AD69F60057A504 /* Singleton.swift */,
+				A473D108213BE76900F13B73 /* SortableByOrder.swift */,
+				A4599120210A04A100E941D5 /* StaticlyDestroyable.swift */,
+				A424876D20E4F0D7001C4FAF /* TapButtonDelegate.swift */,
+				A4F7102520B550760064FE4B /* TextFieldInputDataValidation.swift */,
+				A413DB1B20AEE04000C29C6B /* TextInputDataValidation.swift */,
+				A4F7102620B550760064FE4B /* TextLabelInputDataValidation.swift */,
+				141284FF21612DE300C2873E /* ThemeObserver.swift */,
+				A4571EE820FE2304006D96DC /* Transformable.swift */,
+				1495976521F5446800DFA0A2 /* ViewControllerLayoutListener.swift */,
+				A4571F1120FF54EE006D96DC /* WebPaymentContentViewControllerDelegate.swift */,
+				A45991102109E4CB00E941D5 /* WobblingViewHandler.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		147951D422005F700073B49F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				149597BA21F67C5500DFA0A2 /* Session.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		147951D5220060380073B49F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		147951D6220060C00073B49F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1495975F21F5436700DFA0A2 /* SeparateWindowRootViewController+Additions.swift */,
+				141284FC2161255E00C2873E /* TapBlurEffectStyle+Additions.swift */,
+				141284C92160FF7600C2873E /* TapFont+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1495974F21F5420000DFA0A2 /* LoadingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1341,30 +1585,10 @@
 				A4BD8CF520A1F0B300EFF2CE /* CurrencyFormatter.swift */,
 				A4599123210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift */,
 				1412849F215D270D00C2873E /* LocalizedParagraphStyle.swift */,
-				A4BD8CED20A1F0B300EFF2CE /* Validators */,
 				149597C621F67CED00DFA0A2 /* WeaklyWrapped.swift */,
 				1432429621F9FB40003B5E5D /* WrappedAndTypeErased.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		A424876620E4F0D7001C4FAF /* PayButton */ = {
-			isa = PBXGroup;
-			children = (
-				A424876720E4F0D7001C4FAF /* PayButtonProtocol.swift */,
-				A424876820E4F0D7001C4FAF /* PayButtonInternalImplementation.swift */,
-				A424876920E4F0D7001C4FAF /* PayButton.swift */,
-			);
-			path = PayButton;
-			sourceTree = "<group>";
-		};
-		A424876C20E4F0D7001C4FAF /* TapButton */ = {
-			isa = PBXGroup;
-			children = (
-				A424876D20E4F0D7001C4FAF /* TapButtonDelegate.swift */,
-				A424876E20E4F0D7001C4FAF /* TapButton.swift */,
-			);
-			path = TapButton;
 			sourceTree = "<group>";
 		};
 		A424878420E4F136001C4FAF /* Interaction Controllers */ = {
@@ -1397,21 +1621,8 @@
 		A43ED4202080BC380028C542 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A4BD8D2D20A1F65800EFF2CE /* Animation Controllers */,
-				A43ED4212080BC8E0028C542 /* Buttons */,
-				A4D5FE7520834B19007D52F5 /* Cells */,
-				A4D5FE112082765C007D52F5 /* Controllers */,
-				A4C0FC54208CE4F900C5FBC6 /* Data */,
-				A4BD8D1720A1F3C800EFF2CE /* Enums */,
-				A4D5FE1A2083119D007D52F5 /* Extensions */,
-				A424878420E4F136001C4FAF /* Interaction Controllers */,
-				1432426221F9FB14003B5E5D /* Process */,
-				A4C0FC7C208CF42900C5FBC6 /* Protocols */,
-				A43ED4282080CF670028C542 /* Resources */,
-				A4BD8CA320A1EF0200EFF2CE /* Theme */,
-				A40DBCA72088C03F005B170B /* Utils */,
-				A4C0FC5D208CEBF300C5FBC6 /* View Models */,
-				A4BD8D5220A1FA1900EFF2CE /* Views */,
+				147951CF22004F4A0073B49F /* Internal */,
+				147951D022004F500073B49F /* Public */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1419,8 +1630,7 @@
 		A43ED4212080BC8E0028C542 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				A424876620E4F0D7001C4FAF /* PayButton */,
-				A424876C20E4F0D7001C4FAF /* TapButton */,
+				A424876920E4F0D7001C4FAF /* PayButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -1485,13 +1695,8 @@
 		A482F70420853FC300AA76A4 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				A482F74D2085CEB000AA76A4 /* Client */,
-				A482F7432085BD6600AA76A4 /* Enums */,
-				A482F76B2085DCD400AA76A4 /* Extensions */,
-				A482F7362085BBE700AA76A4 /* Models */,
-				A482F7482085BE4700AA76A4 /* Protocols */,
-				A4B6E43E2086264A00078072 /* Settings */,
-				A482F7722085DD0C00AA76A4 /* Utils */,
+				147951C922004AAC0073B49F /* Internal */,
+				147951C822004AA10073B49F /* Public */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1499,22 +1704,14 @@
 		A482F7362085BBE700AA76A4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A451273C2134431400825337 /* Acquirer.swift */,
 				A4A9827420D2B31B00770690 /* Address.swift */,
 				A4F7103C20B553000064FE4B /* AddressField.swift */,
 				A4BD8CCA20A1EF7800EFF2CE /* AmountedCurrency.swift */,
-				A408C05920BC058A005E74AD /* AmountModificator.swift */,
-				A4C13A9A20F4F0AF00037EDC /* Authentication.swift */,
 				A4B3FB8A212467D9000C05EB /* AuthenticationRequest.swift */,
-				A4B3FB8B212467D9000C05EB /* Authorize.swift */,
-				A4B3FB89212467D9000C05EB /* AuthorizeAction.swift */,
-				A4B3FB88212467D8000C05EB /* AuthorizeActionResponse.swift */,
 				A4571EF220FE2337006D96DC /* BillingAddressField.swift */,
 				A4571EF020FE2336006D96DC /* BillingAddressFormat.swift */,
 				A4571EF120FE2337006D96DC /* BillingAddressResponse.swift */,
 				A4444BED20AB535E005D9E87 /* BINResponse.swift */,
-				147951B321FF76490073B49F /* CardVerification.swift */,
-				A482F7372085BC0F00AA76A4 /* Charge.swift */,
 				A4444BEF20AB535F005D9E87 /* Country.swift */,
 				A4B3FB87212467D8000C05EB /* CreateAuthorizeRequest.swift */,
 				149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */,
@@ -1524,39 +1721,20 @@
 				A4A9827320D2B31B00770690 /* CreateTokenSavedCard.swift */,
 				A4A9827A20D2B31E00770690 /* CreateTokenWithCardDataRequest.swift */,
 				A4A9827620D2B31C00770690 /* CreateTokenWithSavedCardRequest.swift */,
-				A479F7162099DB2100556E10 /* Currency.swift */,
 				1495977521F5CA9700DFA0A2 /* Customer.Request.swift */,
-				14DF99F72147F4B900991EB3 /* Customer.swift */,
 				A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */,
-				A479F7152099DB2100556E10 /* EmailAddress.swift */,
 				A4C13A9820F4F0AE00037EDC /* ExpirationDate.swift */,
 				A4D53120208A54C400830AD8 /* ExtraFee.swift */,
 				A4BD8CC820A1EF7700EFF2CE /* InternalSDKSettings.swift */,
 				A479F7172099DB2100556E10 /* Merchant.swift */,
-				149AC19721ED0F59002D31A7 /* Metadata.swift */,
 				A4A9827B20D2B31F00770690 /* Order.swift */,
-				A479F7182099DB2100556E10 /* PaymentItem.swift */,
 				A4D5310E208A47C600830AD8 /* PaymentOption.swift */,
 				A479F7142099DB2100556E10 /* PaymentOptionsRequest.swift */,
 				A4D5311B208A4E4400830AD8 /* PaymentOptionsResponse.swift */,
-				A4A9827D20D2B31F00770690 /* PhoneNumber.swift */,
-				A4BD8CC920A1EF7700EFF2CE /* Quantity.swift */,
-				A4A9827820D2B31D00770690 /* Receipt.swift */,
-				A4A9827220D2B31A00770690 /* Reference.swift */,
-				A4A9827720D2B31D00770690 /* Response.swift */,
-				A408C05B20BC058A005E74AD /* SavedCard.swift */,
 				A4B6E43620860AEA00078072 /* SDKSettings.swift */,
 				A4B6E43A20860BFC00078072 /* SDKSettingsData.swift */,
-				14690B132155DF330033C562 /* SecretKey.swift */,
-				A408C05A20BC058A005E74AD /* Shipping.swift */,
-				A482F7462085BDA900AA76A4 /* Source.swift */,
-				A4F56AE7212EB92200BEAA8E /* SourceRequest.swift */,
-				A408C05C20BC058A005E74AD /* Tax.swift */,
 				A4A9827920D2B31E00770690 /* Token.swift */,
 				A4A9827C20D2B31F00770690 /* TokenizedCard.swift */,
-				A4694B22211B480600B335F1 /* TrackingURL.swift */,
-				A4A9827E20D2B31F00770690 /* TransactionDetails.swift */,
-				A482F75E2085DAD500AA76A4 /* Errors */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1567,31 +1745,15 @@
 				A4F7106F20B5546A0064FE4B /* AddressFieldInputType.swift */,
 				A4A982A320D2B34F00770690 /* AddressFormat.swift */,
 				A4A9829F20D2B34E00770690 /* AddressType.swift */,
-				A408C04120BC0563005E74AD /* AmountModificatorType.swift */,
-				A4C13AA320F4F0CD00037EDC /* AuthenticationRequirer.swift */,
-				A4C13AA220F4F0CC00037EDC /* AuthenticationStatus.swift */,
-				A4C13AA120F4F0CC00037EDC /* AuthenticationType.swift */,
-				A4B3FB80212467B3000C05EB /* AuthorizeActionStatus.swift */,
-				A4B3FB7E212467B2000C05EB /* AuthorizeActionType.swift */,
 				A473D0FE2139C24400F13B73 /* CardScheme.swift */,
-				147951B621FF76680073B49F /* CardVerificationStatus.swift */,
-				A4A982A020D2B34E00770690 /* ChargeStatus.swift */,
 				A4694B26211B481900B335F1 /* ErrorAction.swift */,
-				A4694B25211B481800B335F1 /* ErrorCode.swift */,
-				A4F7101920B550450064FE4B /* Measurements */,
+				A4B6E4412086279900078072 /* InitializationStatus.swift */,
+				A4BD8D2820A1F61A00EFF2CE /* InternalError.swift */,
 				A4C0FC59208CE9AB00C5FBC6 /* PaymentType.swift */,
 				A4B6E43C20860CD800078072 /* Permissions.swift */,
 				A4B6E43420860A0700078072 /* Route.swift */,
-				14690B102155DF240033C562 /* SDKMode.swift */,
-				A4A9829D20D2B34E00770690 /* SourceChannel.swift */,
-				A4A9829E20D2B34E00770690 /* SourceObject.swift */,
-				A4A982A420D2B34F00770690 /* SourcePaymentType.swift */,
-				A4A982A120D2B34F00770690 /* SourceType.swift */,
-				A482F7562085D91A00AA76A4 /* TapSDKErrorType.swift */,
 				A482F7542085D8D300AA76A4 /* TapSerializationError.swift */,
 				A4A982C220D2B5FE00770690 /* TokenType.swift */,
-				A4B3FB7F212467B3000C05EB /* TransactionMode.swift */,
-				A4694B27211B481900B335F1 /* URLStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1634,38 +1796,12 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
-		A482F75E2085DAD500AA76A4 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				A482F7672085DB6300AA76A4 /* APIError.swift */,
-				A4BD8D2720A1F61A00EFF2CE /* ErrorConstants.swift */,
-				A482F7692085DB9C00AA76A4 /* ErrorDetail.swift */,
-				A4F56AED212EB96500BEAA8E /* ErrorUtils.swift */,
-				A4BD8D2820A1F61A00EFF2CE /* InternalError.swift */,
-				A482F75F2085DAF100AA76A4 /* TapSDKAPIError.swift */,
-				A482F7602085DAF100AA76A4 /* TapSDKError.swift */,
-				A482F7612085DAF100AA76A4 /* TapSDKKnownError.swift */,
-				A482F7652085DB1300AA76A4 /* TapSDKUnknownError.swift */,
-			);
-			path = Errors;
-			sourceTree = "<group>";
-		};
 		A482F76B2085DCD400AA76A4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A4AF5FC220CE840300AC254D /* PaymentItem+Amount.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A482F7722085DD0C00AA76A4 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				A482F7732085DD3700AA76A4 /* Crypter.swift */,
-				A408C06B20BC05D2005E74AD /* KeychainManager.swift */,
-				A482F7742085DD3800AA76A4 /* RSAUtils.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		A48810DF20A2E92E00CDF5D4 /* TapNavigationView */ = {
@@ -1676,15 +1812,6 @@
 				A48810E020A2E92E00CDF5D4 /* TapNavigationViewDelegate.swift */,
 			);
 			path = TapNavigationView;
-			sourceTree = "<group>";
-		};
-		A4B6E43E2086264A00078072 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				A4B6E4412086279900078072 /* InitializationStatus.swift */,
-				A4B6E43F2086265900078072 /* SettingsDataManager.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		A4BD8CA320A1EF0200EFF2CE /* Theme */ = {
@@ -1746,7 +1873,6 @@
 				1412849C215D26D200C2873E /* LocalizedTextAlignment.swift */,
 				A424879B20E4F3C0001C4FAF /* OTPTimerState.swift */,
 				A4A4D5F52108D2590063488E /* PaymentStatus.swift */,
-				1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */,
 				1495975C21F542D700DFA0A2 /* StatusBarStyle.swift */,
 				A4F7106A20B554480064FE4B /* TextInputType.swift */,
 				A4BD8D1820A1F3C800EFF2CE /* ValidationType.swift */,
@@ -1796,7 +1922,6 @@
 				1444698021594A4D009849DC /* LocalizationProvider.swift */,
 				A4694B19211B47EC00B335F1 /* LocalizationStorage.swift */,
 				A424879820E4F396001C4FAF /* OTPTimerDataManager.swift */,
-				149597BA21F67C5500DFA0A2 /* Session.swift */,
 				149597C021F67C8800DFA0A2 /* SessionDelegateProxy.swift */,
 				A43A0A6620DA4A82006B39F1 /* WebPaymentURLDecision.swift */,
 			);
@@ -1833,60 +1958,6 @@
 				A4C0FC62208CED0C00C5FBC6 /* WebPaymentOptionTableViewCellModel.swift */,
 			);
 			path = "View Models";
-			sourceTree = "<group>";
-		};
-		A4C0FC7C208CF42900C5FBC6 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				A4571EE720FE2303006D96DC /* AddressFieldsDataManagerLoadingListener.swift */,
-				A4BD8CE420A1F02200EFF2CE /* BindingWithModelCell.swift */,
-				A4F7102820B550760064FE4B /* CardAddressDataStorage.swift */,
-				A413DB1C20AEE04000C29C6B /* CardAddressInputListener.swift */,
-				A413DB1A20AEE04000C29C6B /* CardBrandChangeReporting.swift */,
-				A424877C20E4F100001C4FAF /* CardCollectionViewCellLoading.swift */,
-				A42487B220E5036C001C4FAF /* CardInputTableViewCellLoading.swift */,
-				A401FC8A2101DA6B002DBA73 /* CardScannerViewControllerDelegate.swift */,
-				A413DB1820AEE04000C29C6B /* CardValidatorDelegate.swift */,
-				A401FC8D2101DA6D002DBA73 /* CountrySelectionViewControllerDelegate.swift */,
-				A401FC8B2101DA6B002DBA73 /* CurrencySelectionViewControllerDelegate.swift */,
-				A4444BE620AB52D9005D9E87 /* DataManagerWithFilteredData.swift */,
-				A413DB1920AEE04000C29C6B /* DataValidation.swift */,
-				A4C13A8F20F4F05900037EDC /* DynamicLayoutTableViewCellModel.swift */,
-				A4444BE720AB52D9005D9E87 /* Filterable.swift */,
-				A473D107213BE76800F13B73 /* FilterableByCurrency.swift */,
-				A45991112109E4CB00E941D5 /* GlowingViewHandler.swift */,
-				A468774620DC1F8300123391 /* InstantiatableFromStoryboard.swift */,
-				A43A0A7820DA877A006B39F1 /* InteractivePopViewController.swift */,
-				A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */,
-				149597BD21F67C6E00DFA0A2 /* InternalSessionImplementation.swift */,
-				149597C321F67CBE00DFA0A2 /* InternalSessionProtocol.swift */,
-				14128489215CD8C300C2873E /* LayoutDirectionObserver.swift */,
-				A4F7102420B550760064FE4B /* ListValue.swift */,
-				A4C0FC7D208CF44300C5FBC6 /* LoadingWithModelCell.swift */,
-				14B22182215A4747003DC928 /* Localizable.swift */,
-				14128486215CD8A300C2873E /* LocalizationObserver.swift */,
-				1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */,
-				A4C13A8C20F4F05800037EDC /* OTPViewControllerDelegate.swift */,
-				A4C13A8E20F4F05900037EDC /* PaymentOptionCellViewModel.swift */,
-				A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */,
-				A4571F1020FF54EE006D96DC /* PopupPresentationSupport.swift */,
-				149597B221F67BF200DFA0A2 /* SessionDataSource.swift */,
-				149597B121F67BF100DFA0A2 /* SessionDelegate.swift */,
-				149597AE21F67BD600DFA0A2 /* SessionProtocol.swift */,
-				A4C0FC8C208DFA2200C5FBC6 /* SingleCellModel.swift */,
-				A456717620AD69F60057A504 /* Singleton.swift */,
-				A473D108213BE76900F13B73 /* SortableByOrder.swift */,
-				A4599120210A04A100E941D5 /* StaticlyDestroyable.swift */,
-				A4F7102520B550760064FE4B /* TextFieldInputDataValidation.swift */,
-				A413DB1B20AEE04000C29C6B /* TextInputDataValidation.swift */,
-				A4F7102620B550760064FE4B /* TextLabelInputDataValidation.swift */,
-				141284FF21612DE300C2873E /* ThemeObserver.swift */,
-				A4571EE820FE2304006D96DC /* Transformable.swift */,
-				1495976521F5446800DFA0A2 /* ViewControllerLayoutListener.swift */,
-				A4571F1120FF54EE006D96DC /* WebPaymentContentViewControllerDelegate.swift */,
-				A45991102109E4CB00E941D5 /* WobblingViewHandler.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A4D5FE112082765C007D52F5 /* Controllers */ = {
@@ -1932,10 +2003,7 @@
 				A4C13AB320F4F17500037EDC /* ExpirationDate+Additions.swift */,
 				A4BD8D3920A1F6AE00EFF2CE /* Notification.Name+Additions.swift */,
 				141284A4215D275600C2873E /* NSTextAlignment+Additions.swift */,
-				1495975F21F5436700DFA0A2 /* SeparateWindowRootViewController+Additions.swift */,
 				A4571EFA20FE2366006D96DC /* String+Additions.swift */,
-				141284FC2161255E00C2873E /* TapBlurEffectStyle+Additions.swift */,
-				141284C92160FF7600C2873E /* TapFont+Additions.swift */,
 				14128502216132AA00C2873E /* TapSearchView+Additions.swift */,
 				140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */,
 				A4BD8D3720A1F6AE00EFF2CE /* UICollectionView+Additions.swift */,
@@ -2316,7 +2384,6 @@
 				A473D0FF2139C24400F13B73 /* CardScheme.swift in Sources */,
 				A4BD8CFC20A1F0B300EFF2CE /* ExpirationDateValidator.swift in Sources */,
 				A413DB3A20AEE0FD00C29C6B /* AddressInputViewController.swift in Sources */,
-				A424876F20E4F0D8001C4FAF /* PayButtonProtocol.swift in Sources */,
 				A408C05D20BC058A005E74AD /* AmountModificator.swift in Sources */,
 				149597C421F67CBF00DFA0A2 /* InternalSessionProtocol.swift in Sources */,
 				A468774A20DC20C200123391 /* PopupAnimationController.swift in Sources */,
@@ -2887,7 +2954,6 @@
 				A4B3FB95212467DA000C05EB /* Authorize.swift in Sources */,
 				A4BD8D0E20A1F12500EFF2CE /* BaseViewController.swift in Sources */,
 				A4BD8CA020A1EEB800EFF2CE /* CurrencySelectionTableViewCell.swift in Sources */,
-				A424877020E4F0D8001C4FAF /* PayButtonProtocol.swift in Sources */,
 				A4F7104A20B553260064FE4B /* CountrySelectionViewController.swift in Sources */,
 				1432428321F9FB14003B5E5D /* Process.AmountCalculator.swift in Sources */,
 				A4C13A8620F4EF9900037EDC /* PaymentOptionCollectionCellViewModel.swift in Sources */,

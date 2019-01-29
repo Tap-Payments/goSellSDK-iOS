@@ -21,7 +21,7 @@ internal protocol TapButtonHandlerInterface {
 
 internal extension Process {
 	
-	internal class TapButtonHandler<Mode: ProcessMode>: TapButtonHandlerInterface, TapButtonDelegate, LocalizationObserver {
+	internal class TapButtonHandler<Mode: ProcessMode>: TapButtonHandlerInterface, TapButton.Delegate, LocalizationObserver {
 	
 		// MARK: - Internal -
 		// MARK: Properties
