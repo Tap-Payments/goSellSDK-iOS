@@ -293,8 +293,27 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		return CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
 	}
 	
+	internal var showsSaveCardSwitch: Bool {
+		
+		return Process.shared.transactionMode != .cardSaving
+	}
+	
 	internal var tableViewHandler: UITableViewDataSource & UITableViewDelegate {
 		
 		return self.iconsTableViewHandler
+	}
+	
+	internal var saveCardDescriptionKey: LocalizationKey {
+		
+		switch Process.shared.transactionMode {
+			
+		case .purchase, .authorizeCapture:
+			
+			return .save_card_promotion_text
+			
+		case .cardSaving:
+			
+			return .saved_cards_usage_description
+		}
 	}
 }

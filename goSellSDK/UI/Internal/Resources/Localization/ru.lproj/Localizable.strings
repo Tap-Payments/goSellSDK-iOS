@@ -35,7 +35,8 @@
 
 // MARK: Save Card Placeholders
 
-"save_card_promotion_text" = "Для более быстрой и безопасной оплаты сохраните карту";
+"save_card_promotion_text"		= "Для более быстрой и безопасной оплаты сохраните карту";
+"saved_cards_usage_description"	= "Сохранённые карты будут использоваться только с Вашего согласия, Вы можете удалить их в любое время.";
 
 // MARK: Screen Titles
 

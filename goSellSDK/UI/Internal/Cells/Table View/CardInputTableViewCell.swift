@@ -112,6 +112,9 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     
     @IBOutlet private weak var saveCardContainerView: UIView?
     @IBOutlet private weak var saveCardContainerViewHeightConstraint: NSLayoutConstraint?
+	
+	@IBOutlet private var constraintsToDeactivateWhenSaveCardSwitchVisible: [NSLayoutConstraint]?
+	@IBOutlet private var constraintsToActivateWhenSaveCardSwitchVisible: [NSLayoutConstraint]?
     
     // MARK: Methods
     
@@ -163,27 +166,49 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         
         guard
             
-            let saveCardContainerHeightConstraint = self.saveCardContainerViewHeightConstraint,
-            let saveCardView = self.saveCardContainerView,
-            let showsSaveCardSection = self.model?.showsSaveCardSection else { return false }
-        
-        let containerHeight = showsSaveCardSection ? Constants.saveCardContainerViewHeight : 0.0
-        let alpha: CGFloat = showsSaveCardSection ? 1.0 : 0.0
-        
-        guard saveCardContainerHeightConstraint.constant != containerHeight else { return false }
-        
-        let animations: TypeAlias.ArgumentlessClosure = {
-            
-            saveCardView.alpha = alpha
-            saveCardContainerHeightConstraint.constant = containerHeight
-            if layout {
-                
-                self.tap_layout()
-            }
-        }
-        
-        let animationDuration = animated ? self.contentView.layer.tap_longestAnimationDuration : 0.0
-        UIView.animate(withDuration: animationDuration, animations: animations)
+            let saveCardContainerHeightConstraint			= self.saveCardContainerViewHeightConstraint,
+            let saveCardView								= self.saveCardContainerView,
+			let saveCardSwitch								= self.saveCardSwitch,
+			let model										= self.model,
+			let constraintsToDeactivateForSaveCardSwitch	= self.constraintsToDeactivateWhenSaveCardSwitchVisible,
+			let constraintsToActivateForSaveCardSwitch		= self.constraintsToActivateWhenSaveCardSwitchVisible
+		
+		else { return false }
+		
+		let animationDuration = animated ? self.contentView.layer.tap_longestAnimationDuration : 0.0
+		
+        let containerHeight					= model.showsSaveCardSection ? Constants.saveCardContainerViewHeight : 0.0
+        let saveCardViewAlpha: CGFloat		= model.showsSaveCardSection ? 1.0 : 0.0
+		let saveCardSwitchAlpha: CGFloat	= model.showsSaveCardSwitch ? 1.0 : 0.0
+		
+		let animations: TypeAlias.ArgumentlessClosure = {
+			
+			saveCardView.alpha		= saveCardViewAlpha
+			saveCardSwitch.alpha	= saveCardSwitchAlpha
+			
+			saveCardContainerHeightConstraint.constant = containerHeight
+			if layout {
+				
+				self.tap_layout()
+			}
+		}
+		
+		var didPerformAnimation = false
+		
+		if model.showsSaveCardSection {
+			
+			didPerformAnimation = NSLayoutConstraint.tap_reactivate(inCaseIf:						model.showsSaveCardSwitch,
+																	constraintsToDisableOnSuccess:	constraintsToDeactivateForSaveCardSwitch,
+																	constraintsToEnableOnSuccess:	constraintsToActivateForSaveCardSwitch,
+																	viewToLayout:					layout ? self : nil,
+																	animationDuration:				animationDuration,
+																	additionalAnimations:			animations)
+		}
+		
+		if !didPerformAnimation {
+			
+			UIView.animate(withDuration: animationDuration, animations: animations)
+		}
         
         return true
     }
@@ -245,7 +270,11 @@ extension CardInputTableViewCell: LoadingWithModelCell {
 		self.cvvTextField?.textInsets	= Constants.cvvFieldInsets.tap_localized
 		
 		self.addressOnCardLabel?.setLocalizedText		(.card_input_address_on_card_placeholder)
-		self.saveCardDescriptionLabel?.setLocalizedText	(.save_card_promotion_text)
+		
+		if let model = self.model {
+		
+			self.saveCardDescriptionLabel?.setLocalizedText(model.saveCardDescriptionKey)
+		}
 	}
 	
     private func updateTableViewContent(_ animated: Bool) {
