@@ -13,7 +13,9 @@
             <connections>
                 <outlet property="internalButton" destination="7lX-ev-Iua" id="PV1-Rh-28j"/>
                 <outlet property="loader" destination="3GO-M7-fHX" id="hb5-Pc-ZCe"/>
+                <outlet property="loaderContainerView" destination="Wfo-7c-2ys" id="Y12-co-iKT"/>
                 <outlet property="securityButton" destination="bid-OO-UHN" id="Hx0-Fr-f3h"/>
+                <outlet property="securityButtonContainerView" destination="mFO-I3-J8f" id="T8u-d3-M8f"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -85,11 +87,6 @@
                 <constraint firstAttribute="bottom" secondItem="Wfo-7c-2ys" secondAttribute="bottom" id="tAC-Kr-Jes"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="number" keyPath="tap_cornerRadius">
-                    <real key="value" value="22"/>
-                </userDefinedRuntimeAttribute>
-            </userDefinedRuntimeAttributes>
         </view>
     </objects>
 </document>

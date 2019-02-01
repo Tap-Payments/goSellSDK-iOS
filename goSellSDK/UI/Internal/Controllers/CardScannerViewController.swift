@@ -74,7 +74,14 @@ extension CardScannerViewController: TapNavigationView.DataSource {
 	
 	internal func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
 		
-		return .ready(Theme.current.paymentOptionsCellStyle.card.scanIcon)
+		if let icon = Theme.current.paymentOptionsCellStyle.card.scanIcon {
+			
+			return .ready(icon)
+		}
+		else {
+			
+			return nil
+		}
 	}
 	
 	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {

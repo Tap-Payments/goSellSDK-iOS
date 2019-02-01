@@ -143,7 +143,7 @@ internal extension Process {
 		
 		internal var recentCards: [SavedCard] {
 			
-			fatalError("Should be implemented in subclass.")
+			return self.paymentOptionsResponse?.savedCards ?? []
 		}
 		
 		internal var isCallingPaymentAPI: Bool {
@@ -397,11 +397,6 @@ internal extension Process {
 				self.process.viewModelsHandlerInterface.currencyChanged()
 				self.process.buttonHandlerInterface.updateButtonState()
 			}
-		}
-		
-		internal override var recentCards: [SavedCard] {
-			
-			return self.paymentOptionsResponse?.savedCards ?? []
 		}
 		
 		internal var orderIdentifier: String? {

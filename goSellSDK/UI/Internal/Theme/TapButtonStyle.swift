@@ -13,11 +13,11 @@ internal struct TapButtonStyle: Decodable {
 	
 	internal let type: ButtonType
 	
-    internal let enabled: TapButtonStateStyle
+    internal var enabled: TapButtonStateStyle
 	
-    internal let disabled: TapButtonStateStyle
+    internal var disabled: TapButtonStateStyle
 	
-    internal let highlighted: TapButtonStateStyle
+    internal var highlighted: TapButtonStateStyle
 	
 	// MARK: - Private -
 	

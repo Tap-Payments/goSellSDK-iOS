@@ -12,18 +12,25 @@ internal struct Theme: Decodable {
 	
 	internal static var current: Theme {
 		
-		return ThemeManager.shared.currentTheme
+		get {
+		
+			return ThemeManager.shared.currentTheme
+		}
+		set {
+			
+			ThemeManager.shared.currentTheme = newValue
+		}
 	}
 	
 	internal let name: String
 	
 	internal let isDefault: Bool
 	
-	internal let buttonStyles: [TapButtonStyle]
+	internal var buttonStyles: [TapButtonStyle]
 	
 	internal let merchantHeaderStyle: NavigationBarStyle
 	
-	internal let paymentOptionsCellStyle: PaymentOptionCellsStyle
+	internal var paymentOptionsCellStyle: PaymentOptionCellsStyle
 	
 	internal let navigationBarStyle: NavigationBarStyle
 	

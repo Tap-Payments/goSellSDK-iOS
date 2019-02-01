@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140106FB2201F98E0080A149 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140106FA2201F98E0080A149 /* Color.swift */; };
+		140106FD2201FC000080A149 /* ColorSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140106FC2201FC000080A149 /* ColorSelectionTableViewController.swift */; };
+		140106FF2201FCA50080A149 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140106FE2201FCA50080A149 /* ColorTableViewCell.swift */; };
+		140107012202008C0080A149 /* FontSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140107002202008C0080A149 /* FontSelectionTableViewController.swift */; };
+		14010703220200F30080A149 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14010702220200F30080A149 /* FontTableViewCell.swift */; };
 		140CC52821566107000E80D5 /* EnvironmentCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CC52721566107000E80D5 /* EnvironmentCustomer.swift */; };
 		1414ADAD215AA87200CA2CCD /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1414ADAC215AA87200CA2CCD /* Language.swift */; };
 		14277BBB214056FA0011521F /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14277BBA214056FA0011521F /* SelectableCell.swift */; };
@@ -57,6 +62,11 @@
 
 /* Begin PBXFileReference section */
 		0D556C088C774FC337DECC2B /* Pods-goSellSDKExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.debug.xcconfig"; sourceTree = "<group>"; };
+		140106FA2201F98E0080A149 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		140106FC2201FC000080A149 /* ColorSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionTableViewController.swift; sourceTree = "<group>"; };
+		140106FE2201FCA50080A149 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
+		140107002202008C0080A149 /* FontSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionTableViewController.swift; sourceTree = "<group>"; };
+		14010702220200F30080A149 /* FontTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
 		140CC52721566107000E80D5 /* EnvironmentCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentCustomer.swift; sourceTree = "<group>"; };
 		1414ADAC215AA87200CA2CCD /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		14277BBA214056FA0011521F /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
@@ -178,6 +188,8 @@
 				A4B35FDF20C59FCF00847031 /* ShippingTableViewCell.swift */,
 				A4CFAF3020B83E0B00B5D83B /* TaxTableViewCell.swift */,
 				A4CFAF3E20B96E1500B5D83B /* TitleTableViewCell.swift */,
+				140106FE2201FCA50080A149 /* ColorTableViewCell.swift */,
+				14010702220200F30080A149 /* FontTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -185,16 +197,18 @@
 		A4CFAF3720B83FBB00B5D83B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A45A5DCB2142BEC000B7DDE9 /* BaseViewController.swift */,
 				A4CFAF4020B96EE000B5D83B /* CaseSelectionTableViewController.swift */,
+				140106FC2201FC000080A149 /* ColorSelectionTableViewController.swift */,
 				A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */,
 				A4B35FE920C7F9A000847031 /* CustomerViewController.swift */,
 				A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */,
+				140107002202008C0080A149 /* FontSelectionTableViewController.swift */,
 				A4CFAF3A20B84A9500B5D83B /* ModalNavigationTableViewController.swift */,
 				A4CFAF2E20B82A5700B5D83B /* PaymentItemViewController.swift */,
 				A4DF065F20C03659006F59D8 /* SettingsTableViewController.swift */,
 				A4B35FE120C7D39A00847031 /* ShippingViewController.swift */,
 				A4CFAF3820B849F400B5D83B /* TaxViewController.swift */,
-				A45A5DCB2142BEC000B7DDE9 /* BaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -259,6 +273,7 @@
 				A4DF066220C03778006F59D8 /* Settings.swift */,
 				A45A5DC32141279B00B7DDE9 /* TableViewCellModel.swift */,
 				1414ADAC215AA87200CA2CCD /* Language.swift */,
+				140106FA2201F98E0080A149 /* Color.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -452,6 +467,8 @@
 				A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */,
 				1414ADAD215AA87200CA2CCD /* Language.swift in Sources */,
 				A4B35FEA20C7F9A000847031 /* CustomerViewController.swift in Sources */,
+				14010703220200F30080A149 /* FontTableViewCell.swift in Sources */,
+				140106FF2201FCA50080A149 /* ColorTableViewCell.swift in Sources */,
 				A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */,
 				A45A5DCC2142BEC000B7DDE9 /* BaseViewController.swift in Sources */,
 				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
@@ -474,6 +491,7 @@
 				A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
 				A4C38F5F20EA36A300FE7C7B /* SerializationHelper.swift in Sources */,
 				A4D5FE532083235E007D52F5 /* AppDelegate.swift in Sources */,
+				140106FB2201F98E0080A149 /* Color.swift in Sources */,
 				A45A5DC42141279B00B7DDE9 /* TableViewCellModel.swift in Sources */,
 				A4CFAF4120B96EE000B5D83B /* CaseSelectionTableViewController.swift in Sources */,
 				A412AE0F20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift in Sources */,
@@ -484,7 +502,9 @@
 				A4B35FEC20C814E100847031 /* CustomerViewControllerDelegate.swift in Sources */,
 				140CC52821566107000E80D5 /* EnvironmentCustomer.swift in Sources */,
 				A4B35FE620C7DE7800847031 /* InputFieldObserver.swift in Sources */,
+				140106FD2201FC000080A149 /* ColorSelectionTableViewController.swift in Sources */,
 				A45A5DC6214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift in Sources */,
+				140107012202008C0080A149 /* FontSelectionTableViewController.swift in Sources */,
 				14277BBB214056FA0011521F /* SelectableCell.swift in Sources */,
 				A4D5FE65208323FB007D52F5 /* ExampleViewController.swift in Sources */,
 				A4CFAF3B20B84A9500B5D83B /* ModalNavigationTableViewController.swift in Sources */,

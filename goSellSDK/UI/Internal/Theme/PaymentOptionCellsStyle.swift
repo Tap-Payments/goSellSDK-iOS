@@ -18,7 +18,7 @@ internal struct PaymentOptionCellsStyle: Decodable {
 	
 	internal let web: WebCellStyle
 	
-	internal let card: CardCellStyle
+	internal var card: CardCellStyle
 	
 	internal let savedCard: SavedCardStyle
 	

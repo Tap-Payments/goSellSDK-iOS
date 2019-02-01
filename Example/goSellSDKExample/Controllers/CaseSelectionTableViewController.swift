@@ -7,12 +7,12 @@
 
 import ObjectiveC
 
-import class Dispatch.DispatchQueue
-import struct Foundation.NSIndexPath.IndexPath
-import class UIKit.UIBarButtonItem.UIBarButtonItem
-import class UIKit.UITableView.UITableView
-import class UIKit.UITableViewCell.UITableViewCell
-import class UIKit.UITableViewController.UITableViewController
+import class	Dispatch.DispatchQueue
+import struct	Foundation.NSIndexPath.IndexPath
+import class	UIKit.UIBarButtonItem.UIBarButtonItem
+import class	UIKit.UITableView.UITableView
+import class	UIKit.UITableViewCell.UITableViewCell
+import class	UIKit.UITableViewController.UITableViewController
 
 internal class CaseSelectionTableViewController: UITableViewController {
     

@@ -18,8 +18,10 @@ import enum     goSellSDK.TransactionMode
 import class    ObjectiveC.NSObject.NSObject
 import enum		UIKit.NSText.NSTextAlignment
 import class	UIKit.UIApplication.UIApplication
+import class	UIKit.UIFont.UIFont
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UINavigationController.UINavigationController
+import class	UIKit.UIStepper.UIStepper
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class	UIKit.UISwitch.UISwitch
 import class    UIKit.UITableView.UITableView
@@ -90,11 +92,126 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             shippingController.delegate = self
             shippingController.shipping = self.selectedShipping
         }
-        else if let caseSelectionController = segue.destination as? CaseSelectionTableViewController, let reuseIdentifier = self.selectedCellReuseIdentifier {
-            
-            caseSelectionController.delegate = self
-            
-            switch reuseIdentifier {
+		else if let colorSelectionControler = segue.destination as? ColorSelectionTableViewController, let reuseIdentifier = self.selectedCellReuseIdentifier {
+			
+			colorSelectionControler.delegate = self
+			colorSelectionControler.allValues = Color.allCases
+			
+			switch reuseIdentifier {
+				
+			case Constants.cardInputTextColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Card Input Text Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputTextColor
+				
+			case Constants.cardInputTextColorInvalidCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Card Input Invalid Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputInvalidTextColor
+				
+			case Constants.cardInputTextColorPlaceholderCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Card Input Placeholder Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputPlaceholderTextColor
+				
+			case Constants.cardInputDescriptionTextColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Card Input Description Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputDescriptionTextColor
+				
+			case Constants.cardInputSaveCardSwitchOffTintColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Save Card Switch Off Tint"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchOffTintColor
+				
+			case Constants.cardInputSaveCardSwitchOnTintColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Save Card Switch On Tint"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchOnTintColor
+				
+			case Constants.cardInputSaveCardSwitchThumbTintColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Save Card Switch Thumb Tint"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchThumbTintColor
+				
+			case Constants.cardInputScanIconFrameTintColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Scan Icon Frame Tint"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputScanIconFrameTintColor
+				
+			case Constants.cardInputScanIconTintColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Scan Icon Tint"
+				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputScanIconTintColor
+				
+			case Constants.tapButtonDisabledBackgroundColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Pay/Save Button disabled background Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonDisabledBackgroundColor
+				
+			case Constants.tapButtonEnabledBackgroundColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Pay/Save Button enabled background Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonEnabledBackgroundColor
+				
+			case Constants.tapButtonHighlightedBackgroundColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Pay/Save Button highlighted background Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonDisabledBackgroundColor
+				
+			case Constants.tapButtonDisabledTextColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Pay/Save Button disabled text color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonDisabledTextColor
+				
+			case Constants.tapButtonEnabledTextColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Pay/Save Button enabled text color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonEnabledTextColor
+				
+			case Constants.tapButtonDisabledTextColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Pay/Save Button highlighted text color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonHighlightedTextColor
+				
+				
+			default:
+				
+				break
+			}
+		}
+		else if let fontSelectionController = segue.destination as? FontSelectionTableViewController, let reuseIdentifier = self.selectedCellReuseIdentifier {
+			
+			fontSelectionController.delegate = self
+			fontSelectionController.allValues = UIFont.familyNames
+			
+			switch reuseIdentifier {
+				
+			case Constants.cardInputFontCellReuseIdentifier:
+				
+				fontSelectionController.title = "Card Input Font"
+				fontSelectionController.preselectedValue = self.currentSettings?.cardInputFont
+				
+			case Constants.cardInputDescriptionFontCellReuseIdentifier:
+				
+				fontSelectionController.title = "Card Input Description Font"
+				fontSelectionController.preselectedValue = self.currentSettings?.cardInputDescriptionFont
+				
+			case Constants.tapButtonFontCellReuseIdentifier:
+				
+				fontSelectionController.title = "Pay/Save Button Font"
+				fontSelectionController.preselectedValue = self.currentSettings?.tapButtonFont
+				
+			default:
+				
+				break
+			}
+		}
+		else if let caseSelectionController = segue.destination as? CaseSelectionTableViewController, let reuseIdentifier = self.selectedCellReuseIdentifier {
+			
+			caseSelectionController.delegate = self
+			
+			switch reuseIdentifier {
 				
 			case Constants.sdkLanguageCelReuseIdentifier:
 				
@@ -102,11 +219,11 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 				caseSelectionController.allValues = Language.allCases
 				caseSelectionController.preselectedValue = self.currentSettings?.sdkLanguage
 				
-            case Constants.sdkModeCellReuseIdentifier:
-                
-                caseSelectionController.title = "SDK Mode"
-                caseSelectionController.allValues = SDKMode.allCases
-                caseSelectionController.preselectedValue = self.currentSettings?.sdkMode
+			case Constants.sdkModeCellReuseIdentifier:
+				
+				caseSelectionController.title = "SDK Mode"
+				caseSelectionController.allValues = SDKMode.allCases
+				caseSelectionController.preselectedValue = self.currentSettings?.sdkMode
 				
 			case Constants.appearanceModeCellReuseIdentifier:
 				
@@ -114,25 +231,25 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 				caseSelectionController.allValues = SDKAppearanceMode.allCases
 				caseSelectionController.preselectedValue = self.currentSettings?.appearanceMode
 				
-            case Constants.transactionModeCellReuseIdentifier:
-                
-                caseSelectionController.title = "Transaction Mode"
-                caseSelectionController.allValues = TransactionMode.allCases
-                caseSelectionController.preselectedValue = self.currentSettings?.transactionMode
-                
-            case Constants.currencyCellReuseIdentifier:
-                
-                caseSelectionController.title = "Currency"
-                caseSelectionController.allValues = Currency.allCases
-                caseSelectionController.preselectedValue = self.currentSettings?.currency
-                
-            default:
-                
-                break
-            }
-        }
-    }
-    
+			case Constants.transactionModeCellReuseIdentifier:
+				
+				caseSelectionController.title = "Transaction Mode"
+				caseSelectionController.allValues = TransactionMode.allCases
+				caseSelectionController.preselectedValue = self.currentSettings?.transactionMode
+				
+			case Constants.currencyCellReuseIdentifier:
+				
+				caseSelectionController.title = "Currency"
+				caseSelectionController.allValues = Currency.allCases
+				caseSelectionController.preselectedValue = self.currentSettings?.currency
+				
+			default:
+				
+				break
+			}
+		}
+	}
+	
     internal override func doneButtonClicked() {
         
         guard let nonnullSettings = self.currentSettings else { return }
@@ -172,20 +289,44 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         switch reuseIdentifier {
             
-        case Constants.currencyCellReuseIdentifier,
+		case Constants.currencyCellReuseIdentifier,
 			 Constants.sdkLanguageCelReuseIdentifier,
 			 Constants.sdkModeCellReuseIdentifier,
 			 Constants.appearanceModeCellReuseIdentifier,
 			 Constants.transactionModeCellReuseIdentifier:
-            
-            self.showCaseSelectionViewController(with: reuseIdentifier)
-            
-        case Constants.customerCellReuseIdentifier:
-            
-            self.showCustomersListViewController()
-            
-        default:
-            
+			
+			self.showCaseSelectionViewController(with: reuseIdentifier)
+			
+		case Constants.cardInputTextColorCellReuseIdentifier,
+			 Constants.cardInputTextColorInvalidCellReuseIdentifier,
+			 Constants.cardInputTextColorPlaceholderCellReuseIdentifier,
+			 Constants.cardInputDescriptionTextColorCellReuseIdentifier,
+			 Constants.cardInputSaveCardSwitchOffTintColorCellReuseIdentifier,
+			 Constants.cardInputSaveCardSwitchOnTintColorCellReuseIdentifier,
+			 Constants.cardInputSaveCardSwitchThumbTintColorCellReuseIdentifier,
+			 Constants.cardInputScanIconFrameTintColorCellReuseIdentifier,
+			 Constants.cardInputScanIconTintColorCellReuseIdentifier,
+			 Constants.tapButtonDisabledBackgroundColorCellReuseIdentifier,
+			 Constants.tapButtonEnabledBackgroundColorCellReuseIdentifier,
+			 Constants.tapButtonHighlightedBackgroundColorCellReuseIdentifier,
+			 Constants.tapButtonDisabledTextColorCellReuseIdentifier,
+			 Constants.tapButtonEnabledTextColorCellReuseIdentifier,
+			 Constants.tapButtonHighlightedTextColorCellReuseIdentifier:
+			
+			self.showColorSelectionViewController(with: reuseIdentifier)
+			
+		case Constants.customerCellReuseIdentifier:
+			
+			self.showCustomersListViewController()
+			
+		case Constants.cardInputFontCellReuseIdentifier,
+			 Constants.cardInputDescriptionFontCellReuseIdentifier,
+			 Constants.tapButtonFontCellReuseIdentifier:
+			
+			self.showFontSelectionViewController(with: reuseIdentifier)
+			
+		default:
+			
             break
         }
     }
@@ -220,30 +361,48 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     private struct Constants {
 		
-		fileprivate static let sdkLanguageCelReuseIdentifier		= "sdk_language_cell"
-        fileprivate static let sdkModeCellReuseIdentifier          	= "sdk_mode_cell"
-		fileprivate static let appearanceModeCellReuseIdentifier	= "appearance_mode_cell"
-        fileprivate static let transactionModeCellReuseIdentifier   = "transaction_mode_cell"
-        fileprivate static let currencyCellReuseIdentifier          = "currency_cell"
-        fileprivate static let customerCellReuseIdentifier          = "customer_cell"
-        fileprivate static let taxListCellReuseIdentifier           = "tax_list_cell"
-        fileprivate static let shippingListCellReuseIdentifier      = "shiping_list_cell"
-        
+		fileprivate static let sdkLanguageCelReuseIdentifier							= "sdk_language_cell"
+		
+        fileprivate static let sdkModeCellReuseIdentifier          						= "sdk_mode_cell"
+        fileprivate static let transactionModeCellReuseIdentifier   					= "transaction_mode_cell"
+        fileprivate static let currencyCellReuseIdentifier          					= "currency_cell"
+        fileprivate static let customerCellReuseIdentifier          					= "customer_cell"
+        fileprivate static let taxListCellReuseIdentifier           					= "tax_list_cell"
+        fileprivate static let shippingListCellReuseIdentifier      					= "shiping_list_cell"
+		
+		fileprivate static let appearanceModeCellReuseIdentifier						= "appearance_mode_cell"
+		fileprivate static let cardInputFontCellReuseIdentifier							= "card_input_font_cell"
+		fileprivate static let cardInputTextColorCellReuseIdentifier					= "card_input_color_valid_cell"
+		fileprivate static let cardInputTextColorInvalidCellReuseIdentifier				= "card_input_color_invalid_cell"
+		fileprivate static let cardInputTextColorPlaceholderCellReuseIdentifier			= "card_input_color_placeholder_cell"
+		fileprivate static let cardInputDescriptionFontCellReuseIdentifier				= "card_input_description_font_cell"
+		fileprivate static let cardInputDescriptionTextColorCellReuseIdentifier			= "card_input_description_color_cell"
+		fileprivate static let cardInputSaveCardSwitchOffTintColorCellReuseIdentifier	= "card_input_save_card_switch_off_tint_cell"
+		fileprivate static let cardInputSaveCardSwitchOnTintColorCellReuseIdentifier	= "card_input_save_card_switch_on_tint_cell"
+		fileprivate static let cardInputSaveCardSwitchThumbTintColorCellReuseIdentifier	= "card_input_save_card_switch_thumb_tint_cell"
+		fileprivate static let cardInputScanIconFrameTintColorCellReuseIdentifier		= "card_input_scan_icon_frame_tint_cell"
+		fileprivate static let cardInputScanIconTintColorCellReuseIdentifier			= "card_input_scan_icon_tint_cell"
+		fileprivate static let tapButtonDisabledBackgroundColorCellReuseIdentifier		= "tap_button_disabled_background_color_cell"
+		fileprivate static let tapButtonEnabledBackgroundColorCellReuseIdentifier		= "tap_button_enabled_background_color_cell"
+		fileprivate static let tapButtonHighlightedBackgroundColorCellReuseIdentifier	= "tap_button_highlighted_background_color_cell"
+		fileprivate static let tapButtonFontCellReuseIdentifier							= "tap_button_font_cell"
+		fileprivate static let tapButtonDisabledTextColorCellReuseIdentifier			= "tap_button_disabled_text_color_cell"
+		fileprivate static let tapButtonEnabledTextColorCellReuseIdentifier				= "tap_button_enabled_text_color_cell"
+		fileprivate static let tapButtonHighlightedTextColorCellReuseIdentifier			= "tap_button_highlighted_text_color_cell"
+		
         @available(*, unavailable) private init() {}
     }
     
     // MARK: Properties
 	
 	@IBOutlet private weak var sdkLanguageValueLabel: UILabel?
+	
     @IBOutlet private weak var sdkModeValueLabel: UILabel?
-	@IBOutlet private weak var appearanceModeValueLabel: UILabel?
     @IBOutlet private weak var transactionModeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
     @IBOutlet private weak var customerNameLabel: UILabel?
 	@IBOutlet private weak var threeDSecureSwitch: UISwitch?
 	@IBOutlet private weak var saveCardMultipleTimesSwitch: UISwitch?
-	@IBOutlet private weak var showsStatusPopupSwitch: UISwitch?
-	
     @IBOutlet private weak var shippingTableView: UITableView? {
         
         didSet {
@@ -261,7 +420,33 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             self.taxesTableView?.delegate = self.taxesTableViewHandler
         }
     }
-    
+	
+	@IBOutlet private weak var appearanceModeValueLabel: UILabel?
+	@IBOutlet private weak var showsStatusPopupSwitch: UISwitch?
+	@IBOutlet private weak var cardInputFontValueLabel: UILabel?
+	@IBOutlet private weak var cardInputTextColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputInvalidTextColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputPlaceholderTextColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputDescriptionFontValueLabel: UILabel?
+	@IBOutlet private weak var cardInputDescriptionTextColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputSaveCardSwitchOffTintColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputSaveCardSwitchOnTintColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputSaveCardSwitchThumbTintColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputScanIconFrameTintColorValueLabel: UILabel?
+	@IBOutlet private weak var cardInputScanIconTintColorValueLabel: UILabel?
+	
+	@IBOutlet private weak var tapButtonDisabledBackgroundColorValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonEnabledBackgroundColorValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonHighlightedBackgroundColorValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonTitleFontValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonDisabledTitleColorValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonEnabledTitleColorValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonHighlightedTitleColorValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonCornerRadiusValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonCornerRadiusStepper: UIStepper?
+	@IBOutlet private weak var tapButtonLoaderVisibleSwitch: UISwitch?
+	@IBOutlet private weak var tapButtonSecurityIconVisibleSwitch: UISwitch?
+	
     private var currentSettings: Settings? {
         
         didSet {
@@ -285,7 +470,19 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         self.selectedCellReuseIdentifier = reuseIdentifier
         self.show(CaseSelectionTableViewController.self)
     }
-    
+	
+	private func showColorSelectionViewController(with reuseIdentifier: String) {
+		
+		self.selectedCellReuseIdentifier = reuseIdentifier
+		self.show(ColorSelectionTableViewController.self)
+	}
+	
+	private func showFontSelectionViewController(with reuseIdentifier: String) {
+		
+		self.selectedCellReuseIdentifier = reuseIdentifier
+		self.show(FontSelectionTableViewController.self)
+	}
+	
     private func showCustomersListViewController() {
         
         self.show(CustomersListViewController.self)
@@ -293,24 +490,100 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     private func updateWithCurrentSettings() {
 		
-		self.sdkLanguageValueLabel?.text		= self.currentSettings?.sdkLanguage.description
-        self.sdkModeValueLabel?.text            = self.currentSettings?.sdkMode.description
-		self.appearanceModeValueLabel?.text		= self.currentSettings?.appearanceMode.description
-        self.transactionModeValueLabel?.text    = self.currentSettings?.transactionMode.description
-        self.currencyValueLabel?.text           = self.currentSettings?.currency.localizedSymbol
-		self.threeDSecureSwitch?.isOn			= self.currentSettings?.isThreeDSecure ?? Settings.default.isThreeDSecure
-		self.saveCardMultipleTimesSwitch?.isOn	= self.currentSettings?.canSaveSameCardMultipleTimes ?? Settings.default.canSaveSameCardMultipleTimes
-		self.showsStatusPopupSwitch?.isOn		= self.currentSettings?.showsStatusPopup ?? Settings.default.showsStatusPopup
-        
-        if let name = self.currentSettings?.customer?.customer.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
-           let surname = self.currentSettings?.customer?.customer.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            
-            self.customerNameLabel?.text = name + " " + surname
-        }
-        else {
-            
-            self.customerNameLabel?.text = nil
-        }
+		// Common
+		
+		self.sdkLanguageValueLabel?.text					= self.currentSettings?.sdkLanguage.description
+		
+		// Data source
+		
+		self.sdkModeValueLabel?.text            			= self.currentSettings?.sdkMode.description
+        self.transactionModeValueLabel?.text    			= self.currentSettings?.transactionMode.description
+        self.currencyValueLabel?.text           			= self.currentSettings?.currency.localizedSymbol
+		self.threeDSecureSwitch?.isOn						= self.currentSettings?.isThreeDSecure ?? Settings.default.isThreeDSecure
+		self.saveCardMultipleTimesSwitch?.isOn				= self.currentSettings?.canSaveSameCardMultipleTimes ?? Settings.default.canSaveSameCardMultipleTimes
+		
+		if let name = self.currentSettings?.customer?.customer.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
+			let surname = self.currentSettings?.customer?.customer.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
+			
+			self.customerNameLabel?.text = name + " " + surname
+		}
+		else {
+			
+			self.customerNameLabel?.text = nil
+		}
+		
+		// Appearance
+		
+		self.appearanceModeValueLabel?.text					= self.currentSettings?.appearanceMode.description
+		self.showsStatusPopupSwitch?.isOn					= self.currentSettings?.showsStatusPopup ?? Settings.default.showsStatusPopup
+		self.cardInputFontValueLabel?.text					= self.currentSettings?.cardInputFont
+		
+		if let set = self.currentSettings, let font = UIFont(name: set.cardInputFont, size: 17.0) {
+			
+			self.cardInputFontValueLabel?.font					= font
+			self.cardInputTextColorValueLabel?.font				= font
+			self.cardInputInvalidTextColorValueLabel?.font		= font
+			self.cardInputPlaceholderTextColorValueLabel?.font	= font
+		}
+		
+		self.cardInputTextColorValueLabel?.text				= self.currentSettings?.cardInputTextColor.description
+		if let set = self.currentSettings { self.cardInputTextColorValueLabel?.textColor = set.cardInputTextColor.asUIColor }
+		self.cardInputInvalidTextColorValueLabel?.text		= self.currentSettings?.cardInputInvalidTextColor.description
+		if let set = self.currentSettings { self.cardInputInvalidTextColorValueLabel?.textColor = set.cardInputInvalidTextColor.asUIColor }
+		self.cardInputPlaceholderTextColorValueLabel?.text	= self.currentSettings?.cardInputPlaceholderTextColor.description
+		if let set = self.currentSettings { self.cardInputPlaceholderTextColorValueLabel?.textColor = set.cardInputPlaceholderTextColor.asUIColor }
+		self.cardInputDescriptionFontValueLabel?.text		= self.currentSettings?.cardInputDescriptionFont
+		
+		if let set = self.currentSettings, let font = UIFont(name: set.cardInputDescriptionFont, size: 17.0) {
+			
+			self.cardInputDescriptionFontValueLabel?.font		= font
+			self.cardInputDescriptionTextColorValueLabel?.font	= font
+		}
+		
+		self.cardInputDescriptionTextColorValueLabel?.text	= self.currentSettings?.cardInputDescriptionTextColor.description
+		if let set = self.currentSettings { self.cardInputDescriptionTextColorValueLabel?.textColor = set.cardInputDescriptionTextColor.asUIColor }
+		
+		self.cardInputSaveCardSwitchOffTintColorValueLabel?.text = self.currentSettings?.cardInputSaveCardSwitchOffTintColor.description
+		if let set = self.currentSettings { self.cardInputSaveCardSwitchOffTintColorValueLabel?.textColor = set.cardInputSaveCardSwitchOffTintColor.asUIColor }
+		self.cardInputSaveCardSwitchOnTintColorValueLabel?.text = self.currentSettings?.cardInputSaveCardSwitchOnTintColor.description
+		if let set = self.currentSettings { self.cardInputSaveCardSwitchOnTintColorValueLabel?.textColor = set.cardInputSaveCardSwitchOnTintColor.asUIColor }
+		self.cardInputSaveCardSwitchThumbTintColorValueLabel?.text = self.currentSettings?.cardInputSaveCardSwitchThumbTintColor.description
+		if let set = self.currentSettings { self.cardInputSaveCardSwitchThumbTintColorValueLabel?.textColor = set.cardInputSaveCardSwitchThumbTintColor.asUIColor }
+		
+		self.cardInputScanIconFrameTintColorValueLabel?.text = self.currentSettings?.cardInputScanIconFrameTintColor.description
+		if let set = self.currentSettings { self.cardInputScanIconFrameTintColorValueLabel?.textColor = set.cardInputScanIconFrameTintColor.asUIColor }
+		self.cardInputScanIconTintColorValueLabel?.text = self.currentSettings?.cardInputScanIconTintColor?.description
+		if let set = self.currentSettings { self.cardInputScanIconTintColorValueLabel?.textColor = set.cardInputScanIconTintColor?.asUIColor }
+		
+		self.tapButtonDisabledBackgroundColorValueLabel?.text = self.currentSettings?.tapButtonDisabledBackgroundColor?.description
+		if let set = self.currentSettings, let color = set.tapButtonDisabledBackgroundColor { self.tapButtonDisabledBackgroundColorValueLabel?.textColor = color.asUIColor }
+		self.tapButtonEnabledBackgroundColorValueLabel?.text = self.currentSettings?.tapButtonEnabledBackgroundColor?.description
+		if let set = self.currentSettings, let color = set.tapButtonEnabledBackgroundColor { self.tapButtonEnabledBackgroundColorValueLabel?.textColor = color.asUIColor }
+		self.tapButtonHighlightedBackgroundColorValueLabel?.text = self.currentSettings?.tapButtonHighlightedBackgroundColor?.description
+		if let set = self.currentSettings, let color = set.tapButtonHighlightedBackgroundColor { self.tapButtonHighlightedBackgroundColorValueLabel?.textColor = color.asUIColor }
+		
+		self.tapButtonTitleFontValueLabel?.text = self.currentSettings?.tapButtonFont
+		if let set = self.currentSettings, let font = UIFont(name: set.tapButtonFont, size: 17.0) {
+			
+			self.tapButtonTitleFontValueLabel?.font				= font
+			self.tapButtonDisabledTitleColorValueLabel?.font	= font
+			self.tapButtonEnabledTitleColorValueLabel?.font		= font
+			self.tapButtonHighlightedTitleColorValueLabel?.font	= font
+		}
+		
+		self.tapButtonDisabledTitleColorValueLabel?.text = self.currentSettings?.tapButtonDisabledTextColor?.description
+		if let set = self.currentSettings, let color = set.tapButtonDisabledTextColor { self.tapButtonDisabledTitleColorValueLabel?.textColor = color.asUIColor }
+		self.tapButtonEnabledTitleColorValueLabel?.text = self.currentSettings?.tapButtonEnabledTextColor?.description
+		if let set = self.currentSettings, let color = set.tapButtonEnabledTextColor { self.tapButtonEnabledTitleColorValueLabel?.textColor = color.asUIColor }
+		self.tapButtonHighlightedTitleColorValueLabel?.text = self.currentSettings?.tapButtonHighlightedTextColor?.description
+		if let set = self.currentSettings, let color = set.tapButtonHighlightedTextColor { self.tapButtonHighlightedTitleColorValueLabel?.textColor = color.asUIColor }
+		
+		let tapButtonCornerRadius = self.currentSettings?.tapButtonCornerRadius ?? Settings.default.tapButtonCornerRadius
+		self.tapButtonCornerRadiusValueLabel?.text = "\(tapButtonCornerRadius)"
+		self.tapButtonCornerRadiusStepper?.value = Double(tapButtonCornerRadius)
+		
+		self.tapButtonLoaderVisibleSwitch?.isOn = self.currentSettings?.isTapButtonLoaderVisible ?? Settings.default.isTapButtonLoaderVisible
+		self.tapButtonSecurityIconVisibleSwitch?.isOn = self.currentSettings?.isTapButtonSecurityIconVisible ?? Settings.default.isTapButtonSecurityIconVisible
     }
 	
 	@IBAction private func threeDSecureSwitchValueChanged(_ sender: Any) {
@@ -326,6 +599,34 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	@IBAction private func showsStatusPopupSwitchValueChanged(_ sender: Any) {
 		
 		self.currentSettings?.showsStatusPopup = self.showsStatusPopupSwitch?.isOn ?? Settings.default.showsStatusPopup
+	}
+	
+	@IBAction private func tapButtonCornerRadiusStepperValueChanged(_ sender: Any) {
+		
+		var radius: CGFloat
+		
+		if let value = self.tapButtonCornerRadiusStepper?.value {
+			
+			radius = CGFloat(value)
+		}
+		else {
+			
+			radius = Settings.default.tapButtonCornerRadius
+		}
+		
+		self.currentSettings?.tapButtonCornerRadius = radius
+		
+		self.tapButtonCornerRadiusValueLabel?.text = "\(radius)"
+	}
+	
+	@IBAction private func tapButtonLoaderVisibleSwitchValueChanged(_ sender: Any) {
+		
+		self.currentSettings?.isTapButtonLoaderVisible = self.tapButtonLoaderVisibleSwitch?.isOn ?? Settings.default.isTapButtonLoaderVisible
+	}
+	
+	@IBAction private func tapButtonSecurityIconVisibleSwitchValueChanged(_ sender: Any) {
+		
+		self.currentSettings?.isTapButtonSecurityIconVisible = self.tapButtonSecurityIconVisibleSwitch?.isOn ?? Settings.default.isTapButtonSecurityIconVisible
 	}
 	
     @IBAction private func addTaxButtonTouchUpInside(_ sender: Any) {
@@ -374,12 +675,33 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		
 		let trailing: NSTextAlignment = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight ? .right : .left
 		
-		self.sdkLanguageValueLabel?.textAlignment		= trailing
-		self.sdkModeValueLabel?.textAlignment			= trailing
-		self.appearanceModeValueLabel?.textAlignment	= trailing
-		self.transactionModeValueLabel?.textAlignment	= trailing
-		self.currencyValueLabel?.textAlignment			= trailing
-		self.customerNameLabel?.textAlignment			= trailing
+		self.sdkLanguageValueLabel?.textAlignment							= trailing
+		
+		self.sdkModeValueLabel?.textAlignment								= trailing
+		self.transactionModeValueLabel?.textAlignment						= trailing
+		self.currencyValueLabel?.textAlignment								= trailing
+		self.customerNameLabel?.textAlignment								= trailing
+		
+		self.appearanceModeValueLabel?.textAlignment						= trailing
+		self.cardInputFontValueLabel?.textAlignment							= trailing
+		self.cardInputTextColorValueLabel?.textAlignment					= trailing
+		self.cardInputInvalidTextColorValueLabel?.textAlignment				= trailing
+		self.cardInputPlaceholderTextColorValueLabel?.textAlignment			= trailing
+		self.cardInputDescriptionFontValueLabel?.textAlignment				= trailing
+		self.cardInputDescriptionTextColorValueLabel?.textAlignment			= trailing
+		self.cardInputSaveCardSwitchOffTintColorValueLabel?.textAlignment	= trailing
+		self.cardInputSaveCardSwitchOnTintColorValueLabel?.textAlignment	= trailing
+		self.cardInputSaveCardSwitchThumbTintColorValueLabel?.textAlignment	= trailing
+		self.cardInputScanIconFrameTintColorValueLabel?.textAlignment		= trailing
+		self.cardInputScanIconTintColorValueLabel?.textAlignment			= trailing
+		self.tapButtonDisabledBackgroundColorValueLabel?.textAlignment		= trailing
+		self.tapButtonEnabledBackgroundColorValueLabel?.textAlignment		= trailing
+		self.tapButtonHighlightedBackgroundColorValueLabel?.textAlignment	= trailing
+		self.tapButtonTitleFontValueLabel?.textAlignment					= trailing
+		self.tapButtonDisabledTitleColorValueLabel?.textAlignment			= trailing
+		self.tapButtonEnabledTitleColorValueLabel?.textAlignment			= trailing
+		self.tapButtonHighlightedTitleColorValueLabel?.textAlignment		= trailing
+		self.tapButtonCornerRadiusValueLabel?.textAlignment					= trailing
 	}
 }
 
@@ -492,7 +814,133 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
                 
                 self.currentSettings?.currency = currency
             }
-            
+			
+		case Constants.cardInputFontCellReuseIdentifier:
+			
+			if let cardInputFont = value as? String {
+				
+				self.currentSettings?.cardInputFont = cardInputFont
+			}
+			
+		case Constants.cardInputDescriptionFontCellReuseIdentifier:
+			
+			if let cardInputDescriptionFont = value as? String {
+			
+				self.currentSettings?.cardInputDescriptionFont = cardInputDescriptionFont
+			}
+			
+		case Constants.cardInputTextColorCellReuseIdentifier:
+			
+			if let cardInputTextColor = value as? Color {
+				
+				self.currentSettings?.cardInputTextColor = cardInputTextColor
+			}
+			
+		case Constants.cardInputTextColorInvalidCellReuseIdentifier:
+			
+			if let cardInputInvalidTextColor = value as? Color {
+				
+				self.currentSettings?.cardInputInvalidTextColor = cardInputInvalidTextColor
+			}
+			
+		case Constants.cardInputTextColorPlaceholderCellReuseIdentifier:
+			
+			if let cardInputPlaceholderTextColor = value as? Color {
+				
+				self.currentSettings?.cardInputPlaceholderTextColor = cardInputPlaceholderTextColor
+			}
+			
+		case Constants.cardInputDescriptionTextColorCellReuseIdentifier:
+			
+			if let cardInputDescriptionTextColor = value as? Color {
+				
+				self.currentSettings?.cardInputDescriptionTextColor = cardInputDescriptionTextColor
+			}
+			
+		case Constants.cardInputSaveCardSwitchOffTintColorCellReuseIdentifier:
+			
+			if let cardInputSaveCardSwitchOffTintColor = value as? Color {
+				
+				self.currentSettings?.cardInputSaveCardSwitchOffTintColor = cardInputSaveCardSwitchOffTintColor
+			}
+			
+		case Constants.cardInputSaveCardSwitchOnTintColorCellReuseIdentifier:
+			
+			if let cardInputSaveCardSwitchOnTintColor = value as? Color {
+				
+				self.currentSettings?.cardInputSaveCardSwitchOnTintColor = cardInputSaveCardSwitchOnTintColor
+			}
+			
+		case Constants.cardInputSaveCardSwitchThumbTintColorCellReuseIdentifier:
+			
+			if let cardInputSaveCardSwitchThumbTintColor = value as? Color {
+				
+				self.currentSettings?.cardInputSaveCardSwitchThumbTintColor = cardInputSaveCardSwitchThumbTintColor
+			}
+			
+		case Constants.cardInputScanIconFrameTintColorCellReuseIdentifier:
+			
+			if let cardInputScanIconFrameTintColor = value as? Color {
+				
+				self.currentSettings?.cardInputScanIconFrameTintColor = cardInputScanIconFrameTintColor
+			}
+			
+		case Constants.cardInputScanIconTintColorCellReuseIdentifier:
+			
+			if let cardInputScanIconTintColor = value as? Color {
+				
+				self.currentSettings?.cardInputScanIconTintColor = cardInputScanIconTintColor
+			}
+			
+		case Constants.tapButtonDisabledBackgroundColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.tapButtonDisabledBackgroundColor = color
+			}
+			
+		case Constants.tapButtonEnabledBackgroundColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.tapButtonEnabledBackgroundColor = color
+			}
+			
+		case Constants.tapButtonHighlightedBackgroundColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.tapButtonHighlightedBackgroundColor = color
+			}
+			
+		case Constants.tapButtonFontCellReuseIdentifier:
+			
+			if let font = value as? String {
+				
+				self.currentSettings?.tapButtonFont = font
+			}
+			
+		case Constants.tapButtonDisabledTextColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.tapButtonDisabledTextColor = color
+			}
+			
+		case Constants.tapButtonEnabledTextColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.tapButtonEnabledTextColor = color
+			}
+			
+		case Constants.tapButtonHighlightedTextColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.tapButtonHighlightedTextColor = color
+			}
+			
         default:
             
             break

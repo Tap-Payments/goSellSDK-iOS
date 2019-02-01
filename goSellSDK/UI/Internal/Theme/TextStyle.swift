@@ -13,9 +13,9 @@ internal struct TextStyle: Decodable {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal let font: Font
+	internal var font: Font
 	
-	internal let color: HexColor
+	internal var color: HexColor
 	
 	internal let alignment: LocalizedTextAlignment
 	

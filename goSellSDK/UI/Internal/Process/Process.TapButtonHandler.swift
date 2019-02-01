@@ -40,7 +40,7 @@ internal extension Process {
 				
 				guard let style = self.buttonStyle else { return }
 				
-				self.button?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == style })!
+				self.updateWithButtonStyle(style)
 			}
 		}
 		
@@ -83,12 +83,12 @@ internal extension Process {
 			}
 		}
 		
-		internal final func startButtonLoader() {
+		internal func startButtonLoader() {
 			
 			self.button?.startLoader()
 		}
 		
-		internal final func stopButtonLoader() {
+		internal func stopButtonLoader() {
 			
 			self.button?.stopLoader()
 		}
@@ -132,6 +132,14 @@ internal extension Process {
 			
 			self.stopMonitoringLocalizationChanges()
 			self.clickCallback = nil
+		}
+		
+		// MARK: - Fileprivate -
+		// MARK: Methods
+		
+		fileprivate func updateWithButtonStyle(_ style: TapButtonStyle.ButtonType) {
+			
+			self.button?.themeStyle = ThemeManager.shared.originalCurrentTheme.buttonStyles.first(where: { $0.type == style })!
 		}
 		
 		// MARK: - Private -
@@ -222,6 +230,50 @@ internal extension Process {
 			
 			self.init(process: process)
 			self.setButton(button)
+		}
+		
+		internal override func startButtonLoader() {
+			
+			guard let button = self.button else { return }
+			let enabled = button.isEnabled && !button.forceDisabled
+			
+			let settings = button.themeStyle
+			let stateSettings = enabled ? (button.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
+			if stateSettings.isLoaderVisible {
+				
+				super.startButtonLoader()
+			}
+			else {
+				
+				guard let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
+				LoadingView.show(in: paymentContentController, animated: true)
+			}
+		}
+		
+		internal override func stopButtonLoader() {
+			
+			guard let button = self.button else { return }
+			let enabled = button.isEnabled && !button.forceDisabled
+			
+			let settings = button.themeStyle
+			let stateSettings = enabled ? (button.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
+			if stateSettings.isLoaderVisible {
+				
+				super.stopButtonLoader()
+			}
+			else {
+				
+				guard let paymentContentController = PaymentContentViewController.tap_findInHierarchy() else { return }
+				paymentContentController.hideLoader()
+			}
+		}
+		
+		// MARK: - Fileprivate
+		// MARK: Methods
+		
+		fileprivate override func updateWithButtonStyle(_ style: TapButtonStyle.ButtonType) {
+			
+			self.button?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == style })!
 		}
 	}
 }

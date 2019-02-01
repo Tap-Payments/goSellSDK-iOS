@@ -13,7 +13,7 @@ internal class ErrorActionExecutor {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func closePayment(with error: TapSDKError?, _ completion: TypeAlias.ArgumentlessClosure?) {
+    internal static func closePayment(with error: TapSDKError, _ completion: TypeAlias.ArgumentlessClosure?) {
 		
         let mode =  Process.shared.transactionMode
         var status: PaymentStatus
@@ -22,7 +22,7 @@ internal class ErrorActionExecutor {
             
         case .purchase:         status = .chargeFailure(nil, error)
         case .authorizeCapture: status = .authorizationFailure(nil, error)
-		case .cardSaving:		status = .cardSaveFailure(error)
+		case .cardSaving:		status = .cardSaveFailure(nil, error)
             
         }
         

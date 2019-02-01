@@ -18,7 +18,7 @@ internal extension TextFieldInputDataValidation {
     internal func updateInputFieldTextAndAttributes() {
         
         let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
-        let textSettings = self.isDataValid || self.textInputField.isEditing ? cardInputSettings.valid : cardInputSettings.invalid
+		let textSettings = cardInputSettings[(self.isDataValid || self.textInputField.isEditing) ? .valid : .invalid]
         let textAttributes = textSettings.asStringAttributes
         
         self.textInputField.defaultTextAttributes = textAttributes
@@ -27,7 +27,7 @@ internal extension TextFieldInputDataValidation {
         self.textInputField.attributedText = NSAttributedString(string: self.textInputFieldText, attributes: textAttributes)
         self.textInputField.selectedTextRange = selectedRange
         
-        let placeholderAttributes = cardInputSettings.placeholder.asStringAttributes
+        let placeholderAttributes = cardInputSettings[.placeholder].asStringAttributes
 		let placeholderText = LocalizationProvider.shared.localizedString(for: self.textInputFieldPlaceholderText)
 		
         self.textInputField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: placeholderAttributes)

@@ -191,7 +191,7 @@ internal class CardNumberValidator: CardValidator {
             
             let cardBrand = brand ?? self.recognizedCardType.brand
             
-            let attributedText = self.textField.attributedText ?? NSAttributedString(string: .tap_empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
+            let attributedText = self.textField.attributedText ?? NSAttributedString(string: .tap_empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput[.valid].asStringAttributes)
 			
 			var text: NSAttributedString
 			if cardBrand == .unknown {

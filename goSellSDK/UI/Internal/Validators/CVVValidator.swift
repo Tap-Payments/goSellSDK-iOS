@@ -149,7 +149,7 @@ extension CVVValidator.CVVTextFieldDelegate: UITextFieldDelegate {
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        textField.attributedText = NSAttributedString(string: .tap_empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
+        textField.attributedText = NSAttributedString(string: .tap_empty, attributes: Theme.current.paymentOptionsCellStyle.card.textInput[.valid].asStringAttributes)
         
         self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()

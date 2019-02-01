@@ -13,4 +13,7 @@
 	
 	/// Session delegate.
 	var delegate: SessionDelegate? { get set }
+	
+	/// Session appearance.
+	var appearance: SessionAppearance? { get set }
 }
