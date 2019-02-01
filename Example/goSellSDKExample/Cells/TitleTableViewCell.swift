@@ -8,18 +8,17 @@
 import class UIKit.UILabel.UILabel
 import class UIKit.UITableViewCell.UITableViewCell
 
-internal final class TitleTableViewCell: UITableViewCell {
+internal class TitleTableViewCell: UITableViewCell {
     
     // MARK: - Internal -
+	// MARK: Properties
+	
+	@IBOutlet internal private(set) weak var titleTextLabel: UILabel?
+	
     // MARK: Methods
     
     internal func setTitle(_ title: CustomStringConvertible) {
         
         self.titleTextLabel?.text = title.description
     }
-    
-    // MARK: - Private -
-    // MARK: Properties
-    
-    @IBOutlet private weak var titleTextLabel: UILabel?
 }

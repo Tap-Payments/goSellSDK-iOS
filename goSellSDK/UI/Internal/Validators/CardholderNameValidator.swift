@@ -143,7 +143,7 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
         
         if canReplace {
             
-            textField.attributedText = NSAttributedString(string: resultString, attributes: Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes)
+            textField.attributedText = NSAttributedString(string: resultString, attributes: Theme.current.paymentOptionsCellStyle.card.textInput[.valid].asStringAttributes)
             
             if let rangeStart = textField.position(from: textField.beginningOfDocument, offset: range.location + string.tap_length),
                let rangeEnd = textField.position(from: rangeStart, offset: 0) {

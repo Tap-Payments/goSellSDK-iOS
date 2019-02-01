@@ -228,6 +228,12 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	
 	fileprivate func showSuccessPopup(with subtitle: String, completion: @escaping TypeAlias.ArgumentlessClosure) {
 		
+		if !self.canShowStatusPopup {
+			
+			completion()
+			return
+		}
+		
 		let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
 		
 		let popup           = StatusPopupViewController.shared
@@ -243,6 +249,12 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	}
 	
 	fileprivate func showFailurePopup(_ completion: @escaping TypeAlias.ArgumentlessClosure) {
+		
+		if !self.canShowStatusPopup {
+			
+			completion()
+			return
+		}
 		
 		let disappearanceTime = (SettingsDataManager.shared.settings?.internalSettings ?? InternalSDKSettings.default).statusDisplayDuration
 		
@@ -363,10 +375,21 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 			
 			delegate.authorizationFailed?(with: authorize, error: error, on: session)
 			
-		case .cardSaveFailure(let error):
+		case .cardSaveFailure(let verification, let error):
 			
-			delegate.cardSavingFailed?(with: error, on: session)
+			delegate.cardSavingFailed?(with: verification, error: error, on: session)
+		}
+	}
+	
+	private var canShowStatusPopup: Bool {
+		
+		if let session = self.process.externalSession, let value = session.appearance?.sessionShouldShowStatusPopup?(session) {
 			
+			return value
+		}
+		else {
+			
+			return true
 		}
 	}
 }
@@ -442,14 +465,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			return
 		}
 		
-		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
-			
-			self.showSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
-		}
-		else {
-			
-			popupAppearanceCompletionClosure()
-		}
+		self.showSuccessPopup(with: receiptNumber, completion: popupAppearanceCompletionClosure)
 	}
 	
 	internal override func paymentFailure(with status: ChargeStatus, chargeOrAuthorize: ChargeProtocol, error: TapSDKError?) {
@@ -466,18 +482,11 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			}
 			else {
 				
-				ErrorActionExecutor.closePayment(with: error, nil)
+				fatalError("Impossible case")
 			}
 		}
 		
-		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
-			
-			self.showFailurePopup(completion)
-		}
-		else {
-			
-			completion()
-		}
+		self.showFailurePopup(completion)
 	}
 	
 	internal override func closePayment(with status: PaymentStatus, fadeAnimation: Bool, force: Bool, completion: TypeAlias.ArgumentlessClosure?) {
@@ -692,30 +701,16 @@ internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process
 			self?.closePayment(with: .successfulCardSave(cardVerification), fadeAnimation: true, force: false, completion: nil)
 		}
 		
-		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
-			
-			self.showSuccessPopup(with: .tap_empty, completion: popupAppearanceCompletionClosure)
-		}
-		else {
-			
-			popupAppearanceCompletionClosure()
-		}
+		self.showSuccessPopup(with: .tap_empty, completion: popupAppearanceCompletionClosure)
 	}
 	
 	internal override func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?) {
 		
 		let completion: TypeAlias.ArgumentlessClosure = {
 			
-			self.closePayment(with: .cardSaveFailure(error), fadeAnimation: false, force: false, completion: nil)
+			self.closePayment(with: .cardSaveFailure(cardVerification, error), fadeAnimation: false, force: false, completion: nil)
 		}
 		
-		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
-			
-			self.showFailurePopup(completion)
-		}
-		else {
-			
-			completion()
-		}
+		self.showFailurePopup(completion)
 	}
 }

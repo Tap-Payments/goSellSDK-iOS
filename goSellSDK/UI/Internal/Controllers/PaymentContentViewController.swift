@@ -30,7 +30,6 @@ internal class PaymentContentViewController: HeaderNavigatedViewController {
 	internal override var headerHasShadowInitially: Bool {
 		
 		return false
-//		return Process.shared.appearance == .fullscreen
 	}
 	
 	/// Layout listener.

@@ -53,6 +53,8 @@ internal class TapButton: TapNibView {
             self.updateTheme(animated: true)
         }
     }
+	
+	internal private(set) var isHighlighted = false
     
     // MARK: Methods
     
@@ -122,8 +124,9 @@ internal class TapButton: TapNibView {
 			self.securityButton?.imageView?.contentMode = .center
 		}
 	}
-    
-    private var isHighlighted = false
+	
+	@IBOutlet private weak var loaderContainerView: UIView?
+	@IBOutlet private weak var securityButtonContainerView: UIView?
     
     // MARK: Methods
     
@@ -154,37 +157,37 @@ internal class TapButton: TapNibView {
         let enabled = self.isEnabled && !self.forceDisabled
         self.internalButton?.isEnabled = enabled
         self.securityButton?.isUserInteractionEnabled = enabled
-        self.updateTheme(animated: animated)
-    }
-    
-    private func updateTheme(animated: Bool) {
-        
-        performOnMainThread {
-            
-            let updates: TypeAlias.ArgumentlessClosure = { [weak self] in
-                
-                guard let strongSelf = self else { return }
-                
-                let enabled = strongSelf.isEnabled && !strongSelf.forceDisabled
-                
-                let settings = strongSelf.themeStyle
-                let stateSettings = enabled ? (strongSelf.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
-                
-                strongSelf.layer.backgroundColor = stateSettings.backgroundColor.cgColor
-                
-                strongSelf.loader?.usesCustomColors = true
-                strongSelf.loader?.outterCircleColor = stateSettings.loaderColor
-                strongSelf.loader?.innerCircleColor = stateSettings.loaderColor
-				
-				strongSelf.securityButton?.setImage(stateSettings.securityIcon, for: strongSelf.isHighlighted ? .highlighted : .normal)
-				
-				strongSelf.internalButton?.setTitleStyle(stateSettings.titleStyle)
-            }
-            
-            let duration = animated ? Constants.stateUpdateAnimationDuration : 0.0
-            UIView.animate(withDuration: duration, animations: updates)
-        }
-    }
+		self.updateTheme(animated: animated)
+	}
+	
+	private func updateTheme(animated: Bool) {
+		
+		let updates: TypeAlias.ArgumentlessClosure = { [weak self] in
+			
+			guard let strongSelf = self else { return }
+			
+			let enabled = strongSelf.isEnabled && !strongSelf.forceDisabled
+			
+			let settings = strongSelf.themeStyle
+			let stateSettings = enabled ? (strongSelf.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
+			
+			strongSelf.tap_cornerRadius = stateSettings.cornerRadius
+			strongSelf.layer.backgroundColor = stateSettings.backgroundColor.cgColor
+			
+			strongSelf.loaderContainerView?.alpha = stateSettings.isLoaderVisible ? 1.0 : 0.0
+			strongSelf.loader?.usesCustomColors = true
+			strongSelf.loader?.outterCircleColor = stateSettings.loaderColor
+			strongSelf.loader?.innerCircleColor = stateSettings.loaderColor
+			
+			strongSelf.securityButtonContainerView?.alpha = stateSettings.isSecurityIconVisible ? 1.0 : 0.0
+			strongSelf.securityButton?.setImage(stateSettings.securityIcon, for: strongSelf.isHighlighted ? .highlighted : .normal)
+			
+			strongSelf.internalButton?.setTitleStyle(stateSettings.titleStyle)
+		}
+		
+		let duration = animated ? Constants.stateUpdateAnimationDuration : 0.0
+		UIView.animate(withDuration: duration, animations: updates)
+	}
 }
 
 // MARK: - Localizable

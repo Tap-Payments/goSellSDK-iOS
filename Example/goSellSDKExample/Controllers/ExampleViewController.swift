@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import struct	CoreGraphics.CGBase.CGFloat
 import class    Dispatch.DispatchQueue
 import struct   Foundation.NSDecimal.Decimal
 import class    goSellSDK.AmountModificator
@@ -22,6 +23,7 @@ import class    goSellSDK.Quantity
 import class    goSellSDK.Receipt
 import class    goSellSDK.Reference
 import enum		goSellSDK.SDKAppearanceMode
+import protocol	goSellSDK.SessionAppearance
 import protocol goSellSDK.SessionDataSource
 import protocol goSellSDK.SessionDelegate
 import protocol	goSellSDK.SessionProtocol
@@ -29,6 +31,9 @@ import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
+import class	UIKit.UIColor.UIColor
+import class	UIKit.UIControl.UIControl
+import class	UIKit.UIFont.UIFont
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UITableView.UITableView
@@ -239,11 +244,6 @@ extension ExampleViewController: SessionDataSource {
         return self.paymentSettings.transactionMode
     }
 	
-	internal var appearance: SDKAppearanceMode {
-		
-		return self.paymentSettings.appearanceMode
-	}
-	
     internal var taxes: [Tax]? {
 
         return self.paymentSettings.taxes
@@ -262,11 +262,6 @@ extension ExampleViewController: SessionDataSource {
 	internal var allowsToSaveSameCardMoreThanOnce: Bool {
 		
 		return self.paymentSettings.canSaveSameCardMultipleTimes
-	}
-	
-	internal var showsStatusPopups: Bool {
-		
-		return self.paymentSettings.showsStatusPopup
 	}
 	
     internal var receiptSettings: Receipt? {
@@ -357,4 +352,137 @@ extension ExampleViewController: SessionDelegate {
             Serializer.serialize(self.paymentSettings)
         }
     }
+}
+
+// MARK: - SessionAppearance
+extension ExampleViewController: SessionAppearance {
+	
+	internal func appearanceMode(for session: SessionProtocol) -> SDKAppearanceMode {
+		
+		return self.paymentSettings.appearanceMode
+	}
+	
+	internal func sessionShouldShowStatusPopup(_ session: SessionProtocol) -> Bool {
+		
+		return self.paymentSettings.showsStatusPopup
+	}
+	
+	internal func cardInputFieldsFont(for session: SessionProtocol) -> UIFont {
+		
+		return UIFont(name: self.paymentSettings.cardInputFont, size: 15.0)!
+	}
+	
+	internal func cardInputFieldsTextColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputTextColor.asUIColor
+	}
+	
+	internal func cardInputFieldsPlaceholderColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputPlaceholderTextColor.asUIColor
+	}
+	
+	internal func cardInputFieldsInvalidTextColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputInvalidTextColor.asUIColor
+	}
+	
+	internal func cardInputDescriptionFont(for session: SessionProtocol) -> UIFont {
+		
+		return UIFont(name: self.paymentSettings.cardInputDescriptionFont, size: 12.0)!
+	}
+	
+	internal func cardInputDescriptionTextColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputDescriptionTextColor.asUIColor
+	}
+	
+	internal func cardInputSaveCardSwitchOffTintColor(for session: SessionProtocol) -> UIColor {
+	
+		return self.paymentSettings.cardInputSaveCardSwitchOffTintColor.asUIColor
+	}
+	
+	internal func cardInputSaveCardSwitchOnTintColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputSaveCardSwitchOnTintColor.asUIColor
+	}
+	
+	internal func cardInputSaveCardSwitchThumbTintColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputSaveCardSwitchThumbTintColor.asUIColor
+	}
+	
+	internal func cardInputScanIconFrameTintColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputScanIconFrameTintColor.asUIColor
+	}
+	
+	internal func cardInputScanIconTintColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.cardInputScanIconTintColor?.asUIColor ?? .clear
+	}
+	
+	internal func tapButtonBackgroundColor(for state: UIControl.State, for session: SessionProtocol) -> UIColor? {
+		
+		switch state {
+			
+		case .disabled:
+			
+			return self.paymentSettings.tapButtonDisabledBackgroundColor?.asUIColor
+			
+		case .normal:
+			
+			return self.paymentSettings.tapButtonEnabledBackgroundColor?.asUIColor
+			
+		case .highlighted:
+			
+			return self.paymentSettings.tapButtonHighlightedTextColor?.asUIColor
+			
+		default:
+			
+			return nil
+		}
+	}
+	
+	internal func tapButtonFont(for session: SessionProtocol) -> UIFont {
+		
+		return UIFont(name: self.paymentSettings.tapButtonFont, size: 17.0)!
+	}
+	
+	internal func tapButtonTextColor(for state: UIControl.State, for session: SessionProtocol) -> UIColor? {
+		
+		switch state {
+			
+		case .disabled:
+			
+			return self.paymentSettings.tapButtonDisabledTextColor?.asUIColor
+			
+		case .normal:
+			
+			return self.paymentSettings.tapButtonEnabledTextColor?.asUIColor
+			
+		case .highlighted:
+			
+			return self.paymentSettings.tapButtonHighlightedTextColor?.asUIColor
+			
+		default:
+			
+			return nil
+		}
+	}
+	
+	internal func tapButtonCornerRadius(for session: SessionProtocol) -> CGFloat {
+		
+		return self.paymentSettings.tapButtonCornerRadius
+	}
+	
+	internal func isLoaderVisibleOnTapButtton(for session: SessionProtocol) -> Bool {
+		
+		return self.paymentSettings.isTapButtonLoaderVisible
+	}
+	
+	internal func isSecurityIconVisibleOnTapButton(for session: SessionProtocol) -> Bool {
+		
+		return self.paymentSettings.isTapButtonSecurityIconVisible
+	}
 }

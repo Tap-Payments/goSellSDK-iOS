@@ -24,6 +24,8 @@
 	
 	/// Notifies the receiver that charge has failed, passing `session` which has initiated the payment.
 	///
+	/// If `error` is `nil`, then look into `charge` object to find the cause of the issue.
+	///
 	/// - Parameters:
 	///   - charge: Charge that has failed (if reached the stage of charging).
 	///   - error: Error that has occured.
@@ -31,6 +33,8 @@
 	@objc optional func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol)
 	
 	/// Notifies the receiver that authorization has failed, passing `session` which has initiated the authorization.
+	///
+	/// If `error` is `nil`, then look into `authorize` object to find the cause of the issue.
 	///
 	/// - Parameters:
 	///   - authorize: Authorize object that has failed (if reached the stage of authorization).
@@ -47,10 +51,13 @@
 	
 	/// Notifies the receiver that card saving process has failed.
 	///
+	/// If `error` is `nil`, then look into `cardVerification` object to find the cause of the issue.
+	///
 	/// - Parameters:
+	///   - cardVerification: Card verification object.
 	///   - error: Error that has occured.
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-	@objc optional func cardSavingFailed(with error: TapSDKError?, on session: SessionProtocol)
+	@objc optional func cardSavingFailed(with cardVerification: CardVerification?, error: TapSDKError?, on session: SessionProtocol)
 	
 	/// Notifies the receiver that session is about to start and has not yet shown the SDK UI.
 	///

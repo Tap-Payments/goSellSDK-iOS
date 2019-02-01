@@ -14,13 +14,6 @@
 	/// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
 	@objc optional var currency: Currency? { get }
 	
-	/// SDK appearance mode. If not implemented it will be treated as `default`.
-	@objc optional var appearance: SDKAppearanceMode { get }
-	
-	/// Defines if success/failure popup appears after the transaction finishes.
-	/// Default is `true`.
-	@objc optional var showsStatusPopups: Bool { get }
-	
 	/// Defines if same card can be saved more than once.
 	/// Default is `true`.
 	@objc optional var allowsToSaveSameCardMoreThanOnce: Bool { get }

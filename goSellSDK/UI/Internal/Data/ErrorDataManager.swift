@@ -249,7 +249,7 @@ internal class ErrorDataManager {
 			 .publicKeyGivenInsteadOfSecret,
 			 .permissionDenied:
 			
-			return [.alert, .closePayment]
+			return [.closePayment]
 			
 		case .missingBINNumber,
 			 .invalidBINNumber,

@@ -14,12 +14,19 @@ internal struct Font: Decodable {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	let font: TapFont
-	let size: CGFloat
+	internal let font: TapFont
+	internal let size: CGFloat
 	
 	internal var localized: UIFont {
 		
-		return self.font.localizedWithSize(self.size, languageIdentifier: LocalizationProvider.shared.selectedLanguage)
+		if let stored = self.storedUIFont {
+			
+			return stored
+		}
+		else {
+			
+			return self.font.localizedWithSize(self.size, languageIdentifier: LocalizationProvider.shared.selectedLanguage)
+		}
 	}
 	
 	// MARK: Methods
@@ -30,6 +37,14 @@ internal struct Font: Decodable {
 		self.size = size
 	}
 	
+	internal init(_ uiFont: UIFont) {
+		
+		self.storedUIFont = uiFont
+		
+		self.font = .system(uiFont.fontName)
+		self.size = uiFont.pointSize
+	}
+	
 	// MARK: - Private -
 	
 	private enum CodingKeys: String, CodingKey {
@@ -37,4 +52,8 @@ internal struct Font: Decodable {
 		case font = "typeface"
 		case size = "size"
 	}
+	
+	// MARK: Properties
+	
+	private var storedUIFont: UIFont?
 }

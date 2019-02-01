@@ -16,14 +16,15 @@ internal extension Decodable {
     internal init?(dictionaryRepresentation: [String: Any]) {
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: dictionaryRepresentation, options: []) else { return nil }
-        
-        if let result = try? JSONDecoder().decode(Self.self, from: jsonData) {
-        
-            self = result
-        }
-        else {
-            
-            return nil
-        }
+		
+		do {
+			
+			self = try JSONDecoder().decode(Self.self, from: jsonData)
+		}
+		catch let error {
+			
+			print("Error retrieving settings: \(error)")
+			return nil
+		}
     }
 }

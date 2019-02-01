@@ -12,6 +12,18 @@ internal final class ThemeManager {
 	
 	internal var currentTheme: Theme
 	
+	internal var originalCurrentTheme: Theme {
+		
+		return self.themes.first { $0.isDefault }!
+	}
+	
+	// MARK: Methods
+	
+	internal func resetCurrentThemeToDefault() {
+		
+		self.currentTheme = self.themes.first { $0.isDefault }!
+	}
+	
 	// MARK: - Private -
 	
 	private struct Constants {

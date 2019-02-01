@@ -193,6 +193,12 @@
 		149AC19B21ED0F5A002D31A7 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19721ED0F59002D31A7 /* Metadata.swift */; };
 		149AC19C21ED0F5A002D31A7 /* CreateCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */; };
 		149AC19D21ED0F5A002D31A7 /* CreateCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */; };
+		149F5AFD2204809800A57C9A /* SessionAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5AFC2204809800A57C9A /* SessionAppearance.swift */; };
+		149F5AFE2204809800A57C9A /* SessionAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5AFC2204809800A57C9A /* SessionAppearance.swift */; };
+		149F5B002204812700A57C9A /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5AFF2204812700A57C9A /* UIImage+Additions.swift */; };
+		149F5B012204812700A57C9A /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5AFF2204812700A57C9A /* UIImage+Additions.swift */; };
+		149F5B032204815D00A57C9A /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5B022204815C00A57C9A /* UIColor+Additions.swift */; };
+		149F5B042204815D00A57C9A /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5B022204815C00A57C9A /* UIColor+Additions.swift */; };
 		14A3D313215953DE007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
 		14A3D315215954CA007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
 		14A95ED721ECD17700F91D83 /* GlowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95ED521ECD17700F91D83 /* GlowStyle.swift */; };
@@ -886,6 +892,9 @@
 		149597C621F67CED00DFA0A2 /* WeaklyWrapped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaklyWrapped.swift; sourceTree = "<group>"; };
 		149AC19721ED0F59002D31A7 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCardRequest.swift; sourceTree = "<group>"; };
+		149F5AFC2204809800A57C9A /* SessionAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionAppearance.swift; sourceTree = "<group>"; };
+		149F5AFF2204812700A57C9A /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
+		149F5B022204815C00A57C9A /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		14A3D312215953DE007F3565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A3D31621595681007F3565 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A95ED521ECD17700F91D83 /* GlowStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowStyle.swift; sourceTree = "<group>"; };
@@ -1408,6 +1417,7 @@
 		147951D122005D5D0073B49F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				149F5AFC2204809800A57C9A /* SessionAppearance.swift */,
 				149597B221F67BF200DFA0A2 /* SessionDataSource.swift */,
 				149597B121F67BF100DFA0A2 /* SessionDelegate.swift */,
 				149597AE21F67BD600DFA0A2 /* SessionProtocol.swift */,
@@ -2001,8 +2011,10 @@
 				14128502216132AA00C2873E /* TapSearchView+Additions.swift */,
 				140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */,
 				A4BD8D3720A1F6AE00EFF2CE /* UICollectionView+Additions.swift */,
+				149F5B022204815C00A57C9A /* UIColor+Additions.swift */,
 				141284A3215D275600C2873E /* UIEdgeInsets+Additions.swift */,
 				A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */,
+				149F5AFF2204812700A57C9A /* UIImage+Additions.swift */,
 				140238F6215A49BD00CF3B47 /* UILabel+Additions.swift */,
 				A4D5FE1B208311B7007D52F5 /* UIStoryboard+Additions.swift */,
 				1412847C215CD83C00C2873E /* UITextField+Additions.swift */,
@@ -2233,6 +2245,7 @@
 				A4F7103120B550760064FE4B /* CardAddressDataStorage.swift in Sources */,
 				A4F7105820B553670064FE4B /* CardInputTableViewCellModel+AddressInput.swift in Sources */,
 				A4BD8CFE20A1F0B300EFF2CE /* CardNumberValidator.swift in Sources */,
+				149F5B032204815D00A57C9A /* UIColor+Additions.swift in Sources */,
 				147951B721FF76680073B49F /* CardVerificationStatus.swift in Sources */,
 				A424879C20E4F3C0001C4FAF /* OTPTimerState.swift in Sources */,
 				A4A9828F20D2B32000770690 /* CreateTokenWithCardDataRequest.swift in Sources */,
@@ -2350,6 +2363,7 @@
 				A468773E20DC1F1600123391 /* StatusPopupViewController.swift in Sources */,
 				A473D10E213BE7C600F13B73 /* BrandWithScheme.swift in Sources */,
 				A482F73A2085BC1000AA76A4 /* Charge.swift in Sources */,
+				149F5AFD2204809800A57C9A /* SessionAppearance.swift in Sources */,
 				1444698121594A4D009849DC /* LocalizationProvider.swift in Sources */,
 				A4BE547920A9D4ED004E979E /* CommonImages.swift in Sources */,
 				A4BD8CDD20A1EFFE00EFF2CE /* AmountedCurrencyTableViewCellModel.swift in Sources */,
@@ -2519,6 +2533,7 @@
 				14A95ED721ECD17700F91D83 /* GlowStyle.swift in Sources */,
 				14A95EDF21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift in Sources */,
 				141284DF21610EA700C2873E /* CardCellStyle.swift in Sources */,
+				149F5B002204812700A57C9A /* UIImage+Additions.swift in Sources */,
 				A4D5FE1320827680007D52F5 /* PaymentViewController.swift in Sources */,
 				A4B3FB81212467B3000C05EB /* AuthorizeActionType.swift in Sources */,
 				A40F5FD02085E73A001D6A9A /* SecureEncodable.swift in Sources */,
@@ -2664,6 +2679,7 @@
 				1444698221594A4D009849DC /* LocalizationProvider.swift in Sources */,
 				A4C13A7920F4EF5500037EDC /* Energy.swift in Sources */,
 				149597C821F67CED00DFA0A2 /* WeaklyWrapped.swift in Sources */,
+				149F5B012204812700A57C9A /* UIImage+Additions.swift in Sources */,
 				A4C13A8220F4EF9900037EDC /* CardsContainerTableViewCellModel+UICollectionView.swift in Sources */,
 				A4BD8D6920A1FB3D00EFF2CE /* Charge.swift in Sources */,
 				A4BD8D6A20A1FB3D00EFF2CE /* CreateChargeRequest.swift in Sources */,
@@ -2752,6 +2768,7 @@
 				141284AA215D275700C2873E /* NSTextAlignment+Additions.swift in Sources */,
 				A4BD8D8620A1FB3D00EFF2CE /* GroupTableViewCellModel.swift in Sources */,
 				A451273E2134431400825337 /* Acquirer.swift in Sources */,
+				149F5AFE2204809800A57C9A /* SessionAppearance.swift in Sources */,
 				149597B921F67C4500DFA0A2 /* InternalSession.swift in Sources */,
 				A468773F20DC1F1600123391 /* StatusPopupViewController.swift in Sources */,
 				A424879A20E4F396001C4FAF /* OTPTimerDataManager.swift in Sources */,
@@ -2819,6 +2836,7 @@
 				141284C82160FF1C00C2873E /* CurrencySelectionCellStyle.swift in Sources */,
 				1495976121F5436800DFA0A2 /* SeparateWindowRootViewController+Additions.swift in Sources */,
 				140238FA215A49BE00CF3B47 /* UILabel+Additions.swift in Sources */,
+				149F5B042204815D00A57C9A /* UIColor+Additions.swift in Sources */,
 				A4599125210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift in Sources */,
 				1412850B216257D600C2873E /* StatusPopupStyle.swift in Sources */,
 				1495974E21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */,

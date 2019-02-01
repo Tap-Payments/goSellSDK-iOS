@@ -15,6 +15,8 @@ internal class InternalSession: SessionProtocol, InternalSessionImplementation {
 	
 	internal weak var delegate: SessionDelegate?
 	
+	internal weak var appearance: SessionAppearance?
+	
 	// MARK: Methods
 	
 	internal init(_ session: SessionProtocol) {

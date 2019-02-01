@@ -68,7 +68,10 @@ internal final class SaveCardValidator: CardValidator {
     private func setupSwitch() {
         
         self.saveCardSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
-		self.saveCardSwitch.onTintColor = Theme.current.paymentOptionsCellStyle.card.saveCard.switchOnTintColor
+		
+		self.saveCardSwitch.tintColor		= Theme.current.paymentOptionsCellStyle.card.saveCard.switchOffTintColor
+		self.saveCardSwitch.onTintColor		= Theme.current.paymentOptionsCellStyle.card.saveCard.switchOnTintColor
+		self.saveCardSwitch.thumbTintColor	= Theme.current.paymentOptionsCellStyle.card.saveCard.switchThumbTintColor
     }
 	
 	private func setupLabel() {

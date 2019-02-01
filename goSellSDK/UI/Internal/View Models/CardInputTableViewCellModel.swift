@@ -247,7 +247,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		
 		let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
 		
-		let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
+		let settings = cardInputSettings[hasInputData ? (valid ? .valid : .invalid) : .placeholder]
 		return settings.color
 	}
 	
@@ -259,7 +259,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		
 		let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
 		
-		let settings = hasInputData ? (valid ? cardInputSettings.valid : cardInputSettings.invalid) : cardInputSettings.placeholder
+		let settings = cardInputSettings[hasInputData ? (valid ? .valid : .invalid) : .placeholder]
 		return settings.font.localized
 	}
 	
@@ -285,7 +285,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 	
 	internal var scanButtonImage: UIImage {
 		
-		return Theme.current.paymentOptionsCellStyle.card.scanIcon
+		return Theme.current.paymentOptionsCellStyle.card.scanIcon!
 	}
 	
 	internal var isScanButtonVisible: Bool {

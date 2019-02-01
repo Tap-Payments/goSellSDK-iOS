@@ -120,7 +120,7 @@ internal class ExpirationDateValidator: CardValidator {
         
         let textSettings = Theme.current.paymentOptionsCellStyle.card.textInput
         
-        let attributes = self.isDataValid ? textSettings.valid : textSettings.invalid
+		let attributes = textSettings[self.isDataValid ? .valid : .invalid]
         self.updateTextFieldText(shouldClear: false, attributes: attributes.asStringAttributes)
     }
     
@@ -138,7 +138,7 @@ internal class ExpirationDateValidator: CardValidator {
                 return
             }
             
-            let stringAttributes = attributes ?? Theme.current.paymentOptionsCellStyle.card.textInput.valid.asStringAttributes
+            let stringAttributes = attributes ?? Theme.current.paymentOptionsCellStyle.card.textInput[.valid].asStringAttributes
             self.textField.attributedText = NSAttributedString(string: date.inputFieldRepresentation, attributes: stringAttributes)
         }
         

@@ -100,7 +100,7 @@ import class 	UIKit.UIView.UIView
 extension PayButton: SessionProtocol {
 	
 	/// Payment data source.
-	@IBOutlet public var dataSource: SessionDataSource? {
+	@IBOutlet public weak var dataSource: SessionDataSource? {
 		
 		get {
 			
@@ -113,7 +113,7 @@ extension PayButton: SessionProtocol {
 	}
 	
 	/// Payment delegate.
-	@IBOutlet public var delegate: SessionDelegate? {
+	@IBOutlet public weak var delegate: SessionDelegate? {
 		
 		get {
 			
@@ -122,6 +122,18 @@ extension PayButton: SessionProtocol {
 		set {
 			
 			self.sessionDelegate.originalDelegate = newValue
+		}
+	}
+	
+	@IBOutlet public weak var appearance: SessionAppearance? {
+		
+		get {
+			
+			return self.session.appearance
+		}
+		set {
+			
+			self.session.appearance = newValue
 		}
 	}
 }

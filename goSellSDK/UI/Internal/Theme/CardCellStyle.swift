@@ -5,23 +5,30 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import class	UIKit.UIImage.UIImage
+
 internal struct CardCellStyle: Decodable {
 	
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal let scanIcon: ResourceImage
+	internal var scanIconFrame: ResourceImage
 	
-	internal let textInput: TextInputStyle
+	internal var scanIconIcon: ResourceImage
 	
-	internal let saveCard: SaveCardStyle
+	internal var scanIcon: UIImage?
+	
+	internal var textInput: TextInputStyle
+	
+	internal var saveCard: SaveCardStyle
 	
 	// MARK: - Private -
 	
 	private enum CodingKeys: String, CodingKey {
 		
-		case scanIcon 	= "scan_icon"
-		case textInput	= "input_styles"
-		case saveCard	= "save_card"
+		case scanIconFrame 	= "scan_icon_frame"
+		case scanIconIcon	= "scan_icon_icon"
+		case textInput		= "input_styles"
+		case saveCard		= "save_card"
 	}
 }

@@ -17,6 +17,9 @@
 	/// Session delegate.
 	public weak var delegate: SessionDelegate?
 	
+	/// Session appearance.
+	public weak var appearance: SessionAppearance?
+	
 	/// Defines if session can start using the provided details through the `dataSource`.
 	public var canStart: Bool {
 		
