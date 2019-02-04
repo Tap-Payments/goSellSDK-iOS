@@ -442,8 +442,18 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	@IBOutlet private weak var tapButtonDisabledTitleColorValueLabel: UILabel?
 	@IBOutlet private weak var tapButtonEnabledTitleColorValueLabel: UILabel?
 	@IBOutlet private weak var tapButtonHighlightedTitleColorValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonHeightValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonHeightStepper: UIStepper?
 	@IBOutlet private weak var tapButtonCornerRadiusValueLabel: UILabel?
 	@IBOutlet private weak var tapButtonCornerRadiusStepper: UIStepper?
+	@IBOutlet private weak var tapButtonTopInsetValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonTopInsetStepper: UIStepper?
+	@IBOutlet private weak var tapButtonLeadingInsetValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonLeadingInsetStepper: UIStepper?
+	@IBOutlet private weak var tapButtonTrailingInsetValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonTrailingInsetStepper: UIStepper?
+	@IBOutlet private weak var tapButtonBottomInsetValueLabel: UILabel?
+	@IBOutlet private weak var tapButtonBottomInsetStepper: UIStepper?
 	@IBOutlet private weak var tapButtonLoaderVisibleSwitch: UISwitch?
 	@IBOutlet private weak var tapButtonSecurityIconVisibleSwitch: UISwitch?
 	
@@ -578,9 +588,29 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.tapButtonHighlightedTitleColorValueLabel?.text = self.currentSettings?.tapButtonHighlightedTextColor?.description
 		if let set = self.currentSettings, let color = set.tapButtonHighlightedTextColor { self.tapButtonHighlightedTitleColorValueLabel?.textColor = color.asUIColor }
 		
+		let tapButtonHeight = self.currentSettings?.tapButtonHeight ?? Settings.default.tapButtonHeight
+		self.tapButtonHeightValueLabel?.text = "\(tapButtonHeight)"
+		self.tapButtonHeightStepper?.value = Double(tapButtonHeight)
+		
 		let tapButtonCornerRadius = self.currentSettings?.tapButtonCornerRadius ?? Settings.default.tapButtonCornerRadius
 		self.tapButtonCornerRadiusValueLabel?.text = "\(tapButtonCornerRadius)"
 		self.tapButtonCornerRadiusStepper?.value = Double(tapButtonCornerRadius)
+		
+		let tapButtonTopInset = self.currentSettings?.tapButtonEdgeInsets.top ?? Settings.default.tapButtonEdgeInsets.top
+		self.tapButtonTopInsetValueLabel?.text = "\(tapButtonTopInset)"
+		self.tapButtonTopInsetStepper?.value = Double(tapButtonTopInset)
+		
+		let tapButtonLeadingInset = self.currentSettings?.tapButtonEdgeInsets.left ?? Settings.default.tapButtonEdgeInsets.left
+		self.tapButtonLeadingInsetValueLabel?.text = "\(tapButtonLeadingInset)"
+		self.tapButtonLeadingInsetStepper?.value = Double(tapButtonLeadingInset)
+		
+		let tapButtonTrailingInset = self.currentSettings?.tapButtonEdgeInsets.right ?? Settings.default.tapButtonEdgeInsets.right
+		self.tapButtonTrailingInsetValueLabel?.text = "\(tapButtonTrailingInset)"
+		self.tapButtonTrailingInsetStepper?.value = Double(tapButtonTrailingInset)
+		
+		let tapButtonBottomInset = self.currentSettings?.tapButtonEdgeInsets.bottom ?? Settings.default.tapButtonEdgeInsets.bottom
+		self.tapButtonBottomInsetValueLabel?.text = "\(tapButtonBottomInset)"
+		self.tapButtonBottomInsetStepper?.value = Double(tapButtonBottomInset)
 		
 		self.tapButtonLoaderVisibleSwitch?.isOn = self.currentSettings?.isTapButtonLoaderVisible ?? Settings.default.isTapButtonLoaderVisible
 		self.tapButtonSecurityIconVisibleSwitch?.isOn = self.currentSettings?.isTapButtonSecurityIconVisible ?? Settings.default.isTapButtonSecurityIconVisible
@@ -601,6 +631,23 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.currentSettings?.showsStatusPopup = self.showsStatusPopupSwitch?.isOn ?? Settings.default.showsStatusPopup
 	}
 	
+	@IBAction private func tapButtonHeightStepperValueChanged(_ sender: Any) {
+		
+		var height: CGFloat
+		
+		if let value = self.tapButtonHeightStepper?.value {
+			
+			height = CGFloat(value)
+		}
+		else {
+			
+			height = Settings.default.tapButtonHeight
+		}
+		
+		self.currentSettings?.tapButtonHeight = height
+		self.tapButtonHeightValueLabel?.text = "\(height)"
+	}
+	
 	@IBAction private func tapButtonCornerRadiusStepperValueChanged(_ sender: Any) {
 		
 		var radius: CGFloat
@@ -615,8 +662,75 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		}
 		
 		self.currentSettings?.tapButtonCornerRadius = radius
-		
 		self.tapButtonCornerRadiusValueLabel?.text = "\(radius)"
+	}
+	
+	@IBAction private func tapButtonTopInsetStepperValueChanged(_ sender: Any) {
+		
+		var inset: CGFloat
+		
+		if let value = self.tapButtonTopInsetStepper?.value {
+			
+			inset = CGFloat(value)
+		}
+		else {
+			
+			inset = Settings.default.tapButtonEdgeInsets.top
+		}
+		
+		self.currentSettings?.tapButtonEdgeInsets.top = inset
+		self.tapButtonTopInsetValueLabel?.text = "\(inset)"
+	}
+	
+	@IBAction private func tapButtonLeadingInsetStepperValueChanged(_ sender: Any) {
+		
+		var inset: CGFloat
+		
+		if let value = self.tapButtonLeadingInsetStepper?.value {
+			
+			inset = CGFloat(value)
+		}
+		else {
+			
+			inset = Settings.default.tapButtonEdgeInsets.left
+		}
+		
+		self.currentSettings?.tapButtonEdgeInsets.left = inset
+		self.tapButtonLeadingInsetValueLabel?.text = "\(inset)"
+	}
+	
+	@IBAction private func tapButtonTrailingInsetStepperValueChanged(_ sender: Any) {
+		
+		var inset: CGFloat
+		
+		if let value = self.tapButtonTrailingInsetStepper?.value {
+			
+			inset = CGFloat(value)
+		}
+		else {
+			
+			inset = Settings.default.tapButtonEdgeInsets.right
+		}
+		
+		self.currentSettings?.tapButtonEdgeInsets.right = inset
+		self.tapButtonTrailingInsetValueLabel?.text = "\(inset)"
+	}
+	
+	@IBAction private func tapButtonBottomInsetStepperValueChanged(_ sender: Any) {
+		
+		var inset: CGFloat
+		
+		if let value = self.tapButtonBottomInsetStepper?.value {
+			
+			inset = CGFloat(value)
+		}
+		else {
+			
+			inset = Settings.default.tapButtonEdgeInsets.bottom
+		}
+		
+		self.currentSettings?.tapButtonEdgeInsets.bottom = inset
+		self.tapButtonBottomInsetValueLabel?.text = "\(inset)"
 	}
 	
 	@IBAction private func tapButtonLoaderVisibleSwitchValueChanged(_ sender: Any) {

@@ -34,6 +34,7 @@ import enum     goSellSDK.TransactionMode
 import class	UIKit.UIColor.UIColor
 import class	UIKit.UIControl.UIControl
 import class	UIKit.UIFont.UIFont
+import struct	UIKit.UIGeometry.UIEdgeInsets
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UITableView.UITableView
@@ -484,5 +485,15 @@ extension ExampleViewController: SessionAppearance {
 	internal func isSecurityIconVisibleOnTapButton(for session: SessionProtocol) -> Bool {
 		
 		return self.paymentSettings.isTapButtonSecurityIconVisible
+	}
+	
+	internal func tapButtonInsets(for session: SessionProtocol) -> UIEdgeInsets {
+		
+		return self.paymentSettings.tapButtonEdgeInsets
+	}
+	
+	internal func tapButtonHeight(for session: SessionProtocol) -> CGFloat {
+		
+		return self.paymentSettings.tapButtonHeight
 	}
 }

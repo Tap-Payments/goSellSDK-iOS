@@ -15,6 +15,7 @@ import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
+import struct	UIKit.UIGeometry.UIEdgeInsets
 
 internal final class Settings: Encodable {
     
@@ -54,7 +55,9 @@ internal final class Settings: Encodable {
 											 tapButtonHighlightedTextColor:			nil,
 											 tapButtonCornerRadius:					22.0,
 											 isTapButtonLoaderVisible:				true,
-											 isTapButtonSecurityIconVisible:		true)
+											 isTapButtonSecurityIconVisible:		true,
+											 tapButtonHeight:						44.0,
+											 tapButtonEdgeInsets:					UIEdgeInsets(tap_inset: 8.0))
 	
 	// Common
 	
@@ -130,6 +133,10 @@ internal final class Settings: Encodable {
 	
 	internal var isTapButtonSecurityIconVisible: Bool
 	
+	internal var tapButtonHeight: CGFloat
+	
+	internal var tapButtonEdgeInsets: UIEdgeInsets
+	
     // MARK: Methods
     
 	internal init(sdkLanguage:								Language,
@@ -165,7 +172,9 @@ internal final class Settings: Encodable {
 				  tapButtonHighlightedTextColor:			Color?,
 				  tapButtonCornerRadius:					CGFloat,
 				  isTapButtonLoaderVisible:					Bool,
-				  isTapButtonSecurityIconVisible:			Bool) {
+				  isTapButtonSecurityIconVisible:			Bool,
+				  tapButtonHeight:							CGFloat,
+				  tapButtonEdgeInsets:						UIEdgeInsets) {
 		
 		self.sdkLanguage 							= sdkLanguage
         self.sdkMode            					= sdkMode
@@ -201,6 +210,8 @@ internal final class Settings: Encodable {
 		self.tapButtonCornerRadius					= tapButtonCornerRadius
 		self.isTapButtonLoaderVisible				= isTapButtonLoaderVisible
 		self.isTapButtonSecurityIconVisible			= isTapButtonSecurityIconVisible
+		self.tapButtonHeight						= tapButtonHeight
+		self.tapButtonEdgeInsets					= tapButtonEdgeInsets
     }
     
     // MARK: - Private -
@@ -241,6 +252,8 @@ internal final class Settings: Encodable {
 		case tapButtonCornerRadius					= "tap_button_corner_radius"
 		case isTapButtonLoaderVisible				= "tap_button_loader_visible"
 		case isTapButtonSecurityIconVisible			= "tap_button_security_icon_visible"
+		case tapButtonHeight						= "tap_button_height"
+		case tapButtonEdgeInsets					= "tap_button_edge_insets"
 	}
 }
 
@@ -285,6 +298,8 @@ extension Settings: Decodable {
 		let tapButtonCornerRadius					= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonCornerRadius)					?? Settings.default.tapButtonCornerRadius
 		let isTapButtonLoaderVisible				= try container.decodeIfPresent	(Bool.self,					forKey: .isTapButtonLoaderVisible)				?? Settings.default.isTapButtonLoaderVisible
 		let isTapButtonSecurityIconVisible			= try container.decodeIfPresent	(Bool.self,					forKey: .isTapButtonSecurityIconVisible)		?? Settings.default.isTapButtonSecurityIconVisible
+		let tapButtonHeight							= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonHeight)						?? Settings.default.tapButtonHeight
+		let tapButtonEdgeInsets						= try container.decodeIfPresent	(UIEdgeInsets.self,			forKey: .tapButtonEdgeInsets)					?? Settings.default.tapButtonEdgeInsets
 		
         if envCustomer == nil {
             
@@ -344,7 +359,9 @@ extension Settings: Decodable {
 				  tapButtonHighlightedTextColor:			tapButtonHighlightedTextColor,
 				  tapButtonCornerRadius:					tapButtonCornerRadius,
 				  isTapButtonLoaderVisible:					isTapButtonLoaderVisible,
-				  isTapButtonSecurityIconVisible:			isTapButtonSecurityIconVisible)
+				  isTapButtonSecurityIconVisible:			isTapButtonSecurityIconVisible,
+				  tapButtonHeight:							tapButtonHeight,
+				  tapButtonEdgeInsets:						tapButtonEdgeInsets)
     }
 }
 

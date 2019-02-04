@@ -275,6 +275,28 @@ internal final class Process {
 			}
 		}
 		
+		if let buttonInsets = externalAppearance.tapButtonInsets?(for: session) {
+			
+			let tapInsets = TapEdgeInsets(buttonInsets)
+			
+			for (index, _) in buttonStyles.enumerated() {
+				
+				buttonStyles[index].disabled.insets 	= tapInsets
+				buttonStyles[index].enabled.insets		= tapInsets
+				buttonStyles[index].highlighted.insets	= tapInsets
+			}
+ 		}
+		
+		if let buttonHeight = externalAppearance.tapButtonHeight?(for: session) {
+			
+			for (index, _) in buttonStyles.enumerated() {
+				
+				buttonStyles[index].disabled.height 	= buttonHeight
+				buttonStyles[index].enabled.height		= buttonHeight
+				buttonStyles[index].highlighted.height	= buttonHeight
+			}
+		}
+		
 		Theme.current.buttonStyles = buttonStyles
 	}
 }
