@@ -66,7 +66,7 @@ extension BINResponse: Decodable {
         
         let isAddressRequired   = try container.decodeIfPresent(Bool.self, forKey: .isAddressRequired) ?? false
         let bank                = try container.decodeIfPresent(String.self, forKey: .bank)
-        let bankLogoURL         = try container.decodeIfPresent(URL.self, forKey: .bankLogoURL)
+        let bankLogoURL         = container.decodeURLIfPresent(for: .bankLogoURL)
         let binNumber           = try container.decode(String.self, forKey: .binNumber)
         let cardBrand           = try container.decodeIfPresent(CardBrand.self, forKey: .cardBrand) ?? .unknown
         let scheme              = try container.decodeIfPresent(CardScheme.self, forKey: .scheme)
