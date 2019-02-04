@@ -56,7 +56,7 @@ extension TransactionDetails: Decodable {
         let authorizationID = try container.decodeIfPresent (String.self,   forKey: .authorizationID)
         let creationDate    = try container.decode          (Date.self,     forKey: .creationDate)
         let timeZone        = try container.decode          (String.self,   forKey: .timeZone)
-        let url             = try container.decodeIfPresent (URL.self,      forKey: .url)
+        let url             = container.decodeURLIfPresent(for: .url)
         
         self.init(authorizationID: authorizationID, creationDate: creationDate, timeZone: timeZone, url: url)
     }

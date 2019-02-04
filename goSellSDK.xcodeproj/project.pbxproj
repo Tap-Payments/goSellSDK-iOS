@@ -139,6 +139,8 @@
 		14690B122155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
 		14690B142155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
 		14690B152155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
+		14789EAF220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14789EAE220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift */; };
+		14789EB0220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14789EAE220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift */; };
 		1495974D21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */; };
 		1495974E21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */; };
 		1495975221F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */; };
@@ -870,6 +872,7 @@
 		1444698021594A4D009849DC /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
 		14690B102155DF240033C562 /* SDKMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKMode.swift; sourceTree = "<group>"; };
 		14690B132155DF330033C562 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		14789EAE220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
 		1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContentViewController.swift; sourceTree = "<group>"; };
 		1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewSupport.swift; sourceTree = "<group>"; };
 		1495975121F5420000DFA0A2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -1663,6 +1666,7 @@
 		A482F76B2085DCD400AA76A4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				14789EAE220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift */,
 				A4AF5FC220CE840300AC254D /* PaymentItem+Amount.swift */,
 			);
 			path = Extensions;
@@ -2286,6 +2290,7 @@
 				A4571F1220FF54EE006D96DC /* PopupPresentationSupport.swift in Sources */,
 				A4D5FE1C208311B7007D52F5 /* UIStoryboard+Additions.swift in Sources */,
 				A4B3FB90212467DA000C05EB /* AuthorizeAction.swift in Sources */,
+				14789EAF220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift in Sources */,
 				141284FA21611B1600C2873E /* KeyboardAppearance.swift in Sources */,
 				A42758AD20A3618200D214EE /* CardScannerViewController.swift in Sources */,
 				A42487AE20E4F8BC001C4FAF /* CardsContainerTableViewCell.swift in Sources */,
@@ -2743,6 +2748,7 @@
 				A4571EFE20FE2367006D96DC /* AddressType+Additions.swift in Sources */,
 				A4F7102A20B550760064FE4B /* ListValue.swift in Sources */,
 				1495976421F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift in Sources */,
+				14789EB0220877FC0009CE44 /* KeyedDecodingContainer+Additions.swift in Sources */,
 				A4B3FB9E21246809000C05EB /* APIClient+Authorize.swift in Sources */,
 				1432427721F9FB14003B5E5D /* Process.Validation.swift in Sources */,
 				14128479215CD82E00C2873E /* LocalizationKey.swift in Sources */,
