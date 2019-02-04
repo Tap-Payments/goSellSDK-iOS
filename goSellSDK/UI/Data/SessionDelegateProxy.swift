@@ -80,13 +80,13 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 		}
 	}
 	
-	internal func cardSavingFailed(with error: TapSDKError?, on session: SessionProtocol) {
+	internal func cardSavingFailed(with cardVerification: CardVerification?, error: TapSDKError?, on session: SessionProtocol) {
 		
 		let targetSession = self.targetSession(for: session)
 		
 		self.removeNilDelegatesAndSynchronized { theDelegates in
 			
-			theDelegates.forEach { $0.cardSavingFailed?(with: error, on: targetSession) }
+			theDelegates.forEach { $0.cardSavingFailed?(with: cardVerification, error: error, on: targetSession) }
 		}
 	}
 	

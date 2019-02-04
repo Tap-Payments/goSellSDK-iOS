@@ -22,7 +22,7 @@ internal class ErrorActionExecutor {
             
         case .purchase:         status = .chargeFailure(nil, error)
         case .authorizeCapture: status = .authorizationFailure(nil, error)
-		case .cardSaving:		status = .cardSaveFailure(error)
+		case .cardSaving:		status = .cardSaveFailure(nil, error)
             
         }
         
