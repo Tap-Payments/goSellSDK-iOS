@@ -67,13 +67,13 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
         }
 		
 		self.localizationChanged()
-		self.startMonitoringLocalizationChanges()
+		self.localizationObserver = self.startMonitoringLocalizationChanges()
 		
 		self.view.tap_updateLayoutDirectionIfRequired()
-		self.startMonitoringLayoutDirectionChanges()
+		self.layoutDirectionObserver = self.startMonitoringLayoutDirectionChanges()
 		
 		self.themeChanged()
-		self.startMonitoringThemeChanges()
+		self.themeObserver = self.startMonitoringThemeChanges()
 		
 		self.setNeedsStatusBarAppearanceUpdate()
     }
@@ -85,9 +85,9 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
             self.removeKeyboardObserver()
         }
 		
-		self.stopMonitoringLocalizationChanges()
-		self.stopMonitoringLayoutDirectionChanges()
-		self.stopMonitoringThemeChanges()
+		self.stopMonitoringLocalizationChanges(self.localizationObserver)
+		self.stopMonitoringLayoutDirectionChanges(self.layoutDirectionObserver)
+		self.stopMonitoringThemeChanges(self.themeObserver)
 		
         super.viewDidDisappear(animated)
     }
@@ -104,6 +104,9 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
     @IBOutlet private weak var bottomKeyboardOffsetConstraint: NSLayoutConstraint?
 	
 	private var keyboardObserver: NSObjectProtocol?
+	private var localizationObserver: NSObjectProtocol?
+	private var themeObserver: NSObjectProtocol?
+	private var layoutDirectionObserver: NSObjectProtocol?
 	
     // MARK: Methods
     

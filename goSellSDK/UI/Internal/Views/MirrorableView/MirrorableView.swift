@@ -20,7 +20,7 @@ internal class MirrorableView: UIView {
 			
 			self.tap_updateLayoutDirectionIfRequired()
 			self.updateTransformIfRequired()
-			self.startMonitoringLayoutDirectionChanges()
+			self.layoutDirectionObserver = self.startMonitoringLayoutDirectionChanges()
 		}
 	}
 	
@@ -29,7 +29,7 @@ internal class MirrorableView: UIView {
 		super.willMove(toSuperview: newSuperview)
 		if newSuperview == nil {
 			
-			self.stopMonitoringLayoutDirectionChanges()
+			self.stopMonitoringLayoutDirectionChanges(self.layoutDirectionObserver)
 		}
 	}
 	
@@ -39,6 +39,10 @@ internal class MirrorableView: UIView {
 	}
 	
 	// MARK: - Private -
+	// MARK: Properties
+	
+	private var layoutDirectionObserver: NSObjectProtocol?
+	
 	// MARK: Methods
 	
 	private func updateTransformIfRequired() {

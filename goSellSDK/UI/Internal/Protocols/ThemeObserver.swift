@@ -14,16 +14,19 @@ internal protocol ThemeObserver: ClassProtocol {
 
 internal extension ThemeObserver {
 	
-	internal func startMonitoringThemeChanges() {
+	internal func startMonitoringThemeChanges() -> NSObjectProtocol {
 		
-		NotificationCenter.default.addObserver(forName: .tap_sdkThemeChanged, object: nil, queue: .main) { [weak self] _ in
+		return NotificationCenter.default.addObserver(forName: .tap_sdkThemeChanged, object: nil, queue: .main) { [weak self] _ in
 			
 			self?.themeChanged()
 		}
 	}
 	
-	internal func stopMonitoringThemeChanges() {
+	internal func stopMonitoringThemeChanges(_ observation: Any?) {
 		
-		NotificationCenter.default.removeObserver(self, name: .tap_sdkThemeChanged, object: nil)
+		if let nonnullObservation = observation {
+		
+			NotificationCenter.default.removeObserver(nonnullObservation, name: .tap_sdkThemeChanged, object: nil)
+		}
 	}
 }

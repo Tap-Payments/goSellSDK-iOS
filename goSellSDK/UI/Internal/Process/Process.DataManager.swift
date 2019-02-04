@@ -208,9 +208,9 @@ internal extension Process {
 
 			session.delegate?.sessionIsStarting?(session)
 
-			APIClient.shared.getPaymentOptions(with: request) { [weak self, weak session] (response, error) in
+			APIClient.shared.getPaymentOptions(with: request) { [weak self] (response, error) in
 
-				guard let strongSelf = self, let nonnullSession = session else { return }
+				guard let strongSelf = self else { return }
 
 				strongSelf.isLoadingPaymentOptions = false
 
@@ -218,11 +218,11 @@ internal extension Process {
 
 					let retryAction: TypeAlias.ArgumentlessClosure = {
 
-						strongSelf.loadPaymentOptions(for: nonnullSession)
+						strongSelf.loadPaymentOptions(for: session)
 					}
 
 					strongSelf.paymentOptionsResponse = nil
-					nonnullSession.delegate?.sessionHasFailedToStart?(nonnullSession)
+					session.delegate?.sessionHasFailedToStart?(session)
 
 					ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: nil)
 				}
@@ -232,7 +232,7 @@ internal extension Process {
 
 					strongSelf.process.showPaymentController()
 
-					nonnullSession.delegate?.sessionHasStarted?(nonnullSession)
+					session.delegate?.sessionHasStarted?(session)
 				}
 			}
 			

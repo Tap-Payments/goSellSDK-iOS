@@ -55,7 +55,7 @@ internal extension Process {
 		
 		internal init() {
 			
-			self.startMonitoringLocalizationChanges()
+			self.localizationObservation = self.startMonitoringLocalizationChanges()
 		}
 		
 		internal func setButton(_ button: TapButton?) {
@@ -130,7 +130,7 @@ internal extension Process {
 		
 		deinit {
 			
-			self.stopMonitoringLocalizationChanges()
+			self.stopMonitoringLocalizationChanges(self.localizationObservation)
 			self.clickCallback = nil
 		}
 		
@@ -146,6 +146,8 @@ internal extension Process {
 		// MARK: Properties
 		
 		private var _amount: AmountedCurrency?
+		
+		private var localizationObservation: NSObjectProtocol?
 	}
 }
 
