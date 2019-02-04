@@ -44,12 +44,14 @@ internal class PaymentOptionsViewController: BaseViewController {
 		super.viewWillAppear(animated)
 		self.shouldShowMask = true
 		self.updateMask()
+		self.addTableViewContentSizeObserver()
 	}
 	
 	internal override func viewDidDisappear(_ animated: Bool) {
 		
 		self.shouldShowMask = false
 		self.updateMask()
+		self.tableViewContentSizeObservation = nil
 		super.viewDidDisappear(animated)
 	}
 	
@@ -126,11 +128,6 @@ internal class PaymentOptionsViewController: BaseViewController {
         didSet {
 			
 			Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels.forEach { ($0 as? TableViewCellViewModel)?.tableView = self.paymentOptionsTableView }
-			
-			if self.paymentOptionsTableView != nil {
-				
-				self.addTableViewContentSizeObserver()
-			}
         }
     }
     

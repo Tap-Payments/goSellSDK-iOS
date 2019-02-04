@@ -83,11 +83,17 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
         if self.topKeyboardOffsetConstraint != nil || self.bottomKeyboardOffsetConstraint != nil {
             
             self.removeKeyboardObserver()
+			self.keyboardObserver = nil
         }
 		
 		self.stopMonitoringLocalizationChanges(self.localizationObserver)
+		self.localizationObserver = nil
+		
 		self.stopMonitoringLayoutDirectionChanges(self.layoutDirectionObserver)
+		self.layoutDirectionObserver = nil
+		
 		self.stopMonitoringThemeChanges(self.themeObserver)
+		self.themeObserver = nil
 		
         super.viewDidDisappear(animated)
     }
