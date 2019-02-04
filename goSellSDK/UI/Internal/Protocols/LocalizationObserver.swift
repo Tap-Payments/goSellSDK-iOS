@@ -14,16 +14,19 @@ internal protocol LocalizationObserver: ClassProtocol {
 
 internal extension LocalizationObserver {
 	
-	internal func startMonitoringLocalizationChanges() {
+	internal func startMonitoringLocalizationChanges() -> NSObjectProtocol {
 		
-		NotificationCenter.default.addObserver(forName: .tap_sdkLanguageChanged, object: nil, queue: .main) { [weak self] _ in
+		return NotificationCenter.default.addObserver(forName: .tap_sdkLanguageChanged, object: nil, queue: .main) { [weak self] _ in
 			
 			self?.localizationChanged()
 		}
 	}
 	
-	internal func stopMonitoringLocalizationChanges() {
+	internal func stopMonitoringLocalizationChanges(_ observation: Any?) {
 		
-		NotificationCenter.default.removeObserver(self, name: .tap_sdkLanguageChanged, object: nil)
+		if let nonnullObservation = observation {
+			
+			NotificationCenter.default.removeObserver(nonnullObservation)
+		}
 	}
 }

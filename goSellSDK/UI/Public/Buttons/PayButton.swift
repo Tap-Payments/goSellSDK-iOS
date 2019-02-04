@@ -50,7 +50,7 @@ import class 	UIKit.UIView.UIView
 		if self.superview != nil {
 			
 			self.tap_updateLayoutDirectionIfRequired()
-			self.startMonitoringLayoutDirectionChanges()
+			self.layoutDirectionObserver = self.startMonitoringLayoutDirectionChanges()
 		}
 	}
 	
@@ -60,7 +60,7 @@ import class 	UIKit.UIView.UIView
 		
 		if newSuperview == nil {
 			
-			self.stopMonitoringLayoutDirectionChanges()
+			self.stopMonitoringLayoutDirectionChanges(self.layoutDirectionObserver)
 		}
 	}
 	
@@ -94,6 +94,8 @@ import class 	UIKit.UIView.UIView
 	}()
 	
     @IBOutlet private weak var ui: TapButton?
+	
+	private var layoutDirectionObserver: NSObjectProtocol?
 }
 
 // MARK: - SessionProtocol

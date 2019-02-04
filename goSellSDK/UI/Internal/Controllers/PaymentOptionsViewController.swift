@@ -39,6 +39,20 @@ internal class PaymentOptionsViewController: BaseViewController {
 		self.updateMask()
 	}
 	
+	internal override func viewWillAppear(_ animated: Bool) {
+		
+		super.viewWillAppear(animated)
+		self.shouldShowMask = true
+		self.updateMask()
+	}
+	
+	internal override func viewDidDisappear(_ animated: Bool) {
+		
+		self.shouldShowMask = false
+		self.updateMask()
+		super.viewDidDisappear(animated)
+	}
+	
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -93,7 +107,6 @@ internal class PaymentOptionsViewController: BaseViewController {
     deinit {
         
         self.unsubscribeNotifications()
-		self.tableViewGradientLayer.delegate = nil
 		self.tableViewContentSizeObservation = nil
     }
     
@@ -125,13 +138,14 @@ internal class PaymentOptionsViewController: BaseViewController {
 	
 	private var tableViewContentSizeObservation: NSKeyValueObservation?
 	
+	private var shouldShowMask: Bool = false
+	
 	private lazy var tableViewGradientLayer: CAGradientLayer = {
 		
 		let gradient = CAGradientLayer()
 		
 		gradient.shouldRasterize	= true
 		gradient.colors				= [UIColor.black.cgColor, UIColor.clear.cgColor]
-		gradient.delegate			= self
 		gradient.type				= .axial
 		gradient.endPoint			= CGPoint(x: 0.5, y: 1.0)
 		
@@ -186,21 +200,17 @@ internal class PaymentOptionsViewController: BaseViewController {
 			self.tableViewGradientLayer.startPoint = startPoint
 		}
 	
-		if self.view.layer.mask !== self.tableViewGradientLayer {
-
-			self.view.layer.mask = self.tableViewGradientLayer
+		if self.shouldShowMask {
+			
+			if self.view.layer.mask !== self.tableViewGradientLayer {
+				
+				self.view.layer.mask = self.tableViewGradientLayer
+			}
 		}
-	}
-}
-
-// MARK: - CALayerDelegate
-extension PaymentOptionsViewController: CALayerDelegate {
-	
-	internal func action(for layer: CALayer, forKey event: String) -> CAAction? {
-		
-		guard layer === self.tableViewGradientLayer else { return nil }
-		
-		return NSNull()
+		else {
+			
+			self.view.layer.mask = nil
+		}
 	}
 }
 
