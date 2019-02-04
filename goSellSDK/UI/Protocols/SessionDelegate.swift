@@ -47,10 +47,13 @@
 	
 	/// Notifies the receiver that card saving process has failed.
 	///
+	/// If `error` is `nil`, then look into `cardVerification` object to find the cause of the issue.
+	///
 	/// - Parameters:
+	///   - cardVerification: Card verification object.
 	///   - error: Error that has occured.
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-	@objc optional func cardSavingFailed(with error: TapSDKError?, on session: SessionProtocol)
+	@objc optional func cardSavingFailed(with cardVerification: CardVerification?, error: TapSDKError?, on session: SessionProtocol)
 	
 	/// Notifies the receiver that session is about to start and has not yet shown the SDK UI.
 	///

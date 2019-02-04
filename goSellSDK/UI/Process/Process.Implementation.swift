@@ -363,10 +363,9 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 			
 			delegate.authorizationFailed?(with: authorize, error: error, on: session)
 			
-		case .cardSaveFailure(let error):
+		case .cardSaveFailure(let verification, let error):
 			
-			delegate.cardSavingFailed?(with: error, on: session)
-			
+			delegate.cardSavingFailed?(with: verification, error: error, on: session)
 		}
 	}
 }
@@ -705,7 +704,7 @@ internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process
 		
 		let completion: TypeAlias.ArgumentlessClosure = {
 			
-			self.closePayment(with: .cardSaveFailure(error), fadeAnimation: false, force: false, completion: nil)
+			self.closePayment(with: .cardSaveFailure(cardVerification, error), fadeAnimation: false, force: false, completion: nil)
 		}
 		
 		if self.process.externalSession?.dataSource?.showsStatusPopups ?? true {
