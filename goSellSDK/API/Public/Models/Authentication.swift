@@ -102,7 +102,7 @@ extension Authentication: Decodable {
         let requirer            = try container.decode          (AuthenticationRequirer.self,   forKey: .requirer)
         let status              = try container.decode          (AuthenticationStatus.self,     forKey: .status)
         let retryAttemptsCount  = try container.decode          (Int.self,                      forKey: .retryAttemptsCount)
-        let url                 = try container.decodeIfPresent (URL.self,                      forKey: .url)
+        let url                 = container.decodeURLIfPresent(for: .url)
         let creationDate        = try container.decode          (Date.self,                     forKey: .creationDate)
         let authenticationDate  = try container.decodeIfPresent (Date.self,                     forKey: .authenticationDate)
         let count               = try container.decode          (Int.self,                      forKey: .count)

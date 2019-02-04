@@ -61,7 +61,7 @@ extension TrackingURL: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let url = try container.decodeIfPresent(URL.self, forKey: .url)
+        let url = container.decodeURLIfPresent(for: .url)
         let status = try container.decodeIfPresent(URLStatus.self, forKey: .status) ?? .pending
         
         self.init(url: url, status: status)
