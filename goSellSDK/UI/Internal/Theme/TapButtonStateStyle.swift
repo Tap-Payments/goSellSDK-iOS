@@ -29,6 +29,10 @@ internal struct TapButtonStateStyle: Decodable {
 	
 	internal var cornerRadius: CGFloat
 	
+	internal var insets: TapEdgeInsets
+	
+	internal var height: CGFloat
+	
 	// MARK: - Private -
 	
 	private enum CodingKeys: String, CodingKey {
@@ -40,5 +44,7 @@ internal struct TapButtonStateStyle: Decodable {
 		case isLoaderVisible		= "loader_visible"
 		case isSecurityIconVisible	= "security_icon_visible"
 		case cornerRadius			= "corner_radius"
+		case insets					= "insets"
+		case height					= "height"
 	}
 }

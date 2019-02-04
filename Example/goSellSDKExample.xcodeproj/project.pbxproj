@@ -15,6 +15,7 @@
 		140CC52821566107000E80D5 /* EnvironmentCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CC52721566107000E80D5 /* EnvironmentCustomer.swift */; };
 		1414ADAD215AA87200CA2CCD /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1414ADAC215AA87200CA2CCD /* Language.swift */; };
 		14277BBB214056FA0011521F /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14277BBA214056FA0011521F /* SelectableCell.swift */; };
+		14C7E4F52208B64D00F19007 /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */; };
 		8E197292A213A9AC83C5B789 /* Pods_goSellSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */; };
 		A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */; };
 		A408C03720BAB577005E74AD /* Measurement+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03620BAB577005E74AD /* Measurement+Additions.swift */; };
@@ -70,6 +71,7 @@
 		140CC52721566107000E80D5 /* EnvironmentCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentCustomer.swift; sourceTree = "<group>"; };
 		1414ADAC215AA87200CA2CCD /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		14277BBA214056FA0011521F /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
+		14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Additions.swift"; sourceTree = "<group>"; };
 		3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.release.xcconfig"; sourceTree = "<group>"; };
 		A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A408C03620BAB577005E74AD /* Measurement+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Measurement+Additions.swift"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				A408C03D20BAC710005E74AD /* Decodable+Additions.swift */,
 				A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */,
 				A408C03620BAB577005E74AD /* Measurement+Additions.swift */,
+				14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */,
 				A45A5DCC2142BEC000B7DDE9 /* BaseViewController.swift in Sources */,
 				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
+				14C7E4F52208B64D00F19007 /* UIEdgeInsets+Additions.swift in Sources */,
 				A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */,
 				A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */,
 				A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */,

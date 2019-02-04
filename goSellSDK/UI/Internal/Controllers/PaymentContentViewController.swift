@@ -10,6 +10,7 @@ import struct   CoreGraphics.CGGeometry.CGRect
 import struct	CoreGraphics.CGGeometry.CGSize
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
+import class	UIKit.NSLayoutConstraint.NSLayoutConstraint
 import enum		UIKit.UIApplication.UIStatusBarStyle
 import class	UIKit.UIScreen.UIScreen
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
@@ -116,12 +117,48 @@ internal class PaymentContentViewController: HeaderNavigatedViewController {
 		
 		Process.shared.closePayment(with: .cancelled, fadeAnimation: false, force: false, completion: nil)
 	}
+	
+	internal override func themeChanged() {
+		
+		super.themeChanged()
+		
+		DispatchQueue.main.async { [weak self] in
+			
+			guard let payButton = self?.payButtonUI else { return }
+	
+			let enabled = payButton.isEnabled && !payButton.forceDisabled
+			
+			let settings = payButton.themeStyle
+			let stateSettings = enabled ? (payButton.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
+			
+			let insets = stateSettings.insets
+			let height = stateSettings.height
+			
+			let containerHeight = insets.top + insets.bottom + height
+			
+			self?.payButtonContainerViewHeightConstraint?.constant				= containerHeight
+			self?.payButtonToBottomLayoutGuideTopAlignmentConstraint?.constant	= containerHeight
+			self?.payButtonTopOffsetConstraint?.constant						= insets.top
+			self?.payButtonLeadingOffsetConstraint?.constant					= insets.left
+			self?.payButtonTrailingOffsetConstraint?.constant					= insets.right
+			self?.payButtonHeightConstraint?.constant							= height
+			
+			self?.view.tap_layout()
+		}
+	}
     
     // MARK: - Private -
     // MARK: Properties
     
     @IBOutlet private weak var paymentOptionsContainerView: UIView?
 	@IBOutlet private weak var loadingContainerView: UIView?
+	
+	@IBOutlet private weak var payButtonContainerViewHeightConstraint: NSLayoutConstraint?
+	@IBOutlet private weak var payButtonToBottomLayoutGuideTopAlignmentConstraint: NSLayoutConstraint?
+	@IBOutlet private weak var payButtonHeightConstraint: NSLayoutConstraint?
+	@IBOutlet private weak var payButtonLeadingOffsetConstraint: NSLayoutConstraint?
+	@IBOutlet private weak var payButtonTrailingOffsetConstraint: NSLayoutConstraint?
+	@IBOutlet private weak var payButtonTopOffsetConstraint: NSLayoutConstraint?
 	
 	@IBOutlet private weak var payButtonContainerView: UIView?
     @IBOutlet private weak var payButtonUI: TapButton? {

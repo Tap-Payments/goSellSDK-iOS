@@ -211,6 +211,10 @@
 		14A95EE021ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A95EDE21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift */; };
 		14B22183215A4747003DC928 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B22182215A4747003DC928 /* Localizable.swift */; };
 		14B22184215A4747003DC928 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B22182215A4747003DC928 /* Localizable.swift */; };
+		14C7E4F72208BF5100F19007 /* TapEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4F62208BF5100F19007 /* TapEdgeInsets.swift */; };
+		14C7E4F82208BF5100F19007 /* TapEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4F62208BF5100F19007 /* TapEdgeInsets.swift */; };
+		14C7E4FB2208BFB000F19007 /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4FA2208BFAF00F19007 /* KeyedDecodingContainer+Additions.swift */; };
+		14C7E4FC2208BFB000F19007 /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4FA2208BFAF00F19007 /* KeyedDecodingContainer+Additions.swift */; };
 		14DF99F82147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		14DF99F92147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
@@ -902,6 +906,8 @@
 		14A95EDB21ECD19D00F91D83 /* GroupWithButtonTableViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupWithButtonTableViewCellModel.swift; sourceTree = "<group>"; };
 		14A95EDE21ECD1B800F91D83 /* GroupWithButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupWithButtonTableViewCell.swift; sourceTree = "<group>"; };
 		14B22182215A4747003DC928 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		14C7E4F62208BF5100F19007 /* TapEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapEdgeInsets.swift; sourceTree = "<group>"; };
+		14C7E4FA2208BFAF00F19007 /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
 		14DF99F72147F4B900991EB3 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		16A38A8831C7BCCD73B43B9E /* Pods-goSellSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.release.xcconfig"; sourceTree = "<group>"; };
 		48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1277,6 +1283,7 @@
 		147951C922004AAC0073B49F /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				14C7E4F92208BFAF00F19007 /* Extensions */,
 				A482F74D2085CEB000AA76A4 /* Client */,
 				147951CE22004ED70073B49F /* Data Managers */,
 				A482F7432085BD6600AA76A4 /* Enums */,
@@ -1521,6 +1528,14 @@
 			path = LoadingView;
 			sourceTree = "<group>";
 		};
+		14C7E4F92208BFAF00F19007 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				14C7E4FA2208BFAF00F19007 /* KeyedDecodingContainer+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2900C46CE6138AD739CAC575 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1590,6 +1605,7 @@
 				A4BD8CF520A1F0B300EFF2CE /* CurrencyFormatter.swift */,
 				A4599123210A04C900E941D5 /* KnownStaticallyDestroyableTypes.swift */,
 				1412849F215D270D00C2873E /* LocalizedParagraphStyle.swift */,
+				14C7E4F62208BF5100F19007 /* TapEdgeInsets.swift */,
 				149597C621F67CED00DFA0A2 /* WeaklyWrapped.swift */,
 				1432429621F9FB40003B5E5D /* WrappedAndTypeErased.swift */,
 			);
@@ -2338,9 +2354,11 @@
 				A4571EEB20FE2304006D96DC /* Transformable.swift in Sources */,
 				A43A0A5820D93E19006B39F1 /* FadeAnimationController.swift in Sources */,
 				A4571F1220FF54EE006D96DC /* PopupPresentationSupport.swift in Sources */,
+				14C7E4FB2208BFB000F19007 /* KeyedDecodingContainer+Additions.swift in Sources */,
 				A4D5FE1C208311B7007D52F5 /* UIStoryboard+Additions.swift in Sources */,
 				A4B3FB90212467DA000C05EB /* AuthorizeAction.swift in Sources */,
 				141284FA21611B1600C2873E /* KeyboardAppearance.swift in Sources */,
+				14C7E4F72208BF5100F19007 /* TapEdgeInsets.swift in Sources */,
 				A42758AD20A3618200D214EE /* CardScannerViewController.swift in Sources */,
 				A42487AE20E4F8BC001C4FAF /* CardsContainerTableViewCell.swift in Sources */,
 				A4C13A6620F4EF5500037EDC /* Power.swift in Sources */,
@@ -2794,6 +2812,7 @@
 				141284E321610EE500C2873E /* TextInputStyle.swift in Sources */,
 				1432428D21F9FB14003B5E5D /* Process.AddressInputHandler.swift in Sources */,
 				A4B3FB7521246796000C05EB /* Retrievable.swift in Sources */,
+				14C7E4FC2208BFB000F19007 /* KeyedDecodingContainer+Additions.swift in Sources */,
 				A4571EFE20FE2367006D96DC /* AddressType+Additions.swift in Sources */,
 				A4F7102A20B550760064FE4B /* ListValue.swift in Sources */,
 				1495976421F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift in Sources */,
@@ -2902,6 +2921,7 @@
 				A401FC912101DA6D002DBA73 /* CurrencySelectionViewControllerDelegate.swift in Sources */,
 				1432429821F9FB41003B5E5D /* WrappedAndTypeErased.swift in Sources */,
 				A4571F1320FF54EE006D96DC /* PopupPresentationSupport.swift in Sources */,
+				14C7E4F82208BF5100F19007 /* TapEdgeInsets.swift in Sources */,
 				A48810E620A2E92E00CDF5D4 /* TapNavigationViewDelegate.swift in Sources */,
 				1495976B21F5452E00DFA0A2 /* AppearanceMode.swift in Sources */,
 				A4BD8D0720A1F0B300EFF2CE /* CurrencyFormatter.swift in Sources */,

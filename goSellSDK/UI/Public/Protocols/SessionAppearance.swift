@@ -9,6 +9,7 @@ import struct	CoreGraphics.CGBase.CGFloat
 import class	UIKit.UIColor.UIColor
 import class	UIKit.UIControl.UIControl
 import class	UIKit.UIFont.UIFont
+import struct	UIKit.UIGeometry.UIEdgeInsets
 
 @objc public protocol SessionAppearance: class, NSObjectProtocol {
 	
@@ -138,4 +139,16 @@ import class	UIKit.UIFont.UIFont
 	/// - Parameter session: Target session.
 	/// - Returns: Bool
 	@objc optional func isSecurityIconVisibleOnTapButton(for session: SessionProtocol) -> Bool
+	
+	/// Pay/Save button insets on payment/card saving screen from the edges (left, right and bottom) of the screen and content.
+	///
+	/// - Parameter session: Target session.
+	/// - Returns: UIEdgeInsets
+	@objc optional func tapButtonInsets(for session: SessionProtocol) -> UIEdgeInsets
+	
+	/// Pay/Save button height on payment/card saving screen.
+	///
+	/// - Parameter session: Target session.
+	/// - Returns: CGFloat
+	@objc optional func tapButtonHeight(for session: SessionProtocol) -> CGFloat
 }
