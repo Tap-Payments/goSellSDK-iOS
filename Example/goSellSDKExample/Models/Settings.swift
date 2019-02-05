@@ -15,6 +15,7 @@ import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
+import class	UIKit.UIBlurEffect.UIBlurEffect
 import struct	UIKit.UIGeometry.UIEdgeInsets
 
 internal final class Settings: Encodable {
@@ -63,7 +64,10 @@ internal final class Settings: Encodable {
 											 isTapButtonLoaderVisible:				true,
 											 isTapButtonSecurityIconVisible:		true,
 											 tapButtonHeight:						44.0,
-											 tapButtonEdgeInsets:					UIEdgeInsets(tap_inset: 8.0))
+											 tapButtonEdgeInsets:					UIEdgeInsets(tap_inset: 8.0),
+											 backgroundColor:						.clear,
+											 backgroundBlurStyle:					.extraLight,
+											 backgroundBlurProgress:				1.0)
 	
 	// Common
 	
@@ -92,6 +96,14 @@ internal final class Settings: Encodable {
 	internal var appearanceMode: SDKAppearanceMode
 	
 	internal var showsStatusPopup: Bool
+	
+	// Appearance: Background
+	
+	internal var backgroundColor: Color
+	
+	internal var backgroundBlurStyle: UIBlurEffect.Style
+	
+	internal var backgroundBlurProgress: CGFloat
 	
 	// Appearance: Header
 	
@@ -200,7 +212,10 @@ internal final class Settings: Encodable {
 				  isTapButtonLoaderVisible:					Bool,
 				  isTapButtonSecurityIconVisible:			Bool,
 				  tapButtonHeight:							CGFloat,
-				  tapButtonEdgeInsets:						UIEdgeInsets) {
+				  tapButtonEdgeInsets:						UIEdgeInsets,
+				  backgroundColor:							Color,
+				  backgroundBlurStyle:						UIBlurEffect.Style,
+				  backgroundBlurProgress:					CGFloat) {
 		
 		self.sdkLanguage 							= sdkLanguage
         self.sdkMode            					= sdkMode
@@ -244,6 +259,9 @@ internal final class Settings: Encodable {
 		self.isTapButtonSecurityIconVisible			= isTapButtonSecurityIconVisible
 		self.tapButtonHeight						= tapButtonHeight
 		self.tapButtonEdgeInsets					= tapButtonEdgeInsets
+		self.backgroundColor						= backgroundColor
+		self.backgroundBlurStyle					= backgroundBlurStyle
+		self.backgroundBlurProgress					= backgroundBlurProgress
     }
     
     // MARK: - Private -
@@ -292,6 +310,9 @@ internal final class Settings: Encodable {
 		case isTapButtonSecurityIconVisible			= "tap_button_security_icon_visible"
 		case tapButtonHeight						= "tap_button_height"
 		case tapButtonEdgeInsets					= "tap_button_edge_insets"
+		case backgroundColor						= "background_color"
+		case backgroundBlurStyle					= "background_blur_style"
+		case backgroundBlurProgress					= "background_blur_progress"
 	}
 }
 
@@ -344,6 +365,9 @@ extension Settings: Decodable {
 		let isTapButtonSecurityIconVisible			= try container.decodeIfPresent	(Bool.self,					forKey: .isTapButtonSecurityIconVisible)		?? Settings.default.isTapButtonSecurityIconVisible
 		let tapButtonHeight							= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonHeight)						?? Settings.default.tapButtonHeight
 		let tapButtonEdgeInsets						= try container.decodeIfPresent	(UIEdgeInsets.self,			forKey: .tapButtonEdgeInsets)					?? Settings.default.tapButtonEdgeInsets
+		let backgroundColor							= try container.decodeIfPresent	(Color.self,				forKey: .backgroundColor)						?? Settings.default.backgroundColor
+		let backgroundBlurStyle						= try container.decodeIfPresent	(UIBlurEffect.Style.self,	forKey: .backgroundBlurStyle)					?? Settings.default.backgroundBlurStyle
+		let backgroundBlurProgress					= try container.decodeIfPresent	(CGFloat.self,				forKey: .backgroundBlurProgress)				?? Settings.default.backgroundBlurProgress
 		
         if envCustomer == nil {
             
@@ -412,7 +436,10 @@ extension Settings: Decodable {
 				  isTapButtonLoaderVisible:					isTapButtonLoaderVisible,
 				  isTapButtonSecurityIconVisible:			isTapButtonSecurityIconVisible,
 				  tapButtonHeight:							tapButtonHeight,
-				  tapButtonEdgeInsets:						tapButtonEdgeInsets)
+				  tapButtonEdgeInsets:						tapButtonEdgeInsets,
+				  backgroundColor:							backgroundColor,
+				  backgroundBlurStyle:						backgroundBlurStyle,
+				  backgroundBlurProgress:					backgroundBlurProgress)
     }
 }
 

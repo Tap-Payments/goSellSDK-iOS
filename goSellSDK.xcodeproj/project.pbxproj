@@ -217,6 +217,8 @@
 		14C7E4FC2208BFB000F19007 /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4FA2208BFAF00F19007 /* KeyedDecodingContainer+Additions.swift */; };
 		14DF99F82147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
 		14DF99F92147F4B900991EB3 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF99F72147F4B900991EB3 /* Customer.swift */; };
+		14F625BD220A0913003D77F4 /* BlurSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F625BC220A0912003D77F4 /* BlurSettings.swift */; };
+		14F625BE220A0913003D77F4 /* BlurSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F625BC220A0912003D77F4 /* BlurSettings.swift */; };
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
 		A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC7F2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
@@ -909,6 +911,7 @@
 		14C7E4F62208BF5100F19007 /* TapEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapEdgeInsets.swift; sourceTree = "<group>"; };
 		14C7E4FA2208BFAF00F19007 /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
 		14DF99F72147F4B900991EB3 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		14F625BC220A0912003D77F4 /* BlurSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurSettings.swift; sourceTree = "<group>"; };
 		16A38A8831C7BCCD73B43B9E /* Pods-goSellSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.release.xcconfig"; sourceTree = "<group>"; };
 		48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionControllerDelegate.swift; sourceTree = "<group>"; };
@@ -1839,6 +1842,7 @@
 			isa = PBXGroup;
 			children = (
 				1495975921F542A400DFA0A2 /* AppearanceStyle.swift */,
+				14F625BC220A0912003D77F4 /* BlurSettings.swift */,
 				141284DE21610EA700C2873E /* CardCellStyle.swift */,
 				141284F02161132500C2873E /* CaseSelectionCellStyle.swift */,
 				A4BE547820A9D4ED004E979E /* CommonImages.swift */,
@@ -2466,6 +2470,7 @@
 				1412850021612DE300C2873E /* ThemeObserver.swift in Sources */,
 				A424877F20E4F100001C4FAF /* CardCollectionViewCellLoading.swift in Sources */,
 				A482F76A2085DB9C00AA76A4 /* ErrorDetail.swift in Sources */,
+				14F625BD220A0913003D77F4 /* BlurSettings.swift in Sources */,
 				A4BD8CA120A1EEB800EFF2CE /* ImageTableViewCell.swift in Sources */,
 				A4571EE920FE2304006D96DC /* AddressFieldsDataManagerLoadingListener.swift in Sources */,
 				A4B3FB8C212467DA000C05EB /* CreateAuthorizeRequest.swift in Sources */,
@@ -2978,6 +2983,7 @@
 				A43A0A4D20D93C61006B39F1 /* LoadingViewController.swift in Sources */,
 				1432428921F9FB14003B5E5D /* Process.OTPHandler.swift in Sources */,
 				A4571F0020FE2367006D96DC /* String+Additions.swift in Sources */,
+				14F625BE220A0913003D77F4 /* BlurSettings.swift in Sources */,
 				1495975521F5420000DFA0A2 /* LoadingView.swift in Sources */,
 				A413DB2220AEE04000C29C6B /* CardBrandChangeReporting.swift in Sources */,
 				A4C13AA020F4F0AF00037EDC /* Authentication.swift in Sources */,

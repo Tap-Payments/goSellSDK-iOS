@@ -6,6 +6,7 @@
 //
 
 import struct	CoreGraphics.CGBase.CGFloat
+import class	UIKit.UIBlurEffect.UIBlurEffect
 import class	UIKit.UIColor.UIColor
 import class	UIKit.UIControl.UIControl
 import class	UIKit.UIFont.UIFont
@@ -27,6 +28,29 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	/// - Parameter session: Target session.
 	/// - Returns: Bool
 	@objc optional func sessionShouldShowStatusPopup(_ session: SessionProtocol) -> Bool
+	
+	// MARK: - Background
+	
+	/// Background color for payment screen.
+	///
+	/// - Parameters:
+	///   - session: Target session.
+	/// - Returns: UIColor
+	@objc optional func backgroundColor(for session: SessionProtocol) -> UIColor
+	
+	/// Background blur style for payment screen.
+	///
+	/// - Parameters:
+	///   - session: Target session.
+	/// - Returns: UIBlurEffect.Style
+	@objc optional func backgroundBlurStyle(for session: SessionProtocol) -> UIBlurEffect.Style
+	
+	/// Background blur *"radius"* progress in range [0, 1]
+	///
+	/// - Parameters:
+	///   - session: Target session.
+	/// - Returns: CGFloat
+	@available(iOS 10.0, *) @objc optional func backgroundBlurProgress(for session: SessionProtocol) -> CGFloat
 	
 	// MARK: - Header
 	

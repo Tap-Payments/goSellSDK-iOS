@@ -8,10 +8,12 @@
 import struct   CoreGraphics.CGGeometry.CGRect
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
+import class	UIKit.UIDevice.UIDevice
 import class    UIKit.UIView.UIView
 import struct   UIKit.UIView.UIViewAnimationOptions
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
+import class	UIKit.UIViewPropertyAnimator.UIViewPropertyAnimator
 
 internal final class PaymentPresentationAnimationController: NSObject {
     
@@ -23,7 +25,16 @@ internal final class PaymentPresentationAnimationController: NSObject {
         self.animatesBlur = animateBlur
         super.init()
     }
-    
+	
+	deinit {
+		
+		if #available(iOS 10.0, *) {
+			
+			self.blurAnimator?.stopAnimation(true)
+			self.blurAnimator = nil
+		}
+	}
+	
     // MARK: - Private -
     
     private struct Constants {
@@ -36,6 +47,21 @@ internal final class PaymentPresentationAnimationController: NSObject {
     // MARK: Properties
     
     private let animatesBlur: Bool
+	
+	private var _blurAnimator: Any?
+	
+	@available(iOS 10.0, *)
+	private var blurAnimator: UIViewPropertyAnimator? {
+		
+		get {
+			
+			return self._blurAnimator as? UIViewPropertyAnimator
+		}
+		set {
+			
+			self._blurAnimator = newValue
+		}
+	}
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
@@ -73,14 +99,37 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
         blurView?.style = .none
         
         let animations: TypeAlias.ArgumentlessClosure = {
-            
+			
+			if UIDevice.current.tap_isRunningIOS9OrLower {
+				
+				blurView?.style = Theme.current.commonStyle.blurStyle[Process.shared.appearance].style
+			}
+			
 			toView.frame = finalFrame
-			blurView?.style = Theme.current.commonStyle.blurStyle[Process.shared.appearance]
+		}
+		
+		if #available(iOS 10.0, *) {
+			
+			let blurStyle = Theme.current.commonStyle.blurStyle[Process.shared.appearance]
+			
+			let animationDuration = TimeInterval(blurStyle.progress > 0 ? 1.0 / blurStyle.progress : 0.0) * Constants.animationDuration
+			
+			self.blurAnimator = UIViewPropertyAnimator(duration: animationDuration, curve: .linear) {
+				
+				blurView?.style = blurStyle.style
+			}
+			
+			self.blurAnimator?.startAnimation()
 		}
 		
 		let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseOut]
         UIView.animate(withDuration: Constants.animationDuration, delay: 0.0, options: options, animations: animations) { _ in
-            
+			
+			if #available(iOS 10.0, *) {
+				
+				self.blurAnimator?.stopAnimation(true)
+			}
+			
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }

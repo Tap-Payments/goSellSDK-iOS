@@ -18,6 +18,7 @@ import enum     goSellSDK.TransactionMode
 import class    ObjectiveC.NSObject.NSObject
 import enum		UIKit.NSText.NSTextAlignment
 import class	UIKit.UIApplication.UIApplication
+import class	UIKit.UIBlurEffect.UIBlurEffect
 import class	UIKit.UIFont.UIFont
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UINavigationController.UINavigationController
@@ -92,107 +93,112 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             shippingController.delegate = self
             shippingController.shipping = self.selectedShipping
         }
-		else if let colorSelectionControler = segue.destination as? ColorSelectionTableViewController, let reuseIdentifier = self.selectedCellReuseIdentifier {
+		else if let colorSelectionController = segue.destination as? ColorSelectionTableViewController, let reuseIdentifier = self.selectedCellReuseIdentifier {
 			
-			colorSelectionControler.delegate = self
-			colorSelectionControler.allValues = Color.allCases
+			colorSelectionController.delegate = self
+			colorSelectionController.allValues = Color.allCases
 			
 			switch reuseIdentifier {
 				
 			case Constants.headerTextColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Header Text Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.headerTextColor
+				colorSelectionController.title = "Header Text Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.headerTextColor
 				
 			case Constants.headerBackgroundColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Header Background Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.headerBackgroundColor
+				colorSelectionController.title = "Header Background Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.headerBackgroundColor
 				
 			case Constants.headerCancelNormalColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Header Cancel Normal Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.headerCancelNormalTextColor
+				colorSelectionController.title = "Header Cancel Normal Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.headerCancelNormalTextColor
 				
 			case Constants.headerCancelHighlightedColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Header Cancel Highlighted Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.headerCancelHighlightedTextColor
+				colorSelectionController.title = "Header Cancel Highlighted Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.headerCancelHighlightedTextColor
 				
 			case Constants.cardInputTextColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Card Input Text Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputTextColor
+				colorSelectionController.title = "Card Input Text Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputTextColor
 				
 			case Constants.cardInputTextColorInvalidCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Card Input Invalid Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputInvalidTextColor
+				colorSelectionController.title = "Card Input Invalid Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputInvalidTextColor
 				
 			case Constants.cardInputTextColorPlaceholderCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Card Input Placeholder Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputPlaceholderTextColor
+				colorSelectionController.title = "Card Input Placeholder Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputPlaceholderTextColor
 				
 			case Constants.cardInputDescriptionTextColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Card Input Description Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputDescriptionTextColor
+				colorSelectionController.title = "Card Input Description Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputDescriptionTextColor
 				
 			case Constants.cardInputSaveCardSwitchOffTintColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Save Card Switch Off Tint"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchOffTintColor
+				colorSelectionController.title = "Save Card Switch Off Tint"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchOffTintColor
 				
 			case Constants.cardInputSaveCardSwitchOnTintColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Save Card Switch On Tint"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchOnTintColor
+				colorSelectionController.title = "Save Card Switch On Tint"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchOnTintColor
 				
 			case Constants.cardInputSaveCardSwitchThumbTintColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Save Card Switch Thumb Tint"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchThumbTintColor
+				colorSelectionController.title = "Save Card Switch Thumb Tint"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputSaveCardSwitchThumbTintColor
 				
 			case Constants.cardInputScanIconFrameTintColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Scan Icon Frame Tint"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputScanIconFrameTintColor
+				colorSelectionController.title = "Scan Icon Frame Tint"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputScanIconFrameTintColor
 				
 			case Constants.cardInputScanIconTintColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Scan Icon Tint"
-				colorSelectionControler.preselectedValue = self.currentSettings?.cardInputScanIconTintColor
+				colorSelectionController.title = "Scan Icon Tint"
+				colorSelectionController.preselectedValue = self.currentSettings?.cardInputScanIconTintColor
 				
 			case Constants.tapButtonDisabledBackgroundColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Pay/Save Button disabled background Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonDisabledBackgroundColor
+				colorSelectionController.title = "Pay/Save Button disabled background Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.tapButtonDisabledBackgroundColor
 				
 			case Constants.tapButtonEnabledBackgroundColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Pay/Save Button enabled background Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonEnabledBackgroundColor
+				colorSelectionController.title = "Pay/Save Button enabled background Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.tapButtonEnabledBackgroundColor
 				
 			case Constants.tapButtonHighlightedBackgroundColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Pay/Save Button highlighted background Color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonDisabledBackgroundColor
+				colorSelectionController.title = "Pay/Save Button highlighted background Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.tapButtonDisabledBackgroundColor
 				
 			case Constants.tapButtonDisabledTextColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Pay/Save Button disabled text color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonDisabledTextColor
+				colorSelectionController.title = "Pay/Save Button disabled text color"
+				colorSelectionController.preselectedValue = self.currentSettings?.tapButtonDisabledTextColor
 				
 			case Constants.tapButtonEnabledTextColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Pay/Save Button enabled text color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonEnabledTextColor
+				colorSelectionController.title = "Pay/Save Button enabled text color"
+				colorSelectionController.preselectedValue = self.currentSettings?.tapButtonEnabledTextColor
 				
 			case Constants.tapButtonDisabledTextColorCellReuseIdentifier:
 				
-				colorSelectionControler.title = "Pay/Save Button highlighted text color"
-				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonHighlightedTextColor
+				colorSelectionController.title = "Pay/Save Button highlighted text color"
+				colorSelectionController.preselectedValue = self.currentSettings?.tapButtonHighlightedTextColor
+				
+			case Constants.backgroundColorCellReuseIdentifier:
+				
+				colorSelectionController.title = "Background Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.backgroundColor
 				
 			default:
 				
@@ -272,6 +278,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 				caseSelectionController.allValues = Currency.allCases
 				caseSelectionController.preselectedValue = self.currentSettings?.currency
 				
+			case Constants.backgroundBlurStyleCellReuseIdentifier:
+				
+				caseSelectionController.title = "Background Blur Style"
+				caseSelectionController.allValues = UIBlurEffect.Style.allCases
+				caseSelectionController.preselectedValue = self.currentSettings?.backgroundBlurStyle
+				
 			default:
 				
 				break
@@ -322,7 +334,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			 Constants.sdkLanguageCelReuseIdentifier,
 			 Constants.sdkModeCellReuseIdentifier,
 			 Constants.appearanceModeCellReuseIdentifier,
-			 Constants.transactionModeCellReuseIdentifier:
+			 Constants.transactionModeCellReuseIdentifier,
+			 Constants.backgroundBlurStyleCellReuseIdentifier:
 			
 			self.showCaseSelectionViewController(with: reuseIdentifier)
 			
@@ -344,7 +357,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			 Constants.tapButtonHighlightedBackgroundColorCellReuseIdentifier,
 			 Constants.tapButtonDisabledTextColorCellReuseIdentifier,
 			 Constants.tapButtonEnabledTextColorCellReuseIdentifier,
-			 Constants.tapButtonHighlightedTextColorCellReuseIdentifier:
+			 Constants.tapButtonHighlightedTextColorCellReuseIdentifier,
+			 Constants.backgroundColorCellReuseIdentifier:
 			
 			self.showColorSelectionViewController(with: reuseIdentifier)
 			
@@ -430,6 +444,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		fileprivate static let tapButtonDisabledTextColorCellReuseIdentifier			= "tap_button_disabled_text_color_cell"
 		fileprivate static let tapButtonEnabledTextColorCellReuseIdentifier				= "tap_button_enabled_text_color_cell"
 		fileprivate static let tapButtonHighlightedTextColorCellReuseIdentifier			= "tap_button_highlighted_text_color_cell"
+		fileprivate static let backgroundColorCellReuseIdentifier						= "background_color_cell"
+		fileprivate static let backgroundBlurStyleCellReuseIdentifier					= "background_blur_style_cell"
 		
         @available(*, unavailable) private init() {}
     }
@@ -505,6 +521,10 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	@IBOutlet private weak var tapButtonBottomInsetStepper: UIStepper?
 	@IBOutlet private weak var tapButtonLoaderVisibleSwitch: UISwitch?
 	@IBOutlet private weak var tapButtonSecurityIconVisibleSwitch: UISwitch?
+	@IBOutlet private weak var backgroundColorValueLabel: UILabel?
+	@IBOutlet private weak var backgroundBlurStyleValueLabel: UILabel?
+	@IBOutlet private weak var backgroundBlurProgressValueLabel: UILabel?
+	@IBOutlet private weak var backgroundBlurProgressStepper: UIStepper?
 	
     private var currentSettings: Settings? {
         
@@ -575,6 +595,17 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		
 		self.appearanceModeValueLabel?.text					= self.currentSettings?.appearanceMode.description
 		self.showsStatusPopupSwitch?.isOn					= self.currentSettings?.showsStatusPopup ?? Settings.default.showsStatusPopup
+		
+		// Background
+		
+		self.backgroundColorValueLabel?.text	= self.currentSettings?.backgroundColor.description
+		if let set = self.currentSettings { self.backgroundColorValueLabel?.textColor = set.backgroundColor.asUIColor }
+		
+		self.backgroundBlurStyleValueLabel?.text = self.currentSettings?.backgroundBlurStyle.description
+		
+		let backgroundBlurProgress = self.currentSettings?.backgroundBlurProgress ?? Settings.default.backgroundBlurProgress
+		self.backgroundBlurProgressValueLabel?.text = "\(backgroundBlurProgress)"
+		self.backgroundBlurProgressStepper?.value = Double(backgroundBlurProgress)
 		
 		// Header
 		
@@ -824,6 +855,23 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.currentSettings?.isTapButtonSecurityIconVisible = self.tapButtonSecurityIconVisibleSwitch?.isOn ?? Settings.default.isTapButtonSecurityIconVisible
 	}
 	
+	@IBAction private func backgroundBlurProgressStepperValueChanged(_ sender: Any) {
+		
+		var progress: CGFloat
+		
+		if let value = self.backgroundBlurProgressStepper?.value {
+			
+			progress = CGFloat(value)
+		}
+		else {
+			
+			progress = Settings.default.backgroundBlurProgress
+		}
+		
+		self.currentSettings?.backgroundBlurProgress = progress
+		self.backgroundBlurProgressValueLabel?.text = "\(progress)"
+	}
+	
     @IBAction private func addTaxButtonTouchUpInside(_ sender: Any) {
         
         if let selectedTaxIndexPath = self.taxesTableView?.indexPathForSelectedRow {
@@ -903,6 +951,9 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.tapButtonEnabledTitleColorValueLabel?.textAlignment			= trailing
 		self.tapButtonHighlightedTitleColorValueLabel?.textAlignment		= trailing
 		self.tapButtonCornerRadiusValueLabel?.textAlignment					= trailing
+		self.backgroundColorValueLabel?.textAlignment						= trailing
+		self.backgroundBlurStyleValueLabel?.textAlignment					= trailing
+		self.backgroundBlurProgressValueLabel?.textAlignment				= trailing
 	}
 }
 
@@ -1182,6 +1233,20 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
 			if let color = value as? Color {
 				
 				self.currentSettings?.tapButtonHighlightedTextColor = color
+			}
+			
+		case Constants.backgroundColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.backgroundColor = color
+			}
+			
+		case Constants.backgroundBlurStyleCellReuseIdentifier:
+			
+			if let style = value as? UIBlurEffect.Style {
+				
+				self.currentSettings?.backgroundBlurStyle = style
 			}
 			
         default:
