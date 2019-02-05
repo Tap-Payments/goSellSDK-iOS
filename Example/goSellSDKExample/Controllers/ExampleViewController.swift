@@ -31,6 +31,7 @@ import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
+import class	UIKit.UIBlurEffect.UIBlurEffect
 import class	UIKit.UIColor.UIColor
 import class	UIKit.UIControl.UIControl
 import class	UIKit.UIFont.UIFont
@@ -366,6 +367,22 @@ extension ExampleViewController: SessionAppearance {
 	internal func sessionShouldShowStatusPopup(_ session: SessionProtocol) -> Bool {
 		
 		return self.paymentSettings.showsStatusPopup
+	}
+	
+	internal func backgroundColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.backgroundColor.asUIColor
+	}
+	
+	internal func backgroundBlurStyle(for session: SessionProtocol) -> UIBlurEffect.Style {
+		
+		return self.paymentSettings.backgroundBlurStyle
+	}
+	
+	@available(iOS 10.0, *)
+	internal func backgroundBlurProgress(for session: SessionProtocol) -> CGFloat {
+		
+		return self.paymentSettings.backgroundBlurProgress
 	}
 	
 	internal func headerFont(for session: SessionProtocol) -> UIFont {

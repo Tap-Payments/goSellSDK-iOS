@@ -297,7 +297,6 @@
 				"corner_radius": 23
 			}
 		},
-		
 		"payment_option_cells": {
 			
 			"currency": {
@@ -454,7 +453,6 @@
 				"duration": 0.3
 			}
 		},
-		
 		"navigation_bar": {
 			
 			"background_color": "#f7f7f7",
@@ -490,7 +488,6 @@
 				"alignment": "center"
 			}
 		},
-		
 		"search_bar": {
 			
 			"placeholder_style": {
@@ -514,7 +511,6 @@
 				"alignment": "leading"
 			}
 		},
-		
 		"case_selection_cell": {
 			
 			"title_style": {
@@ -545,7 +541,6 @@
 				"windowed": "#e1e1e1ff"
 			}
 		},
-		
 		"otp_screen": {
 			
 			"digits_style": {
@@ -602,7 +597,6 @@
 			},
 			"arrow_icon": "ic_close_otp"
 		},
-		
 		"status_popup": {
 			
 			"title_style": {
@@ -630,7 +624,6 @@
 			"success_icon": "ic_checkmark_green",
 			"failure_icon": "ic_x_red"
 		},
-		
 		"common": {
 			
 			"loader_animation_duration": 3.0,
@@ -642,8 +635,16 @@
 			},
 			"blur_style": {
 				
-				"fullscreen": "extra_light",
-				"windowed": "dark"
+				"fullscreen": {
+					
+					"style": "extra_light",
+					"progress": 1,
+				},
+				"windowed": {
+					
+					"style": "dark",
+					"progress": 1,
+				}
 			},
 			"background_color": {
 				

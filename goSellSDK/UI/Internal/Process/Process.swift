@@ -6,6 +6,7 @@
 //
 
 import struct	TapAdditionsKit.TypeAlias
+import enum		TapVisualEffectView.TapBlurEffectStyle
 import class	UIKit.UIImage.UIImage
 
 internal final class Process {
@@ -106,6 +107,43 @@ internal final class Process {
 		ThemeManager.shared.resetCurrentThemeToDefault()
 		
 		guard let externalAppearance = self.externalSession?.appearance else { return }
+		
+		var commonStyle = Theme.current.commonStyle
+		if let backgroundColor = externalAppearance.backgroundColor?(for: session) {
+			
+			let color = backgroundColor.tap_asHexColor
+			
+			commonStyle.backgroundColor[.fullscreen]	= color
+			commonStyle.backgroundColor[.windowed]		= color
+		}
+		
+		if let blurStyle = externalAppearance.backgroundBlurStyle?(for: session) {
+			
+			let tapBlurStyle: TapBlurEffectStyle = {
+				
+				switch blurStyle {
+					
+				case .extraLight:	return .extraLight
+				case .dark:			return .dark
+				default:		return .light
+					
+				}
+			}()
+			
+			commonStyle.blurStyle[.fullscreen].style	= tapBlurStyle
+			commonStyle.blurStyle[.windowed].style		= tapBlurStyle
+		}
+		
+		if #available(iOS 10.0, *) {
+			
+			if let blurProgress = externalAppearance.backgroundBlurProgress?(for: session) {
+				
+				commonStyle.blurStyle[.fullscreen].progress	= blurProgress
+				commonStyle.blurStyle[.windowed].progress	= blurProgress
+			}
+		}
+		
+		Theme.current.commonStyle = commonStyle
 		
 		var headerStyle = Theme.current.merchantHeaderStyle
 		

@@ -10,17 +10,29 @@ internal struct AppearanceStyle<Style>: Decodable where Style: Decodable {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal let windowed: Style
+	internal var windowed: Style
 	
-	internal let fullscreen: Style
+	internal var fullscreen: Style
 	
 	internal subscript(appearance: AppearanceMode) -> Style {
 		
-		switch appearance {
+		get {
 			
-		case .fullscreen:	return self.fullscreen
-		case .windowed:		return self.windowed
+			switch appearance {
+				
+			case .fullscreen:	return self.fullscreen
+			case .windowed:		return self.windowed
+				
+			}
+		}
+		set {
 			
+			switch appearance {
+				
+			case .fullscreen:	self.fullscreen	= newValue
+			case .windowed:		self.windowed	= newValue
+
+			}
 		}
 	}
 	

@@ -42,7 +42,7 @@ internal struct Theme: Decodable {
 	
 	internal let statusPopupStyle: StatusPopupStyle
 	
-	internal let commonStyle: CommonStyle
+	internal var commonStyle: CommonStyle
 	
 	// MARK: - Private -
 	
