@@ -28,7 +28,7 @@ internal struct Theme: Decodable {
 	
 	internal var buttonStyles: [TapButtonStyle]
 	
-	internal let merchantHeaderStyle: NavigationBarStyle
+	internal var merchantHeaderStyle: NavigationBarStyle
 	
 	internal var paymentOptionsCellStyle: PaymentOptionCellsStyle
 	

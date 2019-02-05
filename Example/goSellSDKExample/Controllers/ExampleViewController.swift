@@ -368,6 +368,44 @@ extension ExampleViewController: SessionAppearance {
 		return self.paymentSettings.showsStatusPopup
 	}
 	
+	internal func headerFont(for session: SessionProtocol) -> UIFont {
+		
+		return UIFont(name: self.paymentSettings.headerFont, size: 17.0)!
+	}
+	
+	internal func headerTextColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.headerTextColor.asUIColor
+	}
+	
+	internal func headerBackgroundColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.headerBackgroundColor.asUIColor
+	}
+	
+	internal func headerCancelButtonFont(for session: SessionProtocol) -> UIFont {
+		
+		return UIFont(name: self.paymentSettings.headerCancelFont, size: 12.0)!
+	}
+	
+	internal func headerCancelButtonTextColor(for state: UIControl.State, for session: SessionProtocol) -> UIColor {
+		
+		switch state {
+			
+		case .normal:
+			
+			return self.paymentSettings.headerCancelNormalTextColor.asUIColor
+			
+		case .highlighted:
+			
+			return self.paymentSettings.headerCancelHighlightedTextColor.asUIColor
+			
+		default:
+			
+			return self.paymentSettings.headerCancelNormalTextColor.asUIColor
+		}
+	}
+	
 	internal func cardInputFieldsFont(for session: SessionProtocol) -> UIFont {
 		
 		return UIFont(name: self.paymentSettings.cardInputFont, size: 15.0)!

@@ -257,7 +257,6 @@
 				}
 			}
 		],
-		
 		"merchant_header": {
 			
 			"background_color": "#f7f7f7",
@@ -271,6 +270,26 @@
 				},
 				"color": "#535353",
 				"alignment": "leading"
+			},
+			"cancel_normal_style": {
+				
+				"font": {
+					
+					"typeface": "helvetica-neue-light",
+					"size": 12.0
+				},
+				"color": "#595959",
+				"alignment": "center"
+			},
+			"cancel_highlighted_style": {
+				
+				"font": {
+					
+					"typeface": "helvetica-neue-light",
+					"size": 12.0
+				},
+				"color": "#000000",
+				"alignment": "center"
 			},
 			"icon_style": {
 				
@@ -449,6 +468,26 @@
 				},
 				"color": "#535353",
 				"alignment": "leading"
+			},
+			"cancel_normal_style": {
+				
+				"font": {
+					
+					"typeface": "helvetica-neue-light",
+					"size": 12.0
+				},
+				"color": "#595959",
+				"alignment": "center"
+			},
+			"cancel_highlighted_style": {
+				
+				"font": {
+					
+					"typeface": "helvetica-neue-light",
+					"size": 12.0
+				},
+				"color": "#000000",
+				"alignment": "center"
 			}
 		},
 		

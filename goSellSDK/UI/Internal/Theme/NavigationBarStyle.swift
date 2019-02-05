@@ -14,7 +14,11 @@ internal struct NavigationBarStyle: Decodable {
 	
 	internal let backIcon: ResourceImage
 	
-	internal let titleStyle: TextStyle
+	internal var titleStyle: TextStyle
+	
+	internal var cancelNormalStyle: TextStyle
+	
+	internal var cancelHighlightedStyle: TextStyle
 	
 	internal let iconStyle: IconStyle?
 	
@@ -22,9 +26,11 @@ internal struct NavigationBarStyle: Decodable {
 	
 	private enum CodingKeys: String, CodingKey {
 		
-		case backgroundColor	= "background_color"
-		case backIcon 			= "back_icon"
-		case titleStyle			= "title_style"
-		case iconStyle			= "icon_style"
+		case backgroundColor		= "background_color"
+		case backIcon 				= "back_icon"
+		case titleStyle				= "title_style"
+		case cancelNormalStyle		= "cancel_normal_style"
+		case cancelHighlightedStyle	= "cancel_highlighted_style"
+		case iconStyle				= "icon_style"
 	}
 }
