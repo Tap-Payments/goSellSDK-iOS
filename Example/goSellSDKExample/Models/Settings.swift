@@ -35,6 +35,12 @@ internal final class Settings: Encodable {
 											 
 											 appearanceMode:						.default,
 											 showsStatusPopup:						true,
+											 headerFont:							"Helvetica Neue",
+											 headerTextColor:						.custom("#535353"),
+											 headerBackgroundColor:					.custom("#f7f7f7"),
+											 headerCancelFont:						"Helvetica Neue",
+											 headerCancelNormalTextColor:			.custom("#535353"),
+											 headerCancelHighlightedTextColor:		.black,
 											 cardInputFont:							"Helvetica Neue",
 											 cardInputTextColor:					.custom("#535353"),
 											 cardInputInvalidTextColor:				.custom("#ee0000"),
@@ -86,6 +92,20 @@ internal final class Settings: Encodable {
 	internal var appearanceMode: SDKAppearanceMode
 	
 	internal var showsStatusPopup: Bool
+	
+	// Appearance: Header
+	
+	internal var headerFont: String
+	
+	internal var headerTextColor: Color
+	
+	internal var headerBackgroundColor: Color
+	
+	internal var headerCancelFont: String
+	
+	internal var headerCancelNormalTextColor: Color
+	
+	internal var headerCancelHighlightedTextColor: Color
 	
 	// Appearance: Card Input
 	
@@ -152,6 +172,12 @@ internal final class Settings: Encodable {
 				  
 				  appearanceMode:							SDKAppearanceMode,
 				  showsStatusPopup:							Bool,
+				  headerFont:								String,
+				  headerTextColor:							Color,
+				  headerBackgroundColor:					Color,
+				  headerCancelFont:							String,
+				  headerCancelNormalTextColor:				Color,
+				  headerCancelHighlightedTextColor:			Color,
 				  cardInputFont:							String,
 				  cardInputTextColor:						Color,
 				  cardInputInvalidTextColor:				Color,
@@ -189,6 +215,12 @@ internal final class Settings: Encodable {
 		
 		self.appearanceMode							= appearanceMode
 		self.showsStatusPopup						= showsStatusPopup
+		self.headerFont								= headerFont
+		self.headerTextColor						= headerTextColor
+		self.headerBackgroundColor					= headerBackgroundColor
+		self.headerCancelFont						= headerCancelFont
+		self.headerCancelNormalTextColor			= headerCancelNormalTextColor
+		self.headerCancelHighlightedTextColor		= headerCancelHighlightedTextColor
 		self.cardInputFont							= cardInputFont
 		self.cardInputTextColor						= cardInputTextColor
 		self.cardInputInvalidTextColor				= cardInputInvalidTextColor
@@ -231,6 +263,12 @@ internal final class Settings: Encodable {
 		
 		case appearanceMode							= "appearance_mode"
 		case showsStatusPopup						= "shows_status_popup"
+		case headerFont								= "header_font"
+		case headerTextColor						= "header_text_color"
+		case headerBackgroundColor					= "header_background_color"
+		case headerCancelFont						= "header_cancel_font"
+		case headerCancelNormalTextColor			= "header_cancel_normal_text_color"
+		case headerCancelHighlightedTextColor		= "header_cancel_highlighted_text_color"
 		case cardInputFont							= "card_input_font"
 		case cardInputTextColor						= "card_input_text_color"
 		case cardInputInvalidTextColor				= "card_input_invalid_text_color"
@@ -277,6 +315,12 @@ extension Settings: Decodable {
 		
 		let appearanceMode							= try container.decodeIfPresent	(SDKAppearanceMode.self,	forKey: .appearanceMode)						?? Settings.default.appearanceMode
 		let showsStatusPopup						= try container.decodeIfPresent	(Bool.self,					forKey: .showsStatusPopup)						?? Settings.default.showsStatusPopup
+		let headerFont								= try container.decodeIfPresent	(String.self,				forKey: .headerFont)							?? Settings.default.headerFont
+		let headerTextColor							= try container.decodeIfPresent	(Color.self,				forKey: .headerTextColor)						?? Settings.default.headerTextColor
+		let headerBackgroundColor					= try container.decodeIfPresent	(Color.self,				forKey: .headerBackgroundColor)					?? Settings.default.headerBackgroundColor
+		let headerCancelFont						= try container.decodeIfPresent	(String.self,				forKey: .headerCancelFont)						?? Settings.default.headerCancelFont
+		let headerCancelNormalTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .headerCancelNormalTextColor)			?? Settings.default.headerCancelNormalTextColor
+		let headerCancelHighlightedTextColor		= try container.decodeIfPresent	(Color.self,				forKey: .headerCancelHighlightedTextColor)		?? Settings.default.headerCancelHighlightedTextColor
 		let cardInputFont							= try container.decodeIfPresent	(String.self,				forKey: .cardInputFont)							?? Settings.default.cardInputFont
 		let cardInputTextColor						= try container.decodeIfPresent	(Color.self,				forKey: .cardInputTextColor)					?? Settings.default.cardInputTextColor
 		let cardInputInvalidTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .cardInputInvalidTextColor)				?? Settings.default.cardInputInvalidTextColor
@@ -325,7 +369,7 @@ extension Settings: Decodable {
                 envCustomer = EnvironmentCustomer(customer: customers[0], environment: .sandbox)
             }
         }
-        
+		
 		self.init(sdkLanguage:								sdkLanguage,
 				  sdkMode:									sdkMode,
 				  
@@ -337,8 +381,15 @@ extension Settings: Decodable {
 				  customer:									envCustomer,
 				  shippingList:								shippingList,
 				  taxes:									taxes,
+				  
 				  appearanceMode:							appearanceMode,
 				  showsStatusPopup:							showsStatusPopup,
+				  headerFont:								headerFont,
+				  headerTextColor:							headerTextColor,
+				  headerBackgroundColor:					headerBackgroundColor,
+				  headerCancelFont:							headerCancelFont,
+				  headerCancelNormalTextColor:				headerCancelNormalTextColor,
+				  headerCancelHighlightedTextColor:			headerCancelHighlightedTextColor,
 				  cardInputFont:							cardInputFont,
 				  cardInputTextColor:						cardInputTextColor,
 				  cardInputInvalidTextColor:				cardInputInvalidTextColor,

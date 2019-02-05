@@ -99,6 +99,26 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			
 			switch reuseIdentifier {
 				
+			case Constants.headerTextColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Header Text Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.headerTextColor
+				
+			case Constants.headerBackgroundColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Header Background Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.headerBackgroundColor
+				
+			case Constants.headerCancelNormalColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Header Cancel Normal Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.headerCancelNormalTextColor
+				
+			case Constants.headerCancelHighlightedColorCellReuseIdentifier:
+				
+				colorSelectionControler.title = "Header Cancel Highlighted Color"
+				colorSelectionControler.preselectedValue = self.currentSettings?.headerCancelHighlightedTextColor
+				
 			case Constants.cardInputTextColorCellReuseIdentifier:
 				
 				colorSelectionControler.title = "Card Input Text Color"
@@ -174,7 +194,6 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 				colorSelectionControler.title = "Pay/Save Button highlighted text color"
 				colorSelectionControler.preselectedValue = self.currentSettings?.tapButtonHighlightedTextColor
 				
-				
 			default:
 				
 				break
@@ -186,6 +205,16 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			fontSelectionController.allValues = UIFont.familyNames
 			
 			switch reuseIdentifier {
+				
+			case Constants.headerFontCellReuseIdentifier:
+				
+				fontSelectionController.title = "Header Font"
+				fontSelectionController.preselectedValue = self.currentSettings?.headerFont
+				
+			case Constants.headerCancelFontCellReuseIdentifier:
+				
+				fontSelectionController.title = "Header Cancel Button Font"
+				fontSelectionController.preselectedValue = self.currentSettings?.headerCancelFont
 				
 			case Constants.cardInputFontCellReuseIdentifier:
 				
@@ -297,7 +326,11 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			
 			self.showCaseSelectionViewController(with: reuseIdentifier)
 			
-		case Constants.cardInputTextColorCellReuseIdentifier,
+		case Constants.headerTextColorCellReuseIdentifier,
+			 Constants.headerBackgroundColorCellReuseIdentifier,
+			 Constants.headerCancelNormalColorCellReuseIdentifier,
+			 Constants.headerCancelHighlightedColorCellReuseIdentifier,
+			 Constants.cardInputTextColorCellReuseIdentifier,
 			 Constants.cardInputTextColorInvalidCellReuseIdentifier,
 			 Constants.cardInputTextColorPlaceholderCellReuseIdentifier,
 			 Constants.cardInputDescriptionTextColorCellReuseIdentifier,
@@ -319,7 +352,9 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			
 			self.showCustomersListViewController()
 			
-		case Constants.cardInputFontCellReuseIdentifier,
+		case Constants.headerFontCellReuseIdentifier,
+			 Constants.headerCancelFontCellReuseIdentifier,
+			 Constants.cardInputFontCellReuseIdentifier,
 			 Constants.cardInputDescriptionFontCellReuseIdentifier,
 			 Constants.tapButtonFontCellReuseIdentifier:
 			
@@ -371,6 +406,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         fileprivate static let shippingListCellReuseIdentifier      					= "shiping_list_cell"
 		
 		fileprivate static let appearanceModeCellReuseIdentifier						= "appearance_mode_cell"
+		fileprivate static let headerFontCellReuseIdentifier							= "header_font_cell"
+		fileprivate static let headerTextColorCellReuseIdentifier						= "header_text_color_cell"
+		fileprivate static let headerBackgroundColorCellReuseIdentifier					= "header_background_color_cell"
+		fileprivate static let headerCancelFontCellReuseIdentifier						= "header_cancel_font_cell"
+		fileprivate static let headerCancelNormalColorCellReuseIdentifier				= "header_cancel_normal_color_cell"
+		fileprivate static let headerCancelHighlightedColorCellReuseIdentifier			= "header_cancel_highlighted_color_cell"
 		fileprivate static let cardInputFontCellReuseIdentifier							= "card_input_font_cell"
 		fileprivate static let cardInputTextColorCellReuseIdentifier					= "card_input_color_valid_cell"
 		fileprivate static let cardInputTextColorInvalidCellReuseIdentifier				= "card_input_color_invalid_cell"
@@ -423,6 +464,14 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	
 	@IBOutlet private weak var appearanceModeValueLabel: UILabel?
 	@IBOutlet private weak var showsStatusPopupSwitch: UISwitch?
+	
+	@IBOutlet private weak var headerFontValueLabel: UILabel?
+	@IBOutlet private weak var headerTextColorValueLabel: UILabel?
+	@IBOutlet private weak var headerBackgroundColorValueLabel: UILabel?
+	@IBOutlet private weak var headerCancelFontValueLabel: UILabel?
+	@IBOutlet private weak var headerCancelNormalTextColorValueLabel: UILabel?
+	@IBOutlet private weak var headerCancelHighlightedTextColorValueLabel: UILabel?
+	
 	@IBOutlet private weak var cardInputFontValueLabel: UILabel?
 	@IBOutlet private weak var cardInputTextColorValueLabel: UILabel?
 	@IBOutlet private weak var cardInputInvalidTextColorValueLabel: UILabel?
@@ -526,6 +575,38 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		
 		self.appearanceModeValueLabel?.text					= self.currentSettings?.appearanceMode.description
 		self.showsStatusPopupSwitch?.isOn					= self.currentSettings?.showsStatusPopup ?? Settings.default.showsStatusPopup
+		
+		// Header
+		
+		self.headerFontValueLabel?.text						= self.currentSettings?.headerFont
+		if let set = self.currentSettings, let font = UIFont(name: set.headerFont, size: 17.0) {
+			
+			self.headerFontValueLabel?.font			= font
+			self.headerTextColorValueLabel?.font	= font
+		}
+		
+		self.headerTextColorValueLabel?.text = self.currentSettings?.headerTextColor.description
+		if let set = self.currentSettings { self.headerTextColorValueLabel?.textColor = set.headerTextColor.asUIColor }
+		
+		self.headerBackgroundColorValueLabel?.text = self.currentSettings?.headerBackgroundColor.description
+		if let set = self.currentSettings { self.headerBackgroundColorValueLabel?.textColor = set.headerBackgroundColor.asUIColor }
+		
+		self.headerCancelFontValueLabel?.text = self.currentSettings?.headerCancelFont
+		if let set = self.currentSettings, let font = UIFont(name: set.headerCancelFont, size: 17.0) {
+			
+			self.headerCancelFontValueLabel?.font					= font
+			self.headerCancelNormalTextColorValueLabel?.font		= font
+			self.headerCancelHighlightedTextColorValueLabel?.font	= font
+		}
+		
+		self.headerCancelNormalTextColorValueLabel?.text = self.currentSettings?.headerCancelNormalTextColor.description
+		if let set = self.currentSettings { self.headerCancelNormalTextColorValueLabel?.textColor = set.headerCancelNormalTextColor.asUIColor }
+		
+		self.headerCancelHighlightedTextColorValueLabel?.text = self.currentSettings?.headerCancelHighlightedTextColor.description
+		if let set = self.currentSettings { self.headerCancelHighlightedTextColorValueLabel?.textColor = set.headerCancelHighlightedTextColor.asUIColor }
+		
+		// Card Input
+		
 		self.cardInputFontValueLabel?.text					= self.currentSettings?.cardInputFont
 		
 		if let set = self.currentSettings, let font = UIFont(name: set.cardInputFont, size: 17.0) {
@@ -797,6 +878,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.customerNameLabel?.textAlignment								= trailing
 		
 		self.appearanceModeValueLabel?.textAlignment						= trailing
+		self.headerFontValueLabel?.textAlignment							= trailing
+		self.headerTextColorValueLabel?.textAlignment						= trailing
+		self.headerBackgroundColorValueLabel?.textAlignment					= trailing
+		self.headerCancelFontValueLabel?.textAlignment						= trailing
+		self.headerCancelNormalTextColorValueLabel?.textAlignment			= trailing
+		self.headerCancelHighlightedTextColorValueLabel?.textAlignment		= trailing
 		self.cardInputFontValueLabel?.textAlignment							= trailing
 		self.cardInputTextColorValueLabel?.textAlignment					= trailing
 		self.cardInputInvalidTextColorValueLabel?.textAlignment				= trailing
@@ -928,6 +1015,48 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
                 
                 self.currentSettings?.currency = currency
             }
+			
+		case Constants.headerTextColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.headerTextColor = color
+			}
+			
+		case Constants.headerBackgroundColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.headerBackgroundColor = color
+			}
+
+		case Constants.headerCancelNormalColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.headerCancelNormalTextColor = color
+			}
+
+		case Constants.headerCancelHighlightedColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.headerCancelHighlightedTextColor = color
+			}
+
+		case Constants.headerFontCellReuseIdentifier:
+			
+			if let font = value as? String {
+				
+				self.currentSettings?.headerFont = font
+			}
+			
+		case Constants.headerCancelFontCellReuseIdentifier:
+			
+			if let font = value as? String {
+				
+				self.currentSettings?.headerCancelFont = font
+			}
 			
 		case Constants.cardInputFontCellReuseIdentifier:
 			

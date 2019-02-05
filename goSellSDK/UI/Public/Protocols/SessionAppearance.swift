@@ -28,6 +28,42 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	/// - Returns: Bool
 	@objc optional func sessionShouldShowStatusPopup(_ session: SessionProtocol) -> Bool
 	
+	// MARK: - Header
+	
+	/// Font for the header text.
+	///
+	/// - Parameter session: Target session.
+	/// - Returns: UIFont
+	@objc optional func headerFont(for session: SessionProtocol) -> UIFont
+	
+	/// Color for the header text.
+	///
+	/// - Parameter session: Target session.
+	/// - Returns: UIColor
+	@objc optional func headerTextColor(for session: SessionProtocol) -> UIColor
+	
+	/// Background color for the header.
+	///
+	/// In windowed mode this color will be applied immediately, but in fullscreen mode only when there is content *under* the header.
+	///
+	/// - Parameter session: Target session.
+	/// - Returns: UIColor
+	@objc optional func headerBackgroundColor(for session: SessionProtocol) -> UIColor
+	
+	/// Header cancel button font.
+	///
+	/// - Parameter session: Target session.
+	/// - Returns: UIFont
+	@objc optional func headerCancelButtonFont(for session: SessionProtocol) -> UIFont
+	
+	/// Header cancel button text color.
+	///
+	/// - Parameters:
+	///   - state: Control state. Either `normal` or `highlighted`.
+	///   - session: Target session.
+	/// - Returns: UIColor
+	@objc optional func headerCancelButtonTextColor(for state: UIControl.State, for session: SessionProtocol) -> UIColor
+	
 	// MARK: - Card Input Fields
 	
 	/// Card input fields font.

@@ -103,6 +103,10 @@ internal final class TapNavigationView: TapNibView {
 			
 			self.iconImageView?.tap_cornerRadius = iconStyle.cornerRadius
 		}
+		
+		self.closeButton?.titleLabel?.font = style.cancelNormalStyle.font.localized
+		self.closeButton?.setTitleColor(style.cancelNormalStyle.color, for: .normal)
+		self.closeButton?.setTitleColor(style.cancelHighlightedStyle.color, for: .highlighted)
 	}
 	
 	internal func setDataSource(_ datasource: DataSource?, animated: Bool) {

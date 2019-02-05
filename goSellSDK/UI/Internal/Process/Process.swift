@@ -107,6 +107,43 @@ internal final class Process {
 		
 		guard let externalAppearance = self.externalSession?.appearance else { return }
 		
+		var headerStyle = Theme.current.merchantHeaderStyle
+		
+		if let headerFont = externalAppearance.headerFont?(for: session) {
+			
+			let font = Font(headerFont)
+			headerStyle.titleStyle.font = font
+		}
+		
+		if let headerTextColor = externalAppearance.headerTextColor?(for: session) {
+			
+			headerStyle.titleStyle.color = headerTextColor.tap_asHexColor
+		}
+		
+		if let headerBackgroundColor = externalAppearance.headerBackgroundColor?(for: session) {
+			
+			headerStyle.backgroundColor = headerBackgroundColor.tap_asHexColor
+		}
+		
+		if let cancelButtonFont = externalAppearance.headerCancelButtonFont?(for: session) {
+			
+			let font = Font(cancelButtonFont)
+			headerStyle.cancelNormalStyle.font		= font
+			headerStyle.cancelHighlightedStyle.font	= font
+		}
+		
+		if let cancelNormalColor = externalAppearance.headerCancelButtonTextColor?(for: .normal, for: session) {
+			
+			headerStyle.cancelNormalStyle.color = cancelNormalColor.tap_asHexColor
+		}
+		
+		if let cancelHighlightedColor = externalAppearance.headerCancelButtonTextColor?(for: .highlighted, for: session) {
+			
+			headerStyle.cancelHighlightedStyle.color = cancelHighlightedColor.tap_asHexColor
+		}
+		
+		Theme.current.merchantHeaderStyle = headerStyle
+		
 		var cardInputTextStyle = Theme.current.paymentOptionsCellStyle.card.textInput
 		
 		if let cardInputFont = externalAppearance.cardInputFieldsFont?(for: session) {
