@@ -47,16 +47,35 @@ internal extension APIClient {
         
         let urlModel = TapURLModel.array(parameters: [customer, identifier])
         
-        let operation = TapNetworkRequestOperation(path: self.cardRoute.rawValue,
-                                                   method: .DELETE,
-                                                   headers: self.staticHTTPHeaders,
-                                                   urlModel: urlModel,
-                                                   bodyModel: nil,
-                                                   responseType: .json)
+        let operation = TapNetworkRequestOperation(path:			self.cardRoute.rawValue,
+                                                   method:			.DELETE,
+                                                   headers:			self.staticHTTPHeaders,
+                                                   urlModel:		urlModel,
+                                                   bodyModel:		nil,
+                                                   responseType:	.json)
         
         self.performRequest(operation, using: self.cardRoute.decoder, completion: completion)
     }
-    
+	
+	/// Lists all cards for the specified customer.
+	///
+	/// - Parameters:
+	///   - customer: Customer identifier.
+	///   - completion: Completion that will be called once request finishes.
+	internal func listAllCards(for customer: String, completion: @escaping Completion<ListCardsResponse>) {
+		
+		let urlModel = TapURLModel.array(parameters: [customer])
+		
+		let operation = TapNetworkRequestOperation(path:			self.cardRoute.rawValue,
+												   method:			.GET,
+												   headers:			self.staticHTTPHeaders,
+												   urlModel:		urlModel,
+												   bodyModel:		nil,
+												   responseType:	.json)
+		
+		self.performRequest(operation, using: self.cardRoute.decoder, checkSDKInitializationStatus: false, completion: completion)
+	}
+	
     // MARK: - Private -
     // MARK: Properties
     

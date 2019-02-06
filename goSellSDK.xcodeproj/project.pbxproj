@@ -131,6 +131,8 @@
 		14690B122155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
 		14690B142155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
 		14690B152155DF330033C562 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B132155DF330033C562 /* SecretKey.swift */; };
+		14713749220B333F002EBEE4 /* ListCardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14713748220B333E002EBEE4 /* ListCardsResponse.swift */; };
+		1471374A220B333F002EBEE4 /* ListCardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14713748220B333E002EBEE4 /* ListCardsResponse.swift */; };
 		147951B421FF764A0073B49F /* CardVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951B321FF76490073B49F /* CardVerification.swift */; };
 		147951B521FF764A0073B49F /* CardVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951B321FF76490073B49F /* CardVerification.swift */; };
 		147951B721FF76680073B49F /* CardVerificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951B621FF76680073B49F /* CardVerificationStatus.swift */; };
@@ -867,6 +869,7 @@
 		1444698021594A4D009849DC /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
 		14690B102155DF240033C562 /* SDKMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKMode.swift; sourceTree = "<group>"; };
 		14690B132155DF330033C562 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		14713748220B333E002EBEE4 /* ListCardsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCardsResponse.swift; sourceTree = "<group>"; };
 		147951B321FF76490073B49F /* CardVerification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardVerification.swift; sourceTree = "<group>"; };
 		147951B621FF76680073B49F /* CardVerificationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardVerificationStatus.swift; sourceTree = "<group>"; };
 		147951B921FF767E0073B49F /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -1750,6 +1753,7 @@
 				A4C13A9820F4F0AE00037EDC /* ExpirationDate.swift */,
 				A4D53120208A54C400830AD8 /* ExtraFee.swift */,
 				A4BD8CC820A1EF7700EFF2CE /* InternalSDKSettings.swift */,
+				14713748220B333E002EBEE4 /* ListCardsResponse.swift */,
 				A479F7172099DB2100556E10 /* Merchant.swift */,
 				A4A9827B20D2B31F00770690 /* Order.swift */,
 				A4D5310E208A47C600830AD8 /* PaymentOption.swift */,
@@ -2603,6 +2607,7 @@
 				A45991142109E4CB00E941D5 /* GlowingViewHandler.swift in Sources */,
 				A482F7682085DB6300AA76A4 /* APIError.swift in Sources */,
 				A4F7107020B5546A0064FE4B /* AddressFieldInputType.swift in Sources */,
+				14713749220B333F002EBEE4 /* ListCardsResponse.swift in Sources */,
 				14B22183215A4747003DC928 /* Localizable.swift in Sources */,
 				141284EE216112C300C2873E /* SearchBarStyle.swift in Sources */,
 				A4444BE420AB52C5005D9E87 /* HeaderNavigatedViewControllerWithSearch.swift in Sources */,
@@ -2690,6 +2695,7 @@
 				A4A982C420D2B5FE00770690 /* TokenType.swift in Sources */,
 				141284C22160FEC500C2873E /* TextStyle.swift in Sources */,
 				A4BD8D6420A1FB3D00EFF2CE /* TapSDKErrorType.swift in Sources */,
+				1471374A220B333F002EBEE4 /* ListCardsResponse.swift in Sources */,
 				A4BD8D6520A1FB3D00EFF2CE /* TapSerializationError.swift in Sources */,
 				A4A982AA20D2B34F00770690 /* SourceObject.swift in Sources */,
 				1432427F21F9FB14003B5E5D /* Process.WebPaymentHandler.swift in Sources */,

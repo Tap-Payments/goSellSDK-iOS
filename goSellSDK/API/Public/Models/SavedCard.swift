@@ -31,6 +31,41 @@ import enum TapCardValidator.CardBrand
 	/// Card fingerprint.
 	public let fingerprint: String?
 	
+	/// Expiration month.
+	public var expirationMonth: Int {
+		
+		if let expiry = self.expiry {
+			
+			return expiry.month
+		}
+		
+		if let month = self.exp_month {
+			
+			return month
+		}
+		
+		return 0
+	}
+	
+	/// Expiration year.
+	public var expirationYear: Int {
+		
+		if let expiry = self.expiry {
+			
+			return expiry.year
+		}
+		
+		if let year = self.exp_year {
+			
+			return year
+		}
+		
+		return 0
+	}
+	
+	/// Cardholder name.
+	public let cardholderName: String?
+	
 	// MARK: Methods
 	
 	/// Checks whether two saved cards are equal.
@@ -52,9 +87,6 @@ import enum TapCardValidator.CardBrand
 	
 	/// Expiration date.
 	internal let expiry: ExpirationDate?
-	
-	/// Cardholder name.
-	internal let cardholderName: String?
 	
 	/// Currency.
 	internal let currency: Currency?
@@ -85,11 +117,19 @@ import enum TapCardValidator.CardBrand
 		case scheme                     = "scheme"
 		case supportedCurrencies        = "supported_currencies"
 		case orderBy                    = "order_by"
+		case expirationMonth			= "exp_month"
+		case expirationYear				= "exp_year"
 	}
+	
+	// MARK: Properties
+	
+	private var exp_month: Int?
+	
+	private var exp_year: Int?
 	
 	// MARK: Methods
 	
-	private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, fingerprint: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int) {
+	private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, fingerprint: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int, expirationMonth: Int?, expirationYear: Int?) {
 		
 		self.identifier                 = identifier
 		self.object                     = object
@@ -104,6 +144,8 @@ import enum TapCardValidator.CardBrand
 		self.scheme                     = scheme
 		self.supportedCurrencies        = supportedCurrencies
 		self.orderBy                    = orderBy
+		self.exp_month					= expirationMonth
+		self.exp_year					= expirationYear
 		
 		super.init()
 	}
@@ -129,6 +171,8 @@ extension SavedCard: Decodable {
 		let scheme              = try container.decodeIfPresent(CardScheme.self,        forKey: .scheme)
 		let supportedCurrencies = try container.decodeIfPresent([Currency].self,        forKey: .supportedCurrencies) ?? []
 		let orderBy             = try container.decodeIfPresent(Int.self,               forKey: .orderBy) ?? 0
+		let expirationMonth		= try container.decodeIfPresent(Int.self,				forKey: .expirationMonth)
+		let expirationYear		= try container.decodeIfPresent(Int.self,				forKey: .expirationYear)
 		
 		self.init(identifier:               identifier,
 				  object:                   object,
@@ -142,7 +186,9 @@ extension SavedCard: Decodable {
 				  currency:                 currency,
 				  scheme:                   scheme,
 				  supportedCurrencies:      supportedCurrencies,
-				  orderBy:                  orderBy)
+				  orderBy:                  orderBy,
+				  expirationMonth:			expirationMonth,
+				  expirationYear:			expirationYear)
 	}
 }
 

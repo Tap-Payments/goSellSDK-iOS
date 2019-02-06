@@ -11,6 +11,7 @@ import struct   Foundation.NSDecimal.Decimal
 import class    goSellSDK.AmountModificator
 import class    goSellSDK.Authorize
 import class    goSellSDK.AuthorizeAction
+import class	goSellSDK.CardVerification
 import class    goSellSDK.Charge
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
@@ -31,6 +32,7 @@ import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
+import class	UIKit.UIBarButtonItem.UIBarButtonItem
 import class	UIKit.UIBlurEffect.UIBlurEffect
 import class	UIKit.UIColor.UIColor
 import class	UIKit.UIControl.UIControl
@@ -69,6 +71,7 @@ internal class ExampleViewController: BaseViewController {
         
         super.viewWillAppear(animated)
         self.updatePayButtonAmount()
+		self.updateSavedCardsButtonVisibility()
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,6 +88,10 @@ internal class ExampleViewController: BaseViewController {
             settingsController.delegate = self
             settingsController.settings = self.paymentSettings
         }
+		else if let savedCardsController = (segue.destination as? UINavigationController)?.tap_rootViewController as? SavedCardsTableViewController {
+			
+			savedCardsController.customerIdentifier = self.paymentSettings.customer?.customer.identifier
+		}
     }
     
     internal func showPaymentItemViewController(with item: PaymentItem? = nil) {
@@ -115,7 +122,9 @@ internal class ExampleViewController: BaseViewController {
     }
     
     private var tableViewHandler: PaymentItemsTableViewHandler?
-    
+	
+	@IBOutlet private weak var savedCardsButton: UIBarButtonItem?
+	
     @IBOutlet private weak var itemsTableView: UITableView? {
         
         didSet {
@@ -124,7 +133,7 @@ internal class ExampleViewController: BaseViewController {
             self.createPaymentItemsTableViewHandler()
         }
     }
-    
+	
     @IBOutlet private weak var payButton: PayButton?
     
     internal var selectedPaymentItem: PaymentItem?
@@ -135,7 +144,7 @@ internal class ExampleViewController: BaseViewController {
         
         self.showPaymentItemViewController()
     }
-    
+	
     private func createPaymentItemsTableViewHandler() {
         
         guard let nonnullTableView = self.itemsTableView else { return }
@@ -143,6 +152,11 @@ internal class ExampleViewController: BaseViewController {
         self.tableViewHandler = PaymentItemsTableViewHandler(itemsProvider: self, tableView: nonnullTableView, callbacksHandler: self)
         self.tableViewHandler?.reloadData()
     }
+	
+	private func updateSavedCardsButtonVisibility() {
+		
+		self.savedCardsButton?.isEnabled = self.paymentSettings.customer?.customer.identifier != nil
+	}
 }
 
 // MARK: - PaymentItemsProvider
@@ -288,6 +302,8 @@ extension ExampleViewController: SessionDelegate {
         if let customerID = charge.customer.identifier {
             
             self.saveCustomer(customerID)
+			
+			self.updateSavedCardsButtonVisibility()
         }
     }
     
@@ -298,6 +314,8 @@ extension ExampleViewController: SessionDelegate {
         if let customerID = authorize.customer.identifier {
             
             self.saveCustomer(customerID)
+			
+			self.updateSavedCardsButtonVisibility()
         }
     }
     
@@ -316,12 +334,19 @@ extension ExampleViewController: SessionDelegate {
         // payment cancelled (user manually closed the payment screen).
     }
 	
-	internal func cardSaved(on session: SessionProtocol) {
+	internal func cardSaved(_ cardVerification: CardVerification, on session: SessionProtocol) {
 		
 		// card successfully saved.
+		
+		if let customerID = cardVerification.customer.identifier {
+			
+			self.saveCustomer(customerID)
+			
+			self.updateSavedCardsButtonVisibility()
+		}
 	}
 	
-	internal func cardSavingFailed(with error: TapSDKError?, on session: SessionProtocol) {
+	internal func cardSavingFailed(with cardVerification: CardVerification?, error: TapSDKError?, on session: SessionProtocol) {
 		
 		// card failed to save.
 	}

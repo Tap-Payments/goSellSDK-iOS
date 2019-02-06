@@ -19,7 +19,7 @@ internal final class APIClient {
     
     // MARK: - Internal -
     
-    internal typealias Completion<Response> = (Response?, TapSDKError?) -> Void
+	internal typealias Completion<Response: Decodable> = (Response?, TapSDKError?) -> Void
     
     // MARK: Properties
     
