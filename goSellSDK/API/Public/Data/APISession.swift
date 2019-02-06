@@ -20,6 +20,7 @@
 	// MARK: Properties
 	
 	/// Shared instance.
+	@objc(sharedInstance)
 	public static let shared = APISession()
 	
 	// MARK: Methods
@@ -29,7 +30,8 @@
 	/// - Parameters:
 	///   - customer: Customer identifier.
 	///   - completion: Closure that will be called once request finishes.
-	public func retrieveAllCards(of customer: String, completion: @escaping Completion<[SavedCard]>) {
+	@objc(retrieveAllCardsOfCustomer:completion:)
+	public func retrieveAllCards(of customer: String, completion: @escaping ([SavedCard]?, TapSDKError?) -> Void) {
 		
 		APIClient.shared.listAllCards(for: customer) { (response, error) in
 			
