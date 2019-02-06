@@ -17,8 +17,8 @@
 
 // MARK: Save Button Title
 
-"btn_save_title" = "SAVE CARD";
-"btn_save_action_title" = "SAVE";
+"btn_save_title" = "احفظ البطاقة";
+"btn_save_action_title" = "احفظ البطاقة";
 
 // MARK: Payment Option Group Titles
 
@@ -36,14 +36,14 @@
 // MARK: Save Card Placeholders
 
 "save_card_promotion_text"		= "لدفع آمن و سريع، قم بحفظ بطاقتك";
-"saved_cards_usage_description"	= "Saved cards will only be used with your approval, you can remove them at any time";
+"saved_cards_usage_description"	= "البطاقات المحفوظة لن تستخدم إلا بموافقتك، يمكنك مسح معلومات البطاقات في أي وقت.";
 
 // MARK: Screen Titles
 
 "currency_selection_screen_title" 	= "اختر العملة";
 "card_scanning_screen_title"		= "تصوير البطاقة";
-"payment_screen_title_payment"		= "Checkout";
-"payment_screen_title_card_saving"	= "Enter Card Details";
+"payment_screen_title_payment"		= "ادفع";
+"payment_screen_title_card_saving"	= "أدخل تفاصيل البطاقة";
 
 // MARK: Search Bar
 
@@ -263,5 +263,5 @@
 "payment_status_unknown"		= "Unknown";
 "payment_status_void" 			= "Void";
 
-"payment_status_alert_successful"	= "Successful";
-"payment_status_alert_failed"		= "Failed";
+"payment_status_alert_successful"	= "تم اتمام العملية بنجاح";
+"payment_status_alert_failed"		= "فشل عملية الدفع";
