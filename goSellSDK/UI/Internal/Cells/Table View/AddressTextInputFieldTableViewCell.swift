@@ -14,7 +14,9 @@ internal class AddressTextInputFieldTableViewCell: AddressFieldTableViewCell {
     // MARK: Properties
     
     internal weak var model: AddressTextInputFieldTableViewCellModel?
-    
+	
+	internal private(set) var isContentBinded: Bool = false
+	
     internal var inputField: UITextField? {
         
         return self.inputTextField
@@ -81,10 +83,14 @@ extension AddressTextInputFieldTableViewCell: BindingWithModelCell {
             
             self.model?.bind(with: textField)
         }
+		
+		self.isContentBinded = true
     }
     
     internal func unbindContent() {
         
         self.model?.unbindFromInputField()
+		
+		self.isContentBinded = false
     }
 }

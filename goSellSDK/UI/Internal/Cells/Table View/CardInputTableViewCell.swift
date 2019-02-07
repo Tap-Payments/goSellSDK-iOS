@@ -31,7 +31,9 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     // MARK: Properties
     
     internal weak var model: (CardInputTableViewCellModel & CardInputTableViewCellLoading)?
-    
+
+	internal private(set) var isContentBinded: Bool = false
+
     // MARK: Methods
     
     internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -346,12 +348,16 @@ extension CardInputTableViewCell: BindingWithModelCell {
         }
         
         self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true, forceLayout: false)
+		
+		self.isContentBinded = true
     }
     
     internal func unbindContent() {
         
         self.iconsTableView?.dataSource = nil
         self.iconsTableView?.delegate = nil
+		
+		self.isContentBinded = false
     }
     
     private func updateSectionsVisibility(animated: Bool, updateConstraintsOnly: Bool = false, forceLayout: Bool) {
