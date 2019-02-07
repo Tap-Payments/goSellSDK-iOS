@@ -199,7 +199,9 @@ internal extension Process {
 			
 			let failureClosure: (String, String) -> Void = { [weak self] (title, message) in
 				
-				self?.showMissingInformationAlert(with: title, message: message)
+				guard let strongSelf = self else { return }
+				
+				strongSelf.showMissingInformationAlert(with: title, message: message)
 			}
 			
 			guard let request = self.createPaymentOptionsRequest(for: session, callingIfFailed: failureClosure) else { return false }
