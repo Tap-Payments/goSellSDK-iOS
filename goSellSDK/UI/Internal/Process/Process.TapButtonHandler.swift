@@ -131,6 +131,8 @@ internal extension Process {
 		deinit {
 			
 			self.stopMonitoringLocalizationChanges(self.localizationObservation)
+			self.localizationObservation = nil
+			
 			self.clickCallback = nil
 		}
 		

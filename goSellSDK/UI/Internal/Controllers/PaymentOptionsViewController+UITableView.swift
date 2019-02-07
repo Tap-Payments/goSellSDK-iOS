@@ -64,7 +64,7 @@ extension PaymentOptionsViewController: UITableViewDataSource {
         else if let cardsContainerCellModel = model as? CardsContainerTableViewCellModel {
             
             let cell = cardsContainerCellModel.dequeueCell(from: tableView)
-            cell.bindContent()
+			cell.bindContent()
             return cell
         }
         else if let webCellModel = model as? WebPaymentOptionTableViewCellModel {
@@ -75,7 +75,7 @@ extension PaymentOptionsViewController: UITableViewDataSource {
         else if let cardCellModel = model as? CardInputTableViewCellModel {
             
             let cell = cardCellModel.dequeueCell(from: tableView)
-            cell.bindContent()
+			cell.bindContent()
             return cell
         }
         else {

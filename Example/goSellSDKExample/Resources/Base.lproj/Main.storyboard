@@ -484,8 +484,8 @@
                                         <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="jx1-NR-O4f">
                                             <rect key="frame" x="37.666666666666657" y="10.333333333333329" width="300" height="189"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-Z2-GdY">
-                                                    <rect key="frame" x="217" y="124" width="53" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEI-Z2-GdY">
+                                                    <rect key="frame" x="30" y="124" width="240" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -507,6 +507,7 @@
                                             <constraints>
                                                 <constraint firstItem="3km-cp-ltQ" firstAttribute="leading" secondItem="jx1-NR-O4f" secondAttribute="leading" constant="20" id="0y5-Ir-x80"/>
                                                 <constraint firstAttribute="trailing" secondItem="mnm-Zx-dJM" secondAttribute="trailing" constant="30" id="10z-Rw-wgk"/>
+                                                <constraint firstItem="QEI-Z2-GdY" firstAttribute="leading" secondItem="jx1-NR-O4f" secondAttribute="leading" priority="999" constant="30" id="3cS-9l-eMu"/>
                                                 <constraint firstAttribute="width" constant="300" id="6O1-cY-90R"/>
                                                 <constraint firstAttribute="height" constant="189" id="Kgy-tl-lOG"/>
                                                 <constraint firstAttribute="trailing" secondItem="QEI-Z2-GdY" secondAttribute="trailing" constant="30" id="Od4-Ra-1cB"/>

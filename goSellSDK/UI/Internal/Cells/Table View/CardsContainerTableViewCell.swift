@@ -13,7 +13,9 @@ internal class CardsContainerTableViewCell: BaseTableViewCell {
     // MARK: Properties
     
     internal weak var model: CardsContainerTableViewCellModel?
-    
+	
+	internal private(set) var isContentBinded: Bool = false
+	
     // MARK: - Private -
     
     @IBOutlet private weak var cardsCollectionView: UICollectionView? {
@@ -33,6 +35,8 @@ extension CardsContainerTableViewCell: BindingWithModelCell {
         self.cardsCollectionView?.dataSource = self.model?.cardsCollectionViewHandler
         self.cardsCollectionView?.delegate = self.model?.cardsCollectionViewHandler
         self.model?.collectionViewCellModels.forEach { $0.collectionView = self.cardsCollectionView }
+		
+		self.isContentBinded = true
     }
     
     internal func unbindContent() {
@@ -40,6 +44,8 @@ extension CardsContainerTableViewCell: BindingWithModelCell {
         self.cardsCollectionView?.dataSource = nil
         self.cardsCollectionView?.delegate = nil
         self.model?.collectionViewCellModels.forEach { $0.collectionView = nil }
+		
+		self.isContentBinded = false
     }
 }
 

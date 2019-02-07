@@ -55,6 +55,8 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	
 	internal override var isReadyForPayment: Bool {
 		
+		guard self.cell?.isContentBinded ?? false else { return false }
+		
 		return (self.requiredCardDataValidators.filter { !$0.isDataValid }).count == 0
 	}
 	
@@ -156,11 +158,6 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 		}
 		
 		self.addObservers()
-	}
-	
-	internal func connectionFinished() {
-		
-		self.cell?.bindContent()
 	}
 	
 	deinit {

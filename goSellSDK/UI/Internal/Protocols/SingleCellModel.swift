@@ -25,16 +25,16 @@ internal extension SingleCellModel {
         
         self.cell?.updateContent(animated: animated)
     }
-    
-    private func connect(with cell: CellClass) {
-        
-        self.cell = cell
-        
-        if let castedSelf = self as? CellClass.ModelType {
-
-            cell.model = castedSelf
-        }
-    }
+	
+	private func connect(with cell: CellClass) {
+		
+		self.cell = cell
+		
+		if let castedSelf = self as? CellClass.ModelType {
+			
+			cell.model = castedSelf
+		}
+	}
 }
 
 internal extension SingleCellModel where CellClass: UITableViewCell {
