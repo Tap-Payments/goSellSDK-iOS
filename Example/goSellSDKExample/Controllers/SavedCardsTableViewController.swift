@@ -10,6 +10,7 @@ import class	goSellSDK.APISession
 import class	goSellSDK.SavedCard
 import class	UIKit.UIActivityIndicatorView
 import class	UIKit.UITableView.UITableView
+import class	UIKit.UITableView.UITableViewRowAction
 import class	UIKit.UITableViewCell.UITableViewCell
 
 internal final class SavedCardsTableViewController: ModalNavigationTableViewController {
@@ -51,6 +52,16 @@ internal final class SavedCardsTableViewController: ModalNavigationTableViewCont
 		cell.fill(with: self.cards[indexPath.row])
 		
 		return cell
+	}
+	
+	internal override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		
+		let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] (_, indexPath) in
+			
+			self?.deleteCard(at: indexPath)
+		}
+		
+		return [delete]
 	}
 	
 	// MARK: - Private -
@@ -98,5 +109,34 @@ internal final class SavedCardsTableViewController: ModalNavigationTableViewCont
 		self.loader?.removeFromSuperview()
 		
 		self.loader = nil
+	}
+	
+	private func deleteCard(at indexPath: IndexPath) {
+		
+		guard let cardIdentifier = self.cards[indexPath.row].identifier, let customer = self.customerIdentifier else { return }
+		
+		self.showLoader()
+	
+		APISession.shared.deleteCard(cardIdentifier, of: customer) { [weak self] (deleted, error) in
+			
+			guard let strongSelf = self else { return }
+			
+			strongSelf.hideLoader()
+			
+			if deleted {
+				
+				strongSelf.didDeleteCard(at: indexPath)
+			}
+		}
+	}
+	
+	private func didDeleteCard(at indexPath: IndexPath) {
+		
+		self.tableView.beginUpdates()
+		
+		self.cards.remove(at: indexPath.row)
+		self.tableView.deleteRows(at: [indexPath], with: .automatic)
+		
+		self.tableView.endUpdates()
 	}
 }

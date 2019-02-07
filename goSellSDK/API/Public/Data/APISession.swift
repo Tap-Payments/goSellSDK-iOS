@@ -39,6 +39,21 @@
 		}
 	}
 	
+	/// Deletes the card.
+	///
+	/// - Parameters:
+	///   - card: Card identifier.
+	///   - customer: Customer identifier.
+	///   - completion: Closure that will be called once request finishes.
+	@objc(deleteCard:ofCustomer:completion:)
+	public func deleteCard(_ card: String, of customer: String, completion: @escaping (Bool, TapSDKError?) -> Void) {
+	
+		APIClient.shared.deleteCard(with: card, from: customer) { (response, error) in
+			
+			completion(response?.isDeleted ?? false, error)
+		}
+	}
+	
 	// MARK: - Private -
 	// MARK: Methods
 	
