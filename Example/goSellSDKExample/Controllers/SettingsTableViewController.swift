@@ -604,7 +604,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.backgroundBlurStyleValueLabel?.text = self.currentSettings?.backgroundBlurStyle.description
 		
 		let backgroundBlurProgress = self.currentSettings?.backgroundBlurProgress ?? Settings.default.backgroundBlurProgress
-		self.backgroundBlurProgressValueLabel?.text = "\(backgroundBlurProgress)"
+		self.backgroundBlurProgressValueLabel?.text = String(format: "%.02f", backgroundBlurProgress)
 		self.backgroundBlurProgressStepper?.value = Double(backgroundBlurProgress)
 		
 		// Header
@@ -869,7 +869,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		}
 		
 		self.currentSettings?.backgroundBlurProgress = progress
-		self.backgroundBlurProgressValueLabel?.text = "\(progress)"
+		self.backgroundBlurProgressValueLabel?.text = String(format: "%.2f", progress)
 	}
 	
     @IBAction private func addTaxButtonTouchUpInside(_ sender: Any) {

@@ -465,7 +465,7 @@
             </objects>
             <point key="canvasLocation" x="1990" y="-38"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Saved Cards-->
         <scene sceneID="Bjf-5B-szB">
             <objects>
                 <tableViewController id="PZ2-V8-mwt" customClass="SavedCardsTableViewController" customModule="goSellSDKExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -545,7 +545,13 @@
                             <outlet property="delegate" destination="PZ2-V8-mwt" id="1d1-2A-d1M"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Qeo-lc-arG"/>
+                    <navigationItem key="navigationItem" title="Saved Cards" id="Qeo-lc-arG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="zVi-N4-PgP">
+                            <connections>
+                                <action selector="doneButtonTouchUpInside:" destination="PZ2-V8-mwt" id="vMT-o5-IxP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpY-Gb-EES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

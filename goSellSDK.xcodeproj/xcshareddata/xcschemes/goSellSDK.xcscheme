@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A46CDF172042ABEE00EA38A5"
+               BlueprintIdentifier = "A40D32152031E6DE0030FDDE"
                BuildableName = "goSellSDK.framework"
-               BlueprintName = "goSellSDK_Carthage"
+               BlueprintName = "goSellSDK"
                ReferencedContainer = "container:goSellSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A46CDF172042ABEE00EA38A5"
+            BlueprintIdentifier = "A40D32152031E6DE0030FDDE"
             BuildableName = "goSellSDK.framework"
-            BlueprintName = "goSellSDK_Carthage"
+            BlueprintName = "goSellSDK"
             ReferencedContainer = "container:goSellSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A46CDF172042ABEE00EA38A5"
+            BlueprintIdentifier = "A40D32152031E6DE0030FDDE"
             BuildableName = "goSellSDK.framework"
-            BlueprintName = "goSellSDK_Carthage"
+            BlueprintName = "goSellSDK"
             ReferencedContainer = "container:goSellSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

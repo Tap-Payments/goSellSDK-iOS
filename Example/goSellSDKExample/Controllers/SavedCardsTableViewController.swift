@@ -19,6 +19,11 @@ internal final class SavedCardsTableViewController: ModalNavigationTableViewCont
 	
 	internal var customerIdentifier: String?
 	
+	internal override var isDoneButtonEnabled: Bool {
+		
+		return true
+	}
+	
 	// MARK: Methods
 	
 	internal override func viewDidLoad() {

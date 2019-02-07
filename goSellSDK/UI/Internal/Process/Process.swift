@@ -119,16 +119,7 @@ internal final class Process {
 		
 		if let blurStyle = externalAppearance.backgroundBlurStyle?(for: session) {
 			
-			let tapBlurStyle: TapBlurEffectStyle = {
-				
-				switch blurStyle {
-					
-				case .extraLight:	return .extraLight
-				case .dark:			return .dark
-				default:		return .light
-					
-				}
-			}()
+			let tapBlurStyle = TapBlurEffectStyle(blurStyle)
 			
 			commonStyle.blurStyle[.fullscreen].style	= tapBlurStyle
 			commonStyle.blurStyle[.windowed].style		= tapBlurStyle

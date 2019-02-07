@@ -19,7 +19,11 @@ internal protocol CardCollectionViewCellLoading: ClassProtocol {
     
     var deleteCardImage:    UIImage     { get }
     
-    var isDeleteCellMode:   Bool        { get set }
-    
+    var isDeleteCellMode:   Bool        { get }
+	
+	func cellTapDetected()
+	
+	func cellLongPressDetected()
+	
     func deleteCardButtonClicked()
 }
