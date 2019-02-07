@@ -240,7 +240,7 @@ internal final class Process {
 			cardInputStyle.scanIconIcon = tinted.tap_asResourceImage
 		}
 		
-		cardInputStyle.scanIcon = UIImage(byCombining: [cardInputStyle.scanIconFrame, cardInputStyle.scanIconIcon])
+		cardInputStyle.scanIcon = UIImage(tap_byCombining: [cardInputStyle.scanIconFrame, cardInputStyle.scanIconIcon])
 		
 		Theme.current.paymentOptionsCellStyle.card = cardInputStyle
 		

@@ -25,22 +25,4 @@ internal extension UIView {
 			}
 		}
 	}
-	
-	internal static func tap_fadeOutUpdateAndFadeIn<T>(view: T, with duration: TimeInterval, delay: TimeInterval = 0.0, update: @escaping (T) -> Void, completion: ((Bool) -> Void)? = nil) where T: UIView {
-		
-		let fadeDuration = 0.5 * duration
-		
-		UIView.animate(withDuration:	fadeDuration,
-					   delay:			delay,
-					   options:			[.beginFromCurrentState, .curveEaseIn],
-					   animations:		{ view.alpha = 0.0 }) { (_) in
-			
-			update(view)
-			UIView.animate(withDuration:	fadeDuration,
-						   delay:			0.0,
-						   options:			[.beginFromCurrentState, .curveEaseOut],
-						   animations:		{ view.alpha = 1.0 },
-						   completion:		completion)
-		}
-	}
 }

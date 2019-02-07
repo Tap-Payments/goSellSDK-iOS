@@ -120,6 +120,8 @@ internal final class TapNavigationView: TapNibView {
 	
 	internal func updateContentAndLayout(animated: Bool) {
 		
+		guard self.dataSource != nil else { return }
+		
 		self.updateContent(animated: animated)
 		self.updateLayout(animated: animated)
 	}
