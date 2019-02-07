@@ -248,8 +248,6 @@ internal extension Process {
 	
 	internal final class PaymentViewModelsHandler: ViewModelsHandler {
 	
-//	internal final class PaymentViewModelsHandler<Mode, ProcessClass>: Process.ViewModelsHandler<Mode, ProcessClass> where ProcessClass: ProcessGenericInterface, ProcessClass.HandlerMode == Mode, Mode: Payment {
-		
 		// MARK: - Internal -
 		// MARK: Methods
 		

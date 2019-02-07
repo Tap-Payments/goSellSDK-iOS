@@ -89,19 +89,13 @@ internal class CardCollectionViewCell: BaseCollectionViewCell {
     }
     
     @objc private func longPressDetected(_ sender: Any) {
-        
-        guard let nonnullModel = self.model else { return }
-        guard !nonnullModel.isDeleteCellMode else { return }
-        
-        nonnullModel.isDeleteCellMode = true
+		
+		self.model?.cellLongPressDetected()
     }
     
     @objc private func tapDetected(_ sender: Any) {
-        
-        guard let nonnullModel = self.model else { return }
-        guard nonnullModel.isDeleteCellMode else { return }
-        
-        nonnullModel.isDeleteCellMode = false
+		
+		self.model?.cellTapDetected()
     }
 }
 

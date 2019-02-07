@@ -31,23 +31,15 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
 		
 		return Process.shared.dataManagerInterface.paymentOptions.first(where: { $0.identifier == self.card.paymentOptionIdentifier } )
     }
-    
-    internal var isDeleteCellMode: Bool {
-        
-        get {
-            
-            return self.storedIsInDeleteCellMode
-        }
-        set {
-            
-            guard self.storedIsInDeleteCellMode != newValue else { return }
-            self.storedIsInDeleteCellMode = newValue
+	
+	internal var isDeleteCellMode: Bool = false {
+	
+		didSet {
 			
-			Process.shared.dataManagerInterface.isInDeleteSavedCardsMode = newValue
-            
-            self.updateCell(animated: true)
-        }
-    }
+			guard self.isDeleteCellMode != oldValue else { return }
+			self.updateCell(animated: true)
+		}
+	}
     
     // MARK: Methods
     
@@ -86,8 +78,6 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
             self.updateCell()
         }
     }
-    
-    private var storedIsInDeleteCellMode = false
     
     private unowned let parentModel: CardsContainerTableViewCellModel
     
@@ -207,7 +197,17 @@ extension CardCollectionViewCellModel: CardCollectionViewCellLoading {
 		
 		return Theme.current.commonStyle.icons.closeImage
     }
-    
+	
+	internal func cellTapDetected() {
+		
+		Process.shared.dataManagerInterface.isInDeleteSavedCardsMode = false
+	}
+	
+	internal func cellLongPressDetected() {
+		
+		Process.shared.dataManagerInterface.isInDeleteSavedCardsMode = true
+	}
+	
     internal func deleteCardButtonClicked() {
         
         self.showDeleteCardAlert { [weak self] (shouldDeleteCard) in
