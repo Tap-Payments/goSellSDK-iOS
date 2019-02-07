@@ -176,7 +176,7 @@ extension ResizablePaymentContainerViewController: ViewControllerLayoutListener 
 		
 		if self.contentNavigationController?.topViewController == viewController {
 			
-			self.resizeNavigationController(to: viewController.preferredContentSize, animated: true)
+			self.resizeNavigationController(to: viewController.preferredContentSize, animated: !self.isBeingPresented)
 		}
 	}
 }

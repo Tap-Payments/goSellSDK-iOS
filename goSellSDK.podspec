@@ -19,6 +19,8 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.dependency 'TapAdditionsKit/Foundation/Bundle'
     goSellSDK.dependency 'TapAdditionsKit/Foundation/Date'
     goSellSDK.dependency 'TapAdditionsKit/Foundation/Locale'
+	goSellSDK.dependency 'TapAdditionsKit/Foundation/URL'
+	goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Bool'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Comparable'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Decodable'
     goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Dictionary'

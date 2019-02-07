@@ -85,8 +85,8 @@
                                 </mask>
                             </variation>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgh-Xg-Fz7">
-                            <rect key="frame" x="45" y="21.5" width="46.5" height="23"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgh-Xg-Fz7">
+                            <rect key="frame" x="45" y="21.5" width="260" height="23"/>
                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                             <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -124,7 +124,7 @@
                         <constraint firstAttribute="height" constant="66" id="FpT-bF-pH4"/>
                         <constraint firstItem="VA3-DO-Olc" firstAttribute="leading" secondItem="hQg-Ba-y3u" secondAttribute="leading" id="GeU-om-iyE"/>
                         <constraint firstItem="8JV-Jp-WTt" firstAttribute="top" secondItem="hQg-Ba-y3u" secondAttribute="top" id="Wuh-0s-SW4"/>
-                        <constraint firstItem="8JV-Jp-WTt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rgh-Xg-Fz7" secondAttribute="trailing" id="X8q-3l-Bcp"/>
+                        <constraint firstItem="8JV-Jp-WTt" firstAttribute="leading" secondItem="rgh-Xg-Fz7" secondAttribute="trailing" constant="10" id="X8q-3l-Bcp"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rgh-Xg-Fz7" secondAttribute="trailing" constant="10" id="YgY-MQ-9tT"/>
                         <constraint firstAttribute="trailing" secondItem="8JV-Jp-WTt" secondAttribute="trailing" id="cvl-c7-hg6"/>
                         <constraint firstAttribute="bottom" secondItem="VA3-DO-Olc" secondAttribute="bottom" id="eou-2h-LZo"/>

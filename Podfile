@@ -10,6 +10,8 @@ def shared_pods
     pod 'TapAdditionsKit/Foundation/Bundle'
     pod 'TapAdditionsKit/Foundation/Date'
     pod 'TapAdditionsKit/Foundation/Locale'
+	pod 'TapAdditionsKit/Foundation/URL'
+	pod 'TapAdditionsKit/SwiftStandartLibrary/Bool'
     pod 'TapAdditionsKit/SwiftStandartLibrary/Comparable'
     pod 'TapAdditionsKit/SwiftStandartLibrary/Decodable'
     pod 'TapAdditionsKit/SwiftStandartLibrary/Dictionary'
