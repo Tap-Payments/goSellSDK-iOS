@@ -39,6 +39,7 @@
 			
 			guard self.availableLanguages.contains(newValue) else {
 				
+				print("Language \(newValue) is currently not available in goSellSDK. Using \(self.language) instead.")
 				return
 			}
 			

@@ -430,7 +430,7 @@ extension ExampleViewController: SessionAppearance {
 		return UIFont(name: self.paymentSettings.headerCancelFont, size: 12.0)!
 	}
 	
-	internal func headerCancelButtonTextColor(for state: UIControl.State, for session: SessionProtocol) -> UIColor {
+	internal func headerCancelButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor {
 		
 		switch state {
 			
@@ -503,7 +503,7 @@ extension ExampleViewController: SessionAppearance {
 		return self.paymentSettings.cardInputScanIconTintColor?.asUIColor ?? .clear
 	}
 	
-	internal func tapButtonBackgroundColor(for state: UIControl.State, for session: SessionProtocol) -> UIColor? {
+	internal func tapButtonBackgroundColor(for state: UIControl.State, session: SessionProtocol) -> UIColor? {
 		
 		switch state {
 			
@@ -530,7 +530,7 @@ extension ExampleViewController: SessionAppearance {
 		return UIFont(name: self.paymentSettings.tapButtonFont, size: 17.0)!
 	}
 	
-	internal func tapButtonTextColor(for state: UIControl.State, for session: SessionProtocol) -> UIColor? {
+	internal func tapButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor? {
 		
 		switch state {
 			
