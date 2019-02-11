@@ -161,12 +161,12 @@ internal final class Process {
 			headerStyle.cancelHighlightedStyle.font	= font
 		}
 		
-		if let cancelNormalColor = externalAppearance.headerCancelButtonTextColor?(for: .normal, for: session) {
+		if let cancelNormalColor = externalAppearance.headerCancelButtonTextColor?(for: .normal, session: session) {
 			
 			headerStyle.cancelNormalStyle.color = cancelNormalColor.tap_asHexColor
 		}
 		
-		if let cancelHighlightedColor = externalAppearance.headerCancelButtonTextColor?(for: .highlighted, for: session) {
+		if let cancelHighlightedColor = externalAppearance.headerCancelButtonTextColor?(for: .highlighted, session: session) {
 			
 			headerStyle.cancelHighlightedStyle.color = cancelHighlightedColor.tap_asHexColor
 		}
@@ -246,7 +246,7 @@ internal final class Process {
 		
 		var buttonStyles = Theme.current.buttonStyles
 		
-		if let buttonDisabledBackgroundColor = externalAppearance.tapButtonBackgroundColor?(for: .disabled, for: session) {
+		if let buttonDisabledBackgroundColor = externalAppearance.tapButtonBackgroundColor?(for: .disabled, session: session) {
 			
 			let hexColor = buttonDisabledBackgroundColor.tap_asHexColor
 			for (index, _) in buttonStyles.enumerated() {
@@ -255,7 +255,7 @@ internal final class Process {
 			}
 		}
 		
-		if let buttonEnabledBackgroundColor = externalAppearance.tapButtonBackgroundColor?(for: .normal, for: session) {
+		if let buttonEnabledBackgroundColor = externalAppearance.tapButtonBackgroundColor?(for: .normal, session: session) {
 			
 			let hexColor = buttonEnabledBackgroundColor.tap_asHexColor
 			for (index, _) in buttonStyles.enumerated() {
@@ -264,7 +264,7 @@ internal final class Process {
 			}
 		}
 		
-		if let buttonHighlightedBackgroundColor = externalAppearance.tapButtonBackgroundColor?(for: .highlighted, for: session) {
+		if let buttonHighlightedBackgroundColor = externalAppearance.tapButtonBackgroundColor?(for: .highlighted, session: session) {
 			
 			let hexColor = buttonHighlightedBackgroundColor.tap_asHexColor
 			for (index, _) in buttonStyles.enumerated() {
@@ -284,7 +284,7 @@ internal final class Process {
 			}
 		}
 		
-		if let buttonDisabledTextColor = externalAppearance.tapButtonTextColor?(for: .disabled, for: session) {
+		if let buttonDisabledTextColor = externalAppearance.tapButtonTextColor?(for: .disabled, session: session) {
 			
 			let hexColor = buttonDisabledTextColor.tap_asHexColor
 			for (index, _) in buttonStyles.enumerated() {
@@ -293,7 +293,7 @@ internal final class Process {
 			}
 		}
 		
-		if let buttonEnabledTextColor = externalAppearance.tapButtonTextColor?(for: .normal, for: session) {
+		if let buttonEnabledTextColor = externalAppearance.tapButtonTextColor?(for: .normal, session: session) {
 			
 			let hexColor = buttonEnabledTextColor.tap_asHexColor
 			for (index, _) in buttonStyles.enumerated() {
@@ -302,7 +302,7 @@ internal final class Process {
 			}
 		}
 		
-		if let buttonHighlightedTextColor = externalAppearance.tapButtonTextColor?(for: .highlighted, for: session) {
+		if let buttonHighlightedTextColor = externalAppearance.tapButtonTextColor?(for: .highlighted, session: session) {
 			
 			let hexColor = buttonHighlightedTextColor.tap_asHexColor
 			for (index, _) in buttonStyles.enumerated() {

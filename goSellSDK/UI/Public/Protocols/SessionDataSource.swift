@@ -8,15 +8,14 @@
 /// Payment data source.
 @objc public protocol SessionDataSource: class, NSObjectProtocol {
 	
+	/// Transaction mode.
+	@objc optional var mode: TransactionMode { get }
+	
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
-	var customer: Customer? { get }
+	@objc var customer: Customer? { get }
 	
 	/// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
 	@objc optional var currency: Currency? { get }
-	
-	/// Defines if same card can be saved more than once.
-	/// Default is `true`.
-	@objc optional var allowsToSaveSameCardMoreThanOnce: Bool { get }
 	
 	/// Payment/Authorization amount.
 	/// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` is preferred and amount is calculated from them.
@@ -27,9 +26,6 @@
 	/// - Note: Either `amount` or `items` should be implemented. If both are implemented, `items` are preferred and amount is calculated from them.
 	///         If `taxes` and/or `shipping` is implemented, it will affect the amount which is calculated based on items you pass in this property.
 	@objc optional var items: [PaymentItem]? { get }
-	
-	/// Transaction mode.
-	@objc optional var mode: TransactionMode { get }
 	
 	/// Taxes.
 	@objc optional var taxes: [Tax]? { get }
@@ -60,4 +56,8 @@
 	
 	/// Action to perform after authorization succeeds.
 	@objc optional var authorizeAction: AuthorizeAction { get }
+	
+	/// Defines if same card can be saved more than once.
+	/// Default is `true`.
+	@objc optional var allowsToSaveSameCardMoreThanOnce: Bool { get }
 }
