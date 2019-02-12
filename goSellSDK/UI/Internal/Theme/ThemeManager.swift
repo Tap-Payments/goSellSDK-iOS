@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+/// Theme manager class.
 internal final class ThemeManager {
 
 	// MARK: - Internal -

@@ -127,6 +127,10 @@ extension Currency: Decodable {
 // MARK: - NSCopying
 extension Currency: NSCopying {
 	
+	/// Creates a copy of the receiver.
+	///
+	/// - Parameter zone: Zone.
+	/// - Returns: Copy of the receiver.
 	public func copy(with zone: NSZone? = nil) -> Any {
 		
 		return try! Currency(isoCode: self.isoCode)

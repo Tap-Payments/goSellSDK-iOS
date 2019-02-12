@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+/// Internal implementation of PayButton.
 internal protocol PayButtonInternalImplementation: SessionProtocol {
 	
 	var session:	InternalSession			{ get }

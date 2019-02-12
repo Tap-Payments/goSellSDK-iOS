@@ -52,6 +52,9 @@
                 <a href="Classes/AuthorizeActionResponse.html">AuthorizeActionResponse</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CardVerification.html">CardVerification</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Charge.html">Charge</a>
               </li>
               <li class="nav-group-task">
@@ -89,6 +92,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SecretKey.html">SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Session.html">Session</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Shipping.html">Shipping</a>
@@ -153,6 +162,9 @@
                 <a href="Enums/AuthorizeActionType.html">AuthorizeActionType</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/CardVerificationStatus.html">CardVerificationStatus</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/ChargeStatus.html">ChargeStatus</a>
               </li>
               <li class="nav-group-task">
@@ -181,6 +193,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Power.html">Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SDKAppearanceMode.html">SDKAppearanceMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SDKMode.html">SDKMode</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/SourceChannel.html">SourceChannel</a>
@@ -218,6 +236,15 @@
                 <a href="Extensions/PaymentOption.html">PaymentOption</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/SeparateWindowRootViewController.html">SeparateWindowRootViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapBlurEffectStyle.html">TapBlurEffectStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapFont.html">TapFont</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -229,16 +256,24 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/CountableCasesEnum.html">CountableCasesEnum</a>
+                <a href="Protocols/SessionAppearance.html">SessionAppearance</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PayButtonProtocol.html">PayButtonProtocol</a>
+                <a href="Protocols/SessionDataSource.html">SessionDataSource</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PaymentDataSource.html">PaymentDataSource</a>
+                <a href="Protocols/SessionDelegate.html">SessionDelegate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PaymentDelegate.html">PaymentDelegate</a>
+                <a href="Protocols/SessionProtocol.html">SessionProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:9goSellSDK8Metadataa">Metadata</a>
               </li>
             </ul>
           </li>
@@ -281,7 +316,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AmountModificatorType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AmountModificatorType</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -460,6 +495,39 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@goSellSDK@E@CardVerificationStatus"></a>
+                    <a name="//apple_ref/swift/Enum/CardVerificationStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@CardVerificationStatus">CardVerificationStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Card Verification Status.</p>
+
+                        <a href="Enums/CardVerificationStatus.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CardVerificationStatus</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@goSellSDK@E@ChargeStatus"></a>
                     <a name="//apple_ref/swift/Enum/ChargeStatus" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@goSellSDK@E@ChargeStatus">ChargeStatus</a>
@@ -545,7 +613,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementArea)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Area</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Area</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -578,7 +646,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementDuration)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Duration</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Duration</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -611,7 +679,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementElectricCharge)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ElectricCharge</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ElectricCharge</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -644,7 +712,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementElectricCurrent)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ElectricCurrent</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ElectricCurrent</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -677,7 +745,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementEnergy)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Energy</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Energy</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -710,7 +778,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementLength)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Length</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Length</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -743,7 +811,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementMass)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Mass</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Mass</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -808,7 +876,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementPower)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Power</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Power</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -841,7 +909,40 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(MeasurementVolume)</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Volume</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Volume</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@E@SDKMode"></a>
+                    <a name="//apple_ref/swift/Enum/SDKMode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SDKMode">SDKMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enum defining SDK mode.</p>
+
+                        <a href="Enums/SDKMode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SDKMode</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -1046,7 +1147,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TransactionMode</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TransactionMode</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
@@ -1088,11 +1189,50 @@
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@E@SDKAppearanceMode"></a>
+                    <a name="//apple_ref/swift/Enum/SDKAppearanceMode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@E@SDKAppearanceMode">SDKAppearanceMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>SDK appearance mode.</p>
+
+<ul>
+<li>fullscreen: SDK UI will appear fullscreen.</li>
+<li>windowed: SDK UI will try to take as little space on the screen as possible.</li>
+<li>default: Default mode is fullscreen for Payment and Authorization and windowed for saving the card.</li>
+</ul>
+
+                        <a href="Enums/SDKAppearanceMode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SDKAppearanceMode</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

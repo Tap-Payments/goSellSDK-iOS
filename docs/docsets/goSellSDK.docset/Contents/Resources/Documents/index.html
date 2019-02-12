@@ -51,6 +51,9 @@
                 <a href="Classes/AuthorizeActionResponse.html">AuthorizeActionResponse</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CardVerification.html">CardVerification</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Charge.html">Charge</a>
               </li>
               <li class="nav-group-task">
@@ -88,6 +91,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SecretKey.html">SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Session.html">Session</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Shipping.html">Shipping</a>
@@ -152,6 +161,9 @@
                 <a href="Enums/AuthorizeActionType.html">AuthorizeActionType</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/CardVerificationStatus.html">CardVerificationStatus</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/ChargeStatus.html">ChargeStatus</a>
               </li>
               <li class="nav-group-task">
@@ -180,6 +192,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Power.html">Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SDKAppearanceMode.html">SDKAppearanceMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SDKMode.html">SDKMode</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/SourceChannel.html">SourceChannel</a>
@@ -217,6 +235,15 @@
                 <a href="Extensions/PaymentOption.html">PaymentOption</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/SeparateWindowRootViewController.html">SeparateWindowRootViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapBlurEffectStyle.html">TapBlurEffectStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapFont.html">TapFont</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -228,16 +255,24 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/CountableCasesEnum.html">CountableCasesEnum</a>
+                <a href="Protocols/SessionAppearance.html">SessionAppearance</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PayButtonProtocol.html">PayButtonProtocol</a>
+                <a href="Protocols/SessionDataSource.html">SessionDataSource</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PaymentDataSource.html">PaymentDataSource</a>
+                <a href="Protocols/SessionDelegate.html">SessionDelegate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PaymentDelegate.html">PaymentDelegate</a>
+                <a href="Protocols/SessionProtocol.html">SessionProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:9goSellSDK8Metadataa">Metadata</a>
               </li>
             </ul>
           </li>
@@ -256,9 +291,7 @@
 <a href="https://img.shields.io/Tap-Payments/v/goSellSDK"><img src="https://img.shields.io/cocoapods/v/goSellSDK.svg?style=flat" alt="CocoaPods Compatible"></a>
 <a href="https://tap-payments.github.io/goSellSDK-iOS"><img src="https://img.shields.io/cocoapods/at/goSellSDK.svg?style=flat" alt="Applications"></a></p>
 
-<!---[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)-->
-
-<p>A library that fully covers payment process inside your iOS application.</p>
+<p>A library that fully covers payment/authorization/card saving process inside your iOS application.</p>
 <h1 id='table-of-contents' class='heading'>Table of Contents</h1>
 
 <hr>
@@ -273,6 +306,7 @@
 <li><a href="#setup">Setup</a>
 
 <ol>
+<li><a href="#setup_gosellsdk_class_properties">goSellSDK Class Properties</a></li>
 <li><a href="#setup_steps">Setup Steps</a></li>
 </ol></li>
 <li><a href="#usage">Usage</a>
@@ -285,20 +319,31 @@
 <li><a href="#pay_button_properties">Properties</a></li>
 <li><a href="#pay_button_methods">Methods</a></li>
 </ol></li>
-<li><a href="#payment_data_source">Payment Data Source</a>
+<li><a href="#session">Session</a>
 
 <ol>
-<li><a href="#payment_data_source_structure">Structure</a></li>
-<li><a href="#payment_data_source_samples">Samples</a></li>
+<li><a href="#session_properties">Properties</a></li>
+<li><a href="#session_methods">Methods</a></li>
 </ol></li>
-<li><a href="#payment_delegate">Payment Delegate</a>
+<li><a href="#session_data_source">Session Data Source</a>
+
+<ol>
+<li><a href="#session_data_source_structure">Structure</a></li>
+<li><a href="#session_data_source_samples">Samples</a></li>
+</ol></li>
+<li><a href="#session_delegate">Session Delegate</a>
 
 <ol>
 <li><a href="#payment_success_callback">Payment Success Callback</a></li>
-<li><a href="#authorization_success_callback">Authorization Success Callback</a></li>
 <li><a href="#payment_failure_callback">Payment Failure Callback</a></li>
+<li><a href="#authorization_success_callback">Authorization Success Callback</a></li>
 <li><a href="#authorization_failure_callback">Authorization Failure Callback</a></li>
-<li><a href="#payment_cancel_callback">Payment/Authorization Cancel Callback</a></li>
+<li><a href="#card_saving_success_callback">Card Saving Success Callback</a></li>
+<li><a href="#card_saving_failure_callback">Card Saving Failure Callback</a></li>
+<li><a href="#session_is_starting_callback">Session Is Starting Callback</a></li>
+<li><a href="#session_has_started_callback">Session Has Started Callback</a></li>
+<li><a href="#session_has_failed_to_start_callback">Session Has Failed to Start Callback</a></li>
+<li><a href="#session_cancel_callback">Session Cancel Callback</a></li>
 </ol></li>
 </ol></li>
 </ol>
@@ -311,8 +356,8 @@
 <p>To use the SDK the following requirements must be met:</p>
 
 <ol>
-<li><strong>Xcode 9.1</strong> or newer</li>
-<li><strong>Swift 4.1</strong> or newer (preinstalled with Xcode)<br></li>
+<li><strong>Xcode 10.0</strong> or newer</li>
+<li><strong>Swift 4.2</strong> or newer (preinstalled with Xcode)<br></li>
 <li>Base SDK for the target app: <strong>iOS 8.0</strong> or later</li>
 </ol>
 
@@ -372,19 +417,26 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 
 <hr>
 
-<p>First of all, <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> should be set up. To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of <code><a href="Classes/goSellSDK.html">goSellSDK</a></code>, otherwise an exception will be thrown.</p>
+<p>First of all, <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> should be set up. In this section only secret key is required.</p>
+
+<p><a name="setup_gosellsdk_class_properties"></a></p>
+<h2 id='gosellsdk-class-properties' class='heading'>goSellSDK Class Properties</h2>
+
+<p>Below is the list of properties in goSellSDK class you can manipulate. Make sure you do the setup before any usage of the SDK.</p>
+
+<p><a name="setup_gosellsdk_class_properties_secret_key"></a></p>
+<h3 id='secret-key' class='heading'>Secret Key</h3>
+
+<p>To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of <code><a href="Classes/goSellSDK.html">goSellSDK</a></code>, otherwise an exception will be thrown. <strong>Required</strong>.</p>
 
 <p><em>Swift</em>:</p>
-<pre class="highlight swift"><code><span class="n">goSellSDK</span><span class="o">.</span><span class="n">secretKey</span> <span class="o">=</span> <span class="s">"YOUR_SECRET_KEY"</span> <span class="c1">// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretKey</span> <span class="o">=</span> <span class="kt">SecretKey</span><span class="p">(</span><span class="nv">sanbox</span><span class="p">:</span> <span class="s">"YOUR_SANDBOX_SECRET_KEY"</span><span class="p">,</span> <span class="nv">production</span><span class="p">:</span> <span class="s">"YOUR_PRODUCTION_SECRET_KEY"</span><span class="p">)</span> <span class="c1">// (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")</span>
+<span class="n">goSellSDK</span><span class="o">.</span><span class="n">secretKey</span> <span class="o">=</span> <span class="n">secretKey</span> <span class="c1">// Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")</span>
 </code></pre>
 
 <p><em>Objective-C</em>:</p>
-<pre class="highlight plaintext"><code>[goSellSDK setSecretKey:@"YOUR_SECRET_KEY"]; // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
-
-</code></pre>
-
-<p>or</p>
-<pre class="highlight plaintext"><code>goSellSDK.secretKey = @"YOUR_SECRET_KEY"; // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+<pre class="highlight plaintext"><code>SecretKey *secretKey = [[SecretKey alloc] initWithSandbox:@"YOUR_SANDBOX_SECRET_KEY" production:@"YOUR_PRODUCTION_SECRET_KEY"]; // (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+[goSellSDK setSecretKey:secretKey];
 </code></pre>
 
 <p>Don&rsquo;t forget to import the framework at the beginning of the file:</p>
@@ -401,11 +453,59 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 <pre class="highlight plaintext"><code>#import &lt;goSellSDK/goSellSDK-Swift.h&gt;
 </code></pre>
 
+<p><a name="setup_gosellsdk_class_properties_mode"></a></p>
+<h3 id='mode' class='heading'>Mode</h3>
+
+<p>SDK mode is a mode SDK is operating in, either <strong>sandbox</strong> or <strong>production</strong>.</p>
+
+<p>Use this property to test your integration with the sandbox transactions.</p>
+
+<p><strong>WARNING:</strong> Default value of this property is <em>production</em> which means your transaction are real transactions. Switch to <em>sandbox</em> while in development.</p>
+
+<p><a name="setup_gosellsdk_class_properties_language"></a></p>
+<h3 id='language' class='heading'>Language</h3>
+
+<p>Localization language of the UI part of the SDK. This is locale identifier. </p>
+
+<p>Make sure it consists only from 2 lowercased letters and is presented in the list of <strong>availableLanguages</strong> property of <em>goSellSDK</em> class.</p>
+
+<p><strong>Notice:</strong> Starting from <em>iOS 9</em> SDK user interface layout direction is based on the language you select, which means that if you would like to have it in Arabic language, the UI will be switched to RTL (right-to-left).</p>
+<h3 id='available-languages' class='heading'>Available Languages</h3>
+
+<p>This property returns the list of locale identifiers the SDK is currently localized into.</p>
+
+<p>Currently we support the following languages:</p>
+
+<table>
+    <th style="text-align:center">Language</th><th style="text-align:center">Locale Identifier</th>
+    <tr>
+        <td>Arabic</td><td>ar</td>
+    </tr>
+    <tr>
+        <td>English</td><td>en</td>
+    </tr>
+    <tr>
+        <td>Russian</td><td>ru</td>
+    </tr>
+</table>
+
 <p><a name="setup_steps"></a></p>
 <h2 id='setup-steps' class='heading'>Setup Steps</h2>
+<h3 id='with-paybutton' class='heading'>With PayButton</h3>
+
+<p>For those, who would like to use PayButton.</p>
 
 <ol>
 <li>Place <em>PayButton</em>.</li>
+<li>Assign its <em>datasource</em> and <em>delegate</em>.</li>
+<li>Implement <em>datasource</em> and <em>delegate</em>.</li>
+</ol>
+<h3 id='without-paybutton' class='heading'>Without PayButton</h3>
+
+<p>For those who would like to keep their design and start the SDK process manually.</p>
+
+<ol>
+<li>Create <em>Session</em> object.</li>
 <li>Assign its <em>datasource</em> and <em>delegate</em>.</li>
 <li>Implement <em>datasource</em> and <em>delegate</em>.</li>
 </ol>
@@ -418,14 +518,15 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 <p>After <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> is set up, you can actually use the SDK.<br>
 We have tried to make the SDK integration as simple as possible, requiring the minimum from you.</p>
 
-<p><strong>goSellSDK</strong> works in 2 modes:</p>
+<p><strong>goSellSDK</strong> works in 3 modes:</p>
 
 <ol>
 <li><em>Purchase</em>: Default mode. Normal customer charge.</li>
 <li><em>Authorize</em>: Only authorization is happening. You should specify an action after successful authorization: either capture the amount or void the charge after specific period of time.</li>
+<li><em>Card Saving</em>: Use this mode to save the card of the customer with Tap and use it later.</li>
 </ol>
 
-<p>The mode is set through <strong>PaymentDataSource</strong> interface.</p>
+<p>The mode is set through <strong>SessionDataSource</strong> interface.</p>
 
 <p><a name="pay_button"></a></p>
 <h2 id='pay-button' class='heading'>Pay Button</h2>
@@ -496,7 +597,7 @@ To do that, do the following:</p>
     <th rowspan=2>Description</th>
     <tr>
         <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
-         <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
     </tr>
     <tr>
         <td><sub><i>enabled</i></sub></td><td><sub><i>isEnabled</i></sub></td>
@@ -505,13 +606,18 @@ To do that, do the following:</p>
     </tr>
     <tr>
         <td colspan=2><sub><i>dataSource</i></sub></td>
-        <td><sub><b>id&lt;PaymentDataSource&gt;</b></sub></td><td><sub><b>PaymentDataSource</b></sub></td>
-        <td align="justify"><sub>Pay button data source. All input payment information is passed through this protocol. Required.</sub></td>
+        <td><sub><b>id&lt;SessionDataSource&gt;</b></sub></td><td><sub><b>SessionDataSource</b></sub></td>
+        <td align="justify"><sub>Session data source. All input payment information is passed through this protocol. Required.</sub></td>
     </tr>
     <tr>
         <td colspan=2><sub><i>delegate</i></sub></td>
-        <td><sub><b>id&lt;PaymentDelegate&gt;</b></sub></td><td><sub><b>PaymentDelegate</b></sub></td>
-        <td align="justify"><sub>Pay button delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
+        <td><sub><b>id&lt;SessionDelegate&gt;</b></sub></td><td><sub><b>SessionDelegate</b></sub></td>
+        <td align="justify"><sub>Session delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>appearance</i></sub></td>
+        <td><sub><b>id&lt;SessionAppearance&gt;</b></sub></td><td><sub><b>SessionAppearance</b></sub></td>
+        <td align="justify"><sub>Session appearance. Implement only if you need UI customization. For more details please refer to SessionAppearance section.</sub></td>
     </tr>
 </table>
 
@@ -525,17 +631,108 @@ To do that, do the following:</p>
         <th><sub><nobr>Objective-C</nobr></sub></th><th><sub>Swift</sub></th>
     </tr>
     <tr>
-        <td><sub><nobr>- (void)updateDisplayedAmount</nobr></sub></td><td><sub><nobr>func updateDisplayedAmount()</nobr></sub></td>
+        <td><sub><nobr>- (void)updateDisplayedState</nobr></sub></td><td><sub><nobr>func updateDisplayedState()</nobr></sub></td>
         <td align="justify"><sub>Call this method to update displayed amount on the button.<br><b>Note:</b> If amount is non positive then pay button is force disabled.</sub></td>
     </tr>
 </table>
 
-<p><a name="payment_data_source"></a></p>
-<h2 id='payment-data-source' class='heading'>Payment Data Source</h2>
+<p><a name="session"></a></p>
+<h2 id='session' class='heading'>Session</h2>
 
-<p><strong>PaymentDataSource</strong> is an interface which you should implement somewhere in your code to pass payment information to an instance of Pay button in order to be able to access payment flow within the SDK.</p>
+<p>You want to use <code><a href="Classes/Session.html">Session</a></code> object if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code>.</p>
 
-<p><a name="payment_data_source_structure"></a></p>
+<p><a name="session_properties"></a></p>
+<h3 id='properties' class='heading'>Properties</h3>
+
+<table style="text-align:center">
+    <th colspan=2>Property</th>
+    <th colspan=2>Type</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+    </tr>
+    <tr>
+    <td colspan="2"><sub><i>dataSource</i></sub></td>
+    <td><sub><b>id&lt;SessionDataSource&gt;</b></sub></td><td><sub><b>SessionDataSource</b></sub></td>
+    <td align="justify"><sub>Session data source. All input payment information is passed through this protocol. Required.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>delegate</i></sub></td>
+        <td><sub><b>id&lt;SessionDelegate&gt;</b></sub></td><td><sub><b>SessionDelegate</b></sub></td>
+        <td align="justify"><sub>Session delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>appearance</i></sub></td>
+        <td><sub><b>id&lt;SessionAppearance&gt;</b></sub></td><td><sub><b>SessionAppearance</b></sub></td>
+        <td align="justify"><sub>Session appearance. Implement only if you need UI customization. For more details please refer to SessionAppearance section.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>canStart</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td align="justify"><sub>Readonly. Defines if session can start with the data you have provided through the <b>dataSource</b>.</sub></td>
+    </tr>
+</table>
+
+<p><a name="session_methods"></a></p>
+<h3 id='methods' class='heading'>Methods</h3>
+
+<table style="text-align:center">
+    <th colspan=2>Method</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub><nobr>Objective-C</nobr></sub></th><th><sub>Swift</sub></th>
+    </tr>
+    <tr>
+        <td colspan="2"><sub><nobr>calculateDisplayedAmount</nobr></sub></td>
+        <td align="justify"><sub>Calculates and returns an amount based on the details provided through the <b>dataSource</b>. You might want to call this method every time you update your <b>dataSource</b> to reflect changes in UI if you are not using <i>PayButton</i> provided by the SDK.<br><b>Returns:</b> Amount suggested to display to the customer or <i>nil</i> in the following cases:
+            <ol>
+                <li>Session cannot start with the provided details.</li>
+                <li>You are in card saving mode.</li>
+            </ol>
+        </sub></td>
+    </tr>
+    <tr>
+        <td colspan="2"><sub><nobr>start</nobr></sub></td>
+        <td align="justify"><sub>Initiates the session.<br><b>Returns:</b> boolean value which determines whether all conditions are met to start the sesssion.</sub></td>
+    </tr>
+</table>
+
+<p><a name="api_session"></a></p>
+<h2 id='api-session' class='heading'>API Session</h2>
+
+<p><strong>APISession</strong> is a class you want to use when you need to call plain APIs without the UI. Currently not all APIs are available.</p>
+
+<p><a name="api_session_properties"></a></p>
+<h3 id='properties' class='heading'>Properties</h3>
+
+<table style="text-align:center">
+    <th colspan=2>Property</th>
+    <th colspan=2>Type</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>sharedInstance</i></sub></td>
+        <td><sub><i>shared</i></sub></td>
+        <td colspan="2"><sub><b>APISession</b></sub></td>
+        <td align="justify"><sub>Shared singleton APISession instance.</sub></td>
+    </tr>
+</table>
+
+<p><a name="api_session_properties"></a></p>
+<h3 id='methods' class='heading'>Methods</h3>
+
+<p>Please refer to <code>APISession</code> class documentation for more details.</p>
+
+<p><a name="session_data_source"></a></p>
+<h2 id='session-data-source' class='heading'>Session Data Source</h2>
+
+<p><strong>SessionDataSource</strong> is an interface which you should implement somewhere in your code to pass payment information  in order to be able to access payment flow within the SDK.</p>
+
+<p><a name="session_data_source_structure"></a></p>
 <h3 id='strucure' class='heading'>Strucure</h3>
 
 <p>The following table describes its structure and specifies which fields are required for each of the modes.</p>
@@ -543,177 +740,130 @@ To do that, do the following:</p>
 <table style="text-align:center">
     <th rowspan=2>Member</th>
     <th colspan=2>Type</th>
-    <th colspan=2>Required</th>
+    <th colspan=3>Required</th>
     <th rowspan=2>Description</th>
     <tr>
         <th><sub>Objective-C</sub></th><th><sub>Swift</sub></th>
-        <th><sub>Purchase</sub></th><th><sub>Authorize</sub></th>
-    </tr>
-    <tr>
-        <td><sub><i>currency</i></sub></td>
-        <td colspan=2><sub><b>Currency</b></sub></td>
-        <td colspan=2><sub><i>true</i></sub></td>
-        <td align="left"><sub>Currency of the transaction.</sub></td>
-    </tr>
-    <tr>
-        <td><sub><i>customer</i></sub></td>
-        <td colspan=2><sub><b>Customer</b></sub></td>
-        <td colspan=2><sub><i>true</i></sub></td>
-        <td align="left"><sub>Customer information. For more details on how to create the customer, please refer to <i>Customer</i> class reference.</sub></td>
-    </tr>
-    <tr>
-        <td><sub><i>amount</i></sub></td>
-        <td><sub><b><nobr>NSDecimal</nobr></b></sub></td><td><sub><b><nobr>Decimal</nobr></b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
-        <td align="left"><sub>Payment/Authorization amount.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
-    </tr>
-    <tr>
-        <td><sub><i>items</i></sub></td>
-        <td><sub><b><nobr>NSArray&lt;PaymentItem *&gt;</nobr></b></sub></td><td><sub><b><nobr>[PaymentItem]</nobr></b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
-        <td align="left"><sub>List of items to pay for.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
+        <th><sub>Purchase</sub></th><th><sub>Authorize</sub></th><th><sub>Card Saving</sub></th>
     </tr>
     <tr>
         <td><sub><i>mode</i></sub></td>
         <td colspan=2><sub><b>TransactionMode</b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Mode of the transactions (purchase or authorize). If this property is not implemented, <i>purchase</i> mode is used.</sub></td>
     </tr>
     <tr>
+        <td><sub><i>customer</i></sub></td>
+        <td colspan=2><sub><b>Customer</b></sub></td>
+        <td colspan=3><sub><i>true</i></sub></td>
+        <td align="left"><sub>Customer information. For more details on how to create the customer, please refer to <i>Customer</i> class reference.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>currency</i></sub></td>
+        <td colspan=2><sub><b>Currency</b></sub></td>
+        <td colspan=2><sub><i>true</i></sub></td><td><sub><i>false</i></sub></td>
+        <td align="left"><sub>Currency of the transaction.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>amount</i></sub></td>
+        <td><sub><b><nobr>NSDecimal</nobr></b></sub></td><td><sub><b><nobr>Decimal</nobr></b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Payment/Authorization amount.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>items</i></sub></td>
+        <td><sub><b>NSArray <nobr>&lt;PaymentItem *&gt;</nobr></b></sub></td><td><sub><b><nobr>[PaymentItem]</nobr></b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>List of items to pay for.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
+    </tr>
+    <tr>
         <td><sub><i>taxes</i></sub></td>
-        <td><sub><b><nobr>NSArray&lt;Tax *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Tax]</nobr></b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td><sub><b>NSArray <nobr>&lt;Tax *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Tax]</nobr></b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>You can specify taxation details here. By default, there are no taxes.<br> <b>Note:</b> Specifying taxes will affect total payment/authorization amount.</sub></td>
     </tr>
     <tr>
         <td><sub><i>shipping</i></sub></td>
-        <td><sub><b><nobr>NSArray&lt;Shipping *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Shipping]</nobr></b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td><sub><b>NSArray <nobr>&lt;Shipping *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Shipping]</nobr></b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>You can specify shipping details here. By default, there are no shipping details.<br> <b>Note:</b> Specifying shipping will affect total payment/authorization amount.</sub></td>
     </tr>
     <tr>
         <td><sub><i>postURL</i></sub></td>
         <td><sub><b>NSURL</b></sub></td><td><sub><b>URL</b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>The URL which will be called by Tap system notifying that payment has either succeed or failed.</sub></td>
     </tr>
     <tr>
         <td><sub><i>paymentDescription</i></sub></td>
         <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Description of the payment.</sub></td>
     </tr>
     <tr>
         <td><sub><i>paymentMetadata</i></sub></td>
-        <td><sub><b><nobr>NSDictionary&lt;NSString *, NSString *&gt;</nobr></b></sub></td><td><sub><b><nobr>[String: String]</nobr></b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td><sub><b>NSDictionary <nobr>&lt;NSString *, NSString *&gt;</nobr></b></sub></td><td><sub><b><nobr>[String: String]</nobr></b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Additional information you would like to pass along with the transaction.</sub></td>
     </tr>
     <tr>
         <td><sub><i>paymentReference</i></sub></td>
         <td colspan=2><sub><b>Reference</b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>You can keep a reference to the transaction using this property.</sub></td>
     </tr>
     <tr>
         <td><sub><i>paymentStatementDescriptor</i></sub></td>
         <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Statement descriptor.</sub></td>
     </tr>
     <tr>
         <td><sub><i>require3DSecure</i></sub></td>
         <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Defines if 3D secure check is required. If not implemented, treated as <i>true</i>.<br><b>Note:</b> If you disable 3D secure check, it still may occure. Final decision is taken by Tap.</sub></td>
     </tr>
     <tr>
         <td><sub><i>receiptSettings</i></sub></td>
         <td colspan=2><sub><b>Receipt</b></sub></td>
-        <td colspan=2><sub><i>false</i></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Receipt recipient details.</sub></td>
     </tr>
     <tr>
         <td><sub><i>authorizeAction</i></sub></td>
         <td colspan=2><sub><b>AuthorizeAction</b></sub></td>
-        <td><sub><i>false</i></sub></td><td><sub><i>true</i></sub></td>
+        <td><sub><i>false</i></sub></td><td><sub><i>true</i></sub></td><td><sub><i>false</i></sub></td>
         <td align="left"><sub>Action to perform after authorization succeeds.</sub></td>
+    </tr>
+    <tr>
+        <td><sub><i>allowsToSaveSameCardMoreThanOnce</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines if same card can be saved more than once.<br><b>Note:</b> Same cards means absolutely equal data set. For example, if customer specifies same card details, but different cardholder names, we will treat this like different cards.</sub></td>
     </tr>
 </table>
 
-<p><a name="payment_data_source_samples"></a></p>
+<p><a name="session_data_source_samples"></a></p>
 <h3 id='samples' class='heading'>Samples</h3>
 
 <hr>
-<h4 id='currency' class='heading'>Currency</h4>
-
-<p>Tap supports processing payments in 10+ currencies, allowing you to charge customers in their native currency while receiving funds in yours. This is especially helpful if you have a global presence, as charging in a customer’s native currency can increase sales. </p>
-<h5 id='supportedcurrencies' class='heading'>SupportedCurrencies</h5>
-
-<table><thead>
-<tr>
-<th>Currency</th>
-<th>Code</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>UAE Dirham</td>
-<td>AED</td>
-</tr>
-<tr>
-<td>Bahraini Dinar</td>
-<td>BHD</td>
-</tr>
-<tr>
-<td>Egyptian Pound</td>
-<td>EGP</td>
-</tr>
-<tr>
-<td>Euro</td>
-<td>EUR</td>
-</tr>
-<tr>
-<td>UK Pound Sterling</td>
-<td>GBP</td>
-</tr>
-<tr>
-<td>Kuwaiti Dinar</td>
-<td>KWD</td>
-</tr>
-<tr>
-<td>Omani Riyal</td>
-<td>OMR</td>
-</tr>
-<tr>
-<td>Qatari Riyal</td>
-<td>QAR</td>
-</tr>
-<tr>
-<td>Saudi Riyal</td>
-<td>SAR</td>
-</tr>
-<tr>
-<td>US Dollar</td>
-<td>USD</td>
-</tr>
-</tbody></table>
+<h4 id='mode' class='heading'>Mode</h4>
 
 <p><strong>Objective-C</strong></p>
-<pre class="highlight plaintext"><code>- (Currency *)currency {
+<pre class="highlight plaintext"><code>- (enum TransactionMode)mode {
 
-    return [Currency withISOCode:@"KWD"];
+    return Purchase;
 }
 </code></pre>
 
 <p><strong>Swift</strong></p>
-<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">Currency</span><span class="p">?</span> <span class="p">{</span>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt">TransactionMode</span> <span class="p">{</span>
 
-    <span class="k">return</span> <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">isoCode</span><span class="p">:</span> <span class="s">"KWD"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">.</span><span class="n">purchase</span>
 <span class="p">}</span>
 </code></pre>
 <h4 id='customer' class='heading'>Customer</h4>
-
-<p>-</p>
 
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (Customer *)customer {
@@ -782,9 +932,73 @@ To do that, do the following:</p>
                          <span class="nv">lastName</span><span class="p">:</span>      <span class="s">"Jobs"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
-<h4 id='amount' class='heading'>Amount</h4>
+<h4 id='currency' class='heading'>Currency</h4>
 
-<p>-</p>
+<p>Tap supports processing payments in 10+ currencies, allowing you to charge customers in their native currency while receiving funds in yours. This is especially helpful if you have a global presence, as charging in a customer’s native currency can increase sales. </p>
+<h5 id='supportedcurrencies' class='heading'>SupportedCurrencies</h5>
+
+<table><thead>
+<tr>
+<th>Currency</th>
+<th>Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UAE Dirham</td>
+<td>AED</td>
+</tr>
+<tr>
+<td>Bahraini Dinar</td>
+<td>BHD</td>
+</tr>
+<tr>
+<td>Egyptian Pound</td>
+<td>EGP</td>
+</tr>
+<tr>
+<td>Euro</td>
+<td>EUR</td>
+</tr>
+<tr>
+<td>UK Pound Sterling</td>
+<td>GBP</td>
+</tr>
+<tr>
+<td>Kuwaiti Dinar</td>
+<td>KWD</td>
+</tr>
+<tr>
+<td>Omani Riyal</td>
+<td>OMR</td>
+</tr>
+<tr>
+<td>Qatari Riyal</td>
+<td>QAR</td>
+</tr>
+<tr>
+<td>Saudi Riyal</td>
+<td>SAR</td>
+</tr>
+<tr>
+<td>US Dollar</td>
+<td>USD</td>
+</tr>
+</tbody></table>
+
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (Currency *)currency {
+
+    return [Currency withISOCode:@"KWD"];
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">currency</span><span class="p">:</span> <span class="kt">Currency</span><span class="p">?</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="o">.</span><span class="nf">with</span><span class="p">(</span><span class="nv">isoCode</span><span class="p">:</span> <span class="s">"KWD"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='amount' class='heading'>Amount</h4>
 
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSDecimal)amount {
@@ -800,8 +1014,6 @@ To do that, do the following:</p>
 <span class="p">}</span>
 </code></pre>
 <h4 id='items' class='heading'>Items</h4>
-
-<p>-</p>
 
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSArray&lt;PaymentItem *&gt; *)items {
@@ -864,26 +1076,7 @@ To do that, do the following:</p>
     <span class="k">return</span> <span class="p">[</span><span class="n">firstItem</span><span class="p">,</span> <span class="n">secondItem</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre>
-<h4 id='mode' class='heading'>Mode</h4>
-
-<p>-</p>
-
-<p><strong>Objective-C</strong></p>
-<pre class="highlight plaintext"><code>- (enum TransactionMode)mode {
-
-    return Purchase;
-}
-</code></pre>
-
-<p><strong>Swift</strong></p>
-<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt">TransactionMode</span> <span class="p">{</span>
-
-    <span class="k">return</span> <span class="o">.</span><span class="n">purchase</span>
-<span class="p">}</span>
-</code></pre>
 <h4 id='taxes' class='heading'>Taxes</h4>
-
-<p>-</p>
 
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSArray&lt;Tax *&gt; *)taxes {
@@ -913,8 +1106,6 @@ To do that, do the following:</p>
 </code></pre>
 <h4 id='shipping' class='heading'>Shipping</h4>
 
-<p>-</p>
-
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSArray&lt;Shipping *&gt; *)shipping {
 
@@ -938,8 +1129,6 @@ To do that, do the following:</p>
 </code></pre>
 <h4 id='post-url' class='heading'>Post URL</h4>
 
-<p>-</p>
-
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSURL *)postURL {
 
@@ -955,8 +1144,6 @@ To do that, do the following:</p>
 </code></pre>
 <h4 id='payment-description' class='heading'>Payment Description</h4>
 
-<p>-</p>
-
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSString *)paymentDescription {
 
@@ -971,8 +1158,6 @@ To do that, do the following:</p>
 <span class="p">}</span>
 </code></pre>
 <h4 id='payment-metadata' class='heading'>Payment Metadata</h4>
-
-<p>-</p>
 
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSDictionary&lt;NSString *,NSString *&gt; *)paymentMetadata {
@@ -994,8 +1179,6 @@ To do that, do the following:</p>
 </code></pre>
 <h4 id='payment-reference' class='heading'>Payment Reference</h4>
 
-<p>-</p>
-
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (Reference *)paymentReference {
 
@@ -1013,8 +1196,6 @@ To do that, do the following:</p>
 </code></pre>
 <h4 id='payment-statement-descriptor' class='heading'>Payment Statement Descriptor</h4>
 
-<p>-</p>
-
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (NSString *)paymentStatementDescriptor {
 
@@ -1029,8 +1210,6 @@ To do that, do the following:</p>
 <span class="p">}</span>
 </code></pre>
 <h4 id='require-3d-secure' class='heading'>Require 3D Secure</h4>
-
-<p>-</p>
 
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (BOOL)require3DSecure {
@@ -1047,8 +1226,6 @@ To do that, do the following:</p>
 </code></pre>
 <h4 id='receipt-settings' class='heading'>Receipt Settings</h4>
 
-<p>-</p>
-
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (Receipt *)receiptSettings {
 
@@ -1064,8 +1241,6 @@ To do that, do the following:</p>
 </code></pre>
 <h4 id='authorize-action' class='heading'>Authorize Action</h4>
 
-<p>-</p>
-
 <p><strong>Objective-C</strong></p>
 <pre class="highlight plaintext"><code>- (AuthorizeAction *)authorizeAction {
 
@@ -1080,70 +1255,60 @@ To do that, do the following:</p>
     <span class="k">return</span> <span class="o">.</span><span class="nf">capture</span><span class="p">(</span><span class="nv">after</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
+<h4 id='allows-to-save-same-card-more-than-once' class='heading'>Allows to Save Same Card More Than Once</h4>
 
-<p><a name="payment_delegate"></a></p>
-<h2 id='payment-delegate' class='heading'>Payment Delegate</h2>
+<p><strong>Objective-C</strong></p>
+<pre class="highlight plaintext"><code>- (BOOL)allowsToSaveSameCardMoreThanOnce {
 
-<p><strong>PaymentDelegate</strong> is an interface which you may want to implement to receive payment/authorization status updates and update your user interface accordingly when payment window closes.</p>
+    return NO;
+}
+</code></pre>
+
+<p><strong>Swift</strong></p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">allowsToSaveSameCardMoreThanOnce</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><a name="session_delegate"></a></p>
+<h2 id='session-delegate' class='heading'>Session Delegate</h2>
+
+<p><strong>SessionDelegate</strong> is an interface which you may want to implement to receive payment/authorization/card saving status updates and update your user interface accordingly when payment window closes.</p>
 
 <p>Below are listed down all available callbacks:</p>
 
 <p><a name="payment_success_callback"></a></p>
 <h3 id='payment-success-callback' class='heading'>Payment Success Callback</h3>
 
-<p>-</p>
-
 <p>Notifies the receiver that payment has succeed.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
-<pre class="highlight plaintext"><code>- (void)paymentSucceed:(Charge * _Nonnull)charge payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
+<pre class="highlight plaintext"><code>- (void)paymentSucceed:(Charge * _Nonnull)charge onSession:(id &lt;SessionProtocol&gt; _Nonnull)session;
 </code></pre>
 
 <p><em>Swift:</em></p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt">Charge</span><span class="p">,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt">Charge</span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
 </code></pre>
 <h4 id='arguments' class='heading'>Arguments</h4>
 
 <p><strong>charge</strong>: Successful charge object.</p>
 
-<p><strong>payButton</strong>: Button which has initiated the payment.</p>
-
-<p><a name="authorization_success_callback"></a></p>
-<h3 id='authorization-success-callback' class='heading'>Authorization Success Callback</h3>
-
-<p>-</p>
-
-<p>Notifies the receiver that authorization has succeed.</p>
-<h4 id='declaration' class='heading'>Declaration</h4>
-
-<p><em>Objective-C:</em></p>
-<pre class="highlight plaintext"><code>- (void)authorizationSucceed:(Authorize * _Nonnull)authorize payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
-</code></pre>
-
-<p><em>Swift:</em></p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">authorizationSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt">Authorize</span><span class="p">,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
-</code></pre>
-<h4 id='arguments' class='heading'>Arguments</h4>
-
-<p><strong>authorize</strong>: Successful authorize object.</p>
-
-<p><strong>payButton</strong>: Button which has initiated the authorization.</p>
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
 
 <p><a name="payment_failure_callback"></a></p>
 <h3 id='payment-failure-callback' class='heading'>Payment Failure Callback</h3>
-
-<p>-</p>
 
 <p>Notifies the receiver that payment has failed.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
-<pre class="highlight plaintext"><code>- (void)paymentFailedWith:(Charge * _Nullable)charge error:(TapSDKError * _Nullable)error payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
+<pre class="highlight plaintext"><code>- (void)paymentFailedWithCharge:(Charge * _Nullable)charge error:(TapSDKError * _Nullable)error onSession:(id &lt;SessionProtocol&gt; _Nonnull)session;
 </code></pre>
 
 <p><em>Swift:</em></p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt">Charge</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">?,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt">Charge</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">?,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
 </code></pre>
 <h4 id='arguments' class='heading'>Arguments</h4>
 
@@ -1151,24 +1316,41 @@ To do that, do the following:</p>
 
 <p><strong>error</strong>: An error that has occured (if any).</p>
 
-<p><strong>payButton</strong>: Button which has initiated the payment.</p>
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
 
 <p>You may assume that at least one, <code>charge</code> or <code>error</code> is not <code>nil</code>.</p>
 
+<p><a name="authorization_success_callback"></a></p>
+<h3 id='authorization-success-callback' class='heading'>Authorization Success Callback</h3>
+
+<p>Notifies the receiver that authorization has succeed.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)authorizationSucceed:(Authorize * _Nonnull)authorize onSession:(id &lt;SessionProtocol&gt; _Nonnull)session;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">authorizationSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt">Authorize</span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>authorize</strong>: Successful authorize object.</p>
+
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
+
 <p><a name="authorization_failure_callback"></a></p>
 <h3 id='authorization-failure-callback' class='heading'>Authorization Failure Callback</h3>
-
-<p>-</p>
 
 <p>Notifies the receiver that authorization has failed.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
-<pre class="highlight plaintext"><code>- (void)authorizationFailedWith:(Authorize * _Nullable)authorization error:(TapSDKError * _Nullable)error payButton:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
+<pre class="highlight plaintext"><code>- (void)authorizationFailedWithAuthorize:(Authorize * _Nullable)authorize error:(TapSDKError * _Nullable)error onSession:(id &lt;SessionProtocol&gt; _Nonnull)session;
 </code></pre>
 
 <p><em>Swift:</em></p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">authorizationFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">authorization</span><span class="p">:</span> <span class="kt">Authorize</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">?,</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">authorizationFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt">Authorize</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">?,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
 </code></pre>
 <h4 id='arguments' class='heading'>Arguments</h4>
 
@@ -1176,28 +1358,117 @@ To do that, do the following:</p>
 
 <p><strong>error</strong>: An error that has occured (if any).</p>
 
-<p><strong>payButton</strong>: Button which has initiated the authorization.</p>
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
 
 <p>You may assume that at least one, <code>authorize</code> or <code>error</code> is not <code>nil</code>.</p>
 
-<p><a name="payment_cancel_callback"></a></p>
-<h3 id='payment-authorization-cancel-callback' class='heading'>Payment/Authorization Cancel Callback</h3>
+<p><a name="card_saving_success_callback"></a></p>
+<h3 id='card-saving-success-callback' class='heading'>Card Saving Success Callback</h3>
 
-<p>-</p>
+<p>Notifies the receiver that the customer has successfully saved the card.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)cardSaved:(CardVerification * _Nonnull)cardVerification onSession:(id &lt;SessionProtocol&gt; _Nonnull)session;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">cardSaved</span><span class="p">(</span><span class="n">_</span> <span class="nv">cardVerification</span><span class="p">:</span> <span class="kt">CardVerification</span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>cardVerification</strong>: Card verification object with the details.</p>
+
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
+
+<p><a name="card_saving_failure_callback"></a></p>
+<h3 id='card-saving-failure-callback' class='heading'>Card Saving Failure Callback</h3>
+
+<p>Notifies the receiver that the customer failed to save the card.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>- (void)cardSavingFailedWithCardVerification:(CardVerification * _Nullable)cardVerification error:(TapSDKError * _Nullable)error onSession:(id &lt;SessionProtocol&gt; _Nonnull)session;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">cardSavingFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">cardVerification</span><span class="p">:</span> <span class="kt">CardVerification</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">?,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>cardVerification</strong>: Card verification object with the details (if reached the stage of card saving).</p>
+
+<p><strong>error</strong>: Error that has occured. If <code>nil</code>, please refer to the <code>cardVerification</code> object for error details.</p>
+
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
+
+<p><a name="session_is_starting_callback"></a></p>
+<h3 id='session-is-starting-callback' class='heading'>Session Is Starting Callback</h3>
+
+<p>Notifies the receiver that session is about to start, but hasn&rsquo;t yet shown the SDK UI. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to show a loader before SDK UI appears on the screen.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)sessionIsStarting:(id &lt;SessionProtocol&gt; _Nonnull)session;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sessionIsStarting</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
+
+<p><a name="session_has_started_callback"></a></p>
+<h3 id='session-has-started-callback' class='heading'>Session Has Started Callback</h3>
+
+<p>Notifies the receiver that session has successfully started and shown the SDK UI on the screen. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to hide a loader after SDK UI has appeared on the screen.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)sessionHasStarted:(id &lt;SessionProtocol&gt; _Nonnull)session;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sessionHasStarted</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
+
+<p><a name="session_has_failed_to_start_callback"></a></p>
+<h3 id='session-has-failed-to-start-callback' class='heading'>Session Has Failed to Start Callback</h3>
+
+<p>Notifies the receiver that session has failed to start and will not show the SDK UI on the screen. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to hide a loader because the session has failed. For the actual failure cause please implement other methods from this protocol and listen to the callbacks.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C:</em></p>
+<pre class="highlight plaintext"><code>- (void)sessionHasFailedToStart:(id &lt;SessionProtocol&gt; _Nonnull)session;
+</code></pre>
+
+<p><em>Swift:</em></p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sessionHasFailedToStart</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
+
+<p><a name="session_cancel_callback"></a></p>
+<h3 id='session-cancel-callback' class='heading'>Session Cancel Callback</h3>
 
 <p>Notifies the receiver that payment/authorization was cancelled by user.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
-<pre class="highlight plaintext"><code>- (void)paymentCancelled:(id &lt;PayButtonProtocol&gt; _Nonnull)payButton;
+<pre class="highlight plaintext"><code>- (void)sessionCancelled:(id &lt;SessionProtocol&gt; _Nonnull)session;
 </code></pre>
 
 <p><em>Swift:</em></p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">paymentCancelled</span><span class="p">(</span><span class="n">_</span> <span class="nv">payButton</span><span class="p">:</span> <span class="kt">PayButtonProtocol</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sessionCancelled</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
 </code></pre>
 <h4 id='arguments' class='heading'>Arguments</h4>
 
-<p><strong>payButton</strong>: Button which has initiated the payment/authorization.</p>
+<p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
 
 <hr>
 <h1 id='documentation' class='heading'>Documentation</h1>
@@ -1208,8 +1479,8 @@ Also documented sources are attached to the library.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

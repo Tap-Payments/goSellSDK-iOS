@@ -73,6 +73,7 @@ import class 	UIKit.UIView.UIView
 		self.updateAppearance()
     }
 	
+	/// Is called when receiver superview changes.
 	public override func didMoveToSuperview() {
 		
 		super.didMoveToSuperview()
@@ -84,6 +85,9 @@ import class 	UIKit.UIView.UIView
 		}
 	}
 	
+	/// Notifies that the receiver is about to change its superview.
+	///
+	/// - Parameter newSuperview: New superview.
 	public override func willMove(toSuperview newSuperview: UIView?) {
 		
 		super.willMove(toSuperview: newSuperview)

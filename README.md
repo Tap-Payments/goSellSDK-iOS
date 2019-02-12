@@ -25,10 +25,15 @@ A library that fully covers payment/authorization/card saving process inside you
         2. [Properties](#pay_button_properties)
         3. [Methods](#pay_button_methods)
     2. [Session](#session)
-    3. [Session Data Source](#session_data_source)
+    	 1. [Properties](#session_properties)
+    	 2. [Methods](#session_methods)
+    3. [API Session](#api_session)
+    	 1. [Properties](#api_session_properties)
+    	 2. [Methods](#api_session_methods)
+    4. [Session Data Source](#session_data_source)
         1. [Structure](#session_data_source_structure)
         2. [Samples](#session_data_source_samples)
-    4. [Session Delegate](#session_delegate)
+    5. [Session Delegate](#session_delegate)
         1. [Payment Success Callback](#payment_success_callback)
         2. [Payment Failure Callback](#payment_failure_callback)
         3. [Authorization Success Callback](#authorization_success_callback)
@@ -39,6 +44,7 @@ A library that fully covers payment/authorization/card saving process inside you
         8. [Session Has Started Callback](#session_has_started_callback)
         9. [Session Has Failed to Start Callback](#session_has_failed_to_start_callback)
         10. [Session Cancel Callback](#session_cancel_callback)
+    6. [Session Appearance](#session_appearance)
         
 
 <a name="requirements"></a>
@@ -304,13 +310,18 @@ Below is the list of Pay button properties
     </tr>
     <tr>
         <td colspan=2><sub><i>dataSource</i></sub></td>
-        <td><sub><b>id&lt;PaymentDataSource&gt;</b></sub></td><td><sub><b>PaymentDataSource</b></sub></td>
-        <td align="justify"><sub>Pay button data source. All input payment information is passed through this protocol. Required.</sub></td>
+        <td><sub><b>id&lt;SessionDataSource&gt;</b></sub></td><td><sub><b>SessionDataSource</b></sub></td>
+        <td align="justify"><sub>Session data source. All input payment information is passed through this protocol. Required.</sub></td>
     </tr>
     <tr>
         <td colspan=2><sub><i>delegate</i></sub></td>
-        <td><sub><b>id&lt;PaymentDelegate&gt;</b></sub></td><td><sub><b>PaymentDelegate</b></sub></td>
-        <td align="justify"><sub>Pay button delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
+        <td><sub><b>id&lt;SessionDelegate&gt;</b></sub></td><td><sub><b>SessionDelegate</b></sub></td>
+        <td align="justify"><sub>Session delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>appearance</i></sub></td>
+        <td><sub><b>id&lt;SessionAppearance&gt;</b></sub></td><td><sub><b>SessionAppearance</b></sub></td>
+        <td align="justify"><sub>Session appearance. Implement only if you need UI customization. For more details please refer to SessionAppearance section.</sub></td>
     </tr>
 </table>
 
@@ -324,7 +335,7 @@ Below is the list of Pay button properties
         <th><sub><nobr>Objective-C</nobr></sub></th><th><sub>Swift</sub></th>
     </tr>
     <tr>
-        <td><sub><nobr>- (void)updateDisplayedAmount</nobr></sub></td><td><sub><nobr>func updateDisplayedAmount()</nobr></sub></td>
+        <td><sub><nobr>- (void)updateDisplayedState</nobr></sub></td><td><sub><nobr>func updateDisplayedState()</nobr></sub></td>
         <td align="justify"><sub>Call this method to update displayed amount on the button.<br><b>Note:</b> If amount is non positive then pay button is force disabled.</sub></td>
     </tr>
 </table>
@@ -334,6 +345,7 @@ Below is the list of Pay button properties
 
 You want to use `Session` object if you are not using `PayButton`.
 
+<a name="session_properties"></a>
 ### Properties
 
 <table style="text-align:center">
@@ -347,11 +359,77 @@ You want to use `Session` object if you are not using `PayButton`.
     <tr>
     <td colspan="2"><sub><i>dataSource</i></sub></td>
     <td><sub><b>id&lt;SessionDataSource&gt;</b></sub></td><td><sub><b>SessionDataSource</b></sub></td>
-    <td align="justify"><sub>Session data source.</sub></td>
+    <td align="justify"><sub>Session data source. All input payment information is passed through this protocol. Required.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>delegate</i></sub></td>
+        <td><sub><b>id&lt;SessionDelegate&gt;</b></sub></td><td><sub><b>SessionDelegate</b></sub></td>
+        <td align="justify"><sub>Session delegate. Payment status along with all output payment information is passed through this protocol.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>appearance</i></sub></td>
+        <td><sub><b>id&lt;SessionAppearance&gt;</b></sub></td><td><sub><b>SessionAppearance</b></sub></td>
+        <td align="justify"><sub>Session appearance. Implement only if you need UI customization. For more details please refer to SessionAppearance section.</sub></td>
+    </tr>
+    <tr>
+        <td colspan=2><sub><i>canStart</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td align="justify"><sub>Readonly. Defines if session can start with the data you have provided through the <b>dataSource</b>.</sub></td>
     </tr>
 </table>
 
+<a name="session_methods"></a>
 ### Methods
+
+<table style="text-align:center">
+    <th colspan=2>Method</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub><nobr>Objective-C</nobr></sub></th><th><sub>Swift</sub></th>
+    </tr>
+    <tr>
+        <td colspan="2"><sub><nobr>calculateDisplayedAmount</nobr></sub></td>
+        <td align="justify"><sub>Calculates and returns an amount based on the details provided through the <b>dataSource</b>. You might want to call this method every time you update your <b>dataSource</b> to reflect changes in UI if you are not using <i>PayButton</i> provided by the SDK.<br><b>Returns:</b> Amount suggested to display to the customer or <i>nil</i> in the following cases:
+        	<ol>
+				<li>Session cannot start with the provided details.</li>
+				<li>You are in card saving mode.</li>
+			</ol>
+		</sub></td>
+    </tr>
+    <tr>
+        <td colspan="2"><sub><nobr>start</nobr></sub></td>
+        <td align="justify"><sub>Initiates the session.<br><b>Returns:</b> boolean value which determines whether all conditions are met to start the sesssion.</sub></td>
+    </tr>
+</table>
+
+<a name="api_session"></a>
+## API Session
+
+**APISession** is a class you want to use when you need to call plain APIs without the UI. Currently not all APIs are available.
+
+<a name="api_session_properties"></a>
+### Properties
+
+<table style="text-align:center">
+    <th colspan=2>Property</th>
+    <th colspan=2>Type</th>
+    <th rowspan=2>Description</th>
+    <tr>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+        <th><sub><nobr>Objective-C</nobr></sub></td><th><sub>Swift</sub></td>
+    </tr>
+    <tr>
+    	<td><sub><i>sharedInstance</i></sub></td>
+    	<td><sub><i>shared</i></sub></td>
+    	<td colspan="2"><sub><b>APISession</b></sub></td>
+    	<td align="justify"><sub>Shared singleton APISession instance.</sub></td>
+    </tr>
+</table>
+
+<a name="api_session_methods"></a>
+### Methods
+
+Please refer to `APISession` class documentation for more details.
 
 <a name="session_data_source"></a>
 ## Session Data Source
@@ -1198,6 +1276,13 @@ func sessionCancelled(_ session: SessionProtocol)
 #### Arguments
 
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
+
+<a name="session_appearance"></a>
+## Session Appearance
+
+You might want to implement `SessionAppearance` protocol if you need some UI customization to match your user interface and provide great user experience.
+
+Please refer to `SessionAppearance` class documentation to see what kind of customization is currently available.
 
 -----
 # Documentation

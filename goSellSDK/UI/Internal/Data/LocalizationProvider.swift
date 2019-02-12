@@ -8,6 +8,7 @@
 import class	TapResponderChainInputView.TapResponderChainInputView
 import enum		UIKit.UIInterface.UIUserInterfaceLayoutDirection
 
+/// Localization provider.
 internal final class LocalizationProvider {
 	
 	// MARK: - Internal -
