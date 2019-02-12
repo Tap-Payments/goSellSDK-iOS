@@ -52,6 +52,9 @@
                 <a href="../Classes/AuthorizeActionResponse.html">AuthorizeActionResponse</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CardVerification.html">CardVerification</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Charge.html">Charge</a>
               </li>
               <li class="nav-group-task">
@@ -89,6 +92,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SecretKey.html">SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Shipping.html">Shipping</a>
@@ -153,6 +162,9 @@
                 <a href="../Enums/AuthorizeActionType.html">AuthorizeActionType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/CardVerificationStatus.html">CardVerificationStatus</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ChargeStatus.html">ChargeStatus</a>
               </li>
               <li class="nav-group-task">
@@ -181,6 +193,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Power.html">Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKAppearanceMode.html">SDKAppearanceMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKMode.html">SDKMode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/SourceChannel.html">SourceChannel</a>
@@ -218,6 +236,15 @@
                 <a href="../Extensions/PaymentOption.html">PaymentOption</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/SeparateWindowRootViewController.html">SeparateWindowRootViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapBlurEffectStyle.html">TapBlurEffectStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapFont.html">TapFont</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -229,16 +256,24 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/CountableCasesEnum.html">CountableCasesEnum</a>
+                <a href="../Protocols/SessionAppearance.html">SessionAppearance</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/PayButtonProtocol.html">PayButtonProtocol</a>
+                <a href="../Protocols/SessionDataSource.html">SessionDataSource</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/PaymentDataSource.html">PaymentDataSource</a>
+                <a href="../Protocols/SessionDelegate.html">SessionDelegate</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/PaymentDelegate.html">PaymentDelegate</a>
+                <a href="../Protocols/SessionProtocol.html">SessionProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9goSellSDK8Metadataa">Metadata</a>
               </li>
             </ul>
           </li>
@@ -251,7 +286,7 @@
               <div class="declaration">
                 <div class="language">
                   <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PayButton</span> <span class="p">:</span> <span class="kt">TapNibView</span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PayButton</span> <span class="p">:</span> <span class="kt">TapNibView</span><span class="p">,</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span></code></pre>
 
                 </div>
               </div>
@@ -268,34 +303,6 @@
                 </a>
               </div>
               <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)PayButton(py)enabled"></a>
-                    <a name="//apple_ref/swift/Property/isEnabled" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PayButton(py)enabled">isEnabled</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Defines if the receiver is enabled.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(enabled)</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">isEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -317,7 +324,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
-<span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">dataSource</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PaymentDataSource.html">PaymentDataSource</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">dataSource</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionDataSource.html">SessionDataSource</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -345,7 +352,62 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
-<span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PaymentDelegate.html">PaymentDelegate</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionDelegate.html">SessionDelegate</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionProtocol(py)appearance"></a>
+                    <a name="//apple_ref/swift/Property/appearance" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionProtocol(py)appearance">appearance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">appearance</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionAppearance.html">SessionAppearance</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PayButton(py)enabled"></a>
+                    <a name="//apple_ref/swift/Property/isEnabled" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PayButton(py)enabled">isEnabled</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Defines if the receiver is enabled.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(enabled)</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">isEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -393,9 +455,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(cs)PayButton(im)updateDisplayedAmount"></a>
-                    <a name="//apple_ref/swift/Method/updateDisplayedAmount()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PayButton(im)updateDisplayedAmount">updateDisplayedAmount()</a>
+                    <a name="/c:@M@goSellSDK@objc(cs)PayButton(im)updateDisplayedState"></a>
+                    <a name="//apple_ref/swift/Method/updateDisplayedState()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PayButton(im)updateDisplayedState">updateDisplayedState()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -403,14 +465,358 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Updates displayed amount.</p>
+                        <p>Updates displayed state.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateDisplayedAmount</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateDisplayedState</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PayButton(im)didMoveToSuperview"></a>
+                    <a name="//apple_ref/swift/Method/didMoveToSuperview()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PayButton(im)didMoveToSuperview">didMoveToSuperview()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is called when receiver superview changes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">didMoveToSuperview</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PayButton(im)willMoveToSuperview:"></a>
+                    <a name="//apple_ref/swift/Method/willMove(toSuperview:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PayButton(im)willMoveToSuperview:">willMove(toSuperview:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies that the receiver is about to change its superview.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">willMove</span><span class="p">(</span><span class="n">toSuperview</span> <span class="nv">newSuperview</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>newSuperview</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>New superview.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/SessionDelegate"></a>
+                <a name="//apple_ref/swift/Section/SessionDelegate" class="dashAnchor"></a>
+                <a href="#/SessionDelegate">
+                  <h3 class="section-name">SessionDelegate</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionIsStarting:"></a>
+                    <a name="//apple_ref/swift/Method/sessionIsStarting(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionIsStarting:">sessionIsStarting(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sessionIsStarting</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionCancelled:"></a>
+                    <a name="//apple_ref/swift/Method/sessionCancelled(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionCancelled:">sessionCancelled(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sessionCancelled</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionHasStarted:"></a>
+                    <a name="//apple_ref/swift/Method/sessionHasStarted(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionHasStarted:">sessionHasStarted(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sessionHasStarted</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionHasFailedToStart:"></a>
+                    <a name="//apple_ref/swift/Method/sessionHasFailedToStart(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)sessionHasFailedToStart:">sessionHasFailedToStart(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sessionHasFailedToStart</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)paymentSucceed:onSession:"></a>
+                    <a name="//apple_ref/swift/Method/paymentSucceed(_:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)paymentSucceed:onSession:">paymentSucceed(_:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">paymentSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt"><a href="../Classes/Charge.html">Charge</a></span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)authorizationSucceed:onSession:"></a>
+                    <a name="//apple_ref/swift/Method/authorizationSucceed(_:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)authorizationSucceed:onSession:">authorizationSucceed(_:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">authorizationSucceed</span><span class="p">(</span><span class="n">_</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt"><a href="../Classes/Authorize.html">Authorize</a></span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)paymentFailedWithCharge:error:onSession:"></a>
+                    <a name="//apple_ref/swift/Method/paymentFailed(with:error:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)paymentFailedWithCharge:error:onSession:">paymentFailed(with:error:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">paymentFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">charge</span><span class="p">:</span> <span class="kt"><a href="../Classes/Charge.html">Charge</a></span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/TapSDKError.html">TapSDKError</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)authorizationFailedWithAuthorize:error:onSession:"></a>
+                    <a name="//apple_ref/swift/Method/authorizationFailed(with:error:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)authorizationFailedWithAuthorize:error:onSession:">authorizationFailed(with:error:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">authorizationFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">authorize</span><span class="p">:</span> <span class="kt"><a href="../Classes/Authorize.html">Authorize</a></span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/TapSDKError.html">TapSDKError</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)cardSaved:onSession:"></a>
+                    <a name="//apple_ref/swift/Method/cardSaved(_:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)cardSaved:onSession:">cardSaved(_:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cardSaved</span><span class="p">(</span><span class="n">_</span> <span class="nv">cardVerification</span><span class="p">:</span> <span class="kt"><a href="../Classes/CardVerification.html">CardVerification</a></span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate(im)cardSavingFailedWithCardVerification:error:onSession:"></a>
+                    <a name="//apple_ref/swift/Method/cardSavingFailed(with:error:on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate(im)cardSavingFailedWithCardVerification:error:onSession:">cardSavingFailed(with:error:on:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cardSavingFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">cardVerification</span><span class="p">:</span> <span class="kt"><a href="../Classes/CardVerification.html">CardVerification</a></span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/TapSDKError.html">TapSDKError</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -422,8 +828,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -52,6 +52,9 @@
                 <a href="Classes/AuthorizeActionResponse.html">AuthorizeActionResponse</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CardVerification.html">CardVerification</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Charge.html">Charge</a>
               </li>
               <li class="nav-group-task">
@@ -89,6 +92,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SecretKey.html">SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Session.html">Session</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Shipping.html">Shipping</a>
@@ -153,6 +162,9 @@
                 <a href="Enums/AuthorizeActionType.html">AuthorizeActionType</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/CardVerificationStatus.html">CardVerificationStatus</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/ChargeStatus.html">ChargeStatus</a>
               </li>
               <li class="nav-group-task">
@@ -181,6 +193,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Power.html">Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SDKAppearanceMode.html">SDKAppearanceMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SDKMode.html">SDKMode</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/SourceChannel.html">SourceChannel</a>
@@ -218,6 +236,15 @@
                 <a href="Extensions/PaymentOption.html">PaymentOption</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/SeparateWindowRootViewController.html">SeparateWindowRootViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapBlurEffectStyle.html">TapBlurEffectStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/TapFont.html">TapFont</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/TapSerializationError.html">TapSerializationError</a>
               </li>
               <li class="nav-group-task">
@@ -229,16 +256,24 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/CountableCasesEnum.html">CountableCasesEnum</a>
+                <a href="Protocols/SessionAppearance.html">SessionAppearance</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PayButtonProtocol.html">PayButtonProtocol</a>
+                <a href="Protocols/SessionDataSource.html">SessionDataSource</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PaymentDataSource.html">PaymentDataSource</a>
+                <a href="Protocols/SessionDelegate.html">SessionDelegate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/PaymentDelegate.html">PaymentDelegate</a>
+                <a href="Protocols/SessionProtocol.html">SessionProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:9goSellSDK8Metadataa">Metadata</a>
               </li>
             </ul>
           </li>
@@ -257,9 +292,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9goSellSDK18CountableCasesEnumP"></a>
-                    <a name="//apple_ref/swift/Protocol/CountableCasesEnum" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9goSellSDK18CountableCasesEnumP">CountableCasesEnum</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionAppearance"></a>
+                    <a name="//apple_ref/swift/Protocol/SessionAppearance" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionAppearance">SessionAppearance</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -267,48 +302,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Represents an enum that has non-endless number of cases.</p>
+                        <p>Session appearance protocol.</p>
 
-                        <a href="Protocols/CountableCasesEnum.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CountableCasesEnum</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)PayButtonProtocol"></a>
-                    <a name="//apple_ref/swift/Protocol/PayButtonProtocol" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PayButtonProtocol">PayButtonProtocol</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Pay Button Protocol.</p>
-
-                        <a href="Protocols/PayButtonProtocol.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/SessionAppearance.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PayButtonProtocol</span> <span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SessionAppearance</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="kt">NSObjectProtocol</span></code></pre>
 
                         </div>
                       </div>
@@ -322,9 +325,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDataSource"></a>
-                    <a name="//apple_ref/swift/Protocol/PaymentDataSource" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDataSource">PaymentDataSource</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDataSource"></a>
+                    <a name="//apple_ref/swift/Protocol/SessionDataSource" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDataSource">SessionDataSource</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -334,14 +337,14 @@
                       <div class="abstract">
                         <p>Payment data source.</p>
 
-                        <a href="Protocols/PaymentDataSource.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/SessionDataSource.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaymentDataSource</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="kt">NSObjectProtocol</span></code></pre>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SessionDataSource</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="kt">NSObjectProtocol</span></code></pre>
 
                         </div>
                       </div>
@@ -355,9 +358,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)PaymentDelegate"></a>
-                    <a name="//apple_ref/swift/Protocol/PaymentDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)PaymentDelegate">PaymentDelegate</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionDelegate"></a>
+                    <a name="//apple_ref/swift/Protocol/SessionDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionDelegate">SessionDelegate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -367,14 +370,47 @@
                       <div class="abstract">
                         <p>Payment delegate.</p>
 
-                        <a href="Protocols/PaymentDelegate.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/SessionDelegate.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaymentDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="kt">NSObjectProtocol</span></code></pre>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SessionDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="kt">NSObjectProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionProtocol"></a>
+                    <a name="//apple_ref/swift/Protocol/SessionProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionProtocol">SessionProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Session interface.</p>
+
+                        <a href="Protocols/SessionProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SessionProtocol</span></code></pre>
 
                         </div>
                       </div>
@@ -386,8 +422,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2018-09-13)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

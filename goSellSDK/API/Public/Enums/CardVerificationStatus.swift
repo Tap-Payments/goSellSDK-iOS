@@ -5,10 +5,16 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+/// Card Verification Status.
 @objc public enum CardVerificationStatus: Int {
 	
+	/// Card verification initiated.
 	case initiated	= 0
+	
+	/// Card is valid.
 	case valid
+	
+	/// Card is invalid.
 	case invalid
 	
 	// MARK: - Private -

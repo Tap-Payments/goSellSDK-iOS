@@ -143,6 +143,10 @@ extension PhoneNumber: Decodable {
 // MARK: - NSCopying
 extension PhoneNumber: NSCopying {
 	
+	/// Creates copy of the receiver.
+	///
+	/// - Parameter zone: Zone.
+	/// - Returns: Copy of the receiver.
 	public func copy(with zone: NSZone? = nil) -> Any {
 		
 		return try! PhoneNumber(isdNumber: self.isdNumber, phoneNumber: self.phoneNumber)

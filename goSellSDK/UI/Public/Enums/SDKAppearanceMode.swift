@@ -12,11 +12,17 @@
 /// - default: Default mode is fullscreen for Payment and Authorization and windowed for saving the card.
 @objc public enum SDKAppearanceMode: Int, CaseIterable {
 	
+	/// Fullscreen mode.
 	@objc(Fullscreen) case fullscreen
+	
+	/// Windowed mode.
 	@objc(Windowed) case windowed
+	
+	/// Default mode based on the transaction type.
 	@objc(Default) case `default`
 }
 
+// MARK: - CustomStringConvertible
 extension SDKAppearanceMode: CustomStringConvertible {
 	
 	public var description: String {

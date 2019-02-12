@@ -9,6 +9,7 @@ import struct	TapAdditionsKit.TypeAlias
 import enum		TapVisualEffectView.TapBlurEffectStyle
 import class	UIKit.UIImage.UIImage
 
+/// Process class.
 internal final class Process {
 	
 	// MARK: - Internal -
