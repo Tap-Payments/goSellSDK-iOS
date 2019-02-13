@@ -420,10 +420,7 @@
 						},
 						"color": "#5c5c5c",
 						"alignment": "leading"
-					},
-					"switch_off_tint_color": "#ffffff",
-					"switch_on_tint_color": "#2ace00",
-					"switch_thumb_tint_color": "#ffffff"
+					}
 				}
 			},
 			"saved_card": {

@@ -12,11 +12,11 @@ internal struct SaveCardStyle: Decodable {
 	
 	internal var textStyle: TextStyle
 	
-	internal var switchOnTintColor: HexColor
+	internal var switchOnTintColor: HexColor?
 	
-	internal var switchOffTintColor: HexColor
+	internal var switchOffTintColor: HexColor?
 	
-	internal var switchThumbTintColor: HexColor
+	internal var switchThumbTintColor: HexColor?
 	
 	// MARK: - Private -
 	
