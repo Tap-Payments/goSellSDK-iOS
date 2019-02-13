@@ -107,6 +107,8 @@ internal final class TapNavigationView: TapNibView {
 		self.closeButton?.titleLabel?.font = style.cancelNormalStyle.font.localized
 		self.closeButton?.setTitleColor(style.cancelNormalStyle.color, for: .normal)
 		self.closeButton?.setTitleColor(style.cancelHighlightedStyle.color, for: .highlighted)
+		self.closeButton?.setLocalizedText(.common_cancel)
+		self.closeButton?.tap_title = self.closeButton?.tap_title?.uppercased()
 	}
 	
 	internal func setDataSource(_ datasource: DataSource?, animated: Bool) {

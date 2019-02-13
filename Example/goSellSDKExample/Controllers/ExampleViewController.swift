@@ -383,197 +383,197 @@ extension ExampleViewController: SessionDelegate {
 
 // MARK: - SessionAppearance
 extension ExampleViewController: SessionAppearance {
-	
+
 	internal func appearanceMode(for session: SessionProtocol) -> SDKAppearanceMode {
-		
+
 		return self.paymentSettings.appearanceMode
 	}
-	
+
 	internal func sessionShouldShowStatusPopup(_ session: SessionProtocol) -> Bool {
-		
+
 		return self.paymentSettings.showsStatusPopup
 	}
-	
+
 	internal func backgroundColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.backgroundColor.asUIColor
 	}
-	
+
 	internal func backgroundBlurStyle(for session: SessionProtocol) -> UIBlurEffect.Style {
-		
+
 		return self.paymentSettings.backgroundBlurStyle
 	}
-	
+
 	@available(iOS 10.0, *)
 	internal func backgroundBlurProgress(for session: SessionProtocol) -> CGFloat {
-		
+
 		return self.paymentSettings.backgroundBlurProgress
 	}
-	
+
 	internal func headerFont(for session: SessionProtocol) -> UIFont {
-		
+
 		return UIFont(name: self.paymentSettings.headerFont, size: 17.0)!
 	}
-	
+
 	internal func headerTextColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.headerTextColor.asUIColor
 	}
-	
+
 	internal func headerBackgroundColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.headerBackgroundColor.asUIColor
 	}
-	
+
 	internal func headerCancelButtonFont(for session: SessionProtocol) -> UIFont {
-		
+
 		return UIFont(name: self.paymentSettings.headerCancelFont, size: 12.0)!
 	}
-	
+
 	internal func headerCancelButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor {
-		
+
 		switch state {
-			
+
 		case .normal:
-			
+
 			return self.paymentSettings.headerCancelNormalTextColor.asUIColor
-			
+
 		case .highlighted:
-			
+
 			return self.paymentSettings.headerCancelHighlightedTextColor.asUIColor
-			
+
 		default:
-			
+
 			return self.paymentSettings.headerCancelNormalTextColor.asUIColor
 		}
 	}
-	
+
 	internal func cardInputFieldsFont(for session: SessionProtocol) -> UIFont {
-		
+
 		return UIFont(name: self.paymentSettings.cardInputFont, size: 15.0)!
 	}
-	
+
 	internal func cardInputFieldsTextColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputTextColor.asUIColor
 	}
-	
+
 	internal func cardInputFieldsPlaceholderColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputPlaceholderTextColor.asUIColor
 	}
-	
+
 	internal func cardInputFieldsInvalidTextColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputInvalidTextColor.asUIColor
 	}
-	
+
 	internal func cardInputDescriptionFont(for session: SessionProtocol) -> UIFont {
-		
+
 		return UIFont(name: self.paymentSettings.cardInputDescriptionFont, size: 12.0)!
 	}
-	
+
 	internal func cardInputDescriptionTextColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputDescriptionTextColor.asUIColor
 	}
-	
+
 	internal func cardInputSaveCardSwitchOffTintColor(for session: SessionProtocol) -> UIColor {
-	
+
 		return self.paymentSettings.cardInputSaveCardSwitchOffTintColor.asUIColor
 	}
-	
+
 	internal func cardInputSaveCardSwitchOnTintColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputSaveCardSwitchOnTintColor.asUIColor
 	}
-	
+
 	internal func cardInputSaveCardSwitchThumbTintColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputSaveCardSwitchThumbTintColor.asUIColor
 	}
-	
+
 	internal func cardInputScanIconFrameTintColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputScanIconFrameTintColor.asUIColor
 	}
-	
+
 	internal func cardInputScanIconTintColor(for session: SessionProtocol) -> UIColor {
-		
+
 		return self.paymentSettings.cardInputScanIconTintColor?.asUIColor ?? .clear
 	}
-	
+
 	internal func tapButtonBackgroundColor(for state: UIControl.State, session: SessionProtocol) -> UIColor? {
-		
+
 		switch state {
-			
+
 		case .disabled:
-			
+
 			return self.paymentSettings.tapButtonDisabledBackgroundColor?.asUIColor
-			
+
 		case .normal:
-			
+
 			return self.paymentSettings.tapButtonEnabledBackgroundColor?.asUIColor
-			
+
 		case .highlighted:
-			
+
 			return self.paymentSettings.tapButtonHighlightedTextColor?.asUIColor
-			
+
 		default:
-			
+
 			return nil
 		}
 	}
-	
+
 	internal func tapButtonFont(for session: SessionProtocol) -> UIFont {
-		
+
 		return UIFont(name: self.paymentSettings.tapButtonFont, size: 17.0)!
 	}
-	
+
 	internal func tapButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor? {
-		
+
 		switch state {
-			
+
 		case .disabled:
-			
+
 			return self.paymentSettings.tapButtonDisabledTextColor?.asUIColor
-			
+
 		case .normal:
-			
+
 			return self.paymentSettings.tapButtonEnabledTextColor?.asUIColor
-			
+
 		case .highlighted:
-			
+
 			return self.paymentSettings.tapButtonHighlightedTextColor?.asUIColor
-			
+
 		default:
-			
+
 			return nil
 		}
 	}
-	
+
 	internal func tapButtonCornerRadius(for session: SessionProtocol) -> CGFloat {
-		
+
 		return self.paymentSettings.tapButtonCornerRadius
 	}
-	
+
 	internal func isLoaderVisibleOnTapButtton(for session: SessionProtocol) -> Bool {
-		
+
 		return self.paymentSettings.isTapButtonLoaderVisible
 	}
-	
+
 	internal func isSecurityIconVisibleOnTapButton(for session: SessionProtocol) -> Bool {
-		
+
 		return self.paymentSettings.isTapButtonSecurityIconVisible
 	}
-	
+
 	internal func tapButtonInsets(for session: SessionProtocol) -> UIEdgeInsets {
-		
+
 		return self.paymentSettings.tapButtonEdgeInsets
 	}
-	
+
 	internal func tapButtonHeight(for session: SessionProtocol) -> CGFloat {
-		
+
 		return self.paymentSettings.tapButtonHeight
 	}
 }

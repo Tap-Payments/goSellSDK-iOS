@@ -53,7 +53,9 @@ internal final class SaveCardValidator: CardValidator {
 		let style = Theme.current.paymentOptionsCellStyle.card.saveCard
 		
 		self.descriptionLabel.setTextStyle(style.textStyle)
-		self.saveCardSwitch.onTintColor = style.switchOnTintColor
+		self.saveCardSwitch.tintColor		= style.switchOffTintColor
+		self.saveCardSwitch.onTintColor		= style.switchOnTintColor
+		self.saveCardSwitch.thumbTintColor	= style.switchThumbTintColor
     }
     
     // MARK: - Private -
@@ -69,9 +71,11 @@ internal final class SaveCardValidator: CardValidator {
         
         self.saveCardSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
 		
-		self.saveCardSwitch.tintColor		= Theme.current.paymentOptionsCellStyle.card.saveCard.switchOffTintColor
-		self.saveCardSwitch.onTintColor		= Theme.current.paymentOptionsCellStyle.card.saveCard.switchOnTintColor
-		self.saveCardSwitch.thumbTintColor	= Theme.current.paymentOptionsCellStyle.card.saveCard.switchThumbTintColor
+		let style = Theme.current.paymentOptionsCellStyle.card.saveCard
+		
+		self.saveCardSwitch.tintColor		= style.switchOffTintColor
+		self.saveCardSwitch.onTintColor		= style.switchOnTintColor
+		self.saveCardSwitch.thumbTintColor	= style.switchThumbTintColor
     }
 	
 	private func setupLabel() {
