@@ -32,6 +32,7 @@ import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
+import class	UIKit.UIActivityIndicatorView.UIActivityIndicatorView
 import class	UIKit.UIBarButtonItem.UIBarButtonItem
 import class	UIKit.UIBlurEffect.UIBlurEffect
 import class	UIKit.UIColor.UIColor
@@ -43,6 +44,8 @@ import class    UIKit.UIStoryboardSegue.UIStoryboardSegue
 import class    UIKit.UITableView.UITableView
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
+import class	UIKit.UIVisualEffect.UIVisualEffect
+import class	UIKit.UIVisualEffectView.UIVisualEffectView
 
 internal class ExampleViewController: BaseViewController {
     
@@ -134,6 +137,10 @@ internal class ExampleViewController: BaseViewController {
         }
     }
 	
+	@IBOutlet private weak var loadingView: UIView?
+	@IBOutlet private weak var loader: UIActivityIndicatorView?
+	@IBOutlet private weak var loaderBlurView: UIVisualEffectView?
+	
     @IBOutlet private weak var payButton: PayButton?
     
     internal var selectedPaymentItem: PaymentItem?
@@ -156,6 +163,37 @@ internal class ExampleViewController: BaseViewController {
 	private func updateSavedCardsButtonVisibility() {
 		
 		self.savedCardsButton?.isEnabled = self.paymentSettings.customer?.customer.identifier != nil
+	}
+	
+	private func startLoader() {
+		
+		self.loadingView?.isHidden = false
+		self.loaderBlurView?.effect = nil
+		self.loader?.startAnimating()
+		
+		let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseOut]
+		let animations: () -> Void = { [weak self] in
+			
+			
+			self?.loaderBlurView?.effect = UIBlurEffect(style: .extraLight)
+		}
+		
+		UIView.animate(withDuration: 0.3, delay: 0.0, options: options, animations: animations, completion: nil)
+	}
+	
+	private func stopLoader() {
+		
+		let options: UIView.AnimationOptions = [.beginFromCurrentState, .curveEaseIn]
+		let animations: () -> Void = { [weak self] in
+			
+			self?.loaderBlurView?.effect = nil
+		}
+		
+		UIView.animate(withDuration: 0.3, delay: 0.0, options: options, animations: animations) { [weak self] _ in
+			
+			self?.loader?.stopAnimating()
+			self?.loadingView?.isHidden = true
+		}
 	}
 }
 
@@ -354,16 +392,22 @@ extension ExampleViewController: SessionDelegate {
 	internal func sessionIsStarting(_ session: SessionProtocol) {
 		
 		// session is about to start, but UI is not yet shown.
+		
+		self.startLoader()
 	}
 	
 	internal func sessionHasStarted(_ session: SessionProtocol) {
 		
 		// session has started, UI is shown (or showing)
+		
+		self.stopLoader()
 	}
 	
 	internal func sessionHasFailedToStart(_ session: SessionProtocol) {
 		
 		// session has failed to start.
+		
+		self.stopLoader()
 	}
 	
 	// MARK: - Private -

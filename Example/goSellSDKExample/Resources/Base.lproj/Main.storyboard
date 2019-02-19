@@ -377,6 +377,46 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUH-Hk-l4h">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                        <subviews>
+                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nET-GX-t9a">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hhm-f8-eT9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlV-Za-TMb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="6b7-Zp-PWL">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <subviews>
+                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kE2-qy-Iqi">
+                                                                        <rect key="frame" x="169" y="344" width="37" height="37"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="color" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                                    </activityIndicatorView>
+                                                                </subviews>
+                                                            </view>
+                                                            <vibrancyEffect>
+                                                                <blurEffect style="light"/>
+                                                            </vibrancyEffect>
+                                                        </visualEffectView>
+                                                    </subviews>
+                                                </view>
+                                                <blurEffect style="light"/>
+                                            </visualEffectView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="nET-GX-t9a" secondAttribute="trailing" id="1YV-Fi-S0w"/>
+                                            <constraint firstItem="nET-GX-t9a" firstAttribute="leading" secondItem="uUH-Hk-l4h" secondAttribute="leading" id="HA8-ez-Pmj"/>
+                                            <constraint firstItem="nET-GX-t9a" firstAttribute="top" secondItem="uUH-Hk-l4h" secondAttribute="top" id="fh1-Rd-a9m"/>
+                                            <constraint firstAttribute="bottom" secondItem="nET-GX-t9a" secondAttribute="bottom" id="mQo-T4-lGQ"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6b2-JM-nJ9" customClass="PayButton" customModule="goSellSDK">
                                         <rect key="frame" x="8" y="638" width="359" height="44"/>
                                         <constraints>
@@ -391,12 +431,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="uUH-Hk-l4h" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="2Q7-c7-lYw"/>
                                     <constraint firstItem="F15-Cc-alU" firstAttribute="top" secondItem="q7z-qv-MZT" secondAttribute="top" id="3NI-Jv-ceV"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6b2-JM-nJ9" secondAttribute="bottom" constant="8" id="48Y-Qm-f6J"/>
+                                    <constraint firstItem="uUH-Hk-l4h" firstAttribute="top" secondItem="q7z-qv-MZT" secondAttribute="top" id="A0F-S4-n5H"/>
                                     <constraint firstItem="F15-Cc-alU" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="BJf-QF-e2e"/>
                                     <constraint firstAttribute="trailing" secondItem="F15-Cc-alU" secondAttribute="trailing" id="Drq-nF-lu1"/>
+                                    <constraint firstAttribute="bottom" secondItem="uUH-Hk-l4h" secondAttribute="bottom" id="WLZ-aJ-36R"/>
                                     <constraint firstAttribute="trailing" secondItem="6b2-JM-nJ9" secondAttribute="trailing" constant="8" id="aTX-ID-fuu"/>
                                     <constraint firstItem="6b2-JM-nJ9" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" constant="8" id="cFi-6k-3RE"/>
+                                    <constraint firstAttribute="trailing" secondItem="uUH-Hk-l4h" secondAttribute="trailing" id="hTF-NG-3Dy"/>
                                     <constraint firstAttribute="bottom" secondItem="F15-Cc-alU" secondAttribute="bottom" id="pK4-u7-nCt"/>
                                 </constraints>
                             </view>
@@ -440,6 +484,9 @@
                     <connections>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="g4x-tk-BEJ" id="nkb-Y9-bkD"/>
                         <outlet property="itemsTableView" destination="F15-Cc-alU" id="Boy-6b-2jg"/>
+                        <outlet property="loader" destination="kE2-qy-Iqi" id="O4P-re-0jC"/>
+                        <outlet property="loaderBlurView" destination="nET-GX-t9a" id="tNl-80-tTg"/>
+                        <outlet property="loadingView" destination="uUH-Hk-l4h" id="A6z-lV-IWh"/>
                         <outlet property="payButton" destination="6b2-JM-nJ9" id="PzM-a6-bCG"/>
                         <outlet property="savedCardsButton" destination="LT2-e2-1y8" id="JE0-iz-1Kt"/>
                         <segue destination="qGr-ff-bUV" kind="show" identifier="PaymentItemViewControllerSegue" id="aaY-1B-Dcb"/>
