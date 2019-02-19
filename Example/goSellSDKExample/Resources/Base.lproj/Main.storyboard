@@ -377,6 +377,46 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqP-qe-hGO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                        <subviews>
+                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMP-eW-gXW">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="l9q-1F-phV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JAH-pG-4g6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="ig5-fd-MbA">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <subviews>
+                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ln0-xG-yMa">
+                                                                        <rect key="frame" x="169" y="344" width="37" height="37"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="color" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                                    </activityIndicatorView>
+                                                                </subviews>
+                                                            </view>
+                                                            <vibrancyEffect>
+                                                                <blurEffect style="light"/>
+                                                            </vibrancyEffect>
+                                                        </visualEffectView>
+                                                    </subviews>
+                                                </view>
+                                                <blurEffect style="light"/>
+                                            </visualEffectView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="lMP-eW-gXW" secondAttribute="trailing" id="1NJ-jA-EHl"/>
+                                            <constraint firstItem="lMP-eW-gXW" firstAttribute="leading" secondItem="CqP-qe-hGO" secondAttribute="leading" id="cWi-uI-X2N"/>
+                                            <constraint firstItem="lMP-eW-gXW" firstAttribute="top" secondItem="CqP-qe-hGO" secondAttribute="top" id="s1W-gb-97R"/>
+                                            <constraint firstAttribute="bottom" secondItem="lMP-eW-gXW" secondAttribute="bottom" id="sDr-Zh-QnT"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6b2-JM-nJ9" customClass="PayButton" customModule="goSellSDK">
                                         <rect key="frame" x="8" y="638" width="359" height="44"/>
                                         <constraints>
@@ -393,10 +433,14 @@
                                     <constraint firstItem="F15-Cc-alU" firstAttribute="top" secondItem="q7z-qv-MZT" secondAttribute="top" id="3NI-Jv-ceV"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6b2-JM-nJ9" secondAttribute="bottom" constant="8" id="48Y-Qm-f6J"/>
                                     <constraint firstItem="F15-Cc-alU" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="BJf-QF-e2e"/>
+                                    <constraint firstItem="CqP-qe-hGO" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="Bua-Af-dc0"/>
                                     <constraint firstAttribute="trailing" secondItem="F15-Cc-alU" secondAttribute="trailing" id="Drq-nF-lu1"/>
+                                    <constraint firstItem="CqP-qe-hGO" firstAttribute="top" secondItem="q7z-qv-MZT" secondAttribute="top" id="ZNg-LU-eRf"/>
                                     <constraint firstAttribute="trailing" secondItem="6b2-JM-nJ9" secondAttribute="trailing" constant="8" id="aTX-ID-fuu"/>
                                     <constraint firstItem="6b2-JM-nJ9" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" constant="8" id="cFi-6k-3RE"/>
+                                    <constraint firstAttribute="trailing" secondItem="CqP-qe-hGO" secondAttribute="trailing" id="dO9-Sm-ygB"/>
                                     <constraint firstAttribute="bottom" secondItem="F15-Cc-alU" secondAttribute="bottom" id="pK4-u7-nCt"/>
+                                    <constraint firstAttribute="bottom" secondItem="CqP-qe-hGO" secondAttribute="bottom" id="wWP-oL-ZwG"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -432,6 +476,9 @@
                     <connections>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="g4x-tk-BEJ" id="nkb-Y9-bkD"/>
                         <outlet property="itemsTableView" destination="F15-Cc-alU" id="Boy-6b-2jg"/>
+                        <outlet property="loader" destination="ln0-xG-yMa" id="TJ5-1i-iWe"/>
+                        <outlet property="loaderBlurView" destination="lMP-eW-gXW" id="ykI-gI-POM"/>
+                        <outlet property="loadingView" destination="CqP-qe-hGO" id="wNF-X4-pQq"/>
                         <outlet property="payButton" destination="6b2-JM-nJ9" id="PzM-a6-bCG"/>
                         <segue destination="qGr-ff-bUV" kind="show" identifier="PaymentItemViewControllerSegue" id="aaY-1B-Dcb"/>
                     </connections>
@@ -1140,7 +1187,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qvp-ZW-sCr">
-                                                    <rect key="frame" x="275" y="6.333333333333333" width="51" height="31"/>
+                                                    <rect key="frame" x="275" y="6.3333333333333321" width="51" height="30.999999999999996"/>
                                                     <connections>
                                                         <action selector="threeDSecureSwitchValueChanged:" destination="qw7-J4-o4O" eventType="valueChanged" id="f0g-Mi-hqU"/>
                                                     </connections>
@@ -1318,7 +1365,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCh-pP-LmU">
-                                                                                <rect key="frame" x="232.33333333333337" y="4.3333333333333357" width="41.666666666666657" height="21"/>
+                                                                                <rect key="frame" x="232.33333333333334" y="4.3333333333333357" width="41.666666666666657" height="21"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
