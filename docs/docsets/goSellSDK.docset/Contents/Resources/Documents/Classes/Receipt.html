@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Receipt Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Receipt" class="dashAnchor"></a>
+    <a title="Receipt Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">goSellSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Receipt Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/APIError.html">APIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Acquirer.html">Acquirer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AmountModificator.html">AmountModificator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Authorize.html">Authorize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizeAction.html">AuthorizeAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizeActionResponse.html">AuthorizeActionResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardVerification.html">CardVerification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Charge.html">Charge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Customer.html">Customer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EmailAddress.html">EmailAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PayButton.html">PayButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PaymentItem.html">PaymentItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PhoneNumber.html">PhoneNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Quantity.html">Quantity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Receipt.html">Receipt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reference.html">Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SecretKey.html">SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Shipping.html">Shipping</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Source.html">Source</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SourceRequest.html">SourceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKAPIError.html">TapSDKAPIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKError.html">TapSDKError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKKnownError.html">TapSDKKnownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKUnknownError.html">TapSDKUnknownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Tax.html">Tax</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TrackingURL.html">TrackingURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TransactionDetails.html">TransactionDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/_ObjCMeasurement.html">_ObjCMeasurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/goSellSDK.html">goSellSDK</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Area.html">Area</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationRequirer.html">AuthenticationRequirer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationStatus.html">AuthenticationStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationType.html">AuthenticationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthorizeActionStatus.html">AuthorizeActionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthorizeActionType.html">AuthorizeActionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardVerificationStatus.html">CardVerificationStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ChargeStatus.html">ChargeStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Duration.html">Duration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ElectricCharge.html">ElectricCharge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ElectricCurrent.html">ElectricCurrent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Energy.html">Energy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ErrorCode.html">ErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Length.html">Length</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Mass.html">Mass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Measurement.html">Measurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Power.html">Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKAppearanceMode.html">SDKAppearanceMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKMode.html">SDKMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceChannel.html">SourceChannel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceObject.html">SourceObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourcePaymentType.html">SourcePaymentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceType.html">SourceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransactionMode.html">TransactionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/URLStatus.html">URLStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/PaymentOption.html">PaymentOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/SeparateWindowRootViewController.html">SeparateWindowRootViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapBlurEffectStyle.html">TapBlurEffectStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapFont.html">TapFont</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionAppearance.html">SessionAppearance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionDataSource.html">SessionDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionDelegate.html">SessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionProtocol.html">SessionProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9goSellSDK8Metadataa">Metadata</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Receipt</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Receipt</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">OptionallyIdentifiableWithString</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Receipt dispatch settings.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9goSellSDK32OptionallyIdentifiableWithStringP10identifierSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/identifier" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9goSellSDK32OptionallyIdentifiableWithStringP10identifierSSSgvp">identifier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Receipt(py)email"></a>
+                    <a name="//apple_ref/swift/Property/email" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Receipt(py)email">email</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Defines if receipt email should be sent.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Receipt(py)sms"></a>
+                    <a name="//apple_ref/swift/Property/sms" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Receipt(py)sms">sms</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Defines if receipt sms should be sent.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sms</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Receipt(im)initWithEmail:sms:"></a>
+                    <a name="//apple_ref/swift/Method/init(email:sms:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Receipt(im)initWithEmail:sms:">init(email:sms:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes <code>Receipt</code> settings model.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">sms</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Defines whether email receipt should be sent.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sms</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Defines whether sms receipt should be sent.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-03-06)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
