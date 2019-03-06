@@ -24,7 +24,16 @@ internal final class SaveCardValidator: CardValidator {
         return true
     }
 	
-	internal var canSaveCard: Bool = false
+	internal var canSaveCard: Bool = false {
+		
+		didSet {
+			
+			if !self.canSaveCard && self.shouldSaveCard {
+				
+				self.toggleSwitchOff()
+			}
+		}
+	}
 	
     // MARK: Methods
     
@@ -57,7 +66,21 @@ internal final class SaveCardValidator: CardValidator {
 		self.saveCardSwitch.onTintColor		= style.switchOnTintColor
 		self.saveCardSwitch.thumbTintColor	= style.switchThumbTintColor
     }
-    
+	
+	internal func toggleSwitchOn() {
+		
+		guard self.canSaveCard else { return }
+		
+		self.saveCardSwitch.setOn(true, animated: true)
+		self.switchToggleStateChanged()
+	}
+	
+	internal func toggleSwitchOff() {
+		
+		self.saveCardSwitch.setOn(false, animated: true)
+		self.switchToggleStateChanged()
+	}
+	
     // MARK: - Private -
     // MARK: Properties
     
@@ -85,10 +108,17 @@ internal final class SaveCardValidator: CardValidator {
     
 	@objc private func switchValueChanged(_ sender: Any) {
 		
+		Process.shared.dataManagerInterface.didToggleSaveCardSwitchToOnAutomatically = true
+		
+		self.switchToggleStateChanged()
+	}
+	
+	private func switchToggleStateChanged() {
+		
 		if self.shouldSaveCard && !self.canSaveCard {
 			
 			CATransaction.setCompletionBlock { [weak self] in
-			
+				
 				self?.saveCardSwitch.setOn(false, animated: true)
 			}
 		}
