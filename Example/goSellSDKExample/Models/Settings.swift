@@ -30,6 +30,7 @@ internal final class Settings: Encodable {
 											 transactionMode:						.purchase,
 											 isThreeDSecure:						false,
 											 canSaveSameCardMultipleTimes:			true,
+											 saveCardSwitchEnabledByDefault:		false,
 											 currency:								try! Currency(isoCode: "kwd"),
 											 customer:								nil,
 											 destinations:							[],
@@ -84,6 +85,8 @@ internal final class Settings: Encodable {
 	internal var isThreeDSecure: Bool
 	
 	internal var canSaveSameCardMultipleTimes: Bool
+	
+	internal var isSaveCardSwitchToggleEnabledByDefault: Bool
 	
     internal var currency: Currency
     
@@ -181,6 +184,7 @@ internal final class Settings: Encodable {
 				  transactionMode:							TransactionMode,
 				  isThreeDSecure:							Bool,
 				  canSaveSameCardMultipleTimes:				Bool,
+				  saveCardSwitchEnabledByDefault:			Bool,
 				  currency:									Currency,
 				  customer:									EnvironmentCustomer?,
 				  destinations:								[Destination],
@@ -228,6 +232,7 @@ internal final class Settings: Encodable {
         self.transactionMode    					= transactionMode
 		self.isThreeDSecure							= isThreeDSecure
 		self.canSaveSameCardMultipleTimes			= canSaveSameCardMultipleTimes
+		self.isSaveCardSwitchToggleEnabledByDefault	= saveCardSwitchEnabledByDefault
         self.currency           					= currency
         self.customer           					= customer
 		self.destinations							= destinations
@@ -280,6 +285,7 @@ internal final class Settings: Encodable {
         case transactionMode    					= "mode"
 		case isThreeDSecure							= "3d_secure"
 		case canSaveSameCardMultipleTimes			= "save_same_card_multiple_times"
+		case isSaveCardSwitchToggleEnabledByDefault	= "is_save_card_switch_enabled_by_default"
         case currency           					= "currency"
         case customer           					= "customer"
 		case destinations							= "destinations"
@@ -330,52 +336,53 @@ extension Settings: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
 		
-		let sdkLanguage								= try container.decodeIfPresent	(Language.self,				forKey: .sdkLanguage)							?? Language(localeIdentifier: goSellSDK.language)
-        let sdkMode         						= try container.decodeIfPresent	(SDKMode.self,				forKey: .sdkMode)								?? Settings.default.sdkMode
+		let sdkLanguage								= try container.decodeIfPresent	(Language.self,				forKey: .sdkLanguage)								?? Language(localeIdentifier: goSellSDK.language)
+        let sdkMode         						= try container.decodeIfPresent	(SDKMode.self,				forKey: .sdkMode)									?? Settings.default.sdkMode
 		
         let transactionMode 						= try container.decode			(TransactionMode.self,		forKey: .transactionMode)
-		let isThreeDSecure							= try container.decodeIfPresent	(Bool.self,					forKey: .isThreeDSecure)						?? Settings.default.isThreeDSecure
-		let canSaveCardMultipleTimes				= try container.decodeIfPresent	(Bool.self,					forKey: .canSaveSameCardMultipleTimes)			?? Settings.default.canSaveSameCardMultipleTimes
+		let isThreeDSecure							= try container.decodeIfPresent	(Bool.self,					forKey: .isThreeDSecure)							?? Settings.default.isThreeDSecure
+		let canSaveCardMultipleTimes				= try container.decodeIfPresent	(Bool.self,					forKey: .canSaveSameCardMultipleTimes)				?? Settings.default.canSaveSameCardMultipleTimes
+		let saveCardSwitchEnabledByDefault			= try container.decodeIfPresent	(Bool.self,					forKey: .isSaveCardSwitchToggleEnabledByDefault)	?? Settings.default.isSaveCardSwitchToggleEnabledByDefault
         let currency        						= try container.decode			(Currency.self,				forKey: .currency)
         var envCustomer     						= try container.decodeIfPresent	(EnvironmentCustomer.self,	forKey: .customer)
-		let destinations							= try container.decodeIfPresent ([Destination].self,		forKey: .destinations)							?? []
+		let destinations							= try container.decodeIfPresent ([Destination].self,		forKey: .destinations)								?? []
         let shippingList    						= try container.decode			([Shipping].self,			forKey: .shippingList)
         let taxes           						= try container.decode			([Tax].self,				forKey: .taxes)
 		
-		let appearanceMode							= try container.decodeIfPresent	(SDKAppearanceMode.self,	forKey: .appearanceMode)						?? Settings.default.appearanceMode
-		let showsStatusPopup						= try container.decodeIfPresent	(Bool.self,					forKey: .showsStatusPopup)						?? Settings.default.showsStatusPopup
-		let headerFont								= try container.decodeIfPresent	(String.self,				forKey: .headerFont)							?? Settings.default.headerFont
-		let headerTextColor							= try container.decodeIfPresent	(Color.self,				forKey: .headerTextColor)						?? Settings.default.headerTextColor
-		let headerBackgroundColor					= try container.decodeIfPresent	(Color.self,				forKey: .headerBackgroundColor)					?? Settings.default.headerBackgroundColor
-		let headerCancelFont						= try container.decodeIfPresent	(String.self,				forKey: .headerCancelFont)						?? Settings.default.headerCancelFont
-		let headerCancelNormalTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .headerCancelNormalTextColor)			?? Settings.default.headerCancelNormalTextColor
-		let headerCancelHighlightedTextColor		= try container.decodeIfPresent	(Color.self,				forKey: .headerCancelHighlightedTextColor)		?? Settings.default.headerCancelHighlightedTextColor
-		let cardInputFont							= try container.decodeIfPresent	(String.self,				forKey: .cardInputFont)							?? Settings.default.cardInputFont
-		let cardInputTextColor						= try container.decodeIfPresent	(Color.self,				forKey: .cardInputTextColor)					?? Settings.default.cardInputTextColor
-		let cardInputInvalidTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .cardInputInvalidTextColor)				?? Settings.default.cardInputInvalidTextColor
-		let cardInputPlaceholderTextColor			= try container.decodeIfPresent	(Color.self,				forKey: .cardInputPlaceholderTextColor)			?? Settings.default.cardInputPlaceholderTextColor
-		let cardInputDescriptionFont				= try container.decodeIfPresent	(String.self,				forKey: .cardInputDescriptionFont)				?? Settings.default.cardInputDescriptionFont
-		let cardInputDescriptionTextColor			= try container.decodeIfPresent	(Color.self,				forKey: .cardInputDescriptionTextColor)			?? Settings.default.cardInputDescriptionTextColor
-		let cardInputSaveCardSwitchOffTintColor		= try container.decodeIfPresent	(Color.self,				forKey: .cardInputSaveCardSwitchOffTintColor)	?? Settings.default.cardInputSaveCardSwitchOffTintColor
-		let cardInputSaveCardSwitchOnTintColor		= try container.decodeIfPresent	(Color.self,				forKey: .cardInputSaveCardSwitchOnTintColor)	?? Settings.default.cardInputSaveCardSwitchOnTintColor
-		let cardInputSaveCardSwitchThumbTintColor	= try container.decodeIfPresent	(Color.self,				forKey: .cardInputSaveCardSwitchThumbTintColor)	?? Settings.default.cardInputSaveCardSwitchThumbTintColor
-		let cardInputScanIconFrameTintColor			= try container.decodeIfPresent	(Color.self,				forKey: .cardInputScanIconFrameTintColor)		?? Settings.default.cardInputScanIconFrameTintColor
-		let cardInputScanIconTintColor				= try container.decodeIfPresent	(Color.self,				forKey: .cardInputScanIconTintColor)			?? Settings.default.cardInputScanIconTintColor
-		let tapButtonDisabledBackgroundColor		= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonDisabledBackgroundColor)		?? Settings.default.tapButtonDisabledBackgroundColor
-		let tapButtonEnabledBackgroundColor			= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonEnabledBackgroundColor)		?? Settings.default.tapButtonEnabledBackgroundColor
-		let tapButtonHighlightedBackgroundColor		= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonHighlightedBackgroundColor)	?? Settings.default.tapButtonHighlightedBackgroundColor
-		let tapButtonFont							= try container.decodeIfPresent	(String.self,				forKey: .tapButtonFont)							?? Settings.default.tapButtonFont
-		let tapButtonDisabledTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonDisabledTextColor)			?? Settings.default.tapButtonDisabledTextColor
-		let tapButtonEnabledTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonEnabledTextColor)				?? Settings.default.tapButtonEnabledTextColor
-		let tapButtonHighlightedTextColor			= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonHighlightedTextColor)			?? Settings.default.tapButtonHighlightedTextColor
-		let tapButtonCornerRadius					= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonCornerRadius)					?? Settings.default.tapButtonCornerRadius
-		let isTapButtonLoaderVisible				= try container.decodeIfPresent	(Bool.self,					forKey: .isTapButtonLoaderVisible)				?? Settings.default.isTapButtonLoaderVisible
-		let isTapButtonSecurityIconVisible			= try container.decodeIfPresent	(Bool.self,					forKey: .isTapButtonSecurityIconVisible)		?? Settings.default.isTapButtonSecurityIconVisible
-		let tapButtonHeight							= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonHeight)						?? Settings.default.tapButtonHeight
-		let tapButtonEdgeInsets						= try container.decodeIfPresent	(UIEdgeInsets.self,			forKey: .tapButtonEdgeInsets)					?? Settings.default.tapButtonEdgeInsets
-		let backgroundColor							= try container.decodeIfPresent	(Color.self,				forKey: .backgroundColor)						?? Settings.default.backgroundColor
-		let backgroundBlurStyle						= try container.decodeIfPresent	(UIBlurEffect.Style.self,	forKey: .backgroundBlurStyle)					?? Settings.default.backgroundBlurStyle
-		let backgroundBlurProgress					= try container.decodeIfPresent	(CGFloat.self,				forKey: .backgroundBlurProgress)				?? Settings.default.backgroundBlurProgress
+		let appearanceMode							= try container.decodeIfPresent	(SDKAppearanceMode.self,	forKey: .appearanceMode)							?? Settings.default.appearanceMode
+		let showsStatusPopup						= try container.decodeIfPresent	(Bool.self,					forKey: .showsStatusPopup)							?? Settings.default.showsStatusPopup
+		let headerFont								= try container.decodeIfPresent	(String.self,				forKey: .headerFont)								?? Settings.default.headerFont
+		let headerTextColor							= try container.decodeIfPresent	(Color.self,				forKey: .headerTextColor)							?? Settings.default.headerTextColor
+		let headerBackgroundColor					= try container.decodeIfPresent	(Color.self,				forKey: .headerBackgroundColor)						?? Settings.default.headerBackgroundColor
+		let headerCancelFont						= try container.decodeIfPresent	(String.self,				forKey: .headerCancelFont)							?? Settings.default.headerCancelFont
+		let headerCancelNormalTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .headerCancelNormalTextColor)				?? Settings.default.headerCancelNormalTextColor
+		let headerCancelHighlightedTextColor		= try container.decodeIfPresent	(Color.self,				forKey: .headerCancelHighlightedTextColor)			?? Settings.default.headerCancelHighlightedTextColor
+		let cardInputFont							= try container.decodeIfPresent	(String.self,				forKey: .cardInputFont)								?? Settings.default.cardInputFont
+		let cardInputTextColor						= try container.decodeIfPresent	(Color.self,				forKey: .cardInputTextColor)						?? Settings.default.cardInputTextColor
+		let cardInputInvalidTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .cardInputInvalidTextColor)					?? Settings.default.cardInputInvalidTextColor
+		let cardInputPlaceholderTextColor			= try container.decodeIfPresent	(Color.self,				forKey: .cardInputPlaceholderTextColor)				?? Settings.default.cardInputPlaceholderTextColor
+		let cardInputDescriptionFont				= try container.decodeIfPresent	(String.self,				forKey: .cardInputDescriptionFont)					?? Settings.default.cardInputDescriptionFont
+		let cardInputDescriptionTextColor			= try container.decodeIfPresent	(Color.self,				forKey: .cardInputDescriptionTextColor)				?? Settings.default.cardInputDescriptionTextColor
+		let cardInputSaveCardSwitchOffTintColor		= try container.decodeIfPresent	(Color.self,				forKey: .cardInputSaveCardSwitchOffTintColor)		?? Settings.default.cardInputSaveCardSwitchOffTintColor
+		let cardInputSaveCardSwitchOnTintColor		= try container.decodeIfPresent	(Color.self,				forKey: .cardInputSaveCardSwitchOnTintColor)		?? Settings.default.cardInputSaveCardSwitchOnTintColor
+		let cardInputSaveCardSwitchThumbTintColor	= try container.decodeIfPresent	(Color.self,				forKey: .cardInputSaveCardSwitchThumbTintColor)		?? Settings.default.cardInputSaveCardSwitchThumbTintColor
+		let cardInputScanIconFrameTintColor			= try container.decodeIfPresent	(Color.self,				forKey: .cardInputScanIconFrameTintColor)			?? Settings.default.cardInputScanIconFrameTintColor
+		let cardInputScanIconTintColor				= try container.decodeIfPresent	(Color.self,				forKey: .cardInputScanIconTintColor)				?? Settings.default.cardInputScanIconTintColor
+		let tapButtonDisabledBackgroundColor		= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonDisabledBackgroundColor)			?? Settings.default.tapButtonDisabledBackgroundColor
+		let tapButtonEnabledBackgroundColor			= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonEnabledBackgroundColor)			?? Settings.default.tapButtonEnabledBackgroundColor
+		let tapButtonHighlightedBackgroundColor		= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonHighlightedBackgroundColor)		?? Settings.default.tapButtonHighlightedBackgroundColor
+		let tapButtonFont							= try container.decodeIfPresent	(String.self,				forKey: .tapButtonFont)								?? Settings.default.tapButtonFont
+		let tapButtonDisabledTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonDisabledTextColor)				?? Settings.default.tapButtonDisabledTextColor
+		let tapButtonEnabledTextColor				= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonEnabledTextColor)					?? Settings.default.tapButtonEnabledTextColor
+		let tapButtonHighlightedTextColor			= try container.decodeIfPresent	(Color.self,				forKey: .tapButtonHighlightedTextColor)				?? Settings.default.tapButtonHighlightedTextColor
+		let tapButtonCornerRadius					= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonCornerRadius)						?? Settings.default.tapButtonCornerRadius
+		let isTapButtonLoaderVisible				= try container.decodeIfPresent	(Bool.self,					forKey: .isTapButtonLoaderVisible)					?? Settings.default.isTapButtonLoaderVisible
+		let isTapButtonSecurityIconVisible			= try container.decodeIfPresent	(Bool.self,					forKey: .isTapButtonSecurityIconVisible)			?? Settings.default.isTapButtonSecurityIconVisible
+		let tapButtonHeight							= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonHeight)							?? Settings.default.tapButtonHeight
+		let tapButtonEdgeInsets						= try container.decodeIfPresent	(UIEdgeInsets.self,			forKey: .tapButtonEdgeInsets)						?? Settings.default.tapButtonEdgeInsets
+		let backgroundColor							= try container.decodeIfPresent	(Color.self,				forKey: .backgroundColor)							?? Settings.default.backgroundColor
+		let backgroundBlurStyle						= try container.decodeIfPresent	(UIBlurEffect.Style.self,	forKey: .backgroundBlurStyle)						?? Settings.default.backgroundBlurStyle
+		let backgroundBlurProgress					= try container.decodeIfPresent	(CGFloat.self,				forKey: .backgroundBlurProgress)					?? Settings.default.backgroundBlurProgress
 		
         if envCustomer == nil {
             
@@ -408,6 +415,7 @@ extension Settings: Decodable {
 				  transactionMode:							transactionMode,
 				  isThreeDSecure:							isThreeDSecure,
 				  canSaveSameCardMultipleTimes:				canSaveCardMultipleTimes,
+				  saveCardSwitchEnabledByDefault:			saveCardSwitchEnabledByDefault,
 				  
 				  currency:									currency,
 				  customer:									envCustomer,

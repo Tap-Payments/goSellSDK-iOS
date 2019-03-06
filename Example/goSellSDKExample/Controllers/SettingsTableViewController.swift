@@ -483,6 +483,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var customerNameLabel: UILabel?
 	@IBOutlet private weak var threeDSecureSwitch: UISwitch?
 	@IBOutlet private weak var saveCardMultipleTimesSwitch: UISwitch?
+	@IBOutlet private weak var saveCardSwitchEnabledByDefaultSwitch: UISwitch?
 	
 	@IBOutlet private weak var destinationsTableView: UITableView? {
 		
@@ -615,6 +616,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         self.currencyValueLabel?.text           			= self.currentSettings?.currency.localizedSymbol
 		self.threeDSecureSwitch?.isOn						= self.currentSettings?.isThreeDSecure ?? Settings.default.isThreeDSecure
 		self.saveCardMultipleTimesSwitch?.isOn				= self.currentSettings?.canSaveSameCardMultipleTimes ?? Settings.default.canSaveSameCardMultipleTimes
+		self.saveCardSwitchEnabledByDefaultSwitch?.isOn		= self.currentSettings?.isSaveCardSwitchToggleEnabledByDefault ?? Settings.default.isSaveCardSwitchToggleEnabledByDefault
 		
 		if let name = self.currentSettings?.customer?.customer.firstName?.trimmingCharacters(in: .whitespacesAndNewlines),
 			let surname = self.currentSettings?.customer?.customer.lastName?.trimmingCharacters(in: .whitespacesAndNewlines) {
@@ -771,6 +773,11 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	@IBAction private func saveCardMultipleTimesSwitchValueChanged(_ sender: Any) {
 		
 		self.currentSettings?.canSaveSameCardMultipleTimes = self.saveCardMultipleTimesSwitch?.isOn ?? Settings.default.canSaveSameCardMultipleTimes
+	}
+	
+	@IBAction private func saveCardSwitchOnByDefaultValueChanged(_ sender: Any) {
+		
+		self.currentSettings?.isSaveCardSwitchToggleEnabledByDefault = self.saveCardSwitchEnabledByDefaultSwitch?.isOn ?? Settings.default.isSaveCardSwitchToggleEnabledByDefault
 	}
 	
 	@IBAction private func showsStatusPopupSwitchValueChanged(_ sender: Any) {

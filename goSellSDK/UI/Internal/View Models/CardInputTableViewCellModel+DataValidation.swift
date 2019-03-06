@@ -275,11 +275,20 @@ extension CardInputTableViewCellModel: CardValidatorDelegate {
 		
 		Process.shared.buttonHandlerInterface.updateButtonState()
 		
-		if type == .cardNumber {
+		let ready = self.isReadyForPayment
+		
+		let saveCardValidator = self.validator(of: .saveCard) as? SaveCardValidator
+		saveCardValidator?.canSaveCard = ready
+		
+		if ready && Process.shared.dataManagerInterface.shouldToggleSaveCardSwitchToOnAutomatically {
 			
-			(self.validator(of: .saveCard) as? SaveCardValidator)?.canSaveCard = valid
+			saveCardValidator?.toggleSwitchOn()
 		}
-    }
+		else if !ready {
+			
+			saveCardValidator?.toggleSwitchOff()
+		}
+	}
 }
 
 // MARK: - CardBrandChangeReporting

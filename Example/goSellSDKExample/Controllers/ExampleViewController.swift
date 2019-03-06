@@ -324,6 +324,11 @@ extension ExampleViewController: SessionDataSource {
 		return self.paymentSettings.canSaveSameCardMultipleTimes
 	}
 	
+	internal var isSaveCardSwitchOnByDefault: Bool {
+		
+		return self.paymentSettings.isSaveCardSwitchToggleEnabledByDefault
+	}
+	
     internal var receiptSettings: Receipt? {
         
         return Receipt(email: true, sms: true)

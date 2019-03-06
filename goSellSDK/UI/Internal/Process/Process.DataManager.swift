@@ -32,6 +32,9 @@ internal protocol DataManagerInterface: ClassProtocol {
 	var isInDeleteSavedCardsMode: Bool { get set }
 	var isChargeOrAuthorizeInProgress: Bool { get }
 	
+	var shouldToggleSaveCardSwitchToOnAutomatically: Bool { get }
+	var didToggleSaveCardSwitchToOnAutomatically: Bool { get set }
+	
 	func loadPaymentOptions(for session: SessionProtocol) -> Bool
 	
 	func currencySymbol(for currency: Currency) -> String
@@ -158,6 +161,13 @@ internal extension Process {
 			
 			fatalError("Should be implemented in subclass.")
 		}
+		
+		internal var shouldToggleSaveCardSwitchToOnAutomatically: Bool {
+			
+			fatalError("Should be implemented in subclass.")
+		}
+		
+		internal var didToggleSaveCardSwitchToOnAutomatically: Bool = false
 		
 		internal var requires3DSecure: Bool {
 			
@@ -431,6 +441,11 @@ internal extension Process {
 			default: return false
 				
 			}
+		}
+		
+		internal override var shouldToggleSaveCardSwitchToOnAutomatically: Bool {
+			
+			return (self.process.process.externalSession?.dataSource?.isSaveCardSwitchOnByDefault ?? false) && !self.didToggleSaveCardSwitchToOnAutomatically
 		}
 		
 		internal override var groupWithButtonButtonClickAction: TypeAlias.ArgumentlessClosure? {
@@ -752,6 +767,11 @@ internal extension Process {
 				
 				self._currentPaymentOption = newValue
 			}
+		}
+		
+		internal override var shouldToggleSaveCardSwitchToOnAutomatically: Bool {
+			
+			return false
 		}
 		
 		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {

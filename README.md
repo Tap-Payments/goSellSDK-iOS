@@ -553,6 +553,13 @@ The following table describes its structure and specifies which fields are requi
         <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Defines if same card can be saved more than once.<br><b>Note:</b> Same cards means absolutely equal data set. For example, if customer specifies same card details, but different cardholder names, we will treat this like different cards.</sub></td>
     </tr>
+    <tr>
+        <td><sub><i>isSaveCardSwitchOnByDefault</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines if save card switch is on by default.<br><b>Note:</b> If value of this property is <i>true</i>, then switch will be remaining off until card information is filled and valid. And after will be toggled on automatically.</sub></td>
+    </tr>
+    
 </table>
 
 <a name="session_data_source_samples"></a>

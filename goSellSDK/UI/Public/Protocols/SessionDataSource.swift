@@ -63,4 +63,9 @@
 	/// Defines if same card can be saved more than once.
 	/// Default is `true`.
 	@objc optional var allowsToSaveSameCardMoreThanOnce: Bool { get }
+	
+	/// Defines if save card switch is on by default.
+	/// - Note: If value of this property is `true`, then switch will be remaining off until card information is filled and valid.
+	///         And after will be toggled on automatically.
+	@objc optional var isSaveCardSwitchOnByDefault: Bool { get }
 }
