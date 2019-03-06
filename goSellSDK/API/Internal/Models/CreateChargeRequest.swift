@@ -37,6 +37,9 @@ internal class CreateChargeRequest: Encodable {
     /// if source.id = "src_card" then Credit Card payment page link will be provided.
     /// if source.id = "Card Token ID or Card ID" then Credit Card payment processing page link will be provided.
     internal let source: SourceRequest
+	
+	/// List of destinations.
+	internal private(set) var destinations: [Destination]?
     
     /// An arbitrary string which you can attach to a Charge object. It is displayed when in the web interface alongside the charge.
     internal private(set) var descriptionText: String?
@@ -80,6 +83,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - redirect: Redirect.
     ///   - post: Post.
     ///   - source: Source.
+	///   - destinations: List of destinations.
     ///   - descriptionText: Description text.
     ///   - metadata: Metadata.
     ///   - reference: Reference.
@@ -87,7 +91,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-    internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, descriptionText: String?, metadata: Metadata?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
+	internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, destinations: [Destination]?, descriptionText: String?, metadata: Metadata?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
         
         self.amount                 = amount
         self.currency               = currency
@@ -118,6 +122,7 @@ internal class CreateChargeRequest: Encodable {
         case redirect               = "redirect"
         case post                   = "post"
         case source                 = "source"
+		case destinations			= "destinations"
         case descriptionText        = "description"
         case metadata               = "metadata"
         case reference              = "reference"

@@ -11,6 +11,7 @@ import class    goSellSDK.goSellSDK
 import class    goSellSDK.SecretKey
 import class    UIKit.UIApplication.UIApplication
 import protocol UIKit.UIApplication.UIApplicationDelegate
+import struct	UIKit.UIApplication.UIInterfaceOrientationMask
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIWindow.UIWindow
 
@@ -28,4 +29,9 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 		goSellSDK.secretKey = SecretKey(sandbox:	"YOUR_SANDBOX_SECRET_KEY",
 										production:	"YOUR_PRODUCTION_SECRET_KEY")
     }
+	
+	internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+		
+		return (self.window?.isKeyWindow ?? false) ? .all : .portrait
+	}
 }

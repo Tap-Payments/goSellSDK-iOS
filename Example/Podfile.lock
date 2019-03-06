@@ -6,7 +6,7 @@ PODS:
     - TapAdditionsKit/Foundation/Locale (>= 1.2)
     - TapAdditionsKit/UIKit/UIView (>= 1.2)
   - Fabric (1.9.0)
-  - goSellSDK (2.0):
+  - goSellSDK (2.1):
     - CardIODynamic
     - EditableTextInsetsTextField
     - TapAdditionsKit/Foundation/Bundle
@@ -232,7 +232,7 @@ SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   EditableTextInsetsTextField: bf1e6ef6ea7678b6d769e0cbbdb7f3c34aea5e3a
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  goSellSDK: be04b82b24ae856e481b50345683f580a5b68205
+  goSellSDK: f239ba1aaec52fdf23b6feede1ded0a999fce78a
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   TapAdditionsKit: ca921e1fb9b5d74045ab569995054a6adc77e2c3
   TapApplication: 7cc6f890af56ab7fe349802305920fd290869bd5

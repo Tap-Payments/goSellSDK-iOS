@@ -9,6 +9,7 @@ import struct   CoreGraphics.CGBase.CGFloat
 import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
+import class	goSellSDK.Destination
 import class	goSellSDK.goSellSDK
 import enum		goSellSDK.SDKAppearanceMode
 import enum     goSellSDK.SDKMode
@@ -83,6 +84,11 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             customersListController.mode                = self.currentSettings?.sdkMode ?? .sandbox
             customersListController.selectedCustomer    = self.currentSettings?.customer
         }
+		else if let destinationController = (segue.destination as? UINavigationController)?.tap_rootViewController as? DestinationViewController {
+			
+			destinationController.delegate		= self
+			destinationController.destination	= self.selectedDestination
+		}
         else if let taxController = (segue.destination as? UINavigationController)?.tap_rootViewController as? TaxViewController {
             
             taxController.delegate  = self
@@ -306,7 +312,11 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         }
         
         switch reuseIdentifier {
-            
+			
+		case Constants.destinationsListCellReuseIdentifier:
+			
+			return max(65.0 * CGFloat( self.currentSettings?.destinations.count ?? 0 ), 1.0)
+			
         case Constants.taxListCellReuseIdentifier:
             
             return max(100.0 * CGFloat( self.currentSettings?.taxes.count ?? 0 ), 1.0)
@@ -381,7 +391,19 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     }
     
     // MARK: - Fileprivate -
-    
+	
+	fileprivate class DestinationsTableViewHandler: NSObject {
+		
+		fileprivate let settings: Settings
+		fileprivate unowned let settingsController: SettingsTableViewController
+		
+		fileprivate init(settings: Settings, settingsController: SettingsTableViewController) {
+			
+			self.settings = settings
+			self.settingsController = settingsController
+		}
+	}
+	
     fileprivate class ShippingTableViewHandler: NSObject {
         
         fileprivate let settings: Settings
@@ -416,8 +438,9 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         fileprivate static let transactionModeCellReuseIdentifier   					= "transaction_mode_cell"
         fileprivate static let currencyCellReuseIdentifier          					= "currency_cell"
         fileprivate static let customerCellReuseIdentifier          					= "customer_cell"
+		fileprivate static let destinationsListCellReuseIdentifier						= "destinations_list_cell"
         fileprivate static let taxListCellReuseIdentifier           					= "tax_list_cell"
-        fileprivate static let shippingListCellReuseIdentifier      					= "shiping_list_cell"
+        fileprivate static let shippingListCellReuseIdentifier      					= "shipping_list_cell"
 		
 		fileprivate static let appearanceModeCellReuseIdentifier						= "appearance_mode_cell"
 		fileprivate static let headerFontCellReuseIdentifier							= "header_font_cell"
@@ -460,6 +483,16 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     @IBOutlet private weak var customerNameLabel: UILabel?
 	@IBOutlet private weak var threeDSecureSwitch: UISwitch?
 	@IBOutlet private weak var saveCardMultipleTimesSwitch: UISwitch?
+	
+	@IBOutlet private weak var destinationsTableView: UITableView? {
+		
+		didSet {
+			
+			self.destinationsTableView?.dataSource = self.destinationTableViewHandler
+			self.destinationsTableView?.delegate = self.destinationTableViewHandler
+		}
+	}
+	
     @IBOutlet private weak var shippingTableView: UITableView? {
         
         didSet {
@@ -535,10 +568,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     }
     
     private var selectedCellReuseIdentifier: String?
-    
+	
+	private lazy var destinationTableViewHandler: DestinationsTableViewHandler = DestinationsTableViewHandler(settings: self.currentSettings ?? .default, settingsController: self)
     private lazy var shippingTableViewHandler: ShippingTableViewHandler = ShippingTableViewHandler(settings: self.currentSettings ?? .default, settingsController: self)
     private lazy var taxesTableViewHandler: TaxesTableViewHandler = TaxesTableViewHandler(settings: self.currentSettings ?? .default, settingsController: self)
-    
+	
+	private var selectedDestination: Destination?
     private var selectedTax: Tax?
     private var selectedShipping: Shipping?
     
@@ -872,6 +907,27 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.backgroundBlurProgressValueLabel?.text = String(format: "%.2f", progress)
 	}
 	
+	@IBAction private func addDestinationButtonTouchUpInside(_ sender: Any) {
+		
+		if let selectedDestinationIndexPath = self.destinationsTableView?.indexPathForSelectedRow {
+			
+			self.destinationsTableView?.deselectRow(at: selectedDestinationIndexPath, animated: false)
+		}
+		
+		self.showDestinationController()
+	}
+	
+	private func showDetails(of destination: Destination) {
+		
+		self.showDestinationController(with: destination)
+	}
+	
+	private func showDestinationController(with destination: Destination? = nil) {
+		
+		self.selectedDestination = destination
+		self.show(DestinationViewController.self)
+	}
+	
     @IBAction private func addTaxButtonTouchUpInside(_ sender: Any) {
         
         if let selectedTaxIndexPath = self.taxesTableView?.indexPathForSelectedRow {
@@ -881,7 +937,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         self.showTaxController()
     }
-    
+	
     private func showDetails(of tax: Tax) {
         
         self.showTaxController(with: tax)
@@ -913,7 +969,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         self.selectedShipping = shipping
         self.show(ShippingViewController.self)
     }
-	
+
 	private func updateAlignments() {
 		
 		let trailing: NSTextAlignment = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight ? .right : .left
@@ -959,6 +1015,35 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 
 // MARK: - SeguePresenter
 extension SettingsTableViewController: SeguePresenter {}
+
+// MARK: - DestinationViewControllerDelegate
+extension SettingsTableViewController: DestinationViewControllerDelegate {
+	
+	internal func destinationViewController(_ controller: DestinationViewController, didFinishWith destination: Destination) {
+		
+		if let nonnullSelectedDestination = self.selectedDestination {
+			
+			if let index = self.currentSettings?.destinations.index(of: nonnullSelectedDestination) {
+				
+				self.currentSettings?.destinations.remove(at: index)
+				self.currentSettings?.destinations.insert(destination, at: index)
+			}
+			else {
+				
+				self.currentSettings?.destinations.append(destination)
+			}
+		}
+		else {
+			
+			self.currentSettings?.destinations.append(destination)
+		}
+		
+		self.destinationsTableView?.reloadData()
+		
+		self.tableView.beginUpdates()
+		self.tableView.endUpdates()
+	}
+}
 
 // MARK: - TaxViewControllerDelegate
 extension SettingsTableViewController: TaxViewControllerDelegate {
@@ -1266,6 +1351,68 @@ extension SettingsTableViewController: CustomersListViewControllerDelegate {
         self.currentSettings?.customer = customer
         self.updateWithCurrentSettings()
     }
+}
+
+// MARK: - UITableViewDataSource
+extension SettingsTableViewController.DestinationsTableViewHandler: UITableViewDataSource {
+	
+	private var destinations: [Destination] {
+		
+		return self.settings.destinations
+	}
+	
+	fileprivate func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		
+		return self.destinations.count
+	}
+	
+	fileprivate func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: DestinationTableViewCell.tap_className) as? DestinationTableViewCell else {
+			
+			fatalError("Failed to load \(DestinationTableViewCell.tap_className) from storyboard.")
+		}
+		
+		return cell
+	}
+}
+
+// MARK: - UITableViewDelegate
+extension SettingsTableViewController.DestinationsTableViewHandler: UITableViewDelegate {
+	
+	fileprivate func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		
+		guard let destinationCell = cell as? DestinationTableViewCell else {
+			
+			fatalError("Somehow cell class is wrong.")
+		}
+		
+		let destination = self.destinations[indexPath.row]
+		
+		destinationCell.setIdentifier(destination.identifier, amount: "\(destination.amount)", currency: destination.currency.isoCode)
+	}
+	
+	fileprivate func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		tableView.deselectRow(at: indexPath, animated: true)
+		
+		let destination = self.destinations[indexPath.row]
+		self.settingsController.showDetails(of: destination)
+	}
+	
+	fileprivate func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		
+		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, cellIndexPath) in
+			
+			self.settings.destinations.remove(at: cellIndexPath.row)
+			tableView.deleteRows(at: [cellIndexPath], with: .automatic)
+			
+			self.settingsController.tableView.beginUpdates()
+			self.settingsController.tableView.endUpdates()
+		}
+		
+		return [deleteAction]
+	}
 }
 
 // MARK: - UITableViewDataSource

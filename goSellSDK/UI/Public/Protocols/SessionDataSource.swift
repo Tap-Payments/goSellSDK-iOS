@@ -27,6 +27,9 @@
 	///         If `taxes` and/or `shipping` is implemented, it will affect the amount which is calculated based on items you pass in this property.
 	@objc optional var items: [PaymentItem]? { get }
 	
+	/// List of merchant desired destination accounts to receive money from payment transactions.
+	@objc optional var destinations: [Destination]? { get }
+	
 	/// Taxes.
 	@objc optional var taxes: [Tax]? { get }
 	

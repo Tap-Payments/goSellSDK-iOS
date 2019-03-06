@@ -15,6 +15,7 @@ import class	goSellSDK.CardVerification
 import class    goSellSDK.Charge
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
+import class	goSellSDK.Destination
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.goSellSDK
 import class    goSellSDK.PayButton
@@ -292,7 +293,12 @@ extension ExampleViewController: SessionDataSource {
 
         return self.selectedPaymentItems
     }
-    
+	
+	internal var destinations: [Destination]? {
+		
+		return self.paymentSettings.destinations
+	}
+	
     internal var mode: TransactionMode {
         
         return self.paymentSettings.transactionMode

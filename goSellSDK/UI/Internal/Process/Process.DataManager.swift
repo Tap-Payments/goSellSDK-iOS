@@ -527,6 +527,7 @@ internal extension Process {
 			
 			let amountedCurrency    = self.selectedCurrency
 			let fee                 = Process.AmountCalculator<PaymentClass>.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
+			let destinations		= dataSource.destinations ?? nil
 			let order               = Order(identifier: orderID)
 			let redirect            = TrackingURL(url: self.process.webPaymentHandlerInterface.returnURL)
 			let paymentDescription  = dataSource.paymentDescription ?? nil
@@ -565,6 +566,7 @@ internal extension Process {
 														redirect:               redirect,
 														post:                   post,
 														source:                 source,
+														destinations:			destinations,
 														descriptionText:        paymentDescription,
 														metadata:               paymentMetadata,
 														reference:              reference,
@@ -591,22 +593,23 @@ internal extension Process {
 				
 				let authorizeAction = dataSource.authorizeAction ?? .default
 				
-				let authorizeRequest = CreateAuthorizeRequest(amount:                 amountedCurrency.amount,
-															  currency:               amountedCurrency.currency,
-															  customer:               customer,
-															  fee:                    fee,
-															  order:                  order,
-															  redirect:               redirect,
-															  post:                   post,
-															  source:                 source,
-															  descriptionText:        paymentDescription,
-															  metadata:               paymentMetadata,
-															  reference:              reference,
-															  shouldSaveCard:         shouldSaveCard,
-															  statementDescriptor:    statementDescriptor,
-															  requires3DSecure:       requires3DSecure,
-															  receipt:                receiptSettings,
-															  authorizeAction:        authorizeAction)
+				let authorizeRequest = CreateAuthorizeRequest(amount:				amountedCurrency.amount,
+															  currency:				amountedCurrency.currency,
+															  customer:				customer,
+															  fee:					fee,
+															  order:				order,
+															  redirect:				redirect,
+															  post:					post,
+															  source:				source,
+															  destinations:			destinations,
+															  descriptionText:		paymentDescription,
+															  metadata:				paymentMetadata,
+															  reference:			reference,
+															  shouldSaveCard:		shouldSaveCard,
+															  statementDescriptor:	statementDescriptor,
+															  requires3DSecure:		requires3DSecure,
+															  receipt:				receiptSettings,
+															  authorizeAction:		authorizeAction)
 				
 				APIClient.shared.createAuthorize(with: authorizeRequest) { [weak self] (authorize, error) in
 					

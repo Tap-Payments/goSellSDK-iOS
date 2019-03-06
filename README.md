@@ -482,6 +482,12 @@ The following table describes its structure and specifies which fields are requi
         <td align="left"><sub>List of items to pay for.<br><b>Note:</b> In order to have payment amount either <i>amount</i> or <i>items</i> should be implemented. If both are implemented, <i>items</i> is preferred.</sub></td>
     </tr>
     <tr>
+        <td><sub><i>destinations</i></sub></td>
+        <td><sub><b>NSArray <nobr>&lt;Destination *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Destination]</nobr></b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>The list of merchant desired destinations accounts to receive funds from payment/authorization transactions.</sub></td>
+    </tr>
+    <tr>
         <td><sub><i>taxes</i></sub></td>
         <td><sub><b>NSArray <nobr>&lt;Tax *&gt;</nobr></b></sub></td><td><sub><b><nobr>[Tax]</nobr></b></sub></td>
         <td colspan=3><sub><i>false</i></sub></td>

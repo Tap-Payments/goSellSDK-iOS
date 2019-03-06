@@ -9,6 +9,7 @@ import struct	CoreGraphics.CGBase.CGFloat
 import struct	Foundation.NSLocale.Locale
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
+import class	goSellSDK.Destination
 import class	goSellSDK.goSellSDK
 import enum		goSellSDK.SDKAppearanceMode
 import enum     goSellSDK.SDKMode
@@ -31,6 +32,7 @@ internal final class Settings: Encodable {
 											 canSaveSameCardMultipleTimes:			true,
 											 currency:								try! Currency(isoCode: "kwd"),
 											 customer:								nil,
+											 destinations:							[],
 											 shippingList:							[],
 											 taxes:									[],
 											 
@@ -86,6 +88,8 @@ internal final class Settings: Encodable {
     internal var currency: Currency
     
     internal var customer: EnvironmentCustomer?
+	
+	internal var destinations: [Destination]
 	
 	internal var shippingList: [Shipping]
 	
@@ -179,6 +183,7 @@ internal final class Settings: Encodable {
 				  canSaveSameCardMultipleTimes:				Bool,
 				  currency:									Currency,
 				  customer:									EnvironmentCustomer?,
+				  destinations:								[Destination],
 				  shippingList:								[Shipping],
 				  taxes:									[Tax],
 				  
@@ -225,6 +230,7 @@ internal final class Settings: Encodable {
 		self.canSaveSameCardMultipleTimes			= canSaveSameCardMultipleTimes
         self.currency           					= currency
         self.customer           					= customer
+		self.destinations							= destinations
         self.shippingList       					= shippingList
         self.taxes              					= taxes
 		
@@ -276,6 +282,7 @@ internal final class Settings: Encodable {
 		case canSaveSameCardMultipleTimes			= "save_same_card_multiple_times"
         case currency           					= "currency"
         case customer           					= "customer"
+		case destinations							= "destinations"
         case shippingList       					= "shippingList"
         case taxes              					= "taxes"
 		
@@ -331,6 +338,7 @@ extension Settings: Decodable {
 		let canSaveCardMultipleTimes				= try container.decodeIfPresent	(Bool.self,					forKey: .canSaveSameCardMultipleTimes)			?? Settings.default.canSaveSameCardMultipleTimes
         let currency        						= try container.decode			(Currency.self,				forKey: .currency)
         var envCustomer     						= try container.decodeIfPresent	(EnvironmentCustomer.self,	forKey: .customer)
+		let destinations							= try container.decodeIfPresent ([Destination].self,		forKey: .destinations)							?? []
         let shippingList    						= try container.decode			([Shipping].self,			forKey: .shippingList)
         let taxes           						= try container.decode			([Tax].self,				forKey: .taxes)
 		
@@ -403,6 +411,7 @@ extension Settings: Decodable {
 				  
 				  currency:									currency,
 				  customer:									envCustomer,
+				  destinations:								destinations,
 				  shippingList:								shippingList,
 				  taxes:									taxes,
 				  
