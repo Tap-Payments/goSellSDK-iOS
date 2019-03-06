@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>_ObjCMeasurement Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/_ObjCMeasurement" class="dashAnchor"></a>
+    <a title="_ObjCMeasurement Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">goSellSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        _ObjCMeasurement Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/APIError.html">APIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Acquirer.html">Acquirer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AmountModificator.html">AmountModificator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Authorize.html">Authorize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizeAction.html">AuthorizeAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizeActionResponse.html">AuthorizeActionResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardVerification.html">CardVerification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Charge.html">Charge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Customer.html">Customer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EmailAddress.html">EmailAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PayButton.html">PayButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PaymentItem.html">PaymentItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PhoneNumber.html">PhoneNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Quantity.html">Quantity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Receipt.html">Receipt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reference.html">Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SecretKey.html">SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Shipping.html">Shipping</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Source.html">Source</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SourceRequest.html">SourceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKAPIError.html">TapSDKAPIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKError.html">TapSDKError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKKnownError.html">TapSDKKnownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKUnknownError.html">TapSDKUnknownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Tax.html">Tax</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TrackingURL.html">TrackingURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TransactionDetails.html">TransactionDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/_ObjCMeasurement.html">_ObjCMeasurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/goSellSDK.html">goSellSDK</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Area.html">Area</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationRequirer.html">AuthenticationRequirer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationStatus.html">AuthenticationStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationType.html">AuthenticationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthorizeActionStatus.html">AuthorizeActionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthorizeActionType.html">AuthorizeActionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardVerificationStatus.html">CardVerificationStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ChargeStatus.html">ChargeStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Duration.html">Duration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ElectricCharge.html">ElectricCharge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ElectricCurrent.html">ElectricCurrent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Energy.html">Energy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ErrorCode.html">ErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Length.html">Length</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Mass.html">Mass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Measurement.html">Measurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Power.html">Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKAppearanceMode.html">SDKAppearanceMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKMode.html">SDKMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceChannel.html">SourceChannel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceObject.html">SourceObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourcePaymentType.html">SourcePaymentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceType.html">SourceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransactionMode.html">TransactionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/URLStatus.html">URLStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/PaymentOption.html">PaymentOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/SeparateWindowRootViewController.html">SeparateWindowRootViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapBlurEffectStyle.html">TapBlurEffectStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapFont.html">TapFont</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionAppearance.html">SessionAppearance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionDataSource.html">SessionDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionDelegate.html">SessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionProtocol.html">SessionProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9goSellSDK8Metadataa">Metadata</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>_ObjCMeasurement</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc(Measurement)</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nv">_ObjCMeasurement</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Measurement class.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)area:"></a>
+                    <a name="//apple_ref/swift/Method/area(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)area:">area(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of area measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">area</span><span class="p">(</span><span class="n">_</span> <span class="nv">area</span><span class="p">:</span> <span class="kt"><a href="../Enums/Area.html">Area</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>area</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Area measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Area measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)duration:"></a>
+                    <a name="//apple_ref/swift/Method/duration(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)duration:">duration(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of duration measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">duration</span><span class="p">(</span><span class="n">_</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt"><a href="../Enums/Duration.html">Duration</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Duration measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Duration measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)electricCharge:"></a>
+                    <a name="//apple_ref/swift/Method/electricCharge(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)electricCharge:">electricCharge(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of electric charge measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">electricCharge</span><span class="p">(</span><span class="n">_</span> <span class="nv">electricCharge</span><span class="p">:</span> <span class="kt"><a href="../Enums/ElectricCharge.html">ElectricCharge</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>electricCharge</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Electric charge measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Electric charge measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)electricCurrent:"></a>
+                    <a name="//apple_ref/swift/Method/electricCurrent(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)electricCurrent:">electricCurrent(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of electric current measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">electricCurrent</span><span class="p">(</span><span class="n">_</span> <span class="nv">electricCurrent</span><span class="p">:</span> <span class="kt"><a href="../Enums/ElectricCurrent.html">ElectricCurrent</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>electricCurrent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Electric current measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Electric current measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)energy:"></a>
+                    <a name="//apple_ref/swift/Method/energy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)energy:">energy(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of energy measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">energy</span><span class="p">(</span><span class="n">_</span> <span class="nv">energy</span><span class="p">:</span> <span class="kt"><a href="../Enums/Energy.html">Energy</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>energy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Energy measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Energy meausurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)length:"></a>
+                    <a name="//apple_ref/swift/Method/length(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)length:">length(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of length measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">length</span><span class="p">(</span><span class="n">_</span> <span class="nv">length</span><span class="p">:</span> <span class="kt"><a href="../Enums/Length.html">Length</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Length measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Length measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)mass:"></a>
+                    <a name="//apple_ref/swift/Method/mass(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)mass:">mass(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of mass measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">mass</span><span class="p">(</span><span class="n">_</span> <span class="nv">mass</span><span class="p">:</span> <span class="kt"><a href="../Enums/Mass.html">Mass</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Mass measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Mass measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)power:"></a>
+                    <a name="//apple_ref/swift/Method/power(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)power:">power(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of power measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">power</span><span class="p">(</span><span class="n">_</span> <span class="nv">power</span><span class="p">:</span> <span class="kt"><a href="../Enums/Power.html">Power</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>power</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Power measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Power measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)volume:"></a>
+                    <a name="//apple_ref/swift/Method/volume(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)volume:">volume(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of volume measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">volume</span><span class="p">(</span><span class="n">_</span> <span class="nv">volume</span><span class="p">:</span> <span class="kt"><a href="../Enums/Volume.html">Volume</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>volume</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Volume measurement unit.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Volume measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(cm)units"></a>
+                    <a name="//apple_ref/swift/Method/units()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(cm)units">units()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns an instance of unit measurement.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">units</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_ObjCMeasurement</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Units measurement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)Measurement(im)isEqual:"></a>
+                    <a name="//apple_ref/swift/Method/isEqual(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)Measurement(im)isEqual:">isEqual(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks if the receiver is equal to <code>object.</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">isEqual</span><span class="p">(</span><span class="n">_</span> <span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>object</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Object to test equality with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the receiver is equal to <code>object</code>, <code>false</code> otherwise.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9goSellSDK16_ObjCMeasurementC2eeoiySbAC_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9goSellSDK16_ObjCMeasurementC2eeoiySbAC_ACtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks if 2 objects are equal.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="n">_ObjCMeasurement</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="n">_ObjCMeasurement</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>First object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Second object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if 2 objects are equal, <code>false</code> otherwise.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-03-06)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

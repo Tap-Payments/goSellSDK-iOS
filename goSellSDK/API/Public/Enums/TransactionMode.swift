@@ -1,0 +1,99 @@
+//
+//  TransactionMode.swift
+//  goSellSDK
+//
+//  Copyright © 2019 Tap Payments. All rights reserved.
+//
+
+/// Transaction mode.
+@objc public enum TransactionMode: Int, CaseIterable {
+    
+    /// Regular payment transaction.
+    @objc(Purchase) case purchase
+    
+    /// Only authorizing the payment and capturing the amount.
+    @objc(AuthorizeCapture) case authorizeCapture
+	
+	/// Mode to save the card only.
+	@objc(CardSaving) case cardSaving
+	
+	// MARK: - Internal -
+	// MARK: Properties
+	
+	/// Default transaction mode.
+	internal static let `default`: TransactionMode = .purchase
+	
+    // MARK: - Private -
+    // MARK: Properties
+    
+    private var stringRepresentation: String {
+        
+        switch self {
+            
+        case .purchase:         return "PURCHASE"
+        case .authorizeCapture: return "AUTHORIZE_CAPTURE"
+		case .cardSaving:		return "SAVE_CARD"
+
+        }
+    }
+    
+    // MARK: Methods
+    
+    private init(stringRepresentation: String) {
+        
+        switch stringRepresentation {
+            
+        case TransactionMode.purchase.stringRepresentation:
+            
+            self = .purchase
+            
+        case TransactionMode.authorizeCapture.stringRepresentation:
+            
+            self = .authorizeCapture
+			
+		case TransactionMode.cardSaving.stringRepresentation:
+			
+			self = .cardSaving
+			
+        default:
+            
+            self = .purchase
+        }
+    }
+}
+
+// MARK: - CustomStringConvertible
+extension TransactionMode: CustomStringConvertible {
+    
+    public var description: String {
+        
+        switch self {
+            
+        case .purchase:			return "Payment"
+        case .authorizeCapture:	return "Authorize only"
+		case .cardSaving:		return "Save Card"
+
+        }
+    }
+}
+
+// MARK: - Encodable
+extension TransactionMode: Encodable {
+    
+    public func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.singleValueContainer()
+        try container.encode(self.stringRepresentation)
+    }
+}
+
+// MARK: - Decodable
+extension TransactionMode: Decodable {
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let stringValue = try container.decode(String.self)
+        self.init(stringRepresentation: stringValue)
+    }
+}

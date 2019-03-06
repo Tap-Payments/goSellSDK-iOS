@@ -1,67 +1,59 @@
 Pod::Spec.new do |goSellSDK|
     
-    goSellSDK.platform				= :ios
-    goSellSDK.ios.deployment_target	= '8.0'
-    goSellSDK.swift_version			= '4.2'
-    goSellSDK.name					= 'goSellSDK'
-    goSellSDK.summary				= 'goSell SDK for iOS'
-    goSellSDK.requires_arc			= true
-    goSellSDK.version				= '1.1.5'
-    goSellSDK.license				= { :type => 'MIT', :file => 'LICENSE' }
-    goSellSDK.author				= { 'Tap Payments' => 'hello@tap.company' }
-    goSellSDK.homepage				= 'https://github.com/Tap-Payments/goSellSDK-iOS'
-    goSellSDK.source				= { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
-    goSellSDK.default_subspecs		= 'BIN', 'Charge', 'Token', 'Card', 'Customers'
+    goSellSDK.platform              = :ios
+    goSellSDK.ios.deployment_target = '8.0'
+    goSellSDK.swift_version         = '4.2'
+    goSellSDK.name                  = 'goSellSDK'
+    goSellSDK.summary               = 'goSell SDK for iOS'
+    goSellSDK.requires_arc          = true
+    goSellSDK.version               = '2.0'
+    goSellSDK.license               = { :type => 'MIT', :file => 'LICENSE' }
+    goSellSDK.author                = { 'Tap Payments' => 'hello@tap.company' }
+    goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
+    goSellSDK.source                = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
+    goSellSDK.source_files          = 'goSellSDK/**/*.{swift}'
+	goSellSDK.ios.resource_bundle   = { 'goSellSDKResources' => ['goSellSDK/UI/Internal/Resources/*.{xcassets,storyboard,xib,json}', 'goSellSDK/UI/Internal/Resources/Localization/*.lproj'] }
     
-    goSellSDK.subspec 'Core' do |core|
-    
-        core.dependency 'TapNetworkManager', '1.2.2'
-        core.source_files = 'goSellSDK/Core/**/*.swift'
-    
-    end
-    
-    goSellSDK.subspec 'BIN' do |bin|
-    
-        bin.dependency 'goSellSDK/Core'
-        bin.source_files = 'goSellSDK/BIN/**/*.swift'
-    
-    end
-    
-    goSellSDK.subspec 'Charge' do |charge|
-        
-        charge.dependency 'goSellSDK/Core'
-        charge.source_files = 'goSellSDK/Charge/**/*.swift'
-        
-    end
-    
-    goSellSDK.subspec 'Card' do |card|
-    
-        card.dependency 'goSellSDK/Core'
-        card.source_files = 'goSellSDK/Card/**/*.swift'
-    
-    end
-    
-    goSellSDK.subspec 'Crypter' do |crypter|
-    
-        crypter.dependency 'goSellSDK/Core'
-        crypter.source_files = 'goSellSDK/Crypter/**/*.swift'
-    
-    end
-    
-    goSellSDK.subspec 'Customers' do |customers|
-    
-        customers.dependency 'goSellSDK/Core'
-        customers.source_files = 'goSellSDK/Customers/**/*.swift'
-    
-    end
-    
-    goSellSDK.subspec 'Token' do |token|
-        
-        token.dependency 'goSellSDK/Core'
-        token.dependency 'goSellSDK/Crypter'
-        
-        token.source_files = 'goSellSDK/Token/**/*.swift'
-        
-    end
+    goSellSDK.dependency 'CardIODynamic'
+    goSellSDK.dependency 'EditableTextInsetsTextField'
+    goSellSDK.dependency 'TapAdditionsKit/Foundation/Bundle'
+    goSellSDK.dependency 'TapAdditionsKit/Foundation/Date'
+    goSellSDK.dependency 'TapAdditionsKit/Foundation/Locale'
+	goSellSDK.dependency 'TapAdditionsKit/Foundation/URL'
+	goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Bool'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Comparable'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Decodable'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Dictionary'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/Encodable'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/KeyedDecodingContainer'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/OptionSet'
+    goSellSDK.dependency 'TapAdditionsKit/SwiftStandartLibrary/String'
+    goSellSDK.dependency 'TapAdditionsKit/Tap/TypeAlias'
+	goSellSDK.dependency 'TapAdditionsKit/UIKit/NSLayoutConstraint'
+	goSellSDK.dependency 'TapAdditionsKit/UIKit/UIEdgeInsets'
+	goSellSDK.dependency 'TapAdditionsKit/UIKit/UIButton'
+	goSellSDK.dependency 'TapAdditionsKit/UIKit/UIImageView'
+	goSellSDK.dependency 'TapAdditionsKit/UIKit/UILabel'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UINavigationController'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIResponder'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIScreen'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UITableView'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIView'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIView/AnimationOptions'
+    goSellSDK.dependency 'TapAdditionsKit/UIKit/UIView/KeyframeAnimationOptions'
+    goSellSDK.dependency 'TapApplication'
+    goSellSDK.dependency 'TapCardValidator'
+    goSellSDK.dependency 'TapEditableView'
+	goSellSDK.dependency 'TapFontsKit'
+    goSellSDK.dependency 'TapGLKit/LinearGradientView'
+    goSellSDK.dependency 'TapGLKit/TapActivityIndicatorView'
+    goSellSDK.dependency 'TapKeychain'
+    goSellSDK.dependency 'TapNetworkManager/Core'
+    goSellSDK.dependency 'TapNetworkManager/ImageLoading'
+    goSellSDK.dependency 'TapNibView'
+    goSellSDK.dependency 'TapResponderChainInputView'
+    goSellSDK.dependency 'TapSearchView'
+    goSellSDK.dependency 'TapSwiftFixes/Threading'
+    goSellSDK.dependency 'TapVisualEffectView'
     
 end

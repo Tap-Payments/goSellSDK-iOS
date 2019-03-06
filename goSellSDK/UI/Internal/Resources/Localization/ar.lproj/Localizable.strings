@@ -1,0 +1,267 @@
+/* 
+  Localizable.strings
+  goSellSDK
+
+  Copyright © 2019 Tap Payments. All rights reserved.
+*/
+
+// MARK: Common
+
+"common_edit"	= "تعديل";
+"common_cancel"	= "إلغاء";
+
+// MARK: Pay Button Titles
+
+"btn_pay_title_generic"	= "ادفع";
+"btn_pay_title_amount"	= "ادفع %@";
+
+// MARK: Save Button Title
+
+"btn_save_title" = "احفظ البطاقة";
+"btn_save_action_title" = "احفظ البطاقة";
+
+// MARK: Payment Option Group Titles
+
+"payment_options_group_title_recent" = "مستخدم حديثاً";
+"payment_options_group_title_others" = "آخر";
+
+// MARK: Card Input Fields Placeholders
+
+"card_input_card_number_placeholder" 		= "رقم البطاقة";
+"card_input_expiration_date_placeholder" 	= "شش/سس";
+"card_input_cvv_placeholder" 				= "الرمز الأمني";
+"card_input_cardholder_name_placeholder"	= "الاسم الموجود على البطاقة";
+"card_input_address_on_card_placeholder"	= "عنوان الدفع";
+
+// MARK: Save Card Placeholders
+
+"save_card_promotion_text"		= "لدفع آمن و سريع، قم بحفظ بطاقتك";
+"saved_cards_usage_description"	= "البطاقات المحفوظة لن تستخدم إلا بموافقتك، يمكنك مسح معلومات البطاقات في أي وقت.";
+
+// MARK: Screen Titles
+
+"currency_selection_screen_title" 	= "اختر العملة";
+"card_scanning_screen_title"		= "تصوير البطاقة";
+"payment_screen_title_payment"		= "ادفع";
+"payment_screen_title_card_saving"	= "أدخل تفاصيل البطاقة";
+
+// MARK: Search Bar
+
+"search_bar_placeholder" = "بحث";
+
+// MARK: OTP Screen
+
+"otp_guide_text"	= "الرجاء إدخال الرقم المرسل إلى %@";
+"btn_confirm_title"	= "تأكيد";
+"btn_resend_title"	= "إعادة إرسال";
+
+
+// MARK: -
+// MARK: Alert: Delete Card
+
+"alert_delete_card_title" 				= "حذف البطاقة";
+"alert_delete_card_message" 			= "هل أنت متأكد من حذف البطاقة %@?";
+"alert_delete_card_btn_cancel_title"	= "إلغاء";
+"alert_delete_card_btn_delete_title" 	= "حذف";
+
+// MARK: Alert: Extra Charges
+
+"alert_extra_charges_title" 			= "تأكيد الرسوم الإضافية";
+"alert_extra_charges_message" 			= "سوف تتم إضافة  %@ لهذا النوع العملية، إجمالي المبلغ المطلوب   %@";
+"alert_extra_charges_btn_cancel_title" 	= "إلغاء";
+"alert_extra_charges_btn_confirm_title"	= "تأكيد";
+
+// MARK: Alert: Cancel Payment (status undefined)
+
+"alert_cancel_payment_status_undefined_title" 				= "إلغاء عملية الدفع";
+"alert_cancel_payment_status_undefined_message"				= "هل تود إلغاء عملية الدفع؟ حالة العملية ستصبح غير معرّفة";
+"alert_cancel_payment_status_undefined_btn_no_title"		= "لا";
+"alert_cancel_payment_status_undefined_btn_confirm_title"	= "تأكيد";
+
+// MARK: Alert: Cancel Payment (just cancel)
+
+"alert_cancel_payment_title" 				= "إلغاء عملية الدفع";
+"alert_cancel_payment_message" 				= "هل تود إلغاء عملية الدفع؟";
+"alert_cancel_payment_btn_no_title" 		= "لا";
+"alert_cancel_payment_btn_confirm_title"	= "تأكيد";
+
+// MARK: Alert: Error
+
+"alert_error_1103_message"	= "Required inputs are invalid.";
+"alert_error_1103_title" 	= "Invalid Input";
+
+"alert_error_1104_message" 	= "Customer ID is missing.";
+"alert_error_1104_title" 	= "Missing Customer ID";
+
+"alert_error_1108_message"	= "Save card feature is disabled.";
+"alert_error_1108_title" 	= "Save Card";
+
+"alert_error_1109_message" 	= "Non-3D secure transactions are forbidden.";
+"alert_error_1109_title" 	= "3D Secure";
+
+"alert_error_1112_message" 	= "Authorize ID is missing.";
+"alert_error_1112_title" 	= "Authorize ID";
+
+"alert_error_1113_message" 	= "Authorize ID is invalid.";
+"alert_error_1113_title" 	= "Authorize ID";
+
+"alert_error_1114_message" 	= "Please check authorize status.";
+"alert_error_1114_title" 	= "Authorize Status";
+
+"alert_error_1115_message" 	= "Authorize ID not found.";
+"alert_error_1115_title" 	= "Authorize ID";
+
+"alert_error_1116_message" 	= "Save card feature is not supported.";
+"alert_error_1116_title" 	= "Save Card";
+
+"alert_error_1117_message" 	= "Amount is invalid.";
+"alert_error_1117_title" 	= "Amount";
+
+"alert_error_1118_message" 	= "Invalid currency.";
+"alert_error_1118_title" 	= "Currency";
+
+"alert_error_1119_message" 	= "Unsupported currency.";
+"alert_error_1119_title" 	= "Currency";
+
+"alert_error_1126_message" 	= "Source is already used.";
+"alert_error_1126_title" 	= "Source Used";
+
+"alert_error_1129_message" 	= "Customer ID or customer information is required.";
+"alert_error_1129_title" 	= "Customer Information";
+
+"alert_error_1130_message" 	= "Customer first name is missing.";
+"alert_error_1130_title" 	= "First Name";
+
+"alert_error_1131_message" 	= "Customer first name is invalid.";
+"alert_error_1131_title" 	= "First Name";
+
+"alert_error_1132_message" 	= "Customer last name is missing.";
+"alert_error_1132_title" 	= "Last Name";
+
+"alert_error_1133_message" 	= "Customer last name is invalid.";
+"alert_error_1133_title" 	= "Last Name";
+
+"alert_error_1134_message" 	= "Customer middle name is invalid.";
+"alert_error_1134_title" 	= "Middle Name";
+
+"alert_error_1135_message" 	= "Phone number is missing.";
+"alert_error_1135_title" 	= "Phone Number";
+
+"alert_error_1136_message" 	= "Phone number country code is invalid.";
+"alert_error_1136_title" 	= "Phone Number";
+
+"alert_error_1137_message" 	= "Phone number is invalid.";
+"alert_error_1137_title" 	= "Phone Number";
+
+"alert_error_1138_message" 	= "Email address is invalid.";
+"alert_error_1138_title" 	= "Email Address";
+
+"alert_error_1139_message" 	= "Customer information is missing. Either email or phone number should be provided.";
+"alert_error_1139_title" 	= "Customer Information";
+
+"alert_error_1140_message" 	= "Invalid card number.";
+"alert_error_1140_title" 	= "Card Number";
+
+"alert_error_1141_message" 	= "Invalid expiration date.";
+"alert_error_1141_title" 	= "Expiration Date";
+
+"alert_error_1142_message" 	= "Charge ID is missing.";
+"alert_error_1142_title" 	= "Charge ID";
+
+"alert_error_1143_message" 	= "Charge ID is invalid.";
+"alert_error_1143_title" 	= "Charge ID";
+
+"alert_error_1144_message" 	= "Charge ID not found.";
+"alert_error_1144_title" 	= "Charge ID";
+
+"alert_error_1145_message" 	= "Authentication type is missing.";
+"alert_error_1145_title" 	= "Authentication Type";
+
+"alert_error_1146_message" 	= "Authentication type is invalid.";
+"alert_error_1146_title" 	= "Authentication Type";
+
+"alert_error_1147_message" 	= "Confirmation code is missing.";
+"alert_error_1147_title" 	= "Confirmation Code";
+
+"alert_error_1148_message" 	= "Confirmation code is invalid.";
+"alert_error_1148_title" 	= "Confirmation Code";
+
+"alert_error_1149_message" 	= "Currency code is not matching with existing currency code.";
+"alert_error_1149_title" 	= "Currency Code";
+
+"alert_error_1150_message" 	= "Capture amount exceeds with outstanding authorized amount.";
+"alert_error_1150_title" 	= "Capture Amount";
+
+"alert_error_1151_message" 	= "Gateway timed out.";
+"alert_error_1151_title" 	= "Gateway Timeout";
+
+"alert_error_1152_message" 	= "Invalid authorize auto schedule type.";
+"alert_error_1152_title" 	= "Auto Schedule";
+
+"alert_error_1153_message" 	= "Invalid authorize auto schedule time.";
+"alert_error_1153_title" 	= "Auto Schedule";
+
+"alert_error_2101_message" 	= "Server is currently unavailable. Please try again later.";
+"alert_error_2101_title" 	= "Server Unavailable";
+
+"alert_error_2102_message" 	= "Server is currently unavailable. Please try again later.";
+"alert_error_2102_title" 	= "Server Unavailable";
+
+"alert_error_2104_message" 	= "You have provided invalid API key.";
+"alert_error_2104_title" 	= "API Key";
+
+"alert_error_2105_message" 	= "API credentials are missing.";
+"alert_error_2105_title" 	= "API Credentials";
+
+"alert_error_2106_message" 	= "Public API key given. Please use secret API key instead.";
+"alert_error_2106_title" 	= "API Key";
+
+"alert_error_3100_message" 	= "Insufficient permissions.";
+"alert_error_3100_title" 	= "Permission Denied";
+
+"alert_error_8000_message" 	= "Country code is invalid.";
+"alert_error_8000_title" 	= "Country Code";
+
+"alert_error_8001_message" 	= "Amount modificator type is invalid.";
+"alert_error_8001_title" 	= "Amount Modificator Type";
+
+"alert_error_8002_message" 	= "Measurement unit is invalid.";
+"alert_error_8002_title" 	= "Measurement Unit";
+
+"alert_error_8003_message" 	= "Measurement is invalid.";
+"alert_error_8003_title" 	= "Measurement";
+
+"alert_error_8004_message" 	= "Failed to deserialize an enum.";
+"alert_error_8004_title" 	= "Serialization";
+
+"alert_error_8100_message" 	= "Serialization error has occured.";
+"alert_error_8100_title" 	= "Serialization";
+
+"alert_error_8200_message" 	= "Network error has occured.";
+"alert_error_8200_title" 	= "Network";
+
+"alert_error_8302_message"	= "This card already exists.";
+"alert_error_8302_title"	= "Card Exists";
+
+"alert_error_9999_message" 	= "An unknown error has occured.";
+"alert_error_9999_title" 	= "Unknown Error";
+
+"alert_error_btn_retry_title"	= "Retry";
+"alert_error_btn_dismiss_title"	= "Dismiss";
+
+// MARK: Payment Statuses
+
+"payment_status_initiated" 		= "Initiated";
+"payment_status_in_progress"	= "In Progress";
+"payment_status_abandoned" 		= "Abandoned";
+"payment_status_cancelled" 		= "Cancelled";
+"payment_status_failed" 		= "Failed";
+"payment_status_declined" 		= "Declined";
+"payment_status_restricted" 	= "Restricted";
+"payment_status_captured" 		= "Captured";
+"payment_status_authorized" 	= "Authorized";
+"payment_status_unknown"		= "Unknown";
+"payment_status_void" 			= "Void";
+
+"payment_status_alert_successful"	= "تم اتمام العملية بنجاح";
+"payment_status_alert_failed"		= "فشل عملية الدفع";

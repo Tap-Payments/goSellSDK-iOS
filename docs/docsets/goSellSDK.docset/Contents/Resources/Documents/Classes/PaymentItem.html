@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PaymentItem Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/PaymentItem" class="dashAnchor"></a>
+    <a title="PaymentItem Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">goSellSDK Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">goSellSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        PaymentItem Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/APIError.html">APIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Acquirer.html">Acquirer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AmountModificator.html">AmountModificator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Authorize.html">Authorize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizeAction.html">AuthorizeAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizeActionResponse.html">AuthorizeActionResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardVerification.html">CardVerification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Charge.html">Charge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Currency.html">Currency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Customer.html">Customer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EmailAddress.html">EmailAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorDetail.html">ErrorDetail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PayButton.html">PayButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PaymentItem.html">PaymentItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PhoneNumber.html">PhoneNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Quantity.html">Quantity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Receipt.html">Receipt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reference.html">Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SavedCard.html">SavedCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SecretKey.html">SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Shipping.html">Shipping</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Source.html">Source</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SourceRequest.html">SourceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKAPIError.html">TapSDKAPIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKError.html">TapSDKError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKKnownError.html">TapSDKKnownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TapSDKUnknownError.html">TapSDKUnknownError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Tax.html">Tax</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TrackingURL.html">TrackingURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TransactionDetails.html">TransactionDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/_ObjCMeasurement.html">_ObjCMeasurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/goSellSDK.html">goSellSDK</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Area.html">Area</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationRequirer.html">AuthenticationRequirer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationStatus.html">AuthenticationStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthenticationType.html">AuthenticationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthorizeActionStatus.html">AuthorizeActionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AuthorizeActionType.html">AuthorizeActionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardVerificationStatus.html">CardVerificationStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ChargeStatus.html">ChargeStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Duration.html">Duration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ElectricCharge.html">ElectricCharge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ElectricCurrent.html">ElectricCurrent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Energy.html">Energy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ErrorCode.html">ErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Length.html">Length</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Mass.html">Mass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Measurement.html">Measurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Power.html">Power</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKAppearanceMode.html">SDKAppearanceMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SDKMode.html">SDKMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceChannel.html">SourceChannel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceObject.html">SourceObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourcePaymentType.html">SourcePaymentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SourceType.html">SourceType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransactionMode.html">TransactionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/URLStatus.html">URLStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Volume.html">Volume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/PaymentOption.html">PaymentOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/SeparateWindowRootViewController.html">SeparateWindowRootViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapBlurEffectStyle.html">TapBlurEffectStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapFont.html">TapFont</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionAppearance.html">SessionAppearance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionDataSource.html">SessionDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionDelegate.html">SessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionProtocol.html">SessionProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9goSellSDK8Metadataa">Metadata</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PaymentItem</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PaymentItem</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Payment item model.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)title"></a>
+                    <a name="//apple_ref/swift/Property/title" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)title">title</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Payment item title.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)descriptionText"></a>
+                    <a name="//apple_ref/swift/Property/descriptionText" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)descriptionText">descriptionText</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Payment item description text.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)quantity"></a>
+                    <a name="//apple_ref/swift/Property/quantity" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)quantity">quantity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Quantity of payment item(s).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)amountPerUnit"></a>
+                    <a name="//apple_ref/swift/Property/amountPerUnit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)amountPerUnit">amountPerUnit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Amount per a single unit of quantity.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)discount"></a>
+                    <a name="//apple_ref/swift/Property/discount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)discount">discount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Item(s) discount.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">discount</span><span class="p">:</span> <span class="kt"><a href="../Classes/AmountModificator.html">AmountModificator</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(py)taxes"></a>
+                    <a name="//apple_ref/swift/Property/taxes" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(py)taxes">taxes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Items(s) taxes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">taxes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Tax.html">Tax</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:quantity:amountPerUnit:"></a>
+                    <a name="//apple_ref/swift/Method/init(title:quantity:amountPerUnit:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:quantity:amountPerUnit:">init(title:quantity:amountPerUnit:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes payment item with title, quantity and amount per unit.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:"></a>
+                    <a name="//apple_ref/swift/Method/init(title:descriptionText:quantity:amountPerUnit:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:">init(title:descriptionText:quantity:amountPerUnit:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes payment item with title, description, quantity and amount per unit.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:discount:"></a>
+                    <a name="//apple_ref/swift/Method/init(title:descriptionText:quantity:amountPerUnit:discount:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:discount:">init(title:descriptionText:quantity:amountPerUnit:discount:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes payment item with title, description, quantity, amount per unit and discount.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value - discount</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">discount</span><span class="p">:</span> <span class="kt"><a href="../Classes/AmountModificator.html">AmountModificator</a></span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>discount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s discount.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:taxes:"></a>
+                    <a name="//apple_ref/swift/Method/init(title:descriptionText:quantity:amountPerUnit:taxes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:taxes:">init(title:descriptionText:quantity:amountPerUnit:taxes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes payment item with title, description, quantity, amount per unit and taxes.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value + taxes</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">taxes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Tax.html">Tax</a></span><span class="p">]?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>taxes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s taxes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:discount:taxes:"></a>
+                    <a name="//apple_ref/swift/Method/init(title:descriptionText:quantity:amountPerUnit:discount:taxes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(cs)PaymentItem(im)initWithTitle:descriptionText:quantity:amountPerUnit:discount:taxes:">init(title:descriptionText:quantity:amountPerUnit:discount:taxes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes payment item with title, description, quantity, amount per unit, discount and taxes.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    Total amount of the payment item is calculated with the following formula: <code>amountPerUnit * quantity.value - discount + taxes</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">descriptionText</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">quantity</span><span class="p">:</span> <span class="kt"><a href="../Classes/Quantity.html">Quantity</a></span><span class="p">,</span> <span class="nv">amountPerUnit</span><span class="p">:</span> <span class="kt">Decimal</span><span class="p">,</span> <span class="nv">discount</span><span class="p">:</span> <span class="kt"><a href="../Classes/AmountModificator.html">AmountModificator</a></span><span class="p">?,</span> <span class="nv">taxes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Tax.html">Tax</a></span><span class="p">]?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s title.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Item description.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>quantity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amountPerUnit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Amount per a single unit of quantity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>discount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s discount.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>taxes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Payment item&rsquo;s taxes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties2"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties2">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@goSellSDK@objc(cs)PaymentItem(py)plainAmount"></a>
+                    <a name="//apple_ref/swift/Property/plainAmount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@goSellSDK@objc(cs)PaymentItem(py)plainAmount">plainAmount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Plain amount.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">plainAmount</span><span class="p">:</span> <span class="kt">Decimal</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@goSellSDK@objc(cs)PaymentItem(py)discountAmount"></a>
+                    <a name="//apple_ref/swift/Property/discountAmount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@goSellSDK@objc(cs)PaymentItem(py)discountAmount">discountAmount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Discount amount.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">discountAmount</span><span class="p">:</span> <span class="kt">Decimal</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@goSellSDK@objc(cs)PaymentItem(py)taxesAmount"></a>
+                    <a name="//apple_ref/swift/Property/taxesAmount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@goSellSDK@objc(cs)PaymentItem(py)taxesAmount">taxesAmount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Taxes amount.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">taxesAmount</span><span class="p">:</span> <span class="kt">Decimal</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@goSellSDK@objc(cs)PaymentItem(py)totalItemAmount"></a>
+                    <a name="//apple_ref/swift/Property/totalItemAmount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@goSellSDK@objc(cs)PaymentItem(py)totalItemAmount">totalItemAmount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Total item amount.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">totalItemAmount</span><span class="p">:</span> <span class="kt">Decimal</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Encodable"></a>
+                <a name="//apple_ref/swift/Section/Encodable" class="dashAnchor"></a>
+                <a href="#/Encodable">
+                  <h3 class="section-name">Encodable</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Decodable"></a>
+                <a name="//apple_ref/swift/Section/Decodable" class="dashAnchor"></a>
+                <a href="#/Decodable">
+                  <h3 class="section-name">Decodable</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Se4fromxs7Decoder_p_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Se4fromxs7Decoder_p_tKcfc">init(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/NSCopying"></a>
+                <a name="//apple_ref/swift/Section/NSCopying" class="dashAnchor"></a>
+                <a href="#/NSCopying">
+                  <h3 class="section-name">NSCopying</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@goSellSDK@objc(cs)PaymentItem(im)copyWithZone:"></a>
+                    <a name="//apple_ref/swift/Method/copy(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@goSellSDK@objc(cs)PaymentItem(im)copyWithZone:">copy(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Copies the receiver.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copy</span><span class="p">(</span><span class="n">with</span> <span class="nv">zone</span><span class="p">:</span> <span class="kt">NSZone</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>zone</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Zone.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Copy of the receiver.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-03-06)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

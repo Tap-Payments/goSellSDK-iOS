@@ -67,7 +67,7 @@ fastlane/screenshots
 fastlane/test_output
 Pods
 goSellSDK.png
+Carthage
 docs/docsets/goSellSDK.docset/Contents/Resources/Documents/undocumented.json
 docs/undocumented.json
-Carthage
 .DS_Store
