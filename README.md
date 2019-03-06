@@ -5,8 +5,8 @@ iOS SDK to use [goSell API][1].
 [![Platform](https://img.shields.io/cocoapods/p/goSellSDK.svg?style=flat)](https://tap-payments.github.io/goSellSDK-iOS)
 [![Build Status](https://travis-ci.org/Tap-Payments/goSellSDK-iOS.svg?branch=master)](https://travis-ci.org/Tap-Payments/goSellSDK-iOS)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/goSellSDK.svg?style=flat)](https://img.shields.io/Tap-Payments/v/goSellSDK)
+[![Documentation](docs/badge.svg)](https://tap-payments.github.io/goSellSDK-iOS)
 [![Applications](https://img.shields.io/cocoapods/at/goSellSDK.svg?style=flat)](https://tap-payments.github.io/goSellSDK-iOS)
-
 
 A library that fully covers payment/authorization/card saving process inside your iOS application.
 
@@ -45,6 +45,7 @@ A library that fully covers payment/authorization/card saving process inside you
         9. [Session Has Failed to Start Callback](#session_has_failed_to_start_callback)
         10. [Session Cancel Callback](#session_cancel_callback)
     6. [Session Appearance](#session_appearance)
+5. [Sample](#sample) 
         
 
 <a name="requirements"></a>
@@ -1284,10 +1285,16 @@ You might want to implement `SessionAppearance` protocol if you need some UI cus
 
 Please refer to `SessionAppearance` class documentation to see what kind of customization is currently available.
 
+<a name="sample"></a>
+# Sample
+
+Sample application integration is available in [Example][2] folder.
+
 -----
 # Documentation
-Documentation is available at [github-pages][2].<br>
+Documentation is available at [github-pages][3].<br>
 Also documented sources are attached to the library.
 
 [1]:https://www.tap.company/developers/
-[2]:https://tap-payments.github.io/goSellSDK-iOS/
+[2]:Example
+[3]:https://tap-payments.github.io/goSellSDK-iOS/
