@@ -33,7 +33,7 @@ internal class CreateAuthorizeRequest: CreateChargeRequest {
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
     ///   - authorizeAction: Authorize action.
-    internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, descriptionText: String?, metadata: Metadata?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?, authorizeAction: AuthorizeAction) {
+	internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, destinations: [Destination]?, descriptionText: String?, metadata: Metadata?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?, authorizeAction: AuthorizeAction) {
         
         self.authorizeAction = authorizeAction
         
@@ -45,6 +45,7 @@ internal class CreateAuthorizeRequest: CreateChargeRequest {
                    redirect:            redirect,
                    post:                post,
                    source:              source,
+				   destinations:		destinations,
                    descriptionText:     descriptionText,
                    metadata:            metadata,
                    reference:           reference,

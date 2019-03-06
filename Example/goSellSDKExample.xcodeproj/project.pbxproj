@@ -17,6 +17,9 @@
 		14277BBB214056FA0011521F /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14277BBA214056FA0011521F /* SelectableCell.swift */; };
 		14713745220B09F3002EBEE4 /* SavedCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14713744220B09F3002EBEE4 /* SavedCardsTableViewController.swift */; };
 		14713747220B0BCE002EBEE4 /* SavedCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14713746220B0BCE002EBEE4 /* SavedCardCell.swift */; };
+		147B07772230181300CD0379 /* DestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B07762230181300CD0379 /* DestinationTableViewCell.swift */; };
+		147B077922301A9D00CD0379 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B077822301A9D00CD0379 /* DestinationViewController.swift */; };
+		147B077B22301AD400CD0379 /* DestinationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B077A22301AD400CD0379 /* DestinationViewControllerDelegate.swift */; };
 		14C7E4F52208B64D00F19007 /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */; };
 		14F625BB2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */; };
 		8E197292A213A9AC83C5B789 /* Pods_goSellSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */; };
@@ -76,6 +79,9 @@
 		14277BBA214056FA0011521F /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 		14713744220B09F3002EBEE4 /* SavedCardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCardsTableViewController.swift; sourceTree = "<group>"; };
 		14713746220B0BCE002EBEE4 /* SavedCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCardCell.swift; sourceTree = "<group>"; };
+		147B07762230181300CD0379 /* DestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationTableViewCell.swift; sourceTree = "<group>"; };
+		147B077822301A9D00CD0379 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
+		147B077A22301AD400CD0379 /* DestinationViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewControllerDelegate.swift; sourceTree = "<group>"; };
 		14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Additions.swift"; sourceTree = "<group>"; };
 		14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBlurEffect.Style+Additions.swift"; sourceTree = "<group>"; };
 		3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 				140106FE2201FCA50080A149 /* ColorTableViewCell.swift */,
 				14010702220200F30080A149 /* FontTableViewCell.swift */,
 				14713746220B0BCE002EBEE4 /* SavedCardCell.swift */,
+				147B07762230181300CD0379 /* DestinationTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 				140106FC2201FC000080A149 /* ColorSelectionTableViewController.swift */,
 				A4B35FE720C7F8B900847031 /* CustomersListViewController.swift */,
 				A4B35FE920C7F9A000847031 /* CustomerViewController.swift */,
+				147B077822301A9D00CD0379 /* DestinationViewController.swift */,
 				A4D5FE64208323FB007D52F5 /* ExampleViewController.swift */,
 				140107002202008C0080A149 /* FontSelectionTableViewController.swift */,
 				A4CFAF3A20B84A9500B5D83B /* ModalNavigationTableViewController.swift */,
@@ -231,12 +239,13 @@
 				A4CFAF4820B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift */,
 				A412AE0E20C94BD2002BFCDD /* CustomersListViewControllerDelegate.swift */,
 				A4B35FEB20C814E100847031 /* CustomerViewControllerDelegate.swift */,
+				147B077A22301AD400CD0379 /* DestinationViewControllerDelegate.swift */,
 				A4B35FE520C7DE7800847031 /* InputFieldObserver.swift */,
 				A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */,
 				A4DF066420C038C9006F59D8 /* SeguePresenter.swift */,
+				A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */,
 				A4B35FE320C7D5D100847031 /* ShippingViewControllerDelegate.swift */,
 				A4CFAF4720B9A80500B5D83B /* TaxViewControllerDelegate.swift */,
-				A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -474,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147B077B22301AD400CD0379 /* DestinationViewControllerDelegate.swift in Sources */,
 				A4DF066520C038C9006F59D8 /* SeguePresenter.swift in Sources */,
 				A4CFAF3F20B96E1500B5D83B /* TitleTableViewCell.swift in Sources */,
 				A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */,
@@ -491,6 +501,7 @@
 				A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */,
 				A4CFAF3920B849F400B5D83B /* TaxViewController.swift in Sources */,
 				A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */,
+				147B077922301A9D00CD0379 /* DestinationViewController.swift in Sources */,
 				A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */,
 				A45A5DCA214127C500B7DDE9 /* GroupHeaderCellModel.swift in Sources */,
 				A408C03720BAB577005E74AD /* Measurement+Additions.swift in Sources */,
@@ -524,6 +535,7 @@
 				A4D5FE65208323FB007D52F5 /* ExampleViewController.swift in Sources */,
 				14F625BB2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift in Sources */,
 				A4CFAF3B20B84A9500B5D83B /* ModalNavigationTableViewController.swift in Sources */,
+				147B07772230181300CD0379 /* DestinationTableViewCell.swift in Sources */,
 				A4DF066320C03778006F59D8 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -53,6 +53,9 @@
     
     /// Charge source.
     public let source: Source
+	
+	/// Charge destinations.
+	public private(set) var destinations: [Destination]?
     
     /// Charge status.
     public let status: ChargeStatus
@@ -104,6 +107,7 @@
         case post                   = "post"
         case card                   = "card"
         case source                 = "source"
+		case destinations			= "destinations"
         case status                 = "status"
         case requires3DSecure       = "threeDSecure"
         case transactionDetails     = "transaction"
@@ -118,7 +122,7 @@
     
     // MARK: Methods
     
-    private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
+	private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, destinations: [Destination]?, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
         
         self.identifier             = identifier
         self.apiVersion             = apiVersion
@@ -133,6 +137,7 @@
         self.post                   = post
         self.card                   = card
         self.source                 = source
+		self.destinations			= destinations
         self.status                 = status
         self.requires3DSecure       = requires3DSecure
         self.transactionDetails     = transactionDetails
@@ -168,6 +173,7 @@ extension Charge: Decodable {
         let post                = try container.decodeIfPresent (TrackingURL.self,          forKey: .post)
         let card                = try container.decodeIfPresent (SavedCard.self,            forKey: .card)
         let source              = try container.decode          (Source.self,               forKey: .source)
+		let destinations		= try container.decodeIfPresent	([Destination].self,		forKey: .destinations)
         let status              = try container.decode          (ChargeStatus.self,         forKey: .status)
         let requires3DSecure    = try container.decode          (Bool.self,                 forKey: .requires3DSecure)
         let transactionDetails  = try container.decode          (TransactionDetails.self,   forKey: .transactionDetails)
@@ -191,7 +197,8 @@ extension Charge: Decodable {
                   redirect:             redirect,
                   post:                 post,
                   card:                 card,
-                  source:               source,
+				  source:               source,
+				  destinations:			destinations,
                   status:               status,
                   requires3DSecure:     requires3DSecure,
                   transactionDetails:   transactionDetails,

@@ -76,6 +76,7 @@
 		147951C021FF76E90073B49F /* IconStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951BF21FF76E90073B49F /* IconStyle.swift */; };
 		147951C321FF77290073B49F /* CreateCardVerificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951C221FF77280073B49F /* CreateCardVerificationRequest.swift */; };
 		147951C621FF77470073B49F /* APIClient+CardVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951C521FF77470073B49F /* APIClient+CardVerification.swift */; };
+		147B077D2230345000CD0379 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B077C2230345000CD0379 /* Destination.swift */; };
 		1495974D21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */; };
 		1495975221F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */; };
 		1495975421F5420000DFA0A2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975121F5420000DFA0A2 /* LoadingView.swift */; };
@@ -476,6 +477,7 @@
 		147951BF21FF76E90073B49F /* IconStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconStyle.swift; sourceTree = "<group>"; };
 		147951C221FF77280073B49F /* CreateCardVerificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCardVerificationRequest.swift; sourceTree = "<group>"; };
 		147951C521FF77470073B49F /* APIClient+CardVerification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+CardVerification.swift"; sourceTree = "<group>"; };
+		147B077C2230345000CD0379 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContentViewController.swift; sourceTree = "<group>"; };
 		1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewSupport.swift; sourceTree = "<group>"; };
 		1495975121F5420000DFA0A2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -925,7 +927,9 @@
 				A482F7372085BC0F00AA76A4 /* Charge.swift */,
 				A479F7162099DB2100556E10 /* Currency.swift */,
 				14DF99F72147F4B900991EB3 /* Customer.swift */,
+				147B077C2230345000CD0379 /* Destination.swift */,
 				A479F7152099DB2100556E10 /* EmailAddress.swift */,
+				147951CC22004DBE0073B49F /* Errors */,
 				149AC19721ED0F59002D31A7 /* Metadata.swift */,
 				A479F7182099DB2100556E10 /* PaymentItem.swift */,
 				A4A9827D20D2B31F00770690 /* PhoneNumber.swift */,
@@ -941,7 +945,6 @@
 				A408C05C20BC058A005E74AD /* Tax.swift */,
 				A4694B22211B480600B335F1 /* TrackingURL.swift */,
 				A4A9827E20D2B31F00770690 /* TransactionDetails.swift */,
-				147951CC22004DBE0073B49F /* Errors */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1808,6 +1811,7 @@
 				A4444BF920AB53C7005D9E87 /* PaymentContentViewController.swift in Sources */,
 				A4C13A7620F4EF5500037EDC /* ElectricCurrent.swift in Sources */,
 				A4BD8CDB20A1EFFE00EFF2CE /* ImageTableViewCellModel.swift in Sources */,
+				147B077D2230345000CD0379 /* Destination.swift in Sources */,
 				A43A0A7A20DA877B006B39F1 /* InteractivePopViewController.swift in Sources */,
 				A4599121210A04A100E941D5 /* StaticlyDestroyable.swift in Sources */,
 				A4BD8D1F20A1F48B00EFF2CE /* CurrencyCodesDataManager.swift in Sources */,

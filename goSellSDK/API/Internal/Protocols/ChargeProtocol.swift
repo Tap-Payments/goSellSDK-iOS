@@ -40,7 +40,10 @@ internal protocol ChargeProtocol: Authenticatable, Retrievable {
     
     /// Charge source.
     var source: Source { get }
-    
+	
+	/// Charge destinations.
+	var destinations: [Destination]? { get }
+	
     /// Charge status.
     var status: ChargeStatus { get }
     
