@@ -1,8 +1,5 @@
 language: objective-c
 osx_image: xcode10.1
-branches:
-  only:
-    - master
 directories:
     - $HOME/.cocoapods/
 env:
