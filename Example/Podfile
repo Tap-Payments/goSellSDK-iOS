@@ -9,6 +9,7 @@ target 'goSellSDKExample' do
     pod 'Fabric'
     
     pod 'goSellSDK', :path => '../'
+	pod 'goSellSDK/ErrorReporting', :path => '../'
 
 end
 
