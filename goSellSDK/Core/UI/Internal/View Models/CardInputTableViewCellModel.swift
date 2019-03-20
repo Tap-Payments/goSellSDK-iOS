@@ -318,7 +318,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		
 		switch Process.shared.transactionMode {
 			
-		case .purchase, .authorizeCapture:
+		case .purchase, .authorizeCapture, .cardTokenization:
 			
 			return .save_card_promotion_text
 			

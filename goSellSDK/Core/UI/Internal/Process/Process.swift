@@ -32,6 +32,10 @@ internal final class Process {
 				
 				return existing
 			}
+			else if let _: Process.Implementation<CardTokenizationClass> = existing.implementation(), self.transactionMode == .cardTokenization {
+				
+				return existing
+			}
 		}
 		
 		switch self.transactionMode {
@@ -48,6 +52,15 @@ internal final class Process {
 		case .cardSaving:
 			
 			let impl = Implementation<CardSavingClass>.with(process: self, mode: CardSavingClass.self)
+			let w = Wrapped(impl)
+			
+			self.wrapped = w
+			
+			return w
+			
+		case .cardTokenization:
+			
+			let impl = Implementation<CardTokenizationClass>.with(process: self, mode: CardTokenizationClass.self)
 			let w = Wrapped(impl)
 			
 			self.wrapped = w

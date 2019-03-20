@@ -205,6 +205,16 @@ extension PayButton: SessionDelegate {
 		self.processFinished()
 	}
 	
+	public func cardTokenized(_ token: Token, on session: SessionProtocol, customerRequestedToSaveTheCard saveCard: Bool) {
+		
+		self.processFinished()
+	}
+	
+	public func cardTokenizationFailed(with error: TapSDKError, on session: SessionProtocol) {
+		
+		self.processFinished()
+	}
+	
 	private func processFinished() {
 		
 		self._session = nil

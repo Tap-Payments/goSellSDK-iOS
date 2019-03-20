@@ -564,6 +564,79 @@ internal extension Process {
 		}
 	}
 	
+	internal final class CardTokenizationViewModelsHandler: ViewModelsHandler {
+		
+		internal override var selectedPaymentOptionCellViewModel: PaymentOptionCellViewModel? {
+			
+			return self.cardPaymentOptionsCellModel
+		}
+		
+		internal override func restorePaymentOptionSelection() { }
+		
+		internal override func generatePaymentOptionCellViewModels() {
+			
+			guard self.process.dataManagerInterface.paymentOptionsResponse != nil else {
+				
+				self.paymentOptionsScreenCellViewModels = []
+				return
+			}
+			
+			let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
+			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).sorted(by: sortingClosure)
+			
+			var result: [CellViewModel] = []
+			
+			if cardPaymentOptions.count > 0 {
+				
+				if Process.shared.appearance == .fullscreen {
+					
+					let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+																 identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
+					result.append(emptyCellModel)
+				}
+				
+				let cardOptionsCellModel = CardInputTableViewCellModel(indexPath:		self.nextIndexPath(for: result),
+																	   paymentOptions:	cardPaymentOptions)
+				
+				result.append(cardOptionsCellModel)
+			}
+			
+			self.paymentOptionsScreenCellViewModels = result
+			
+			self.filterPaymentOptionCellViewModels()
+		}
+		
+		internal func filterPaymentOptionCellViewModels() {
+			
+			var result: [CellViewModel] = []
+			
+			let currency = self.process.dataManagerInterface.selectedCurrency.currency
+			
+			let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
+			let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
+			
+			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
+			
+			if cardPaymentOptions.count > 0 {
+				
+				if Process.shared.appearance == .fullscreen {
+					
+					let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenWebAndCardOptionsIdentifier)
+					emptyModel.indexPath = self.nextIndexPath(for: result)
+					
+					result.append(emptyModel)
+				}
+				
+				let cardModel = self.cardPaymentOptionsCellModel
+				cardModel.indexPath = self.nextIndexPath(for: result)
+				cardModel.paymentOptions = cardPaymentOptions
+				
+				result.append(cardModel)
+			}
+			
+			self.paymentOptionCellViewModels = result
+		}
+	}
 }
 
 private struct __ViewModelsHandlerConstants {

@@ -6,13 +6,10 @@
 //
 
 /// Address model.
-internal struct Address: Decodable {
+@objcMembers public final class Address: Decodable {
     
     // MARK: - Public -
     // MARK: Properties
-    
-    /// Address format.
-    public internal(set) var format: AddressFormat?
     
     /// Address type.
     public internal(set) var type: AddressType?
@@ -66,29 +63,34 @@ internal struct Address: Decodable {
     public internal(set) var postalCode: String?
     
     // MARK: - Internal -
-    
-    internal enum CodingKeys: String, CodingKey {
-        
-        case format             = "format"
-        case type               = "type"
-        case country            = "country"
-        case line1              = "line1"
-        case line2              = "line2"
-        case city               = "city"
-        case state              = "state"
-        case zipCode            = "zip_code"
-        case countryGovernorate = "country_governorate"
-        case area               = "area"
-        case block              = "block"
-        case avenue             = "avenue"
-        case street             = "street"
-        case buildingHouse      = "building_house"
-        case floor              = "floor"
-        case office             = "office"
-        case postalBox          = "po_box"
-        case postalCode         = "postal_code"
-    }
-    
+	
+	internal enum CodingKeys: String, CodingKey {
+		
+		case format             = "format"
+		case type               = "type"
+		case country            = "country"
+		case line1              = "line1"
+		case line2              = "line2"
+		case city               = "city"
+		case state              = "state"
+		case zipCode            = "zip_code"
+		case countryGovernorate = "country_governorate"
+		case area               = "area"
+		case block              = "block"
+		case avenue             = "avenue"
+		case street             = "street"
+		case buildingHouse      = "building_house"
+		case floor              = "floor"
+		case office             = "office"
+		case postalBox          = "po_box"
+		case postalCode         = "postal_code"
+	}
+	
+	// MARK: Properties
+	
+	/// Address format.
+	internal var format: AddressFormat?
+	
     // MARK: Methods
     
     internal init(format: AddressFormat) {

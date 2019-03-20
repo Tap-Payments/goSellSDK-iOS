@@ -33,6 +33,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 			
 			return Process.CardSavingDataManager(process: self)
 		}
+		else if HandlerMode.self is CardTokenization.Type {
+			
+			return Process.CardTokenizationDataManager(process: self)
+		}
 		else {
 			
 			fatalError("Unknown mode")
@@ -48,6 +52,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		else if HandlerMode.self is CardSaving.Type {
 			
 			return Process.CardSavingViewModelsHandler(process: self)
+		}
+		else if HandlerMode.self is CardTokenization.Type {
+			
+			return Process.CardTokenizationViewModelsHandler(process: self)
 		}
 		else {
 			
@@ -87,6 +95,7 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	}
 	
 	internal func openOTPScreen(with phoneNumber: String, for paymentOption: PaymentOption) {
+		
 		fatalError("Should be implemented in subclass.")
 	}
 	
@@ -97,26 +106,42 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	}
 	
 	internal func continuePaymentWithCurrentChargeOrAuthorize<T>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) where T : ChargeProtocol {
+		
 		fatalError("Should be implemented in subclass.")
 	}
 	
 	func continueCardSaving(with identifier: String, paymentOption: PaymentOption, binNumber: String?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
+		
 		fatalError("Should be implemented in subclass.")
 	}
 	
 	internal func paymentSuccess(with chargeOrAuthorize: ChargeProtocol) {
+		
 		fatalError("Should be implemented in subclass.")
 	}
 	
 	internal func paymentFailure(with status: ChargeStatus, chargeOrAuthorize: ChargeProtocol, error: TapSDKError?) {
+		
 		fatalError("Should be implemented in subclass.")
 	}
 	
 	internal func cardSavingSuccess(with cardVerification: CardVerification) {
+		
 		fatalError("Should be implemented in subclass.")
 	}
 	
 	internal func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?) {
+		
+		fatalError("Should be implemented in subclass.")
+	}
+	
+	internal func cardTokenizationSuccess(with token: Token, customerRequestedToSaveCard: Bool) {
+		
+		fatalError("Should be implemented in subclass.")
+	}
+	
+	internal func cardTokenizationFailure(with error: TapSDKError) {
+		
 		fatalError("Should be implemented in subclass.")
 	}
 	
@@ -134,6 +159,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		else if mode is CardSaving.Type {
 			
 			return CardSavingImplementation<T>(process: process)
+		}
+		else if mode is CardTokenization.Type {
+			
+			return CardTokenizationImplementation(process: process)
 		}
 		else {
 			
@@ -367,6 +396,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 			
 			delegate.cardSaved?(cardVerification, on: session)
 			
+		case .successfulCardTokenize(let token, let saveCard):
+			
+			delegate.cardTokenized?(token, on: session, customerRequestedToSaveTheCard: saveCard)
+			
 		case .chargeFailure(let charge, let error):
 			
 			delegate.paymentFailed?(with: charge, error: error, on: session)
@@ -378,6 +411,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		case .cardSaveFailure(let verification, let error):
 			
 			delegate.cardSavingFailed?(with: verification, error: error, on: session)
+			
+		case .cardTokenizeFailure(let error):
+			
+			delegate.cardTokenizationFailed?(with: error, on: session)
 		}
 	}
 	
@@ -712,5 +749,46 @@ internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process
 		}
 		
 		self.showFailurePopup(completion)
+	}
+}
+
+internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode> {
+	
+	internal override func startPayment(with paymentOption: PaymentOptionCellViewModel) {
+		
+		guard let cardPaymentOption = paymentOption as? CardInputTableViewCellModel, let card = cardPaymentOption.card else { return }
+		
+		guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else { return }
+		
+		let request = CreateTokenWithCardDataRequest(card: card)
+		self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: true)
+	}
+	
+	internal override func closePayment(with status: PaymentStatus, fadeAnimation: Bool, force: Bool, completion: TypeAlias.ArgumentlessClosure?) {
+		
+		let localCompletion: TypeAlias.BooleanClosure = { (closed) in
+			
+			if closed {
+				
+				self.reportDelegateOnPaymentCompletion(with: status)
+			}
+			
+			completion?()
+		}
+		
+		self.forceClosePayment(withFadeAnimation: fadeAnimation) {
+			
+			localCompletion(true)
+		}
+	}
+	
+	internal override func cardTokenizationSuccess(with token: Token, customerRequestedToSaveCard: Bool) {
+		
+		self.closePayment(with: .successfulCardTokenize(token, customerRequestedToSaveCard), fadeAnimation: false, force: false, completion: nil)
+	}
+	
+	internal override func cardTokenizationFailure(with error: TapSDKError) {
+		
+		self.closePayment(with: .cardTokenizeFailure(error), fadeAnimation: false, force: false, completion: nil)
 	}
 }

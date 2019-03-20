@@ -57,7 +57,7 @@ extension Country: ListValue {
 // MARK: - Transformable
 extension Country: Transformable {
     
-    internal init?(untransformedValue: Any?) {
+	internal convenience init?(untransformedValue: Any?) {
         
         if let country = untransformedValue as? Country {
             

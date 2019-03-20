@@ -22,6 +22,21 @@
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc(authorizationSucceed:onSession:) optional func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol)
 	
+	/// Notifies the receiver that the card was saved.
+	///
+	/// - Parameters:
+	///   - cardVerification: CardVerification object with the details.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+	@objc(cardSaved:onSession:) optional func cardSaved(_ cardVerification: CardVerification, on session: SessionProtocol)
+	
+	/// Notifies the receiver that the card was tokenized.
+	///
+	/// - Parameters:
+	///   - token: Created token.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+	///   - saveCard: Defines if the customer has requested to save the card.
+	@objc(cardTokenized:onSession:customerRequestedToSaveTheCard:) optional func cardTokenized(_ token: Token, on session: SessionProtocol, customerRequestedToSaveTheCard saveCard: Bool)
+	
 	/// Notifies the receiver that charge has failed, passing `session` which has initiated the payment.
 	///
 	/// If `error` is `nil`, then look into `charge` object to find the cause of the issue.
@@ -42,13 +57,6 @@
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc(authorizationFailedWithAuthorize:error:onSession:) optional func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol)
 	
-	/// Notifies the receiver that the card was saved.
-	///
-	/// - Parameters:
-	///   - cardVerification: CardVerification object with the details.
-	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-	@objc(cardSaved:onSession:) optional func cardSaved(_ cardVerification: CardVerification, on session: SessionProtocol)
-	
 	/// Notifies the receiver that card saving process has failed.
 	///
 	/// If `error` is `nil`, then look into `cardVerification` object to find the cause of the issue.
@@ -58,6 +66,13 @@
 	///   - error: Error that has occured.
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc(cardSavingFailedWithCardVerification:error:onSession:) optional func cardSavingFailed(with cardVerification: CardVerification?, error: TapSDKError?, on session: SessionProtocol)
+	
+	/// Notifies the receiver that card tokenization process has failed.
+	///
+	/// - Parameters:
+	///   - error: Error that has occured.
+	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+	@objc(cardTokenizationFailedWithError:onSession:) optional func cardTokenizationFailed(with error: TapSDKError, on session: SessionProtocol)
 	
 	/// Notifies the receiver that session is about to start and has not yet shown the SDK UI.
 	///

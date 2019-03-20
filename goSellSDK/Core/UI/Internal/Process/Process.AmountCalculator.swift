@@ -117,3 +117,37 @@ internal extension Process.AmountCalculator where Mode: Payment {
 		return result
 	}
 }
+
+internal extension Process.AmountCalculator where Mode: CardTokenization {
+	
+	// MARK: - Internal -
+	// MARK: Methods
+	
+	internal static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
+		
+		var result: Decimal = 0.0
+		
+		extraFees.forEach { fee in
+			
+			switch fee.type {
+				
+			case .fixedAmount:
+				
+				if let feeAmountedCurrency = Process.shared.dataManagerInterface.supportedCurrencies.first(where: { $0.currency == fee.currency }) {
+					
+					result += currency.amount * fee.value / feeAmountedCurrency.amount
+				}
+				else {
+					
+					fatalError("Currency \(fee.currency) is not a supported currency!")
+				}
+				
+			case .percents:
+				
+				result += currency.amount * fee.normalizedValue
+			}
+		}
+		
+		return result
+	}
+}

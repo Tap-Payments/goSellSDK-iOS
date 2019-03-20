@@ -445,7 +445,7 @@ internal extension Process {
 		
 		internal override var shouldToggleSaveCardSwitchToOnAutomatically: Bool {
 			
-			return (self.process.process.externalSession?.dataSource?.isSaveCardSwitchOnByDefault ?? false) && !self.didToggleSaveCardSwitchToOnAutomatically
+			return (self.process.process.externalSession?.dataSource?.isSaveCardSwitchOnByDefault ?? true) && !self.didToggleSaveCardSwitchToOnAutomatically
 		}
 		
 		internal override var groupWithButtonButtonClickAction: TypeAlias.ArgumentlessClosure? {
@@ -643,6 +643,10 @@ internal extension Process {
 			case .cardSaving:
 				
 				fatalError("Internal SDK error. Attempt to charge in card saving mode.")
+				
+			case .cardTokenization:
+				
+				fatalError("Internal SDK error. Attempt to charge in card tokenization mode.")
 			}
 		}
 		
@@ -880,6 +884,61 @@ internal extension Process {
 				
 				self.process.cardSavingSuccess(with: nonnullVerification)
 			}
+		}
+	}
+	
+	internal final class CardTokenizationDataManager: DataManager {
+		
+		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
+			
+			guard let nonnullDataSource = session.dataSource else {
+				
+				closure("Error", "Payment data source cannot be nil.")
+				return nil
+			}
+			
+			guard let currency = nonnullDataSource.currency else {
+				
+				closure("Error", "Currency must be provided.")
+				return nil
+			}
+			
+			guard let customer = nonnullDataSource.customer else {
+				
+				closure("Error", "Customer information must be provided.")
+				return nil
+			}
+			
+			let itemsCount = (nonnullDataSource.items ?? [])?.count ?? 0
+			guard nonnullDataSource.amount != nil || itemsCount > 0 else {
+				
+				closure("Error", "Either amount or items should be implemented in payment data source. If items is implemented, number of items should be > 0.")
+				return nil
+			}
+			
+			let transactionMode	= nonnullDataSource.mode        ?? .default
+			let shipping        = nonnullDataSource.shipping    ?? nil
+			let taxes           = nonnullDataSource.taxes       ?? nil
+			
+			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
+													   amount:          nonnullDataSource.amount,
+													   items:           nonnullDataSource.items ?? [],
+													   shipping:        shipping,
+													   taxes:           taxes,
+													   currency:        currency,
+													   customer:        customer.identifier)
+			
+			return paymentRequest
+		}
+		
+		internal override var shouldToggleSaveCardSwitchToOnAutomatically: Bool {
+			
+			return (self.process.process.externalSession?.dataSource?.isSaveCardSwitchOnByDefault ?? true) && !self.didToggleSaveCardSwitchToOnAutomatically
+		}
+		
+		internal override func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
+			
+			self.process.cardTokenizationSuccess(with: token, customerRequestedToSaveCard: saveCard ?? false)
 		}
 	}
 }

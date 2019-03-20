@@ -33,8 +33,8 @@
         
         switch self {
             
-        case .percents: return Constants.percentBasedKey
-        case .fixedAmount:  return Constants.fixedAmountKey
+        case .percents:		return Constants.percentBasedKey
+        case .fixedAmount:	return Constants.fixedAmountKey
             
         }
     }

@@ -1,0 +1,17 @@
+//
+//  Equatable+Additions.swift
+//  goSellSDK
+//
+//  Copyright © 2019 Tap Payments. All rights reserved.
+//
+
+internal extension Equatable {
+	
+	// MARK: - Internal -
+	// MARK: Methods
+	
+	internal func tap_isIn(_ array: [Self]) -> Bool {
+		
+		return array.contains(self)
+	}
+}

@@ -17,6 +17,9 @@
 	/// Mode to save the card only.
 	@objc(CardSaving) case cardSaving
 	
+	/// Mode to tokenize the card.
+	@objc(CardTokenization) case cardTokenization
+	
 	// MARK: - Internal -
 	// MARK: Properties
 	
@@ -33,6 +36,7 @@
         case .purchase:         return "PURCHASE"
         case .authorizeCapture: return "AUTHORIZE_CAPTURE"
 		case .cardSaving:		return "SAVE_CARD"
+		case .cardTokenization:	return "TOKENIZE_CARD"
 
         }
     }
@@ -55,6 +59,10 @@
 			
 			self = .cardSaving
 			
+		case TransactionMode.cardTokenization.stringRepresentation:
+			
+			self = .cardTokenization
+			
         default:
             
             self = .purchase
@@ -72,6 +80,7 @@ extension TransactionMode: CustomStringConvertible {
         case .purchase:			return "Payment"
         case .authorizeCapture:	return "Authorize only"
 		case .cardSaving:		return "Save Card"
+		case .cardTokenization:	return "Tokenize Card"
 
         }
     }

@@ -90,6 +90,26 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 		}
 	}
 	
+	internal func cardTokenized(_ token: Token, on session: SessionProtocol, customerRequestedToSaveTheCard saveCard: Bool) {
+		
+		let targetSession = self.targetSession(for: session)
+		
+		self.removeNilDelegatesAndSynchronized { theDelegates in
+			
+			theDelegates.forEach { $0.cardTokenized?(token, on: targetSession, customerRequestedToSaveTheCard: saveCard) }
+		}
+	}
+	
+	internal func cardTokenizationFailed(with error: TapSDKError, on session: SessionProtocol) {
+		
+		let targetSession = self.targetSession(for: session)
+		
+		self.removeNilDelegatesAndSynchronized { theDelegates in
+			
+			theDelegates.forEach { $0.cardTokenizationFailed?(with: error, on: targetSession) }
+		}
+	}
+	
 	internal func sessionIsStarting(_ session: SessionProtocol) {
 		
 		let targetSession = self.targetSession(for: session)

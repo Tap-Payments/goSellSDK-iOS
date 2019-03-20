@@ -32,6 +32,7 @@ import protocol	goSellSDK.SessionProtocol
 import class    goSellSDK.Shipping
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
+import class	goSellSDK.Token
 import enum     goSellSDK.TransactionMode
 import class	UIKit.UIActivityIndicatorView.UIActivityIndicatorView
 import class	UIKit.UIBarButtonItem.UIBarButtonItem
@@ -398,6 +399,16 @@ extension ExampleViewController: SessionDelegate {
 	internal func cardSavingFailed(with cardVerification: CardVerification?, error: TapSDKError?, on session: SessionProtocol) {
 		
 		// card failed to save.
+	}
+	
+	internal func cardTokenized(_ token: Token, on session: SessionProtocol, customerRequestedToSaveTheCard saveCard: Bool) {
+		
+		// card has successfully tokenized.
+	}
+	
+	internal func cardTokenizationFailed(with error: TapSDKError, on session: SessionProtocol) {
+		
+		// card failed to tokenize
 	}
 	
 	internal func sessionIsStarting(_ session: SessionProtocol) {

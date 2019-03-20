@@ -10,7 +10,9 @@ internal struct ErrorConstants {
     internal static let internalErrorDomain = "company.tap.gosellsdk"
     
     internal struct UserInfoKeys {
-        
+		
+		internal static let addressType				= "address_type"
+		internal static let tokenType				= "token_type"
         internal static let amountModificatorType   = "amount_modificator_type"
         internal static let authorizeActionType     = "authorize_action_type"
         internal static let countryCode             = "country_code"

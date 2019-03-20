@@ -219,7 +219,7 @@ extension PaymentContentViewController: TapNavigationView.DataSource {
 		
 		switch Process.shared.transactionMode {
 			
-		case .purchase, .authorizeCapture:
+		case .purchase, .authorizeCapture, .cardTokenization:
 			
 			if Process.shared.appearance == .windowed { return nil }
 			
@@ -240,7 +240,7 @@ extension PaymentContentViewController: TapNavigationView.DataSource {
 		
 		switch Process.shared.transactionMode {
 			
-		case .purchase, .authorizeCapture:
+		case .purchase, .authorizeCapture, .cardTokenization:
 			
 			if Process.shared.appearance == .fullscreen {
 				

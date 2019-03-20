@@ -95,6 +95,7 @@ internal class BaseViewController: UIViewController {
                 
                 let allPossibleCurves: [UIView.AnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
                 let allPossibleRawValues = allPossibleCurves.map { $0.rawValue }
+				
                 if allPossibleRawValues.contains(animationCurveRawValue), let curve = UIView.AnimationCurve(rawValue: animationCurveRawValue) {
                     
 					animationCurve = UIView.AnimationOptions(tap_curve: curve)
