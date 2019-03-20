@@ -5,10 +5,10 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum TapCardValidator.CardBrand
+import enum		TapCardValidator.CardBrand
 
 /// Tokenized card model.
-internal struct TokenizedCard: IdentifiableWithString {
+@objcMembers public final class TokenizedCard: IdentifiableWithString {
     
     // MARK: - Public -
     // MARK: Properties
@@ -18,7 +18,7 @@ internal struct TokenizedCard: IdentifiableWithString {
     
     /// Object type.
     public let object: String
-    
+	
     /// Last four digits.
     public let lastFourDigits: String
     
@@ -89,7 +89,7 @@ internal struct TokenizedCard: IdentifiableWithString {
 // MARK: - Decodable
 extension TokenizedCard: Decodable {
     
-    public init(from decoder: Decoder) throws {
+	public convenience init(from decoder: Decoder) throws {
         
         let container           = try decoder.container(keyedBy: CodingKeys.self)
     

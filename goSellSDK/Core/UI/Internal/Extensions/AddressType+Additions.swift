@@ -10,8 +10,8 @@ extension AddressType: Transformable {
     internal init?(untransformedValue: Any?) {
         
         if let stringValue = untransformedValue as? String {
-            
-            self.init(rawValue: stringValue.uppercased())
+			
+			try? self.init(string: stringValue)
         }
         else if let addressType = untransformedValue as? AddressType {
             

@@ -125,7 +125,9 @@ internal class ErrorDataManager {
 		case .invalidUnitOfMeasurement:     return .invalidUnitOfMeasurement
 		case .invalidMeasurement:           return .invalidMeasurement
 		case .invalidEnumValue:             return .invalidEnumValue
-			
+		case .invalidAddressType:			return .invalidAddressType
+		case .invalidTokenType:				return .invalidTokenType
+
 		}
 	}
 	
@@ -238,7 +240,7 @@ internal class ErrorDataManager {
 			
 			#if GOSELLSDK_ERROR_REPORTING_AVAILABLE
 			
-			return Reporter.canReport ? [.alert, .report] : [.alert]
+				return Reporter.canReport ? [.alert, .report] : [.alert]
 			
 			#else
 			
@@ -272,6 +274,8 @@ internal class ErrorDataManager {
 			 .invalidAuthenticationType,
 			 .invalidAmountModificatorType,
 			 .invalidUnitOfMeasurement,
+			 .invalidAddressType,
+			 .invalidTokenType,
 			 .invalidMeasurement,
 			 .invalidAmount,
 			 .invalidCurrency,

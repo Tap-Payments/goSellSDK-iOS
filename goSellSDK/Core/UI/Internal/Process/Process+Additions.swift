@@ -23,6 +23,10 @@ extension Process: ProcessInterface {
 			
 			return cardSaving.process
 		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			return cardTokenization.process
+		}
 		else {
 			
 			fatalError("Wrong implementation.")
@@ -38,6 +42,10 @@ extension Process: ProcessInterface {
 		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
 			
 			return cardSaving.addressInputHandler
+		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			return cardTokenization.addressInputHandler
 		}
 		else {
 			
@@ -55,6 +63,10 @@ extension Process: ProcessInterface {
 			
 			return cardSaving.viewModelsHandler
 		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			return cardTokenization.viewModelsHandler
+		}
 		else {
 			
 			fatalError("Wrong implementation.")
@@ -70,6 +82,10 @@ extension Process: ProcessInterface {
 		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
 			
 			return cardSaving.currencySelectionHandler
+		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+		
+			return cardTokenization.currencySelectionHandler
 		}
 		else {
 			
@@ -87,6 +103,10 @@ extension Process: ProcessInterface {
 			
 			return cardSaving.cardScannerHandler
 		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			return cardTokenization.cardScannerHandler
+		}
 		else {
 			
 			fatalError("Wrong implementation.")
@@ -102,6 +122,10 @@ extension Process: ProcessInterface {
 		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
 			
 			return cardSaving.dataManager
+		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			return cardTokenization.dataManager
 		}
 		else {
 			
@@ -135,6 +159,10 @@ extension Process: ProcessInterface {
 			
 			return cardSaving.buttonHandler
 		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			return cardTokenization.buttonHandler
+		}
 		else {
 			
 			fatalError("Wrong implementation.")
@@ -152,6 +180,10 @@ extension Process: ProcessInterface {
 		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
 			
 			cardSaving.showPaymentController()
+		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			cardTokenization.showPaymentController()
 		}
 		else {
 			
@@ -184,6 +216,10 @@ extension Process: ProcessInterface {
 		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
 			
 			return cardSaving.closePayment(with: status, fadeAnimation: fadeAnimation, force: force, completion: completion)
+		}
+		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			return cardTokenization.closePayment(with: status, fadeAnimation: fadeAnimation, force: force, completion: completion)
 		}
 		else {
 			
@@ -295,6 +331,30 @@ extension Process: ProcessInterface {
 		}
 	}
 	
+	internal func cardTokenizationSuccess(with token: Token, customerRequestedToSaveCard: Bool) {
+		
+		if let tokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			tokenization.cardTokenizationSuccess(with: token, customerRequestedToSaveCard: customerRequestedToSaveCard)
+		}
+		else {
+			
+			fatalError("Wrong implementation")
+		}
+	}
+	
+	internal func cardTokenizationFailure(with error: TapSDKError) {
+		
+		if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
+			
+			cardTokenization.cardTokenizationFailure(with: error)
+		}
+		else {
+			
+			fatalError("Wrong implementation")
+		}
+	}
+	
 	internal func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String?) {
 		
 		if let payment: PaymentImplementation = self.wrappedImplementation.implementation() {
@@ -345,6 +405,7 @@ extension Process: ProcessInterface {
 	
 	// MARK: - Private -
 	
-	private typealias PaymentImplementation = Implementation<PaymentClass>
-	private typealias CardSavingImplementation = Implementation<CardSavingClass>
+	private typealias PaymentImplementation				= Implementation<PaymentClass>
+	private typealias CardSavingImplementation			= Implementation<CardSavingClass>
+	private typealias CardTokenizationImplementation	= Implementation<CardTokenizationClass>
 }

@@ -11,7 +11,9 @@ internal enum PaymentStatus {
     case successfulCharge(Charge)
     case successfulAuthorize(Authorize)
 	case successfulCardSave(CardVerification)
+	case successfulCardTokenize(Token, Bool)
     case chargeFailure(Charge?, TapSDKError?)
     case authorizationFailure(Authorize?, TapSDKError?)
 	case cardSaveFailure(CardVerification?, TapSDKError?)
+	case cardTokenizeFailure(TapSDKError)
 }

@@ -8,10 +8,12 @@
 internal enum InternalError: Int {
 	
 	case invalidCountryCode = 1
+	case invalidAddressType
 	case invalidAmountModificatorType
 	case invalidAuthorizeActionType
 	case invalidCurrency
 	case invalidCustomerInfo
+	case invalidTokenType
 	case customerAlreadyExists
 	case cardAlreadyExists
 	case invalidEmail

@@ -8,8 +8,10 @@
 internal protocol ProcessMode {}
 internal protocol Payment: ProcessMode {}
 internal protocol CardSaving: ProcessMode {}
+internal protocol CardTokenization: ProcessMode {}
 
 internal class ProcessModeClass: ProcessMode {}
 
-internal class PaymentClass:	ProcessModeClass, Payment & ProcessMode {}
-internal class CardSavingClass:	ProcessModeClass, CardSaving & ProcessMode {}
+internal class PaymentClass:			ProcessModeClass, Payment & ProcessMode {}
+internal class CardSavingClass:			ProcessModeClass, CardSaving & ProcessMode {}
+internal class CardTokenizationClass:	ProcessModeClass, CardTokenization & ProcessMode {}

@@ -81,6 +81,10 @@ internal extension Process {
 				
 				saveProcessHandler.saveProcessButtonClicked()
 			}
+			if let tokenizeProcessHandler = self as? TapButtonProcessHandler<CardTokenizationClass, Implementation<CardTokenizationClass>> {
+				
+				tokenizeProcessHandler.tokenizeProcessButtonClicked()
+			}
 		}
 		
 		internal func disabledButtonClicked() {
@@ -111,6 +115,10 @@ internal extension Process {
 				
 				saveProcessHandler.updateSaveProcessButtonState()
 			}
+			else if let tokenizeProcessHandler = self as? TapButtonProcessHandler<CardTokenizationClass, Implementation<CardTokenizationClass>> {
+				
+				tokenizeProcessHandler.updateTokenizeProcessButtonState()
+			}
 			else if let payHandler = self as? TapButtonHandler<PaymentClass> {
 				
 				payHandler.updatePayButtonState()
@@ -118,6 +126,10 @@ internal extension Process {
 			else if let saveHandler = self as? TapButtonHandler<CardSavingClass> {
 				
 				saveHandler.updateSaveButtonState()
+			}
+			else if let tokenizeHandler = self as? TapButtonHandler<CardTokenizationClass> {
+				
+				tokenizeHandler.updateTokenizeButtonState()
 			}
 		}
 		
@@ -217,6 +229,49 @@ internal extension Process.TapButtonHandler where Mode: CardSaving {
 	internal func updateSaveButtonState() {
 		
 		self.button?.setLocalizedText(.btn_save_title)
+		self.button?.forceDisabled = false
+	}
+}
+
+internal extension Process.TapButtonHandler where Mode: CardTokenization {
+	
+	// MARK: - Internal -
+	// MARK: Properties
+	
+	internal var amount: AmountedCurrency? {
+		
+		get {
+			
+			return self._amount
+		}
+		set {
+			
+			self._amount = newValue
+			
+			self.updateAmountOnTheButton()
+		}
+	}
+	
+	// MARK: Methods
+	
+	internal func updateTokenizeButtonState() {
+		
+		self.updateAmountOnTheButton()
+	}
+	
+	private func updateAmountOnTheButton() {
+		
+		guard let displayedAmount = self.amount, displayedAmount.amount > 0.0 else {
+			
+			self.button?.setLocalizedText(.btn_pay_title_generic)
+			self.button?.forceDisabled = true
+			
+			return
+		}
+		
+		let amountString = CurrencyFormatter.shared.format(displayedAmount)
+		self.button?.setLocalizedText(.btn_pay_title_amount, amountString)
+		
 		self.button?.forceDisabled = false
 	}
 }
@@ -368,5 +423,56 @@ internal extension Process.TapButtonProcessHandler where Mode: CardSaving {
 		
 		let payButtonEnabled = selectedPaymentViewModel.affectsPayButtonState && selectedPaymentViewModel.isReadyForPayment
 		self.makeButtonEnabled(payButtonEnabled)
+	}
+}
+
+internal extension Process.TapButtonProcessHandler where Mode: CardTokenization {
+	
+	// MARK: - Internal -
+	// MARK: Methods
+	
+	internal func tokenizeProcessButtonClicked() {
+		
+		guard let selectedPaymentViewModel = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment, !self.process.dataManagerInterface.isExecutingAPICalls else { return }
+		
+		self.process.startPayment(with: selectedPaymentViewModel)
+	}
+	
+	internal func updateTokenizeProcessButtonState() {
+		
+		self.updateAmount()
+		self.buttonStyle = .pay
+		
+		guard let selectedPaymentViewModel = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel else {
+			
+			self.makeButtonEnabled(false)
+			return
+		}
+		
+		let payButtonEnabled = selectedPaymentViewModel.affectsPayButtonState && selectedPaymentViewModel.isReadyForPayment
+		self.makeButtonEnabled(payButtonEnabled)
+	}
+	
+	// MARK: - Private -
+	// MARK: Methods
+	
+	private func updateAmount() {
+		
+		let amountedCurrency = self.process.dataManagerInterface.selectedCurrency
+		
+		if let paymentOption = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel?.paymentOption {
+			
+			let extraFeeAmount = Process.AmountCalculator<CardTokenizationClass>.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
+			
+			let amount = AmountedCurrency(amountedCurrency.currency,
+										  amountedCurrency.amount + extraFeeAmount,
+										  amountedCurrency.currencySymbol)
+			
+			self.amount = amount
+		}
+		else {
+			
+			self.amount = amountedCurrency
+		}
 	}
 }

@@ -280,7 +280,7 @@ internal final class APIClient {
         if let dictionary = response as? [String: Any], let httpResponse = dataTask?.response as? HTTPURLResponse {
             
             let statusCode = httpResponse.statusCode
-            if Constants.successStatusCodes.contains(statusCode) {
+			if statusCode.tap_isIn(Constants.successStatusCodes) {
                 
                 do {
                     

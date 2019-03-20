@@ -34,13 +34,19 @@ internal extension PayButtonInternalImplementation {
 				saveHandler.buttonStyle = self.requiredButtonType
 				saveHandler.updateButtonState()
 			}
+			else if let tokenizeHandler: TokenizeButtonHandler = self.handler?.unwrapped() {
+				
+				tokenizeHandler.buttonStyle = self.requiredButtonType
+				tokenizeHandler.updateButtonState()
+			}
 		}
 	}
 	
 	// MARK: - Private -
 	
-	private typealias PayButtonHandler	= Process.TapButtonHandler<PaymentClass>
-	private typealias SaveButtonHandler	= Process.TapButtonHandler<CardSavingClass>
+	private typealias PayButtonHandler		= Process.TapButtonHandler<PaymentClass>
+	private typealias SaveButtonHandler		= Process.TapButtonHandler<CardSavingClass>
+	private typealias TokenizeButtonHandler	= Process.TapButtonHandler<CardTokenizationClass>
 	
 	// MARK: Properties
 	
@@ -63,7 +69,7 @@ internal extension PayButtonInternalImplementation {
 		
 		let mode = self.transactionMode
 		
-		guard mode == .purchase || mode == .authorizeCapture else { return nil }
+		guard mode.tap_isIn([.purchase, .authorizeCapture, .cardTokenization]) else { return nil }
 		
 		var amountedCurrency: AmountedCurrency?
 		
@@ -94,22 +100,45 @@ internal extension PayButtonInternalImplementation {
 			
 		case .pay:
 			
-			if let existing: PayButtonHandler = self.handler?.unwrapped() {
+			if self.transactionMode == .cardTokenization {
 				
-				existing.amount = self.amount
-				return true
+				if let existing: TokenizeButtonHandler = self.handler?.unwrapped() {
+					
+					existing.amount = self.amount
+					return true
+				}
+				else {
+					
+					let tokenizeHandler = TokenizeButtonHandler()
+					tokenizeHandler.clickCallback = { self.session.start() }
+					tokenizeHandler.amount = self.amount
+					tokenizeHandler.setButton(self.uiElement)
+					tokenizeHandler.buttonStyle = type
+					
+					self.handler = WrappedAndTypeErased(tokenizeHandler)
+					
+					return false
+				}
 			}
 			else {
 				
-				let payHandler = PayButtonHandler()
-				payHandler.clickCallback = { self.session.start() }
-				payHandler.amount = self.amount
-				payHandler.setButton(self.uiElement)
-				payHandler.buttonStyle = type
-				
-				self.handler = WrappedAndTypeErased(payHandler)
-				
-				return false
+				if let existing: PayButtonHandler = self.handler?.unwrapped() {
+					
+					existing.amount = self.amount
+					return true
+				}
+				else {
+					
+					let payHandler = PayButtonHandler()
+					payHandler.clickCallback = { self.session.start() }
+					payHandler.amount = self.amount
+					payHandler.setButton(self.uiElement)
+					payHandler.buttonStyle = type
+					
+					self.handler = WrappedAndTypeErased(payHandler)
+					
+					return false
+				}
 			}
 			
 		case .save:

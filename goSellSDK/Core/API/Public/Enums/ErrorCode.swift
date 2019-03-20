@@ -219,6 +219,12 @@
 	/// Invalid enumeration value.
 	case invalidEnumValue                       = 8004
 	
+	/// Invalid address type
+	case invalidAddressType						= 8005
+	
+	/// Invalid token type.
+	case invalidTokenType						= 8006
+	
 	/// Serialization error.
 	case serialization                          = 8100
 	

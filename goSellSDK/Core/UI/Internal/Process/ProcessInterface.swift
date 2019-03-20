@@ -33,6 +33,9 @@ internal protocol ProcessInterface: ClassProtocol {
 	
 	func cardSavingSuccess(with cardVerification: CardVerification)
 	func cardSavingFailure(with cardVerification: CardVerification, error: TapSDKError?)
+	
+	func cardTokenizationSuccess(with token: Token, customerRequestedToSaveCard: Bool)
+	func cardTokenizationFailure(with error: TapSDKError)
 }
 
 internal protocol ProcessGenericInterface: ProcessInterface {
