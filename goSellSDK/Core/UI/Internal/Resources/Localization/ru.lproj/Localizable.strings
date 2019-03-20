@@ -1,0 +1,280 @@
+/* 
+  Localizable.strings
+  goSellSDK
+
+  Copyright © 2019 Tap Payments. All rights reserved.
+*/
+
+// MARK: Common
+
+"common_edit"	= "Изменить";
+"common_cancel"	= "Отмена";
+
+// MARK: Pay Button Titles
+
+"btn_pay_title_generic"	= "ОПЛАТИТЬ";
+"btn_pay_title_amount" 	= "ОПЛАТИТЬ %@";
+
+// MARK: Save Button Title
+
+"btn_save_title" = "СОХРАНИТЬ КАРТУ";
+"btn_save_action_title" = "СОХРАНИТЬ";
+
+// MARK: Payment Option Group Titles
+
+"payment_options_group_title_recent" = "НЕДАВНИЕ";
+"payment_options_group_title_others" = "ДРУГИЕ";
+
+// MARK: Card Input Fields Placeholders
+
+"card_input_card_number_placeholder" 		= "Номер карты";
+"card_input_expiration_date_placeholder" 	= "ММ/ГГ";
+"card_input_cvv_placeholder" 				= "CVV";
+"card_input_cardholder_name_placeholder"	= "Имя владельца карты";
+"card_input_address_on_card_placeholder"	= "Адрес на карте";
+
+// MARK: Save Card Placeholders
+
+"save_card_promotion_text"		= "Для более быстрой и безопасной оплаты сохраните карту";
+"saved_cards_usage_description"	= "Сохранённые карты будут использоваться только с Вашего согласия, Вы можете удалить их в любое время.";
+
+// MARK: Screen Titles
+
+"currency_selection_screen_title" 	= "Выберите валюту";
+"card_scanning_screen_title"		= "Сканирование карты";
+"payment_screen_title_payment"		= "Оплата";
+"payment_screen_title_card_saving"	= "Введите данные карты";
+
+// MARK: Search Bar
+
+"search_bar_placeholder" = "Поиск";
+
+// MARK: OTP Screen
+
+"otp_guide_text"	= "Пожалуйста, введите код из СМС, отправленный на номер %@";
+"btn_confirm_title"	= "ПОДТВЕРДИТЬ";
+"btn_resend_title"	= "ОТПРАВИТЬ ЕЩЕ РАЗ";
+
+
+// MARK: -
+// MARK: Alert: Delete Card
+
+"alert_delete_card_title" 				= "Удалить карту";
+"alert_delete_card_message" 			= "Вы уверены, что хотите удалить карту %@?";
+"alert_delete_card_btn_cancel_title"	= "Отмена";
+"alert_delete_card_btn_delete_title" 	= "Удалить";
+
+// MARK: Alert: Extra Charges
+
+"alert_extra_charges_title" 			= "Дополнительные сборы";
+"alert_extra_charges_message" 			= "С Вас дополнительно будет взято %@ за этот способ оплаты. Всего к оплате: %@";
+"alert_extra_charges_btn_cancel_title" 	= "Отмена";
+"alert_extra_charges_btn_confirm_title"	= "Подтвердить";
+
+// MARK: Alert: Cancel Payment (status undefined)
+
+"alert_cancel_payment_status_undefined_title" 				= "Отменить оплату";
+"alert_cancel_payment_status_undefined_message"				= "Вы хотите отменить оплату? Статус оплаты будет неизвестен.";
+"alert_cancel_payment_status_undefined_btn_no_title"		= "Нет";
+"alert_cancel_payment_status_undefined_btn_confirm_title"	= "Подтвердить";
+
+// MARK: Alert: Cancel Payment (just cancel)
+
+"alert_cancel_payment_title" 				= "Отменить оплату";
+"alert_cancel_payment_message" 				= "Вы хотите отменить оплату?";
+"alert_cancel_payment_btn_no_title" 		= "Нет";
+"alert_cancel_payment_btn_confirm_title"	= "Подтвердить";
+
+// MARK: Alert: Error
+
+"alert_error_1103_message"	= "Required inputs are invalid.";
+"alert_error_1103_title" 	= "Invalid Input";
+
+"alert_error_1104_message" 	= "Customer ID is missing.";
+"alert_error_1104_title" 	= "Missing Customer ID";
+
+"alert_error_1108_message"	= "Save card feature is disabled.";
+"alert_error_1108_title" 	= "Save Card";
+
+"alert_error_1109_message" 	= "Non-3D secure transactions are forbidden.";
+"alert_error_1109_title" 	= "3D Secure";
+
+"alert_error_1112_message" 	= "Authorize ID is missing.";
+"alert_error_1112_title" 	= "Authorize ID";
+
+"alert_error_1113_message" 	= "Authorize ID is invalid.";
+"alert_error_1113_title" 	= "Authorize ID";
+
+"alert_error_1114_message" 	= "Please check authorize status.";
+"alert_error_1114_title" 	= "Authorize Status";
+
+"alert_error_1115_message" 	= "Authorize ID not found.";
+"alert_error_1115_title" 	= "Authorize ID";
+
+"alert_error_1116_message" 	= "Save card feature is not supported.";
+"alert_error_1116_title" 	= "Save Card";
+
+"alert_error_1117_message" 	= "Amount is invalid.";
+"alert_error_1117_title" 	= "Amount";
+
+"alert_error_1118_message" 	= "Invalid currency.";
+"alert_error_1118_title" 	= "Currency";
+
+"alert_error_1119_message" 	= "Unsupported currency.";
+"alert_error_1119_title" 	= "Currency";
+
+"alert_error_1126_message" 	= "Source is already used.";
+"alert_error_1126_title" 	= "Source Used";
+
+"alert_error_1129_message" 	= "Customer ID or customer information is required.";
+"alert_error_1129_title" 	= "Customer Information";
+
+"alert_error_1130_message" 	= "Customer first name is missing.";
+"alert_error_1130_title" 	= "First Name";
+
+"alert_error_1131_message" 	= "Customer first name is invalid.";
+"alert_error_1131_title" 	= "First Name";
+
+"alert_error_1132_message" 	= "Customer last name is missing.";
+"alert_error_1132_title" 	= "Last Name";
+
+"alert_error_1133_message" 	= "Customer last name is invalid.";
+"alert_error_1133_title" 	= "Last Name";
+
+"alert_error_1134_message" 	= "Customer middle name is invalid.";
+"alert_error_1134_title" 	= "Middle Name";
+
+"alert_error_1135_message" 	= "Phone number is missing.";
+"alert_error_1135_title" 	= "Phone Number";
+
+"alert_error_1136_message" 	= "Phone number country code is invalid.";
+"alert_error_1136_title" 	= "Phone Number";
+
+"alert_error_1137_message" 	= "Phone number is invalid.";
+"alert_error_1137_title" 	= "Phone Number";
+
+"alert_error_1138_message" 	= "Email address is invalid.";
+"alert_error_1138_title" 	= "Email Address";
+
+"alert_error_1139_message" 	= "Customer information is missing. Either email or phone number should be provided.";
+"alert_error_1139_title" 	= "Customer Information";
+
+"alert_error_1140_message" 	= "Invalid card number.";
+"alert_error_1140_title" 	= "Card Number";
+
+"alert_error_1141_message" 	= "Invalid expiration date.";
+"alert_error_1141_title" 	= "Expiration Date";
+
+"alert_error_1142_message" 	= "Charge ID is missing.";
+"alert_error_1142_title" 	= "Charge ID";
+
+"alert_error_1143_message" 	= "Charge ID is invalid.";
+"alert_error_1143_title" 	= "Charge ID";
+
+"alert_error_1144_message" 	= "Charge ID not found.";
+"alert_error_1144_title" 	= "Charge ID";
+
+"alert_error_1145_message" 	= "Authentication type is missing.";
+"alert_error_1145_title" 	= "Authentication Type";
+
+"alert_error_1146_message" 	= "Authentication type is invalid.";
+"alert_error_1146_title" 	= "Authentication Type";
+
+"alert_error_1147_message" 	= "Confirmation code is missing.";
+"alert_error_1147_title" 	= "Confirmation Code";
+
+"alert_error_1148_message" 	= "Confirmation code is invalid.";
+"alert_error_1148_title" 	= "Confirmation Code";
+
+"alert_error_1149_message" 	= "Currency code is not matching with existing currency code.";
+"alert_error_1149_title" 	= "Currency Code";
+
+"alert_error_1150_message" 	= "Capture amount exceeds with outstanding authorized amount.";
+"alert_error_1150_title" 	= "Capture Amount";
+
+"alert_error_1151_message" 	= "Gateway timed out.";
+"alert_error_1151_title" 	= "Gateway Timeout";
+
+"alert_error_1152_message" 	= "Invalid authorize auto schedule type.";
+"alert_error_1152_title" 	= "Auto Schedule";
+
+"alert_error_1153_message" 	= "Invalid authorize auto schedule time.";
+"alert_error_1153_title" 	= "Auto Schedule";
+
+"alert_error_2101_message" 	= "Server is currently unavailable. Please try again later.";
+"alert_error_2101_title" 	= "Server Unavailable";
+
+"alert_error_2102_message" 	= "Server is currently unavailable. Please try again later.";
+"alert_error_2102_title" 	= "Server Unavailable";
+
+"alert_error_2104_message" 	= "You have provided invalid API key.";
+"alert_error_2104_title" 	= "API Key";
+
+"alert_error_2105_message" 	= "API credentials are missing.";
+"alert_error_2105_title" 	= "API Credentials";
+
+"alert_error_2106_message" 	= "Public API key given. Please use secret API key instead.";
+"alert_error_2106_title" 	= "API Key";
+
+"alert_error_3100_message" 	= "Insufficient permissions.";
+"alert_error_3100_title" 	= "Permission Denied";
+
+"alert_error_8000_message" 	= "Country code is invalid.";
+"alert_error_8000_title" 	= "Country Code";
+
+"alert_error_8001_message" 	= "Amount modificator type is invalid.";
+"alert_error_8001_title" 	= "Amount Modificator Type";
+
+"alert_error_8002_message" 	= "Measurement unit is invalid.";
+"alert_error_8002_title" 	= "Measurement Unit";
+
+"alert_error_8003_message" 	= "Measurement is invalid.";
+"alert_error_8003_title" 	= "Measurement";
+
+"alert_error_8004_message" 	= "Failed to deserialize an enum.";
+"alert_error_8004_title" 	= "Serialization";
+
+"alert_error_8100_message" 	= "Serialization error has occured.";
+"alert_error_8100_title" 	= "Serialization";
+
+"alert_error_8200_message" 	= "Network error has occured.";
+"alert_error_8200_title" 	= "Network";
+
+"alert_error_8302_message"	= "This card already exists.";
+"alert_error_8302_title"	= "Card Exists";
+
+"alert_error_8400_message"	= "This card is not supported.";
+"alert_error_8400_title"	= "Card Not Supported";
+
+"alert_error_8401_message"	= "CVV code is invalid.";
+"alert_error_8401_title"	= "CVV";
+
+"alert_error_8402_message"	= "Address on card is invalid.";
+"alert_error_8402_title"	= "Card Address";
+
+"alert_error_8403_message"	= "Cardholder name is invalid.";
+"alert_error_8403_title"	= "Cardholder Name";
+
+"alert_error_9999_message" 	= "An unknown error has occured.";
+"alert_error_9999_title" 	= "Unknown Error";
+
+"alert_error_btn_retry_title"	= "Повторить";
+"alert_error_btn_dismiss_title"	= "Закрыть";
+"alert_error_btn_report_title"	= "Сообщить об ошибке";
+
+// MARK: Payment Statuses
+
+"payment_status_initiated" 		= "Началось";
+"payment_status_in_progress"	= "В процессе";
+"payment_status_abandoned" 		= "Заброшено";
+"payment_status_cancelled" 		= "Отменено";
+"payment_status_failed" 		= "Неуспешно";
+"payment_status_declined" 		= "Отказано";
+"payment_status_restricted" 	= "Ограничено";
+"payment_status_captured" 		= "Захвачено";
+"payment_status_authorized" 	= "Одобрено";
+"payment_status_unknown"		= "Неизвестно";
+"payment_status_void" 			= "Недействительно";
+
+"payment_status_alert_successful"	= "Успешно";
+"payment_status_alert_failed"		= "Неуспешно";
