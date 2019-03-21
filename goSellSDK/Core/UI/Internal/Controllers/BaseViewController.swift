@@ -135,8 +135,6 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
     
 	private func keyboardWillChangeFrame(_ notification: Notification) {
 		
-		if let controllerWindow = self.view.window, self.ignoresKeyboardEventsWhenWindowIsNotKey && !controllerWindow.isKeyWindow { return }
-		
 		performOnMainThread { [weak self] in
 			
 			guard let strongSelf = self else { return }
@@ -151,6 +149,8 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 			
 			let offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
 			let keyboardIsShown = offset > 0.0
+			
+			if let controllerWindow = self?.view.window, keyboardIsShown && (self?.ignoresKeyboardEventsWhenWindowIsNotKey ?? false) && !controllerWindow.isKeyWindow { return }
 			
 			let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
 			
