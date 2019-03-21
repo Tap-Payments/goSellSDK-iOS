@@ -38,12 +38,14 @@ internal class ExpirationDateValidator: CardValidator {
         let currentDate = Date()
         let month = currentDate.tap_month
         let year = currentDate.tap_year % 100
-        
-        if year < nonnullExpirationDate.year {
+		
+		let dateYear = nonnullExpirationDate.year % 100
+		
+        if year < dateYear {
             
             return true
         }
-        else if year == nonnullExpirationDate.year {
+        else if year == dateYear {
             
             return month <= nonnullExpirationDate.month
         }
