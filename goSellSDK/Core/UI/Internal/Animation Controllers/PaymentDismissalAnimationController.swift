@@ -20,6 +20,8 @@ internal final class PaymentDismissalAnimationController: NSObject {
     // MARK: Properties
     
     internal static var usesFadeAnimation: Bool = false
+	
+	internal var additionalAnimations: TypeAlias.ArgumentlessClosure?
     
     // MARK: Methods
     
@@ -29,7 +31,12 @@ internal final class PaymentDismissalAnimationController: NSObject {
         
         super.init()
     }
-    
+	
+	deinit {
+		
+		self.additionalAnimations = nil
+	}
+	
     // MARK: - Private -
     
     private struct Constants {
@@ -107,6 +114,8 @@ extension PaymentDismissalAnimationController: UIViewControllerAnimatedTransitio
 				
 				blurView?.style = .none
 			}
+			
+			self.additionalAnimations?()
         }
 		
 		if #available(iOS 10.0, *) {

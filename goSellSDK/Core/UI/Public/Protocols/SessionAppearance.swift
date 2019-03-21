@@ -6,7 +6,6 @@
 //
 
 import struct	CoreGraphics.CGBase.CGFloat
-import class	UIKit.UIBlurEffect.UIBlurEffect
 import class	UIKit.UIColor.UIColor
 import class	UIKit.UIControl.UIControl
 import class	UIKit.UIFont.UIFont
@@ -39,14 +38,20 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	/// - Returns: UIColor
 	@objc(backgroundColorForSession:) optional func backgroundColor(for session: SessionProtocol) -> UIColor
 	
+	/// Content background color for payment screen.
+	///
+	/// - Parameter session: Target session.
+	/// - Returns: UIColor
+	@objc(contentBackgroundColorForSession:) optional func contentBackgroundColor(for session: SessionProtocol) -> UIColor
+	
 	/// Background blur style for payment screen.
 	///
 	/// - Parameters:
 	///   - session: Target session.
-	/// - Returns: UIBlurEffect.Style
-	@objc(backgroundBlurStyleForSession:) optional func backgroundBlurStyle(for session: SessionProtocol) -> UIBlurEffect.Style
+	/// - Returns: TapBlurEffectStyle
+	@objc(backgroundBlurEffectStyleForSession:) optional func backgroundBlurEffectStyle(for session: SessionProtocol) -> TapBlurStyle
 	
-	/// Background blur *"radius"* progress in range [0, 1]
+	/// Background blur *"radius"* progress in range [0, 1]. If you return 0 here, blur will be hidden.
 	///
 	/// - Parameters:
 	///   - session: Target session.

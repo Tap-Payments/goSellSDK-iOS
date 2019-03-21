@@ -18,6 +18,10 @@ import class	UIKit.UIViewPropertyAnimator.UIViewPropertyAnimator
 internal final class PaymentPresentationAnimationController: NSObject {
     
     // MARK: - Internal -
+	// MARK: Properties
+	
+	internal var additionalAnimations: TypeAlias.ArgumentlessClosure?
+	
     // MARK: Methods
     
     internal init(animateBlur: Bool = true) {
@@ -27,6 +31,8 @@ internal final class PaymentPresentationAnimationController: NSObject {
     }
 	
 	deinit {
+		
+		self.additionalAnimations = nil
 		
 		if #available(iOS 10.0, *) {
 			
@@ -98,7 +104,7 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
         let blurView = self.animatesBlur ? fromView.tap_subview(ofClass: TapVisualEffectView.self) : nil
         blurView?.style = .none
         
-        let animations: TypeAlias.ArgumentlessClosure = {
+        let animations: TypeAlias.ArgumentlessClosure = { [weak self] in
 			
 			if UIDevice.current.tap_isRunningIOS9OrLower {
 				
@@ -106,6 +112,8 @@ extension PaymentPresentationAnimationController: UIViewControllerAnimatedTransi
 			}
 			
 			toView.frame = finalFrame
+			
+			self?.additionalAnimations?()
 		}
 		
 		if #available(iOS 10.0, *) {

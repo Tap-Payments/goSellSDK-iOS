@@ -106,6 +106,7 @@
 		14A3D313215953DE007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
 		14A8428D2243B1B90026CC16 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8428B2243B1B80026CC16 /* Transfer.swift */; };
 		14A8428E2243B1B90026CC16 /* DestinationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8428C2243B1B90026CC16 /* DestinationGroup.swift */; };
+		14A842922243E7F50026CC16 /* TapBlurStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A842912243E7F40026CC16 /* TapBlurStyle.swift */; };
 		14A868922241441F007FC795 /* LocalizationKey+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A868912241441E007FC795 /* LocalizationKey+Additions.swift */; };
 		14A8689422414478007FC795 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8689322414478007FC795 /* LocalizationManager.swift */; };
 		14A86896224145B5007FC795 /* Reporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A86895224145B5007FC795 /* Reporter.swift */; };
@@ -515,6 +516,7 @@
 		14A3D31621595681007F3565 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A8428B2243B1B80026CC16 /* Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		14A8428C2243B1B90026CC16 /* DestinationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationGroup.swift; sourceTree = "<group>"; };
+		14A842912243E7F40026CC16 /* TapBlurStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapBlurStyle.swift; sourceTree = "<group>"; };
 		14A868912241441E007FC795 /* LocalizationKey+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocalizationKey+Additions.swift"; sourceTree = "<group>"; };
 		14A8689322414478007FC795 /* LocalizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		14A86895224145B5007FC795 /* Reporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reporter.swift; sourceTree = "<group>"; };
@@ -1167,6 +1169,7 @@
 			isa = PBXGroup;
 			children = (
 				1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */,
+				14A842912243E7F40026CC16 /* TapBlurStyle.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -2203,6 +2206,7 @@
 				14713749220B333F002EBEE4 /* ListCardsResponse.swift in Sources */,
 				14B22183215A4747003DC928 /* Localizable.swift in Sources */,
 				141284EE216112C300C2873E /* SearchBarStyle.swift in Sources */,
+				14A842922243E7F50026CC16 /* TapBlurStyle.swift in Sources */,
 				A4444BE420AB52C5005D9E87 /* HeaderNavigatedViewControllerWithSearch.swift in Sources */,
 				A4BD8D4320A1F6AE00EFF2CE /* Notification.Name+Additions.swift in Sources */,
 				1495976C21F5452E00DFA0A2 /* SDKAppearanceMode.swift in Sources */,

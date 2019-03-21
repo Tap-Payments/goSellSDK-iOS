@@ -131,9 +131,17 @@ internal final class Process {
 			commonStyle.backgroundColor[.windowed]		= color
 		}
 		
-		if let blurStyle = externalAppearance?.backgroundBlurStyle?(for: session) {
+		if let contentBackgroundColor = externalAppearance?.contentBackgroundColor?(for: session) {
 			
-			let tapBlurStyle = TapBlurEffectStyle(blurStyle)
+			let color = contentBackgroundColor.tap_asHexColor
+			
+			commonStyle.contentBackgroundColor[.fullscreen]	= color
+			commonStyle.contentBackgroundColor[.windowed]	= color
+		}
+		
+		if let blurStyle = externalAppearance?.backgroundBlurEffectStyle?(for: session) {
+			
+			let tapBlurStyle = blurStyle.effectStyle
 			
 			commonStyle.blurStyle[.fullscreen].style	= tapBlurStyle
 			commonStyle.blurStyle[.windowed].style		= tapBlurStyle

@@ -8,6 +8,7 @@
 import struct   CoreGraphics.CGGeometry.CGRect
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
+import class	UIKit.UIColor.UIColor
 import class    UIKit.UINavigationController.UINavigationController
 import protocol UIKit.UINavigationController.UINavigationControllerDelegate
 import enum     UIKit.UINavigationController.UINavigationControllerOperation
@@ -57,8 +58,22 @@ internal class PaymentViewController: SeparateWindowViewController {
     }
 
     private var hasShownPaymentController = false
-    
-    private lazy var animationsHandler = TransitionAnimationsHandler()
+	
+	private lazy var animationsHandler: TransitionAnimationsHandler = {
+		
+		let additionalAppearanceAnimations: TypeAlias.ArgumentlessClosure = { [weak self] in
+			
+			self?.view.layer.backgroundColor = Theme.current.commonStyle.backgroundColor[.fullscreen].cgColor
+		}
+		
+		let additionalDisapperanceAnimations: TypeAlias.ArgumentlessClosure = { [weak self] in
+			
+			self?.view.layer.backgroundColor = UIColor.clear.cgColor
+		}
+		
+		return TransitionAnimationsHandler(additionalAppearanceAnimations:		additionalAppearanceAnimations,
+										   additionalDisappearanceAnimations:	additionalDisapperanceAnimations)
+	}()
     
     // MARK: Methods
     
@@ -87,14 +102,31 @@ extension PaymentViewController {
     
     private class TransitionAnimationsHandler: NSObject, UIViewControllerTransitioningDelegate {
 		
+		fileprivate init(additionalAppearanceAnimations: TypeAlias.ArgumentlessClosure?, additionalDisappearanceAnimations: TypeAlias.ArgumentlessClosure?) {
+			
+			self.additionalAppearanceAnimations		= additionalAppearanceAnimations
+			self.additionalDisappearanceAnimations	= additionalDisappearanceAnimations
+			
+			super.init()
+		}
+		
 		fileprivate func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 			
-			return PaymentPresentationAnimationController()
+			let animationController = PaymentPresentationAnimationController()
+			animationController.additionalAnimations = self.additionalAppearanceAnimations
+			
+			return animationController
 		}
 		
 		fileprivate func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 			
-			return PaymentDismissalAnimationController()
+			let animationController = PaymentDismissalAnimationController()
+			animationController.additionalAnimations = self.additionalDisappearanceAnimations
+			
+			return animationController
 		}
+		
+		private let additionalAppearanceAnimations: TypeAlias.ArgumentlessClosure?
+		private let additionalDisappearanceAnimations: TypeAlias.ArgumentlessClosure?
     }
 }

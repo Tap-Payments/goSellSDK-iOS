@@ -15,11 +15,11 @@ import enum		goSellSDK.SDKAppearanceMode
 import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
+import class	goSellSDK.TapBlurStyle
 import enum     goSellSDK.TransactionMode
 import class    ObjectiveC.NSObject.NSObject
 import enum		UIKit.NSText.NSTextAlignment
 import class	UIKit.UIApplication.UIApplication
-import class	UIKit.UIBlurEffect.UIBlurEffect
 import class	UIKit.UIFont.UIFont
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UINavigationController.UINavigationController
@@ -206,6 +206,11 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 				colorSelectionController.title = "Background Color"
 				colorSelectionController.preselectedValue = self.currentSettings?.backgroundColor
 				
+			case Constants.contentBackgroundColorCellReuseIdentifier:
+				
+				colorSelectionController.title = "Content Background Color"
+				colorSelectionController.preselectedValue = self.currentSettings?.contentBackgroundColor
+				
 			default:
 				
 				break
@@ -287,7 +292,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			case Constants.backgroundBlurStyleCellReuseIdentifier:
 				
 				caseSelectionController.title = "Background Blur Style"
-				caseSelectionController.allValues = UIBlurEffect.Style.allCases
+				caseSelectionController.allValues = TapBlurStyle.allCases
 				caseSelectionController.preselectedValue = self.currentSettings?.backgroundBlurStyle
 				
 			default:
@@ -368,7 +373,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			 Constants.tapButtonDisabledTextColorCellReuseIdentifier,
 			 Constants.tapButtonEnabledTextColorCellReuseIdentifier,
 			 Constants.tapButtonHighlightedTextColorCellReuseIdentifier,
-			 Constants.backgroundColorCellReuseIdentifier:
+			 Constants.backgroundColorCellReuseIdentifier,
+			 Constants.contentBackgroundColorCellReuseIdentifier:
 			
 			self.showColorSelectionViewController(with: reuseIdentifier)
 			
@@ -468,6 +474,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		fileprivate static let tapButtonEnabledTextColorCellReuseIdentifier				= "tap_button_enabled_text_color_cell"
 		fileprivate static let tapButtonHighlightedTextColorCellReuseIdentifier			= "tap_button_highlighted_text_color_cell"
 		fileprivate static let backgroundColorCellReuseIdentifier						= "background_color_cell"
+		fileprivate static let contentBackgroundColorCellReuseIdentifier				= "content_background_color_cell"
 		fileprivate static let backgroundBlurStyleCellReuseIdentifier					= "background_blur_style_cell"
 		
         @available(*, unavailable) private init() {}
@@ -556,6 +563,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	@IBOutlet private weak var tapButtonLoaderVisibleSwitch: UISwitch?
 	@IBOutlet private weak var tapButtonSecurityIconVisibleSwitch: UISwitch?
 	@IBOutlet private weak var backgroundColorValueLabel: UILabel?
+	@IBOutlet private weak var contentBackgroundColorValueLabel: UILabel?
 	@IBOutlet private weak var backgroundBlurStyleValueLabel: UILabel?
 	@IBOutlet private weak var backgroundBlurProgressValueLabel: UILabel?
 	@IBOutlet private weak var backgroundBlurProgressStepper: UIStepper?
@@ -637,6 +645,9 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		
 		self.backgroundColorValueLabel?.text	= self.currentSettings?.backgroundColor.description
 		if let set = self.currentSettings { self.backgroundColorValueLabel?.textColor = set.backgroundColor.asUIColor }
+		
+		self.contentBackgroundColorValueLabel?.text	= self.currentSettings?.contentBackgroundColor.description
+		if let set = self.currentSettings { self.contentBackgroundColorValueLabel?.textColor = set.contentBackgroundColor.asUIColor }
 		
 		self.backgroundBlurStyleValueLabel?.text = self.currentSettings?.backgroundBlurStyle.description
 		
@@ -1015,6 +1026,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.tapButtonHighlightedTitleColorValueLabel?.textAlignment		= trailing
 		self.tapButtonCornerRadiusValueLabel?.textAlignment					= trailing
 		self.backgroundColorValueLabel?.textAlignment						= trailing
+		self.contentBackgroundColorValueLabel?.textAlignment				= trailing
 		self.backgroundBlurStyleValueLabel?.textAlignment					= trailing
 		self.backgroundBlurProgressValueLabel?.textAlignment				= trailing
 	}
@@ -1334,10 +1346,17 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
 				self.currentSettings?.backgroundColor = color
 			}
 			
+		case Constants.contentBackgroundColorCellReuseIdentifier:
+			
+			if let color = value as? Color {
+				
+				self.currentSettings?.contentBackgroundColor = color
+			}
+			
 		case Constants.backgroundBlurStyleCellReuseIdentifier:
 			
-			if let style = value as? UIBlurEffect.Style {
-				
+			if let style = value as? TapBlurStyle {
+			
 				self.currentSettings?.backgroundBlurStyle = style
 			}
 			
