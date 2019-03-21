@@ -16,13 +16,21 @@ internal extension Process {
 			
 			if Process.hasAliveInstance && Process.shared.dataManagerInterface.isLoadingPaymentOptions { return false }
 			
-			guard let dataSource = session.dataSource, let customer = dataSource.customer, self.isCustomerValid(customer) else { return false }
-			
+			guard let dataSource = session.dataSource else { return false }
 			let mode = dataSource.mode ?? .default
+			
+			let amount = AmountCalculator<PaymentClass>.totalAmount(for: session) ?? .zero
+			
+			if mode == .cardTokenization {
+				
+				return dataSource.currency != nil && amount.decimalValue > 0.0
+			}
+			
+			guard let customer = dataSource.customer, self.isCustomerValid(customer) else { return false }
+			
 			if mode == .cardSaving { return true }
 			
-			if dataSource.currency == nil { return false }
-			return (AmountCalculator<PaymentClass>.totalAmount(for: session) ?? .zero).decimalValue > 0.0
+			return dataSource.currency != nil && amount.decimalValue > 0.0
 		}
 		
 		internal static func isCustomerValid(_ customer: Customer) -> Bool {
