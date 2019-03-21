@@ -5,9 +5,11 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+/// Error action.
 internal struct ErrorAction: OptionSet {
     
     // MARK: - Internal -
+	// MARK: Properties
     
     internal let rawValue: Int
     
