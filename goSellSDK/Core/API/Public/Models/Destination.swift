@@ -26,6 +26,9 @@
 	/// Reference number to the destination.
 	public var reference: String?
 	
+	/// Transfer object.
+	public private(set) var transfer: Transfer?
+	
 	// MARK: Methods
 	
 	/// Initializes Destination object with all the parameters.

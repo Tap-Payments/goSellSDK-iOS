@@ -52,7 +52,7 @@
     public let source: Source
 	
 	/// List of destinations.
-	public private(set) var destinations: [Destination]?
+	public private(set) var destinations: DestinationGroup?
 	
     /// Charge status.
     public let status: ChargeStatus
@@ -123,7 +123,7 @@
     
     // MARK: Methods
     
-	private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, destinations: [Destination]?, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?, authorizeAction: AuthorizeActionResponse) {
+	private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, destinations: DestinationGroup?, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?, authorizeAction: AuthorizeActionResponse) {
         
         self.identifier             = identifier
         self.apiVersion             = apiVersion
@@ -175,7 +175,7 @@ extension Authorize: Decodable {
         let post                = try container.decodeIfPresent (TrackingURL.self,              forKey: .post)
         let card                = try container.decodeIfPresent	(SavedCard.self,               	forKey: .card)
         let source              = try container.decode          (Source.self,                   forKey: .source)
-		let destinations		= try container.decodeIfPresent	([Destination].self,			forKey: .destinations)
+		let destinations		= try container.decodeIfPresent	(DestinationGroup.self,			forKey: .destinations)
         let status              = try container.decode          (ChargeStatus.self,             forKey: .status)
         let requires3DSecure    = try container.decode          (Bool.self,                     forKey: .requires3DSecure)
         let transactionDetails  = try container.decode          (TransactionDetails.self,       forKey: .transactionDetails)
