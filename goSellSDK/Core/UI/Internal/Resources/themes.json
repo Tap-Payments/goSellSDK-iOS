@@ -646,6 +646,11 @@
 			"background_color": {
 				
 				"fullscreen": "#00000000",
+				"windowed": "#00000000"
+			},
+			"content_background_color": {
+				
+				"fullscreen": "#00000000",
 				"windowed": "#ffffffff"
 			},
 			"icons": {

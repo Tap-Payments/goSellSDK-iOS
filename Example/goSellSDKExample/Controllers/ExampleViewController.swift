@@ -30,6 +30,7 @@ import protocol goSellSDK.SessionDataSource
 import protocol goSellSDK.SessionDelegate
 import protocol	goSellSDK.SessionProtocol
 import class    goSellSDK.Shipping
+import class	goSellSDK.TapBlurStyle
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import class	goSellSDK.Token
@@ -464,9 +465,14 @@ extension ExampleViewController: SessionAppearance {
 
 		return self.paymentSettings.backgroundColor.asUIColor
 	}
+	
+	internal func contentBackgroundColor(for session: SessionProtocol) -> UIColor {
+		
+		return self.paymentSettings.contentBackgroundColor.asUIColor
+	}
 
-	internal func backgroundBlurStyle(for session: SessionProtocol) -> UIBlurEffect.Style {
-
+	internal func backgroundBlurEffectStyle(for session: SessionProtocol) -> TapBlurStyle {
+		
 		return self.paymentSettings.backgroundBlurStyle
 	}
 

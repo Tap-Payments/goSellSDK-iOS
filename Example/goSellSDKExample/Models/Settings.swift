@@ -14,9 +14,9 @@ import class	goSellSDK.goSellSDK
 import enum		goSellSDK.SDKAppearanceMode
 import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
+import class	goSellSDK.TapBlurStyle
 import class    goSellSDK.Tax
 import enum     goSellSDK.TransactionMode
-import class	UIKit.UIBlurEffect.UIBlurEffect
 import struct	UIKit.UIGeometry.UIEdgeInsets
 
 internal final class Settings: Encodable {
@@ -69,6 +69,7 @@ internal final class Settings: Encodable {
 											 tapButtonHeight:						44.0,
 											 tapButtonEdgeInsets:					UIEdgeInsets(tap_inset: 8.0),
 											 backgroundColor:						.clear,
+											 contentBackgroundColor:				.clear,
 											 backgroundBlurStyle:					.extraLight,
 											 backgroundBlurProgress:				1.0)
 	
@@ -108,7 +109,9 @@ internal final class Settings: Encodable {
 	
 	internal var backgroundColor: Color
 	
-	internal var backgroundBlurStyle: UIBlurEffect.Style
+	internal var contentBackgroundColor: Color
+	
+	internal var backgroundBlurStyle: TapBlurStyle
 	
 	internal var backgroundBlurProgress: CGFloat
 	
@@ -223,7 +226,8 @@ internal final class Settings: Encodable {
 				  tapButtonHeight:							CGFloat,
 				  tapButtonEdgeInsets:						UIEdgeInsets,
 				  backgroundColor:							Color,
-				  backgroundBlurStyle:						UIBlurEffect.Style,
+				  contentBackgroundColor:					Color,
+				  backgroundBlurStyle:						TapBlurStyle,
 				  backgroundBlurProgress:					CGFloat) {
 		
 		self.sdkLanguage 							= sdkLanguage
@@ -271,6 +275,7 @@ internal final class Settings: Encodable {
 		self.tapButtonHeight						= tapButtonHeight
 		self.tapButtonEdgeInsets					= tapButtonEdgeInsets
 		self.backgroundColor						= backgroundColor
+		self.contentBackgroundColor					= contentBackgroundColor
 		self.backgroundBlurStyle					= backgroundBlurStyle
 		self.backgroundBlurProgress					= backgroundBlurProgress
     }
@@ -324,6 +329,7 @@ internal final class Settings: Encodable {
 		case tapButtonHeight						= "tap_button_height"
 		case tapButtonEdgeInsets					= "tap_button_edge_insets"
 		case backgroundColor						= "background_color"
+		case contentBackgroundColor					= "content_background_color"
 		case backgroundBlurStyle					= "background_blur_style"
 		case backgroundBlurProgress					= "background_blur_progress"
 	}
@@ -381,7 +387,8 @@ extension Settings: Decodable {
 		let tapButtonHeight							= try container.decodeIfPresent	(CGFloat.self,				forKey: .tapButtonHeight)							?? Settings.default.tapButtonHeight
 		let tapButtonEdgeInsets						= try container.decodeIfPresent	(UIEdgeInsets.self,			forKey: .tapButtonEdgeInsets)						?? Settings.default.tapButtonEdgeInsets
 		let backgroundColor							= try container.decodeIfPresent	(Color.self,				forKey: .backgroundColor)							?? Settings.default.backgroundColor
-		let backgroundBlurStyle						= try container.decodeIfPresent	(UIBlurEffect.Style.self,	forKey: .backgroundBlurStyle)						?? Settings.default.backgroundBlurStyle
+		let contentBackgroundColor					= try container.decodeIfPresent	(Color.self,				forKey: .contentBackgroundColor)					?? Settings.default.contentBackgroundColor
+		let backgroundBlurStyle						= try container.decodeIfPresent	(TapBlurStyle.self,			forKey: .backgroundBlurStyle)						?? Settings.default.backgroundBlurStyle
 		let backgroundBlurProgress					= try container.decodeIfPresent	(CGFloat.self,				forKey: .backgroundBlurProgress)					?? Settings.default.backgroundBlurProgress
 		
         if envCustomer == nil {
@@ -455,6 +462,7 @@ extension Settings: Decodable {
 				  tapButtonHeight:							tapButtonHeight,
 				  tapButtonEdgeInsets:						tapButtonEdgeInsets,
 				  backgroundColor:							backgroundColor,
+				  contentBackgroundColor:					contentBackgroundColor,
 				  backgroundBlurStyle:						backgroundBlurStyle,
 				  backgroundBlurProgress:					backgroundBlurProgress)
     }
