@@ -10,6 +10,7 @@ import class	UIKit.UIColor.UIColor
 
 internal enum Color {
 	
+	case none
 	case black
 	case darkGray
 	case lightGray
@@ -28,10 +29,11 @@ internal enum Color {
 	
 	case custom(String)
 	
-	internal var asUIColor: UIColor {
+	internal var asUIColor: UIColor? {
 		
 		switch self {
 			
+		case .none:				return nil
 		case .black:			return .black
 		case .darkGray:			return .darkGray
 		case .lightGray:		return .lightGray
@@ -60,6 +62,7 @@ extension Color: CaseIterable {
 		
 		return [
 		
+			.none,
 			.black,
 			.darkGray,
 			.lightGray,
@@ -91,6 +94,7 @@ extension Color: CustomStringConvertible {
 		
 		switch self {
 			
+		case .none:				return "None"
 		case .black:			return "Black"
 		case .darkGray:			return "Dark Gray"
 		case .lightGray:		return "Light Gray"
@@ -107,6 +111,7 @@ extension Color: CustomStringConvertible {
 		case .brown:			return "Brown"
 		case .clear:			return "Clear"
 		case .custom(let hex):	return "Custom (\(hex))"
+
 		}
 	}
 }

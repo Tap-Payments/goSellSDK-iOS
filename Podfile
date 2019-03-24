@@ -32,6 +32,7 @@ def shared_pods
     pod 'TapAdditionsKit/UIKit/UIView'
     pod 'TapAdditionsKit/UIKit/UIView/AnimationOptions'
     pod 'TapAdditionsKit/UIKit/UIView/KeyframeAnimationOptions'
+	pod 'TapAlertViewController'
     pod 'TapApplication'
 	pod 'TapBundleLocalization'
     pod 'TapCardValidator'

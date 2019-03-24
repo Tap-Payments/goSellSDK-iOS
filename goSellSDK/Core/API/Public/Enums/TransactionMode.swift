@@ -88,7 +88,11 @@ extension TransactionMode: CustomStringConvertible {
 
 // MARK: - Encodable
 extension TransactionMode: Encodable {
-    
+	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
     public func encode(to encoder: Encoder) throws {
         
         var container = encoder.singleValueContainer()
@@ -98,7 +102,7 @@ extension TransactionMode: Encodable {
 
 // MARK: - Decodable
 extension TransactionMode: Decodable {
-    
+	
     public init(from decoder: Decoder) throws {
         
         let container = try decoder.singleValueContainer()

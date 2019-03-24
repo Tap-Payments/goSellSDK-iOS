@@ -248,7 +248,11 @@ extension Customer: NSCopying {
 
 // MARK: - Encodable
 extension Customer: Encodable {
-    
+	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
     public func encode(to encoder: Encoder) throws {
         
         self.validateFields()

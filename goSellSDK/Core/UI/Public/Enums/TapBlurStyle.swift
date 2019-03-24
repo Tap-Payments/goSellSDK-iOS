@@ -20,17 +20,27 @@ import enum	TapVisualEffectView.TapBlurEffectStyle
 	// MARK: - Public -
 	// MARK: Properties
 	
+	/// No blur.
 	public static let none			= TapBlurStyle(rawValue: 0)
+	
+	/// Light blur.
 	public static let light			= TapBlurStyle(rawValue: 1)
+	
+	/// Extra light blur.
 	public static let extraLight	= TapBlurStyle(rawValue: 2)
+	
+	/// Dark blur.
 	public static let dark			= TapBlurStyle(rawValue: 3)
 	
+	/// Regular blur.
 	@available(iOS 10.0, *)
 	public static let regular		= TapBlurStyle(rawValue: 4)
 	
+	/// Prominent blur.
 	@available(iOS 10.0, *)
 	public static let prominent		= TapBlurStyle(rawValue: 5)
 	
+	/// Description.
 	public override var description: String {
 		
 		if #available(iOS 10.0, *) {
@@ -67,6 +77,10 @@ import enum	TapVisualEffectView.TapBlurEffectStyle
 	
 	// MARK: Methods
 	
+	/// Defines if the receiver is equal to an `object`.
+	///
+	/// - Parameter object: Object to compare to.
+	/// - Returns: Bool
 	public override func isEqual(_ object: Any?) -> Bool {
 		
 		guard let otherStyle = object as? TapBlurStyle else { return false }
@@ -74,6 +88,12 @@ import enum	TapVisualEffectView.TapBlurEffectStyle
 		return self.rawValue == otherStyle.rawValue
 	}
 	
+	/// Defines if `lhs` is equal to `rhs`.
+	///
+	/// - Parameters:
+	///   - lhs: First object.
+	///   - rhs: Second object.
+	/// - Returns: Bool
 	public static func == (lhs: TapBlurStyle, rhs: TapBlurStyle) -> Bool {
 		
 		return lhs.rawValue == rhs.rawValue
@@ -233,6 +253,10 @@ extension TapBlurStyle: Decodable {
 // MARK: - Encodable
 extension TapBlurStyle: Encodable {
 	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
 	public func encode(to encoder: Encoder) throws {
 		
 		var container = encoder.singleValueContainer()

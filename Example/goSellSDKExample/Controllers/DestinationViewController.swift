@@ -103,7 +103,7 @@ internal final class DestinationViewController: ModalNavigationTableViewControll
 	@IBOutlet private weak var descriptionTextView: UITextView?
 	@IBOutlet private weak var referenceTextField: UITextField?
 	
-	private var currentDestination: Destination = Destination(identifier: "", amount: 0.0, currency: Settings.default.currency) {
+	private var currentDestination: Destination = Destination(identifier: "", amount: 0.0, currency: Settings.default.dataSource.currency) {
 		
 		didSet {
 			

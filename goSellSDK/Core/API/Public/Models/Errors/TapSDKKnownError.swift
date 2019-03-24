@@ -35,6 +35,10 @@
 	
 	// MARK: Methods
 	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
 	public override func encode(to encoder: Encoder) throws {
 		
 		try super.encode(to: encoder)
