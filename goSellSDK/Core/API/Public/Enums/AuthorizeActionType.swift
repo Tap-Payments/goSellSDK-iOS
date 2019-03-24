@@ -60,7 +60,11 @@ extension AuthorizeActionType: Decodable {
 
 // MARK: - Encodable
 extension AuthorizeActionType: Encodable {
-    
+	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
     public func encode(to encoder: Encoder) throws {
         
         var container = encoder.singleValueContainer()

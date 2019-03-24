@@ -37,6 +37,9 @@
                 <a href="../Classes/Acquirer.html">Acquirer</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/AmountModificator.html">AmountModificator</a>
               </li>
               <li class="nav-group-task">
@@ -58,6 +61,9 @@
                 <a href="../Classes/Charge.html">Charge</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Country.html">Country</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Currency.html">Currency</a>
               </li>
               <li class="nav-group-task">
@@ -65,6 +71,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Destination.html">Destination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DestinationGroup.html">DestinationGroup</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/EmailAddress.html">EmailAddress</a>
@@ -112,6 +121,9 @@
                 <a href="../Classes/SourceRequest.html">SourceRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/TapBlurStyle.html">TapBlurStyle</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/TapSDKAPIError.html">TapSDKAPIError</a>
               </li>
               <li class="nav-group-task">
@@ -127,10 +139,19 @@
                 <a href="../Classes/Tax.html">Tax</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Token.html">Token</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TokenizedCard.html">TokenizedCard</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/TrackingURL.html">TrackingURL</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TransactionDetails.html">TransactionDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Transfer.html">Transfer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/_ObjCMeasurement.html">_ObjCMeasurement</a>
@@ -143,6 +164,9 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AddressType.html">AddressType</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/AmountModificatorType.html">AmountModificatorType</a>
               </li>
@@ -219,6 +243,9 @@
                 <a href="../Enums/TapSDKErrorType.html">TapSDKErrorType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/TransactionMode.html">TransactionMode</a>
               </li>
               <li class="nav-group-task">
@@ -233,9 +260,6 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Address.html">Address</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/PaymentOption.html">PaymentOption</a>
               </li>
               <li class="nav-group-task">
@@ -249,9 +273,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/TapSerializationError.html">TapSerializationError</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/TokenizedCard.html">TokenizedCard</a>
               </li>
             </ul>
           </li>
@@ -441,7 +462,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(backgroundColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">backgroundColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">backgroundColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -474,9 +495,9 @@ Default is <code>true</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@goSellSDK@objc(pl)SessionAppearance(im)backgroundBlurStyleForSession:"></a>
-                    <a name="//apple_ref/swift/Method/backgroundBlurStyle(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionAppearance(im)backgroundBlurStyleForSession:">backgroundBlurStyle(for:)</a>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionAppearance(im)contentBackgroundColorForSession:"></a>
+                    <a name="//apple_ref/swift/Method/contentBackgroundColor(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionAppearance(im)contentBackgroundColorForSession:">contentBackgroundColor(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -484,15 +505,15 @@ Default is <code>true</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Background blur style for payment screen.</p>
+                        <p>Content background color for payment screen.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(backgroundBlurStyleForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">backgroundBlurStyle</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIBlurEffect</span><span class="o">.</span><span class="kt">Style</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc(contentBackgroundColorForSession:)</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">contentBackgroundColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -517,7 +538,58 @@ Default is <code>true</code>.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>UIBlurEffect.Style</p>
+                        <p>UIColor</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@goSellSDK@objc(pl)SessionAppearance(im)backgroundBlurEffectStyleForSession:"></a>
+                    <a name="//apple_ref/swift/Method/backgroundBlurEffectStyle(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@goSellSDK@objc(pl)SessionAppearance(im)backgroundBlurEffectStyleForSession:">backgroundBlurEffectStyle(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Background blur style for payment screen.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc(backgroundBlurEffectStyleForSession:)</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">backgroundBlurEffectStyle</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/TapBlurStyle.html">TapBlurStyle</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Target session.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TapBlurEffectStyle</p>
                       </div>
                     </section>
                   </div>
@@ -535,7 +607,7 @@ Default is <code>true</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Background blur <em><q>radius</q></em> progress in range [0, 1]</p>
+                        <p>Background blur <em><q>radius</q></em> progress in range [0, 1]. If you return 0 here, blur will be hidden.</p>
 
                       </div>
                       <div class="declaration">
@@ -657,7 +729,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(headerTextColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">headerTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">headerTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -710,7 +782,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(headerBackgroundColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">headerBackgroundColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">headerBackgroundColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -812,7 +884,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(headerCancelButtonTextColorForState:session:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">headerCancelButtonTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">UIControl</span><span class="o">.</span><span class="kt">State</span><span class="p">,</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">headerCancelButtonTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">UIControl</span><span class="o">.</span><span class="kt">State</span><span class="p">,</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -937,7 +1009,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputFieldsTextColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputFieldsTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputFieldsTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -988,7 +1060,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputFieldsPlaceholderColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputFieldsPlaceholderColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputFieldsPlaceholderColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1039,7 +1111,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputFieldsInvalidTextColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputFieldsInvalidTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputFieldsInvalidTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1152,7 +1224,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputDescriptionTextColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputDescriptionTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputDescriptionTextColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1203,7 +1275,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputSaveCardSwitchOffTintColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputSaveCardSwitchOffTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputSaveCardSwitchOffTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1254,7 +1326,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputSaveCardSwitchOnTintColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputSaveCardSwitchOnTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputSaveCardSwitchOnTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1305,7 +1377,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputSaveCardSwitchThumbTintColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputSaveCardSwitchThumbTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputSaveCardSwitchThumbTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1356,7 +1428,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputScanIconFrameTintColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputScanIconFrameTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputScanIconFrameTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1407,7 +1479,7 @@ Default is <code>true</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc(cardInputScanIconTintColorForSession:)</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputScanIconTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cardInputScanIconTintColor</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SessionProtocol.html">SessionProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIColor</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1885,7 +1957,7 @@ Default is <code>true</code>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-03-06)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-03-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -55,7 +55,11 @@ extension SourceObject: Encodable {
 
 // MARK: - Decodable
 extension SourceObject: Decodable {
-    
+	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
     public init(from decoder: Decoder) throws {
         
         let container = try decoder.singleValueContainer()

@@ -69,8 +69,8 @@ internal class ExampleViewController: BaseViewController {
         self.title = "goSell SDK Example"
 		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
 		
-		goSellSDK.language = self.paymentSettings.sdkLanguage.localeIdentifier
-        goSellSDK.mode = self.paymentSettings.sdkMode
+		goSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
+        goSellSDK.mode = self.paymentSettings.dataSource.sdkMode
     }
     
     internal override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +96,7 @@ internal class ExampleViewController: BaseViewController {
         }
 		else if let savedCardsController = (segue.destination as? UINavigationController)?.tap_rootViewController as? SavedCardsTableViewController {
 			
-			savedCardsController.customerIdentifier = self.paymentSettings.customer?.customer.identifier
+			savedCardsController.customerIdentifier = self.paymentSettings.dataSource.customer?.customer.identifier
 		}
     }
     
@@ -122,8 +122,8 @@ internal class ExampleViewController: BaseViewController {
         
         didSet {
 			
-			goSellSDK.language = self.paymentSettings.sdkLanguage.localeIdentifier
-            goSellSDK.mode = self.paymentSettings.sdkMode
+			goSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
+            goSellSDK.mode = self.paymentSettings.dataSource.sdkMode
         }
     }
     
@@ -165,7 +165,7 @@ internal class ExampleViewController: BaseViewController {
 	
 	private func updateSavedCardsButtonVisibility() {
 		
-		self.savedCardsButton?.isEnabled = self.paymentSettings.customer?.customer.identifier != nil
+		self.savedCardsButton?.isEnabled = self.paymentSettings.dataSource.customer?.customer.identifier != nil
 	}
 	
 	private func startLoader() {
@@ -278,12 +278,12 @@ extension ExampleViewController: SessionDataSource {
     
     internal var currency: Currency? {
         
-        return self.paymentSettings.currency
+        return self.paymentSettings.dataSource.currency
     }
     
     internal var customer: Customer? {
         
-        return self.paymentSettings.customer?.customer
+        return self.paymentSettings.dataSource.customer?.customer
     }
     
     internal var amount: Decimal {
@@ -298,37 +298,37 @@ extension ExampleViewController: SessionDataSource {
 	
 	internal var destinations: [Destination]? {
 		
-		return self.paymentSettings.destinations
+		return self.paymentSettings.dataSource.destinations
 	}
 	
     internal var mode: TransactionMode {
         
-        return self.paymentSettings.transactionMode
+        return self.paymentSettings.dataSource.transactionMode
     }
 	
     internal var taxes: [Tax]? {
 
-        return self.paymentSettings.taxes
+        return self.paymentSettings.dataSource.taxes
     }
     
     internal var shipping: [Shipping]? {
 
-        return self.paymentSettings.shippingList
+        return self.paymentSettings.dataSource.shippingList
     }
     
     internal var require3DSecure: Bool {
         
-        return self.paymentSettings.isThreeDSecure
+        return self.paymentSettings.dataSource.isThreeDSecure
     }
 	
 	internal var allowsToSaveSameCardMoreThanOnce: Bool {
 		
-		return self.paymentSettings.canSaveSameCardMultipleTimes
+		return self.paymentSettings.dataSource.canSaveSameCardMultipleTimes
 	}
 	
 	internal var isSaveCardSwitchOnByDefault: Bool {
 		
-		return self.paymentSettings.isSaveCardSwitchToggleEnabledByDefault
+		return self.paymentSettings.dataSource.isSaveCardSwitchToggleEnabledByDefault
 	}
 	
     internal var receiptSettings: Receipt? {
@@ -442,7 +442,7 @@ extension ExampleViewController: SessionDelegate {
             
             let envCustomer = SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
             
-            self.paymentSettings.customer = envCustomer
+            self.paymentSettings.dataSource.customer = envCustomer
             Serializer.serialize(self.paymentSettings)
         }
     }
@@ -453,126 +453,126 @@ extension ExampleViewController: SessionAppearance {
 
 	internal func appearanceMode(for session: SessionProtocol) -> SDKAppearanceMode {
 
-		return self.paymentSettings.appearanceMode
+		return self.paymentSettings.appearance.appearanceMode
 	}
 
 	internal func sessionShouldShowStatusPopup(_ session: SessionProtocol) -> Bool {
 
-		return self.paymentSettings.showsStatusPopup
+		return self.paymentSettings.appearance.showsStatusPopup
 	}
 
-	internal func backgroundColor(for session: SessionProtocol) -> UIColor {
+	internal func backgroundColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.backgroundColor.asUIColor
+		return self.paymentSettings.appearance.backgroundColor.asUIColor
 	}
 	
-	internal func contentBackgroundColor(for session: SessionProtocol) -> UIColor {
+	internal func contentBackgroundColor(for session: SessionProtocol) -> UIColor? {
 		
-		return self.paymentSettings.contentBackgroundColor.asUIColor
+		return self.paymentSettings.appearance.contentBackgroundColor.asUIColor
 	}
 
 	internal func backgroundBlurEffectStyle(for session: SessionProtocol) -> TapBlurStyle {
 		
-		return self.paymentSettings.backgroundBlurStyle
+		return self.paymentSettings.appearance.backgroundBlurStyle
 	}
 
 	@available(iOS 10.0, *)
 	internal func backgroundBlurProgress(for session: SessionProtocol) -> CGFloat {
 
-		return self.paymentSettings.backgroundBlurProgress
+		return self.paymentSettings.appearance.backgroundBlurProgress
 	}
 
 	internal func headerFont(for session: SessionProtocol) -> UIFont {
 
-		return UIFont(name: self.paymentSettings.headerFont, size: 17.0)!
+		return UIFont(name: self.paymentSettings.appearance.headerFont, size: 17.0)!
 	}
 
-	internal func headerTextColor(for session: SessionProtocol) -> UIColor {
+	internal func headerTextColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.headerTextColor.asUIColor
+		return self.paymentSettings.appearance.headerTextColor.asUIColor
 	}
 
-	internal func headerBackgroundColor(for session: SessionProtocol) -> UIColor {
+	internal func headerBackgroundColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.headerBackgroundColor.asUIColor
+		return self.paymentSettings.appearance.headerBackgroundColor.asUIColor
 	}
 
 	internal func headerCancelButtonFont(for session: SessionProtocol) -> UIFont {
 
-		return UIFont(name: self.paymentSettings.headerCancelFont, size: 12.0)!
+		return UIFont(name: self.paymentSettings.appearance.headerCancelFont, size: 12.0)!
 	}
 
-	internal func headerCancelButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor {
+	internal func headerCancelButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor? {
 
 		switch state {
 
 		case .normal:
 
-			return self.paymentSettings.headerCancelNormalTextColor.asUIColor
+			return self.paymentSettings.appearance.headerCancelNormalTextColor.asUIColor
 
 		case .highlighted:
 
-			return self.paymentSettings.headerCancelHighlightedTextColor.asUIColor
+			return self.paymentSettings.appearance.headerCancelHighlightedTextColor.asUIColor
 
 		default:
 
-			return self.paymentSettings.headerCancelNormalTextColor.asUIColor
+			return self.paymentSettings.appearance.headerCancelNormalTextColor.asUIColor
 		}
 	}
 
 	internal func cardInputFieldsFont(for session: SessionProtocol) -> UIFont {
 
-		return UIFont(name: self.paymentSettings.cardInputFont, size: 15.0)!
+		return UIFont(name: self.paymentSettings.appearance.cardInputFont, size: 15.0)!
 	}
 
-	internal func cardInputFieldsTextColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputFieldsTextColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputTextColor.asUIColor
+		return self.paymentSettings.appearance.cardInputTextColor.asUIColor
 	}
 
-	internal func cardInputFieldsPlaceholderColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputFieldsPlaceholderColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputPlaceholderTextColor.asUIColor
+		return self.paymentSettings.appearance.cardInputPlaceholderTextColor.asUIColor
 	}
 
-	internal func cardInputFieldsInvalidTextColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputFieldsInvalidTextColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputInvalidTextColor.asUIColor
+		return self.paymentSettings.appearance.cardInputInvalidTextColor.asUIColor
 	}
 
 	internal func cardInputDescriptionFont(for session: SessionProtocol) -> UIFont {
 
-		return UIFont(name: self.paymentSettings.cardInputDescriptionFont, size: 12.0)!
+		return UIFont(name: self.paymentSettings.appearance.cardInputDescriptionFont, size: 12.0)!
 	}
 
-	internal func cardInputDescriptionTextColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputDescriptionTextColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputDescriptionTextColor.asUIColor
+		return self.paymentSettings.appearance.cardInputDescriptionTextColor.asUIColor
 	}
 
-	internal func cardInputSaveCardSwitchOffTintColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputSaveCardSwitchOffTintColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputSaveCardSwitchOffTintColor.asUIColor
+		return self.paymentSettings.appearance.cardInputSaveCardSwitchOffTintColor.asUIColor
 	}
 
-	internal func cardInputSaveCardSwitchOnTintColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputSaveCardSwitchOnTintColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputSaveCardSwitchOnTintColor.asUIColor
+		return self.paymentSettings.appearance.cardInputSaveCardSwitchOnTintColor.asUIColor
 	}
 
-	internal func cardInputSaveCardSwitchThumbTintColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputSaveCardSwitchThumbTintColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputSaveCardSwitchThumbTintColor.asUIColor
+		return self.paymentSettings.appearance.cardInputSaveCardSwitchThumbTintColor.asUIColor
 	}
 
-	internal func cardInputScanIconFrameTintColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputScanIconFrameTintColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputScanIconFrameTintColor.asUIColor
+		return self.paymentSettings.appearance.cardInputScanIconFrameTintColor.asUIColor
 	}
 
-	internal func cardInputScanIconTintColor(for session: SessionProtocol) -> UIColor {
+	internal func cardInputScanIconTintColor(for session: SessionProtocol) -> UIColor? {
 
-		return self.paymentSettings.cardInputScanIconTintColor?.asUIColor ?? .clear
+		return self.paymentSettings.appearance.cardInputScanIconTintColor?.asUIColor
 	}
 
 	internal func tapButtonBackgroundColor(for state: UIControl.State, session: SessionProtocol) -> UIColor? {
@@ -581,15 +581,15 @@ extension ExampleViewController: SessionAppearance {
 
 		case .disabled:
 
-			return self.paymentSettings.tapButtonDisabledBackgroundColor?.asUIColor
+			return self.paymentSettings.appearance.tapButtonDisabledBackgroundColor?.asUIColor
 
 		case .normal:
 
-			return self.paymentSettings.tapButtonEnabledBackgroundColor?.asUIColor
+			return self.paymentSettings.appearance.tapButtonEnabledBackgroundColor?.asUIColor
 
 		case .highlighted:
 
-			return self.paymentSettings.tapButtonHighlightedTextColor?.asUIColor
+			return self.paymentSettings.appearance.tapButtonHighlightedTextColor?.asUIColor
 
 		default:
 
@@ -599,7 +599,7 @@ extension ExampleViewController: SessionAppearance {
 
 	internal func tapButtonFont(for session: SessionProtocol) -> UIFont {
 
-		return UIFont(name: self.paymentSettings.tapButtonFont, size: 17.0)!
+		return UIFont(name: self.paymentSettings.appearance.tapButtonFont, size: 17.0)!
 	}
 
 	internal func tapButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor? {
@@ -608,15 +608,15 @@ extension ExampleViewController: SessionAppearance {
 
 		case .disabled:
 
-			return self.paymentSettings.tapButtonDisabledTextColor?.asUIColor
+			return self.paymentSettings.appearance.tapButtonDisabledTextColor?.asUIColor
 
 		case .normal:
 
-			return self.paymentSettings.tapButtonEnabledTextColor?.asUIColor
+			return self.paymentSettings.appearance.tapButtonEnabledTextColor?.asUIColor
 
 		case .highlighted:
 
-			return self.paymentSettings.tapButtonHighlightedTextColor?.asUIColor
+			return self.paymentSettings.appearance.tapButtonHighlightedTextColor?.asUIColor
 
 		default:
 
@@ -626,26 +626,26 @@ extension ExampleViewController: SessionAppearance {
 
 	internal func tapButtonCornerRadius(for session: SessionProtocol) -> CGFloat {
 
-		return self.paymentSettings.tapButtonCornerRadius
+		return self.paymentSettings.appearance.tapButtonCornerRadius
 	}
 
 	internal func isLoaderVisibleOnTapButtton(for session: SessionProtocol) -> Bool {
 
-		return self.paymentSettings.isTapButtonLoaderVisible
+		return self.paymentSettings.appearance.isTapButtonLoaderVisible
 	}
 
 	internal func isSecurityIconVisibleOnTapButton(for session: SessionProtocol) -> Bool {
 
-		return self.paymentSettings.isTapButtonSecurityIconVisible
+		return self.paymentSettings.appearance.isTapButtonSecurityIconVisible
 	}
 
 	internal func tapButtonInsets(for session: SessionProtocol) -> UIEdgeInsets {
 
-		return self.paymentSettings.tapButtonEdgeInsets
+		return self.paymentSettings.appearance.tapButtonEdgeInsets
 	}
 
 	internal func tapButtonHeight(for session: SessionProtocol) -> CGFloat {
 
-		return self.paymentSettings.tapButtonHeight
+		return self.paymentSettings.appearance.tapButtonHeight
 	}
 }

@@ -73,6 +73,10 @@ extension ErrorDetail: Decodable {
 // MARK: - Encodable
 extension ErrorDetail: Encodable {
 	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
 	public func encode(to encoder: Encoder) throws {
 		
 		var container = encoder.container(keyedBy: CodingKeys.self)

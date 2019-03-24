@@ -20,6 +20,9 @@
 		147B07772230181300CD0379 /* DestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B07762230181300CD0379 /* DestinationTableViewCell.swift */; };
 		147B077922301A9D00CD0379 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B077822301A9D00CD0379 /* DestinationViewController.swift */; };
 		147B077B22301AD400CD0379 /* DestinationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B077A22301AD400CD0379 /* DestinationViewControllerDelegate.swift */; };
+		14C251F92247984E00940A98 /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251F82247984E00940A98 /* GlobalSettings.swift */; };
+		14C251FB2247996C00940A98 /* DataSourceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251FA2247996C00940A98 /* DataSourceSettings.swift */; };
+		14C251FD22479AB700940A98 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251FC22479AB700940A98 /* AppearanceSettings.swift */; };
 		14C7E4F52208B64D00F19007 /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */; };
 		14F625BB2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */; };
 		8E197292A213A9AC83C5B789 /* Pods_goSellSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */; };
@@ -82,6 +85,9 @@
 		147B07762230181300CD0379 /* DestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationTableViewCell.swift; sourceTree = "<group>"; };
 		147B077822301A9D00CD0379 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
 		147B077A22301AD400CD0379 /* DestinationViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewControllerDelegate.swift; sourceTree = "<group>"; };
+		14C251F82247984E00940A98 /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
+		14C251FA2247996C00940A98 /* DataSourceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceSettings.swift; sourceTree = "<group>"; };
+		14C251FC22479AB700940A98 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
 		14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Additions.swift"; sourceTree = "<group>"; };
 		14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBlurEffect.Style+Additions.swift"; sourceTree = "<group>"; };
 		3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +156,17 @@
 				CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14C251F72247983E00940A98 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				14C251FC22479AB700940A98 /* AppearanceSettings.swift */,
+				14C251FA2247996C00940A98 /* DataSourceSettings.swift */,
+				14C251F82247984E00940A98 /* GlobalSettings.swift */,
+				A4DF066220C03778006F59D8 /* Settings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A408C03520BAB567005E74AD /* Extensions */ = {
@@ -286,12 +303,12 @@
 		A4DF066120C0376D006F59D8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				14C251F72247983E00940A98 /* Settings */,
 				140CC52721566107000E80D5 /* EnvironmentCustomer.swift */,
 				A45A5DC9214127C500B7DDE9 /* GroupHeaderCellModel.swift */,
 				A45A5DC12141269200B7DDE9 /* PaymentItemsTableViewHandler.swift */,
 				A45A5DC5214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift */,
 				A45A5DC7214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift */,
-				A4DF066220C03778006F59D8 /* Settings.swift */,
 				A45A5DC32141279B00B7DDE9 /* TableViewCellModel.swift */,
 				1414ADAC215AA87200CA2CCD /* Language.swift */,
 				140106FA2201F98E0080A149 /* Color.swift */,
@@ -391,6 +408,7 @@
 				"${BUILT_PRODUCTS_DIR}/EditableTextInsetsTextField/EditableTextInsetsTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/TapAdditionsKit/TapAdditionsKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TapAlertViewController/TapAlertViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/TapApplication/TapApplication.framework",
 				"${BUILT_PRODUCTS_DIR}/TapBundleLocalization/TapBundleLocalization.framework",
 				"${BUILT_PRODUCTS_DIR}/TapCardValidator/TapCardValidator.framework",
@@ -413,6 +431,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EditableTextInsetsTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapAdditionsKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapAlertViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapApplication.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapBundleLocalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapCardValidator.framework",
@@ -528,18 +547,21 @@
 				A408C03C20BAC58A005E74AD /* Encodable+Additions.swift in Sources */,
 				A4CFAF2F20B82A5700B5D83B /* PaymentItemViewController.swift in Sources */,
 				A408C03A20BAC2EE005E74AD /* Serializer.swift in Sources */,
+				14C251FD22479AB700940A98 /* AppearanceSettings.swift in Sources */,
 				A4B35FEC20C814E100847031 /* CustomerViewControllerDelegate.swift in Sources */,
 				140CC52821566107000E80D5 /* EnvironmentCustomer.swift in Sources */,
 				A4B35FE620C7DE7800847031 /* InputFieldObserver.swift in Sources */,
 				140106FD2201FC000080A149 /* ColorSelectionTableViewController.swift in Sources */,
 				A45A5DC6214127A700B7DDE9 /* PaymentItemTableViewCellModel.swift in Sources */,
 				140107012202008C0080A149 /* FontSelectionTableViewController.swift in Sources */,
+				14C251FB2247996C00940A98 /* DataSourceSettings.swift in Sources */,
 				14277BBB214056FA0011521F /* SelectableCell.swift in Sources */,
 				14713745220B09F3002EBEE4 /* SavedCardsTableViewController.swift in Sources */,
 				A4D5FE65208323FB007D52F5 /* ExampleViewController.swift in Sources */,
 				14F625BB2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift in Sources */,
 				A4CFAF3B20B84A9500B5D83B /* ModalNavigationTableViewController.swift in Sources */,
 				147B07772230181300CD0379 /* DestinationTableViewCell.swift in Sources */,
+				14C251F92247984E00940A98 /* GlobalSettings.swift in Sources */,
 				A4DF066320C03778006F59D8 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

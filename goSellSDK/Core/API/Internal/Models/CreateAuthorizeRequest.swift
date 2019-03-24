@@ -54,7 +54,11 @@ internal class CreateAuthorizeRequest: CreateChargeRequest {
                    requires3DSecure:    requires3DSecure,
                    receipt:             receipt)
     }
-    
+	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
     internal override func encode(to encoder: Encoder) throws {
         
         try super.encode(to: encoder)

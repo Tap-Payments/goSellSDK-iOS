@@ -85,7 +85,11 @@ extension AmountModificatorType: Decodable {
 
 // MARK: - Encodable
 extension AmountModificatorType: Encodable {
-    
+	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
     public func encode(to encoder: Encoder) throws {
         
         var container = encoder.singleValueContainer()

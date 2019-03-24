@@ -65,7 +65,11 @@ internal struct CreateTokenCard {
 
 // MARK: - Encodable
 extension CreateTokenCard: Encodable {
-    
+	
+	/// Encodes the contents of the receiver.
+	///
+	/// - Parameter encoder: Encoder.
+	/// - Throws: EncodingError
     internal func encode(to encoder: Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)

@@ -36,13 +36,13 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	/// - Parameters:
 	///   - session: Target session.
 	/// - Returns: UIColor
-	@objc(backgroundColorForSession:) optional func backgroundColor(for session: SessionProtocol) -> UIColor
+	@objc(backgroundColorForSession:) optional func backgroundColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Content background color for payment screen.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(contentBackgroundColorForSession:) optional func contentBackgroundColor(for session: SessionProtocol) -> UIColor
+	@objc(contentBackgroundColorForSession:) optional func contentBackgroundColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Background blur style for payment screen.
 	///
@@ -70,7 +70,7 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(headerTextColorForSession:) optional func headerTextColor(for session: SessionProtocol) -> UIColor
+	@objc(headerTextColorForSession:) optional func headerTextColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Background color for the header.
 	///
@@ -78,7 +78,7 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(headerBackgroundColorForSession:) optional func headerBackgroundColor(for session: SessionProtocol) -> UIColor
+	@objc(headerBackgroundColorForSession:) optional func headerBackgroundColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Header cancel button font.
 	///
@@ -92,7 +92,7 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	///   - state: Control state. Either `normal` or `highlighted`.
 	///   - session: Target session.
 	/// - Returns: UIColor
-	@objc(headerCancelButtonTextColorForState:session:) optional func headerCancelButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor
+	@objc(headerCancelButtonTextColorForState:session:) optional func headerCancelButtonTextColor(for state: UIControl.State, session: SessionProtocol) -> UIColor?
 	
 	// MARK: - Card Input Fields
 	
@@ -106,19 +106,19 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputFieldsTextColorForSession:) optional func cardInputFieldsTextColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputFieldsTextColorForSession:) optional func cardInputFieldsTextColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Card input fields placeholder color.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputFieldsPlaceholderColorForSession:) optional func cardInputFieldsPlaceholderColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputFieldsPlaceholderColorForSession:) optional func cardInputFieldsPlaceholderColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Card input fields invalid text color.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputFieldsInvalidTextColorForSession:) optional func cardInputFieldsInvalidTextColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputFieldsInvalidTextColorForSession:) optional func cardInputFieldsInvalidTextColor(for session: SessionProtocol) -> UIColor?
 	
 	// MARK: Card Input Description
 	
@@ -132,37 +132,37 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputDescriptionTextColorForSession:) optional func cardInputDescriptionTextColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputDescriptionTextColorForSession:) optional func cardInputDescriptionTextColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Card input save card switch off tint color.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputSaveCardSwitchOffTintColorForSession:) optional func cardInputSaveCardSwitchOffTintColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputSaveCardSwitchOffTintColorForSession:) optional func cardInputSaveCardSwitchOffTintColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Card input save card switch on tint color.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputSaveCardSwitchOnTintColorForSession:) optional func cardInputSaveCardSwitchOnTintColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputSaveCardSwitchOnTintColorForSession:) optional func cardInputSaveCardSwitchOnTintColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Card input save card switch thumb tint color.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputSaveCardSwitchThumbTintColorForSession:) optional func cardInputSaveCardSwitchThumbTintColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputSaveCardSwitchThumbTintColorForSession:) optional func cardInputSaveCardSwitchThumbTintColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Card input scan icon frame tint color.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputScanIconFrameTintColorForSession:) optional func cardInputScanIconFrameTintColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputScanIconFrameTintColorForSession:) optional func cardInputScanIconFrameTintColor(for session: SessionProtocol) -> UIColor?
 	
 	/// Card input scan icon tint color.
 	///
 	/// - Parameter session: Target session.
 	/// - Returns: UIColor
-	@objc(cardInputScanIconTintColorForSession:) optional func cardInputScanIconTintColor(for session: SessionProtocol) -> UIColor
+	@objc(cardInputScanIconTintColorForSession:) optional func cardInputScanIconTintColor(for session: SessionProtocol) -> UIColor?
 	
 	// MARK: Pay/Save Button
 	

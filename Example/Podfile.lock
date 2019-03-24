@@ -6,9 +6,9 @@ PODS:
     - TapAdditionsKit/Foundation/Locale (>= 1.2)
     - TapAdditionsKit/UIKit/UIView (>= 1.2)
   - Fabric (1.9.0)
-  - goSellSDK (2.1):
-    - goSellSDK/Core (= 2.1)
-  - goSellSDK/Core (2.1):
+  - goSellSDK (2.1.1):
+    - goSellSDK/Core (= 2.1.1)
+  - goSellSDK/Core (2.1.1):
     - CardIODynamic
     - EditableTextInsetsTextField
     - TapAdditionsKit/Foundation/Bundle
@@ -51,7 +51,7 @@ PODS:
     - TapSearchView
     - TapSwiftFixes/Threading
     - TapVisualEffectView
-  - goSellSDK/ErrorReporting (2.1):
+  - goSellSDK/ErrorReporting (2.1.1):
     - goSellSDK/Core
     - TapErrorReporting
   - SDWebImage/Core (4.4.6)
@@ -70,6 +70,7 @@ PODS:
     - TapAdditionsKit/Foundation/URLSessionDataTaskResult
   - TapAdditionsKit/Foundation/URLSessionDataTaskResult (1.2.2)
   - TapAdditionsKit/ObjectiveC/NSObject (1.2.2)
+  - TapAdditionsKit/QuartzCore/CAKeyframeAnimation (1.2.2)
   - TapAdditionsKit/QuartzCore/CALayer (1.2.2)
   - TapAdditionsKit/SwiftStandartLibrary/Array (1.2.2):
     - TapAdditionsKit/SwiftStandartLibrary/Numeric
@@ -148,6 +149,14 @@ PODS:
   - TapAdditionsKit/UIKit/UIWindow/Level (1.2.2)
   - TapAdditionsKit/UIKit/UIWindow/UIWindow (1.2.2):
     - TapAdditionsKit/UIKit/UIWindow/Level
+  - TapAlertViewController (1.0):
+    - TapAdditionsKit/Foundation/Bundle
+    - TapAdditionsKit/ObjectiveC/NSObject
+    - TapAdditionsKit/QuartzCore/CAKeyframeAnimation
+    - TapAdditionsKit/Tap/ClassProtocol
+    - TapAdditionsKit/Tap/TypeAlias
+    - TapAdditionsKit/UIKit/UIViewController
+    - TapVisualEffectView
   - TapApplication (1.0.5):
     - TapAdditionsKit/SwiftStandartLibrary/String (>= 1.2)
     - TapAdditionsKit/Tap/ClassProtocol (>= 1.2)
@@ -157,15 +166,17 @@ PODS:
   - TapCardValidator (1.2.4)
   - TapEditableView (1.0.3):
     - TapAdditionsKit/Tap/ClassProtocol (>= 1.2)
-  - TapErrorReporting (1.0):
+  - TapErrorReporting (1.0.1):
     - TapAdditionsKit/Foundation/Bundle
     - TapAdditionsKit/SwiftStandartLibrary/Dictionary
     - TapAdditionsKit/SwiftStandartLibrary/Encodable
     - TapAdditionsKit/Tap/ClassProtocol
     - TapAdditionsKit/Tap/TypeAlias
+    - TapAlertViewController
     - TapApplication
     - TapBundleLocalization
     - TapNetworkManager/Core
+    - TapNibView
   - TapFontsKit (1.0.4):
     - TapAdditionsKit/Foundation/Bundle (>= 1.2)
     - TapAdditionsKit/Foundation/Locale (>= 1.2)
@@ -227,6 +238,7 @@ SPEC REPOS:
     - Fabric
     - SDWebImage
     - TapAdditionsKit
+    - TapAlertViewController
     - TapApplication
     - TapBundleLocalization
     - TapCardValidator
@@ -251,14 +263,15 @@ SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   EditableTextInsetsTextField: bf1e6ef6ea7678b6d769e0cbbdb7f3c34aea5e3a
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  goSellSDK: d5fd7cbdc4984d54f2888ffa6431d12dae9b0a57
+  goSellSDK: 6d4f70b38a6b99ca0c506423e86fa71558df0906
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   TapAdditionsKit: 90574b9a579af6c521616ccd9703e00b23ff25b4
+  TapAlertViewController: 0389c0c347d4efbe8369d7a4e859c65ef63b6db0
   TapApplication: 7cc6f890af56ab7fe349802305920fd290869bd5
   TapBundleLocalization: c5ef2022b67c78d657b3898882947903a8348e4b
   TapCardValidator: adb6bf15c55610bfc6ee8252b2ee405223a9a6d2
   TapEditableView: abf320c9eec11d884fb2ca568132205c066d8504
-  TapErrorReporting: 487630930d1130a01aa3f4b703ddf65e76d7626f
+  TapErrorReporting: d86480e629457797b09e2597b2b9cdab765f505b
   TapFontsKit: 982f2ebfb6b6fda3e35acef575d8f240011f0c39
   TapGLKit: 25fd29c844d4ee0e6a3690a68f4ccb5f35653e9c
   TapKeychain: 8140de1166dbe9b4ef053fbb9c569e9772e11926
