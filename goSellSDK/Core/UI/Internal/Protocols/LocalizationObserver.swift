@@ -14,7 +14,7 @@ internal protocol LocalizationObserver: ClassProtocol {
 
 internal extension LocalizationObserver {
 	
-	internal func startMonitoringLocalizationChanges() -> NSObjectProtocol {
+	func startMonitoringLocalizationChanges() -> NSObjectProtocol {
 		
 		return NotificationCenter.default.addObserver(forName: .tap_sdkLanguageChanged, object: nil, queue: .main) { [weak self] _ in
 			
@@ -22,7 +22,7 @@ internal extension LocalizationObserver {
 		}
 	}
 	
-	internal func stopMonitoringLocalizationChanges(_ observation: Any?) {
+	func stopMonitoringLocalizationChanges(_ observation: Any?) {
 		
 		if let nonnullObservation = observation {
 			

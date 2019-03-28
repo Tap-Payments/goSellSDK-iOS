@@ -208,7 +208,7 @@ extension ExampleViewController: PaymentItemsTableViewCallbacksHandler {
     
     internal func removePaymentItem(_ item: PaymentItem) {
         
-        if let index = self.paymentItems.index(of: item) {
+        if let index = self.paymentItems.firstIndex(of: item) {
             
             self.paymentItems.remove(at: index)
             Serializer.serialize(self.paymentItems)
@@ -236,9 +236,9 @@ extension ExampleViewController: PaymentItemViewControllerDelegate {
         
         if let nonnullSelectedItem = self.selectedPaymentItem {
             
-            if let index = self.paymentItems.index(of: nonnullSelectedItem) {
+            if let index = self.paymentItems.firstIndex(of: nonnullSelectedItem) {
                 
-                if let selectedIndex = self.selectedPaymentItems?.index(of: nonnullSelectedItem) {
+                if let selectedIndex = self.selectedPaymentItems?.firstIndex(of: nonnullSelectedItem) {
                     
                     self.selectedPaymentItems?.remove(at: selectedIndex)
                     self.selectedPaymentItems?.append(item)

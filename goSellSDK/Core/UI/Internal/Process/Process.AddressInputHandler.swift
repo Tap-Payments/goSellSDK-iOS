@@ -12,7 +12,7 @@ internal protocol AddressInputHandlerInterface {
 
 internal extension Process {
 	
-	internal final class AddressInputHandler: AddressInputHandlerInterface {
+	final class AddressInputHandler: AddressInputHandlerInterface {
 		
 		// MARK: - Internal -
 		// MARK: Properties

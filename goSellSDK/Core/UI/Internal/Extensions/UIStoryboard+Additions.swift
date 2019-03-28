@@ -13,10 +13,10 @@ internal extension UIStoryboard {
     // MARK: Properties
     
     /// Reference to payment storyboard.
-    internal static let goSellSDKPayment = UIStoryboard(name: UIStoryboardGoSellConstants.paymentStoryboardName, bundle: .goSellSDKResources)
+    static let goSellSDKPayment = UIStoryboard(name: UIStoryboardGoSellConstants.paymentStoryboardName, bundle: .goSellSDKResources)
     
     /// Reference to popups storyboard.
-    internal static let goSellSDKPopups = UIStoryboard(name: UIStoryboardGoSellConstants.popupsStoryboardName, bundle: .goSellSDKResources)
+    static let goSellSDKPopups = UIStoryboard(name: UIStoryboardGoSellConstants.popupsStoryboardName, bundle: .goSellSDKResources)
     
     // MARK: - Private -
     

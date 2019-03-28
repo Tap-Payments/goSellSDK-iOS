@@ -11,32 +11,32 @@ internal extension ExpirationDate {
     // MARK: Properties
     
     /// Current date.
-    internal static var current: ExpirationDate {
+    static var current: ExpirationDate {
         
         let currentDate = Date()
         return ExpirationDate(month: currentDate.tap_month, year: currentDate.tap_year)
     }
     
     /// Month string.
-    internal var monthString: String {
+    var monthString: String {
         
         return String(format: "%02d", locale: .tap_enUS, arguments: [self.month])
     }
     
     /// Year string.
-    internal var yearString: String {
+    var yearString: String {
         
         return String(format: "%02d", locale: .tap_enUS, arguments: [self.year % 100])
     }
     
     /// Readable input field representation.
-    internal var inputFieldRepresentation: String {
+    var inputFieldRepresentation: String {
         
         return "\(self.monthString)/\(self.yearString)"
     }
     
     /// API representation string.
-    internal var apiRepresentation: String {
+    var apiRepresentation: String {
         
         return "\(self.yearString)\(self.monthString)"
     }

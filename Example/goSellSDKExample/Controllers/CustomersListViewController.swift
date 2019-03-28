@@ -126,7 +126,7 @@ internal class CustomersListViewController: UITableViewController {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, cellIndexPath) in
             
             let customer = self.visibleCustomers[cellIndexPath.row]
-            if let index = self.allCustomers.index(of: customer) {
+            if let index = self.allCustomers.firstIndex(of: customer) {
                 
                 self.allCustomers.remove(at: index)
             }
@@ -191,7 +191,7 @@ internal class CustomersListViewController: UITableViewController {
     
     private func selectPreselectedCustomer() {
         
-        if let customer = self.selectedCustomer, let index = self.visibleCustomers.index(of: customer), self.tableView.numberOfRows(inSection: 0) > index {
+        if let customer = self.selectedCustomer, let index = self.visibleCustomers.firstIndex(of: customer), self.tableView.numberOfRows(inSection: 0) > index {
             
             let indexPath = IndexPath(row: index, section: 0)
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -230,7 +230,7 @@ extension CustomersListViewController: CustomerViewControllerDelegate {
         
         if let nonnullSelectedCustomer = self.selectedCustomer {
             
-            if let index = self.allCustomers.index(of: nonnullSelectedCustomer) {
+            if let index = self.allCustomers.firstIndex(of: nonnullSelectedCustomer) {
                 
                 self.allCustomers.remove(at: index)
                 self.allCustomers.insert(customer, at: index)

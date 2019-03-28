@@ -10,7 +10,7 @@ internal extension BillingAddressField {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal func canBeFilled(with data: Any?, considering specification: AddressField) -> Bool {
+    func canBeFilled(with data: Any?, considering specification: AddressField) -> Bool {
 
         switch specification.type {
 

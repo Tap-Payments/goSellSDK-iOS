@@ -7,7 +7,7 @@
 
 internal extension Process {
 	
-	internal class NonGenericAmountCalculator {
+	class NonGenericAmountCalculator {
 		
 		// MARK: - Internal -
 		// MARK: Methods
@@ -81,7 +81,7 @@ internal extension Process {
 		@available(*, unavailable) private init() { fatalError("This class cannot be instantiated.") }
 	}
 	
-	internal final class AmountCalculator<Mode: ProcessMode>: NonGenericAmountCalculator {}
+	final class AmountCalculator<Mode: ProcessMode>: NonGenericAmountCalculator {}
 }
 
 internal extension Process.AmountCalculator where Mode: Payment {
@@ -89,7 +89,7 @@ internal extension Process.AmountCalculator where Mode: Payment {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
+	static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
 		
 		var result: Decimal = 0.0
 		
@@ -123,7 +123,7 @@ internal extension Process.AmountCalculator where Mode: CardTokenization {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
+	static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
 		
 		var result: Decimal = 0.0
 		

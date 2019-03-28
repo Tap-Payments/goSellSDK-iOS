@@ -7,13 +7,33 @@
 
 import class UIKit.UIColor.UIColor
 
-internal final class HexColor: UIColor, Decodable {
+internal struct HexColor {
 	
-	required public convenience init(from decoder: Decoder) throws {
+	// MARK: - Internal -
+	// MARK: Properties
+	
+	internal let color: UIColor
+	
+	// MARK: Methods
+	
+	internal init(hex: String) {
+		
+		self.init(color: UIColor(tap_hex: hex)!)
+	}
+	
+	internal init(color: UIColor) {
+		
+		self.color = color
+	}
+}
+
+extension HexColor: Decodable {
+	
+	internal init(from decoder: Decoder) throws {
 		
 		let container = try decoder.singleValueContainer()
 		let hex = try container.decode(String.self)
 		
-		self.init(tap_hex: hex)!
+		self.init(hex: hex)
 	}
 }

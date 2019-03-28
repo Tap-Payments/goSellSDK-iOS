@@ -7,9 +7,9 @@
 
 internal extension Notification.Name {
 	
-	internal static let tap_sdkLanguageChanged			= Notification.Name("TapSDKLanguageChangedNotification")
-	internal static let tap_sdkLayoutDirectionChanged	= Notification.Name("TapSDKLayoutDirectionChangedNotification")
-	internal static let tap_sdkThemeChanged				= Notification.Name("TapSDKThemeChangedNotification")
-    internal static let tap_paymentOptionsModelsUpdated = Notification.Name("TapPaymentOptionsUpdatedNotification")
-    internal static let tap_payButtonStateChanged       = Notification.Name("TapPayButtonStateChangedNotification")
+	static let tap_sdkLanguageChanged			= Notification.Name("TapSDKLanguageChangedNotification")
+	static let tap_sdkLayoutDirectionChanged	= Notification.Name("TapSDKLayoutDirectionChangedNotification")
+	static let tap_sdkThemeChanged				= Notification.Name("TapSDKThemeChangedNotification")
+    static let tap_paymentOptionsModelsUpdated = Notification.Name("TapPaymentOptionsUpdatedNotification")
+    static let tap_payButtonStateChanged       = Notification.Name("TapPayButtonStateChangedNotification")
 }

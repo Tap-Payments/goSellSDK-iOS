@@ -313,7 +313,7 @@ internal class AddressFieldsDataManager {
     
     private func previousModelInputField(for model: TableViewCellViewModel) -> UITextField? {
         
-        guard let index = self.cellViewModels.index(where: { $0.indexPath == model.indexPath }), index > 0 else { return nil }
+        guard let index = self.cellViewModels.firstIndex(where: { $0.indexPath == model.indexPath }), index > 0 else { return nil }
         
         if let previousModel = self.cellViewModels[index - 1] as? AddressTextInputFieldTableViewCellModel {
             
@@ -327,7 +327,7 @@ internal class AddressFieldsDataManager {
     
     private func nextModelInputField(for model: TableViewCellViewModel) -> UITextField? {
         
-        guard let index = self.cellViewModels.index(where: { $0.indexPath == model.indexPath }), index + 1 < self.cellViewModels.count else { return nil }
+        guard let index = self.cellViewModels.firstIndex(where: { $0.indexPath == model.indexPath }), index + 1 < self.cellViewModels.count else { return nil }
         
         if let nextModel = self.cellViewModels[index + 1] as? AddressTextInputFieldTableViewCellModel {
             

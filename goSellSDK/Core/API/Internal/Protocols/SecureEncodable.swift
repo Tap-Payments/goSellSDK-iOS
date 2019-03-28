@@ -20,7 +20,7 @@ internal extension SecureEncodable {
     /// - Parameter encoder: Encoder to use.
     /// - Returns: Secure encoded model.
     /// - Throws: Either encoding error or serialization error.
-    internal func secureEncoded(using encoder: JSONEncoder = JSONEncoder()) throws -> String {
+    func secureEncoded(using encoder: JSONEncoder = JSONEncoder()) throws -> String {
         
         let jsonData = try encoder.encode(self)
         guard let jsonString = String(data: jsonData, encoding: .utf8) else {

@@ -13,7 +13,7 @@ internal extension TapBlurEffectStyle {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal init(_ style: UIBlurEffect.Style) {
+	init(_ style: UIBlurEffect.Style) {
 		
 		switch style {
 			
@@ -41,6 +41,9 @@ internal extension TapBlurEffectStyle {
 				
 				self = .light
 			}
+		@unknown default:
+			
+			self = .light
 		}
 	}
 }

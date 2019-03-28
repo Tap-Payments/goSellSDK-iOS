@@ -10,7 +10,7 @@ internal extension CardInputTableViewCellModel {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func update(withScanned cardNumber: String?, expirationDate: ExpirationDate?, cvv: String?, cardholderName: String?) {
+    func update(withScanned cardNumber: String?, expirationDate: ExpirationDate?, cvv: String?, cardholderName: String?) {
         
         if let nonnullCardNumber = cardNumber {
             

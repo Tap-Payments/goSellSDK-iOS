@@ -16,7 +16,7 @@ internal protocol LayoutDirectionObserver: ClassProtocol {
 
 internal extension LayoutDirectionObserver {
 	
-	internal func startMonitoringLayoutDirectionChanges() -> NSObjectProtocol {
+	func startMonitoringLayoutDirectionChanges() -> NSObjectProtocol {
 		
 		return NotificationCenter.default.addObserver(forName: .tap_sdkLayoutDirectionChanged, object: nil, queue: .main) { [weak self] _ in
 			
@@ -25,7 +25,7 @@ internal extension LayoutDirectionObserver {
 		}
 	}
 	
-	internal func stopMonitoringLayoutDirectionChanges(_ observation: Any?) {
+	func stopMonitoringLayoutDirectionChanges(_ observation: Any?) {
 		
 		if let nonnullObservation = observation {
 		
@@ -33,5 +33,5 @@ internal extension LayoutDirectionObserver {
 		}
 	}
 	
-	internal func layoutDirectionChanged() {}
+	func layoutDirectionChanged() {}
 }

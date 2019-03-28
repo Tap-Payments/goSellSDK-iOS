@@ -14,7 +14,7 @@ internal extension CardsContainerTableViewCellModel {
     
     // MARK: - Internal -
     
-    internal class CardsContainerTableViewCellModelCollectionViewHandler: NSObject {
+    class CardsContainerTableViewCellModelCollectionViewHandler: NSObject {
         
         fileprivate unowned let model: CardsContainerTableViewCellModel
         
@@ -27,7 +27,7 @@ internal extension CardsContainerTableViewCellModel {
     
     // MARK: Methods
     
-    internal func generateCollectionViewCellModels(with cards: [SavedCard]) -> [CardCollectionViewCellModel] {
+    func generateCollectionViewCellModels(with cards: [SavedCard]) -> [CardCollectionViewCellModel] {
         
         var result: [CardCollectionViewCellModel] = []
 		

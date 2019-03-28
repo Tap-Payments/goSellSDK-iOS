@@ -12,7 +12,7 @@ internal extension UIImage {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var tap_asResourceImage: ResourceImage {
+	var tap_asResourceImage: ResourceImage {
 		
 		return ResourceImage(data: self.pngData()!, scale: scale)!
 	}

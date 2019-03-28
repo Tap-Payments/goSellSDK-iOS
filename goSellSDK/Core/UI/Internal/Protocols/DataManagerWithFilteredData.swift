@@ -19,7 +19,7 @@ internal protocol DataManagerWithFilteredData: ClassProtocol {
 
 internal extension DataManagerWithFilteredData {
     
-    internal func setFilter(_ query: String?) {
+    func setFilter(_ query: String?) {
         
         self.filterQuery = query
         

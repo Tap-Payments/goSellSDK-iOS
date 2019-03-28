@@ -9,7 +9,7 @@ import enum goSellSDK.Measurement
 
 internal extension Measurement {
     
-    internal static var allCategoriesWithDefaultUnitsOfMeasurement: [Measurement] {
+    static var allCategoriesWithDefaultUnitsOfMeasurement: [Measurement] {
         
         return [
         

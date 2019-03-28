@@ -18,7 +18,7 @@ internal extension APIClient {
     /// - Parameters:
     ///   - binNumber: First 6 digits of the card.
     ///   - completion: Completion that will be called when request finishes.
-    internal func getBINDetails(for binNumber: String, completion: @escaping Completion<BINResponse>) {
+    func getBINDetails(for binNumber: String, completion: @escaping Completion<BINResponse>) {
         
         let urlModel = TapURLModel.array(parameters: [binNumber])
         

@@ -15,13 +15,13 @@ public extension SeparateWindowRootViewController {
 	// MARK: Properties
 	
 	/// Preferred status bar style.
-	public override var preferredStatusBarStyle: UIStatusBarStyle {
+	override var preferredStatusBarStyle: UIStatusBarStyle {
 		
 		return UIApplication.shared.statusBarStyle
 	}
 	
 	/// Defines if modal presentation of the receiver captures status bar appearance.
-	public override var modalPresentationCapturesStatusBarAppearance: Bool {
+	override var modalPresentationCapturesStatusBarAppearance: Bool {
 		
 		get {
 			

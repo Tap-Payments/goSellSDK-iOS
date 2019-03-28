@@ -7,7 +7,7 @@
 
 internal extension Bundle {
     
-    internal static let goSellSDKResources: Bundle = {
+    static let goSellSDKResources: Bundle = {
         
         guard let result = Bundle(for: PaymentContentViewController.self).tap_childBundle(named: Constants.goSellSDKResourcesBundleName) else {
             

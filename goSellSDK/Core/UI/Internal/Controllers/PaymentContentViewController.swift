@@ -60,7 +60,7 @@ internal class PaymentContentViewController: HeaderNavigatedViewController {
 		var style = Theme.current.merchantHeaderStyle
 		if Process.shared.appearance == .windowed {
 			
-			style.backgroundColor = HexColor(tap_hex: "#ffffff")!
+			style.backgroundColor = HexColor(hex: "#ffffff")
 		}
 		
 		return style

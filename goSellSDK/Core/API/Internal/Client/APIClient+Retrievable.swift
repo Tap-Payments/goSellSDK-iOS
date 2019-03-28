@@ -13,7 +13,7 @@ internal extension APIClient {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func retrieveObject<T: Retrievable>(with identifier: String, completion: @escaping Completion<T>) {
+    func retrieveObject<T: Retrievable>(with identifier: String, completion: @escaping Completion<T>) {
 
         let urlModel = TapURLModel.array(parameters: [identifier])
         let route = T.retrieveRoute

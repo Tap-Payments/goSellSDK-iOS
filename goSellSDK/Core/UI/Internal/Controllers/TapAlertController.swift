@@ -12,7 +12,7 @@ import class	UIKit.UIAlertController.UIAlertAction
 import class	UIKit.UIAlertController.UIAlertController
 import enum		UIKit.UIApplication.UIStatusBarStyle
 
-internal class TapAlertController: UIAlertController {
+internal final class TapAlertController: UIAlertController {
 	
 	// MARK: - Internal -
 	// MARK: Properties
@@ -44,6 +44,7 @@ internal class TapAlertController: UIAlertController {
 	internal convenience init(titleKey: LocalizationKey?, messageKey: LocalizationKey?, _ messageArguments: CVarArg..., preferredStyle: Style) {
 		
 		self.init(title: nil, message: nil, preferredStyle: preferredStyle)
+		
 		self.setLocalizedText(for: .title, key: titleKey)
 		
 		if messageArguments.count > 0 {
@@ -97,13 +98,15 @@ internal class TapAlertController: UIAlertController {
 // MARK: - Localizable
 extension TapAlertController: Localizable {
 	
-	internal enum LocalizableElement {
+	internal typealias LocalizableElement = LocalizationElement
+	
+	internal enum LocalizationElement {
 		
 		case title
 		case message
 	}
 	
-	internal func setLocalized(text: String?, for element: LocalizableElement) {
+	internal func setLocalized(text: String?, for element: LocalizationElement) {
 		
 		switch element {
 			
@@ -117,7 +120,7 @@ extension TapAlertController: Localizable {
 /// - MARK: TapAlertController.Action
 internal extension TapAlertController {
 	
-	internal class Action: UIAlertAction {
+	class Action: UIAlertAction {
 		
 		internal convenience init(titleKey: LocalizationKey?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil) {
 			

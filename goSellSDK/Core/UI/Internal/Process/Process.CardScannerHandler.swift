@@ -13,7 +13,7 @@ internal protocol CardScannerHandlerInterface {
 
 internal extension Process {
 	
-	internal final class CardScannerHandler: CardScannerHandlerInterface, CardScannerViewControllerDelegate {
+	final class CardScannerHandler: CardScannerHandlerInterface, CardScannerViewControllerDelegate {
 		
 		// MARK: - Internal -
 		// MARK: Properties

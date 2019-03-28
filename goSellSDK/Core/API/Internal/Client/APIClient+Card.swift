@@ -20,7 +20,7 @@ internal extension APIClient {
 	///   - request: Card request.
 	///   - customer: Customer identifier.
 	///   - completion: Completion closure that will be called once request finishes.
-	internal func createCard(with request: CreateCardRequest, for customer: String, completion: @escaping Completion<SavedCard>) {
+	func createCard(with request: CreateCardRequest, for customer: String, completion: @escaping Completion<SavedCard>) {
 		
 		guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
 		
@@ -43,7 +43,7 @@ internal extension APIClient {
     ///   - identifier: Card identifier.
     ///   - customer: Customer identifier.
     ///   - completion: Completion that will be called once request finishes.
-    internal func deleteCard(with identifier: String, from customer: String, completion: @escaping Completion<DeleteCardResponse>) {
+    func deleteCard(with identifier: String, from customer: String, completion: @escaping Completion<DeleteCardResponse>) {
         
         let urlModel = TapURLModel.array(parameters: [customer, identifier])
         
@@ -62,7 +62,7 @@ internal extension APIClient {
 	/// - Parameters:
 	///   - customer: Customer identifier.
 	///   - completion: Completion that will be called once request finishes.
-	internal func listAllCards(for customer: String, completion: @escaping Completion<ListCardsResponse>) {
+	func listAllCards(for customer: String, completion: @escaping Completion<ListCardsResponse>) {
 		
 		let urlModel = TapURLModel.array(parameters: [customer])
 		

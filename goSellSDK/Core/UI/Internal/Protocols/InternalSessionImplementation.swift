@@ -11,12 +11,12 @@ internal protocol InternalSessionImplementation: SessionProtocol {}
 
 internal extension InternalSessionImplementation {
 	
-	internal var implementationCanStart: Bool {
+	var implementationCanStart: Bool {
 		
 		return Process.Validation.canStart(using: self)
 	}
 	
-	internal func implementationStart() -> Bool {
+	func implementationStart() -> Bool {
 		
 		guard self.implementationCanStart else { return false }
 		
@@ -28,7 +28,7 @@ internal extension InternalSessionImplementation {
 		return Process.shared.start(self)
 	}
 	
-	internal func implementationCalculateDisplayedAmount() -> NSDecimalNumber? {
+	func implementationCalculateDisplayedAmount() -> NSDecimalNumber? {
 		
 		guard self.implementationCanStart else { return nil }
 		return Process.NonGenericAmountCalculator.totalAmount(for: self)

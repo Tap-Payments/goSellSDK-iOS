@@ -186,12 +186,12 @@ internal class TapButton: TapNibView {
 			let stateSettings = enabled ? (strongSelf.isHighlighted ? settings.highlighted : settings.enabled) : settings.disabled
 			
 			strongSelf.tap_cornerRadius = stateSettings.cornerRadius
-			strongSelf.layer.backgroundColor = stateSettings.backgroundColor.cgColor
+			strongSelf.layer.backgroundColor = stateSettings.backgroundColor.color.cgColor
 			
 			strongSelf.loaderContainerView?.alpha = stateSettings.isLoaderVisible ? 1.0 : 0.0
 			strongSelf.loader?.usesCustomColors = true
-			strongSelf.loader?.outterCircleColor = stateSettings.loaderColor
-			strongSelf.loader?.innerCircleColor = stateSettings.loaderColor
+			strongSelf.loader?.outterCircleColor = stateSettings.loaderColor.color
+			strongSelf.loader?.innerCircleColor = stateSettings.loaderColor.color
 			
 			strongSelf.securityButtonContainerView?.alpha = stateSettings.isSecurityIconVisible ? 1.0 : 0.0
 			strongSelf.securityButton?.setImage(stateSettings.securityIcon, for: strongSelf.isHighlighted ? .highlighted : .normal)

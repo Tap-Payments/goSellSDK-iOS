@@ -7,5 +7,5 @@
 
 internal extension ErrorAction {
 	
-	internal static let report	= ErrorAction(rawValue: 1 << 3)
+	static let report	= ErrorAction(rawValue: 1 << 3)
 }

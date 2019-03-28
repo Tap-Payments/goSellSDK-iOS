@@ -73,7 +73,7 @@ internal class ResizablePaymentContainerViewController: BaseViewController {
 		
 		self.setNeedsStatusBarAppearanceUpdate()
 		
-		self.contentContainerView?.backgroundColor = Theme.current.commonStyle.contentBackgroundColor[Process.shared.appearance]
+		self.contentContainerView?.backgroundColor = Theme.current.commonStyle.contentBackgroundColor[Process.shared.appearance].color
 	}
 	
 	internal func makeFullscreen(_ completion: @escaping TypeAlias.ArgumentlessClosure) {

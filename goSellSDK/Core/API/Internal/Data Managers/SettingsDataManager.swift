@@ -57,7 +57,12 @@ internal final class SettingsDataManager {
             }
         }
     }
-    
+	
+	internal static func resetAllSettings() {
+		
+		self.storages?.values.forEach { $0.reset() }
+	}
+	
     // MARK: - Private -
     // MARK: Properties
     
@@ -65,11 +70,11 @@ internal final class SettingsDataManager {
     
     private var pendingCompletions: [OptionalErrorClosure] = []
     
-    private static var storages: [SDKMode: SettingsDataManager] = [:]
+    private static var storages: [SDKMode: SettingsDataManager]? = [:]
     
     // MARK: Methods
     
-    private init() {}
+	private init() {}
     
     private func append(_ completion: @escaping OptionalErrorClosure) {
         
@@ -82,27 +87,32 @@ internal final class SettingsDataManager {
         
         APIClient.shared.initSDK { [unowned self] (settings, error) in
             
-            if let nonnullError = error {
-                
-                self.status = .notInitiated
-                
-                if self.pendingCompletions.count > 0 {
-                
-                    self.callAllPendingCompletionsAndEmptyStack(nonnullError)
-                }
-                else {
-
-                    ErrorDataManager.handle(nonnullError, retryAction: { self.callInitializationAPI() }, alertDismissButtonClickHandler: nil)
-                }
-            }
-            else {
-                
-                self.settings = settings?.data
-                self.status = .succeed
-                self.callAllPendingCompletionsAndEmptyStack(nil)
-            }
+			self.update(settings: settings, error: error)
         }
     }
+	
+	private func update(settings updatedSettings: SDKSettings?, error: TapSDKError?) {
+		
+		if let nonnullError = error {
+			
+			self.status = .notInitiated
+			
+			if self.pendingCompletions.count > 0 {
+				
+				self.callAllPendingCompletionsAndEmptyStack(nonnullError)
+			}
+			else {
+				
+				ErrorDataManager.handle(nonnullError, retryAction: { self.callInitializationAPI() }, alertDismissButtonClickHandler: nil)
+			}
+		}
+		else {
+			
+			self.settings = updatedSettings?.data
+			self.status = .succeed
+			self.callAllPendingCompletionsAndEmptyStack(nil)
+		}
+	}
     
     private func callAllPendingCompletionsAndEmptyStack(_ error: TapSDKError?) {
         
@@ -116,6 +126,19 @@ internal final class SettingsDataManager {
             self.pendingCompletions.removeAll()
         }
     }
+	
+	private func reset() {
+		
+		let userInfo: [String: String] = [
+			
+			NSLocalizedDescriptionKey: "Merchant account data is missing."
+		]
+		
+		let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.noMerchantData.rawValue, userInfo: userInfo)
+		let error = TapSDKKnownError(type: .internal, error: underlyingError, response: nil, body: nil)
+		
+		self.update(settings: nil, error: error)
+	}
 }
 
 // MARK: - Singleton
@@ -123,14 +146,32 @@ extension SettingsDataManager: Singleton {
     
     internal static var shared: SettingsDataManager {
         
-        if let existing = self.storages[goSellSDK.mode] {
+        if let existing = self.storages?[goSellSDK.mode] {
             
             return existing
         }
         
         let instance = SettingsDataManager()
-        self.storages[goSellSDK.mode] = instance
-        
+		
+		var stores = self.storages ?? [:]
+		stores[goSellSDK.mode] = instance
+		
+		self.storages = stores
+		
         return instance
     }
+}
+
+// MARK: - ImmediatelyDestroyable
+extension SettingsDataManager: ImmediatelyDestroyable {
+	
+	internal static func destroyInstance() {
+		
+		self.storages = nil
+	}
+	
+	internal static var hasAliveInstance: Bool {
+		
+		return !(self.storages?.isEmpty ?? true)
+	}
 }

@@ -24,7 +24,7 @@ internal struct TextStyle: Decodable {
 		return [
 		
 			.font: 				self.font.localized,
-			.foregroundColor:	self.color,
+			.foregroundColor:	self.color.color,
 			.paragraphStyle: 	self.paragraphStyle
 		]
 	}

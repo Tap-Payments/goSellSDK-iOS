@@ -22,4 +22,5 @@ internal enum InternalError: Int {
 	case invalidUnitOfMeasurement
 	case invalidMeasurement
 	case invalidEnumValue
+	case noMerchantData
 }

@@ -77,8 +77,8 @@ extension Country: Encodable {
 // MARK: - Hashable
 extension Country: Hashable {
 	
-	public var hashValue: Int {
+	public func hash(into hasher: inout Hasher) {
 		
-		return self.isoCode.hashValue
+		hasher.combine(self.isoCode)
 	}
 }

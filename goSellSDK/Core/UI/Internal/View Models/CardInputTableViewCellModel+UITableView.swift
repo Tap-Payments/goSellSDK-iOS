@@ -14,7 +14,7 @@ internal extension CardInputTableViewCellModel {
     
     // MARK: - Internal -
     
-    internal class CardInputTableViewCellModelTableViewHandler: NSObject {
+    class CardInputTableViewCellModelTableViewHandler: NSObject {
         
         fileprivate unowned let model: CardInputTableViewCellModel
         
@@ -27,7 +27,7 @@ internal extension CardInputTableViewCellModel {
     
     // MARK: Methods
     
-    internal static func generateTableViewCellModels(with urls: [URL]) -> [ImageTableViewCellModel] {
+    static func generateTableViewCellModels(with urls: [URL]) -> [ImageTableViewCellModel] {
         
         var result: [ImageTableViewCellModel] = []
         

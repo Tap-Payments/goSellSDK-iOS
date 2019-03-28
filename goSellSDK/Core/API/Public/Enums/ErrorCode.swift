@@ -225,6 +225,9 @@
 	/// Invalid token type.
 	case invalidTokenType						= 8006
 	
+	/// No merchant data.
+	case noMerchantData							= 8007
+	
 	/// Serialization error.
 	case serialization                          = 8100
 	

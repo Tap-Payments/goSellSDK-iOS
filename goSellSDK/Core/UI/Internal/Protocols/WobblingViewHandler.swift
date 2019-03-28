@@ -19,7 +19,7 @@ internal protocol WobblingViewHandler {
 
 internal extension WobblingViewHandler {
     
-    internal func startWobbling(with angle: CGFloat = CGFloat.pi / 36.0, duration: TimeInterval = 0.3) {
+    func startWobbling(with angle: CGFloat = CGFloat.pi / 36.0, duration: TimeInterval = 0.3) {
         
         if self.wobblingView.layer.animation(forKey: WobblingConstants.wobbleAnimationKey) != nil {
         
@@ -40,7 +40,7 @@ internal extension WobblingViewHandler {
         self.wobblingView.layer.add(wobbleAnimation, forKey: WobblingConstants.wobbleAnimationKey)
     }
     
-    internal func stopWobbling() {
+    func stopWobbling() {
         
         self.wobblingView.layer.removeAnimation(forKey: WobblingConstants.wobbleAnimationKey)
     }

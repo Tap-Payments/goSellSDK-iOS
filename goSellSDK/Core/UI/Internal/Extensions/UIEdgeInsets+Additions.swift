@@ -12,13 +12,17 @@ internal extension UIEdgeInsets {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var tap_localized: UIEdgeInsets {
+	var tap_localized: UIEdgeInsets {
 		
 		switch LocalizationManager.shared.layoutDirection {
 			
 		case .leftToRight: return self
 		case .rightToLeft: return self.tap_mirrored
 			
+		@unknown default:
+			
+			print("Unknown layout direction to localize edge insets: \(LocalizationManager.shared.layoutDirection)")
+			return self
 		}
 	}
 }

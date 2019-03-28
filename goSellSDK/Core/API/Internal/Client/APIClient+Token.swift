@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct TapNetworkManager.TapBodyModel
-import class TapNetworkManager.TapNetworkRequestOperation
+import struct	TapNetworkManager.TapBodyModel
+import class	TapNetworkManager.TapNetworkRequestOperation
 
 internal extension APIClient {
     
@@ -18,7 +18,7 @@ internal extension APIClient {
     /// - Parameters:
     ///   - request: Create token request.
     ///   - completion: Completion that will be called when request finishes.
-    internal func createToken(with request: CreateTokenRequest, completion: @escaping Completion<Token>) {
+    func createToken(with request: CreateTokenRequest, completion: @escaping Completion<Token>) {
         
         guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
         

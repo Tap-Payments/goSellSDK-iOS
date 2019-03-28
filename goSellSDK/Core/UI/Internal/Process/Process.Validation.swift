@@ -7,7 +7,7 @@
 
 internal extension Process {
 	
-	internal final class Validation {
+	final class Validation {
 		
 		// MARK: - Internal -
 		// MARK: Methods

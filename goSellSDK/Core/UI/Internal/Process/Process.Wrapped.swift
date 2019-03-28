@@ -7,7 +7,7 @@
 
 internal extension Process {
 	
-	internal final class Wrapped {
+	final class Wrapped {
 	
 		internal func implementation<Mode: ProcessMode>() -> Implementation<Mode>? {
 			

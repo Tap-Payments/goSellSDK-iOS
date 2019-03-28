@@ -21,7 +21,7 @@ internal protocol TapButtonHandlerInterface {
 
 internal extension Process {
 	
-	internal class TapButtonHandler<Mode: ProcessMode>: TapButtonHandlerInterface, TapButton.Delegate, LocalizationObserver {
+	class TapButtonHandler<Mode: ProcessMode>: TapButtonHandlerInterface, TapButton.Delegate, LocalizationObserver {
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -183,7 +183,7 @@ internal extension Process.TapButtonHandler where Mode: Payment {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var amount: AmountedCurrency? {
+	var amount: AmountedCurrency? {
 		
 		get {
 			
@@ -199,7 +199,7 @@ internal extension Process.TapButtonHandler where Mode: Payment {
 	
 	// MARK: Methods
 	
-	internal func updatePayButtonState() {
+	func updatePayButtonState() {
 		
 		self.updateAmountOnTheButton()
 	}
@@ -226,7 +226,7 @@ internal extension Process.TapButtonHandler where Mode: CardSaving {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal func updateSaveButtonState() {
+	func updateSaveButtonState() {
 		
 		self.button?.setLocalizedText(.btn_save_title)
 		self.button?.forceDisabled = false
@@ -238,7 +238,7 @@ internal extension Process.TapButtonHandler where Mode: CardTokenization {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var amount: AmountedCurrency? {
+	var amount: AmountedCurrency? {
 		
 		get {
 			
@@ -254,7 +254,7 @@ internal extension Process.TapButtonHandler where Mode: CardTokenization {
 	
 	// MARK: Methods
 	
-	internal func updateTokenizeButtonState() {
+	func updateTokenizeButtonState() {
 		
 		self.updateAmountOnTheButton()
 	}
@@ -278,7 +278,7 @@ internal extension Process.TapButtonHandler where Mode: CardTokenization {
 
 internal extension Process {
 	
-	internal final class TapButtonProcessHandler<Mode, ProcessClass>: TapButtonHandler<Mode>, ProcessHandlerInterface where ProcessClass: ProcessGenericInterface, ProcessClass.HandlerMode == Mode {
+	final class TapButtonProcessHandler<Mode, ProcessClass>: TapButtonHandler<Mode>, ProcessHandlerInterface where ProcessClass: ProcessGenericInterface, ProcessClass.HandlerMode == Mode {
 		
 		// MARK: - Internal -
 		// MARK: Properties
@@ -355,7 +355,7 @@ internal extension Process.TapButtonProcessHandler where Mode: Payment {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal func updatePayProcessButtonState() {
+	func updatePayProcessButtonState() {
 		
 		self.updateAmount()
 		self.buttonStyle = .pay
@@ -370,7 +370,7 @@ internal extension Process.TapButtonProcessHandler where Mode: Payment {
 		self.makeButtonEnabled(payButtonEnabled)
 	}
 	
-	internal func payProcessButtonClicked() {
+	func payProcessButtonClicked() {
 		
 		guard let selectedPaymentViewModel = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment, !self.process.dataManagerInterface.isExecutingAPICalls else { return }
 		
@@ -403,14 +403,14 @@ internal extension Process.TapButtonProcessHandler where Mode: Payment {
 
 internal extension Process.TapButtonProcessHandler where Mode: CardSaving {
 
-	internal func saveProcessButtonClicked() {
+	func saveProcessButtonClicked() {
 	
 		guard let selectedPaymentViewModel = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment, !self.process.dataManagerInterface.isExecutingAPICalls else { return }
 		
 		self.process.startPayment(with: selectedPaymentViewModel)
 	}
 	
-	internal func updateSaveProcessButtonState() {
+	func updateSaveProcessButtonState() {
 		
 		self.buttonStyle = .save
 		self.button?.setLocalizedText(.btn_save_action_title)
@@ -431,14 +431,14 @@ internal extension Process.TapButtonProcessHandler where Mode: CardTokenization 
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal func tokenizeProcessButtonClicked() {
+	func tokenizeProcessButtonClicked() {
 		
 		guard let selectedPaymentViewModel = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel, selectedPaymentViewModel.isReadyForPayment, !self.process.dataManagerInterface.isExecutingAPICalls else { return }
 		
 		self.process.startPayment(with: selectedPaymentViewModel)
 	}
 	
-	internal func updateTokenizeProcessButtonState() {
+	func updateTokenizeProcessButtonState() {
 		
 		self.updateAmount()
 		self.buttonStyle = .pay

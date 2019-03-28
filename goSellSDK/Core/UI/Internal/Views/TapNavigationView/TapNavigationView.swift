@@ -95,7 +95,7 @@ internal final class TapNavigationView: TapNibView {
 	
 	internal func setStyle(_ style: NavigationBarStyle) {
 		
-		self.backgroundView?.backgroundColor = style.backgroundColor
+		self.backgroundView?.backgroundColor = style.backgroundColor.color
 		self.backButton?.setImage(style.backIcon, for: .normal)
 		self.titleLabel?.setTextStyle(style.titleStyle)
 		
@@ -105,8 +105,8 @@ internal final class TapNavigationView: TapNibView {
 		}
 		
 		self.closeButton?.titleLabel?.font = style.cancelNormalStyle.font.localized
-		self.closeButton?.setTitleColor(style.cancelNormalStyle.color, for: .normal)
-		self.closeButton?.setTitleColor(style.cancelHighlightedStyle.color, for: .highlighted)
+		self.closeButton?.setTitleColor(style.cancelNormalStyle.color.color, for: .normal)
+		self.closeButton?.setTitleColor(style.cancelHighlightedStyle.color.color, for: .highlighted)
 		self.closeButton?.setLocalizedText(.common_cancel)
 		self.closeButton?.tap_title = self.closeButton?.tap_title?.uppercased()
 	}

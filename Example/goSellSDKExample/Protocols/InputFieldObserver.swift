@@ -19,13 +19,13 @@ import class    UIKit.UITextView.UITextView
 
 internal extension InputFieldObserver {
     
-    internal func addInputFieldTextChangeObserver() {
+    func addInputFieldTextChangeObserver() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: UITextField.textDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: UITextView.textDidChangeNotification, object: nil)
     }
     
-    internal func removeInputFieldTextChangeObserver() {
+    func removeInputFieldTextChangeObserver() {
         
         NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: nil)

@@ -13,17 +13,17 @@ internal extension UIFont {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal static func helveticaNeueLight(_ size: CGFloat) -> UIFont {
+    static func helveticaNeueLight(_ size: CGFloat) -> UIFont {
         
         return .with(name: Constants.helveticaNeueLightFontName, size: size)
     }
     
-    internal static func helveticaNeueMedium(_ size: CGFloat) -> UIFont {
+    static func helveticaNeueMedium(_ size: CGFloat) -> UIFont {
         
         return .with(name: Constants.helveticaNeueMediumFontName, size: size)
     }
     
-    internal static func helveticaNeueRegular(_ size: CGFloat) -> UIFont {
+    static func helveticaNeueRegular(_ size: CGFloat) -> UIFont {
         
         return .with(name: Constants.helveticaNeueRegularFontName, size: size)
     }

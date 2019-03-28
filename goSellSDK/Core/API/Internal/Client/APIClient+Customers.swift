@@ -17,7 +17,7 @@ internal extension APIClient {
 	/// - Parameters:
 	///   - request: Customer request.
 	///   - completion: Completion that will be called once request finishes.
-	internal func createCustomer(with request: Customer.Request, completion: @escaping Completion<Customer>) {
+	func createCustomer(with request: Customer.Request, completion: @escaping Completion<Customer>) {
 		
 		guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
 		

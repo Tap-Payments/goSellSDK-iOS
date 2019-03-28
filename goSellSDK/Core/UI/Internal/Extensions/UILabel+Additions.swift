@@ -13,7 +13,7 @@ extension UILabel {
 		
 		self.textAlignment	= textStyle.alignment.textAlignment
 		self.font 			= textStyle.font.localized
-		self.textColor	 	= textStyle.color
+		self.textColor	 	= textStyle.color.color
 	}
 }
 

@@ -12,7 +12,7 @@ internal protocol SeguePresenter where Self: UIViewController { }
 
 internal extension SeguePresenter {
     
-    internal func show(_ controller: UIViewController.Type) {
+    func show(_ controller: UIViewController.Type) {
         
         DispatchQueue.main.async {
             

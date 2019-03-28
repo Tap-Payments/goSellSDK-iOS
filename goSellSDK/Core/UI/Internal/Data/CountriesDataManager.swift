@@ -18,7 +18,7 @@ internal class CountriesDataManager {
         
         let selectedModel = self.selectedViewModel
         
-        if let index = self.filteredData.index(where: { $0.indexPath == selectedModel.indexPath }) {
+        if let index = self.filteredData.firstIndex(where: { $0.indexPath == selectedModel.indexPath }) {
             
             return IndexPath(row: index, section: 0)
         }

@@ -15,7 +15,7 @@ internal class SerializationHelper {
     internal static func updateCustomer(_ customer: Customer, with identifier: String) -> EnvironmentCustomer? {
         
         var allCustomers: [EnvironmentCustomer] = Serializer.deserialize()
-        guard let index = allCustomers.index(where: { $0.customer == customer }) else { return nil }
+        guard let index = allCustomers.firstIndex(where: { $0.customer == customer }) else { return nil }
     
         let envCustomer = allCustomers[index]
         envCustomer.customer.identifier = identifier

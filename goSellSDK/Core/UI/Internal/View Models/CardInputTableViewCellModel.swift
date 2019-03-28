@@ -259,7 +259,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
 		
 		let settings = cardInputSettings[hasInputData ? (valid ? .valid : .invalid) : .placeholder]
-		return settings.color
+		return settings.color.color
 	}
 	
 	internal var addressOnCardTextFont: UIFont {

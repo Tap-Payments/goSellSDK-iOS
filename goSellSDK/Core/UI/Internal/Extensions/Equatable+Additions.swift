@@ -10,7 +10,7 @@ internal extension Equatable {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal func tap_isIn(_ array: [Self]) -> Bool {
+	func tap_isIn(_ array: [Self]) -> Bool {
 		
 		return array.contains(self)
 	}

@@ -36,7 +36,7 @@ internal protocol ViewModelsHandlerInterface {
 
 internal extension Process {
 	
-	internal class ViewModelsHandler: ViewModelsHandlerInterface {
+	class ViewModelsHandler: ViewModelsHandlerInterface {
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -246,7 +246,7 @@ internal extension Process {
 		fileprivate typealias Constants = __ViewModelsHandlerConstants
 	}
 	
-	internal final class PaymentViewModelsHandler: ViewModelsHandler {
+	final class PaymentViewModelsHandler: ViewModelsHandler {
 	
 		// MARK: - Internal -
 		// MARK: Methods
@@ -490,7 +490,7 @@ internal extension Process {
 		}
 	}
 	
-	internal final class CardSavingViewModelsHandler: ViewModelsHandler {
+	final class CardSavingViewModelsHandler: ViewModelsHandler {
 	
 		internal override var selectedPaymentOptionCellViewModel: PaymentOptionCellViewModel? {
 			
@@ -564,7 +564,7 @@ internal extension Process {
 		}
 	}
 	
-	internal final class CardTokenizationViewModelsHandler: ViewModelsHandler {
+	final class CardTokenizationViewModelsHandler: ViewModelsHandler {
 		
 		internal override var selectedPaymentOptionCellViewModel: PaymentOptionCellViewModel? {
 			

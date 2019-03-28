@@ -125,7 +125,7 @@ internal final class Process {
 		var commonStyle = Theme.current.commonStyle
 		if let backgroundColor = externalAppearance?.backgroundColor?(for: session) {
 			
-			let color = backgroundColor.tap_asHexColor
+			let color = HexColor(color: backgroundColor)
 			
 			commonStyle.backgroundColor[.fullscreen]	= color
 			commonStyle.backgroundColor[.windowed]		= color
@@ -133,7 +133,7 @@ internal final class Process {
 		
 		if let contentBackgroundColor = externalAppearance?.contentBackgroundColor?(for: session) {
 			
-			let color = contentBackgroundColor.tap_asHexColor
+			let color = HexColor(color: contentBackgroundColor)
 			
 			commonStyle.contentBackgroundColor[.fullscreen]	= color
 			commonStyle.contentBackgroundColor[.windowed]	= color
@@ -168,12 +168,12 @@ internal final class Process {
 		
 		if let headerTextColor = externalAppearance?.headerTextColor?(for: session) {
 			
-			headerStyle.titleStyle.color = headerTextColor.tap_asHexColor
+			headerStyle.titleStyle.color = HexColor(color: headerTextColor)
 		}
 		
 		if let headerBackgroundColor = externalAppearance?.headerBackgroundColor?(for: session) {
 			
-			headerStyle.backgroundColor = headerBackgroundColor.tap_asHexColor
+			headerStyle.backgroundColor = HexColor(color: headerBackgroundColor)
 		}
 		
 		if let cancelButtonFont = externalAppearance?.headerCancelButtonFont?(for: session) {
@@ -185,12 +185,12 @@ internal final class Process {
 		
 		if let cancelNormalColor = externalAppearance?.headerCancelButtonTextColor?(for: .normal, session: session) {
 			
-			headerStyle.cancelNormalStyle.color = cancelNormalColor.tap_asHexColor
+			headerStyle.cancelNormalStyle.color = HexColor(color: cancelNormalColor)
 		}
 		
 		if let cancelHighlightedColor = externalAppearance?.headerCancelButtonTextColor?(for: .highlighted, session: session) {
 			
-			headerStyle.cancelHighlightedStyle.color = cancelHighlightedColor.tap_asHexColor
+			headerStyle.cancelHighlightedStyle.color = HexColor(color: cancelHighlightedColor)
 		}
 		
 		Theme.current.merchantHeaderStyle = headerStyle
@@ -208,17 +208,17 @@ internal final class Process {
 		
 		if let validCardInputColor = externalAppearance?.cardInputFieldsTextColor?(for: session) {
 			
-			cardInputTextStyle[.valid].color = validCardInputColor.tap_asHexColor
+			cardInputTextStyle[.valid].color = HexColor(color: validCardInputColor)
 		}
 		
 		if let invalidCardInputColor = externalAppearance?.cardInputFieldsInvalidTextColor?(for: session) {
 			
-			cardInputTextStyle[.invalid].color = invalidCardInputColor.tap_asHexColor
+			cardInputTextStyle[.invalid].color = HexColor(color: invalidCardInputColor)
 		}
 		
 		if let placeholderCardInputColor = externalAppearance?.cardInputFieldsPlaceholderColor?(for: session) {
 			
-			cardInputTextStyle[.placeholder].color = placeholderCardInputColor.tap_asHexColor
+			cardInputTextStyle[.placeholder].color = HexColor(color: placeholderCardInputColor)
 		}
 		
 		Theme.current.paymentOptionsCellStyle.card.textInput = cardInputTextStyle
@@ -232,22 +232,22 @@ internal final class Process {
 		
 		if let cardInputDescriptionColor = externalAppearance?.cardInputDescriptionTextColor?(for: session) {
 			
-			cardInputStyle.saveCard.textStyle.color = cardInputDescriptionColor.tap_asHexColor
+			cardInputStyle.saveCard.textStyle.color = HexColor(color: cardInputDescriptionColor)
 		}
 		
 		if let saveCardSwitchOffTintColor = externalAppearance?.cardInputSaveCardSwitchOffTintColor?(for: session) {
 			
-			cardInputStyle.saveCard.switchOffTintColor = saveCardSwitchOffTintColor.tap_asHexColor
+			cardInputStyle.saveCard.switchOffTintColor = HexColor(color: saveCardSwitchOffTintColor)
 		}
 		
 		if let saveCardSwitchOnTintColor = externalAppearance?.cardInputSaveCardSwitchOnTintColor?(for: session) {
 			
-			cardInputStyle.saveCard.switchOnTintColor = saveCardSwitchOnTintColor.tap_asHexColor
+			cardInputStyle.saveCard.switchOnTintColor = HexColor(color: saveCardSwitchOnTintColor)
 		}
 		
 		if let saveCardSwitchThumbTintColor = externalAppearance?.cardInputSaveCardSwitchThumbTintColor?(for: session) {
 			
-			cardInputStyle.saveCard.switchThumbTintColor = saveCardSwitchThumbTintColor.tap_asHexColor
+			cardInputStyle.saveCard.switchThumbTintColor = HexColor(color: saveCardSwitchThumbTintColor)
 		}
 		
 		if	let scanIconFrameTintColor = externalAppearance?.cardInputScanIconFrameTintColor?(for: session),
@@ -270,7 +270,7 @@ internal final class Process {
 		
 		if let buttonDisabledBackgroundColor = externalAppearance?.tapButtonBackgroundColor?(for: .disabled, session: session) {
 			
-			let hexColor = buttonDisabledBackgroundColor.tap_asHexColor
+			let hexColor = HexColor(color: buttonDisabledBackgroundColor)
 			for (index, _) in buttonStyles.enumerated() {
 				
 				buttonStyles[index].disabled.backgroundColor = hexColor
@@ -279,7 +279,7 @@ internal final class Process {
 		
 		if let buttonEnabledBackgroundColor = externalAppearance?.tapButtonBackgroundColor?(for: .normal, session: session) {
 			
-			let hexColor = buttonEnabledBackgroundColor.tap_asHexColor
+			let hexColor = HexColor(color: buttonEnabledBackgroundColor)
 			for (index, _) in buttonStyles.enumerated() {
 				
 				buttonStyles[index].enabled.backgroundColor = hexColor
@@ -288,7 +288,7 @@ internal final class Process {
 		
 		if let buttonHighlightedBackgroundColor = externalAppearance?.tapButtonBackgroundColor?(for: .highlighted, session: session) {
 			
-			let hexColor = buttonHighlightedBackgroundColor.tap_asHexColor
+			let hexColor = HexColor(color: buttonHighlightedBackgroundColor)
 			for (index, _) in buttonStyles.enumerated() {
 				
 				buttonStyles[index].highlighted.backgroundColor = hexColor
@@ -308,7 +308,7 @@ internal final class Process {
 		
 		if let buttonDisabledTextColor = externalAppearance?.tapButtonTextColor?(for: .disabled, session: session) {
 			
-			let hexColor = buttonDisabledTextColor.tap_asHexColor
+			let hexColor = HexColor(color: buttonDisabledTextColor)
 			for (index, _) in buttonStyles.enumerated() {
 				
 				buttonStyles[index].disabled.titleStyle.color = hexColor
@@ -317,7 +317,7 @@ internal final class Process {
 		
 		if let buttonEnabledTextColor = externalAppearance?.tapButtonTextColor?(for: .normal, session: session) {
 			
-			let hexColor = buttonEnabledTextColor.tap_asHexColor
+			let hexColor = HexColor(color: buttonEnabledTextColor)
 			for (index, _) in buttonStyles.enumerated() {
 				
 				buttonStyles[index].enabled.titleStyle.color = hexColor
@@ -326,7 +326,7 @@ internal final class Process {
 		
 		if let buttonHighlightedTextColor = externalAppearance?.tapButtonTextColor?(for: .highlighted, session: session) {
 			
-			let hexColor = buttonHighlightedTextColor.tap_asHexColor
+			let hexColor = HexColor(color: buttonHighlightedTextColor)
 			for (index, _) in buttonStyles.enumerated() {
 				
 				buttonStyles[index].highlighted.titleStyle.color = hexColor

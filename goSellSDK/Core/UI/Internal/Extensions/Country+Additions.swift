@@ -11,13 +11,13 @@ internal extension Country {
     // MARK: Properties
     
     /// Country display name.
-    internal var displayName: String {
+    var displayName: String {
         
         let locale = LocalizationManager.shared.selectedLocale
         return locale.localizedString(forRegionCode: self.isoCode) ?? self.isoCode
     }
     
-    internal static let all: [Country] = Locale.isoRegionCodes.compactMap { try? Country($0) }
+    static let all: [Country] = Locale.isoRegionCodes.compactMap { try? Country($0) }
 }
 
 // MARK: - Filterable

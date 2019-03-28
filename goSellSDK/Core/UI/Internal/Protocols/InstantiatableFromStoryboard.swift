@@ -15,7 +15,7 @@ internal protocol InstantiatableFromStoryboard where Self: UIViewController {
 
 internal extension InstantiatableFromStoryboard {
     
-    internal static func instantiate() -> Self {
+    static func instantiate() -> Self {
         
         let identifier = self.tap_className
         guard let result = self.hostingStoryboard.instantiateViewController(withIdentifier: identifier) as? Self else {

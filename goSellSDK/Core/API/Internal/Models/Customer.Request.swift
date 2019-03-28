@@ -8,7 +8,7 @@
 internal extension Customer {
 	
 	/// Request to create the customer.
-	internal struct Request: Encodable {
+	struct Request: Encodable {
 		
 		// MARK: - Internal -
 		// MARK: Properties

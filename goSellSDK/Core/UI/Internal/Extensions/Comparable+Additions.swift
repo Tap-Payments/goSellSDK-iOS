@@ -10,7 +10,7 @@ internal extension Comparable {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal func tap_isIn(_ range: ClosedRange<Self>) -> Bool {
+	func tap_isIn(_ range: ClosedRange<Self>) -> Bool {
 		
 		return range.contains(self)
 	}

@@ -132,7 +132,7 @@ extension CVVValidator: TextFieldInputDataValidation {
 // MARK: - CVVTextFieldDelegate
 fileprivate extension CVVValidator {
     
-    fileprivate class CVVTextFieldDelegate: NSObject {
+    class CVVTextFieldDelegate: NSObject {
         
         fileprivate init(validator: CVVValidator) {
             

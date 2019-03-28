@@ -429,7 +429,9 @@ extension OTPInputView: UITextInput {
         case .left, .up:    return range.start
         case .right, .down: return range.end
             
-        }
+		@unknown default:	return range.start
+
+		}
     }
     
     internal func characterRange(byExtending position: UITextPosition, in direction: UITextLayoutDirection) -> UITextRange? {

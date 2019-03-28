@@ -29,7 +29,7 @@ internal final class BINDataManager {
         
         APIClient.shared.getBINDetails(for: binNumber) { [weak self] (response, error) in
             
-            if let index = self?.pendingBINs.index(of: binNumber) {
+            if let index = self?.pendingBINs.firstIndex(of: binNumber) {
                 
                 self?.pendingBINs.remove(at: index)
             }

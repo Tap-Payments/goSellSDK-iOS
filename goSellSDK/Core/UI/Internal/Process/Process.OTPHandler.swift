@@ -14,7 +14,7 @@ internal protocol OTPHandlerInterface {
 
 internal extension Process {
 	
-	internal final class OTPHandler: OTPHandlerInterface, OTPViewControllerDelegate {
+	final class OTPHandler: OTPHandlerInterface, OTPViewControllerDelegate {
 		
 		// MARK: - Internal -
 		// MARK: Properties

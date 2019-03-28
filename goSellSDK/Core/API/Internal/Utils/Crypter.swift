@@ -22,8 +22,8 @@ internal class Crypter {
         guard let data = string.data(using: .utf8, allowLossyConversion: true) else { return nil }
         
         guard let encryptedData = try? RSAUtils.encryptWithRSAPublicKey(data: data, pubkeyBase64: key) else { return nil }
-        
-        let resultString = encryptedData?.base64EncodedString()
+		
+        let resultString = encryptedData.base64EncodedString()
         
         return resultString
     }

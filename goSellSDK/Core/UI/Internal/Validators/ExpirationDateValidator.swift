@@ -222,7 +222,7 @@ extension ExpirationDateValidator: TextFieldInputDataValidation {
 // MARK: - ExpirationDatePickerHandler
 fileprivate extension ExpirationDateValidator {
     
-    fileprivate class ExpirationDatePickerHandler: NSObject {
+    class ExpirationDatePickerHandler: NSObject {
         
         fileprivate init(validator: ExpirationDateValidator) {
             
