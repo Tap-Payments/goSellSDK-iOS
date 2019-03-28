@@ -81,6 +81,9 @@
                 <a href="Classes/ErrorDetail.html">ErrorDetail</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/GoSellSDK.html">GoSellSDK</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/PayButton.html">PayButton</a>
               </li>
               <li class="nav-group-task">
@@ -154,9 +157,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/_ObjCMeasurement.html">_ObjCMeasurement</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/goSellSDK.html">goSellSDK</a>
               </li>
             </ul>
           </li>
@@ -313,8 +313,7 @@
 <p><a href="https://tap-payments.github.io/goSellSDK-iOS"><img src="https://img.shields.io/cocoapods/p/goSellSDK.svg?style=flat" alt="Platform"></a>
 <a href="https://travis-ci.org/Tap-Payments/goSellSDK-iOS"><img src="https://travis-ci.org/Tap-Payments/goSellSDK-iOS.svg?branch=master" alt="Build Status"></a>
 <a href="https://img.shields.io/Tap-Payments/v/goSellSDK"><img src="https://img.shields.io/cocoapods/v/goSellSDK.svg?style=flat" alt="CocoaPods Compatible"></a>
-<a href="https://tap-payments.github.io/goSellSDK-iOS"><img src="docs/badge.svg" alt="Documentation"></a>
-<a href="https://tap-payments.github.io/goSellSDK-iOS"><img src="https://img.shields.io/cocoapods/at/goSellSDK.svg?style=flat" alt="Applications"></a></p>
+<a href="https://tap-payments.github.io/goSellSDK-iOS"><img src="docs/badge.svg" alt="Documentation"></a></p>
 
 <p>A library that fully covers payment/authorization/card saving process inside your iOS application.</p>
 <h1 id='table-of-contents' class='heading'>Table of Contents</h1>
@@ -332,11 +331,13 @@
 
 <ol>
 <li><a href="#setup_gosellsdk_class_properties">goSellSDK Class Properties</a></li>
+<li><a href="#setup_gosellsdk_class_methods">goSellSDK Class Methods</a></li>
 <li><a href="#setup_steps">Setup Steps</a></li>
 </ol></li>
 <li><a href="#usage">Usage</a>
 
 <ol>
+<li><a href="#sdk_modes">SDK modes</a></li>
 <li><a href="#pay_button">Pay Button</a>
 
 <ol>
@@ -371,6 +372,8 @@
 <li><a href="#authorization_failure_callback">Authorization Failure Callback</a></li>
 <li><a href="#card_saving_success_callback">Card Saving Success Callback</a></li>
 <li><a href="#card_saving_failure_callback">Card Saving Failure Callback</a></li>
+<li><a href="#card_tokenization_success_callback">Card Tokenization Success Callback</a></li>
+<li><a href="#card_tokenization_failure_callback">Card Tokenization Failure Callback</a></li>
 <li><a href="#session_is_starting_callback">Session Is Starting Callback</a></li>
 <li><a href="#session_has_started_callback">Session Has Started Callback</a></li>
 <li><a href="#session_has_failed_to_start_callback">Session Has Failed to Start Callback</a></li>
@@ -445,12 +448,27 @@ github "Tap-Payments/goSellSDK-iOS"
 Run `carthage` to build the framework and drag the built `goSellSDK.framework` into your Xcode project.
 -->
 
+<p>We also recommend you to include <strong>ErrorReporting</strong> submodule in order to allow your customers to report unexpected behaviour of the SDK directly to Tap.</p>
+
+<p>To include error reporting, please add the following line to your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">target</span> <span class="s1">'MyApp'</span> <span class="k">do</span>
+
+    <span class="c1"># Other pods</span>
+    <span class="o">...</span>
+
+    <span class="c1"># Error reporting submodule.</span>
+    <span class="n">pod</span> <span class="s1">'goSellSDK/ErrorReporting'</span> 
+
+<span class="k">end</span>
+
+</code></pre>
+
 <p><a name="setup"></a></p>
 <h1 id='setup' class='heading'>Setup</h1>
 
 <hr>
 
-<p>First of all, <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> should be set up. In this section only secret key is required.</p>
+<p>First of all, <code>goSellSDK</code> should be set up. In this section only secret key is required.</p>
 
 <p><a name="setup_gosellsdk_class_properties"></a></p>
 <h2 id='gosellsdk-class-properties' class='heading'>goSellSDK Class Properties</h2>
@@ -460,7 +478,7 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 <p><a name="setup_gosellsdk_class_properties_secret_key"></a></p>
 <h3 id='secret-key' class='heading'>Secret Key</h3>
 
-<p>To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of <code><a href="Classes/goSellSDK.html">goSellSDK</a></code>, otherwise an exception will be thrown. <strong>Required</strong>.</p>
+<p>To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of <code>goSellSDK</code>, otherwise an exception will be thrown. <strong>Required</strong>.</p>
 
 <p><em>Swift</em>:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretKey</span> <span class="o">=</span> <span class="kt">SecretKey</span><span class="p">(</span><span class="nv">sanbox</span><span class="p">:</span> <span class="s">"YOUR_SANDBOX_SECRET_KEY"</span><span class="p">,</span> <span class="nv">production</span><span class="p">:</span> <span class="s">"YOUR_PRODUCTION_SECRET_KEY"</span><span class="p">)</span> <span class="c1">// (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")</span>
@@ -521,6 +539,17 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
         <td>Russian</td><td>ru</td>
     </tr>
 </table>
+<h3 id='sdk-version' class='heading'>SDK Version</h3>
+
+<p>This property returns current SDK version.</p>
+
+<p><a name="setup_gosellsdk_class_methods"></a></p>
+<h2 id='gosellsdk-class-methods' class='heading'>goSellSDK Class Methods</h2>
+<h3 id='reset' class='heading'>Reset</h3>
+
+<p>Resets all settings and makes the SDK to reinitialize on next usage.<br>
+Might be useful when you are switching accounts.<br>
+Also when you are logging the user out, although that&rsquo;s not required.</p>
 
 <p><a name="setup_steps"></a></p>
 <h2 id='setup-steps' class='heading'>Setup Steps</h2>
@@ -548,15 +577,19 @@ Run `carthage` to build the framework and drag the built `goSellSDK.framework` i
 
 <hr>
 
-<p>After <code><a href="Classes/goSellSDK.html">goSellSDK</a></code> is set up, you can actually use the SDK.<br>
+<p>After <code>goSellSDK</code> is set up, you can actually use the SDK.<br>
 We have tried to make the SDK integration as simple as possible, requiring the minimum from you.</p>
 
-<p><strong>goSellSDK</strong> works in 3 modes:</p>
+<p><a name="sdk_modes"></a></p>
+<h2 id='sdk-modes' class='heading'>SDK Modes</h2>
+
+<p><strong>goSellSDK</strong> works in 4 modes:</p>
 
 <ol>
 <li><em>Purchase</em>: Default mode. Normal customer charge.</li>
 <li><em>Authorize</em>: Only authorization is happening. You should specify an action after successful authorization: either capture the amount or void the charge after specific period of time.</li>
 <li><em>Card Saving</em>: Use this mode to save the card of the customer with Tap and use it later.</li>
+<li><em>Card Tokenization</em>: Use this mode if you are willing to perform the charging/authorization manually. The purpose of this mode is only to collect and tokenize card information details of your customer if you don&rsquo;t have PCI compliance certificate but willing to process the payment manually using our services.</li>
 </ol>
 
 <p>The mode is set through <strong>SessionDataSource</strong> interface.</p>
@@ -783,7 +816,7 @@ To do that, do the following:</p>
         <td><sub><i>mode</i></sub></td>
         <td colspan=2><sub><b>TransactionMode</b></sub></td>
         <td colspan=3><sub><i>false</i></sub></td>
-        <td align="left"><sub>Mode of the transactions (purchase or authorize). If this property is not implemented, <i>purchase</i> mode is used.</sub></td>
+        <td align="left"><sub>Mode of the transactions (<b>purchase</b>, <b>authorize</b>, <b>card saving</b> or <b>card tokenization</b>). If this property is not implemented, <i>purchase</i> mode is used.</sub></td>
     </tr>
     <tr>
         <td><sub><i>customer</i></sub></td>
@@ -1327,7 +1360,7 @@ To do that, do the following:</p>
 <p><a name="payment_success_callback"></a></p>
 <h3 id='payment-success-callback' class='heading'>Payment Success Callback</h3>
 
-<p>Notifies the receiver that payment has succeed.</p>
+<p>Notifies the receiver that payment has succeed. Can be called only in <strong>purchase</strong> mode.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1346,7 +1379,7 @@ To do that, do the following:</p>
 <p><a name="payment_failure_callback"></a></p>
 <h3 id='payment-failure-callback' class='heading'>Payment Failure Callback</h3>
 
-<p>Notifies the receiver that payment has failed.</p>
+<p>Notifies the receiver that payment has failed. Can be called only in <strong>purchase</strong> mode.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1369,7 +1402,7 @@ To do that, do the following:</p>
 <p><a name="authorization_success_callback"></a></p>
 <h3 id='authorization-success-callback' class='heading'>Authorization Success Callback</h3>
 
-<p>Notifies the receiver that authorization has succeed.</p>
+<p>Notifies the receiver that authorization has succeed. Can be called only in <strong>authorization</strong> mode.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1388,7 +1421,7 @@ To do that, do the following:</p>
 <p><a name="authorization_failure_callback"></a></p>
 <h3 id='authorization-failure-callback' class='heading'>Authorization Failure Callback</h3>
 
-<p>Notifies the receiver that authorization has failed.</p>
+<p>Notifies the receiver that authorization has failed. Can be called only in <strong>authorization</strong> mode.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1411,7 +1444,7 @@ To do that, do the following:</p>
 <p><a name="card_saving_success_callback"></a></p>
 <h3 id='card-saving-success-callback' class='heading'>Card Saving Success Callback</h3>
 
-<p>Notifies the receiver that the customer has successfully saved the card.</p>
+<p>Notifies the receiver that the customer has successfully saved the card. Can be called only in <strong>card saving</strong> mode.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1430,7 +1463,7 @@ To do that, do the following:</p>
 <p><a name="card_saving_failure_callback"></a></p>
 <h3 id='card-saving-failure-callback' class='heading'>Card Saving Failure Callback</h3>
 
-<p>Notifies the receiver that the customer failed to save the card.</p>
+<p>Notifies the receiver that the customer failed to save the card. Can be called only in <strong>card saving</strong> mode.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C</em>:</p>
@@ -1448,10 +1481,47 @@ To do that, do the following:</p>
 
 <p><strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
 
+<p><a name="card_tokenization_success_callback"></a></p>
+<h3 id='card-tokenization-success-callback' class='heading'>Card Tokenization Success Callback</h3>
+
+<p>Notifies the receiver that card token has successfully created. Can be called only in <strong>card tokenization</strong> mode.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>- (void)cardTokenized:(Token * _Nonnull)token onSession:(id &lt;SessionProtocol&gt; _Nonnull)session customerRequestedToSaveTheCard:(BOOL)saveCard;
+</code></pre>
+
+<p><em>Swift</em>:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">cardTokenized</span><span class="p">(</span><span class="n">_</span> <span class="nv">token</span><span class="p">:</span> <span class="kt">Token</span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">,</span> <span class="n">customerRequestedToSaveTheCard</span> <span class="nv">saveCard</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>token</strong>: Token of the card provided by your customer.
+<strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
+<strong>saveCard</strong>: Boolean flag which determines whether the customer wants to save the card. Actual card saving process is not happening.</p>
+
+<p><a name="card_tokenization_failure_callback"></a></p>
+<h3 id='card-tokenization-failure-callback' class='heading'>Card Tokenization Failure Callback</h3>
+
+<p>Notifies the receiver that card token has failed to be created. Can be called only in <strong>card tokenization</strong> mode.</p>
+<h4 id='declaration' class='heading'>Declaration</h4>
+
+<p><em>Objective-C</em>:</p>
+<pre class="highlight plaintext"><code>- (void)cardTokenizationFailedWithError:(TapSDKError * _Nonnull)error onSession:(id &lt;SessionProtocol&gt; _Nonnull)session;
+</code></pre>
+
+<p><em>Swift</em>:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">cardTokenizationFailed</span><span class="p">(</span><span class="n">with</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">TapSDKError</span><span class="p">,</span> <span class="n">on</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">SessionProtocol</span><span class="p">)</span>
+</code></pre>
+<h4 id='arguments' class='heading'>Arguments</h4>
+
+<p><strong>error</strong>: Error that has occured.
+<strong>session</strong>: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.</p>
+
 <p><a name="session_is_starting_callback"></a></p>
 <h3 id='session-is-starting-callback' class='heading'>Session Is Starting Callback</h3>
 
-<p>Notifies the receiver that session is about to start, but hasn&rsquo;t yet shown the SDK UI. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to show a loader before SDK UI appears on the screen.</p>
+<p>Notifies the receiver that session is about to start, but hasn&rsquo;t yet shown the SDK UI. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to show a loader before SDK UI appears on the screen. Will be called in all modes.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1468,7 +1538,7 @@ To do that, do the following:</p>
 <p><a name="session_has_started_callback"></a></p>
 <h3 id='session-has-started-callback' class='heading'>Session Has Started Callback</h3>
 
-<p>Notifies the receiver that session has successfully started and shown the SDK UI on the screen. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to hide a loader after SDK UI has appeared on the screen.</p>
+<p>Notifies the receiver that session has successfully started and shown the SDK UI on the screen. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to hide a loader after SDK UI has appeared on the screen. Will be called in all modes.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1485,7 +1555,7 @@ To do that, do the following:</p>
 <p><a name="session_has_failed_to_start_callback"></a></p>
 <h3 id='session-has-failed-to-start-callback' class='heading'>Session Has Failed to Start Callback</h3>
 
-<p>Notifies the receiver that session has failed to start and will not show the SDK UI on the screen. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to hide a loader because the session has failed. For the actual failure cause please implement other methods from this protocol and listen to the callbacks.</p>
+<p>Notifies the receiver that session has failed to start and will not show the SDK UI on the screen. You might want to use this method if you are not using <code><a href="Classes/PayButton.html">PayButton</a></code> in your application and want to hide a loader because the session has failed. For the actual failure cause please implement other methods from this protocol and listen to the callbacks. Will be called in all modes.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1502,7 +1572,7 @@ To do that, do the following:</p>
 <p><a name="session_cancel_callback"></a></p>
 <h3 id='session-cancel-callback' class='heading'>Session Cancel Callback</h3>
 
-<p>Notifies the receiver that payment/authorization was cancelled by user.</p>
+<p>Notifies the receiver that payment/authorization was cancelled by user. Will be called in all modes.</p>
 <h4 id='declaration' class='heading'>Declaration</h4>
 
 <p><em>Objective-C:</em></p>
@@ -1537,7 +1607,7 @@ Also documented sources are attached to the library.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-03-24)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/Tap-Payments/goSellSDK-iOS" target="_blank" rel="external">Tap Payments</a>. All rights reserved. (Last updated: 2019-03-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
