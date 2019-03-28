@@ -62,7 +62,7 @@
 		1432429421F9FB14003B5E5D /* Process.DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432427321F9FB14003B5E5D /* Process.DataManager.swift */; };
 		1432429721F9FB41003B5E5D /* WrappedAndTypeErased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1432429621F9FB40003B5E5D /* WrappedAndTypeErased.swift */; };
 		1433816921FA3E8F00E0B90B /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1433816821FA3E8F00E0B90B /* LoadingView.xib */; };
-		143D7CD4223BC87C0089CFBA /* goSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D7CD3223BC87C0089CFBA /* goSellSDK.swift */; };
+		143D7CD4223BC87C0089CFBA /* GoSellSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D7CD3223BC87C0089CFBA /* GoSellSDK.swift */; };
 		145A8738220C47A80088064C /* TapBlurEffectStyle+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A8737220C47A70088064C /* TapBlurEffectStyle+Additions.swift */; };
 		145A873C220C8E520088064C /* EditableTextInsetsTextField+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A873B220C8E510088064C /* EditableTextInsetsTextField+Additions.swift */; };
 		14690B112155DF240033C562 /* SDKMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14690B102155DF240033C562 /* SDKMode.swift */; };
@@ -470,7 +470,7 @@
 		1432427321F9FB14003B5E5D /* Process.DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.DataManager.swift; sourceTree = "<group>"; };
 		1432429621F9FB40003B5E5D /* WrappedAndTypeErased.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrappedAndTypeErased.swift; sourceTree = "<group>"; };
 		1433816821FA3E8F00E0B90B /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
-		143D7CD3223BC87C0089CFBA /* goSellSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goSellSDK.swift; sourceTree = "<group>"; };
+		143D7CD3223BC87C0089CFBA /* GoSellSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoSellSDK.swift; sourceTree = "<group>"; };
 		145A8737220C47A70088064C /* TapBlurEffectStyle+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TapBlurEffectStyle+Additions.swift"; sourceTree = "<group>"; };
 		145A873B220C8E510088064C /* EditableTextInsetsTextField+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditableTextInsetsTextField+Additions.swift"; sourceTree = "<group>"; };
 		14690B102155DF240033C562 /* SDKMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKMode.swift; sourceTree = "<group>"; };
@@ -1157,7 +1157,7 @@
 		147951D422005F700073B49F /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				143D7CD3223BC87C0089CFBA /* goSellSDK.swift */,
+				143D7CD3223BC87C0089CFBA /* GoSellSDK.swift */,
 				149597BA21F67C5500DFA0A2 /* Session.swift */,
 			);
 			path = Data;
@@ -1948,7 +1948,7 @@
 				141284F721611AE900C2873E /* CommonStyle.swift in Sources */,
 				A4D5FE1E208311FE007D52F5 /* Bundle+Additions.swift in Sources */,
 				1432428E21F9FB14003B5E5D /* ProcessInterface.swift in Sources */,
-				143D7CD4223BC87C0089CFBA /* goSellSDK.swift in Sources */,
+				143D7CD4223BC87C0089CFBA /* GoSellSDK.swift in Sources */,
 				A4571EEB20FE2304006D96DC /* Transformable.swift in Sources */,
 				A43A0A5820D93E19006B39F1 /* FadeAnimationController.swift in Sources */,
 				A4571F1220FF54EE006D96DC /* PopupPresentationSupport.swift in Sources */,

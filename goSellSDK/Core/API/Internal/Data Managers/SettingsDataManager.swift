@@ -146,7 +146,7 @@ extension SettingsDataManager: Singleton {
     
     internal static var shared: SettingsDataManager {
         
-        if let existing = self.storages?[goSellSDK.mode] {
+        if let existing = self.storages?[GoSellSDK.mode] {
             
             return existing
         }
@@ -154,7 +154,7 @@ extension SettingsDataManager: Singleton {
         let instance = SettingsDataManager()
 		
 		var stores = self.storages ?? [:]
-		stores[goSellSDK.mode] = instance
+		stores[GoSellSDK.mode] = instance
 		
 		self.storages = stores
 		

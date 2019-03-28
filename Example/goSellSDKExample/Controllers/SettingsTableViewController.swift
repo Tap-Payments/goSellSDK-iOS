@@ -10,7 +10,7 @@ import struct   Foundation.NSIndexPath.IndexPath
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
 import class	goSellSDK.Destination
-import class	goSellSDK.goSellSDK
+import class	goSellSDK.GoSellSDK
 import enum		goSellSDK.SDKAppearanceMode
 import enum     goSellSDK.SDKMode
 import class    goSellSDK.Shipping
