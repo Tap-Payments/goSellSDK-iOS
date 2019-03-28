@@ -34,7 +34,7 @@ internal final class Reporter {
 	
 	internal static func report(_ error: TapSDKError) {
 		
-		ErrorReporter.shared.report(error, in: Constants.product, productVersion: goSellSDK.sdkVersion, alertOrientationHandler: InterfaceOrientationManager.shared)
+		ErrorReporter.shared.report(error, in: Constants.product, productVersion: GoSellSDK.sdkVersion, alertOrientationHandler: InterfaceOrientationManager.shared)
 	}
 	
 	// MARK: - Private -

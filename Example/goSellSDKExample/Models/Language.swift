@@ -6,7 +6,7 @@
 //
 
 import struct	Foundation.NSLocale.Locale
-import class	goSellSDK.goSellSDK
+import class	goSellSDK.GoSellSDK
 
 internal struct Language {
 	
@@ -29,7 +29,7 @@ extension Language: CustomStringConvertible {
 // MARK: - CaseIterable
 extension Language: CaseIterable {
 	
-	internal static let allCases: [Language] = goSellSDK.availableLanguages.map { Language(localeIdentifier: $0) }
+	internal static let allCases: [Language] = GoSellSDK.availableLanguages.map { Language(localeIdentifier: $0) }
 }
 
 // MARK: - Encodable

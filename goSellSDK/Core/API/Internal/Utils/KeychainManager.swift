@@ -16,12 +16,12 @@ internal class KeychainManager {
         
         get {
             
-            let key = self.deviceIDKey(for: goSellSDK.mode)
+            let key = self.deviceIDKey(for: GoSellSDK.mode)
             return Keychain.read(for: key)
         }
         set {
             
-            let key = self.deviceIDKey(for: goSellSDK.mode)
+            let key = self.deviceIDKey(for: GoSellSDK.mode)
             Keychain.write(newValue, for: key)
         }
     }

@@ -200,7 +200,7 @@ internal final class APIClient {
             fatalError("Application must have bundle identifier in order to use goSellSDK.")
         }
         
-        let sdkPlistInfo = TapBundlePlistInfo(bundle: Bundle(for: goSellSDK.self))
+        let sdkPlistInfo = TapBundlePlistInfo(bundle: Bundle(for: GoSellSDK.self))
         
         guard let requirerVersion = sdkPlistInfo.shortVersionString, !requirerVersion.isEmpty else {
             
@@ -241,10 +241,10 @@ internal final class APIClient {
     
     private var sdkSecretKey: String {
         
-        switch goSellSDK.mode {
+        switch GoSellSDK.mode {
             
-        case .sandbox:      return goSellSDK.secretKey.sandbox
-        case .production:   return goSellSDK.secretKey.production
+        case .sandbox:      return GoSellSDK.secretKey.sandbox
+        case .production:   return GoSellSDK.secretKey.production
             
         }
     }

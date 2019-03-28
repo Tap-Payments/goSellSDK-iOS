@@ -17,7 +17,7 @@ import class    goSellSDK.Currency
 import class    goSellSDK.Customer
 import class	goSellSDK.Destination
 import class    goSellSDK.EmailAddress
-import class    goSellSDK.goSellSDK
+import class    goSellSDK.GoSellSDK
 import class    goSellSDK.PayButton
 import class    goSellSDK.PaymentItem
 import class    goSellSDK.PhoneNumber
@@ -69,8 +69,8 @@ internal class ExampleViewController: BaseViewController {
         self.title = "goSell SDK Example"
 		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
 		
-		goSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
-        goSellSDK.mode = self.paymentSettings.dataSource.sdkMode
+		GoSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
+        GoSellSDK.mode = self.paymentSettings.dataSource.sdkMode
     }
     
     internal override func viewWillAppear(_ animated: Bool) {
@@ -122,8 +122,8 @@ internal class ExampleViewController: BaseViewController {
         
         didSet {
 			
-			goSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
-            goSellSDK.mode = self.paymentSettings.dataSource.sdkMode
+			GoSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
+            GoSellSDK.mode = self.paymentSettings.dataSource.sdkMode
         }
     }
     
