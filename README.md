@@ -17,7 +17,8 @@ A library that fully covers payment/authorization/card saving process inside you
    1. [Installation with CocoaPods](#installation_with_cocoapods)
 3. [Setup](#setup)
     1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
-    2. [Setup Steps](#setup_steps)
+    2. [goSellSDK Class Methods](#setup_gosellsdk_class_methods)
+    3. [Setup Steps](#setup_steps)
 4. [Usage](#usage)
     1. [SDK modes](#sdk_modes)
     2. [Pay Button](#pay_button)
@@ -218,6 +219,19 @@ Currently we support the following languages:
 		<td>Russian</td><td>ru</td>
 	</tr>
 </table>
+
+### SDK Version
+
+This property returns current SDK version.
+
+<a name="setup_gosellsdk_class_methods"></a>
+## goSellSDK Class Methods
+
+### Reset
+
+Resets all settings and makes the SDK to reinitialize on next usage.<br>
+Might be useful when you are switching accounts.<br>
+Also when you are logging the user out, although that's not required.
 
 <a name="setup_steps"></a>
 ## Setup Steps
