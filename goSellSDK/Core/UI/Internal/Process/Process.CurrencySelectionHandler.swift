@@ -12,7 +12,7 @@ internal protocol CurrencySelectionHandlerInterface {
 
 internal extension Process {
 	
-	internal class CurrencySelectionHandler: CurrencySelectionHandlerInterface {
+	class CurrencySelectionHandler: CurrencySelectionHandlerInterface {
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -32,7 +32,7 @@ internal extension Process {
 		}
 	}
 	
-	internal final class PaymentCurrencySelectionHandler: CurrencySelectionHandler, CurrencySelectionViewControllerDelegate {
+	final class PaymentCurrencySelectionHandler: CurrencySelectionHandler, CurrencySelectionViewControllerDelegate {
 	
 		internal override func prepareCurrencySelectionController(_ controller: CurrencySelectionViewController) {
 			

@@ -12,7 +12,7 @@ internal extension EditableTextInsetsTextField {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var localizedClearButtonPosition: EditableTextInsetsTextField.ClearButtonPosition {
+	var localizedClearButtonPosition: EditableTextInsetsTextField.ClearButtonPosition {
 		
 		get {
 			

@@ -10,7 +10,7 @@ internal extension AddressFieldsDataManager {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var countryCellModel: AddressDropdownFieldTableViewCellModel {
+    var countryCellModel: AddressDropdownFieldTableViewCellModel {
         
         let addressModels = self.cellViewModels.compactMap { $0 as? AddressDropdownFieldTableViewCellModel }
         
@@ -24,7 +24,7 @@ internal extension AddressFieldsDataManager {
     
     // MARK: Methods
     
-    internal func setupCountriesSelectionController(_ controller: CountrySelectionViewController) {
+    func setupCountriesSelectionController(_ controller: CountrySelectionViewController) {
         
         let countryModel = self.countryCellModel
         

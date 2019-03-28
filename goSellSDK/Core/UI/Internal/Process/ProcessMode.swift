@@ -12,6 +12,6 @@ internal protocol CardTokenization: ProcessMode {}
 
 internal class ProcessModeClass: ProcessMode {}
 
-internal class PaymentClass:			ProcessModeClass, Payment & ProcessMode {}
-internal class CardSavingClass:			ProcessModeClass, CardSaving & ProcessMode {}
-internal class CardTokenizationClass:	ProcessModeClass, CardTokenization & ProcessMode {}
+internal class PaymentClass:			ProcessModeClass, Payment {}
+internal class CardSavingClass:			ProcessModeClass, CardSaving {}
+internal class CardTokenizationClass:	ProcessModeClass, CardTokenization {}

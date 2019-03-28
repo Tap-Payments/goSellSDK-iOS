@@ -42,7 +42,7 @@ internal extension GlowingViewHandler {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func prepareForGlowing() {
+    func prepareForGlowing() {
         
         self.glowingView.layer.shadowOffset = .zero
         
@@ -58,7 +58,7 @@ internal extension GlowingViewHandler {
         }
     }
     
-    internal func setGlowing(_ glowing: Bool) {
+    func setGlowing(_ glowing: Bool) {
         
         if glowing {
             
@@ -70,7 +70,7 @@ internal extension GlowingViewHandler {
         }
     }
     
-    internal func startGlowing() {
+    func startGlowing() {
         
         let animations = self.createRequiredAnimations(true)
         
@@ -78,7 +78,7 @@ internal extension GlowingViewHandler {
         animations.forEach { $0.1() }
     }
     
-    internal func stopGlowing() {
+    func stopGlowing() {
         
         let animations = self.createRequiredAnimations(false)
         
@@ -94,7 +94,7 @@ internal extension GlowingViewHandler {
     
     fileprivate var glowColorToApply: UIColor {
         
-        return self.glowColor ?? Theme.current.paymentOptionsCellStyle.glowStyle.color
+        return self.glowColor ?? Theme.current.paymentOptionsCellStyle.glowStyle.color.color
     }
     
     fileprivate var glowRadiusToApply: CGFloat {

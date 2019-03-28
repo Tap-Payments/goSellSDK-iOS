@@ -10,12 +10,12 @@ internal extension AmountedCurrency {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-    internal var displayValue: String {
+    var displayValue: String {
         
         return CurrencyFormatter.shared.format(self)
     }
     
-    internal var readableCurrencyName: String {
+    var readableCurrencyName: String {
         
         let locale = LocalizationManager.shared.selectedLocale
 		

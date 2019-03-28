@@ -16,7 +16,16 @@ import class	TapApplication.TapBundlePlistInfo
 	/// Secret key.
 	///
 	/// - Warning: Don't change while the payment is in progress or the payment process and status will be undefined.
-	public static var secretKey: SecretKey = .empty
+	public static var secretKey: SecretKey = .empty {
+		
+		didSet {
+			
+			if self.secretKey != oldValue {
+				
+				self.reset()
+			}
+		}
+	}
 	
 	/// SDK mode. By default, `production`.
 	///
@@ -54,6 +63,13 @@ import class	TapApplication.TapBundlePlistInfo
 			
 			LocalizationManager.shared.selectedLanguage = newValue
 		}
+	}
+	
+	/// Resets all settings and makes the SDK to reinitialize on next usage.
+	/// Might be useful when you are switching accounts. Also when you are logging the user out, although that's not required.
+	public static func reset() {
+		
+		SettingsDataManager.resetAllSettings()
 	}
 	
 	// MARK: - Private -

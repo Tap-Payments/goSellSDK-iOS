@@ -14,7 +14,7 @@ internal extension Currency {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var localizedSymbol: String {
+    var localizedSymbol: String {
         
         return (Locale.current as NSLocale).displayName(forKey: .currencySymbol, value: self.isoCode) ?? self.isoCode
     }

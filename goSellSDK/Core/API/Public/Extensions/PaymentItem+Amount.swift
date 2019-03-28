@@ -11,13 +11,13 @@ public extension PaymentItem {
     // MARK: Properties
     
     /// Plain amount.
-    @objc public var plainAmount: Decimal {
+    @objc var plainAmount: Decimal {
         
         return self.amountPerUnit * self.quantity.value
     }
     
     /// Discount amount.
-    @objc public var discountAmount: Decimal {
+    @objc var discountAmount: Decimal {
         
         guard let nonnullDiscount = self.discount else { return 0.0 }
         
@@ -30,13 +30,13 @@ public extension PaymentItem {
     }
     
     /// Taxes amount.
-    @objc public var taxesAmount: Decimal {
+    @objc var taxesAmount: Decimal {
         
         return Process.NonGenericAmountCalculator.taxes(on: self.plainAmount - self.discountAmount, with: self.taxes ?? [])
     }
     
     /// Total item amount.
-    @objc public var totalItemAmount: Decimal {
+    @objc var totalItemAmount: Decimal {
         
         return Process.NonGenericAmountCalculator.totalAmount(of: self)
     }

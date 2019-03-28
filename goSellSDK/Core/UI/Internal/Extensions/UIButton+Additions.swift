@@ -9,11 +9,11 @@ import class	TapAdditionsKit.UIButton
 
 internal extension UIButton {
 	
-	internal func setTitleStyle(_ style: TextStyle) {
+	func setTitleStyle(_ style: TextStyle) {
 		
 		self.titleLabel?.font 			= style.font.localized
 		self.titleLabel?.textAlignment	= style.alignment.textAlignment
-		self.titleLabel?.textColor 		= style.color
+		self.titleLabel?.textColor 		= style.color.color
 	}
 }
 

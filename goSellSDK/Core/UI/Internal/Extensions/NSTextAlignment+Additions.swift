@@ -12,7 +12,7 @@ internal extension NSTextAlignment {
 	// MARK: - Internal -
 	// MARK: Properties
 	
-	internal var tap_localizedTextAlignment: LocalizedTextAlignment {
+	var tap_localizedTextAlignment: LocalizedTextAlignment {
 		
 		switch self {
 			
@@ -21,6 +21,8 @@ internal extension NSTextAlignment {
 		case .right: 		return .right
 		case .natural: 		return .natural
 		case .justified:	return .justified
+			
+		@unknown default:	return .left
 		}
 	}
 }

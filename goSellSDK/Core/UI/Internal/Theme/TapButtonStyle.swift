@@ -32,7 +32,7 @@ internal struct TapButtonStyle: Decodable {
 
 internal extension TapButtonStyle {
 	
-	internal enum ButtonType: String, Decodable {
+	enum ButtonType: String, Decodable {
 		
 		case pay 		= "pay"
 		case confirmOTP	= "confirm_otp"

@@ -18,7 +18,7 @@ internal protocol WebPaymentHandlerInterface {
 
 internal extension Process {
 	
-	internal final class WebPaymentHandler: WebPaymentHandlerInterface {
+	final class WebPaymentHandler: WebPaymentHandlerInterface {
 	
 		// MARK: - Internal -
 		// MARK: Properties

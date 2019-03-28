@@ -51,7 +51,7 @@ internal class ErrorDataManager {
 			
 			guard !retryUsed else { return }
 			
-			guard let index = errorDetails.index(of: current), index < errorDetails.count - 1 else { return }
+			guard let index = errorDetails.firstIndex(of: current), index < errorDetails.count - 1 else { return }
 			
 			let nextIndex = errorDetails.index(after: index)
 			self.handleErrorDetails(errorDetails, in: error, current: errorDetails[nextIndex], retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
@@ -127,6 +127,7 @@ internal class ErrorDataManager {
 		case .invalidEnumValue:             return .invalidEnumValue
 		case .invalidAddressType:			return .invalidAddressType
 		case .invalidTokenType:				return .invalidTokenType
+		case .noMerchantData:				return .noMerchantData
 
 		}
 	}
@@ -205,7 +206,8 @@ internal class ErrorDataManager {
 			 .invalidMetadataKey,
 			 .invalidMetadataValue,
 			 .invalidJSONRequest,
-			 .applicationRequired:
+			 .applicationRequired,
+			 .noMerchantData:
 			
 			return .closePayment
 			

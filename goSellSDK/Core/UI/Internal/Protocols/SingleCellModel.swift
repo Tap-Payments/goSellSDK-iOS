@@ -21,7 +21,7 @@ internal protocol SingleCellModel: ClassProtocol {
 
 internal extension SingleCellModel {
     
-    internal func updateCell(animated: Bool = false) {
+    func updateCell(animated: Bool = false) {
         
         self.cell?.updateContent(animated: animated)
     }
@@ -39,7 +39,7 @@ internal extension SingleCellModel {
 
 internal extension SingleCellModel where CellClass: UITableViewCell {
     
-    internal func dequeueCell(from tableView: UITableView) -> CellClass {
+    func dequeueCell(from tableView: UITableView) -> CellClass {
         
         let reuseIdentifier: String = CellClass.tap_className
         
@@ -63,7 +63,7 @@ internal extension SingleCellModel where CellClass: UITableViewCell {
 
 internal extension SingleCellModel where CellClass: UICollectionViewCell {
     
-    internal func dequeueCell(from collectionView: UICollectionView, for indexPath: IndexPath) -> CellClass {
+    func dequeueCell(from collectionView: UICollectionView, for indexPath: IndexPath) -> CellClass {
         
         let reuseIdentifier = CellClass.tap_className
         

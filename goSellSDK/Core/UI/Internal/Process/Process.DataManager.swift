@@ -77,7 +77,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 
 internal extension Process {
 	
-	internal class DataManager: DataManagerInterface {
+	class DataManager: DataManagerInterface {
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -353,7 +353,7 @@ internal extension Process {
 		}
 	}
 	
-	internal final class PaymentDataManager: DataManager {
+	final class PaymentDataManager: DataManager {
 	
 		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
 			
@@ -452,7 +452,7 @@ internal extension Process {
 			
 			return { [weak self] in
 				
-				self?.isInDeleteSavedCardsMode.tap_switch()
+				self?.isInDeleteSavedCardsMode.toggle()
 			}
 		}
 		
@@ -659,7 +659,7 @@ internal extension Process {
 		
 		internal override func updateUIByRemoving(_ card: SavedCard) {
 			
-			guard let cardIndex = self.paymentOptionsResponse?.savedCards?.index(of: card) else { return }
+			guard let cardIndex = self.paymentOptionsResponse?.savedCards?.firstIndex(of: card) else { return }
 			self.paymentOptionsResponse?.savedCards?.remove(at: cardIndex)
 			
 			let remainingNumberOfCards = self.paymentOptionsResponse?.savedCards?.count ?? 0
@@ -757,7 +757,7 @@ internal extension Process {
 		}
 	}
 	
-	internal final class CardSavingDataManager: DataManager {
+	final class CardSavingDataManager: DataManager {
 		
 		private var _currentPaymentOption: PaymentOption?
 		
@@ -887,7 +887,7 @@ internal extension Process {
 		}
 	}
 	
-	internal final class CardTokenizationDataManager: DataManager {
+	final class CardTokenizationDataManager: DataManager {
 		
 		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
 			

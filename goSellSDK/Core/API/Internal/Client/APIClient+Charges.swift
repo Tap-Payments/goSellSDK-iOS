@@ -21,7 +21,7 @@ internal extension APIClient {
     ///   - completion: Completion that will be called when request finishes.
     ///   - charge: Created charge in case of success.
     ///   - error: Error in case of failure.
-    internal func createCharge(with request: CreateChargeRequest, completion: @escaping Completion<Charge>) {
+    func createCharge(with request: CreateChargeRequest, completion: @escaping Completion<Charge>) {
         
         guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
         

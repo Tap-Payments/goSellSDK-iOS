@@ -63,7 +63,7 @@ internal class PaymentViewController: SeparateWindowViewController {
 		
 		let additionalAppearanceAnimations: TypeAlias.ArgumentlessClosure = { [weak self] in
 			
-			self?.view.layer.backgroundColor = Theme.current.commonStyle.backgroundColor[.fullscreen].cgColor
+			self?.view.layer.backgroundColor = Theme.current.commonStyle.backgroundColor[.fullscreen].color.cgColor
 		}
 		
 		let additionalDisapperanceAnimations: TypeAlias.ArgumentlessClosure = { [weak self] in

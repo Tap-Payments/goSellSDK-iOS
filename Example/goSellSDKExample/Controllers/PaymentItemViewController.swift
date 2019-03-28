@@ -395,7 +395,7 @@ extension PaymentItemViewController: TaxViewControllerDelegate {
      
         if let nonnullSelectedTax = self.selectedTax {
             
-            if let index = self.currentPaymentItem.taxes?.index(of: nonnullSelectedTax) {
+            if let index = self.currentPaymentItem.taxes?.firstIndex(of: nonnullSelectedTax) {
                 
                 self.currentPaymentItem.taxes?.remove(at: index)
                 self.currentPaymentItem.taxes?.insert(tax, at: index)

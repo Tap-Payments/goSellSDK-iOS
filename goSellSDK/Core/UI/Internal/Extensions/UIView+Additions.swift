@@ -14,7 +14,7 @@ internal extension UIView {
 	// MARK: - Internal -	
 	// MARK: Methods
 	
-	internal func tap_updateLayoutDirectionIfRequired() {
+	func tap_updateLayoutDirectionIfRequired() {
 		
 		if #available(iOS 9.0, *) {
 			

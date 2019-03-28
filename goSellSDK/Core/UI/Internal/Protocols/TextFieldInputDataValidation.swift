@@ -16,7 +16,7 @@ internal protocol TextFieldInputDataValidation: TextInputDataValidation {
 
 internal extension TextFieldInputDataValidation {
     
-    internal func updateInputFieldTextAndAttributes() {
+    func updateInputFieldTextAndAttributes() {
         
         let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
 		let textSettings = cardInputSettings[(self.isDataValid || self.textInputField.isEditing) ? .valid : .invalid]

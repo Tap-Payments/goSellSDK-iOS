@@ -18,7 +18,7 @@ internal extension APIClient {
     /// - Parameters:
     ///   - request: Payment options request model.
     ///   - completion: Completion that will be called when request finishes.
-    internal func getPaymentOptions(with request: PaymentOptionsRequest, completion: @escaping Completion<PaymentOptionsResponse>) {
+    func getPaymentOptions(with request: PaymentOptionsRequest, completion: @escaping Completion<PaymentOptionsResponse>) {
         
         guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
         

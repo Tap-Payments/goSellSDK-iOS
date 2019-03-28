@@ -279,7 +279,7 @@ extension CardNumberValidator: TextFieldInputDataValidation {
 // MARK: - CardNumberTextFieldDelegate
 fileprivate extension CardNumberValidator {
     
-    fileprivate class CardNumberTextFieldDelegate: NSObject {
+    class CardNumberTextFieldDelegate: NSObject {
         
         fileprivate init(validator: CardNumberValidator) {
             

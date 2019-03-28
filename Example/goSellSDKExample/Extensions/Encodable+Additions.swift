@@ -10,7 +10,7 @@ import class Foundation.NSJSONSerialization.JSONSerialization
 
 internal extension Encodable {
     
-    internal var dictionaryRepresentation: [String: Any]? {
+    var dictionaryRepresentation: [String: Any]? {
         
         guard let data = try? JSONEncoder().encode(self) else { return nil }
         let object = try? JSONSerialization.jsonObject(with: data, options: [])

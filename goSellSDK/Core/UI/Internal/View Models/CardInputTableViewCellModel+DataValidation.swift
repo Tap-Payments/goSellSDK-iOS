@@ -18,7 +18,7 @@ internal extension CardInputTableViewCellModel {
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var possiblePaymentOptions: [PaymentOption] {
+    var possiblePaymentOptions: [PaymentOption] {
         
         if self.shouldUseCardSchemeBrand {
             
@@ -54,7 +54,7 @@ internal extension CardInputTableViewCellModel {
     
     // MARK: Methods
 
-    internal func bind(_ inputField: UIResponder?, displayLabel: UILabel?, editableView: TapEditableView? = nil, for validation: ValidationType) {
+    func bind(_ inputField: UIResponder?, displayLabel: UILabel?, editableView: TapEditableView? = nil, for validation: ValidationType) {
         
         switch validation {
             
@@ -84,7 +84,7 @@ internal extension CardInputTableViewCellModel {
         }
     }
     
-    internal func updateValidatorWithInputData(of type: ValidationType) {
+    func updateValidatorWithInputData(of type: ValidationType) {
         
         if let validator = self.validator(of: type) {
             
@@ -92,7 +92,7 @@ internal extension CardInputTableViewCellModel {
         }
     }
     
-    internal func validator(of type: ValidationType) -> CardValidator? {
+    func validator(of type: ValidationType) -> CardValidator? {
         
         return self.cardDataValidators.first { $0.validationType == type }
     }
@@ -223,7 +223,7 @@ internal extension CardInputTableViewCellModel {
         
         validator.delegate = self
         
-        if let existingValidatorIndex = self.cardDataValidators.index(where: { $0.validationType == validator.validationType }) {
+        if let existingValidatorIndex = self.cardDataValidators.firstIndex(where: { $0.validationType == validator.validationType }) {
             
             self.cardDataValidators.remove(at: existingValidatorIndex)
         }

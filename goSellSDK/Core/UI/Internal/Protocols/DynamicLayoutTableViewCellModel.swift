@@ -14,7 +14,7 @@ internal protocol DynamicLayoutTableViewCellModel where Self: TableViewCellViewM
 
 internal extension DynamicLayoutTableViewCellModel {
     
-    internal func updateCellLayout(animated: Bool, with code: @escaping TypeAlias.ArgumentlessClosure) {
+    func updateCellLayout(animated: Bool, with code: @escaping TypeAlias.ArgumentlessClosure) {
 		
 		guard let nonnullTableView = self.tableView else { return }
 		

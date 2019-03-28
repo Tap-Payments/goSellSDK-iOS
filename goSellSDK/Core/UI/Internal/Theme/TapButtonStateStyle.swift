@@ -14,8 +14,8 @@ internal struct TapButtonStateStyle: Decodable {
     
     // MARK: - Internal -
     // MARK: Properties
-    
-    internal var backgroundColor: HexColor
+	
+	internal var backgroundColor: HexColor
     
     internal let loaderColor: HexColor
 	

@@ -67,9 +67,9 @@ self.toggleSwitchOff()
 		let style = Theme.current.paymentOptionsCellStyle.card.saveCard
 		
 		self.descriptionLabel.setTextStyle(style.textStyle)
-		self.saveCardSwitch.tintColor		= style.switchOffTintColor
-		self.saveCardSwitch.onTintColor		= style.switchOnTintColor
-		self.saveCardSwitch.thumbTintColor	= style.switchThumbTintColor
+		self.saveCardSwitch.tintColor		= style.switchOffTintColor?.color
+		self.saveCardSwitch.onTintColor		= style.switchOnTintColor?.color
+		self.saveCardSwitch.thumbTintColor	= style.switchThumbTintColor?.color
     }
 	
 	internal func toggleSwitchOn() {
@@ -101,9 +101,9 @@ self.toggleSwitchOff()
 		
 		let style = Theme.current.paymentOptionsCellStyle.card.saveCard
 		
-		self.saveCardSwitch.tintColor		= style.switchOffTintColor
-		self.saveCardSwitch.onTintColor		= style.switchOnTintColor
-		self.saveCardSwitch.thumbTintColor	= style.switchThumbTintColor
+		self.saveCardSwitch.tintColor		= style.switchOffTintColor?.color
+		self.saveCardSwitch.onTintColor		= style.switchOnTintColor?.color
+		self.saveCardSwitch.thumbTintColor	= style.switchThumbTintColor?.color
     }
 	
 	private func setupLabel() {

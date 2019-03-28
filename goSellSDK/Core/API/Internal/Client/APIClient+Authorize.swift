@@ -14,7 +14,7 @@ internal extension APIClient {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal func createAuthorize(with request: CreateAuthorizeRequest, completion: @escaping Completion<Authorize>) {
+    func createAuthorize(with request: CreateAuthorizeRequest, completion: @escaping Completion<Authorize>) {
         
         guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
         

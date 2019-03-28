@@ -13,7 +13,7 @@ import class	UIKit.UIScreen.UIScreen
 
 internal extension Process {
 	
-	internal typealias Implementation = __ProcessImplementation
+	typealias Implementation = __ProcessImplementation
 }
 
 internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGenericInterface {

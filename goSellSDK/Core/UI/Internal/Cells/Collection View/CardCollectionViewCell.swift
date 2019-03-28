@@ -168,7 +168,7 @@ extension CardCollectionViewCell: AlwaysGlowingViewHandler {
     
     internal var standartGlowColor: UIColor {
 		
-		return Theme.current.paymentOptionsCellStyle.alwaysGlowStyle.color
+		return Theme.current.paymentOptionsCellStyle.alwaysGlowStyle.color.color
     }
 }
 

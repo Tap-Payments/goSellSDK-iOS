@@ -102,7 +102,6 @@
 		149AC19C21ED0F5A002D31A7 /* CreateCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */; };
 		149F5AFD2204809800A57C9A /* SessionAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5AFC2204809800A57C9A /* SessionAppearance.swift */; };
 		149F5B002204812700A57C9A /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5AFF2204812700A57C9A /* UIImage+Additions.swift */; };
-		149F5B032204815D00A57C9A /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5B022204815C00A57C9A /* UIColor+Additions.swift */; };
 		14A3D313215953DE007F3565 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A3D311215953DE007F3565 /* Localizable.strings */; };
 		14A8428D2243B1B90026CC16 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8428B2243B1B80026CC16 /* Transfer.swift */; };
 		14A8428E2243B1B90026CC16 /* DestinationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8428C2243B1B90026CC16 /* DestinationGroup.swift */; };
@@ -511,7 +510,6 @@
 		149AC19821ED0F5A002D31A7 /* CreateCardRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCardRequest.swift; sourceTree = "<group>"; };
 		149F5AFC2204809800A57C9A /* SessionAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionAppearance.swift; sourceTree = "<group>"; };
 		149F5AFF2204812700A57C9A /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
-		149F5B022204815C00A57C9A /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		14A3D312215953DE007F3565 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A3D31621595681007F3565 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14A8428B2243B1B80026CC16 /* Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
@@ -1677,7 +1675,6 @@
 				145A8737220C47A70088064C /* TapBlurEffectStyle+Additions.swift */,
 				14128502216132AA00C2873E /* TapSearchView+Additions.swift */,
 				140238F5215A49BD00CF3B47 /* UIButton+Additions.swift */,
-				149F5B022204815C00A57C9A /* UIColor+Additions.swift */,
 				141284A3215D275600C2873E /* UIEdgeInsets+Additions.swift */,
 				A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */,
 				149F5AFF2204812700A57C9A /* UIImage+Additions.swift */,
@@ -1756,12 +1753,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Tap Payments";
 				TargetAttributes = {
 					A40D32152031E6DE0030FDDE = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1864,7 +1861,6 @@
 				A4F7103120B550760064FE4B /* CardAddressDataStorage.swift in Sources */,
 				A4F7105820B553670064FE4B /* CardInputTableViewCellModel+AddressInput.swift in Sources */,
 				A4BD8CFE20A1F0B300EFF2CE /* CardNumberValidator.swift in Sources */,
-				149F5B032204815D00A57C9A /* UIColor+Additions.swift in Sources */,
 				147951B721FF76680073B49F /* CardVerificationStatus.swift in Sources */,
 				A424879C20E4F3C0001C4FAF /* OTPTimerState.swift in Sources */,
 				A4A9828F20D2B32000770690 /* CreateTokenWithCardDataRequest.swift in Sources */,
@@ -2472,6 +2468,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2501,6 +2498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -1054,7 +1054,7 @@ extension SettingsTableViewController: DestinationViewControllerDelegate {
 		
 		if let nonnullSelectedDestination = self.selectedDestination {
 			
-			if let index = self.currentSettings?.dataSource.destinations.index(of: nonnullSelectedDestination) {
+			if let index = self.currentSettings?.dataSource.destinations.firstIndex(of: nonnullSelectedDestination) {
 				
 				self.currentSettings?.dataSource.destinations.remove(at: index)
 				self.currentSettings?.dataSource.destinations.insert(destination, at: index)
@@ -1083,7 +1083,7 @@ extension SettingsTableViewController: TaxViewControllerDelegate {
         
         if let nonnullSelectedTax = self.selectedTax {
             
-            if let index = self.currentSettings?.dataSource.taxes.index(of: nonnullSelectedTax) {
+            if let index = self.currentSettings?.dataSource.taxes.firstIndex(of: nonnullSelectedTax) {
                 
                 self.currentSettings?.dataSource.taxes.remove(at: index)
                 self.currentSettings?.dataSource.taxes.insert(tax, at: index)
@@ -1112,7 +1112,7 @@ extension SettingsTableViewController: ShippingViewControllerDelegate {
         
         if let nonnullSelectedShipping = self.selectedShipping {
             
-            if let index = self.currentSettings?.dataSource.shippingList.index(of: nonnullSelectedShipping) {
+            if let index = self.currentSettings?.dataSource.shippingList.firstIndex(of: nonnullSelectedShipping) {
                 
                 self.currentSettings?.dataSource.shippingList.remove(at: index)
                 self.currentSettings?.dataSource.shippingList.insert(shipping, at: index)

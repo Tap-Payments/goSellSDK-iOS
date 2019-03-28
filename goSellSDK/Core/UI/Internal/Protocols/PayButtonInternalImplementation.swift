@@ -20,7 +20,7 @@ internal extension PayButtonInternalImplementation {
     // MARK: - Internal -
     // MARK: Methods
 	
-	internal func updateAppearance() {
+	func updateAppearance() {
 		
 		if self.updateHandlerIfRequired() {
 			

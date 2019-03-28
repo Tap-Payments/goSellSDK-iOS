@@ -9,14 +9,14 @@ import class UIKit.UITextField.UITextField
 
 internal extension UITextField {
 	
-	internal func setTextStyle(_ textStyle: TextStyle, _ placeholderStyle: TextStyle) {
+	func setTextStyle(_ textStyle: TextStyle, _ placeholderStyle: TextStyle) {
 		
 		let attributedPlaceholder = NSAttributedString(string: self.placeholder ?? .tap_empty, attributes: placeholderStyle.asStringAttributes)
 		self.attributedPlaceholder = attributedPlaceholder
 		
 		self.font 						= textStyle.font.localized
 		self.tap_localizedTextAlignment	= textStyle.alignment
-		self.textColor 					= textStyle.color
+		self.textColor 					= textStyle.color.color
 	}
 }
 

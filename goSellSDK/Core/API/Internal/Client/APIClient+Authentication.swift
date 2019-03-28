@@ -19,7 +19,7 @@ internal extension APIClient {
     /// - Parameters:
     ///   - object: Authenticatable object.
     ///   - completion: Completion that will be called when request finishes.
-    internal func requestAuthentication<T: Authenticatable>(for object: T, completion: @escaping Completion<T>) {
+    func requestAuthentication<T: Authenticatable>(for object: T, completion: @escaping Completion<T>) {
         
         let route = T.authenticationRoute
         
@@ -36,7 +36,7 @@ internal extension APIClient {
     ///   - object: Authenticatable object.
     ///   - details: Authentication details.
     ///   - completion: Completion that will be called when request finishes.
-    internal func authenticate<T: Authenticatable>(_ object: T, details: AuthenticationRequest, completion: @escaping Completion<T>) {
+    func authenticate<T: Authenticatable>(_ object: T, details: AuthenticationRequest, completion: @escaping Completion<T>) {
         
         guard let bodyDictionary = self.convertModelToDictionary(details, callingCompletionOnFailure: completion) else { return }
         

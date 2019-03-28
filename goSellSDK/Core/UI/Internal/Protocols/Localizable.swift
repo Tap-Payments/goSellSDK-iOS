@@ -23,7 +23,7 @@ internal protocol SingleLocalizable: Localizable where LocalizableElement == Sin
 
 internal extension SingleLocalizable {
 	
-	internal func setLocalized(text: String?, for element: SingleLocalizableElement) {
+	func setLocalized(text: String?, for element: SingleLocalizableElement) {
 		
 		self.setLocalized(text: text)
 	}
@@ -31,7 +31,7 @@ internal extension SingleLocalizable {
 
 internal extension Localizable {
 	
-	internal func setLocalizedText(for element: LocalizableElement, key: LocalizationKey?) {
+	func setLocalizedText(for element: LocalizableElement, key: LocalizationKey?) {
 		
 		guard let nonnullKey = key else {
 			
@@ -43,12 +43,12 @@ internal extension Localizable {
 		self.setLocalized(text: text, for: element)
 	}
 	
-	internal func setLocalizedText(for element: LocalizableElement, key: LocalizationKey?, _ arguments: CVarArg...) {
+	func setLocalizedText(for element: LocalizableElement, key: LocalizationKey?, _ arguments: CVarArg...) {
 		
 		self.setLocalizedText(for: element, key: key, arguments: arguments)
 	}
 	
-	internal func setLocalizedText(for element: LocalizableElement, key: LocalizationKey?, arguments: [CVarArg]) {
+	func setLocalizedText(for element: LocalizableElement, key: LocalizationKey?, arguments: [CVarArg]) {
 		
 		guard let nonnullKey = key else {
 			
@@ -63,12 +63,12 @@ internal extension Localizable {
 
 internal extension Localizable where LocalizableElement == SingleLocalizableElement {
 	
-	internal func setLocalizedText(_ key: LocalizationKey?) {
+	func setLocalizedText(_ key: LocalizationKey?) {
 		
 		self.setLocalizedText(for: .default, key: key)
 	}
 	
-	internal func setLocalizedText(_ key: LocalizationKey?, _ arguments: CVarArg...) {
+	func setLocalizedText(_ key: LocalizationKey?, _ arguments: CVarArg...) {
 		
 		self.setLocalizedText(for: .default, key: key, arguments: arguments)
 	}

@@ -116,7 +116,7 @@ extension CardholderNameValidator: TextFieldInputDataValidation {
 // MARK: - CardholderNameTextFieldDelegate
 fileprivate extension CardholderNameValidator {
     
-    fileprivate class CardholderNameTextFieldDelegate: NSObject {
+    class CardholderNameTextFieldDelegate: NSObject {
         
         fileprivate init(validator: CardholderNameValidator) {
             
@@ -179,7 +179,7 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
 // MARK: - String + Hex
 fileprivate extension String {
     
-    fileprivate var fromHex: Character {
+    var fromHex: Character {
         
         return Character(UnicodeScalar(Int(strtoul(self, nil, 16)))!)
     }

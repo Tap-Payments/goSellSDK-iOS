@@ -23,7 +23,6 @@
 		14C251F92247984E00940A98 /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251F82247984E00940A98 /* GlobalSettings.swift */; };
 		14C251FB2247996C00940A98 /* DataSourceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251FA2247996C00940A98 /* DataSourceSettings.swift */; };
 		14C251FD22479AB700940A98 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251FC22479AB700940A98 /* AppearanceSettings.swift */; };
-		14C7E4F52208B64D00F19007 /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */; };
 		14F625BB2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */; };
 		8E197292A213A9AC83C5B789 /* Pods_goSellSDKExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */; };
 		A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */; };
@@ -88,7 +87,6 @@
 		14C251F82247984E00940A98 /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		14C251FA2247996C00940A98 /* DataSourceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceSettings.swift; sourceTree = "<group>"; };
 		14C251FC22479AB700940A98 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
-		14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Additions.swift"; sourceTree = "<group>"; };
 		14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBlurEffect.Style+Additions.swift"; sourceTree = "<group>"; };
 		3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.release.xcconfig"; sourceTree = "<group>"; };
 		A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 				A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */,
 				A408C03620BAB577005E74AD /* Measurement+Additions.swift */,
 				14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */,
-				14C7E4F42208B64D00F19007 /* UIEdgeInsets+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,7 +358,7 @@
 				TargetAttributes = {
 					A4D5FE4E2083235E007D52F5 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -402,55 +399,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks.sh",
-				"${PODS_ROOT}/CardIODynamic/Carthage/Build/iOS/CardIO.framework",
-				"${BUILT_PRODUCTS_DIR}/EditableTextInsetsTextField/EditableTextInsetsTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/TapAdditionsKit/TapAdditionsKit.framework",
-				"${BUILT_PRODUCTS_DIR}/TapAlertViewController/TapAlertViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/TapApplication/TapApplication.framework",
-				"${BUILT_PRODUCTS_DIR}/TapBundleLocalization/TapBundleLocalization.framework",
-				"${BUILT_PRODUCTS_DIR}/TapCardValidator/TapCardValidator.framework",
-				"${BUILT_PRODUCTS_DIR}/TapEditableView/TapEditableView.framework",
-				"${BUILT_PRODUCTS_DIR}/TapErrorReporting/TapErrorReporting.framework",
-				"${BUILT_PRODUCTS_DIR}/TapFontsKit/TapFontsKit.framework",
-				"${BUILT_PRODUCTS_DIR}/TapGLKit/TapGLKit.framework",
-				"${BUILT_PRODUCTS_DIR}/TapKeychain/TapKeychain.framework",
-				"${BUILT_PRODUCTS_DIR}/TapNetworkManager/TapNetworkManager.framework",
-				"${BUILT_PRODUCTS_DIR}/TapNibView/TapNibView.framework",
-				"${BUILT_PRODUCTS_DIR}/TapResponderChainInputView/TapResponderChainInputView.framework",
-				"${BUILT_PRODUCTS_DIR}/TapSearchView/TapSearchView.framework",
-				"${BUILT_PRODUCTS_DIR}/TapSwiftFixes/TapSwiftFixes.framework",
-				"${BUILT_PRODUCTS_DIR}/TapVisualEffectView/TapVisualEffectView.framework",
-				"${BUILT_PRODUCTS_DIR}/goSellSDK/goSellSDK.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CardIO.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EditableTextInsetsTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapAdditionsKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapAlertViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapApplication.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapBundleLocalization.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapCardValidator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapEditableView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapErrorReporting.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapFontsKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapGLKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapKeychain.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapNetworkManager.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapNibView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapResponderChainInputView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapSearchView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapSwiftFixes.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TapVisualEffectView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/goSellSDK.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A499025420EA6A7F0062B3E9 /* Mark all FIXMEs as warning */ = {
@@ -518,7 +476,6 @@
 				A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */,
 				A45A5DCC2142BEC000B7DDE9 /* BaseViewController.swift in Sources */,
 				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
-				14C7E4F52208B64D00F19007 /* UIEdgeInsets+Additions.swift in Sources */,
 				A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */,
 				A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */,
 				A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */,
@@ -786,7 +743,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -808,7 +765,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

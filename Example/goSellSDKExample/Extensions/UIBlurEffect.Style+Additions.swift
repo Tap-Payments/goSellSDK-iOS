@@ -47,6 +47,8 @@ extension UIBlurEffect.Style: CustomStringConvertible {
 		case .dark:			return "Dark"
 		case .prominent:	return "Prominent"
 		case .regular:		return "Regular"
+			
+		@unknown default:	return "Unknown"
 
 		}
 	}
@@ -132,6 +134,10 @@ extension UIBlurEffect.Style: Encodable {
 		case .regular:
 			
 			try container.encode(UIBlurEffectStyleConstants.regular)
+			
+		@unknown default:
+			
+			try container.encode(UIBlurEffectStyleConstants.light)
 		}
 	}
 }

@@ -13,7 +13,7 @@ internal extension Decodable {
     // MARK: - Internal -
     // MARK: Methods
     
-    internal init?(dictionaryRepresentation: [String: Any]) {
+    init?(dictionaryRepresentation: [String: Any]) {
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: dictionaryRepresentation, options: []) else { return nil }
 		

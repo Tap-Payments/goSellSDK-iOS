@@ -13,7 +13,7 @@ internal extension APIClient {
 	// MARK: - Internal -
 	// MARK: Methods
 	
-	internal func createCardVerification(with request: CreateCardVerificationRequest, completion: @escaping Completion<CardVerification>) {
+	func createCardVerification(with request: CreateCardVerificationRequest, completion: @escaping Completion<CardVerification>) {
 		
 		guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
 		

@@ -14,7 +14,7 @@ internal protocol ThemeObserver: ClassProtocol {
 
 internal extension ThemeObserver {
 	
-	internal func startMonitoringThemeChanges() -> NSObjectProtocol {
+	func startMonitoringThemeChanges() -> NSObjectProtocol {
 		
 		return NotificationCenter.default.addObserver(forName: .tap_sdkThemeChanged, object: nil, queue: .main) { [weak self] _ in
 			
@@ -22,7 +22,7 @@ internal extension ThemeObserver {
 		}
 	}
 	
-	internal func stopMonitoringThemeChanges(_ observation: Any?) {
+	func stopMonitoringThemeChanges(_ observation: Any?) {
 		
 		if let nonnullObservation = observation {
 		
