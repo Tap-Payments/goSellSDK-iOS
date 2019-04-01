@@ -19,6 +19,9 @@ internal class CreateChargeRequest: Encodable {
     
     /// Customer information.
     internal let customer: Customer
+	
+	/// Merchant information.
+	internal let merchant: Merchant?
     
     /// Fees amount.
     internal let fee: Decimal
@@ -78,6 +81,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - amount: Charge amount.
     ///   - currency: Charge currency.
     ///   - customer: Customer.
+	///   - merchant: Merchant.
     ///   - fee: Extra fees amount.
     ///   - order: Order.
     ///   - redirect: Redirect.
@@ -91,11 +95,28 @@ internal class CreateChargeRequest: Encodable {
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-	internal init(amount: Decimal, currency: Currency, customer: Customer, fee: Decimal, order: Order, redirect: TrackingURL, post: TrackingURL?, source: SourceRequest, destinations: [Destination]?, descriptionText: String?, metadata: Metadata?, reference: Reference?, shouldSaveCard: Bool, statementDescriptor: String?, requires3DSecure: Bool?, receipt: Receipt?) {
+	internal init(amount:				Decimal,
+				  currency:				Currency,
+				  customer:				Customer,
+				  merchant:				Merchant?,
+				  fee:					Decimal,
+				  order:				Order,
+				  redirect:				TrackingURL,
+				  post:					TrackingURL?,
+				  source:				SourceRequest,
+				  destinations:			[Destination]?,
+				  descriptionText:		String?,
+				  metadata:				Metadata?,
+				  reference:			Reference?,
+				  shouldSaveCard:		Bool,
+				  statementDescriptor:	String?,
+				  requires3DSecure:		Bool?,
+				  receipt:				Receipt?) {
         
         self.amount                 = amount
         self.currency               = currency
         self.customer               = customer
+		self.merchant				= merchant
         self.fee                    = fee
         self.order                  = order
         self.redirect               = redirect
@@ -117,6 +138,7 @@ internal class CreateChargeRequest: Encodable {
         case amount                 = "amount"
         case currency               = "currency"
         case customer               = "customer"
+		case merchant				= "merchant"
         case fee                    = "fee"
         case order                  = "order"
         case redirect               = "redirect"
