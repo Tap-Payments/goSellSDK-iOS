@@ -30,6 +30,9 @@
 	/// List of merchant desired destination accounts to receive money from payment transactions.
 	@objc optional var destinations: [Destination]? { get }
 	
+	/// Merchant ID. Optional. Useful when you have multiple Tap accounts and would like to do the `switch` on the fly within the single app.
+	@objc optional var merchantID: String? { get }
+	
 	/// Taxes.
 	@objc optional var taxes: [Tax]? { get }
 	

@@ -24,7 +24,10 @@ internal struct PaymentOptionsRequest {
     
     /// Items currency.
     internal let currency: Currency?
-    
+	
+	/// Merchant ID.
+	internal let merchantID: String?
+	
     /// Customer (payer).
     internal var customer: String?
     
@@ -32,7 +35,7 @@ internal struct PaymentOptionsRequest {
 	
 	internal init(customer: String?) {
 		
-		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, customer: customer)
+		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer)
 	}
 	
 	internal init(transactionMode:	TransactionMode?,
@@ -41,12 +44,14 @@ internal struct PaymentOptionsRequest {
 				  shipping:			[Shipping]?,
 				  taxes:			[Tax]?,
 				  currency:			Currency?,
+				  merchantID:		String?,
 				  customer:			String?) {
         
         self.transactionMode    = transactionMode
         self.shipping           = shipping
         self.taxes              = taxes
         self.currency           = currency
+		self.merchantID			= merchantID
         self.customer           = customer
 		
 		if let nonnullItems = items, nonnullItems.count > 0 {
@@ -72,6 +77,7 @@ internal struct PaymentOptionsRequest {
         case currency           = "currency"
         case customer           = "customer"
         case totalAmount        = "total_amount"
+		case merchantID			= "merchant_id"
     }
     
     // MARK: Properties
@@ -104,7 +110,9 @@ extension PaymentOptionsRequest: Encodable {
         }
         
         try container.encodeIfPresent(self.currency, forKey: .currency)
-        
+		
+		try container.encodeIfPresent(self.merchantID, forKey: .merchantID)
+		
         if self.customer?.tap_length ?? 0 > 0 {
             
             try container.encodeIfPresent(self.customer, forKey: .customer)

@@ -383,6 +383,8 @@ internal extension Process {
 			}
 			
 			let transactionMode	= nonnullDataSource.mode        ?? .default
+			let merchantID		= nonnullDataSource.merchantID	?? nil
+			
 			let shipping        = nonnullDataSource.shipping    ?? nil
 			let taxes           = nonnullDataSource.taxes       ?? nil
 			
@@ -392,6 +394,7 @@ internal extension Process {
 													   shipping:        shipping,
 													   taxes:           taxes,
 													   currency:        currency,
+													   merchantID:		merchantID,
 													   customer:        customer.identifier)
 			
 			return paymentRequest
@@ -552,6 +555,13 @@ internal extension Process {
 			let statementDescriptor = dataSource.paymentStatementDescriptor ?? nil
 			let requires3DSecure    = self.requires3DSecure || (dataSource.require3DSecure ?? false)
 			let receiptSettings     = dataSource.receiptSettings ?? nil
+			let merchantID			= dataSource.merchantID ?? nil
+			
+			var merchant: Merchant? = nil
+			if let nonnullMerchantID = merchantID {
+				
+				merchant = Merchant(identifier: nonnullMerchantID)
+			}
 			
 			var canSaveCard: Bool
 			if let nonnullToken = token, self.shouldSaveCard(with: nonnullToken) {
@@ -576,6 +586,7 @@ internal extension Process {
 				let chargeRequest = CreateChargeRequest(amount:                 amountedCurrency.amount,
 														currency:               amountedCurrency.currency,
 														customer:               customer,
+														merchant:				merchant,
 														fee:                    fee,
 														order:                  order,
 														redirect:               redirect,
@@ -611,6 +622,7 @@ internal extension Process {
 				let authorizeRequest = CreateAuthorizeRequest(amount:				amountedCurrency.amount,
 															  currency:				amountedCurrency.currency,
 															  customer:				customer,
+															  merchant:				merchant,
 															  fee:					fee,
 															  order:				order,
 															  redirect:				redirect,
@@ -917,6 +929,8 @@ internal extension Process {
 			}
 			
 			let transactionMode	= nonnullDataSource.mode        ?? .default
+			let merchantID		= nonnullDataSource.merchantID	?? nil
+			
 			let shipping        = nonnullDataSource.shipping    ?? nil
 			let taxes           = nonnullDataSource.taxes       ?? nil
 			
@@ -926,6 +940,7 @@ internal extension Process {
 													   shipping:        shipping,
 													   taxes:           taxes,
 													   currency:        currency,
+													   merchantID:		merchantID,
 													   customer:        customer.identifier)
 			
 			return paymentRequest
