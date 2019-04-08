@@ -6,9 +6,9 @@ PODS:
     - TapAdditionsKit/Foundation/Locale (>= 1.2)
     - TapAdditionsKit/UIKit/UIView (>= 1.2)
   - Fabric (1.9.0)
-  - goSellSDK (2.1.2):
-    - goSellSDK/Core (= 2.1.2)
-  - goSellSDK/Core (2.1.2):
+  - goSellSDK (2.2):
+    - goSellSDK/Core (= 2.2)
+  - goSellSDK/Core (2.2):
     - CardIODynamic
     - EditableTextInsetsTextField
     - TapAdditionsKit/Foundation/Bundle
@@ -51,10 +51,10 @@ PODS:
     - TapSearchView
     - TapSwiftFixes/Threading
     - TapVisualEffectView
-  - goSellSDK/ErrorReporting (2.1.2):
+  - goSellSDK/ErrorReporting (2.2):
     - goSellSDK/Core
     - TapErrorReporting
-  - SDWebImage/Core (4.4.6)
+  - SDWebImage/Core (5.0.0)
   - TapAdditionsKit/CoreGraphics/CGContext (1.3.1)
   - TapAdditionsKit/CoreGraphics/CGImage (1.3.1):
     - TapAdditionsKit/CoreGraphics/CGContext
@@ -196,9 +196,9 @@ PODS:
   - TapGLKit/TapActivityIndicatorView (1.1):
     - TapGLKit/AnimatedView
   - TapKeychain (1.0.3)
-  - TapNetworkManager/Core (1.2.4)
-  - TapNetworkManager/ImageLoading (1.2.4):
-    - SDWebImage/Core (>= 4.4)
+  - TapNetworkManager/Core (1.2.5)
+  - TapNetworkManager/ImageLoading (1.2.5):
+    - SDWebImage/Core (>= 5.0)
     - TapAdditionsKit/Foundation/URLSession (>= 1.3.1)
     - TapNetworkManager/Core
   - TapNibView (1.0.3):
@@ -263,8 +263,8 @@ SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   EditableTextInsetsTextField: f12ed1ed153efe7355490d9008ebc1b6b3fed5f0
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  goSellSDK: 7e66e5c719e1a2e94285dfc6579d6413008e8650
-  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  goSellSDK: 6c78303a0db830ca8f8918b1e68120ee3738c3db
+  SDWebImage: 5de80a0302de9e377e62f47d2fa1304efff0e55f
   TapAdditionsKit: 4df3330d76ad3ce38816c0a678670d5389607f49
   TapAlertViewController: 937f0b0083e6dc6a59ddca373c3c92c0bda9f33f
   TapApplication: c73de1fc047578a4865595e4b5b1789a7cf7f89d
@@ -275,7 +275,7 @@ SPEC CHECKSUMS:
   TapFontsKit: 6d581bc019a16deafb3ccff584f6e8f0475e4bad
   TapGLKit: 5ea41ed12316449473d7d3bc809efcea79f3e1b9
   TapKeychain: 84889fe016de3d974722b6a6fd42357702fa7503
-  TapNetworkManager: 204f3626a7443ca41d57b618132ad9dc9abe106c
+  TapNetworkManager: db986f899374b917ca95268aab23e2e4a88488fc
   TapNibView: 018b4b936f09444ccac2bee42a483acae6e586ff
   TapResponderChainInputView: 7edaf5fcde9b0df0ee1b0acb2fefcb786110cd20
   TapSearchView: 235bc6f32ffa8c411b02c1c669258f66401b8f53
