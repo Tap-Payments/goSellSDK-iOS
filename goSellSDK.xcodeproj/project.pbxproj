@@ -128,7 +128,6 @@
 		14FC5D612242E4CB00930204 /* Equatable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FC5D5F2242E4CB00930204 /* Equatable+Additions.swift */; };
 		14FC5D622242E4CB00930204 /* Comparable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FC5D602242E4CB00930204 /* Comparable+Additions.swift */; };
 		46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48434EACAB5964D7D7C9EBCD /* Pods_goSellSDK.framework */; };
-		9BFAA73BEDABCCB4F0B2EA65 /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7C2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift */; };
 		A401FC802100FE8B002DBA73 /* PopupOverlaySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC7D2100FE8B002DBA73 /* PopupOverlaySupport.swift */; };
 		A401FC8E2101DA6D002DBA73 /* CardScannerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401FC8A2101DA6B002DBA73 /* CardScannerViewControllerDelegate.swift */; };
@@ -833,7 +832,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */,
-				9BFAA73BEDABCCB4F0B2EA65 /* Pods_goSellSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
