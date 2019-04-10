@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import struct	TapAdditionsKit.TypeAlias
+
 /// SDK session class. Use this class if you don't want to place Pay Button and make it do everything for you.
 @objcMembers public final class Session: NSObject, SessionProtocol {
 	
@@ -46,6 +48,21 @@
 	@discardableResult public func start() -> Bool {
 		
 		return self.implementationStart()
+	}
+	
+	/// Stops the receiving session dismissing all the user interface. Treats this action as if session was cancelled by the user.
+	/// Use this method when your app wants to interrupt payment process (f.ex. when you perform a deep link and need to show your UI).
+	///
+	/// - Parameter completion: Completion closure that is called after session has stopped and all the user interface was dismissed.
+	public func stop(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
+		
+		guard Process.hasAliveInstance else {
+			
+			completion?()
+			return
+		}
+		
+		Process.shared.closePayment(with: .cancelled, fadeAnimation: false, force: true, completion: completion)
 	}
 }
 
