@@ -438,6 +438,10 @@ You want to use `Session` object if you are not using `PayButton`.
         <td colspan="2"><sub><nobr>start</nobr></sub></td>
         <td align="justify"><sub>Initiates the session.<br><b>Returns:</b> boolean value which determines whether all conditions are met to start the sesssion.</sub></td>
     </tr>
+    <tr>
+    	<td colspan="2"><sub><nobr>stop</nobr></sub></td>
+    	<td align="justify"><sub>Stops the session. You might want to use this method when you need to close the SDK externally from your app, for example when performing a deep link.<br><b>Arguments:</b><br><i>completion</i>: Completion closure that will be called once all opened user interface of the SDK will be dismissed.</sub></td>
+    </tr>
 </table>
 
 <a name="api_session"></a>
