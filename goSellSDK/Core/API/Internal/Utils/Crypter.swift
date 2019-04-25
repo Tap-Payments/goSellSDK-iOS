@@ -23,8 +23,16 @@ internal class Crypter {
         
         guard let encryptedData = try? RSAUtils.encryptWithRSAPublicKey(data: data, pubkeyBase64: key) else { return nil }
 		
-        let resultString = encryptedData.base64EncodedString()
-        
+		#if swift(>=5.0)
+		
+		let resultString = encryptedData.base64EncodedString()
+		
+		#else
+		
+		let resultString = encryptedData?.base64EncodedString()
+		
+		#endif
+		
         return resultString
     }
     

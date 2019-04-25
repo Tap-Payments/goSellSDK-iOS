@@ -12,6 +12,7 @@
 		140106FF2201FCA50080A149 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140106FE2201FCA50080A149 /* ColorTableViewCell.swift */; };
 		140107012202008C0080A149 /* FontSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140107002202008C0080A149 /* FontSelectionTableViewController.swift */; };
 		14010703220200F30080A149 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14010702220200F30080A149 /* FontTableViewCell.swift */; };
+		1409E5D32271EB2C007A4102 /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409E5D22271EB2C007A4102 /* UIEdgeInsets+Additions.swift */; };
 		140CC52821566107000E80D5 /* EnvironmentCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CC52721566107000E80D5 /* EnvironmentCustomer.swift */; };
 		1414ADAD215AA87200CA2CCD /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1414ADAC215AA87200CA2CCD /* Language.swift */; };
 		14277BBB214056FA0011521F /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14277BBA214056FA0011521F /* SelectableCell.swift */; };
@@ -76,6 +77,7 @@
 		140106FE2201FCA50080A149 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
 		140107002202008C0080A149 /* FontSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionTableViewController.swift; sourceTree = "<group>"; };
 		14010702220200F30080A149 /* FontTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
+		1409E5D22271EB2C007A4102 /* UIEdgeInsets+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Additions.swift"; sourceTree = "<group>"; };
 		140CC52721566107000E80D5 /* EnvironmentCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentCustomer.swift; sourceTree = "<group>"; };
 		1414ADAC215AA87200CA2CCD /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		14277BBA214056FA0011521F /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */,
 				A408C03620BAB577005E74AD /* Measurement+Additions.swift */,
 				14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */,
+				1409E5D22271EB2C007A4102 /* UIEdgeInsets+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				A45A5DC8214127BC00B7DDE9 /* PlainAmountTableViewCellModel.swift in Sources */,
 				A4B35FE220C7D39A00847031 /* ShippingViewController.swift in Sources */,
 				A45A5DC22141269200B7DDE9 /* PaymentItemsTableViewHandler.swift in Sources */,
+				1409E5D32271EB2C007A4102 /* UIEdgeInsets+Additions.swift in Sources */,
 				A4B35FE020C59FCF00847031 /* ShippingTableViewCell.swift in Sources */,
 				A4CFAF4A20B9A80500B5D83B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
 				A4C38F5F20EA36A300FE7C7B /* SerializationHelper.swift in Sources */,
@@ -635,6 +639,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -721,6 +726,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -745,7 +751,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -768,7 +773,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
