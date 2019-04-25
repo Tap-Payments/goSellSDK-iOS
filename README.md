@@ -59,7 +59,7 @@ To use the SDK the following requirements must be met:
 
 1. **Xcode 10.0** or newer
 2. **Swift 4.2** or newer (preinstalled with Xcode)   
-3. Base SDK for the target app: **iOS 8.0** or later
+3. Deployment target SDK for the  app: **iOS 8.0** or later
 
 <a name="installation"></a>
 # Installation

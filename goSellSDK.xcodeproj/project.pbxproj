@@ -410,6 +410,7 @@
 		A4F7106720B5542C0064FE4B /* ProportionalToOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7106620B5542C0064FE4B /* ProportionalToOrigin.swift */; };
 		A4F7106D20B554480064FE4B /* TextInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7106A20B554480064FE4B /* TextInputType.swift */; };
 		A4F7107020B5546A0064FE4B /* AddressFieldInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7106F20B5546A0064FE4B /* AddressFieldInputType.swift */; };
+		D67B4B5BCDF9B017077CE89A /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -832,6 +833,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46624B524CC48A2E4DD46449 /* Pods_goSellSDK.framework in Frameworks */,
+				D67B4B5BCDF9B017077CE89A /* Pods_goSellSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
