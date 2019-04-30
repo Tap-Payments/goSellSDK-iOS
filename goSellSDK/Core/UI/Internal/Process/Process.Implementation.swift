@@ -186,8 +186,8 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	internal func showPaymentController() {
 		
 		let controller = PaymentViewController.instantiate()
-		
-		controller.tap_showOnSeparateWindow(below: .statusBar) { [unowned controller] (rootController) in
+	
+		controller.tap_showOnSeparateWindow(below: .tap_statusBar) { [unowned controller] (rootController) in
 			
 			rootController.allowedInterfaceOrientations = .portrait
 			rootController.preferredInterfaceOrientation = .portrait

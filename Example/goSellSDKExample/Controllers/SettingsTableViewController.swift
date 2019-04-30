@@ -33,6 +33,10 @@ import class    UIKit.UITableView.UITableViewRowAction
 import class    UIKit.UITableViewCell.UITableViewCell
 import class    UIKit.UIView.UIView
 
+#if !swift(>=4.2)
+import var		UIKit.UITableView.UITableViewAutomaticDimension
+#endif
+
 internal class SettingsTableViewController: ModalNavigationTableViewController {
     
     // MARK: - Internal -
@@ -312,8 +316,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
     internal override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         guard let reuseIdentifier = tableView.cellForRow(at: indexPath)?.reuseIdentifier else {
-            
+			
+			#if swift(>=4.2)
             return UITableView.automaticDimension
+			#else
+			return UITableViewAutomaticDimension
+			#endif
         }
         
         switch reuseIdentifier {
@@ -332,7 +340,11 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
             
         default:
             
-            return UITableView.automaticDimension
+			#if swift(>=4.2)
+			return UITableView.automaticDimension
+			#else
+			return UITableViewAutomaticDimension
+			#endif
             
         }
     }

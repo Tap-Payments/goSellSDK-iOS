@@ -73,6 +73,19 @@ internal class OTPTimerDataManager {
     private var remainingTime: TimeInterval
     
     private var timer: Timer?
+	
+	private var timerRunLoopMode: RunLoop.Mode {
+		
+		#if swift(>=4.2)
+		
+		return .common
+		
+		#else
+		
+		return .commonModes
+		
+		#endif
+	}
     
     // MARK: Methods
     
@@ -84,7 +97,7 @@ internal class OTPTimerDataManager {
                                          userInfo: updateClosure,
                                          repeats: true)
         
-        RunLoop.main.add(timer, forMode: .common)
+        RunLoop.main.add(timer, forMode: self.timerRunLoopMode)
         
         self.timer = timer
     }

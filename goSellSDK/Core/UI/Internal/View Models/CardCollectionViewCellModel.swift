@@ -8,7 +8,6 @@
 import struct   TapAdditionsKit.TypeAlias
 import class    TapNetworkManager.TapImageLoader
 import class    UIKit.UIImage.UIImage
-import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel {
     

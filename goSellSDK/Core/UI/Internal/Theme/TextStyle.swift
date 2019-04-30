@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class UIKit.NSParagraphStyle.NSMutableParagraphStyle
-import class UIKit.NSParagraphStyle.NSParagraphStyle
+import class	UIKit.NSParagraphStyle.NSMutableParagraphStyle
+import class	UIKit.NSParagraphStyle.NSParagraphStyle
 
 internal struct TextStyle: Decodable {
 	

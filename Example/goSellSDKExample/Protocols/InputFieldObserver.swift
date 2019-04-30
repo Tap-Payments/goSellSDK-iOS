@@ -21,13 +21,13 @@ internal extension InputFieldObserver {
     
     func addInputFieldTextChangeObserver() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: UITextField.textDidChangeNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: UITextView.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: .tap_textFieldTextDidChangeNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(inputFieldTextChanged(_:)), name: .tap_textViewTextDidChangeNotificationName, object: nil)
     }
     
     func removeInputFieldTextChangeObserver() {
         
-        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .tap_textFieldTextDidChangeNotificationName, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .tap_textViewTextDidChangeNotificationName, object: nil)
     }
 }

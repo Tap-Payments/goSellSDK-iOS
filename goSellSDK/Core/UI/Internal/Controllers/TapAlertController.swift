@@ -82,7 +82,7 @@ internal final class TapAlertController: UIAlertController {
 		
 		DispatchQueue.main.async {
 			
-			self.tap_showOnSeparateWindow(below: .statusBar, using: appearanceClosure)
+			self.tap_showOnSeparateWindow(below: .tap_statusBar, using: appearanceClosure)
 		}
 	}
 	

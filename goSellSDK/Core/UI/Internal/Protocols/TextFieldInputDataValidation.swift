@@ -20,9 +20,14 @@ internal extension TextFieldInputDataValidation {
         
         let cardInputSettings = Theme.current.paymentOptionsCellStyle.card.textInput
 		let textSettings = cardInputSettings[(self.isDataValid || self.textInputField.isEditing) ? .valid : .invalid]
-        let textAttributes = textSettings.asStringAttributes
-        
-        self.textInputField.defaultTextAttributes = textAttributes
+		
+		let textAttributes = textSettings.asStringAttributes
+		
+		#if swift(>=4.2)
+		self.textInputField.defaultTextAttributes = textAttributes
+		#else
+		self.textInputField.defaultTextAttributes = textAttributes.tap_mapKeys { $0.rawValue }
+		#endif
         
         let selectedRange = self.textInputField.selectedTextRange
         self.textInputField.attributedText = NSAttributedString(string: self.textInputFieldText, attributes: textAttributes)

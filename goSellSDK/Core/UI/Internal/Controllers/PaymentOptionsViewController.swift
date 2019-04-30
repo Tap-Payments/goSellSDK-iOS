@@ -12,6 +12,7 @@ import class	QuartzCore.CAGradientLayer.CAGradientLayer
 import protocol	QuartzCore.CALayer.CAAction
 import class	QuartzCore.CALayer.CALayer
 import protocol	QuartzCore.CALayer.CALayerDelegate
+import var		QuartzCore.CAGradientLayer.kCAGradientLayerAxial
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class	UIKit.UIColor.UIColor
@@ -143,7 +144,13 @@ internal class PaymentOptionsViewController: BaseViewController {
 		
 		gradient.shouldRasterize	= true
 		gradient.colors				= [UIColor.black.cgColor, UIColor.clear.cgColor]
+		
+		#if swift(>=4.2)
 		gradient.type				= .axial
+		#else
+		gradient.type				= kCAGradientLayerAxial
+		#endif
+		
 		gradient.endPoint			= CGPoint(x: 0.5, y: 1.0)
 		
 		return gradient
@@ -157,7 +164,7 @@ internal class PaymentOptionsViewController: BaseViewController {
     }
     
     private func unsubscribeNotifications() {
-        
+		
         NotificationCenter.default.removeObserver(self, name: .tap_paymentOptionsModelsUpdated, object: nil)
     }
     

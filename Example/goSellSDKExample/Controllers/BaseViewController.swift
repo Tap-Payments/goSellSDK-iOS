@@ -16,6 +16,9 @@ import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
+import var      UIKit.UIWindow.UIKeyboardAnimationCurveUserInfoKey
+import var      UIKit.UIWindow.UIKeyboardAnimationDurationUserInfoKey
+import var      UIKit.UIWindow.UIKeyboardFrameEndUserInfoKey
 
 internal class BaseViewController: UIViewController {
 	
@@ -59,14 +62,14 @@ internal class BaseViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillChangeFrame(_:)),
-                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               name: .tap_keyboardWillChangeFrameNotificationName,
                                                object: nil)
     }
     
     private func removeKeyboardObserver() {
         
         NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillChangeFrameNotification,
+                                                  name: .tap_keyboardWillChangeFrameNotificationName,
                                                   object: nil)
     }
     
@@ -80,7 +83,22 @@ internal class BaseViewController: UIViewController {
             guard let userInfo = notification.userInfo else { return }
             
             guard let window = strongSelf.view.window else { return }
-            guard var endKeyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+			
+			#if swift(>=4.2)
+			
+			let keyboardFrameEndUserInfoKey				= UIResponder.keyboardFrameEndUserInfoKey
+			let keyboardAnimationDurationUserInfoKey	= UIResponder.keyboardAnimationDurationUserInfoKey
+			let keyboardAnimationCurveUserInfoKey		= UIResponder.keyboardAnimationCurveUserInfoKey
+			
+			#else
+			
+			let keyboardFrameEndUserInfoKey				= UIKeyboardFrameEndUserInfoKey
+			let keyboardAnimationDurationUserInfoKey	= UIKeyboardAnimationDurationUserInfoKey
+			let keyboardAnimationCurveUserInfoKey		= UIKeyboardAnimationCurveUserInfoKey
+			
+			#endif
+			
+            guard var endKeyboardFrame = (userInfo[keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
             
             endKeyboardFrame = window.convert(endKeyboardFrame, to: strongSelf.view)
             
@@ -89,9 +107,9 @@ internal class BaseViewController: UIViewController {
 			let offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
 			let keyboardIsShown = offset > 0.0
 			
-            let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
+            let animationDuration = (userInfo[keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
             var animationCurve: UIView.AnimationOptions
-            if let animationCurveRawValue = ((userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {
+            if let animationCurveRawValue = ((userInfo[keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {
                 
                 let allPossibleCurves: [UIView.AnimationCurve] = [.easeInOut, .easeIn, .easeOut, .linear]
                 let allPossibleRawValues = allPossibleCurves.map { $0.rawValue }

@@ -21,6 +21,7 @@
 		147B07772230181300CD0379 /* DestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B07762230181300CD0379 /* DestinationTableViewCell.swift */; };
 		147B077922301A9D00CD0379 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B077822301A9D00CD0379 /* DestinationViewController.swift */; };
 		147B077B22301AD400CD0379 /* DestinationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B077A22301AD400CD0379 /* DestinationViewControllerDelegate.swift */; };
+		148C66022278C46F0064760B /* Notification.Name+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148C66012278C46F0064760B /* Notification.Name+Additions.swift */; };
 		14C251F92247984E00940A98 /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251F82247984E00940A98 /* GlobalSettings.swift */; };
 		14C251FB2247996C00940A98 /* DataSourceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251FA2247996C00940A98 /* DataSourceSettings.swift */; };
 		14C251FD22479AB700940A98 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C251FC22479AB700940A98 /* AppearanceSettings.swift */; };
@@ -86,6 +87,7 @@
 		147B07762230181300CD0379 /* DestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationTableViewCell.swift; sourceTree = "<group>"; };
 		147B077822301A9D00CD0379 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
 		147B077A22301AD400CD0379 /* DestinationViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewControllerDelegate.swift; sourceTree = "<group>"; };
+		148C66012278C46F0064760B /* Notification.Name+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Additions.swift"; sourceTree = "<group>"; };
 		14C251F82247984E00940A98 /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		14C251FA2247996C00940A98 /* DataSourceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceSettings.swift; sourceTree = "<group>"; };
 		14C251FC22479AB700940A98 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				A408C03D20BAC710005E74AD /* Decodable+Additions.swift */,
 				A408C03B20BAC58A005E74AD /* Encodable+Additions.swift */,
 				A408C03620BAB577005E74AD /* Measurement+Additions.swift */,
+				148C66012278C46F0064760B /* Notification.Name+Additions.swift */,
 				14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */,
 				1409E5D22271EB2C007A4102 /* UIEdgeInsets+Additions.swift */,
 			);
@@ -479,6 +482,7 @@
 				A473D1162140315400F13B73 /* GroupHeaderCell.swift in Sources */,
 				A45A5DCC2142BEC000B7DDE9 /* BaseViewController.swift in Sources */,
 				A408C03E20BAC710005E74AD /* Decodable+Additions.swift in Sources */,
+				148C66022278C46F0064760B /* Notification.Name+Additions.swift in Sources */,
 				A408C03220B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift in Sources */,
 				A473D1142140306600F13B73 /* PlainAmountTableViewCell.swift in Sources */,
 				A4CFAF4920B9A80500B5D83B /* TaxViewControllerDelegate.swift in Sources */,
@@ -639,7 +643,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -726,7 +730,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

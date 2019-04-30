@@ -31,7 +31,13 @@ internal extension WobblingViewHandler {
         let wobbleAnimation: CAKeyframeAnimation    = CAKeyframeAnimation(keyPath: WobblingConstants.animationKeyPath)
         wobbleAnimation.values                      = self.wobbleAnimationValues(for: angle)
         wobbleAnimation.keyTimes                    = self.animationTimings
+		
+		#if swift(>=4.2)
         wobbleAnimation.fillMode                    = .forwards
+		#else
+		wobbleAnimation.fillMode					= kCAFillModeForwards
+		#endif
+		
         wobbleAnimation.isRemovedOnCompletion       = false
         wobbleAnimation.repeatCount                 = Float.greatestFiniteMagnitude
         wobbleAnimation.timeOffset                  = timeOffset

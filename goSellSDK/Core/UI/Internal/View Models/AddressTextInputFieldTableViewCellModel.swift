@@ -93,12 +93,12 @@ internal class AddressTextInputFieldTableViewCellModel: AddressFieldTableViewCel
     
     private func addTextChangeObserver() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(textFieldTextChanged(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldTextChanged(_:)), name: .tap_textDidChangeNotificationName, object: nil)
     }
     
     private func removeTextChangeObserver() {
         
-        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .tap_textDidChangeNotificationName, object: nil)
     }
     
     @objc private func textFieldTextChanged(_ notification: Notification) {

@@ -15,7 +15,7 @@ internal final class ResourceImage: UIImage, Decodable {
 		let imageName = try container.decode(String.self)
 		
 		let image = UIImage(named: imageName, in: .goSellSDKResources, compatibleWith: nil)!
-		let imageData = image.pngData()!
+		let imageData = image.tap_pngData!
 		
 		self.init(data: imageData, scale: image.scale)!
 	}

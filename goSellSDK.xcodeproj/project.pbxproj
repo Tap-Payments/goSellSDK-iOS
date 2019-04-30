@@ -76,6 +76,7 @@
 		147951C321FF77290073B49F /* CreateCardVerificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951C221FF77280073B49F /* CreateCardVerificationRequest.swift */; };
 		147951C621FF77470073B49F /* APIClient+CardVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147951C521FF77470073B49F /* APIClient+CardVerification.swift */; };
 		148AF7D922427C2600A18DBC /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148AF7D822427C2600A18DBC /* Destination.swift */; };
+		148C66002278BFD60064760B /* UIWindow.Level+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148C65FF2278BFD60064760B /* UIWindow.Level+Additions.swift */; };
 		1495974D21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */; };
 		1495975221F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */; };
 		1495975421F5420000DFA0A2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495975121F5420000DFA0A2 /* LoadingView.swift */; };
@@ -484,6 +485,7 @@
 		147951C221FF77280073B49F /* CreateCardVerificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCardVerificationRequest.swift; sourceTree = "<group>"; };
 		147951C521FF77470073B49F /* APIClient+CardVerification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+CardVerification.swift"; sourceTree = "<group>"; };
 		148AF7D822427C2600A18DBC /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		148C65FF2278BFD60064760B /* UIWindow.Level+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow.Level+Additions.swift"; sourceTree = "<group>"; };
 		1495974C21F541A000DFA0A2 /* NavigationContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContentViewController.swift; sourceTree = "<group>"; };
 		1495975021F5420000DFA0A2 /* LoadingViewSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewSupport.swift; sourceTree = "<group>"; };
 		1495975121F5420000DFA0A2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -1682,6 +1684,7 @@
 				A4D5FE1B208311B7007D52F5 /* UIStoryboard+Additions.swift */,
 				1412847C215CD83C00C2873E /* UITextField+Additions.swift */,
 				1412847D215CD83C00C2873E /* UIView+Additions.swift */,
+				148C65FF2278BFD60064760B /* UIWindow.Level+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2144,6 +2147,7 @@
 				A4A9828720D2B32000770690 /* CreateTokenWithSavedCardRequest.swift in Sources */,
 				A4C13A7420F4EF5500037EDC /* Length.swift in Sources */,
 				A4F7106220B553AF0064FE4B /* AddressTextInputFieldTableViewCell.swift in Sources */,
+				148C66002278BFD60064760B /* UIWindow.Level+Additions.swift in Sources */,
 				A43A0A5B20D93E3F006B39F1 /* ViewControllerOperation.swift in Sources */,
 				A4BD8CCB20A1EF7800EFF2CE /* InternalSDKSettings.swift in Sources */,
 				A4BD8CCD20A1EF7800EFF2CE /* Quantity.swift in Sources */,
@@ -2468,7 +2472,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2498,7 +2501,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
