@@ -11,7 +11,6 @@ import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIView.UIView
-import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal class SeparateWindowViewController: BaseViewController {
     
@@ -33,8 +32,8 @@ internal class SeparateWindowViewController: BaseViewController {
         self.topOffset = topOffset
         
         let showClosure: TypeAlias.ArgumentlessClosure = {
-            
-            self.tap_showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled, windowClass: MaskedWindow.self, below: .statusBar) { [unowned self] (rootController) in
+			
+            self.tap_showOnSeparateWindow(withUserInteractionEnabled: userInteractionEnabled, windowClass: MaskedWindow.self, below: .tap_statusBar) { [unowned self] (rootController) in
                 
                 (rootController.view.window as? MaskedWindow)?.contentProvider = self
                 rootController.present(self, animated: animated, completion: completion)

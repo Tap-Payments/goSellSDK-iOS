@@ -95,7 +95,12 @@ internal final class SavedCardsTableViewController: ModalNavigationTableViewCont
 	
 	private func showLoader() {
 		
+		#if swift(>=4.2)
 		let loader = UIActivityIndicatorView(style: .gray)
+		#else
+		let loader = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+		#endif
+		
 		self.view.addSubview(loader)
 		loader.center = self.view.center
 		loader.startAnimating()

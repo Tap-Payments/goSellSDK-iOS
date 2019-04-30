@@ -40,6 +40,10 @@ import class    UIKit.UITextView.UITextView
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 
+#if !swift(>=4.2)
+import var		UIKit.UITableView.UITableViewAutomaticDimension
+#endif
+
 internal class PaymentItemViewController: ModalNavigationTableViewController {
     
     // MARK: - Internal -
@@ -183,7 +187,11 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         }
         else {
             
-            return UITableView.automaticDimension
+			#if swift(>=4.2)
+			return UITableView.automaticDimension
+			#else
+			return UITableViewAutomaticDimension
+			#endif
         }
     }
     

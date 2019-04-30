@@ -215,12 +215,12 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	
 	private func addObservers() {
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .tap_keyboardWillShowNotificationName, object: nil)
 	}
 	
 	private func removeObservers() {
 		
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .tap_keyboardWillShowNotificationName, object: nil)
 	}
 	
 	@objc private func keyboardWillShow(_ notification: Notification?) {

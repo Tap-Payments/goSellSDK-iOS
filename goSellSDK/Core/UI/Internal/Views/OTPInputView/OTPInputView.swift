@@ -323,7 +323,41 @@ extension OTPInputView: UIKeyInput {
 
 // MARK: - UITextInput
 extension OTPInputView: UITextInput {
-    
+	
+	#if swift(>=4.2)
+	
+	internal var markedTextStyle: [NSAttributedString.Key : Any]? {
+	
+		get {
+	
+			return nil
+		}
+		set {}
+	}
+	
+	internal func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+		
+		return self.tap_selectionRects(for: range)
+	}
+	
+	#else
+	
+	internal var markedTextStyle: [AnyHashable : Any]? {
+		
+		get {
+			
+			return nil
+		}
+		set {}
+	}
+
+	internal func selectionRects(for range: UITextRange) -> [Any] {
+		
+		return self.tap_selectionRects(for: range)
+	}
+	
+	#endif
+	
     internal func text(in range: UITextRange) -> String? {
         
         let nsRange = self.convertToNSRange(range)
@@ -349,15 +383,6 @@ extension OTPInputView: UITextInput {
     internal var markedTextRange: UITextRange? {
         
         return nil
-    }
-    
-    internal var markedTextStyle: [NSAttributedString.Key : Any]? {
-        
-        get {
-            
-            return nil
-        }
-        set {}
     }
     
     internal func setMarkedText(_ markedText: String?, selectedRange: NSRange) {}
@@ -461,16 +486,6 @@ extension OTPInputView: UITextInput {
         return self.otpLabelRect(at: start.position)
     }
     
-    internal func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
-        
-        guard let tapRange = range as? TextRange else { return [] }
-        
-        let rect = self.otpLabelsBoundingRect(for: range)
-        let selectionRect = TextSelectionRect(inputView: self, rect: rect, writingDirection: self.textDirection, range: tapRange)
-        
-        return [selectionRect]
-    }
-    
     internal func closestPosition(to point: CGPoint) -> UITextPosition? {
         
         guard let labels = self.otpLabels, labels.count > 0 else { return nil }
@@ -570,6 +585,16 @@ extension OTPInputView: UITextInput {
         
         return CGRect(x: minX, y: minY, width: maxX - minX + 1.0, height: maxY - minY + 1.0)
     }
+	
+	private func tap_selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+		
+		guard let tapRange = range as? TextRange else { return [] }
+		
+		let rect = self.otpLabelsBoundingRect(for: range)
+		let selectionRect = TextSelectionRect(inputView: self, rect: rect, writingDirection: self.textDirection, range: tapRange)
+		
+		return [selectionRect]
+	}
 }
 
 private extension OTPInputView {

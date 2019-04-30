@@ -6,7 +6,6 @@
 //
 
 import struct   TapAdditionsKit.TypeAlias
-import var      UIKit.UIWindow.UIWindowLevelStatusBar
 
 internal class ErrorActionExecutor {
     

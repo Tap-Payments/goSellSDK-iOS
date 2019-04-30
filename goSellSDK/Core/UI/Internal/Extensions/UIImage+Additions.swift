@@ -14,6 +14,6 @@ internal extension UIImage {
 	
 	var tap_asResourceImage: ResourceImage {
 		
-		return ResourceImage(data: self.pngData()!, scale: scale)!
+		return ResourceImage(data: self.tap_pngData!, scale: scale)!
 	}
 }
