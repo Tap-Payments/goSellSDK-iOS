@@ -760,8 +760,11 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
 		
 		guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else { return }
 		
+		//Added by Floward tech team
+		let saveCard = cardPaymentOption.cell?.saveCardSwitch?.isOn ?? false
+		
 		let request = CreateTokenWithCardDataRequest(card: card)
-		self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: true)
+		self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: saveCard)
 	}
 	
 	internal override func closePayment(with status: PaymentStatus, fadeAnimation: Bool, force: Bool, completion: TypeAlias.ArgumentlessClosure?) {
