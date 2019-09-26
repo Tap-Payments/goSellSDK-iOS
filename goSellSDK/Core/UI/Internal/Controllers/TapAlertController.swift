@@ -35,8 +35,8 @@ internal final class TapAlertController: UIAlertController {
 	}
 	
 	// MARK: Methods
-	
-	internal convenience init(titleKey: LocalizationKey?, messageKey: LocalizationKey?, preferredStyle: Style) {
+	//Added override to the func header to fix the init issues - Floward tech Team
+	internal convenience init(titleKey: LocalizationKey?, messageKey: LocalizationKey?, preferredStyle: Style, override: Bool = true) {
 		
 		self.init(titleKey: titleKey, messageKey: messageKey, [], preferredStyle: preferredStyle)
 	}
