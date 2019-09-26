@@ -101,7 +101,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var nameOnCardTextField: EditableTextInsetsTextField?
 	
 	@IBOutlet private weak var saveCardDescriptionLabel: UILabel?
-    @IBOutlet private weak var saveCardSwitch: UISwitch?
+    @IBOutlet public weak var saveCardSwitch: UISwitch?
     
     @IBOutlet private var controls: [UIView]?
     
