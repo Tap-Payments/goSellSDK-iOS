@@ -88,6 +88,8 @@ internal class PaymentContentViewController: HeaderNavigatedViewController {
 		if let paymentOptionsController = segue.destination as? PaymentOptionsViewController {
 			
 			self.paymentOptionsViewController = paymentOptionsController
+            self.paymentOptionsViewController?.modalPresentationStyle = .fullScreen
+			
 		}
 	}
 	
