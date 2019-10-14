@@ -23,6 +23,9 @@
     /// Status unknown.
     case unknown
     
+	/// URL call faced an error.
+    case error
+
     // MARK: - Private -
     // MARK: Properties
     
@@ -35,6 +38,7 @@
         case .failed:   	return "FAILED"
 		case .cancelled:	return "CANCELLED"
         case .unknown:  	return "UNKNOWN"
+		case .error:		return "ERROR"
 
         }
     }
@@ -45,12 +49,13 @@
         
         switch stringValue {
             
-        case URLStatus.pending.stringValue: 	self = .pending
+		case URLStatus.pending.stringValue: 	self = .pending
         case URLStatus.success.stringValue: 	self = .success
         case URLStatus.failed.stringValue:  	self = .failed
 		case URLStatus.cancelled.stringValue:	self = .cancelled
         case URLStatus.unknown.stringValue: 	self = .unknown
-            
+		case URLStatus.error.stringValue: 	self = .error
+
         default:
             
             throw ErrorUtils.createEnumStringInitializationError(for: URLStatus.self, value: stringValue)
