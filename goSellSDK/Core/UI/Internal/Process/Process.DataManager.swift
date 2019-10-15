@@ -387,7 +387,9 @@ internal extension Process {
 			
 			let shipping        = nonnullDataSource.shipping    ?? nil
 			let taxes           = nonnullDataSource.taxes       ?? nil
-			
+			let destinations		= nonnullDataSource.destinations       ?? nil
+			/// the API is using destinationsGroup not destinations
+			let destinationsGroup = DestinationGroup(destinations: destinations)
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
 													   amount:          nonnullDataSource.amount,
 													   items:           nonnullDataSource.items ?? [],
@@ -395,7 +397,8 @@ internal extension Process {
 													   taxes:           taxes,
 													   currency:        currency,
 													   merchantID:		merchantID,
-													   customer:        customer.identifier)
+													   customer:        customer.identifier,
+													   destinationGroup:	destinationsGroup)
 			
 			return paymentRequest
 		}
@@ -542,7 +545,7 @@ internal extension Process {
 				
 				post = TrackingURL(url: nonnullPostURL)
 			}
-			
+		
 			let amountedCurrency    = self.selectedCurrency
 			let fee                 = Process.AmountCalculator<PaymentClass>.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
 			let destinations		= dataSource.destinations ?? nil
@@ -933,7 +936,9 @@ internal extension Process {
 			
 			let shipping        = nonnullDataSource.shipping    ?? nil
 			let taxes           = nonnullDataSource.taxes       ?? nil
-			
+			let destinations		= nonnullDataSource.destinations       ?? nil
+			/// the API is using destinationsGroup not destinations
+			let destinationsGroup = DestinationGroup(destinations: destinations)
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
 													   amount:          nonnullDataSource.amount,
 													   items:           nonnullDataSource.items ?? [],
@@ -941,7 +946,8 @@ internal extension Process {
 													   taxes:           taxes,
 													   currency:        currency,
 													   merchantID:		merchantID,
-													   customer:        customer.identifier)
+													   customer:        customer.identifier,
+													   destinationGroup:	destinationsGroup)
 			
 			return paymentRequest
 		}

@@ -31,11 +31,14 @@ internal struct PaymentOptionsRequest {
     /// Customer (payer).
     internal var customer: String?
     
+	/// List of destinations (grouped by "destination" key).
+	internal private(set) var destinationGroup: DestinationGroup?
+	
     // MARK: Methods
 	
 	internal init(customer: String?) {
 		
-		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer)
+		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil)
 	}
 	
 	internal init(transactionMode:	TransactionMode?,
@@ -45,16 +48,19 @@ internal struct PaymentOptionsRequest {
 				  taxes:			[Tax]?,
 				  currency:			Currency?,
 				  merchantID:		String?,
-				  customer:			String?) {
-        
-        self.transactionMode    = transactionMode
-        self.shipping           = shipping
-        self.taxes              = taxes
-        self.currency           = currency
-		self.merchantID			= merchantID
-        self.customer           = customer
+				  customer:			String?,
+				  destinationGroup:		DestinationGroup?
 		
-		if let nonnullItems = items, nonnullItems.count > 0 {
+	) {
+        
+        self.transactionMode    	= transactionMode
+        self.shipping           	= shipping
+        self.taxes              	= taxes
+        self.currency           	= currency
+		self.merchantID			= merchantID
+        self.customer           	= customer
+		self.destinationGroup		= destinationGroup
+		if let nonnullItems 		= items, nonnullItems.count > 0 {
 			
 			self.items = items
 		}
@@ -70,14 +76,15 @@ internal struct PaymentOptionsRequest {
     
     private enum CodingKeys: String, CodingKey {
         
-        case transactionMode    = "transaction_mode"
-        case items              = "items"
-        case shipping           = "shipping"
-        case taxes              = "taxes"
-        case currency           = "currency"
-        case customer           = "customer"
-        case totalAmount        = "total_amount"
+		case transactionMode    	= "transaction_mode"
+		case items              	= "items"
+		case shipping           	= "shipping"
+		case taxes              	= "taxes"
+		case currency           	= "currency"
+		case customer           	= "customer"
+		case totalAmount        	= "total_amount"
 		case merchantID			= "merchant_id"
+		case destinationGroup		= "destinations"
     }
     
     // MARK: Properties
@@ -122,5 +129,11 @@ extension PaymentOptionsRequest: Encodable {
 			
 			try container.encodeIfPresent(self.totalAmount, forKey: .totalAmount)
 		}
+        
+        if self.destinationGroup?.destinations?.count ?? 0 > 0 {
+               
+               try container.encodeIfPresent(self.destinationGroup, forKey: .destinationGroup)
+		}
+           
     }
 }
