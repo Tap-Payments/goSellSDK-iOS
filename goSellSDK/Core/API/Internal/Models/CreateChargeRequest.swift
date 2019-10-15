@@ -41,8 +41,8 @@ internal class CreateChargeRequest: Encodable {
     /// if source.id = "Card Token ID or Card ID" then Credit Card payment processing page link will be provided.
     internal let source: SourceRequest
 	
-	/// List of destinations.
-	internal private(set) var destinations: [Destination]?
+	/// List of destinations (grouped by "destination" key).
+	internal private(set) var destinationGroup: DestinationGroup?
     
     /// An arbitrary string which you can attach to a Charge object. It is displayed when in the web interface alongside the charge.
     internal private(set) var descriptionText: String?
@@ -87,7 +87,7 @@ internal class CreateChargeRequest: Encodable {
     ///   - redirect: Redirect.
     ///   - post: Post.
     ///   - source: Source.
-	///   - destinations: List of destinations.
+	///   - destinationGroup: List of destinations.
     ///   - descriptionText: Description text.
     ///   - metadata: Metadata.
     ///   - reference: Reference.
@@ -104,7 +104,7 @@ internal class CreateChargeRequest: Encodable {
 				  redirect:				TrackingURL,
 				  post:					TrackingURL?,
 				  source:				SourceRequest,
-				  destinations:			[Destination]?,
+				  destinationGroup:		DestinationGroup?,
 				  descriptionText:		String?,
 				  metadata:				Metadata?,
 				  reference:			Reference?,
@@ -122,6 +122,7 @@ internal class CreateChargeRequest: Encodable {
         self.redirect               = redirect
         self.post                   = post
         self.source                 = source
+		self.destinationGroup		= destinationGroup
         self.descriptionText        = descriptionText
         self.metadata               = metadata
         self.reference              = reference
@@ -144,7 +145,7 @@ internal class CreateChargeRequest: Encodable {
         case redirect               = "redirect"
         case post                   = "post"
         case source                 = "source"
-		case destinations			= "destinations"
+		case destinationGroup			= "destinations"
         case descriptionText        = "description"
         case metadata               = "metadata"
         case reference              = "reference"

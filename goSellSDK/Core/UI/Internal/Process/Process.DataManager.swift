@@ -548,16 +548,24 @@ internal extension Process {
 		
 			let amountedCurrency    = self.selectedCurrency
 			let fee                 = Process.AmountCalculator<PaymentClass>.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
-			let destinations		= dataSource.destinations ?? nil
-			let order               = Order(identifier: orderID)
-			let redirect            = TrackingURL(url: self.process.webPaymentHandlerInterface.returnURL)
-			let paymentDescription  = dataSource.paymentDescription ?? nil
-			let paymentMetadata     = dataSource.paymentMetadata ?? nil
-			let reference           = dataSource.paymentReference ?? nil
-			var shouldSaveCard      = saveCard ?? false
-			let statementDescriptor = dataSource.paymentStatementDescriptor ?? nil
-			let requires3DSecure    = self.requires3DSecure || (dataSource.require3DSecure ?? false)
-			let receiptSettings     = dataSource.receiptSettings ?? nil
+			let destinations			= dataSource.destinations ?? nil
+			/// the API is using destinationsGroup not destinations
+			let destinationsGroup	= (destinations?.count ?? 0 > 0) ? DestinationGroup(destinations: destinations)!: nil
+
+//			if (destinations?.count ?? 0 > 0){
+//				let destinationsGroup	= DestinationGroup(destinations: destinations) ?? nil
+//			} else {
+//
+//			}
+			let order               	= Order(identifier: orderID)
+			let redirect            	= TrackingURL(url: self.process.webPaymentHandlerInterface.returnURL)
+			let paymentDescription  	= dataSource.paymentDescription ?? nil
+			let paymentMetadata     	= dataSource.paymentMetadata ?? nil
+			let reference           	= dataSource.paymentReference ?? nil
+			var shouldSaveCard      	= saveCard ?? false
+			let statementDescriptor 	= dataSource.paymentStatementDescriptor ?? nil
+			let requires3DSecure    	= self.requires3DSecure || (dataSource.require3DSecure ?? false)
+			let receiptSettings     	= dataSource.receiptSettings ?? nil
 			let merchantID			= dataSource.merchantID ?? nil
 			
 			var merchant: Merchant? = nil
@@ -582,6 +590,7 @@ internal extension Process {
 			}
 			
 			let mode = dataSource.mode ?? .default
+			
 			switch mode {
 				
 			case .purchase:
@@ -595,7 +604,7 @@ internal extension Process {
 														redirect:               redirect,
 														post:                   post,
 														source:                 source,
-														destinations:			destinations,
+														destinationGroup:		destinationsGroup,
 														descriptionText:        paymentDescription,
 														metadata:               paymentMetadata,
 														reference:              reference,
@@ -631,7 +640,7 @@ internal extension Process {
 															  redirect:				redirect,
 															  post:					post,
 															  source:				source,
-															  destinations:			destinations,
+															  destinationGroup:		destinationsGroup,
 															  descriptionText:		paymentDescription,
 															  metadata:				paymentMetadata,
 															  reference:			reference,
