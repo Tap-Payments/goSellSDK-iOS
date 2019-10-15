@@ -6,30 +6,33 @@
 //
 
 /// Group of destinations.
-@objcMembers public final class DestinationGroup: NSObject, Decodable {
+@objcMembers public final class DestinationGroup: NSObject, Codable {
 	
 	// MARK: - Public -
 	// MARK: Properties
 	
-	/// Total amount.
-	public let amount: Decimal
+	/// List of Destinations.
+	public var destinations: [Destination]?
+
 	
-	/// Currency.
-	public let currency: Currency
+	// MARK: Methods
 	
-	/// Number of transfers involved.
-	public let count: UInt
+	/// Initializes Destinations object with all the parameters.
+	///
+	/// - Parameters:
+	///   - destinations: List of destinations.
+	public init(destinations: [Destination]? = nil) {
+		
+		self.destinations			= destinations
+	}
 	
-	/// Destination objects.
-	public let destinations: [Destination]
 	
 	// MARK: - Private -
 	
 	private enum CodingKeys: String, CodingKey {
 		
-		case amount			= "amount"
-		case currency		= "currency"
-		case count			= "count"
 		case destinations	= "destination"
 	}
 }
+
+
