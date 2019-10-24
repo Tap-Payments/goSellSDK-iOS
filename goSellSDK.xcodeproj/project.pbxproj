@@ -2467,7 +2467,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.2.8-beta2";
+				MARKETING_VERSION = 2.2.8;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2498,7 +2498,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.2.8-beta2";
+				MARKETING_VERSION = 2.2.8;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
