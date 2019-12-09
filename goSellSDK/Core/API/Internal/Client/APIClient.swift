@@ -13,7 +13,7 @@ import func     TapSwiftFixes.performOnMainThread
 import class    TapNetworkManager.TapNetworkManager
 import class    TapNetworkManager.TapNetworkRequestOperation
 import class    UIKit.UIDevice.UIDevice
-
+import CoreTelephony
 /// API client.
 internal final class APIClient {
     
@@ -160,15 +160,20 @@ internal final class APIClient {
         
         fileprivate struct HTTPHeaderValueKey {
             
-            fileprivate static let appID                = "app_id"
-            fileprivate static let appLocale            = "app_locale"
-            fileprivate static let deviceID             = "device_id"
-            fileprivate static let requirer             = "requirer"
-            fileprivate static let requirerOS           = "requirer_os"
-            fileprivate static let requirerOSVersion    = "requirer_os_version"
-            fileprivate static let requirerValue        = "SDK"
-            fileprivate static let requirerVersion      = "requirer_version"
-            
+            fileprivate static let appID				= "app_id"
+            fileprivate static let appLocale				= "app_locale"
+            fileprivate static let deviceID				= "device_id"
+            fileprivate static let requirer				= "requirer"
+            fileprivate static let requirerOS			= "requirer_os"
+            fileprivate static let requirerOSVersion		= "requirer_os_version"
+            fileprivate static let requirerValue			= "SDK"
+            fileprivate static let requirerVersion		= "requirer_version"
+            fileprivate static let requirerDeviceName		= "requirer_device_name"
+            fileprivate static let requirerDeviceType		= "requirer_device_type"
+            fileprivate static let requirerDeviceModel	= "requirer_device_model"
+            fileprivate static let requirerSimNetworkName	= "requirer_sim_network_name"
+            fileprivate static let requirerSimCountryIso	= "requirer_sim_country_iso"
+
             @available(*, unavailable) private init() { }
         }
         
@@ -206,17 +211,30 @@ internal final class APIClient {
             
             fatalError("Seems like SDK is not integrated well.")
         }
-
+		let networkInfo = CTTelephonyNetworkInfo()
+		let carrier = networkInfo.subscriberCellularProvider
+		
         let osName = UIDevice.current.systemName
         let osVersion = UIDevice.current.systemVersion
-        
+		let deviceName = UIDevice.current.name
+		let deviceType = UIDevice.current.model
+		let deviceModel = UIDevice.current.localizedModel
+		let simNetWorkName = carrier?.carrierName
+		let simCountryISO = carrier?.isoCountryCode
+
+		
         let result: [String: Any] = [
         
             Constants.HTTPHeaderValueKey.appID: bundleID,
             Constants.HTTPHeaderValueKey.requirer: Constants.HTTPHeaderValueKey.requirerValue,
             Constants.HTTPHeaderValueKey.requirerVersion: requirerVersion,
             Constants.HTTPHeaderValueKey.requirerOS: osName,
-            Constants.HTTPHeaderValueKey.requirerOSVersion: osVersion
+            Constants.HTTPHeaderValueKey.requirerOSVersion: osVersion,
+			Constants.HTTPHeaderValueKey.requirerDeviceName: deviceName,
+			Constants.HTTPHeaderValueKey.requirerDeviceType: deviceType,
+			Constants.HTTPHeaderValueKey.requirerDeviceModel: deviceModel,
+			Constants.HTTPHeaderValueKey.requirerSimNetworkName: simNetWorkName ?? "",
+			Constants.HTTPHeaderValueKey.requirerSimCountryIso: simCountryISO ?? "",
         ]
         
         return result
