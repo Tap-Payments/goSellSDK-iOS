@@ -70,7 +70,7 @@ extension PaymentOption: Decodable {
         let brand               = try container.decode          (CardBrand.self,    forKey: .title)
         let title               = try container.decode          (String.self,       forKey: .title)
         let imageURL            = try container.decode          (URL.self,          forKey: .imageURL)
-        let paymentType         = try container.decode          (PaymentType.self,  forKey: .paymentType)
+		let paymentType         = try container.decode          (PaymentType.self,  forKey: .paymentType)
         let sourceIdentifier    = try container.decodeIfPresent (String.self,       forKey: .sourceIdentifier)
         var supportedCardBrands = try container.decode          ([CardBrand].self,  forKey: .supportedCardBrands)
         let extraFees           = try container.decodeIfPresent ([ExtraFee].self,   forKey: .extraFees) ?? []
@@ -83,7 +83,7 @@ extension PaymentOption: Decodable {
                   brand: brand,
                   title: title,
                   imageURL: imageURL,
-                  paymentType: paymentType,
+				  paymentType: paymentType,
                   sourceIdentifier: sourceIdentifier,
                   supportedCardBrands: supportedCardBrands,
                   extraFees: extraFees,

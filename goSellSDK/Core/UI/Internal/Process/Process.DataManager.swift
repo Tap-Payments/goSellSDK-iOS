@@ -388,6 +388,8 @@ internal extension Process {
 			let shipping        = nonnullDataSource.shipping    ?? nil
 			let taxes           = nonnullDataSource.taxes       ?? nil
 			let destinations		= nonnullDataSource.destinations       ?? nil
+			let paymentType		= nonnullDataSource.paymentType       ?? nil
+
 			/// the API is using destinationsGroup not destinations
 			let destinationsGroup = DestinationGroup(destinations: destinations)
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
@@ -398,7 +400,8 @@ internal extension Process {
 													   currency:        currency,
 													   merchantID:		merchantID,
 													   customer:        customer.identifier,
-													   destinationGroup:	destinationsGroup)
+													   destinationGroup:	destinationsGroup,
+													   paymentType:			paymentType)
 			
 			return paymentRequest
 		}
@@ -948,6 +951,8 @@ internal extension Process {
 			let destinations		= nonnullDataSource.destinations       ?? nil
 			/// the API is using destinationsGroup not destinations
 			let destinationsGroup = DestinationGroup(destinations: destinations)
+			let paymentType		= nonnullDataSource.paymentType       ?? nil
+
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
 													   amount:          nonnullDataSource.amount,
 													   items:           nonnullDataSource.items ?? [],
@@ -956,7 +961,8 @@ internal extension Process {
 													   currency:        currency,
 													   merchantID:		merchantID,
 													   customer:        customer.identifier,
-													   destinationGroup:	destinationsGroup)
+													   destinationGroup:	destinationsGroup,
+													   paymentType:			paymentType)
 			
 			return paymentRequest
 		}

@@ -71,4 +71,8 @@
 	/// - Note: If value of this property is `true`, then switch will be remaining off until card information is filled and valid.
 	///         And after will be toggled on automatically.
 	@objc optional var isSaveCardSwitchOnByDefault: Bool { get }
+	
+	/// Defines the required payments `web` or  `card`
+	@objc optional var paymentType: PaymentType { get }
+
 }

@@ -19,6 +19,6 @@ internal class TitleTableViewCell: UITableViewCell {
     
     internal func setTitle(_ title: CustomStringConvertible) {
         
-        self.titleTextLabel?.text = title.description
+		self.titleTextLabel?.text = title.description.capitalized
     }
 }
