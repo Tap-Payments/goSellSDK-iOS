@@ -17,6 +17,7 @@ import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
 import class	goSellSDK.TapBlurStyle
 import enum     goSellSDK.TransactionMode
+import enum     goSellSDK.PaymentType
 import class    ObjectiveC.NSObject.NSObject
 import enum		UIKit.NSText.NSTextAlignment
 import class	UIKit.UIApplication.UIApplication
@@ -299,6 +300,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 				caseSelectionController.allValues = TapBlurStyle.allCases
 				caseSelectionController.preselectedValue = self.currentSettings?.appearance.backgroundBlurStyle
 				
+			case Constants.paymentTypeCellReuseIdentifier:
+					
+				caseSelectionController.title = "Payment Type"
+				caseSelectionController.allValues = PaymentType.allCases
+				caseSelectionController.preselectedValue = self.currentSettings?.dataSource.paymentType
+					
 			default:
 				
 				break
@@ -362,7 +369,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			 Constants.sdkModeCellReuseIdentifier,
 			 Constants.appearanceModeCellReuseIdentifier,
 			 Constants.transactionModeCellReuseIdentifier,
-			 Constants.backgroundBlurStyleCellReuseIdentifier:
+			 Constants.backgroundBlurStyleCellReuseIdentifier,
+			 Constants.paymentTypeCellReuseIdentifier:
 			
 			self.showCaseSelectionViewController(with: reuseIdentifier)
 			
@@ -459,7 +467,8 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		fileprivate static let destinationsListCellReuseIdentifier						= "destinations_list_cell"
         fileprivate static let taxListCellReuseIdentifier           					= "tax_list_cell"
         fileprivate static let shippingListCellReuseIdentifier      					= "shipping_list_cell"
-		
+        fileprivate static let paymentTypeCellReuseIdentifier      						= "payment_type_cell"
+
 		fileprivate static let appearanceModeCellReuseIdentifier						= "appearance_mode_cell"
 		fileprivate static let headerFontCellReuseIdentifier							= "header_font_cell"
 		fileprivate static let headerTextColorCellReuseIdentifier						= "header_text_color_cell"
@@ -498,6 +507,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	
     @IBOutlet private weak var sdkModeValueLabel: UILabel?
     @IBOutlet private weak var transactionModeValueLabel: UILabel?
+    @IBOutlet private weak var paymentTypeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
     @IBOutlet private weak var customerNameLabel: UILabel?
 	@IBOutlet private weak var threeDSecureSwitch: UISwitch?
@@ -635,6 +645,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         self.transactionModeValueLabel?.text    			= self.currentSettings?.dataSource.transactionMode.description
         self.currencyValueLabel?.text           			= self.currentSettings?.dataSource.currency.localizedSymbol
 		self.threeDSecureSwitch?.isOn						= self.currentSettings?.dataSource.isThreeDSecure ?? Settings.default.dataSource.isThreeDSecure
+		self.paymentTypeValueLabel?.text            			= self.currentSettings?.dataSource.paymentType.description.capitalized
 		self.saveCardMultipleTimesSwitch?.isOn				= self.currentSettings?.dataSource.canSaveSameCardMultipleTimes ?? Settings.default.dataSource.canSaveSameCardMultipleTimes
 		self.saveCardSwitchEnabledByDefaultSwitch?.isOn		= self.currentSettings?.dataSource.isSaveCardSwitchToggleEnabledByDefault ?? Settings.default.dataSource.isSaveCardSwitchToggleEnabledByDefault
 		
@@ -1382,6 +1393,13 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
 			if let style = value as? TapBlurStyle {
 			
 				self.currentSettings?.appearance.backgroundBlurStyle = style
+			}
+			
+		case Constants.paymentTypeCellReuseIdentifier:
+			
+			if let paymentType = value as? PaymentType {
+				
+				self.currentSettings?.dataSource.paymentType = paymentType
 			}
 			
         default:

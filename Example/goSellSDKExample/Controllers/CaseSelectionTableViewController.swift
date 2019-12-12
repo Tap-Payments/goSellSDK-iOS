@@ -60,7 +60,7 @@ internal class CaseSelectionTableViewController: UITableViewController {
         
         let value = self.allValues[indexPath.row]
         
-        titleCell.setTitle(self.allValues[indexPath.row])
+		titleCell.setTitle(self.allValues[indexPath.row])
         
         let selected = self.preselectedValue?.description == value.description
         if selected {

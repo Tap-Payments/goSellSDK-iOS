@@ -371,6 +371,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 				
 				PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
 			}
+			
+		case .all:
+			print("paymentType always web or card")
+
 		}
 	}
 	

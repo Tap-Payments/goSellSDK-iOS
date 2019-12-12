@@ -343,7 +343,6 @@
 		A4BD8D4920A1F6AE00EFF2CE /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */; };
 		A4BD8D4D20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD8D3E20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift */; };
 		A4BE547920A9D4ED004E979E /* CommonImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE547820A9D4ED004E979E /* CommonImages.swift */; };
-		A4C0FC5A208CE9AB00C5FBC6 /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0FC59208CE9AB00C5FBC6 /* PaymentType.swift */; };
 		A4C0FC5F208CEC4900C5FBC6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0FC5E208CEC4900C5FBC6 /* ViewModel.swift */; };
 		A4C0FC61208CEC7900C5FBC6 /* GroupTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0FC60208CEC7900C5FBC6 /* GroupTableViewCellModel.swift */; };
 		A4C0FC63208CED0C00C5FBC6 /* WebPaymentOptionTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0FC62208CED0C00C5FBC6 /* WebPaymentOptionTableViewCellModel.swift */; };
@@ -412,6 +411,7 @@
 		A4F7106D20B554480064FE4B /* TextInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7106A20B554480064FE4B /* TextInputType.swift */; };
 		A4F7107020B5546A0064FE4B /* AddressFieldInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7106F20B5546A0064FE4B /* AddressFieldInputType.swift */; };
 		D67B4B5BCDF9B017077CE89A /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
+		D70054A423A11AE600D15A4C /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70054A323A11AE600D15A4C /* PaymentType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -757,7 +757,6 @@
 		A4BD8D3C20A1F6AE00EFF2CE /* UIFont+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
 		A4BD8D3E20A1F6AE00EFF2CE /* AmountedCurrency+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AmountedCurrency+Additions.swift"; sourceTree = "<group>"; };
 		A4BE547820A9D4ED004E979E /* CommonImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonImages.swift; sourceTree = "<group>"; };
-		A4C0FC59208CE9AB00C5FBC6 /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		A4C0FC5E208CEC4900C5FBC6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		A4C0FC60208CEC7900C5FBC6 /* GroupTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCellModel.swift; sourceTree = "<group>"; };
 		A4C0FC62208CED0C00C5FBC6 /* WebPaymentOptionTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPaymentOptionTableViewCellModel.swift; sourceTree = "<group>"; };
@@ -826,6 +825,7 @@
 		A4F7106A20B554480064FE4B /* TextInputType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputType.swift; sourceTree = "<group>"; };
 		A4F7106F20B5546A0064FE4B /* AddressFieldInputType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFieldInputType.swift; sourceTree = "<group>"; };
 		CF65A0C457E3C3D928DEE7AB /* Pods-goSellSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		D70054A323A11AE600D15A4C /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -969,6 +969,7 @@
 				A482F7562085D91A00AA76A4 /* TapSDKErrorType.swift */,
 				14FC5D5B2242E47700930204 /* TokenType.swift */,
 				A4B3FB7F212467B3000C05EB /* TransactionMode.swift */,
+				D70054A323A11AE600D15A4C /* PaymentType.swift */,
 				A4694B27211B481900B335F1 /* URLStatus.swift */,
 				A4F7101920B550450064FE4B /* Measurements */,
 			);
@@ -1419,7 +1420,6 @@
 				A4694B26211B481900B335F1 /* ErrorAction.swift */,
 				A4B6E4412086279900078072 /* InitializationStatus.swift */,
 				A4BD8D2820A1F61A00EFF2CE /* InternalError.swift */,
-				A4C0FC59208CE9AB00C5FBC6 /* PaymentType.swift */,
 				A4B6E43C20860CD800078072 /* Permissions.swift */,
 				A4B6E43420860A0700078072 /* Route.swift */,
 				A482F7542085D8D300AA76A4 /* TapSerializationError.swift */,
@@ -2121,7 +2121,6 @@
 				A4F7105E20B553AF0064FE4B /* AddressDropdownFieldTableViewCell.swift in Sources */,
 				A4F7106D20B554480064FE4B /* TextInputType.swift in Sources */,
 				A48810E720A2E92E00CDF5D4 /* TapNavigationView.swift in Sources */,
-				A4C0FC5A208CE9AB00C5FBC6 /* PaymentType.swift in Sources */,
 				A456717720AD69F60057A504 /* Singleton.swift in Sources */,
 				A4F7104920B553260064FE4B /* CountrySelectionViewController.swift in Sources */,
 				A401FC8E2101DA6D002DBA73 /* CardScannerViewControllerDelegate.swift in Sources */,
@@ -2220,6 +2219,7 @@
 				1495976321F5442F00DFA0A2 /* ResizablePaymentContainerViewController.swift in Sources */,
 				A4444BE820AB52D9005D9E87 /* DataManagerWithFilteredData.swift in Sources */,
 				149597BB21F67C5500DFA0A2 /* Session.swift in Sources */,
+				D70054A423A11AE600D15A4C /* PaymentType.swift in Sources */,
 				A4A982A720D2B34F00770690 /* SourceChannel.swift in Sources */,
 				A424878A20E4F136001C4FAF /* BaseInteractionController.swift in Sources */,
 				A4B3FB83212467B4000C05EB /* TransactionMode.swift in Sources */,

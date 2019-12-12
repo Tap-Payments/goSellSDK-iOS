@@ -34,11 +34,14 @@ internal struct PaymentOptionsRequest {
 	/// List of destinations (grouped by "destination" key).
 	internal private(set) var destinationGroup: DestinationGroup?
 	
+	/// Payment type.
+	internal private(set) var paymentType: PaymentType?
+
     // MARK: Methods
 	
 	internal init(customer: String?) {
 		
-		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil)
+		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil)
 	}
 	
 	internal init(transactionMode:	TransactionMode?,
@@ -49,7 +52,8 @@ internal struct PaymentOptionsRequest {
 				  currency:			Currency?,
 				  merchantID:		String?,
 				  customer:			String?,
-				  destinationGroup:		DestinationGroup?
+				  destinationGroup:	DestinationGroup?,
+				  paymentType:		PaymentType?
 		
 	) {
         
@@ -60,6 +64,8 @@ internal struct PaymentOptionsRequest {
 		self.merchantID			= merchantID
         self.customer           	= customer
 		self.destinationGroup		= destinationGroup
+		self.paymentType			= paymentType
+
 		if let nonnullItems 		= items, nonnullItems.count > 0 {
 			
 			self.items = items
@@ -85,6 +91,7 @@ internal struct PaymentOptionsRequest {
 		case totalAmount        	= "total_amount"
 		case merchantID			= "merchant_id"
 		case destinationGroup		= "destinations"
+		case paymentType			= "payment_type"
     }
     
     // MARK: Properties
@@ -134,6 +141,8 @@ extension PaymentOptionsRequest: Encodable {
                
                try container.encodeIfPresent(self.destinationGroup, forKey: .destinationGroup)
 		}
+		try container.encodeIfPresent(self.paymentType?.description.uppercased(), forKey: .paymentType)
+
            
     }
 }

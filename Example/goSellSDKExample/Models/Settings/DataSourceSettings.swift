@@ -12,6 +12,7 @@ import enum		goSellSDK.SDKMode
 import class	goSellSDK.Shipping
 import class	goSellSDK.Tax
 import enum		goSellSDK.TransactionMode
+import enum		goSellSDK.PaymentType
 
 internal struct DataSourceSettings: Encodable {
 	
@@ -27,7 +28,9 @@ internal struct DataSourceSettings: Encodable {
 													   customer:							nil,
 													   destinations:						[],
 													   shippingList:						[],
-													   taxes:								[])
+													   taxes:								[],
+													   paymentType:							.all
+													   )
 	
 	internal var sdkMode: SDKMode
 	
@@ -49,6 +52,8 @@ internal struct DataSourceSettings: Encodable {
 	
 	internal var taxes: [Tax]
 	
+	internal var paymentType: PaymentType
+
 	// MARK: Methods
 	
 	internal init(sdkMode:									SDKMode,
@@ -60,7 +65,8 @@ internal struct DataSourceSettings: Encodable {
 				  customer:									EnvironmentCustomer?,
 				  destinations:								[Destination],
 				  shippingList:								[Shipping],
-				  taxes:									[Tax]) {
+				  taxes:									[Tax],
+				  paymentType:								PaymentType) {
 		
 		self.sdkMode            					= sdkMode
 		
@@ -73,6 +79,7 @@ internal struct DataSourceSettings: Encodable {
 		self.destinations							= destinations
 		self.shippingList       					= shippingList
 		self.taxes              					= taxes
+		self.paymentType							= paymentType
 	}
 	
 	// MARK: - Private -
@@ -81,7 +88,7 @@ internal struct DataSourceSettings: Encodable {
 		
 		case sdkMode            					= "sdk_mode"
 		case transactionMode    					= "mode"
-		case isThreeDSecure							= "3d_secure"
+		case isThreeDSecure						= "3d_secure"
 		case canSaveSameCardMultipleTimes			= "save_same_card_multiple_times"
 		case isSaveCardSwitchToggleEnabledByDefault	= "is_save_card_switch_enabled_by_default"
 		case currency           					= "currency"
@@ -89,6 +96,8 @@ internal struct DataSourceSettings: Encodable {
 		case destinations							= "destinations"
 		case shippingList       					= "shippingList"
 		case taxes              					= "taxes"
+		case paymentType              				= "paymentType"
+
 	}
 }
 
@@ -108,7 +117,8 @@ extension DataSourceSettings: Decodable {
 		let destinations					= try container.decodeIfPresent ([Destination].self,		forKey: .destinations)								?? []
 		let shippingList    				= try container.decode			([Shipping].self,			forKey: .shippingList)
 		let taxes           				= try container.decode			([Tax].self,				forKey: .taxes)
-		
+		let paymentType        				= try container.decode			(PaymentType.self,				forKey: .paymentType)
+
 		if envCustomer == nil {
 			
 			let customer: Customer? = try container.decodeIfPresent(Customer.self, forKey: .customer)
@@ -143,7 +153,8 @@ extension DataSourceSettings: Decodable {
 				  customer:							envCustomer,
 				  destinations:						destinations,
 				  shippingList:						shippingList,
-				  taxes:							taxes)
+				  taxes:							taxes,
+				  paymentType:						paymentType)
 	}
 }
 

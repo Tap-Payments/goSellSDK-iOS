@@ -35,6 +35,7 @@ import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import class	goSellSDK.Token
 import enum     goSellSDK.TransactionMode
+import enum    goSellSDK.PaymentType
 import class	UIKit.UIActivityIndicatorView.UIActivityIndicatorView
 import class	UIKit.UIBarButtonItem.UIBarButtonItem
 import class	UIKit.UIBlurEffect.UIBlurEffect
@@ -68,9 +69,9 @@ internal class ExampleViewController: BaseViewController {
         
         self.title = "goSell SDK Example"
 		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
-		
 		GoSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
         GoSellSDK.mode = self.paymentSettings.dataSource.sdkMode
+		
     }
     
     internal override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +98,8 @@ internal class ExampleViewController: BaseViewController {
 		else if let savedCardsController = (segue.destination as? UINavigationController)?.tap_rootViewController as? SavedCardsTableViewController {
 			
 			savedCardsController.customerIdentifier = self.paymentSettings.dataSource.customer?.customer.identifier
+
+			
 		}
     }
     
@@ -340,6 +343,15 @@ extension ExampleViewController: SessionDataSource {
         
         return .capture(after: 8)
     }
+	
+	
+	
+	internal var paymentType: PaymentType {
+		 
+        return self.paymentSettings.dataSource.paymentType
+	 }
+	 
+	
 }
 
 

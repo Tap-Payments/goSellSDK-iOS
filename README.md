@@ -606,7 +606,12 @@ The following table describes its structure and specifies which fields are requi
         <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Defines if save card switch is on by default.<br><b>Note:</b> If value of this property is <i>true</i>, then switch will be remaining off until card information is filled and valid. And after will be toggled on automatically.</sub></td>
     </tr>
-    
+       <tr>
+        <td><sub><i>paymentType</i></sub></td>
+        <td colspan=2><sub><b>PaymentType</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines payment types to show.</sub></td>
+    </tr>
 </table>
 
 <a name="session_data_source_samples"></a>
