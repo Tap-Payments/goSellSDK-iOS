@@ -13,10 +13,16 @@ internal class CreateChargeRequest: Encodable {
     
     /// Amount.
     internal let amount: Decimal
-    
-    /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
+   
+	/// Amount that is selected by the merchant (initial amount).
+    internal let selectedAmount: Decimal
+  
+	/// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     internal let currency: Currency
     
+    /// Currency that is selected by the merchant (initial currency).
+    internal let selectedCurrency: Currency
+	
     /// Customer information.
     internal let customer: Customer
 	
@@ -95,8 +101,11 @@ internal class CreateChargeRequest: Encodable {
     ///   - statementDescriptor: Statement descriptor.
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
-	internal init(amount:				Decimal,
+	internal init(
+				  amount:				Decimal,
+				  selectedAmount:		Decimal,
 				  currency:				Currency,
+				  selectedCurrency:		Currency,
 				  customer:				Customer,
 				  merchant:				Merchant?,
 				  fee:					Decimal,
@@ -114,7 +123,9 @@ internal class CreateChargeRequest: Encodable {
 				  receipt:				Receipt?) {
         
         self.amount                 = amount
+        self.selectedAmount        = selectedAmount
         self.currency               = currency
+        self.selectedCurrency      = selectedCurrency
         self.customer               = customer
 		self.merchant				= merchant
         self.fee                    = fee
@@ -137,7 +148,9 @@ internal class CreateChargeRequest: Encodable {
     private enum CodingKeys: String, CodingKey {
         
         case amount                 = "amount"
+        case selectedAmount          = "selected_amount"
         case currency               = "currency"
+        case selectedCurrency      	= "selected_currency"
         case customer               = "customer"
 		case merchant				= "merchant"
         case fee                    = "fee"

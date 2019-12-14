@@ -34,8 +34,11 @@ internal class CreateAuthorizeRequest: CreateChargeRequest {
     ///   - requires3DSecure: Defines if 3D secure is required.
     ///   - receipt: Receipt settings.
     ///   - authorizeAction: Authorize action.
-	internal init(amount:				Decimal,
+	internal init(
+				  amount:				Decimal,
+				  selectedAmount:		Decimal,
 				  currency:				Currency,
+				  selectedCurrency:		Currency,
 				  customer:				Customer,
 				  merchant:				Merchant?,
 				  fee:					Decimal,
@@ -55,8 +58,11 @@ internal class CreateAuthorizeRequest: CreateChargeRequest {
         
         self.authorizeAction = authorizeAction
         
-        super.init(amount:              amount,
+        super.init(
+				   amount:              amount,
+				   selectedAmount:      selectedAmount,
                    currency:            currency,
+                   selectedCurrency:    selectedCurrency,
 				   customer:            customer,
 				   merchant:			merchant,
                    fee:                 fee,
