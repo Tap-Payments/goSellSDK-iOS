@@ -550,16 +550,15 @@ internal extension Process {
 			}
 		
 			let amountedCurrency    = self.selectedCurrency
+			// the Amounted Currency assigned by the merchant
+			let amountedSelectedCurrency = AmountedCurrency(dataSource.currency as! Currency, dataSource.amount ?? 0)
+
 			let fee                 = Process.AmountCalculator<PaymentClass>.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
 			let destinations			= dataSource.destinations ?? nil
 			/// the API is using destinationsGroup not destinations
 			let destinationsGroup	= (destinations?.count ?? 0 > 0) ? DestinationGroup(destinations: destinations)!: nil
 
-//			if (destinations?.count ?? 0 > 0){
-//				let destinationsGroup	= DestinationGroup(destinations: destinations) ?? nil
-//			} else {
-//
-//			}
+
 			let order               	= Order(identifier: orderID)
 			let redirect            	= TrackingURL(url: self.process.webPaymentHandlerInterface.returnURL)
 			let paymentDescription  	= dataSource.paymentDescription ?? nil
@@ -599,7 +598,9 @@ internal extension Process {
 			case .purchase:
 				
 				let chargeRequest = CreateChargeRequest(amount:                 amountedCurrency.amount,
+														selectedAmount:			amountedSelectedCurrency.amount,
 														currency:               amountedCurrency.currency,
+														selectedCurrency:     	amountedSelectedCurrency.currency,
 														customer:               customer,
 														merchant:				merchant,
 														fee:                    fee,
@@ -634,8 +635,11 @@ internal extension Process {
 				
 				let authorizeAction = dataSource.authorizeAction ?? .default
 				
-				let authorizeRequest = CreateAuthorizeRequest(amount:				amountedCurrency.amount,
-															  currency:				amountedCurrency.currency,
+				let authorizeRequest = CreateAuthorizeRequest(
+															  amount:               amountedCurrency.amount,
+															  selectedAmount:		amountedSelectedCurrency.amount,
+															  currency:             amountedCurrency.currency,
+															  selectedCurrency:     amountedSelectedCurrency.currency,
 															  customer:				customer,
 															  merchant:				merchant,
 															  fee:					fee,
