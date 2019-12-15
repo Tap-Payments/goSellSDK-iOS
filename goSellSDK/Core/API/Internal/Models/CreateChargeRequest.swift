@@ -11,16 +11,16 @@ internal class CreateChargeRequest: Encodable {
     // MARK: - Internal -
     // MARK: Properties
     
-    /// Amount.
+    /// Amount that is selected by the merchant (initial amount).
     internal let amount: Decimal
    
-	/// Amount that is selected by the merchant (initial amount).
+	/// Amount that is selected by the user .
     internal let selectedAmount: Decimal
   
-	/// Three-letter ISO currency code, in lowercase. Must be a supported currency.
+	/// Three-letter ISO currency code, in lowercase. Must be a supported currency. It is selected by the merchant (initial currency).
     internal let currency: Currency
     
-    /// Currency that is selected by the merchant (initial currency).
+    /// Currency that is selected by the user.
     internal let selectedCurrency: Currency
 	
     /// Customer information.
@@ -84,8 +84,10 @@ internal class CreateChargeRequest: Encodable {
     /// Initializes charge request.
     ///
     /// - Parameters:
-    ///   - amount: Charge amount.
+	///   - amount: Charge amount.
+    ///   - selectedAmount: Charge amount that is selected by the user.
     ///   - currency: Charge currency.
+    ///   - selectedCurrency: Charge currency that is selected by the user.
     ///   - customer: Customer.
 	///   - merchant: Merchant.
     ///   - fee: Extra fees amount.

@@ -18,7 +18,9 @@ internal class CreateAuthorizeRequest: CreateChargeRequest {
     ///
     /// - Parameters:
     ///   - amount: Charge amount.
+    ///   - selectedAmount: Charge amount that is selected by the user..
     ///   - currency: Charge currency.
+    ///   - selectedCurrency: Charge currency that is selected by the user.
     ///   - customer: Customer.
 	///   - merchant: Merchant.
     ///   - fee: Extra fees amount.

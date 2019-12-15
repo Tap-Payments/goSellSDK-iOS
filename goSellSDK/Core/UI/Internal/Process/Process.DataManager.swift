@@ -548,10 +548,10 @@ internal extension Process {
 				
 				post = TrackingURL(url: nonnullPostURL)
 			}
-		
-			let amountedCurrency    = self.selectedCurrency
 			// the Amounted Currency assigned by the merchant
-			let amountedSelectedCurrency = AmountedCurrency(dataSource.currency as! Currency, dataSource.amount ?? 0)
+			let amountedCurrency    =  AmountedCurrency(dataSource.currency as! Currency, dataSource.amount ?? 0)
+			// the Amounted Currency selected by the user
+			let amountedSelectedCurrency = self.selectedCurrency
 
 			let fee                 = Process.AmountCalculator<PaymentClass>.extraFeeAmount(from: paymentOption.extraFees, in: amountedCurrency)
 			let destinations			= dataSource.destinations ?? nil
