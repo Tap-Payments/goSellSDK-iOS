@@ -49,6 +49,7 @@ import struct	TapAdditionsKit.TypeAlias
 		
 		return self.implementationStart()
 	}
+    
 	
 	/// Stops the receiving session dismissing all the user interface. Treats this action as if session was cancelled by the user.
 	/// Use this method when your app wants to interrupt payment process (f.ex. when you perform a deep link and need to show your UI).
