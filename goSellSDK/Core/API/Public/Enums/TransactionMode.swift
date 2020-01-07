@@ -8,8 +8,14 @@
 /// Transaction mode.
 @objc public enum TransactionMode: Int, CaseIterable {
     
-    /// Regular payment transaction.
+    ///// Regular payment transaction.
+   // @objc(ApplePay) case applePay
+	
+	/// Regular payment transaction.
     @objc(Purchase) case purchase
+    
+    /// Apply pay payment transaction.
+    @objc(ApplyPay) case applePay
     
     /// Only authorizing the payment and capturing the amount.
     @objc(AuthorizeCapture) case authorizeCapture

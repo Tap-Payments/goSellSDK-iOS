@@ -412,6 +412,7 @@
 		A4F7107020B5546A0064FE4B /* AddressFieldInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7106F20B5546A0064FE4B /* AddressFieldInputType.swift */; };
 		D67B4B5BCDF9B017077CE89A /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		D70054A423A11AE600D15A4C /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70054A323A11AE600D15A4C /* PaymentType.swift */; };
+		E84BAE0523C3740B0002CA70 /* ApplePayTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84BAE0423C3740B0002CA70 /* ApplePayTokenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -826,6 +827,7 @@
 		A4F7106F20B5546A0064FE4B /* AddressFieldInputType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFieldInputType.swift; sourceTree = "<group>"; };
 		CF65A0C457E3C3D928DEE7AB /* Pods-goSellSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		D70054A323A11AE600D15A4C /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
+		E84BAE0423C3740B0002CA70 /* ApplePayTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTokenModel.swift; sourceTree = "<group>"; };
 		FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1011,6 +1013,7 @@
 				14FC5D542242E44E00930204 /* TokenizedCard.swift */,
 				A4694B22211B480600B335F1 /* TrackingURL.swift */,
 				A4A9827E20D2B31F00770690 /* TransactionDetails.swift */,
+				E84BAE0423C3740B0002CA70 /* ApplePayTokenModel.swift */,
 				14A8428B2243B1B80026CC16 /* Transfer.swift */,
 				147951CC22004DBE0073B49F /* Errors */,
 			);
@@ -2108,6 +2111,7 @@
 				A408C06720BC05B9005E74AD /* InitializableWithString.swift in Sources */,
 				A482F7662085DB1300AA76A4 /* TapSDKUnknownError.swift in Sources */,
 				A42487A320E4F41C001C4FAF /* CardCollectionViewCell.swift in Sources */,
+				E84BAE0523C3740B0002CA70 /* ApplePayTokenModel.swift in Sources */,
 				1432427821F9FB14003B5E5D /* Process.Wrapped.swift in Sources */,
 				A4C13A8520F4EF9900037EDC /* PaymentOptionCollectionCellViewModel.swift in Sources */,
 				A424878F20E4F253001C4FAF /* OTPViewController.swift in Sources */,
