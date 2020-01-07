@@ -17,7 +17,7 @@ import class    UIKit.UIWindow.UIWindow
 
 @UIApplicationMain
 internal class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     internal var window: UIWindow?
     
     internal func applicationDidFinishLaunching(_ application: UIApplication) {
@@ -25,13 +25,16 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         Serializer.markAllCustomersAsSandboxIfNotYet()
-		
-		GoSellSDK.secretKey = SecretKey(sandbox:	"YOUR_SANDBOX_SECRET_KEY",
-										production:	"YOUR_PRODUCTION_SECRET_KEY")
+        
+        /*GoSellSDK.secretKey = SecretKey(sandbox:	"YOUR_SANDBOX_SECRET_KEY",
+         production:	"YOUR_PRODUCTION_SECRET_KEY")*/
+        
+        GoSellSDK.secretKey = SecretKey(sandbox:    "YOUR_SANDBOX_SECRET_KEY",
+                                        production:    "YOUR_PRODUCTION_SECRET_KEY")
     }
-	
-	internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-		
-		return (self.window?.isKeyWindow ?? false) ? .all : .portrait
-	}
+    
+    internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        
+        return (self.window?.isKeyWindow ?? false) ? .all : .portrait
+    }
 }

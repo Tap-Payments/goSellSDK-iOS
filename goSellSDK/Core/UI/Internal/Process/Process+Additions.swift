@@ -56,7 +56,7 @@ extension Process: ProcessInterface {
 	internal var viewModelsHandlerInterface: ViewModelsHandlerInterface {
 		
 		if let payment: PaymentImplementation = self.wrappedImplementation.implementation() {
-			
+            //payment.viewModelsHandler.paymentOptionCellViewModels.append(EmptyTableViewCellModel())
 			return payment.viewModelsHandler
 		}
 		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
