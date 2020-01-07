@@ -79,18 +79,43 @@ internal final class Process {
 	@discardableResult internal func start(_ session: SessionProtocol) -> Bool {
 		
 		self.transactionMode	= session.dataSource?.mode ?? .default
-		self.appearance			= self.obtainAppearanceMode(from: session)
-		
-		let result = self.dataManagerInterface.loadPaymentOptions(for: session)
-		
-		if result {
-			
-			self.externalSession = session
-			self.customizeAppearance(for: session)
-		}
-		
-		return result
+        
+        if self.transactionMode == .applePay
+        {
+            return startApplePaymentProcess(session)
+        }else
+        {
+            return startOurPaymentProcess(session)
+        }
 	}
+    /**
+     This function is responsible for initiating the apple payment process. As it is different than all other payments due to no ui work here
+     - Parameter session: The current session that has all the information in his data source and the result will be forwarded to his delegate
+     - Returns: A boolean that indicates if the process started succesfully or not
+     */
+    internal func startApplePaymentProcess(_ session: SessionProtocol) -> Bool
+    {
+        let applePayTokenRequest = CreateTokenApplePayment(applePayDataToken: session.dataSource?.applePayToken?.appleTokenEncodedString ?? "")
+        let request = CreateTokenWithApplePayDataRequest(applePaymentData: applePayTokenRequest)
+        
+        
+        return true
+    }
+    
+    internal func startOurPaymentProcess(_ session: SessionProtocol) -> Bool
+    {
+        self.appearance            = self.obtainAppearanceMode(from: session)
+        
+        let result = self.dataManagerInterface.loadPaymentOptions(for: session)
+        
+        if result {
+            
+            self.externalSession = session
+            self.customizeAppearance(for: session)
+        }
+        
+        return result
+    }
 	
 	// MARK: - Private -
 	// MARK: Properties

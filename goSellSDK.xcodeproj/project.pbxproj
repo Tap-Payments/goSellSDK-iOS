@@ -413,6 +413,8 @@
 		D67B4B5BCDF9B017077CE89A /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		D70054A423A11AE600D15A4C /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70054A323A11AE600D15A4C /* PaymentType.swift */; };
 		E84BAE0523C3740B0002CA70 /* ApplePayTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84BAE0423C3740B0002CA70 /* ApplePayTokenModel.swift */; };
+		E879F6B423C4591C007E27B8 /* CreateTokenWithApplePayDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E879F6B323C4591C007E27B8 /* CreateTokenWithApplePayDataRequest.swift */; };
+		E879F6B623C4597D007E27B8 /* CreateTokenApplePayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E879F6B523C4597D007E27B8 /* CreateTokenApplePayment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -828,6 +830,8 @@
 		CF65A0C457E3C3D928DEE7AB /* Pods-goSellSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		D70054A323A11AE600D15A4C /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		E84BAE0423C3740B0002CA70 /* ApplePayTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTokenModel.swift; sourceTree = "<group>"; };
+		E879F6B323C4591C007E27B8 /* CreateTokenWithApplePayDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenWithApplePayDataRequest.swift; sourceTree = "<group>"; };
+		E879F6B523C4597D007E27B8 /* CreateTokenApplePayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenApplePayment.swift; sourceTree = "<group>"; };
 		FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1397,6 +1401,8 @@
 				A4A9827320D2B31B00770690 /* CreateTokenSavedCard.swift */,
 				A4A9827A20D2B31E00770690 /* CreateTokenWithCardDataRequest.swift */,
 				A4A9827620D2B31C00770690 /* CreateTokenWithSavedCardRequest.swift */,
+				E879F6B323C4591C007E27B8 /* CreateTokenWithApplePayDataRequest.swift */,
+				E879F6B523C4597D007E27B8 /* CreateTokenApplePayment.swift */,
 				1495977521F5CA9700DFA0A2 /* Customer.Request.swift */,
 				A4A8545521076DC500B9DE00 /* DeleteCardResponse.swift */,
 				A4C13A9820F4F0AE00037EDC /* ExpirationDate.swift */,
@@ -1987,6 +1993,7 @@
 				A473D10E213BE7C600F13B73 /* BrandWithScheme.swift in Sources */,
 				14A8428E2243B1B90026CC16 /* DestinationGroup.swift in Sources */,
 				A482F73A2085BC1000AA76A4 /* Charge.swift in Sources */,
+				E879F6B623C4597D007E27B8 /* CreateTokenApplePayment.swift in Sources */,
 				149F5AFD2204809800A57C9A /* SessionAppearance.swift in Sources */,
 				A4BE547920A9D4ED004E979E /* CommonImages.swift in Sources */,
 				A4BD8CDD20A1EFFE00EFF2CE /* AmountedCurrencyTableViewCellModel.swift in Sources */,
@@ -2065,6 +2072,7 @@
 				A401FC7E2100FE8B002DBA73 /* InteractiveTransitionControllerDelegate.swift in Sources */,
 				148AF7D922427C2600A18DBC /* Destination.swift in Sources */,
 				A4F7105220B553670064FE4B /* CountryTableViewCellModel.swift in Sources */,
+				E879F6B423C4591C007E27B8 /* CreateTokenWithApplePayDataRequest.swift in Sources */,
 				A4571F0E20FF54D2006D96DC /* PopupPresentationAnimationController.swift in Sources */,
 				A4A982B520D2B34F00770690 /* SourcePaymentType.swift in Sources */,
 				1495974D21F541A000DFA0A2 /* NavigationContentViewController.swift in Sources */,
