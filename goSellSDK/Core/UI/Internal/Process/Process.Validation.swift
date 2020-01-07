@@ -18,15 +18,13 @@ internal extension Process {
 			
 			guard let dataSource = session.dataSource else { return false }
 			let mode = dataSource.mode ?? .default
-            
+			
 			let amount = AmountCalculator<PaymentClass>.totalAmount(for: session) ?? .zero
 			
 			if mode == .cardTokenization {
 				
 				return dataSource.currency != nil && amount.decimalValue > 0.0
-            }else if mode == .applePay {
-                return dataSource.applePayToken != nil
-            }
+			}
 			
 			guard let customer = dataSource.customer, self.isCustomerValid(customer) else { return false }
 			
