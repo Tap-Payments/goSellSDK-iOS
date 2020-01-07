@@ -39,6 +39,18 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 			theDelegates.forEach { $0.paymentSucceed?(charge, on: targetSession) }
 		}
 	}
+    
+    
+    internal func applePaymentSucceed(_ charge: String, on session: SessionProtocol) {
+        
+        let targetSession = self.targetSession(for: session)
+        
+        self.removeNilDelegatesAndSynchronized { theDelegates in
+            
+            theDelegates.forEach { $0.applePaymentSucceed?(charge, on: targetSession)}
+        }
+    }
+    
 	
 	internal func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol) {
 		

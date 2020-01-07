@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -81,7 +81,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="xRJ-zo-6wC">
-                                                                    <rect key="frame" x="276" y="5" width="26" height="20"/>
+                                                                    <rect key="frame" x="289" y="10" width="13" height="10"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -414,6 +414,16 @@
                                             <constraint firstAttribute="bottom" secondItem="nET-GX-t9a" secondAttribute="bottom" id="mQo-T4-lGQ"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWB-Py-qIw">
+                                        <rect key="frame" x="0.0" y="582" width="375" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Ltj-qi-owf"/>
+                                        </constraints>
+                                        <state key="normal" title="ApplePay API"/>
+                                        <connections>
+                                            <action selector="applePayClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lr7-KS-BaZ"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6b2-JM-nJ9" customClass="PayButton" customModule="goSellSDK">
                                         <rect key="frame" x="8" y="638" width="359" height="44"/>
                                         <constraints>
@@ -425,20 +435,36 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="kWP-ds-mW2"/>
                                         </connections>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ8-7p-4Ld">
+                                        <rect key="frame" x="0.0" y="526" width="375" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="c0Z-no-yDG"/>
+                                        </constraints>
+                                        <state key="normal" title="ApplePay UI"/>
+                                        <connections>
+                                            <action selector="applePayUIClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J48-bu-QHB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="uUH-Hk-l4h" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="2Q7-c7-lYw"/>
                                     <constraint firstItem="F15-Cc-alU" firstAttribute="top" secondItem="q7z-qv-MZT" secondAttribute="top" id="3NI-Jv-ceV"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6b2-JM-nJ9" secondAttribute="bottom" constant="8" id="48Y-Qm-f6J"/>
+                                    <constraint firstItem="MWB-Py-qIw" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="4O2-Ta-oN5"/>
+                                    <constraint firstAttribute="trailing" secondItem="zZ8-7p-4Ld" secondAttribute="trailing" id="5xl-rk-C6G"/>
                                     <constraint firstItem="uUH-Hk-l4h" firstAttribute="top" secondItem="q7z-qv-MZT" secondAttribute="top" id="A0F-S4-n5H"/>
                                     <constraint firstItem="F15-Cc-alU" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="BJf-QF-e2e"/>
                                     <constraint firstAttribute="trailing" secondItem="F15-Cc-alU" secondAttribute="trailing" id="Drq-nF-lu1"/>
+                                    <constraint firstAttribute="trailing" secondItem="MWB-Py-qIw" secondAttribute="trailing" id="JfZ-5F-Uzy"/>
+                                    <constraint firstItem="zZ8-7p-4Ld" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" id="R2U-fZ-Wt6"/>
                                     <constraint firstAttribute="bottom" secondItem="uUH-Hk-l4h" secondAttribute="bottom" id="WLZ-aJ-36R"/>
                                     <constraint firstAttribute="trailing" secondItem="6b2-JM-nJ9" secondAttribute="trailing" constant="8" id="aTX-ID-fuu"/>
                                     <constraint firstItem="6b2-JM-nJ9" firstAttribute="leading" secondItem="q7z-qv-MZT" secondAttribute="leading" constant="8" id="cFi-6k-3RE"/>
                                     <constraint firstAttribute="trailing" secondItem="uUH-Hk-l4h" secondAttribute="trailing" id="hTF-NG-3Dy"/>
+                                    <constraint firstItem="MWB-Py-qIw" firstAttribute="top" secondItem="zZ8-7p-4Ld" secondAttribute="bottom" constant="8" id="ilh-w0-cdc"/>
                                     <constraint firstAttribute="bottom" secondItem="F15-Cc-alU" secondAttribute="bottom" id="pK4-u7-nCt"/>
+                                    <constraint firstItem="6b2-JM-nJ9" firstAttribute="top" secondItem="MWB-Py-qIw" secondAttribute="bottom" constant="8" id="rcb-cu-9f7"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -491,7 +517,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733.60000000000002" y="468.21589205397305"/>
+            <point key="canvasLocation" x="733.60000000000002" y="467.73399014778329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zD4-Y2-5Pf">

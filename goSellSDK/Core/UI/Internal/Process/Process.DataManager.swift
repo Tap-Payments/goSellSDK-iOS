@@ -57,6 +57,8 @@ internal protocol DataManagerInterface: ClassProtocol {
 								  loader:							LoadingViewSupport?,
 								  retryAction:						@escaping TypeAlias.ArgumentlessClosure,
 								  alertDismissButtonClickHandler:	TypeAlias.ArgumentlessClosure?)
+    
+    func callChargeApplePayAPI(for session: SessionProtocol)
 	
 	func handleChargeOrAuthorizeResponse<T>(_ chargeOrAuthorize: T?,
 															error: TapSDKError?,
@@ -77,7 +79,9 @@ internal protocol DataManagerInterface: ClassProtocol {
 
 internal extension Process {
 	
-	class DataManager: DataManagerInterface {
+    class DataManager: DataManagerInterface {
+        
+        
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -255,6 +259,11 @@ internal extension Process {
 			
 			fatalError("Must be implemented in extension")
 		}
+        
+        
+        internal func callChargeApplePayAPI(for session: SessionProtocol) {
+            fatalError("Must be implemented in extension")
+        }
 		
 		internal func handleChargeOrAuthorizeResponse<T>(_ chargeOrAuthorize: T?, error: TapSDKError?, retryAction: @escaping TypeAlias.ArgumentlessClosure) where T : ChargeProtocol {
 			
@@ -523,6 +532,10 @@ internal extension Process {
 										  alertDismissButtonClickHandler:  	nil)
 		}
 		
+        internal override func callChargeApplePayAPI(for session: SessionProtocol) {
+            session.delegate?.applePaymentSucceed?("You will get back the charge object back", on: session)
+        }
+        
 		internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
 														paymentOption:					PaymentOption,
 														token:							Token?,

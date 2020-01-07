@@ -22,8 +22,39 @@ import class    UIKit.UITableView.UITableView
 import let      UIKit.UITableView.UITableViewAutomaticDimension
 import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
+import PassKit
 
-internal class PaymentOptionsViewController: BaseViewController {
+internal class PaymentOptionsViewController: BaseViewController,PKPaymentAuthorizationViewControllerDelegate {
+  
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true) {
+            Process.shared.externalSession?.delegate?.applePaymentSucceed?("Canceled", on: Session())
+        }
+    }
+    
+    @available(iOS 11.0, *)
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        
+        
+        let paymentMethod:String = payment.token.paymentMethod.network?.rawValue ?? ""
+        let transactionID:String = payment.token.transactionIdentifier
+        
+        let token = String(data: payment.token.paymentData, encoding: .utf8)
+        let utf8str = token!.data(using: .utf8)
+        
+        
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        controller.dismiss(animated: true) {
+            if let base64Encoded = utf8str?.base64EncodedString()
+            {
+                Process.shared.externalSession?.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(base64Encoded)", on: Session())
+            }
+        }
+        //completion(PKPaymentAuthorizationStatus.success)
+        // payment.billingContact.
+        
+    }
+    
 	
 	// MARK: - Internal -
 	// MARK: Methods
@@ -124,6 +155,30 @@ internal class PaymentOptionsViewController: BaseViewController {
 	
     // MARK: Properties
     
+    @IBAction func applePayClicked(_ sender: Any) {
+        
+        let request = PKPaymentRequest()
+        request.merchantIdentifier = "merchant.tap.ApplepayTemplate"
+        request.supportedNetworks = [PKPaymentNetwork.amex,PKPaymentNetwork.visa,PKPaymentNetwork.masterCard]
+        //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
+        request.merchantCapabilities = [PKMerchantCapability.capability3DS]
+        request.countryCode = "KW"
+        request.currencyCode = "KWD"
+        request.paymentSummaryItems = []
+        
+        
+        
+        for item:PaymentItem in ((Process.shared.externalSession?.dataSource?.items)!)!
+        {
+            request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: item.totalItemAmount)))
+        }
+        
+       if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request)
+       {
+           applePayController.delegate = self
+           present(applePayController, animated: true, completion: nil)
+       }
+    }
     @IBOutlet private weak var paymentOptionsTableView: UITableView? {
         
         didSet {

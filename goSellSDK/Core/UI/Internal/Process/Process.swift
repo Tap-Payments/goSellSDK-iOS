@@ -91,6 +91,23 @@ internal final class Process {
 		
 		return result
 	}
+    
+    
+    @discardableResult internal func startApplePay(_ session: SessionProtocol) -> Bool {
+        
+        /*self.transactionMode    = session.dataSource?.mode ?? .default
+        self.appearance            = self.obtainAppearanceMode(from: session)
+        
+        let result = self.dataManagerInterface.loadPaymentOptions(for: session)
+        
+        if result {
+            
+            self.externalSession = session
+            self.customizeAppearance(for: session)
+        }*/
+        self.dataManagerInterface.callChargeApplePayAPI(for: session)
+        return true
+    }
 	
 	// MARK: - Private -
 	// MARK: Properties

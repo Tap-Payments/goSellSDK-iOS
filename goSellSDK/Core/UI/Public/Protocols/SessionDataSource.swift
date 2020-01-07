@@ -13,6 +13,13 @@
 	
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
 	@objc var customer: Customer? { get }
+    
+    /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
+    @objc optional var isApplePay: Bool { get }
+    
+    /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
+    @objc var appleTokenData: String? { get }
+    
 	
 	/// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
 	@objc optional var currency: Currency? { get }
