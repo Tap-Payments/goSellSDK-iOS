@@ -48,8 +48,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	var groupWithButtonButtonClickAction: TypeAlias.ArgumentlessClosure? { get }
 	
 	var paymentOptionsResponse: PaymentOptionsResponse? { get }
-	func callTokenApplePay(with request: CreateTokenWithApplePayDataRequest)
-    
+	
 	func callChargeOrAuthorizeAPI(with source:						SourceRequest,
 								  paymentOption:					PaymentOption,
 								  token:							Token?,
@@ -323,33 +322,6 @@ internal extension Process {
 				}
 			}
 		}
-        
-        func callTokenApplePay(with request: CreateTokenWithApplePayDataRequest) {
-            self.isExecutingAPICalls = true
-            
-            APIClient.shared.createToken(with: request) { [weak self] (token, error) in
-                
-                self?.isExecutingAPICalls = false
-                
-                if let nonnullError = error {
-                    
-                    let retryAction: TypeAlias.ArgumentlessClosure = {
-                        
-                        self?.callTokenApplePay(with: request)
-                    }
-                    
-                    ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: nil)
-                }
-                else if let nonnullToken = token {
-                    
-                    //self?.didReceive(nonnullToken, from: request, paymentOption: nil, saveCard: false)
-                }
-                else {
-                    
-                    //self?.process.buttonHandlerInterface.stopButtonLoader()
-                }
-            }
-        }
 		
 		internal func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
 			
