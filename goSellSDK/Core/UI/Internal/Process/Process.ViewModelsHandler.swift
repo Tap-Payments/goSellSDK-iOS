@@ -6,6 +6,7 @@
 //
 
 import struct	TapBundleLocalization.LocalizationKey
+import PassKit
 
 internal protocol ViewModelsHandlerInterface {
 	
@@ -409,17 +410,6 @@ internal extension Process {
 					result.append(webOptionCellModel)
 				}
 			}
-            
-            
-            if hasApplaPaymentOption {
-               
-                applePaymentOptions.forEach {
-                    
-                    let applePayOptionCellModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                        paymentOption: $0)
-                    result.append(applePayOptionCellModel)
-                }
-            }
 			
 			if hasCardPaymentOptions {
 				
@@ -434,6 +424,21 @@ internal extension Process {
 				
 				result.append(cardOptionsCellModel)
 			}
+            
+            if hasApplaPaymentOption {
+               if hasCardPaymentOptions{
+                   
+                   let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                identifier: Constants.spaceBetweenCardAndApplePayOptionsIdentifier)
+                   result.append(emptyCellModel)
+               }
+                applePaymentOptions.forEach {
+                    
+                    let applePayOptionCellModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                        paymentOption: $0)
+                    result.append(applePayOptionCellModel)
+                }
+            }
 			
 			self.paymentOptionsScreenCellViewModels = result
 			
@@ -446,13 +451,25 @@ internal extension Process {
 			result.append(self.currencyCellViewModel)
 			
 			let currency = self.process.dataManagerInterface.selectedCurrency.currency
-			
+            var paymentNetworks = [PKPaymentNetwork.amex, PKPaymentNetwork.masterCard,  PKPaymentNetwork.visa]
+            if #available(iOS 12.0, *) {
+                paymentNetworks.append(contentsOf: [PKPaymentNetwork.electron,PKPaymentNetwork.maestro])
+            } else {
+                // Fallback on earlier versions
+            }
+            if #available(iOS 12.1.1, *) {
+                paymentNetworks.append(PKPaymentNetwork.mada)
+            } else {
+                // Fallback on earlier versions
+            }
+            
 			let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
+            
 			let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
 			
 			let savedCards = self.process.dataManagerInterface.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)
 			let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).filter(currenciesFilter).sorted(by: sortingClosure)
-            let applePaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure)
+            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
 			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
 			let hasApplaPaymentOption = applePaymentOptions.count > 0
             
@@ -505,17 +522,7 @@ internal extension Process {
             
             
             
-            if hasApplaPaymentOption {
-                
-               
-                applePaymentOptions.forEach {
-                    
-                    let applePayModel = self.applePaymentCellModel(with: $0)
-                    applePayModel.indexPath = self.nextIndexPath(for: result)
-                    
-                    result.append(applePayModel)
-                }
-            }
+            
 			
 			if hasCardPaymentOptions {
 				
@@ -533,6 +540,25 @@ internal extension Process {
 				
 				result.append(cardModel)
 			}
+            
+            
+            
+            if hasApplaPaymentOption {
+               if hasCardPaymentOptions{
+                   
+                   let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenCardAndApplePayOptionsIdentifier)
+                   emptyModel.indexPath = self.nextIndexPath(for: result)
+                   
+                   result.append(emptyModel)
+               }
+                applePaymentOptions.forEach {
+                    
+                    let applePayModel = self.applePaymentCellModel(with: $0)
+                    applePayModel.indexPath = self.nextIndexPath(for: result)
+                    
+                    result.append(applePayModel)
+                }
+            }
 			
 			self.paymentOptionCellViewModels = result
 		}
@@ -694,6 +720,7 @@ private struct __ViewModelsHandlerConstants {
 	
 	fileprivate static let spaceBeforeWebPaymentOptionsIdentifier   = "space_before_web_payment_options"
 	fileprivate static let spaceBetweenWebAndCardOptionsIdentifier  = "space_between_web_and_card_options"
+    fileprivate static let spaceBetweenCardAndApplePayOptionsIdentifier  = "space_between_card_and_apple_options"
 	
 	@available(*, unavailable) private init() {}
 }

@@ -593,6 +593,12 @@ internal extension Process {
             let request = PKPaymentRequest()
             request.merchantIdentifier = "merchant.tap.ApplepayTemplate"
             request.supportedNetworks = [PKPaymentNetwork.amex,PKPaymentNetwork.visa,PKPaymentNetwork.masterCard]
+            if #available(iOS 12.0, *) {
+                request.supportedNetworks.append(contentsOf: [PKPaymentNetwork.electron,PKPaymentNetwork.maestro])
+            }
+            if #available(iOS 12.1.1, *) {
+                request.supportedNetworks.append(PKPaymentNetwork.mada)
+            }
             //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
             request.merchantCapabilities = [PKMerchantCapability.capability3DS]
             request.countryCode = "KW"
@@ -614,13 +620,16 @@ internal extension Process {
                 contact.name?.familyName = lastName
             }
             request.billingContact = contact
-            
+            var totalValue:Decimal = 0
             for item:PaymentItem in (dataSource.items!)!
             {
                 request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: item.totalItemAmount)))
+                totalValue += item.totalItemAmount
             }
-            
-            
+            if totalValue > 0
+            {
+                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to goSell SDK", amount: NSDecimalNumber(decimal: totalValue)))
+            }
             return request
         }
         
