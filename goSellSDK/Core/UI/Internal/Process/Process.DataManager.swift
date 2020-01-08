@@ -630,10 +630,12 @@ internal extension Process {
             {
                 request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: item.totalItemAmount)))
                 totalValue += item.totalItemAmount
+                
             }
             if totalValue > 0
             {
-                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to Tap Payments", amount: NSDecimalNumber(decimal: totalValue)))
+                
+                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
             }
             return request
         }
