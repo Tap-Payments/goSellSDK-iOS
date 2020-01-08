@@ -85,11 +85,13 @@ internal extension Process {
     class DataManager: NSObject,DataManagerInterface,PKPaymentAuthorizationViewControllerDelegate {
        
         func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-            controller.dismiss(animated: true) {
-                if let session:SessionProtocol = Process.shared.externalSession
+            controller.dismiss(animated: true) {[weak self] in
+                /*if let session:SessionProtocol = Process.shared.externalSession
                 {
                     session.delegate?.applePaymentCanceled?(on: session)
-                }
+                }*/
+                guard let strongSelf = self else { return }
+                strongSelf.showMissingInformationAlert(with: "Payment Canceled", message: "User did not authorize the payment.")
             }
         }
         
