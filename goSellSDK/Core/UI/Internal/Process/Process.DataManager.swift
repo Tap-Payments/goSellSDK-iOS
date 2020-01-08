@@ -650,7 +650,8 @@ internal extension Process {
                 
                 if let userCurrency = self.userSelectedCurrency
                 {
-                    convertedPaymentItemPrice = ((convertedPaymentItemPrice*userCurrency.amount)/self.transactionCurrency.amount)
+                    convertedPaymentItemPrice = (convertedPaymentItemPrice*userCurrency.conversionFactor)
+                    
                     //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
                 }
                
