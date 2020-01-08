@@ -20,6 +20,13 @@ internal struct AmountedCurrency: Decodable {
     /// Currency symbol.
     internal let currencySymbol: String
     
+    /// Conversion factor to transaction currency
+    internal var conversionFactor: Decimal{
+        get{
+            return amount/Process.shared.dataManagerInterface.transactionCurrency.amount
+        }
+    }
+    
     // MARK: Methods
     
     internal init(_ currency: Currency, _ amount: Decimal) {
@@ -33,6 +40,13 @@ internal struct AmountedCurrency: Decodable {
         self.currency       = currency
         self.amount         = amount
         self.currencySymbol = currencySymbol
+    }
+    
+    
+    
+    func calculateConvrsionRate()
+    {
+        //
     }
     
     // MARK: - Private -
