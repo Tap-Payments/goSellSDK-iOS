@@ -1,20 +1,23 @@
 //
-//  WebPaymentOptionTableViewCellModel.swift
+//  ApplePaymentOptionTableViewCellModel.swift
 //  goSellSDK
 //
-//  Copyright © 2019 Tap Payments. All rights reserved.
+//  Created by Osama Rabie on 07/01/2020.
+//  Copyright © 2020 Tap Payments. All rights reserved.
 //
+
+import Foundation
 
 import enum TapCardValidator.CardBrand
 import class TapNetworkManager.TapImageLoader
 import class UIKit.UIImage.UIImage
 
-internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewModel {
+internal class ApplePaymentOptionTableViewCellModel: PaymentOptionTableCellViewModel {
     
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var title: String { 
+    internal var title: String {
         
         return self.paymentOption.title
     }
@@ -31,7 +34,7 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
     
     internal private(set) var iconImage: UIImage?
     
-    internal weak var cell: WebPaymentOptionTableViewCell? {
+    internal weak var cell: ApplePayTableViewCell? {
         
         didSet {
             
@@ -91,4 +94,4 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
 }
 
 // MARK: - SingleCellModel
-extension WebPaymentOptionTableViewCellModel: SingleCellModel {}
+extension ApplePaymentOptionTableViewCellModel: SingleCellModel {}

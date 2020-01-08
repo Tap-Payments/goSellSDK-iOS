@@ -415,6 +415,31 @@ extension ExampleViewController: SessionDelegate {
         }
     }
     
+    internal func applePaymentCanceled(on session: SessionProtocol)
+    {
+        let alert = UIAlertController(title: "Message from SDK delegate", message: "User Canceled", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.session.stop {
+            self.present(alert, animated: true)
+        }
+    }
+    
+    
+    internal func applePaymen(_ charge: String, on session: SessionProtocol) {
+        //print(charge)
+        let alert = UIAlertController(title: "Message from SDK delegate", message: charge, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.session.stop {
+            self.present(alert, animated: true)
+        }
+    }
+    
     internal func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol) {
         
         // authorization succeed, saving the customer for reuse.

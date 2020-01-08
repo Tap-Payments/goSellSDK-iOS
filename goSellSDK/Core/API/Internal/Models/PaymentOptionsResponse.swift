@@ -81,6 +81,9 @@ extension PaymentOptionsResponse: Decodable {
 		let supportedCurrenciesAmounts	= try container.decode([AmountedCurrency].self, forKey: .supportedCurrenciesAmounts)
 		let savedCards					= try container.decodeIfPresent([SavedCard].self, forKey: .savedCards)
 		
+        let applePayPaymentOption:PaymentOption = PaymentOption(identifier: "2", brand: .apple, title: "APPLE PAY", imageURL: URL(string: "https://i.ibb.co/sP9Tkck/Apple-Pay-Pay-With-2x.png")!, paymentType: .apple, sourceIdentifier: "src_kw.knet", supportedCardBrands: [.apple], extraFees: [], supportedCurrencies: [try! Currency.init(isoCode: "KWD")], orderBy: 2)
+        
+        paymentOptions.append(applePayPaymentOption)
 		paymentOptions = paymentOptions.filter { $0.brand != .unknown }
 		
 		self.init(identifier:					identifier,

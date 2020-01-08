@@ -413,6 +413,7 @@
 		D67B4B5BCDF9B017077CE89A /* Pods_goSellSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */; };
 		D70054A423A11AE600D15A4C /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70054A323A11AE600D15A4C /* PaymentType.swift */; };
 		E82B006423C4BC2900FE0D05 /* ApplePayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */; };
+		E82B006623C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -828,6 +829,7 @@
 		CF65A0C457E3C3D928DEE7AB /* Pods-goSellSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		D70054A323A11AE600D15A4C /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTableViewCell.swift; sourceTree = "<group>"; };
+		E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePaymentOptionTableViewCellModel.swift; sourceTree = "<group>"; };
 		FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1627,6 +1629,7 @@
 				A4C13A7C20F4EF9800037EDC /* TableViewCellViewModel.swift */,
 				A4C0FC5E208CEC4900C5FBC6 /* ViewModel.swift */,
 				A4C0FC62208CED0C00C5FBC6 /* WebPaymentOptionTableViewCellModel.swift */,
+				E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -2157,6 +2160,7 @@
 				A424876220E4F0A2001C4FAF /* TapButtonStateStyle.swift in Sources */,
 				A4F7103820B550AD0064FE4B /* CountriesDataManager.swift in Sources */,
 				A4A9828120D2B32000770690 /* CreateTokenSavedCard.swift in Sources */,
+				E82B006623C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift in Sources */,
 				1495975221F5420000DFA0A2 /* LoadingViewSupport.swift in Sources */,
 				A40DBCA52088C031005B170B /* PaymentOptionsViewController.swift in Sources */,
 				14A95ED721ECD17700F91D83 /* GlowStyle.swift in Sources */,

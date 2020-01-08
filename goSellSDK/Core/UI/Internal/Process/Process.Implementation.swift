@@ -10,6 +10,7 @@ import protocol	TapAdditionsKit.ClassProtocol
 import struct	TapAdditionsKit.TypeAlias
 import class	UIKit.UIResponder.UIResponder
 import class	UIKit.UIScreen.UIScreen
+import PassKit
 
 internal extension Process {
 	
@@ -371,7 +372,8 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 				
 				PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
 			}
-			
+        case .apple:
+            break;
 		case .all:
 			print("paymentType always web or card")
 
@@ -599,6 +601,10 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			
 			self.startPayment(withWebPaymentOption: webPaymentOption.paymentOption)
 		}
+        else if let applePaymentOption = paymentOption as? ApplePaymentOptionTableViewCellModel {
+            
+            self.startPayment(withApplePaymentOption: applePaymentOption.paymentOption)
+        }
 		else if let cardPaymentOption = paymentOption as? CardInputTableViewCellModel, let card = cardPaymentOption.card {
 			
 			guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else {
@@ -690,6 +696,27 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 													  alertDismissButtonClickHandler:   alertDissmissClosure)
 		}
 	}
+    
+    
+    private func startPayment(withApplePaymentOption paymentOption: PaymentOption) {
+        
+        
+        let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
+        
+        if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
+        {
+            if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
+                applePayController.delegate = self.dataManager
+                topController.present(applePayController, animated: true, completion: nil)
+            }
+        }
+        
+        
+        
+        //guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
+        
+        //let source = SourceRequest(identifier: sourceIdentifier)
+    }
 }
 
 internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode> {
@@ -798,4 +825,22 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
 		
 		self.closePayment(with: .cardTokenizeFailure(error), fadeAnimation: false, force: false, completion: nil)
 	}
+}
+
+extension UIWindow {
+    func topViewController() -> UIViewController? {
+        var top = self.rootViewController
+        while true {
+            if let presented = top?.presentedViewController {
+                top = presented
+            } else if let nav = top as? UINavigationController {
+                top = nav.visibleViewController
+            } else if let tab = top as? UITabBarController {
+                top = tab.selectedViewController
+            } else {
+                break
+            }
+        }
+        return top
+    }
 }
