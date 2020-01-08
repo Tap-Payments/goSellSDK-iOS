@@ -15,6 +15,7 @@ import class UIKit.UILabel.UILabel
 import class UIKit.UIScreen.UIScreen
 import class UIKit.UITableViewCell.UITableViewCell
 import class UIKit.UIView.UIView
+import class PassKit.PKPaymentButton
 
 internal class ApplePayTableViewCell: BaseTableViewCell {
     
@@ -40,6 +41,18 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
 		//self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
 		
         self.iconImageView?.image   = self.model?.iconImage
+        let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: .buy, paymentButtonStyle: .black)
+        applePayButton.center = contentView.center
+        applePayButton.addTarget(self, action: #selector(applePayButtonClicked(_:)), for: .touchUpInside)
+        contentView.addSubview(applePayButton)
        // self.arrowImageView?.image  = self.model?.arrowImage
+    }
+    
+    @objc private func applePayButtonClicked(_ sender: Any) {
+        
+        //guard let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: model!.indexPath) as? TableViewCellViewModel else { return }
+        
+        //model.tableViewDidSelectCell(model.)
+        model?.tableViewDidSelectCell(model!.tableView!)
     }
 }
