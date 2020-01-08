@@ -14,10 +14,13 @@
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
 	@objc var customer: Customer? { get }
     
-    /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
+    /// Details if the merchant wants to start apple session
     @objc optional var isApplePay: Bool { get }
     
-    /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
+    /// The country code is a must to start to work with apple payments. The country code should be given in iso 2 letters code
+    @objc optional var applePayCountryCode: String { get }
+    
+    /// Details of the apple token data
     @objc var appleTokenData: String? { get }
     
 	
