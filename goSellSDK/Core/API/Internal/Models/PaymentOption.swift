@@ -6,6 +6,7 @@
 //
 
 import enum TapCardValidator.CardBrand
+import struct PassKit.PKPaymentNetwork
 
 /// Payment Option model.
 internal struct PaymentOption: IdentifiableWithString {
@@ -56,6 +57,48 @@ internal struct PaymentOption: IdentifiableWithString {
         case extraFees              = "extra_fees"
         case supportedCurrencies    = "supported_currencies"
         case orderBy                = "order_by"
+    }
+    
+    internal func applePayNetworkMapper() -> [PKPaymentNetwork]
+    {
+        var applePayMappednNetworks:[PKPaymentNetwork] = []
+        
+        // Check if the original brand is in the supported, otherwise add it to the list we need to search
+        var toBeCheckedCardBrands:[CardBrand] = supportedCardBrands
+        if !toBeCheckedCardBrands.contains(brand)
+        {
+            toBeCheckedCardBrands.insert(brand, at: 0)
+        }
+        for cardBrand:CardBrand in toBeCheckedCardBrands
+        {
+            if cardBrand == .visa
+            {
+                applePayMappednNetworks.append(PKPaymentNetwork.visa)
+            }else if cardBrand == .masterCard
+            {
+                applePayMappednNetworks.append(PKPaymentNetwork.masterCard)
+            }else if cardBrand == .americanExpress
+            {
+                applePayMappednNetworks.append(PKPaymentNetwork.amex)
+            }else if cardBrand == .maestro
+            {
+                if #available(iOS 12.0, *) {
+                    applePayMappednNetworks.append(PKPaymentNetwork.maestro)
+                }
+            }else if cardBrand == .visaElectron
+            {
+                if #available(iOS 12.0, *) {
+                    applePayMappednNetworks.append(PKPaymentNetwork.electron)
+                }
+            }else if cardBrand == .mada
+            {
+                if #available(iOS 12.1.1, *) {
+                    applePayMappednNetworks.append(PKPaymentNetwork.mada)
+                }
+            }
+        }
+        
+        return applePayMappednNetworks.removingDuplicates()
     }
 }
 

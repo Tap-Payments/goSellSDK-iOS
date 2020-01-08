@@ -422,9 +422,9 @@ extension ExampleViewController: SessionDelegate {
         alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { action in
             alert.dismiss(animated: true, completion: nil)
         }))
-        self.session.stop {
+        //self.session.stop {
             self.present(alert, animated: true)
-        }
+        //}
     }
     
     

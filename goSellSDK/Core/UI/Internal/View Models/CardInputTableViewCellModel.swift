@@ -17,7 +17,7 @@ import class	UIKit.UIResponder.UIResponder
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
 import class	UIKit.UIView.UIView
-
+import struct PassKit.PKPaymentNetwork
 /// View model that handles manual card input table view cell.
 internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	
@@ -29,10 +29,20 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	internal var paymentOptions: [PaymentOption] = [] {
 		
 		didSet {
-			
 			self.updatePaymentOptions()
 		}
 	}
+    
+    internal var applePayMappedSupportedNetworks: [PKPaymentNetwork] {
+        get{
+            var applePayMappedSupportedNetworks:[PKPaymentNetwork] = []
+            for merchantTapPaymentOption:PaymentOption in paymentOptions
+            {
+                applePayMappedSupportedNetworks.append(contentsOf: merchantTapPaymentOption.applePayNetworkMapper())
+            }
+            return applePayMappedSupportedNetworks.removingDuplicates()
+        }
+    }
 	
 	internal var tableViewCellModels: [ImageTableViewCellModel]
 	internal var displayedTableViewCellModels: [ImageTableViewCellModel] {
