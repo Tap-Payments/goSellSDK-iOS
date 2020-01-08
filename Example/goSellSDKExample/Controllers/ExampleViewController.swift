@@ -423,7 +423,7 @@ extension ExampleViewController: SessionDelegate {
             alert.dismiss(animated: true, completion: nil)
         }))
         //self.session.stop {
-            self.present(alert, animated: true)
+          //  self.present(alert, animated: true)
         //}
     }
     
