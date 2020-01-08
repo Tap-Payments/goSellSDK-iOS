@@ -393,10 +393,27 @@ internal extension Process {
 				let othersGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), key: Constants.othersGroupModelKey)
 				result.append(othersGroupModel)
 			}
+            
+            if hasApplaPaymentOption
+            {
+                if hasSavedCards {
+                    
+                    let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                 identifier: Constants.spaceBetweenCurrencyAndApplePayOptionsIdentifier)
+                    result.append(emptyCellModel)
+                }
+                
+                applePaymentOptions.forEach {
+                    
+                    let applePayOptionCellModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                        paymentOption: $0)
+                    result.append(applePayOptionCellModel)
+                }
+            }
 			
 			if hasWebPaymentOptions {
 				
-				if !hasSavedCards {
+				if !hasSavedCards && !hasApplaPaymentOption {
 					
 					let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
 																 identifier: Constants.spaceBeforeWebPaymentOptionsIdentifier)
@@ -425,21 +442,6 @@ internal extension Process {
 				result.append(cardOptionsCellModel)
 			}
             
-            if hasApplaPaymentOption {
-               if hasCardPaymentOptions{
-                   
-                   let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                identifier: Constants.spaceBetweenCardAndApplePayOptionsIdentifier)
-                   result.append(emptyCellModel)
-               }
-                applePaymentOptions.forEach {
-                    
-                    let applePayOptionCellModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
-                                                                        paymentOption: $0)
-                    result.append(applePayOptionCellModel)
-                }
-            }
-			
 			self.paymentOptionsScreenCellViewModels = result
 			
 			self.filterPaymentOptionCellViewModels()
@@ -500,10 +502,30 @@ internal extension Process {
 				othersGroupModel.indexPath = self.nextIndexPath(for: result)
 				result.append(othersGroupModel)
 			}
+          
+            if hasApplaPaymentOption
+            {
+                if hasSavedCards {
+                    
+                    let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenCurrencyAndApplePayOptionsIdentifier)
+                    emptyModel.indexPath = self.nextIndexPath(for: result)
+                    
+                    result.append(emptyModel)
+                }
+                
+                applePaymentOptions.forEach {
+                    
+                    let applePayModel = self.applePaymentCellModel(with: $0)
+                    applePayModel.indexPath = self.nextIndexPath(for: result)
+                    
+                    result.append(applePayModel)
+                }
+            }
+            
 			
 			if hasWebPaymentOptions {
 				
-				if !hasSavedCards {
+				if !hasSavedCards && !hasApplaPaymentOption {
 					
 					let emptyModel = self.emptyCellModel(with: Constants.spaceBeforeWebPaymentOptionsIdentifier)
 					emptyModel.indexPath = self.nextIndexPath(for: result)
@@ -540,25 +562,6 @@ internal extension Process {
 				
 				result.append(cardModel)
 			}
-            
-            
-            
-            if hasApplaPaymentOption {
-               if hasCardPaymentOptions{
-                   
-                   let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenCardAndApplePayOptionsIdentifier)
-                   emptyModel.indexPath = self.nextIndexPath(for: result)
-                   
-                   result.append(emptyModel)
-               }
-                applePaymentOptions.forEach {
-                    
-                    let applePayModel = self.applePaymentCellModel(with: $0)
-                    applePayModel.indexPath = self.nextIndexPath(for: result)
-                    
-                    result.append(applePayModel)
-                }
-            }
 			
 			self.paymentOptionCellViewModels = result
 		}
@@ -721,6 +724,7 @@ private struct __ViewModelsHandlerConstants {
 	fileprivate static let spaceBeforeWebPaymentOptionsIdentifier   = "space_before_web_payment_options"
 	fileprivate static let spaceBetweenWebAndCardOptionsIdentifier  = "space_between_web_and_card_options"
     fileprivate static let spaceBetweenCardAndApplePayOptionsIdentifier  = "space_between_card_and_apple_options"
+    fileprivate static let spaceBetweenCurrencyAndApplePayOptionsIdentifier  = "space_between_currency_and_apple_options"
 	
 	@available(*, unavailable) private init() {}
 }
