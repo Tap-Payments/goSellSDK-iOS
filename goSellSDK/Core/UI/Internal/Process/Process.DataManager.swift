@@ -85,9 +85,11 @@ internal extension Process {
     class DataManager: NSObject,DataManagerInterface,PKPaymentAuthorizationViewControllerDelegate {
        
         func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-            if let session:SessionProtocol = Process.shared.externalSession
-            {
-                session.delegate?.applePaymentCanceled?(on: session)
+            controller.dismiss(animated: true) {
+                if let session:SessionProtocol = Process.shared.externalSession
+                {
+                    session.delegate?.applePaymentCanceled?(on: session)
+                }
             }
         }
         
