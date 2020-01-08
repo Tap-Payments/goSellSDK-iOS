@@ -626,12 +626,42 @@ internal extension Process {
             }
             request.billingContact = contact
             var totalValue:Decimal = 0
-            for item:PaymentItem in (dataSource.items!)!
+            
+            
+            /*if let newCurrenself.supportedCurrencies.first(where: { $0.currency == currency })
             {
-                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: item.totalItemAmount)))
-                totalValue += item.totalItemAmount
                 
             }
+            let currency = nonnullPaymentOptionsResponse.currency
+            
+            if let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) {
+                
+                return amountedCurrency
+            }
+            else {
+                
+                return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
+            }*/
+            
+            
+            for item:PaymentItem in (dataSource.items!)!
+            {
+                var convertedPaymentItemPrice:Decimal = item.totalItemAmount
+                
+                if let userCurrency = self.userSelectedCurrency
+                {
+                    convertedPaymentItemPrice = ((convertedPaymentItemPrice*userCurrency.amount)/self.transactionCurrency.amount)
+                    //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                }
+               
+
+                
+                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                totalValue += convertedPaymentItemPrice
+                
+            }
+            //self.process.dataManagerInterface.transactionCurrency
+            
             if totalValue > 0
             {
                 
