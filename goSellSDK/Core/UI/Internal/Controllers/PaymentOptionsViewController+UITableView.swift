@@ -72,6 +72,11 @@ extension PaymentOptionsViewController: UITableViewDataSource {
             let cell = webCellModel.dequeueCell(from: tableView)
             return cell
         }
+        else if let appleCellModel = model as? ApplePaymentOptionTableViewCellModel {
+            
+            let cell = appleCellModel.dequeueCell(from: tableView)
+            return cell
+        }
         else if let cardCellModel = model as? CardInputTableViewCellModel {
             
             let cell = cardCellModel.dequeueCell(from: tableView)
@@ -111,6 +116,10 @@ extension PaymentOptionsViewController: UITableViewDelegate {
         else if let webCellModel = model as? WebPaymentOptionTableViewCellModel {
             
             webCellModel.updateCell()
+        }
+        else if let applePayCellModel = model as? ApplePaymentOptionTableViewCellModel {
+            
+            applePayCellModel.updateCell()
         }
         else if let cardCellModel = model as? CardInputTableViewCellModel {
             

@@ -69,7 +69,7 @@ internal extension InternalSessionImplementation {
         let applePayUI:ApplePayUI = ApplePayUI(completionHandler: { [unowned self] Result in
             self.delegate?.applePaymentSucceed?(Result, on: self)
         }) {
-            self.delegate?.applePaymentSucceed?("User canceled", on: self)
+            self.delegate?.applePaymentCanceled?(on: self)
         }
         applePayUI.showApplePay(with: request)
         

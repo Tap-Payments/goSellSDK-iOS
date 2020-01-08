@@ -9,6 +9,7 @@ import protocol	TapAdditionsKit.ClassProtocol
 import struct	TapAdditionsKit.TypeAlias
 import enum		TapCardValidator.CardBrand
 import class	UIKit.UIResponder.UIResponder
+import PassKit
 
 internal protocol DataManagerInterface: ClassProtocol {
 	
@@ -49,6 +50,8 @@ internal protocol DataManagerInterface: ClassProtocol {
 	
 	var paymentOptionsResponse: PaymentOptionsResponse? { get }
 	
+    func createApplePayRequest() -> PKPaymentRequest
+    
 	func callChargeOrAuthorizeAPI(with source:						SourceRequest,
 								  paymentOption:					PaymentOption,
 								  token:							Token?,
@@ -79,7 +82,46 @@ internal protocol DataManagerInterface: ClassProtocol {
 
 internal extension Process {
 	
-    class DataManager: DataManagerInterface {
+    class DataManager: NSObject,DataManagerInterface,PKPaymentAuthorizationViewControllerDelegate {
+       
+        func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+            if let session:SessionProtocol = Process.shared.externalSession
+            {
+                session.delegate?.applePaymentCanceled?(on: session)
+            }
+        }
+        
+        @available(iOS 11.0, *)
+        func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+            
+            
+            let paymentMethod:String = payment.token.paymentMethod.network?.rawValue ?? ""
+            let transactionID:String = payment.token.transactionIdentifier
+            
+            let token = String(data: payment.token.paymentData, encoding: .utf8)
+            let utf8str = token!.data(using: .utf8)
+            
+            
+            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+            controller.dismiss(animated: true) {
+                if let base64Encoded = utf8str?.base64EncodedString()
+                {
+                    if let session:SessionProtocol = Process.shared.externalSession
+                    {
+                        session.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(base64Encoded)", on: session)
+                    }
+                }
+            }
+            //completion(PKPaymentAuthorizationStatus.success)
+            // payment.billingContact.
+            
+        }
+        
+        
+        internal func createApplePayRequest() -> PKPaymentRequest {
+            fatalError("Must be implemented in extension")
+        }
+        
         
         
 	
@@ -535,6 +577,54 @@ internal extension Process {
         internal override func callChargeApplePayAPI(for session: SessionProtocol) {
             session.delegate?.applePaymentSucceed?("You will get back the charge object back", on: session)
         }
+        
+        internal override func createApplePayRequest() -> PKPaymentRequest
+        {
+            guard
+                
+                let dataSource    = self.process.process.externalSession?.dataSource,
+                let customer    = dataSource.customer,
+                let _     = self.orderIdentifier else {
+                    
+                    fatalError("This case should never happen.")
+            }
+            
+            
+            let request = PKPaymentRequest()
+            request.merchantIdentifier = "merchant.tap.ApplepayTemplate"
+            request.supportedNetworks = [PKPaymentNetwork.amex,PKPaymentNetwork.visa,PKPaymentNetwork.masterCard]
+            //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
+            request.merchantCapabilities = [PKMerchantCapability.capability3DS]
+            request.countryCode = "KW"
+            request.currencyCode = self.selectedCurrency.currency.isoCode.uppercased()
+            request.paymentSummaryItems = []
+            let contact:PKContact = PKContact.init()
+            contact.name = PersonNameComponents.init()
+            
+            if let phoneNumber = customer.phoneNumber?.phoneNumber
+            {
+                contact.phoneNumber = CNPhoneNumber(stringValue:"+\(customer.phoneNumber?.isdNumber ?? "")\(phoneNumber)")
+            }
+            if let firstName = customer.firstName
+            {
+                contact.name?.givenName = firstName
+            }
+            if let lastName = customer.lastName
+            {
+                contact.name?.familyName = lastName
+            }
+            request.billingContact = contact
+            
+            for item:PaymentItem in (dataSource.items!)!
+            {
+                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: item.totalItemAmount)))
+            }
+            
+            
+            return request
+        }
+        
+        
         
 		internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
 														paymentOption:					PaymentOption,

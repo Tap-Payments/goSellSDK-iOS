@@ -18,7 +18,9 @@ import class	UIKit.UIViewController.UIViewController
 import protocol	UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol	UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 
-internal class ResizablePaymentContainerViewController: BaseViewController {
+internal class ResizablePaymentContainerViewController: BaseViewController
+{
+    
 	
 	// MARK: - Internal -
 	// MARK: Properties

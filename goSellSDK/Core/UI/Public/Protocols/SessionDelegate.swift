@@ -23,6 +23,12 @@
     ///   - session: Session object. Session instance
     @objc(applePaymentSucceed:onSession:) optional func applePaymentSucceed(_ charge: String, on session: SessionProtocol)
     
+    /// Notifies the receiver that apple payment has succeed, passing `charge` and `session` which has initiated payment as arguments.
+    ///
+    /// - Parameters:
+    ///   - session: Session object. Session instance
+    @objc(applePaymentCanceled:) optional func applePaymentCanceled(on session: SessionProtocol)
+    
 	/// Notifies the receiver that authorization has succeed, passing `authorize` and `session` which has initiated authorization as arguments.
 	///
 	/// - Parameters:

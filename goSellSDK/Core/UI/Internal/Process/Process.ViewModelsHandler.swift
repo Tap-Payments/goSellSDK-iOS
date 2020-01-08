@@ -219,6 +219,25 @@ internal extension Process {
 			
 			return newModel
 		}
+        
+        
+        internal func applePaymentCellModel(with paymentOption: PaymentOption) -> ApplePaymentOptionTableViewCellModel {
+            
+            let applePayModels = self.cellModels(of: ApplePaymentOptionTableViewCellModel.self)
+            
+            for model in applePayModels {
+                
+                if model.paymentOption == paymentOption {
+                    
+                    return model
+                }
+            }
+            
+            let newModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), paymentOption: paymentOption)
+            self.paymentOptionsScreenCellViewModels.append(newModel)
+            
+            return newModel
+        }
 		
 		internal func emptyCellModel(with identifier: String) -> EmptyTableViewCellModel {
 			
@@ -347,11 +366,13 @@ internal extension Process {
 			
 			let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).sorted(by: sortingClosure)
 			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).sorted(by: sortingClosure)
-			
+			let applePaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .apple).sorted(by: sortingClosure)
+            
 			let hasSavedCards = savedCards.count > 0
 			let hasWebPaymentOptions = webPaymentOptions.count > 0
 			let hasCardPaymentOptions = cardPaymentOptions.count > 0
-			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions
+            let hasApplaPaymentOption = applePaymentOptions.count > 0
+			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions || hasApplaPaymentOption
 			let displaysGroupTitles = hasSavedCards && hasOtherPaymentOptions
 			
 			if displaysGroupTitles {
@@ -388,6 +409,17 @@ internal extension Process {
 					result.append(webOptionCellModel)
 				}
 			}
+            
+            
+            if hasApplaPaymentOption {
+               
+                applePaymentOptions.forEach {
+                    
+                    let applePayOptionCellModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                        paymentOption: $0)
+                    result.append(applePayOptionCellModel)
+                }
+            }
 			
 			if hasCardPaymentOptions {
 				
@@ -420,12 +452,14 @@ internal extension Process {
 			
 			let savedCards = self.process.dataManagerInterface.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)
 			let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).filter(currenciesFilter).sorted(by: sortingClosure)
+            let applePaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure)
 			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
-			
+			let hasApplaPaymentOption = applePaymentOptions.count > 0
+            
 			let hasSavedCards = savedCards.count > 0
 			let hasWebPaymentOptions = webPaymentOptions.count > 0
 			let hasCardPaymentOptions = cardPaymentOptions.count > 0
-			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions
+			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions || hasApplaPaymentOption
 			let displaysGroupTitles = hasSavedCards && hasOtherPaymentOptions
 			
 			if displaysGroupTitles {
@@ -468,6 +502,20 @@ internal extension Process {
 					result.append(webModel)
 				}
 			}
+            
+            
+            
+            if hasApplaPaymentOption {
+                
+               
+                applePaymentOptions.forEach {
+                    
+                    let applePayModel = self.applePaymentCellModel(with: $0)
+                    applePayModel.indexPath = self.nextIndexPath(for: result)
+                    
+                    result.append(applePayModel)
+                }
+            }
 			
 			if hasCardPaymentOptions {
 				
