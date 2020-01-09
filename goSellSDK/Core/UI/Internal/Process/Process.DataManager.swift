@@ -595,7 +595,7 @@ internal extension Process {
             
             
             let request = PKPaymentRequest()
-            request.merchantIdentifier = "merchant.tap.ApplepayTemplate"
+            request.merchantIdentifier = "merchant.tap.ApplePayTemplate"
             request.supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
             //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
             request.merchantCapabilities = [PKMerchantCapability.capability3DS]
