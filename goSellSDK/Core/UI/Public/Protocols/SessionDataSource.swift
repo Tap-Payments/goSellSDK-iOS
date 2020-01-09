@@ -4,6 +4,7 @@
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
+import enum PassKit.PKPaymentButtonType
 
 /// Payment data source.
 @objc public protocol SessionDataSource: class, NSObjectProtocol {
@@ -19,6 +20,9 @@
     
     /// The country code is a must to start to work with apple payments. The country code should be given in iso 2 letters code
     @objc optional var applePayCountryCode: String { get }
+    
+    /// The country code is a must to start to work with apple payments. The country code should be given in iso 2 letters code
+    @objc optional var applePayButtonType: PKPaymentButtonType { get }
     
     /// Details of the apple token data
     @objc var appleTokenData: String? { get }
