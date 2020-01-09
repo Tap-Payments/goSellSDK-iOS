@@ -702,7 +702,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
         
         // We need to decide whether we need to show the apple pay sheet or the setup controller
         
-        if !self.dataManagerInterface.canStartApplePayPurchase()
+        if self.dataManagerInterface.canStartApplePayPurchase()
         {
             let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
             
