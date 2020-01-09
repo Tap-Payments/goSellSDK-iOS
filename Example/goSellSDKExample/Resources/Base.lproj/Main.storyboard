@@ -414,7 +414,7 @@
                                             <constraint firstAttribute="bottom" secondItem="nET-GX-t9a" secondAttribute="bottom" id="mQo-T4-lGQ"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWB-Py-qIw">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWB-Py-qIw">
                                         <rect key="frame" x="0.0" y="582" width="375" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="Ltj-qi-owf"/>
@@ -435,7 +435,7 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="kWP-ds-mW2"/>
                                         </connections>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ8-7p-4Ld">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ8-7p-4Ld">
                                         <rect key="frame" x="0.0" y="526" width="375" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="c0Z-no-yDG"/>

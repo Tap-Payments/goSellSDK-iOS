@@ -682,31 +682,43 @@ internal extension Process {
                 return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
             }*/
             
-            
-            for item:PaymentItem in (dataSource.items!)!
+            // Check if items are provided or plain amount
+            if let paymentItems:[PaymentItem] = dataSource.items ?? nil
             {
-                var convertedPaymentItemPrice:Decimal = item.totalItemAmount
-                
+                for item:PaymentItem in paymentItems
+                {
+                    var convertedPaymentItemPrice:Decimal = item.totalItemAmount
+                    
+                    if let userCurrency = self.userSelectedCurrency
+                    {
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ?? 1))
+                        
+                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    }
+                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                    totalValue += convertedPaymentItemPrice
+                    
+                }
+                if totalValue > 0
+                {
+                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
+                }
+            }else
+            {
                 if let userCurrency = self.userSelectedCurrency
                 {
-                    convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ?? 1))
-                    
-                    //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    totalValue = userCurrency.amount
+                }else
+                {
+                    totalValue = transactionCurrency.amount
                 }
-               
-
-                
-                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                totalValue += convertedPaymentItemPrice
-                
-            }
-            //self.process.dataManagerInterface.transactionCurrency
-            
-            if totalValue > 0
-            {
                 
                 request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
             }
+            
+            //self.process.dataManagerInterface.transactionCurrency
+            
+            
             return request
         }
         
