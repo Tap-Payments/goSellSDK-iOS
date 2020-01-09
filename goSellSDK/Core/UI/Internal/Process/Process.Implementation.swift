@@ -715,7 +715,11 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
             }
         }else
         {
-            
+            let setupApplePayController:SetupApplePayViewController = SetupApplePayViewController.instantiate()
+            if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
+                setupApplePayController.delegate = self.dataManager
+                topController.present(setupApplePayController, animated: true, completion: nil)
+            }
         }
     }
 }
