@@ -11,6 +11,8 @@ import Foundation
 import enum TapCardValidator.CardBrand
 import class TapNetworkManager.TapImageLoader
 import class UIKit.UIImage.UIImage
+import enum PassKit.PKPaymentButtonType
+import class PassKit.PKPaymentAuthorizationViewController
 
 internal class ApplePaymentOptionTableViewCellModel: PaymentOptionTableCellViewModel {
     
@@ -94,4 +96,27 @@ internal class ApplePaymentOptionTableViewCellModel: PaymentOptionTableCellViewM
 }
 
 // MARK: - SingleCellModel
-extension ApplePaymentOptionTableViewCellModel: SingleCellModel {}
+extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
+    
+    func applePayButtonType() -> PKPaymentButtonType
+    {
+        var applPayButtonType:PKPaymentButtonType = .buy
+        if let session = Process.shared.externalSession, let sessionDatSource = session.dataSource
+        {
+            if let dataSourceApplePayButtonType = sessionDatSource.applePayButtonType
+            {
+                applPayButtonType = dataSourceApplePayButtonType
+            }
+        }
+        // First we check if we need to show setup pay
+        let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
+        if PKPaymentAuthorizationViewController.canMakePayments()
+        {
+            if !PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedNetworks)
+            {
+                applPayButtonType = .setUp
+            }
+        }
+        return applPayButtonType
+    }
+}

@@ -16,6 +16,8 @@ import class UIKit.UIScreen.UIScreen
 import class UIKit.UITableViewCell.UITableViewCell
 import class UIKit.UIView.UIView
 import class PassKit.PKPaymentButton
+import class PassKit.PKPaymentAuthorizationViewController
+import enum PassKit.PKPaymentButtonType
 
 internal class ApplePayTableViewCell: BaseTableViewCell {
     
@@ -41,7 +43,11 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
 		//self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
 		
         self.iconImageView?.image   = self.model?.iconImage
-        let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: .buy, paymentButtonStyle: .black)
+        
+        let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ?? .buy
+        
+        let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: .black)
+        //applePayButton.backgroundColor = .blue
         applePayButton.center = contentView.center
         applePayButton.addTarget(self, action: #selector(applePayButtonClicked(_:)), for: .touchUpInside)
         contentView.addSubview(applePayButton)
