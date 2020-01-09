@@ -83,7 +83,15 @@ internal protocol DataManagerInterface: ClassProtocol {
 
 internal extension Process {
 	
-    class DataManager: NSObject,DataManagerInterface,PKPaymentAuthorizationViewControllerDelegate {
+    class DataManager: NSObject,DataManagerInterface,PKPaymentAuthorizationViewControllerDelegate,SetupApplePayViewControllerDelegate {
+        func setupApplePayViewControllerSetpButtonTouchUpInside(_ controller: SetupApplePayViewController) {
+            
+        }
+        
+        func setupApplePayViewControllerDidCancel(_ controller: SetupApplePayViewController) {
+            controller.dismiss(animated: true, completion: nil)
+        }
+        
        
         func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
             controller.dismiss(animated: true) {[weak self] in

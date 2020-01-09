@@ -1104,7 +1104,7 @@
                                         <rect key="frame" x="0.0" y="542" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W1q-7j-4Nw" id="Mn3-Su-r5N">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXf-mv-KWB">
@@ -1115,14 +1115,14 @@
                                                     </constraints>
                                                 </view>
                                                 <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m2p-Gb-bSM">
-                                                    <rect key="frame" x="0.0" y="45" width="375" height="1"/>
+                                                    <rect key="frame" x="0.0" y="59" width="375" height="1"/>
                                                     <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="8bu-0Q-3HZ"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y6d-6h-ZXF">
-                                                    <rect key="frame" x="67" y="-41" width="240" height="128"/>
+                                                    <rect key="frame" x="4" y="4" width="367" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="WKz-RX-tLX"/>
                                                     </constraints>
@@ -1717,7 +1717,7 @@
                         <viewControllerLayoutGuide type="bottom" id="5fc-OZ-iIR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vrW-ef-f5Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tex-ci-kaS" customClass="TapNavigationView" customModule="goSellSDK">
@@ -2142,7 +2142,102 @@
             </objects>
             <point key="canvasLocation" x="790" y="2083"/>
         </scene>
+        <!--Setup Apple Pay View Controller-->
+        <scene sceneID="SeE-tC-NTD">
+            <objects>
+                <viewController storyboardIdentifier="SetupApplePayViewController" id="4c4-RH-WPa" customClass="SetupApplePayViewController" customModule="goSellSDK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bpt-dO-xP2"/>
+                        <viewControllerLayoutGuide type="bottom" id="DvI-rU-nya"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1o6-MO-4OL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1LO-nX-glP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HX-iU-Tgv">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </containerView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SetupApplePaySplash" translatesAutoresizingMaskIntoConstraints="NO" id="3Kf-5Z-Wrx">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We support Apple Pay! Pay with a touch!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5L-Hm-7K8">
+                                        <rect key="frame" x="20" y="376.66666666666669" width="335" height="59"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplePayMark" translatesAutoresizingMaskIntoConstraints="NO" id="SIS-Er-ZnC">
+                                        <rect key="frame" x="149.66666666666666" y="455.66666666666669" width="76" height="50"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68b-dv-ff0">
+                                        <rect key="frame" x="20" y="720" width="335" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="CeD-Vd-9jd"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztm-kQ-DxY">
+                                        <rect key="frame" x="56" y="56" width="53" height="53"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="53" id="HQs-P0-g8r"/>
+                                            <constraint firstAttribute="height" constant="53" id="peC-SP-LKx"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="ic_close"/>
+                                        <connections>
+                                            <action selector="cancelButtonClicked:" destination="4c4-RH-WPa" eventType="touchUpInside" id="uqS-ty-dBS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="L5L-Hm-7K8" firstAttribute="centerY" secondItem="1LO-nX-glP" secondAttribute="centerY" id="2SA-uD-Tgf"/>
+                                    <constraint firstAttribute="trailing" secondItem="68b-dv-ff0" secondAttribute="trailing" constant="20" id="7OQ-g2-qQz"/>
+                                    <constraint firstItem="4HX-iU-Tgv" firstAttribute="height" secondItem="1LO-nX-glP" secondAttribute="height" id="Do7-aM-H0N"/>
+                                    <constraint firstAttribute="trailing" secondItem="4HX-iU-Tgv" secondAttribute="trailing" id="JHf-hv-DlB"/>
+                                    <constraint firstItem="3Kf-5Z-Wrx" firstAttribute="top" secondItem="1LO-nX-glP" secondAttribute="top" id="MmJ-9p-b8P"/>
+                                    <constraint firstItem="L5L-Hm-7K8" firstAttribute="leading" secondItem="1LO-nX-glP" secondAttribute="leading" constant="20" id="OCf-Vc-gLA"/>
+                                    <constraint firstItem="SIS-Er-ZnC" firstAttribute="centerX" secondItem="1LO-nX-glP" secondAttribute="centerX" id="QWn-v1-Qqy"/>
+                                    <constraint firstItem="68b-dv-ff0" firstAttribute="leading" secondItem="1LO-nX-glP" secondAttribute="leading" constant="20" id="RHh-IK-Ps8"/>
+                                    <constraint firstItem="L5L-Hm-7K8" firstAttribute="centerX" secondItem="1LO-nX-glP" secondAttribute="centerX" id="U1w-sG-TSN"/>
+                                    <constraint firstItem="4HX-iU-Tgv" firstAttribute="top" secondItem="1LO-nX-glP" secondAttribute="top" id="UEk-AM-0Ck"/>
+                                    <constraint firstItem="ztm-kQ-DxY" firstAttribute="top" secondItem="1LO-nX-glP" secondAttribute="top" constant="56" id="VcZ-yj-zM5"/>
+                                    <constraint firstItem="SIS-Er-ZnC" firstAttribute="top" secondItem="L5L-Hm-7K8" secondAttribute="bottom" constant="20" id="Vfb-8O-LFf"/>
+                                    <constraint firstItem="3Kf-5Z-Wrx" firstAttribute="leading" secondItem="1LO-nX-glP" secondAttribute="leading" id="WPm-A6-ZZQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Kf-5Z-Wrx" secondAttribute="bottom" id="Yrl-pw-Pxd"/>
+                                    <constraint firstAttribute="trailing" secondItem="L5L-Hm-7K8" secondAttribute="trailing" constant="20" id="dNo-hG-O2A"/>
+                                    <constraint firstItem="4HX-iU-Tgv" firstAttribute="leading" secondItem="1LO-nX-glP" secondAttribute="leading" id="eoQ-Na-41W"/>
+                                    <constraint firstItem="ztm-kQ-DxY" firstAttribute="leading" secondItem="1LO-nX-glP" secondAttribute="leading" constant="56" id="f0U-RC-Y5D"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Kf-5Z-Wrx" secondAttribute="trailing" id="r6X-fp-d40"/>
+                                    <constraint firstAttribute="bottom" secondItem="68b-dv-ff0" secondAttribute="bottom" constant="42" id="x6q-R7-yt9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1LO-nX-glP" secondAttribute="trailing" id="IdO-OG-4e9"/>
+                            <constraint firstItem="1LO-nX-glP" firstAttribute="leading" secondItem="1o6-MO-4OL" secondAttribute="leading" id="a6H-hp-hRN"/>
+                            <constraint firstAttribute="bottom" secondItem="1LO-nX-glP" secondAttribute="bottom" id="gWN-ha-iF0"/>
+                            <constraint firstItem="1LO-nX-glP" firstAttribute="top" secondItem="1o6-MO-4OL" secondAttribute="top" id="pNP-6q-5JD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="applePayButtonContentView" destination="68b-dv-ff0" id="IhT-np-we6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U0J-1c-fqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2384.8000000000002" y="2154.6798029556653"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="ApplePayMark" width="76" height="50"/>
+        <image name="SetupApplePaySplash" width="375" height="812"/>
+        <image name="ic_close" width="18" height="18"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="06D-E8-sJc"/>
     </inferredMetricsTieBreakers>
