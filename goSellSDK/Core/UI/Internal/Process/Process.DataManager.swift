@@ -51,6 +51,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	var paymentOptionsResponse: PaymentOptionsResponse? { get }
 	
     func createApplePayRequest() -> PKPaymentRequest
+    func canStartApplePayPurchase() -> Bool
     
 	func callChargeOrAuthorizeAPI(with source:						SourceRequest,
 								  paymentOption:					PaymentOption,
@@ -121,8 +122,12 @@ internal extension Process {
             
         }
         
-        
         internal func createApplePayRequest() -> PKPaymentRequest {
+            fatalError("Must be implemented in extension")
+        }
+        
+        internal func canStartApplePayPurchase() -> Bool
+        {
             fatalError("Must be implemented in extension")
         }
         
@@ -581,7 +586,26 @@ internal extension Process {
         internal override func callChargeApplePayAPI(for session: SessionProtocol) {
             session.delegate?.applePaymentSucceed?("You will get back the charge object back", on: session)
         }
-        
+        /**
+         Use  this method on Apple pay click handler to determine we can start the apple sheet pay or the setup controller
+         - Returns: True if we can start the Apple pay sheet and false to indicate we need to another thing
+         */
+        internal override func canStartApplePayPurchase() -> Bool
+        {
+            let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
+            if PKPaymentAuthorizationViewController.canMakePayments()
+            {
+                if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedNetworks)
+                {
+                    return true
+                }
+            }
+            return false
+        }
+        /**
+         The method creates a valid apple pay request to be used inside the apple pay sheet. It will convert TAP payment networks and Merchant items to understandable information by Apple Pay Kit
+         - Returns: A PKPaymentRequest that wrapes the merchant's items and Tap's payment networks
+         */
         internal override func createApplePayRequest() -> PKPaymentRequest
         {
             guard
