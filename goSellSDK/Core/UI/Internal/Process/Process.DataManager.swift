@@ -85,7 +85,10 @@ internal extension Process {
 	
     class DataManager: NSObject,DataManagerInterface,PKPaymentAuthorizationViewControllerDelegate,SetupApplePayViewControllerDelegate {
         func setupApplePayViewControllerSetpButtonTouchUpInside(_ controller: SetupApplePayViewController) {
-            
+			controller.dismiss(animated: true) {
+				let library = PKPassLibrary()
+				library.openPaymentSetup()
+			}
         }
         
         func setupApplePayViewControllerDidCancel(_ controller: SetupApplePayViewController) {
