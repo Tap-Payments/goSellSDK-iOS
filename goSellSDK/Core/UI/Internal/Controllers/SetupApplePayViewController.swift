@@ -23,12 +23,7 @@ class SetupApplePayViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let applPayButtonType:PKPaymentButtonType = .setUp
-        let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: .black)
-        //applePayButton.backgroundColor = .blue
-        applePayButton.center = applePayButtonContentView.center
-        applePayButton.addTarget(self, action: #selector(setupApplePayButtonClicked(_:)), for: .touchUpInside)
-        applePayButtonContentView.addSubview(applePayButton)
+        
     }
     
 
@@ -52,16 +47,15 @@ class SetupApplePayViewController: UIViewController {
         }
 	}
     
-    
-    @objc private func setupApplePayButtonClicked(_ sender: Any) {
-        if let delegate = self.delegate
+	@IBAction func setupApplePayClicked(_ sender: Any) {
+		if let delegate = self.delegate
         {
             delegate.setupApplePayViewControllerSetpButtonTouchUpInside(self)
         }else
         {
             self.dismiss(animated: true, completion: nil)
         }
-    }
+	}
 }
 
 
