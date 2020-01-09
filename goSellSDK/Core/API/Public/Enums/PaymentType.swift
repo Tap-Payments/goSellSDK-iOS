@@ -40,7 +40,7 @@
 		case .all:			return "all"
         case .card:        	return "card"
         case .web: 			return "web"
-        case .apple:        return "apple"
+        case .apple:        return "apple_pay"
 
         }
     }
@@ -62,6 +62,10 @@
         case PaymentType.web.stringRepresentation:
             
             self = .web
+        
+        case PaymentType.apple.stringRepresentation:
+            
+            self = .apple
 		
 			
         default:
@@ -81,7 +85,7 @@ extension PaymentType: CustomStringConvertible {
 		case .all:		return "all"
         case .card:		return "card"
         case .web:		return "web"
-        case .apple:        return "apple"
+        case .apple:    return "apple_pay"
         }
     }
 }
