@@ -41,6 +41,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	func currencySymbol(for currency: Currency) -> String
 	func iconURL(for cardBrand: CardBrand, scheme: CardScheme?) -> URL?
 	func paymentOption(for savedCard: SavedCard) -> PaymentOption
+    func paymentOption(for type: PaymentType) -> PaymentOption
 	func paymentOptions(of type: PaymentType) -> [PaymentOption]
 	
 	func updateUIByRemoving(_ card: SavedCard)
@@ -83,59 +84,8 @@ internal protocol DataManagerInterface: ClassProtocol {
 
 internal extension Process {
 	
-    class DataManager: NSObject,DataManagerInterface,PKPaymentAuthorizationViewControllerDelegate,SetupApplePayViewControllerDelegate {
-        func setupApplePayViewControllerSetpButtonTouchUpInside(_ controller: SetupApplePayViewController) {
-			controller.dismiss(animated: true) {
-				let library = PKPassLibrary()
-				library.openPaymentSetup()
-			}
-        }
-        
-        func setupApplePayViewControllerDidCancel(_ controller: SetupApplePayViewController) {
-            controller.dismiss(animated: true, completion: nil)
-        }
-        
-       
-        func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-            controller.dismiss(animated: true) {[weak self] in
-                /*if let session:SessionProtocol = Process.shared.externalSession
-                {
-                    session.delegate?.applePaymentCanceled?(on: session)
-                }*/
-                guard let strongSelf = self else { return }
-                strongSelf.showMissingInformationAlert(with: "Payment Canceled", message: "User did not authorize the payment.")
-            }
-        }
-        
-        @available(iOS 11.0, *)
-        func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-            
-            
-            let paymentMethod:String = payment.token.paymentMethod.network?.rawValue ?? ""
-            let transactionID:String = payment.token.transactionIdentifier
-            
-            let token = String(data: payment.token.paymentData, encoding: .utf8) ?? ""
-            //let utf8str = token!.data(using: .utf8)
-            
-            
-            completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-            controller.dismiss(animated: true) {
-                if let session:SessionProtocol = Process.shared.externalSession
-                {
-                    session.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(token)", on: session)
-                }
-                /*if let base64Encoded = utf8str?.base64EncodedString()
-                {
-                    if let session:SessionProtocol = Process.shared.externalSession
-                    {
-                        session.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(base64Encoded)", on: session)
-                    }
-                }*/
-            }
-            //completion(PKPaymentAuthorizationStatus.success)
-            // payment.billingContact.
-            
-        }
+    class DataManager: NSObject,DataManagerInterface
+    {
         
         internal func createApplePayRequest() -> PKPaymentRequest {
             fatalError("Must be implemented in extension")
@@ -272,6 +222,11 @@ internal extension Process {
 			
 			fatalError("Should be implemented in subclass.")
 		}
+        
+        internal func paymentOption(for type: PaymentType) -> PaymentOption
+        {
+            fatalError("Should be implemented in subclass.")
+        }
 		
 		@discardableResult internal func loadPaymentOptions(for session: SessionProtocol) -> Bool {
 			
@@ -552,6 +507,17 @@ internal extension Process {
 			
 			return firstAndOnlyOption
 		}
+        
+        internal override func paymentOption(for type: PaymentType) -> PaymentOption
+        {
+            let options = self.paymentOptions.filter { $0.paymentType == .apple }
+            guard let firstAndOnlyOption = options.first, options.count == 1 else {
+                
+                fatalError("Cannot uniqely identify payment option.")
+            }
+            
+            return firstAndOnlyOption
+        }
 		
 		internal override func currencySymbol(for currency: Currency) -> String {
 			
