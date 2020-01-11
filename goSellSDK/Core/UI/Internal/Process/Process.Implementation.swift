@@ -17,7 +17,7 @@ internal extension Process {
 	typealias Implementation = __ProcessImplementation
 }
 
-internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGenericInterface {
+internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, ProcessGenericInterface {
 	
 	// MARK: - Internal -
 	// MARK: Properties
@@ -437,7 +437,46 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	}
 }
 
-internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode> {
+internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode>, PKPaymentAuthorizationViewControllerDelegate,SetupApplePayViewControllerDelegate {
+    
+    func setupApplePayViewControllerSetpButtonTouchUpInside(_ controller: SetupApplePayViewController) {
+         controller.dismiss(animated: true) {
+             let library = PKPassLibrary()
+             library.openPaymentSetup()
+         }
+     }
+     
+     func setupApplePayViewControllerDidCancel(_ controller: SetupApplePayViewController) {
+         controller.dismiss(animated: true, completion: nil)
+     }
+     
+    
+     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+         controller.dismiss(animated: true) {[weak self] in
+             if let session:SessionProtocol = Process.shared.externalSession
+             {
+                 session.delegate?.applePaymentCanceled?(on: session)
+             }
+            
+             //guard let strongSelf = self else { return }
+            //self?.dataManager.ale showMissingInformationAlert(with: "Payment Canceled", message: "User did not authorize the payment.")
+            //self?.closePayment(with: .cancelled, fadeAnimation: false, force: true, completion: nil)
+         }
+     }
+     
+     @available(iOS 11.0, *)
+     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        controller.dismiss(animated: true) {[weak self] in
+            self?.startPayment(with: payment.token)
+            /*if let session:SessionProtocol = Process.shared.externalSession
+            {
+                session.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(token)", on: session)
+            }*/
+        }
+     }
+    
 	
 	// MARK: - Internal -
 	// MARK: Methods
@@ -663,6 +702,21 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 		let request = CreateTokenWithCardDataRequest(card: card)
 		self.dataManager.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 	}
+    
+    private func startPayment(with appleTokenData: PKPaymentToken) {
+        let paymentOption:PaymentOption = self.dataManager.paymentOption(for: .apple)
+        var token = String(data: appleTokenData.paymentData, encoding: .utf8) ?? ""
+        if token == ""
+        {
+            
+        }
+        
+        let applePayToken = CreateTokenApplePay(appleToken: AppleTokenModel(version: "EC_v1", data: "j+lqjXxbbwkRutq8C7llNrB30rT185cz4YIZkYX5GlREWV+EUEq+xXkWmLxX/kBN5T16P4/iA6bgm2atmweIwavXXgfcBq+ZiRPDqWeOLJMTImdGz8984ci5+0vbTZ1Ybmg2V4N/H7nQyQVuSaW7huZ9FvLmhgFFe7LDBThnrn5S7kjHjioujdvzEBMK8ccXfAyCe7zRd5TJrlMmh3Kfut14SPbI8zEitx0oC+LyIFCiQLy2BmEMv+B9KIAfDVpyS0tksGUYmUwKiHaotOxGFa8h+Xeuz7SvzfNLnMhkX0qKYB3kdor9Pisl0td9oXy7fWcEL1qwu7itG2gMfhlSHqVcp68I+hq89zZdmk34tkVX/vUSozhBl+vWCyjvKc+T3kmlzkooRjE/usQpGQ==", signature: "MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCAMIID5jCCA4ugAwIBAgIIaGD2mdnMpw8wCgYIKoZIzj0EAwIwejEuMCwGA1UEAwwlQXBwbGUgQXBwbGljYXRpb24gSW50ZWdyYXRpb24gQ0EgLSBHMzEmMCQGA1UECwwdQXBwbGUgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkxEzARBgNVBAoMCkFwcGxlIEluYy4xCzAJBgNVBAYTAlVTMB4XDTE2MDYwMzE4MTY0MFoXDTIxMDYwMjE4MTY0MFowYjEoMCYGA1UEAwwfZWNjLXNtcC1icm9rZXItc2lnbl9VQzQtU0FOREJPWDEUMBIGA1UECwwLaU9TIFN5c3RlbXMxEzARBgNVBAoMCkFwcGxlIEluYy4xCzAJBgNVBAYTAlVTMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgjD9q8Oc914gLFDZm0US5jfiqQHdbLPgsc1LUmeY", header: AppleTokenHeaderModel(ephemeralPublicKey: "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE4LO4z0", publicKeyHash: "LjAAyv6vb6jOEkjfG7L1a5OR2uCTHIkB61DaYdEWD", transactionId: "0cff972f5989088227758453b47459fb21356d9c52eeaf2a844a2be58a92e115")))
+        
+        let request = CreateTokenWithApplePayRequest(applePayToken: applePayToken)
+        self.dataManager.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: nil)
+    }
+   
 	
 	private func startPayment(withWebPaymentOption paymentOption: PaymentOption) {
 		
@@ -709,7 +763,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
             if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
             {
                 if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
-                    applePayController.delegate = self.dataManager
+                    applePayController.delegate = self
                     topController.present(applePayController, animated: true, completion: nil)
                 }
             }
@@ -717,7 +771,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
         {
             let setupApplePayController:SetupApplePayViewController = SetupApplePayViewController.instantiate()
             if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
-                setupApplePayController.delegate = self.dataManager
+                setupApplePayController.delegate = self
                 topController.present(setupApplePayController, animated: true, completion: nil)
             }
         }
