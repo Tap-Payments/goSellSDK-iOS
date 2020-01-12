@@ -26,10 +26,10 @@ internal extension Process {
 				return dataSource.currency != nil && amount.decimalValue > 0.0
 			}
             
-            if dataSource.isApplePay ?? false
+            /*if dataSource.isApplePay ?? false
             {
                 guard let _ = dataSource.appleTokenData else { return false }
-            }
+            }*/
 			
 			guard let customer = dataSource.customer, self.isCustomerValid(customer) else { return false }
 			
