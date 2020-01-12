@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tap Payments. All rights reserved.
 //
 
-internal struct CreateTokenApplePay: Encodable {
+internal struct CreateTokenApplePay: Encodable,Decodable {
     
     // MARK: - Internal -
     // MARK: Properties
