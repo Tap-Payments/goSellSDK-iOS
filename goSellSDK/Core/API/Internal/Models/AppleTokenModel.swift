@@ -7,7 +7,7 @@
 //
 
 
-internal struct AppleTokenModel: Encodable {
+internal struct AppleTokenModel: Encodable,Decodable {
     
 	
     

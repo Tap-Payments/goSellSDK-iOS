@@ -14,7 +14,8 @@ internal struct CreateTokenWithApplePayRequest: CreateTokenRequest {
     
     /// Saved card details.
     internal let applePayToken: CreateTokenApplePay
-    
+    /// Card to create token for.
+    internal let card: CreateTokenCard
     internal let route: Route = .tokens
     
     // MARK: Methods
@@ -25,6 +26,7 @@ internal struct CreateTokenWithApplePayRequest: CreateTokenRequest {
     internal init(applePayToken: CreateTokenApplePay) {
         
         self.applePayToken = applePayToken
+        self.card = CreateTokenCard(number: "", expirationMonth: "", expirationYear: "", cvc: "", cardholderName: "", address: nil)
     }
     
     // MARK: - Private -
@@ -32,6 +34,7 @@ internal struct CreateTokenWithApplePayRequest: CreateTokenRequest {
     private enum CodingKeys: String, CodingKey {
         
         case applePayToken = ""
+        case card = "card"
     }
 }
 

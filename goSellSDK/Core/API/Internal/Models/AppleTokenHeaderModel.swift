@@ -7,7 +7,7 @@
 //
 
 
-internal struct AppleTokenHeaderModel: Encodable {
+internal struct AppleTokenHeaderModel: Encodable,Decodable {
     
     // MARK: - Internal -
     // MARK: Properties

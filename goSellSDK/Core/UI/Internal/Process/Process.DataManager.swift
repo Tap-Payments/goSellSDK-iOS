@@ -716,7 +716,7 @@ internal extension Process {
 				post = TrackingURL(url: nonnullPostURL)
 			}
 			// the Amounted Currency assigned by the merchant
-			let amountedCurrency    =  AmountedCurrency(dataSource.currency as! Currency, dataSource.amount ?? 0)
+            let amountedCurrency    =  AmountedCurrency(dataSource.currency!!, dataSource.amount ?? transactionCurrency.amount)
 			// the Amounted Currency selected by the user
 			let amountedSelectedCurrency = self.selectedCurrency
 

@@ -38,7 +38,7 @@ import enum		TapCardValidator.CardBrand
     public let funding: String
     
     /// Cardholder name.
-    public let cardholderName: String
+    public let cardholderName: String?
     
     /// Customer identifier.
     public let customerIdentifier: String?
@@ -69,7 +69,7 @@ import enum		TapCardValidator.CardBrand
     
     // MARK: Methods
     
-    private init(identifier: String, object: String, lastFourDigits: String, expirationMonth: Int, expirationYear: Int, binNumber: String, brand: CardBrand, funding: String, cardholderName: String, customerIdentifier: String?, fingerprint: String, address: Address?) {
+    private init(identifier: String, object: String, lastFourDigits: String, expirationMonth: Int, expirationYear: Int, binNumber: String, brand: CardBrand, funding: String, cardholderName: String?, customerIdentifier: String?, fingerprint: String, address: Address?) {
         
         self.identifier         = identifier
         self.object             = object
@@ -101,7 +101,7 @@ extension TokenizedCard: Decodable {
         let binNumber          = try container.decode                      		(String.self,       forKey: .binNumber)
         let brand              = try container.decode                      		(CardBrand.self,    forKey: .brand)
         let funding            = try container.decode                      		(String.self,       forKey: .funding)
-        let cardholderName     = try container.decode                      		(String.self,       forKey: .cardholderName)
+        let cardholderName     = try container.decodeIfPresent                  (String.self,       forKey: .cardholderName)
         let customerIdentifier = try container.decodeIfPresent             		(String.self,       forKey: .customerIdentifier)
         let fingerprint        = try container.decode                      		(String.self,       forKey: .fingerprint)
         let address            = try container.tap_decodeIfPresentAndNotEmpty	(Address.self,      forKey: .address)
