@@ -452,7 +452,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
      
     
      func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-         controller.dismiss(animated: true) {[weak self] in
+         controller.dismiss(animated: true) {
              if let session:SessionProtocol = Process.shared.externalSession
              {
                  session.delegate?.applePaymentCanceled?(on: session)

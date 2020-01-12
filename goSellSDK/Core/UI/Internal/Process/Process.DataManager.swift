@@ -600,13 +600,27 @@ internal extension Process {
             
             
             let request = PKPaymentRequest()
-            request.merchantIdentifier = "merchant.tap.ApplePayTemplate"
+             //
             request.supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
             //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
             request.merchantCapabilities = [PKMerchantCapability.capability3DS]
-            if let session = Process.shared.externalSession?.dataSource, let countryCode = session.applePayCountryCode
+            if let session = Process.shared.externalSession?.dataSource
             {
-                request.countryCode = countryCode
+                if let countryCode = session.applePayCountryCode
+                {
+                    request.countryCode = countryCode
+                }else
+                {
+                    request.countryCode = "KW"
+                }
+                
+                if let merchantID = session.applePayMerchantID
+                {
+                    request.merchantIdentifier = merchantID
+                }else
+                {
+                    request.merchantIdentifier = "merchant.tap.ApplePayTemplate"
+                }
             }else
             {
                 request.countryCode = "KW"
@@ -657,7 +671,7 @@ internal extension Process {
                     
                     if let userCurrency = self.userSelectedCurrency
                     {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ?? 1))
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
                         
                         //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
                     }
