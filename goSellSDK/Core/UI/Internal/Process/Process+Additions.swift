@@ -7,8 +7,34 @@
 
 import struct	CoreGraphics.CGGeometry.CGRect
 import struct	TapAdditionsKit.TypeAlias
+import class PassKit.PKPaymentToken
 
 extension Process: ProcessInterface {
+    
+    func createApplePayTokenizationApiRequest(with appleTokenData: PKPaymentToken) -> CreateTokenWithApplePayRequest? {
+        var token = String(data: appleTokenData.paymentData, encoding: .utf8) ?? ""
+        if token == ""
+        {
+            token = "{\"type\": \"applepay\",\"token_data\": {\"version\":\"EC_v1\", \"data\":\"BNsaBwQt87C0yHGRKKnbN1luSOsdU1zBipTA3AQCR99Dh46zCRvfsjSY1FlyVHZfcIglot5y5aLck0YlI5unqLXRO7M3tyTdwxUc+WU1BHDP320tw6WQhcKc3pNqZhhHwxsH81f4D+vgcAnIh4dZVnW9hMmwz6dUCI0LTxQJIdM011XULLnB5BrlpukBof5YdEpL6d5w2Clb4Cm+OJnSvEdfiCaBbY8E16E1JTYQgnL24VeanAes1QVzHMr7D/7lQHyfP/npuAiwvmJ1IzrjW6BOOLTg4Sv9BCJi6pHw7xiMnaIlJLio16QPcGIZMK4ncz+X1+1KaFSYTyq77Ihi7FN/aRTDcILdcutjmSg2tLhIDchmBetjp5Y2q3SiwUIuDNJDyJm6nCbywlgBGy8ttcarvbsRk1HxVDQdSRzdkJaHde5vEEknxw3jVmEdBGuNNV3Ama/unaP0RuCm+/dxGKZBtqATSoc8OxYiyfn32MaE41H8sSxLniRF82CNabYs+Q2I5Mnooy26Vtu2WAdMdUolzG12+PrcqRu1pvtXNwKG3plp0EBwFIrtAng=\", \"signature\":\"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\",\"header\":{ \"ephemeralPublicKey\":\"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEE11eNZZ4I5kpH0w7rN7zr9pR9FKIL3OBuIYMuk5l6kH+9wvmWYkZIuBijbKQoyF/41wkqkPCnLXYPq61l9pVwg==\",\"publicKeyHash\":\"LjAAyv6vb6jOEkjfG7L1a5OR2uCTHIkB61DaYdEWD+w=\",\"transactionId\":\"33aa2d221f2c8a63560e9aa019046260a410d53db26b130905601dff9f9fdea6\"}},\"client_ip\": \"192.168.1.20\"}"
+        }
+        
+        if let jsonData = token.data(using: .utf8)
+        {
+            do {
+                let dict = try JSONSerialization.jsonObject(with: jsonData, options: []) as! [String: Any]
+                let applePayToken:CreateTokenApplePay = try CreateTokenApplePay(dictionary: dict)
+                let request = CreateTokenWithApplePayRequest(applePayToken: applePayToken)
+                return request
+            } catch {
+                print(error.localizedDescription)
+                return nil
+            }
+        }else
+        {
+            return nil
+        }
+    }
+    
 	
 	// MARK: - Internal -
 	// MARK: Properties

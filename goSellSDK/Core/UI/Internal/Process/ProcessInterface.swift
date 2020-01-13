@@ -8,6 +8,7 @@
 import struct	CoreGraphics.CGGeometry.CGRect
 import protocol	TapAdditionsKit.ClassProtocol
 import struct	TapAdditionsKit.TypeAlias
+import class PassKit.PKPaymentToken
 
 internal protocol ProcessInterface: ClassProtocol {
 	

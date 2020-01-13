@@ -52,6 +52,7 @@ import class    UIKit.UIViewController.UIViewController
 import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
 import UIKit
+import class PassKit.PKPaymentToken
 
 internal class ExampleViewController: BaseViewController {
     
@@ -298,8 +299,8 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
 
 // MARK: - SessionDataSource
 extension ExampleViewController: SessionDataSource {
-    var appleTokenData: String? {
-        return "Apple Encoded Token"
+    var appleTokenData: PKPaymentToken? {
+        return nil
     }
     
     var isApplePay: Bool
@@ -411,6 +412,14 @@ extension ExampleViewController: SessionDelegate {
 			
 			self.updateSavedCardsButtonVisibility()
         }
+    }
+    
+    
+    internal func applePaymentTokenizationFailed(_ error: String, on session: SessionProtocol) {
+        
+    }
+    internal func applePaymentTokenizationSucceeded(_ token: Token, on session: SessionProtocol) {
+        
     }
     
     internal func applePaymentSucceed(_ charge: String, on session: SessionProtocol) {

@@ -53,6 +53,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	
     func createApplePayRequest() -> PKPaymentRequest
     func canStartApplePayPurchase() -> Bool
+    func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
     
 	func callChargeOrAuthorizeAPI(with source:						SourceRequest,
 								  paymentOption:					PaymentOption,
@@ -280,6 +281,11 @@ internal extension Process {
 			
 			fatalError("Must be implemented in extension")
 		}
+        
+        internal func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+        {
+            fatalError("Must be impleneted in extenstion")
+        }
         
         
         internal func callChargeApplePayAPI(for session: SessionProtocol) {
@@ -703,6 +709,34 @@ internal extension Process {
         }
         
         
+        internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+        {
+            self.isExecutingAPICalls = true
+            
+            APIClient.shared.createToken(with: applePayTokenRequest) { [weak self] (token, error) in
+                
+                self?.isExecutingAPICalls = false
+                
+                if let nonnullError = error {
+                    
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?(nonnullError.description, on: Process.shared.externalSession!)
+                    }
+                }
+                else if let nonnullToken = token {
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationSucceeded?(nonnullToken, on: Process.shared.externalSession!)
+                    }
+                }else {
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?("Cannot create the request.", on: Process.shared.externalSession!)
+                    }
+                }
+            }
+        }
         
 		internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
 														paymentOption:					PaymentOption,
