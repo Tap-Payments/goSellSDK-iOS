@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 import enum PassKit.PKPaymentButtonType
+import class PassKit.PKPaymentToken
 
 /// Payment data source.
 @objc public protocol SessionDataSource: class, NSObjectProtocol {
@@ -16,7 +17,7 @@ import enum PassKit.PKPaymentButtonType
 	@objc var customer: Customer? { get }
     
     /// Details if the merchant wants to start apple session
-    //@objc optional var isApplePay: Bool { get }
+    @objc optional var isApplePay: Bool { get }
     
     /// The country code is a must to start to work with apple payments. The country code should be given in iso 2 letters code. If not provided, the apple pay option will not be shown
     @objc optional var applePayCountryCode: String { get }
@@ -28,7 +29,7 @@ import enum PassKit.PKPaymentButtonType
     @objc optional var applePayButtonType: PKPaymentButtonType { get }
     
     /// Details of the apple token data
-    //@objc var appleTokenData: String? { get }
+    @objc var appleTokenData: PKPaymentToken? { get }
     
 	
 	/// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.

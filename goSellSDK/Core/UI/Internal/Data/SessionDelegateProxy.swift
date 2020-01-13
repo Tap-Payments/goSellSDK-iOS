@@ -41,7 +41,7 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 	}
     
     
-    internal func applePaymentSucceed(_ charge: String, on session: SessionProtocol) {
+    internal func applePaymentTokenizationEnded(_ charge: String, on session: SessionProtocol) {
         
         let targetSession = self.targetSession(for: session)
         
@@ -59,6 +59,28 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
             theDelegates.forEach { $0.applePaymentCanceled?(on: targetSession)}
         }
     }
+    
+    
+    internal func applePaymentTokenizationSucceeded(_ token: Token, on session: SessionProtocol)
+    {
+        let targetSession = self.targetSession(for: session)
+        
+        self.removeNilDelegatesAndSynchronized { theDelegates in
+            
+            theDelegates.forEach { $0.applePaymentTokenizationSucceeded?(token, on: targetSession)}
+        }
+    }
+    
+    internal func applePaymentTokenizationFailed(_ error: String, on session: SessionProtocol) {
+        let targetSession = self.targetSession(for: session)
+               
+               self.removeNilDelegatesAndSynchronized { theDelegates in
+                   
+                   theDelegates.forEach { $0.applePaymentTokenizationFailed?(error, on: targetSession)}
+               }
+    }
+    
+    
     
 	
 	internal func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol) {
