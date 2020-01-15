@@ -625,7 +625,7 @@ internal extension Process {
                     request.merchantIdentifier = merchantID
                 }else
                 {
-                    request.merchantIdentifier = "merchant.tap.ApplePayTemplate"
+                    request.merchantIdentifier = "merchant.tap.gosell"
                 }
             }else
             {

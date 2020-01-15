@@ -320,7 +320,7 @@ extension ExampleViewController: SessionDataSource {
     
     internal var applePayMerchantID: String
     {
-        return "merchant.tap.ApplePayTemplate"
+        return "merchant.tap.gosell"
     }
     
     internal var applePayCountryCode: String
