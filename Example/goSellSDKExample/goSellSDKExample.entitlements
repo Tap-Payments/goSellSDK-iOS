@@ -5,6 +5,7 @@
 	<key>com.apple.developer.in-app-payments</key>
 	<array>
 		<string>merchant.tap.ApplePayTemplate</string>
+		<string>merchant.tap.gosell</string>
 	</array>
 </dict>
 </plist>
