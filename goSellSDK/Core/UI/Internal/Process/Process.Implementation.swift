@@ -373,9 +373,26 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 				PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
 			}
         case .apple:
-            break;
+            guard let nonnullURL = url else {
+                
+                completion?()
+                return
+            }
+            
+            ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen { [weak self] in
+                
+                guard let strongSelf = self else {
+                    
+                    completion?()
+                    return
+                }
+                
+                let webPopupControllerFrame = strongSelf.loadingControllerFrame(coveringHeader: false)
+                
+                WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL, completion: completion)
+            }
 		case .all:
-			print("paymentType always web or card")
+			print("paymentType always web or card or apple pay")
 
 		}
 	}
