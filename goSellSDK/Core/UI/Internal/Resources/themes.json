@@ -1299,7 +1299,7 @@
                 
                 "fullscreen": {
                     
-                    "style": "extra_light",
+                    "style": "light",
                     "progress": 1,
                 },
                 "windowed": {
