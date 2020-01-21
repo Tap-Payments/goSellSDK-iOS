@@ -700,7 +700,7 @@
                 },
                 "disabled": {
                     
-                    "background_color": "#000000",
+                    "background_color": "#515151",
                     "loader_color": "#ffffff",
                     "security_icon": "btn_security",
                     "loader_visible": true,
