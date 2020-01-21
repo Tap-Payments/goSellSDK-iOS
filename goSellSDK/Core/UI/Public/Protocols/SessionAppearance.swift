@@ -39,6 +39,16 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	@objc(backgroundColorForSession:) optional func backgroundColor(for session: SessionProtocol) -> UIColor?
     
     
+    // MARK: - Light Dark Mode
+    
+    /// Light/Dark mode for the checkout screen
+    ///
+    /// - Parameters:
+    ///   - session: Target session.
+    /// - Returns: The selected mode
+    @objc(darkLightModeForSession:) optional func darkLightMode(for session: SessionProtocol) -> SDKLightDarkMode
+    
+    
 	
 	/// Content background color for payment screen.
 	///
