@@ -37,6 +37,8 @@ import struct	UIKit.UIGeometry.UIEdgeInsets
 	///   - session: Target session.
 	/// - Returns: UIColor
 	@objc(backgroundColorForSession:) optional func backgroundColor(for session: SessionProtocol) -> UIColor?
+    
+    
 	
 	/// Content background color for payment screen.
 	///
