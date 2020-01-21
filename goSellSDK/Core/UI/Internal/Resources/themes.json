@@ -933,7 +933,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 17.0
                 },
-                "color": "#000000",
+                "color": "#e5e5e5",
                 "alignment": "leading"
             },
             "cancel_normal_style": {
@@ -943,7 +943,7 @@
                     "typeface": "helvetica-neue-light",
                     "size": 12.0
                 },
-                "color": "#595959",
+                "color": "#ffffff",
                 "alignment": "center"
             },
             "cancel_highlighted_style": {
@@ -953,7 +953,7 @@
                     "typeface": "helvetica-neue-light",
                     "size": 12.0
                 },
-                "color": "#000000",
+                "color": "#ffffff",
                 "alignment": "center"
             },
             "icon_style": {
