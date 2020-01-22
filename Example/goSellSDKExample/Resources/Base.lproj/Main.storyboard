@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -81,7 +81,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="xRJ-zo-6wC">
-                                                                    <rect key="frame" x="276" y="5" width="26" height="20"/>
+                                                                    <rect key="frame" x="289" y="10" width="13" height="10"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -441,6 +441,18 @@
                                     <constraint firstAttribute="bottom" secondItem="F15-Cc-alU" secondAttribute="bottom" id="pK4-u7-nCt"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Localised from App Project" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKO-MW-X1Q">
+                                <rect key="frame" x="0.0" y="384" width="375" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9go-lX-ixf">
+                                <rect key="frame" x="163" y="490" width="49" height="31"/>
+                                <connections>
+                                    <action selector="switchLanguageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="KVC-qO-RzX"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -448,14 +460,20 @@
                             <constraint firstAttribute="bottom" secondItem="Vxt-yE-Bhp" secondAttribute="bottom" id="9j9-Ma-Mfb"/>
                             <constraint firstItem="q7z-qv-MZT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CXp-A8-g8Y"/>
                             <constraint firstAttribute="trailing" secondItem="Vxt-yE-Bhp" secondAttribute="trailing" id="Dp5-vb-aph"/>
+                            <constraint firstItem="aKO-MW-X1Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="EDU-Jt-xb3"/>
                             <constraint firstItem="Vxt-yE-Bhp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Enc-qX-2Jc"/>
                             <constraint firstItem="q7z-qv-MZT" firstAttribute="top" secondItem="2oO-oy-FhN" secondAttribute="bottom" id="IcC-iv-hBb"/>
                             <constraint firstItem="4xO-ET-klP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="J6Q-NQ-Lb8"/>
                             <constraint firstItem="4xO-ET-klP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Qmc-DB-4HC"/>
                             <constraint firstItem="Vxt-yE-Bhp" firstAttribute="top" secondItem="6b2-JM-nJ9" secondAttribute="bottom" priority="999" constant="8" id="RQt-0C-3wO"/>
+                            <constraint firstItem="9go-lX-ixf" firstAttribute="top" secondItem="aKO-MW-X1Q" secondAttribute="bottom" constant="20" id="Ru5-kF-NGb"/>
+                            <constraint firstItem="9go-lX-ixf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TMJ-pe-Wyq"/>
+                            <constraint firstAttribute="trailing" secondItem="aKO-MW-X1Q" secondAttribute="trailing" id="aNE-Rz-QHF"/>
                             <constraint firstAttribute="bottom" secondItem="4xO-ET-klP" secondAttribute="bottom" id="cWP-Sc-JvA"/>
+                            <constraint firstItem="aKO-MW-X1Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dvp-Bp-9lG"/>
                             <constraint firstAttribute="bottom" secondItem="q7z-qv-MZT" secondAttribute="bottom" id="g4x-tk-BEJ"/>
                             <constraint firstItem="Vxt-yE-Bhp" firstAttribute="top" secondItem="24L-YU-wCA" secondAttribute="top" id="pc9-vV-JlG"/>
+                            <constraint firstItem="aKO-MW-X1Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wo0-jH-Eot"/>
                             <constraint firstAttribute="trailing" secondItem="q7z-qv-MZT" secondAttribute="trailing" id="y69-sH-GKM"/>
                         </constraints>
                     </view>
@@ -481,9 +499,11 @@
                     <connections>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="g4x-tk-BEJ" id="nkb-Y9-bkD"/>
                         <outlet property="itemsTableView" destination="F15-Cc-alU" id="Boy-6b-2jg"/>
+                        <outlet property="languageSwitch" destination="9go-lX-ixf" id="N72-g6-era"/>
                         <outlet property="loader" destination="kE2-qy-Iqi" id="O4P-re-0jC"/>
                         <outlet property="loaderBlurView" destination="nET-GX-t9a" id="tNl-80-tTg"/>
                         <outlet property="loadingView" destination="uUH-Hk-l4h" id="A6z-lV-IWh"/>
+                        <outlet property="localisedStringFromApp" destination="aKO-MW-X1Q" id="PrI-jy-dNy"/>
                         <outlet property="payButton" destination="6b2-JM-nJ9" id="PzM-a6-bCG"/>
                         <outlet property="savedCardsButton" destination="LT2-e2-1y8" id="JE0-iz-1Kt"/>
                         <segue destination="qGr-ff-bUV" kind="show" identifier="PaymentItemViewControllerSegue" id="aaY-1B-Dcb"/>

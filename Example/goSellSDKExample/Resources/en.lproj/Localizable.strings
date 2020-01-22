@@ -1,0 +1,8 @@
+/* 
+  Localizable.strings
+  goSellSDKExample
+
+  Created by Osama Rabie on 22/01/2020.
+  Copyright © 2020 Tap Payments. All rights reserved.
+*/
+"common_cancel" = "English Version from App's localisation for common_cancel key";

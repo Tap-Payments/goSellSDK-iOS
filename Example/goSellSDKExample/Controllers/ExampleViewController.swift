@@ -50,6 +50,7 @@ import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
+import     UIKit
 
 internal class ExampleViewController: BaseViewController {
     
@@ -60,8 +61,15 @@ internal class ExampleViewController: BaseViewController {
     
     internal var selectedPaymentItems: [PaymentItem]?
     internal var plainAmount: Decimal?
+    /// This will show the localisaed version of common_cancel from localisation string files in the project, which is the same KEY as the one in the POD.
+    @IBOutlet weak var localisedStringFromApp: UILabel!
+    /// Use this switch to change  the language, OFF means English and ON means Arabic
+    @IBOutlet weak var languageSwitch: UISwitch!
     
     // MARK: Methods
+    @IBAction func switchLanguageChanged(_ sender: Any) {
+        localiseTheLabel()
+    }
     
     internal override func viewDidLoad() {
         
@@ -79,6 +87,14 @@ internal class ExampleViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.updatePayButtonAmount()
 		self.updateSavedCardsButtonVisibility()
+        
+        localiseTheLabel()
+    }
+    
+    /// The method will localise label sing the key common_cancel from the project's localisation files. This key also exxists in the POD localisation files to show how the conflicts are not existing
+    internal func localiseTheLabel()
+    {
+        localisedStringFromApp.text = "common_cancel".localized(languageSwitch.isOn ? "ar" : "en")
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -661,3 +677,14 @@ extension ExampleViewController: SessionAppearance {
 		return self.paymentSettings.appearance.tapButtonHeight
 	}
 }
+
+
+
+extension String {
+func localized(_ lang:String) ->String {
+
+    let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+    let bundle = Bundle(path: path!)
+
+    return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+}}
