@@ -1,0 +1,585 @@
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "03d-sG-V8q"; */
+"03d-sG-V8q.text" = "Value";
+
+/* Class = "UIButton"; normalTitle = "Restore Data Source Defaults"; ObjectID = "0Zq-JQ-5mz"; */
+"0Zq-JQ-5mz.normalTitle" = "Restore Data Source Defaults";
+
+/* Class = "UILabel"; text = "Font"; ObjectID = "0iV-gF-cxb"; */
+"0iV-gF-cxb.text" = "Font";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "1L2-XP-N1g"; */
+"1L2-XP-N1g.text" = "Value";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1L8-2N-kgx"; */
+"1L8-2N-kgx.text" = "Label";
+
+/* Class = "UILabel"; text = "Customer"; ObjectID = "1Ud-BT-3pB"; */
+"1Ud-BT-3pB.text" = "Customer";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1mN-t7-SVJ"; */
+"1mN-t7-SVJ.text" = "Label";
+
+/* Class = "UILabel"; text = "Helvetica Neue"; ObjectID = "1qT-uh-F4w"; */
+"1qT-uh-F4w.text" = "Helvetica Neue";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "1ro-Ve-FO4"; */
+"1ro-Ve-FO4.text" = "Value";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1uY-Qh-vFf"; */
+"1uY-Qh-vFf.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "20u-hl-ayi"; */
+"20u-hl-ayi.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "35Y-qc-aw6"; */
+"35Y-qc-aw6.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "35a-RB-t6z"; */
+"35a-RB-t6z.text" = "Label";
+
+/* Class = "UILabel"; text = "Enabled Background Color"; ObjectID = "39h-Nv-yva"; */
+"39h-Nv-yva.text" = "Enabled Background Color";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "3CB-Sg-Vas"; */
+"3CB-Sg-Vas.text" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3H8-Q4-ICr"; */
+"3H8-Q4-ICr.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3ge-No-bXH"; */
+"3ge-No-bXH.text" = "Label";
+
+/* Class = "UILabel"; text = "TEST CUSTOMER"; ObjectID = "3km-cp-ltQ"; */
+"3km-cp-ltQ.text" = "TEST CUSTOMER";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "3pZ-d8-qdH"; */
+"3pZ-d8-qdH.text" = "Email";
+
+/* Class = "UILabel"; text = "Content Color"; ObjectID = "3r8-fa-2H9"; */
+"3r8-fa-2H9.text" = "Content Color";
+
+/* Class = "UILabel"; text = "First Name"; ObjectID = "3xc-AO-vBP"; */
+"3xc-AO-vBP.text" = "First Name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4L1-4S-dYQ"; */
+"4L1-4S-dYQ.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "4Lu-Kw-eUg"; */
+"4Lu-Kw-eUg.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4TF-qB-i2n"; */
+"4TF-qB-i2n.text" = "Label";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "4cG-8m-Vm5"; */
+"4cG-8m-Vm5.text" = "Type";
+
+/* Class = "UILabel"; text = "Transaction Mode"; ObjectID = "4hF-o5-lGu"; */
+"4hF-o5-lGu.text" = "Transaction Mode";
+
+/* Class = "UILabel"; text = "Blur Style"; ObjectID = "59W-iw-1ga"; */
+"59W-iw-1ga.text" = "Blur Style";
+
+/* Class = "UITableViewSection"; headerTitle = "Reset Appearance"; ObjectID = "5Jm-Ha-AIc"; */
+"5Jm-Ha-AIc.headerTitle" = "Reset Appearance";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "6Tg-YX-SdZ"; */
+"6Tg-YX-SdZ.text" = "Description";
+
+/* Class = "UILabel"; text = "Phone Number"; ObjectID = "6ow-wV-Lfg"; */
+"6ow-wV-Lfg.text" = "Phone Number";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6tC-5R-rNk"; */
+"6tC-5R-rNk.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "862-0H-Wwf"; */
+"862-0H-Wwf.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8Ge-Aa-aV6"; */
+"8Ge-Aa-aV6.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8PX-F4-rdk"; */
+"8PX-F4-rdk.text" = "Label";
+
+/* Class = "UILabel"; text = "Last Name"; ObjectID = "9fD-hc-oDC"; */
+"9fD-hc-oDC.text" = "Last Name";
+
+/* Class = "UILabel"; text = "Quantity *"; ObjectID = "9yD-Ro-hsN"; */
+"9yD-Ro-hsN.text" = "Quantity *";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "A6U-MF-PbW"; */
+"A6U-MF-PbW.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ADT-Kr-HSB"; */
+"ADT-Kr-HSB.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "AWD-G7-Fjf"; */
+"AWD-G7-Fjf.text" = "Label";
+
+/* Class = "UILabel"; text = "Status Popup"; ObjectID = "BaC-CB-XkQ"; */
+"BaC-CB-XkQ.text" = "Status Popup";
+
+/* Class = "UILabel"; text = "Amount *"; ObjectID = "BeE-3c-FjL"; */
+"BeE-3c-FjL.text" = "Amount *";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Brp-1i-UVj"; */
+"Brp-1i-UVj.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Cdi-5m-JQT"; */
+"Cdi-5m-JQT.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "D1K-wO-p26"; */
+"D1K-wO-p26.text" = "Label";
+
+/* Class = "UILabel"; text = "Discount"; ObjectID = "DpA-vv-KNt"; */
+"DpA-vv-KNt.text" = "Discount";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EtH-zl-5Fp"; */
+"EtH-zl-5Fp.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "FLU-Pk-V8f"; */
+"FLU-Pk-V8f.text" = "Label";
+
+/* Class = "UILabel"; text = "Currency *"; ObjectID = "FQi-ST-cT9"; */
+"FQi-ST-cT9.text" = "Currency *";
+
+/* Class = "UILabel"; text = "Save Card Switch Off Tint"; ObjectID = "FiP-hs-KVl"; */
+"FiP-hs-KVl.text" = "Save Card Switch Off Tint";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Fut-Z6-laE"; */
+"Fut-Z6-laE.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "FxZ-u6-xoh"; */
+"FxZ-u6-xoh.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Fyx-XI-AnP"; */
+"Fyx-XI-AnP.text" = "Title";
+
+/* Class = "UILabel"; text = "Shipping"; ObjectID = "GFm-DK-hv3"; */
+"GFm-DK-hv3.text" = "Shipping";
+
+/* Class = "UITableViewSection"; headerTitle = "Appearance: Header"; ObjectID = "Gaq-Gq-PYn"; */
+"Gaq-Gq-PYn.headerTitle" = "Appearance: Header";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GbM-on-LrC"; */
+"GbM-on-LrC.text" = "Label";
+
+/* Class = "UILabel"; text = "Quantity"; ObjectID = "HND-DR-w87"; */
+"HND-DR-w87.text" = "Quantity";
+
+/* Class = "UILabel"; text = "Description Font"; ObjectID = "Hfz-9t-HQs"; */
+"Hfz-9t-HQs.text" = "Description Font";
+
+/* Class = "UILabel"; text = "Phone ISD"; ObjectID = "HrW-k7-flI"; */
+"HrW-k7-flI.text" = "Phone ISD";
+
+/* Class = "UILabel"; text = "Title *"; ObjectID = "INH-pW-VE0"; */
+"INH-pW-VE0.text" = "Title *";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "INm-Go-PYU"; */
+"INm-Go-PYU.text" = "Label";
+
+/* Class = "UILabel"; text = "Cancel Highlighted Text Color"; ObjectID = "Ihm-JJ-kOR"; */
+"Ihm-JJ-kOR.text" = "Cancel Highlighted Text Color";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "InI-yz-EMs"; */
+"InI-yz-EMs.text" = "Label";
+
+/* Class = "UILabel"; text = "Cancel Button Font"; ObjectID = "IpD-cs-MPM"; */
+"IpD-cs-MPM.text" = "Cancel Button Font";
+
+/* Class = "UILabel"; text = "Discount"; ObjectID = "J2m-c7-U2M"; */
+"J2m-c7-U2M.text" = "Discount";
+
+/* Class = "UILabel"; text = "Highlighted Background Color"; ObjectID = "J8L-dd-yjv"; */
+"J8L-dd-yjv.text" = "Highlighted Background Color";
+
+/* Class = "UILabel"; text = "Currency"; ObjectID = "Jf3-ll-wRV"; */
+"Jf3-ll-wRV.text" = "Currency";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "K8M-bh-TD8"; */
+"K8M-bh-TD8.text" = "Label";
+
+/* Class = "UILabel"; text = "Disabled Title Color"; ObjectID = "Kex-34-1dA"; */
+"Kex-34-1dA.text" = "Disabled Title Color";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "KoI-MS-F4U"; */
+"KoI-MS-F4U.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Root View Controller"; ObjectID = "Kwj-45-C6l"; */
+"Kwj-45-C6l.title" = "Root View Controller";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "L4d-S4-hvw"; */
+"L4d-S4-hvw.text" = "Label";
+
+/* Class = "UILabel"; text = "Middle Name"; ObjectID = "LSN-cI-SvU"; */
+"LSN-cI-SvU.text" = "Middle Name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Mgc-0N-eXP"; */
+"Mgc-0N-eXP.text" = "Label";
+
+/* Class = "UILabel"; text = "Text Color"; ObjectID = "NUC-Xl-CtC"; */
+"NUC-Xl-CtC.text" = "Text Color";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "OY5-rz-gjI"; */
+"OY5-rz-gjI.text" = "Total";
+
+/* Class = "UILabel"; text = "Disabled Background Color"; ObjectID = "OfE-vx-Pm4"; */
+"OfE-vx-Pm4.text" = "Disabled Background Color";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Oft-RI-anI"; */
+"Oft-RI-anI.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "OxT-dW-S2s"; */
+"OxT-dW-S2s.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "Red"; ObjectID = "Pei-9l-hho"; */
+"Pei-9l-hho.text" = "Red";
+
+/* Class = "UITableViewSection"; headerTitle = "Session Data Source"; ObjectID = "Po2-xq-4Ay"; */
+"Po2-xq-4Ay.headerTitle" = "Session Data Source";
+
+/* Class = "UITableViewSection"; headerTitle = "Common"; ObjectID = "Q8g-xK-GRz"; */
+"Q8g-xK-GRz.headerTitle" = "Common";
+
+/* Class = "UILabel"; text = "05/21"; ObjectID = "QEI-Z2-GdY"; */
+"QEI-Z2-GdY.text" = "05/21";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "QLP-3D-khM"; */
+"QLP-3D-khM.text" = "Description";
+
+/* Class = "UINavigationItem"; title = "Saved Cards"; ObjectID = "Qeo-lc-arG"; */
+"Qeo-lc-arG.title" = "Saved Cards";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QjJ-x1-xXS"; */
+"QjJ-x1-xXS.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Qoe-xf-tkR"; */
+"Qoe-xf-tkR.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QtR-u6-aKi"; */
+"QtR-u6-aKi.text" = "Label";
+
+/* Class = "UILabel"; text = "Reference"; ObjectID = "RaN-tY-4Fd"; */
+"RaN-tY-4Fd.text" = "Reference";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Rg0-4z-Mt3"; */
+"Rg0-4z-Mt3.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "S1G-sL-RXx"; */
+"S1G-sL-RXx.text" = "Label";
+
+/* Class = "UILabel"; text = "Placeholder Text Color"; ObjectID = "S5s-uB-2UJ"; */
+"S5s-uB-2UJ.text" = "Placeholder Text Color";
+
+/* Class = "UITableViewSection"; headerTitle = "Reset Data Source"; ObjectID = "SIw-Xa-5DQ"; */
+"SIw-Xa-5DQ.headerTitle" = "Reset Data Source";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "SdZ-bG-e7C"; */
+"SdZ-bG-e7C.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "TOP-NL-L4d"; */
+"TOP-NL-L4d.text" = "Type";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TPx-8i-8Mi"; */
+"TPx-8i-8Mi.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "TWA-G7-O6e"; */
+"TWA-G7-O6e.title" = "Settings";
+
+/* Class = "UILabel"; text = "Scan Icon Tint"; ObjectID = "TgR-wN-xrD"; */
+"TgR-wN-xrD.text" = "Scan Icon Tint";
+
+/* Class = "UILabel"; text = "Invalid Text Color"; ObjectID = "Uaa-b4-yQS"; */
+"Uaa-b4-yQS.text" = "Invalid Text Color";
+
+/* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "VGF-2h-qNP"; */
+"VGF-2h-qNP.title" = "Settings";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "WbM-rt-paa"; */
+"WbM-rt-paa.text" = "Description";
+
+/* Class = "UILabel"; text = "Background Color"; ObjectID = "WyX-6x-jdE"; */
+"WyX-6x-jdE.text" = "Background Color";
+
+/* Class = "UILabel"; text = "SDK Language"; ObjectID = "XC4-Ie-PhT"; */
+"XC4-Ie-PhT.text" = "SDK Language";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XLz-Kb-ZqN"; */
+"XLz-Kb-ZqN.text" = "Label";
+
+/* Class = "UILabel"; text = "ID"; ObjectID = "XbN-AD-i5o"; */
+"XbN-AD-i5o.text" = "ID";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XlQ-2h-1vf"; */
+"XlQ-2h-1vf.text" = "Label";
+
+/* Class = "UILabel"; text = "Select item(s) from the list below:"; ObjectID = "YAH-os-3iS"; */
+"YAH-os-3iS.text" = "Select item(s) from the list below:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YI6-xI-rTt"; */
+"YI6-xI-rTt.text" = "Label";
+
+/* Class = "UILabel"; text = "Title *"; ObjectID = "Ycv-Co-Rnv"; */
+"Ycv-Co-Rnv.text" = "Title *";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YkP-QF-7Az"; */
+"YkP-QF-7Az.text" = "Label";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "YqG-Pk-bUH"; */
+"YqG-Pk-bUH.text" = "Amount";
+
+/* Class = "UILabel"; text = "Loader Visible"; ObjectID = "Z2E-f8-0pZ"; */
+"Z2E-f8-0pZ.text" = "Loader Visible";
+
+/* Class = "UILabel"; text = "Highlighted Title Color"; ObjectID = "ZId-kQ-4zQ"; */
+"ZId-kQ-4zQ.text" = "Highlighted Title Color";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZsF-lq-6gf"; */
+"ZsF-lq-6gf.text" = "Label";
+
+/* Class = "UILabel"; text = "Height"; ObjectID = "aKn-7G-ZyC"; */
+"aKn-7G-ZyC.text" = "Height";
+
+/* Class = "UILabel"; text = "Text Color"; ObjectID = "awv-ip-pKf"; */
+"awv-ip-pKf.text" = "Text Color";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "b4i-NZ-CMb"; */
+"b4i-NZ-CMb.text" = "Label";
+
+/* Class = "UILabel"; text = "Operation Mode"; ObjectID = "bGB-qe-zIE"; */
+"bGB-qe-zIE.text" = "Operation Mode";
+
+/* Class = "UILabel"; text = "Amount *"; ObjectID = "bVT-pF-VQB"; */
+"bVT-pF-VQB.text" = "Amount *";
+
+/* Class = "UITableViewSection"; headerTitle = "Appearance"; ObjectID = "bYB-3U-Q6M"; */
+"bYB-3U-Q6M.headerTitle" = "Appearance";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bZp-fk-EHu"; */
+"bZp-fk-EHu.text" = "Label";
+
+/* Class = "UILabel"; text = "Taxes"; ObjectID = "bzh-1W-nnb"; */
+"bzh-1W-nnb.text" = "Taxes";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c02-f6-rBj"; */
+"c02-f6-rBj.text" = "Label";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "c25-Ff-YLX"; */
+"c25-Ff-YLX.text" = "Value";
+
+/* Class = "UILabel"; text = "Save Card Switch On Tint"; ObjectID = "cae-sJ-a4g"; */
+"cae-sJ-a4g.text" = "Save Card Switch On Tint";
+
+/* Class = "UILabel"; text = "Save Card Switch Enabled"; ObjectID = "ces-VR-DrB"; */
+"ces-VR-DrB.text" = "Save Card Switch Enabled";
+
+/* Class = "UILabel"; text = "Trailing Inset"; ObjectID = "ckp-G7-pg9"; */
+"ckp-G7-pg9.text" = "Trailing Inset";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cyI-iU-ofR"; */
+"cyI-iU-ofR.text" = "Label";
+
+/* Class = "UILabel"; text = "Payment Type"; ObjectID = "dHe-RF-nfA"; */
+"dHe-RF-nfA.text" = "Payment Type";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "dNW-fj-xjI"; */
+"dNW-fj-xjI.text" = "Price";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "ddJ-rE-GOj"; */
+"ddJ-rE-GOj.text" = "Description";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dfk-tU-zc0"; */
+"dfk-tU-zc0.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dyn-rt-39v"; */
+"dyn-rt-39v.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "e1T-Cf-ZhH"; */
+"e1T-Cf-ZhH.text" = "Label";
+
+/* Class = "UILabel"; text = "Save Card Multiple Times"; ObjectID = "e8w-Y5-vwX"; */
+"e8w-Y5-vwX.text" = "Save Card Multiple Times";
+
+/* Class = "UILabel"; text = "Scan Icon Frame Tint"; ObjectID = "eFm-dA-1qK"; */
+"eFm-dA-1qK.text" = "Scan Icon Frame Tint";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eI8-qw-yBw"; */
+"eI8-qw-yBw.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eZq-lA-CxE"; */
+"eZq-lA-CxE.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "efC-D9-Pb1"; */
+"efC-D9-Pb1.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "f45-nY-QkC"; */
+"f45-nY-QkC.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fCh-pP-LmU"; */
+"fCh-pP-LmU.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fDy-0b-efT"; */
+"fDy-0b-efT.text" = "Label";
+
+/* Class = "UILabel"; text = "3D Secure"; ObjectID = "fTw-wJ-4Ms"; */
+"fTw-wJ-4Ms.text" = "3D Secure";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fqS-MF-6mO"; */
+"fqS-MF-6mO.text" = "Label";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "g6R-6O-o1M"; */
+"g6R-6O-o1M.text" = "Value";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gZt-mX-otk"; */
+"gZt-mX-otk.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Appearance: Tap Button"; ObjectID = "gc3-PH-bbb"; */
+"gc3-PH-bbb.headerTitle" = "Appearance: Tap Button";
+
+/* Class = "UILabel"; text = "Description Color"; ObjectID = "gwb-gY-L3I"; */
+"gwb-gY-L3I.text" = "Description Color";
+
+/* Class = "UILabel"; text = "Font"; ObjectID = "h3s-Im-im0"; */
+"h3s-Im-im0.text" = "Font";
+
+/* Class = "UILabel"; text = "Bottom Inset"; ObjectID = "hbK-PX-iAE"; */
+"hbK-PX-iAE.text" = "Bottom Inset";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hc0-LF-Yxb"; */
+"hc0-LF-Yxb.text" = "Label";
+
+/* Class = "UILabel"; text = "Percents"; ObjectID = "hpS-yQ-Eda"; */
+"hpS-yQ-Eda.text" = "Percents";
+
+/* Class = "UITableViewSection"; headerTitle = "Appearance: Background"; ObjectID = "i3n-Ce-Epz"; */
+"i3n-Ce-Epz.headerTitle" = "Appearance: Background";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "iLx-s4-LqK"; */
+"iLx-s4-LqK.text" = "Label";
+
+/* Class = "UILabel"; text = "Identifier"; ObjectID = "iru-7O-ZxE"; */
+"iru-7O-ZxE.text" = "Identifier";
+
+/* Class = "UILabel"; text = "Save Card Switch Thumb Tint"; ObjectID = "j9S-kf-QF6"; */
+"j9S-kf-QF6.text" = "Save Card Switch Thumb Tint";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jBR-UP-FDh"; */
+"jBR-UP-FDh.text" = "Label";
+
+/* Class = "UILabel"; text = "Font"; ObjectID = "jKi-tm-OiS"; */
+"jKi-tm-OiS.text" = "Font";
+
+/* Class = "UIButton"; normalTitle = "Restore Appearance Defaults"; ObjectID = "jul-0h-Pyt"; */
+"jul-0h-Pyt.normalTitle" = "Restore Appearance Defaults";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "k9x-5d-Rfx"; */
+"k9x-5d-Rfx.text" = "Label";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "kBJ-S9-uk0"; */
+"kBJ-S9-uk0.text" = "Amount";
+
+/* Class = "UILabel"; text = "Title *"; ObjectID = "kL9-Bn-Hy2"; */
+"kL9-Bn-Hy2.text" = "Title *";
+
+/* Class = "UILabel"; text = "Amount *"; ObjectID = "kXW-2b-wda"; */
+"kXW-2b-wda.text" = "Amount *";
+
+/* Class = "UILabel"; text = "Taxes"; ObjectID = "lFF-14-k90"; */
+"lFF-14-k90.text" = "Taxes";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lrj-Yf-ZeE"; */
+"lrj-Yf-ZeE.text" = "Label";
+
+/* Class = "UILabel"; text = "5123 4500 0000 0008"; ObjectID = "mnm-Zx-dJM"; */
+"mnm-Zx-dJM.text" = "5123 4500 0000 0008";
+
+/* Class = "UILabel"; text = "Identifier *"; ObjectID = "mzJ-qp-QJT"; */
+"mzJ-qp-QJT.text" = "Identifier *";
+
+/* Class = "UILabel"; text = "Cancel Text Color"; ObjectID = "n5P-ye-PKO"; */
+"n5P-ye-PKO.text" = "Cancel Text Color";
+
+/* Class = "UILabel"; text = "Enabled Title Color"; ObjectID = "nHv-pl-N8r"; */
+"nHv-pl-N8r.text" = "Enabled Title Color";
+
+/* Class = "UILabel"; text = "Leading Inset"; ObjectID = "nOb-Dl-ofn"; */
+"nOb-Dl-ofn.text" = "Leading Inset";
+
+/* Class = "UILabel"; text = "Blur Progress"; ObjectID = "okT-59-7m1"; */
+"okT-59-7m1.text" = "Blur Progress";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "qXd-gN-Xzn"; */
+"qXd-gN-Xzn.text" = "Description";
+
+/* Class = "UILabel"; text = "Amount Per Unit *"; ObjectID = "qfd-OG-iQw"; */
+"qfd-OG-iQw.text" = "Amount Per Unit *";
+
+/* Class = "UILabel"; text = "Corner Radius"; ObjectID = "qyb-uP-wwQ"; */
+"qyb-uP-wwQ.text" = "Corner Radius";
+
+/* Class = "UILabel"; text = "Security Icon Visible"; ObjectID = "rXA-jF-B1o"; */
+"rXA-jF-B1o.text" = "Security Icon Visible";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sNx-Am-bNY"; */
+"sNx-Am-bNY.text" = "Label";
+
+/* Class = "UILabel"; text = "Top Inset"; ObjectID = "sdJ-Sn-jik"; */
+"sdJ-Sn-jik.text" = "Top Inset";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "snG-Ro-MPV"; */
+"snG-Ro-MPV.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "u50-Xe-6Ld"; */
+"u50-Xe-6Ld.text" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uw8-Hd-Qsn"; */
+"uw8-Hd-Qsn.text" = "Label";
+
+/* Class = "UILabel"; text = "Color"; ObjectID = "vFT-5L-uGm"; */
+"vFT-5L-uGm.text" = "Color";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vxy-Aw-P4y"; */
+"vxy-Aw-P4y.text" = "Label";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "wQL-O4-S8I"; */
+"wQL-O4-S8I.text" = "Amount";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "weh-dt-XvT"; */
+"weh-dt-XvT.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wfB-a6-jYf"; */
+"wfB-a6-jYf.text" = "Label";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "wvb-Ps-izl"; */
+"wvb-Ps-izl.text" = "Description";
+
+/* Class = "UITableViewSection"; headerTitle = "Appearance: Card Input Fields"; ObjectID = "xX0-eG-6ce"; */
+"xX0-eG-6ce.headerTitle" = "Appearance: Card Input Fields";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "xqP-9n-lEL"; */
+"xqP-9n-lEL.text" = "Label";
+
+/* Class = "UILabel"; text = "Appearance Mode"; ObjectID = "xy8-bk-BFd"; */
+"xy8-bk-BFd.text" = "Appearance Mode";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "y2b-2e-feQ"; */
+"y2b-2e-feQ.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "yFn-R0-lYY"; */
+"yFn-R0-lYY.text" = "Title";
+
+/* Class = "UILabel"; text = "Taxes"; ObjectID = "yNE-LD-vCG"; */
+"yNE-LD-vCG.text" = "Taxes";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yil-Pl-Ds0"; */
+"yil-Pl-Ds0.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yk9-po-cyF"; */
+"yk9-po-cyF.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "yld-eG-bMy"; */
+"yld-eG-bMy.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "Destinations"; ObjectID = "zlS-bE-fWe"; */
+"zlS-bE-fWe.text" = "Destinations";
