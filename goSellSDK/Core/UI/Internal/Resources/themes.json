@@ -1117,7 +1117,7 @@
         },
         "navigation_bar": {
             
-            "background_color": "#f7f7f7",
+            "background_color": "#515151",
             "back_icon": "ic_arrow_left",
             "title_style": {
                 
@@ -1126,7 +1126,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 19.0
                 },
-                "color": "#535353",
+                "color": "#e5e5e5",
                 "alignment": "leading"
             },
             "cancel_normal_style": {
