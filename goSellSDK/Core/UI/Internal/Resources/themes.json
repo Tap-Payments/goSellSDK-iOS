@@ -997,7 +997,7 @@
                         "typeface": "helvetica-neue-regular",
                         "size": 13.0
                     },
-                    "color": "#595959",
+                    "color": "#e5e5e5",
                     "alignment": "leading"
                 }
             },
@@ -1010,7 +1010,7 @@
                         "typeface": "helvetica-neue-regular",
                         "size": 13.0
                     },
-                    "color": "#595959",
+                    "color": "#e5e5e5",
                     "alignment": "leading"
                 },
                 "button_title_style": {
@@ -1020,7 +1020,7 @@
                         "typeface": "helvetica-neue-regular",
                         "size": 13.0
                     },
-                    "color": "#595959",
+                    "color": "#e5e5e5",
                     "alignment": "trailing"
                 }
             },
@@ -1104,7 +1104,7 @@
             },
             "glow_style": {
                 
-                "color": "#2ace00",
+                "color": "#e5e5e5",
                 "radius": 3.0,
                 "duration": 0.3
             },
