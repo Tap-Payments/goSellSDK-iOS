@@ -115,7 +115,7 @@ extension CardCollectionViewCell: LoadingWithModelCell {
         self.currencyLabel?.text        = self.model?.currencyLabelText
         self.cardNumberLabel?.text      = self.model?.cardNumberText
 		self.cardNumberLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.savedCard.cardNumber)
-		
+        self.cardBackgroundView?.backgroundColor = UIColor(tap_hex: "ffffff")?.loadCompatibleDarkModeColor(forColorNamed: "SavedCardCellBackgroundColor")
         self.checkmarkImageView?.image  = self.model?.checkmarkImage
         self.deleteIconImageView?.image = self.model?.deleteCardImage
         self.deleteIconImageView?.highlightedImage = self.model?.deleteCardImage
