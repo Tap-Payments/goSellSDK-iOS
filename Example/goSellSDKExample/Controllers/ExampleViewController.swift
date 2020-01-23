@@ -81,7 +81,7 @@ internal class ExampleViewController: BaseViewController {
 
         session.dataSource = self
         session.delegate = self
-        session.appearance = self
+        //session.appearance = self
         
     }
     
