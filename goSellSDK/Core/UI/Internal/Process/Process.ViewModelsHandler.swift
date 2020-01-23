@@ -396,7 +396,7 @@ internal extension Process {
             
             if hasApplaPaymentOption
             {
-                if hasSavedCards {
+                if !hasSavedCards {
                     
                     let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
                                                                  identifier: Constants.spaceBetweenCurrencyAndApplePayOptionsIdentifier)
@@ -413,7 +413,7 @@ internal extension Process {
 			
 			if hasWebPaymentOptions {
 				
-				if !hasSavedCards && !hasApplaPaymentOption {
+				if !hasSavedCards || hasApplaPaymentOption {
 					
 					let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
 																 identifier: Constants.spaceBeforeWebPaymentOptionsIdentifier)
@@ -430,7 +430,7 @@ internal extension Process {
 			
 			if hasCardPaymentOptions {
 				
-				if hasWebPaymentOptions || !displaysGroupTitles {
+                if hasWebPaymentOptions || !displaysGroupTitles || hasApplaPaymentOption {
 					
 					let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
 																 identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
@@ -505,7 +505,7 @@ internal extension Process {
           
             if hasApplaPaymentOption
             {
-                if hasSavedCards {
+                if !hasSavedCards {
                     
                     let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenCurrencyAndApplePayOptionsIdentifier)
                     emptyModel.indexPath = self.nextIndexPath(for: result)
@@ -525,7 +525,7 @@ internal extension Process {
 			
 			if hasWebPaymentOptions {
 				
-				if !hasSavedCards && !hasApplaPaymentOption {
+				if !hasSavedCards || hasApplaPaymentOption {
 					
 					let emptyModel = self.emptyCellModel(with: Constants.spaceBeforeWebPaymentOptionsIdentifier)
 					emptyModel.indexPath = self.nextIndexPath(for: result)
@@ -548,7 +548,7 @@ internal extension Process {
 			
 			if hasCardPaymentOptions {
 				
-				if hasWebPaymentOptions || !displaysGroupTitles {
+				if hasWebPaymentOptions || !displaysGroupTitles || hasApplaPaymentOption {
 					
 					let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenWebAndCardOptionsIdentifier)
 					emptyModel.indexPath = self.nextIndexPath(for: result)
