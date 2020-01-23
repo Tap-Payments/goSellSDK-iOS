@@ -12,6 +12,7 @@ import enum TapCardValidator.CardBrand
 import class TapNetworkManager.TapImageLoader
 import class UIKit.UIImage.UIImage
 import enum PassKit.PKPaymentButtonType
+import enum PassKit.PKPaymentButtonStyle
 import class PassKit.PKPaymentAuthorizationViewController
 
 internal class ApplePaymentOptionTableViewCellModel: PaymentOptionTableCellViewModel {
@@ -118,5 +119,29 @@ extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
             }
         }
         return applPayButtonType
+    }
+    
+    
+    func applePayButtonTypeStyle() -> PKPaymentButtonStyle
+    {
+        // First we set the default apple pay button style
+        var applPayButtonStyle:PKPaymentButtonStyle = .whiteOutline
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark
+            {
+                applPayButtonStyle = .whiteOutline
+            }
+       }
+        
+        if let session = Process.shared.externalSession, let sessionDatSource = session.dataSource
+        {
+            if let dataSourceApplePayStyle = sessionDatSource.applePayButtonStyle
+            {
+                applPayButtonStyle = dataSourceApplePayStyle
+            }
+        }
+        
+        return applPayButtonStyle
     }
 }

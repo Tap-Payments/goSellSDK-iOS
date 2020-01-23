@@ -46,7 +46,8 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
         
         let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ?? .buy
         
-        let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: .black)
+        let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: model?.applePayButtonTypeStyle() ?? .black)
+        
         //applePayButton.backgroundColor = .blue
         var frame:CGRect = applePayButton.frame
         frame.size.width = self.frame.width - 30

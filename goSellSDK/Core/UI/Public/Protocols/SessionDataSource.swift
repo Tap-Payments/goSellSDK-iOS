@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 import enum PassKit.PKPaymentButtonType
+import enum PassKit.PKPaymentButtonStyle
 import class PassKit.PKPaymentToken
 
 /// Payment data source.
@@ -27,6 +28,9 @@ import class PassKit.PKPaymentToken
     
     /// The type of the apple pay you want to show to user. By default it is 'Buy with Apple Pay'
     @objc optional var applePayButtonType: PKPaymentButtonType { get }
+    
+    /// The type of the apple pay you want to show to user. By default it is 'White outline'
+    @objc optional var applePayButtonStyle: PKPaymentButtonStyle { get }
     
     /// Details of the apple token data
     @objc var appleTokenData: PKPaymentToken? { get }
