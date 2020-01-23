@@ -40,18 +40,25 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
     internal func updateContent(animated: Bool) {
         
         //self.titleLabel?.text       = self.model?.title
-		//self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
-		
+        //self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
+        
         self.iconImageView?.image   = self.model?.iconImage
         
         let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ?? .buy
         
         let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: .black)
         //applePayButton.backgroundColor = .blue
+        var frame:CGRect = applePayButton.frame
+        frame.size.width = self.frame.width - 30
+        frame.size.height = 40
+        applePayButton.frame = frame
+        
         applePayButton.center = contentView.center
         applePayButton.addTarget(self, action: #selector(applePayButtonClicked(_:)), for: .touchUpInside)
         contentView.addSubview(applePayButton)
+        
        // self.arrowImageView?.image  = self.model?.arrowImage
+        self.backgroundColor = UIColor.clear
     }
     
     @objc private func applePayButtonClicked(_ sender: Any) {
