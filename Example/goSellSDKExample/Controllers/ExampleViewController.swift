@@ -548,7 +548,7 @@ extension ExampleViewController: SessionDelegate {
         }
     }
 }
-
+/*
 // MARK: - SessionAppearance
 extension ExampleViewController: SessionAppearance {
 
@@ -750,3 +750,4 @@ extension ExampleViewController: SessionAppearance {
 		return self.paymentSettings.appearance.tapButtonHeight
 	}
 }
+*/

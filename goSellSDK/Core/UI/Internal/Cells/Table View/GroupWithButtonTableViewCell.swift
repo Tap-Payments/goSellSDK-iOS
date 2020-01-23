@@ -61,5 +61,10 @@ extension GroupWithButtonTableViewCell: LoadingWithModelCell {
 												label.setTextStyle(Theme.current.paymentOptionsCellStyle.groupWithButton.buttonTitleStyle)
 			})
 		}
+        
+        
+        self.backgroundColor = UIColor.clear
+        print("OSAMA")
+        
 	}
 }
