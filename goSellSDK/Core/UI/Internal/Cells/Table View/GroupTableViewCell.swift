@@ -29,5 +29,8 @@ extension GroupTableViewCell: LoadingWithModelCell {
 		
 		self.titleLabel?.setLocalizedText(self.model?.key)
 		self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.group.titleStyle)
+        
+        self.backgroundColor = UIColor.clear
+        print("OSAMA")
     }
 }
