@@ -1299,7 +1299,7 @@
                 
                 "fullscreen": {
                     
-                    "style": "light",
+                    "style": "dark",
                     "progress": 1,
                 },
                 "windowed": {
