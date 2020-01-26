@@ -2058,6 +2058,7 @@
                         <outlet property="descriptionLabel" destination="0yK-jC-UWO" id="WRh-cV-fPX"/>
                         <outlet property="dismissalArrowImageView" destination="kea-Kh-9Oy" id="tEr-yo-xwI"/>
                         <outlet property="dismissalView" destination="FQF-9b-cKO" id="Zvi-vr-bpE"/>
+                        <outlet property="otpHolderView" destination="O0w-6J-qyy" id="2Ii-Yo-gQ6"/>
                         <outlet property="otpInputView" destination="1Wu-iR-4hK" id="fbe-Ou-IMR"/>
                         <outlet property="resendButton" destination="4gR-gB-WjZ" id="2iz-CE-Fmt"/>
                         <outlet property="resendButtonLabel" destination="R1u-QV-m3K" id="Pki-OH-Cob"/>
