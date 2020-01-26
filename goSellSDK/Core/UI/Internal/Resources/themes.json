@@ -924,7 +924,7 @@
         ],
         "merchant_header": {
             
-            "background_color": "#515151",
+            "background_color": "#151515",
             "back_icon": "ic_arrow_left",
             "title_style": {
                 
@@ -1223,7 +1223,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 13.0
                 },
-                "color": "#e5e5e5",
+                "color": "#ffffff",
                 "alignment": "trailing"
             },
             
@@ -1234,7 +1234,7 @@
                     "typeface": "helvetica-neue-medium",
                     "size": 13.0
                 },
-                "color": "#e5e5e5",
+                "color": "#ffffff",
                 "alignment": "center"
             },
             "description_style": {
@@ -1244,7 +1244,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 14.0
                 },
-                "color": "#535353",
+                "color": "#e5e5e5",
                 "alignment": "leading"
             },
             "description_number_style": {
@@ -1254,7 +1254,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 14.0
                 },
-                "color": "#e5e5e5",
+                "color": "#ffffff",
                 "alignment": "leading"
             },
             "arrow_icon": "ic_close_otp"
@@ -1293,7 +1293,7 @@
             "status_bar": {
                 
                 "fullscreen": "dark",
-                "windowed": "light"
+                "windowed": "dark"
             },
             "blur_style": {
                 
