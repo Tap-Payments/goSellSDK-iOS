@@ -222,6 +222,7 @@ internal final class APIClient {
         let osName = UIDevice.current.systemName
         let osVersion = UIDevice.current.systemVersion
 		let deviceName = UIDevice.current.name
+		let deviceNameFiltered =  deviceName.tap_byRemovingAllCharactersExcept("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789")
 		let deviceType = UIDevice.current.model
 		let deviceModel = UIDevice.current.localizedModel
 		let simNetWorkName = carrier?.carrierName
@@ -235,7 +236,7 @@ internal final class APIClient {
             Constants.HTTPHeaderValueKey.requirerVersion: requirerVersion,
             Constants.HTTPHeaderValueKey.requirerOS: osName,
             Constants.HTTPHeaderValueKey.requirerOSVersion: osVersion,
-			Constants.HTTPHeaderValueKey.requirerDeviceName: deviceName,
+			Constants.HTTPHeaderValueKey.requirerDeviceName: deviceNameFiltered,
 			Constants.HTTPHeaderValueKey.requirerDeviceType: deviceType,
 			Constants.HTTPHeaderValueKey.requirerDeviceModel: deviceModel,
 			Constants.HTTPHeaderValueKey.requirerSimNetworkName: simNetWorkName ?? "",
