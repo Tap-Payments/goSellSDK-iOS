@@ -1244,7 +1244,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 14.0
                 },
-                "color": "#535353",
+                "color": "#000000",
                 "alignment": "leading"
             },
             "description_number_style": {
