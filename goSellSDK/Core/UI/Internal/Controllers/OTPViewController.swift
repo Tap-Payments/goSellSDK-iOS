@@ -208,6 +208,12 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     @IBOutlet private weak var dismissalView: UIView?
     
+    @IBOutlet weak var otpHolderView: UIView?{
+        didSet
+        {
+            self.otpHolderView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.36).loadCompatibleDarkModeColor(forColorNamed: "OTPHolderColor")
+        }
+    }
     @IBOutlet private weak var dismissalArrowImageView: UIImageView? {
         
         didSet {
