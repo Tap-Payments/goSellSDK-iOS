@@ -64,7 +64,5 @@ extension GroupWithButtonTableViewCell: LoadingWithModelCell {
         
         
         self.backgroundColor = UIColor.clear
-        print("OSAMA")
-        
 	}
 }

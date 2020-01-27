@@ -38,7 +38,6 @@ extension CardsContainerTableViewCell: BindingWithModelCell {
 		
 		self.isContentBinded = true
         self.backgroundColor = UIColor.clear
-        print("OSAMA")
     }
     
     internal func unbindContent() {
@@ -58,6 +57,5 @@ extension CardsContainerTableViewCell: LoadingWithModelCell {
 		
         self.cardsCollectionView?.reloadData()
         self.backgroundColor = UIColor.clear
-        print("OSAMA")
     }
 }
