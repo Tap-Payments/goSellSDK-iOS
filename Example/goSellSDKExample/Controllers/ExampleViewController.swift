@@ -50,6 +50,7 @@ import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
+import class    UIKit.UITraitCollection
 
 internal class ExampleViewController: BaseViewController {
     
@@ -111,6 +112,14 @@ internal class ExampleViewController: BaseViewController {
             
             self.performSegue(withIdentifier: "\(PaymentItemViewController.tap_className)Segue", sender: self)
         }
+    }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        self.itemsTableView?.reloadData()
+        
     }
     
     internal func updatePayButtonAmount() {
