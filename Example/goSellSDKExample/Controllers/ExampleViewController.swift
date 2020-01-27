@@ -125,6 +125,14 @@ internal class ExampleViewController: BaseViewController {
         }
     }
     
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        self.itemsTableView?.reloadData()
+        
+    }
+    
     internal func updatePayButtonAmount() {
         self.payButton?.updateDisplayedState()
     }
