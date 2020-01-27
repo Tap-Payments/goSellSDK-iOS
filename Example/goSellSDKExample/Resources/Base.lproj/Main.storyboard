@@ -310,7 +310,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="XaG-j6-vVq" secondAttribute="trailing" id="yWS-4Y-CRO"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <outlet property="amountLabel" destination="862-0H-Wwf" id="FFw-jA-A1z"/>
                                                     <outlet property="checkmarkImageView" destination="xRJ-zo-6wC" id="V2k-mL-R4S"/>
@@ -3949,7 +3949,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="b4i-NZ-CMb" firstAttribute="leading" secondItem="k9x-5d-Rfx" secondAttribute="trailing" constant="5" id="2fX-cz-r8l"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QjJ-x1-xXS" secondAttribute="trailing" constant="15" id="72d-bJ-v5o"/>
@@ -3971,7 +3971,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XlQ-2h-1vf" secondAttribute="trailing" constant="15" id="Bzu-6a-aYh"/>
                                                 <constraint firstAttribute="height" constant="25" id="Gtu-hS-fus"/>
@@ -3995,7 +3995,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cyI-iU-ofR" secondAttribute="trailing" constant="15" id="G8i-7b-CCO"/>
                                                 <constraint firstItem="Fut-Z6-laE" firstAttribute="leading" secondItem="KqK-lb-BDh" secondAttribute="leading" constant="15" id="KvU-O1-yCe"/>
