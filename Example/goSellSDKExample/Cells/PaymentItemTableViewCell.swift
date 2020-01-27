@@ -6,6 +6,8 @@
 //
 
 import class    UIKit.UILabel.UILabel
+import class    UIKit.UIView
+import class    UIKit.UITraitCollection
 
 internal final class PaymentItemTableViewCell: SelectableCell {
     
@@ -22,6 +24,48 @@ internal final class PaymentItemTableViewCell: SelectableCell {
         self.discountLabel?.text = discount
         self.taxesLabel?.text = taxes
         self.totalAmountLabel?.text = total
+        self.backgroundColor = .clear
+
+        if #available(iOS 13.0, *) {
+             if UITraitCollection.current.userInterfaceStyle == .dark
+            {
+                self.backgroundColor = .black
+            }
+        }
+        
+        listSubviewsOfView(view:self)
+    }
+    
+    
+    
+     func listSubviewsOfView(view:UIView){
+
+        var darkMode = false
+        if #available(iOS 13.0, *) {
+             if UITraitCollection.current.userInterfaceStyle == .dark
+            {
+                 darkMode = true
+            }
+        }
+        print(darkMode)
+        // Get the subviews of the view
+        let subviews = view.subviews
+
+        // Return if there are no subviews
+        if subviews.count == 0 {
+            return
+        }
+
+        for subview : AnyObject in subviews{
+            if let labelView:UILabel = subview as? UILabel
+            {
+                labelView.textColor = darkMode ? .white : .black
+            }else if let viewView:UIView = subview as? UIView
+            {
+                // List the subviews of subview
+                listSubviewsOfView(view: viewView)
+            }
+        }
     }
     
     // MARK: - Private -
