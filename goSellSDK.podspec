@@ -1,6 +1,6 @@
 CardIODynamicDependencyVersion					= '>= 5.4.1'	unless defined? CardIODynamicDependencyVersion
 EditableTextInsetsTextFieldDependencyVersion	= '>= 1.0.6'	unless defined? EditableTextInsetsTextFieldDependencyVersion
-TapAdditionsKitDependencyVersion				= '>= 1.3.3'	unless defined? TapAdditionsKitDependencyVersion
+TapAdditionsKitDependencyVersion				= '>= 1.3.6'	unless defined? TapAdditionsKitDependencyVersion
 TapApplicationDependencyVersion					= '>= 1.0.7'	unless defined? TapApplicationDependencyVersion
 TapBundleLocalizationDependencyVersion			= '>= 1.0.3'	unless defined? TapBundleLocalizationDependencyVersion
 TapCardValidatorDependencyVersion				= '>= 1.2.6'	unless defined? TapCardValidatorDependencyVersion
