@@ -366,6 +366,14 @@ internal extension Process {
 		
 		fileprivate func shouldSaveCard(with token: Token) -> Bool {
 			
+            if let permissions = SettingsDataManager.shared.settings?.permissions {
+                
+                if !permissions.contains(.merchantCheckout)
+                {
+                    return false
+                }
+            }
+            
 			let existingCardFingerprints = self.recentCards.compactMap { $0.fingerprint }.filter { $0.tap_length > 0 }
 			if !existingCardFingerprints.contains(token.card.fingerprint) {
 				
