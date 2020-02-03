@@ -43,7 +43,7 @@ extension ImageTableViewCell: LoadingWithModelCell {
             if self.traitCollection.userInterfaceStyle == .dark
             {
                 self.paddingWidthConstraint.constant = 32
-                self.imageViewWidthConstraint.constant = 17
+                self.imageViewWidthConstraint.constant = 22
             }
         }
         
