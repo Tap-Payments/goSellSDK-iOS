@@ -25,6 +25,11 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
 		
 		return Theme.current.commonStyle.statusBar[Process.shared.appearance].uiStatusBarStyle
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.searchView?.setBackGround(UIColor.tap_hex("#F7F7F7").loadCompatibleDarkModeColor(forColorNamed: "CurrencyHolderViewColor"))
+    }
 	
     internal weak var delegate: CurrencySelectionViewControllerDelegate?
     

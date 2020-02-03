@@ -42,8 +42,8 @@ extension ImageTableViewCell: LoadingWithModelCell {
         if #available(iOS 13.0, *) {
             if self.traitCollection.userInterfaceStyle == .dark
             {
-                self.paddingWidthConstraint.constant = 24
-                self.imageViewWidthConstraint.constant = 17
+                self.paddingWidthConstraint.constant = 32
+                self.imageViewWidthConstraint.constant = 22
             }
         }
         
