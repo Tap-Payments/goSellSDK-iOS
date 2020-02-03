@@ -48,7 +48,7 @@ extension WebPaymentOptionTableViewCell: LoadingWithModelCell {
            if UITraitCollection.current.userInterfaceStyle == .dark {
             self.paddingView.layer.cornerRadius = 8
             self.paddingView.layer.masksToBounds = true
-            self.iconViewWidthConstraint.constant = 17
+            self.iconViewWidthConstraint.constant = 22
            }else{
             self.paddingView.layer.cornerRadius = 0
             self.paddingView.layer.masksToBounds = true

@@ -13,7 +13,11 @@ internal extension TapSearchView {
 	// MARK: Methods
 	
 	func setStyle(_ style: SearchBarStyle) {
-		
 		self.searchField.setTextStyle(style.text, style.placeholder)
+        self.searchHolderBackgroundColor = style.searchHolderBackgroundColor.color
 	}
+    
+    func setBackGround(_ color: UIColor) {
+        self.backgroundColor = color
+    }
 }
