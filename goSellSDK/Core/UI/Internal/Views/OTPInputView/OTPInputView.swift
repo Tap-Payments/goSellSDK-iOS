@@ -133,6 +133,11 @@ internal final class OTPInputView: TapNibView {
         self.otpDigitsView?.forEach { $0.backgroundColor = color }
     }
     
+    internal func setDigitsHolderBorderColor(_ color:UIColor) {
+        
+        self.otpDigitsView?.forEach { $0.tap_borderColor = color }
+    }
+    
     // MARK: - Private -
     
     private struct Constants {

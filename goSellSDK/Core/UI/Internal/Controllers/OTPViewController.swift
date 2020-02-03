@@ -98,6 +98,7 @@ internal final class OTPViewController: SeparateWindowViewController {
 		
 		self.otpInputView?.setDigitsStyle(settings.digits)
         self.otpInputView?.setDigitsHolderViewBackgroundColor(settings.otpDigitsBackgroundColor.color)
+        self.otpInputView?.setDigitsHolderBorderColor(settings.otpDigitsBorderColor.color)
 		self.updateDescriptionLabelText()
 		self.updateResendButtonTitle(with: self.timerDataManager.state)
 		self.dismissalArrowImageView?.image = settings.arrowIcon
