@@ -540,6 +540,7 @@
 			}
 		},
 		"otp_screen": {
+            "otp_digits_holder_border":"#CECECE",
             "otp_digits_holder_background":"#ffffff",
 			"digits_style": {
 				
@@ -1204,6 +1205,7 @@
             }
         },
         "otp_screen": {
+            "otp_digits_holder_border":"#000000",
             "otp_digits_holder_background":"#515151",
             "digits_style": {
                 
