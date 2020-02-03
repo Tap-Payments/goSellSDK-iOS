@@ -128,6 +128,11 @@ internal final class OTPInputView: TapNibView {
 		self.otpLabels?.forEach { $0.setTextStyle(style) }
 	}
     
+    internal func setDigitsHolderViewBackgroundColor(_ color:UIColor) {
+        
+        self.otpDigitsView?.forEach { $0.backgroundColor = color }
+    }
+    
     // MARK: - Private -
     
     private struct Constants {
@@ -144,6 +149,7 @@ internal final class OTPInputView: TapNibView {
     // MARK: Properties
     
     @IBOutlet private var otpLabels: [UILabel]?
+    @IBOutlet private var otpDigitsView: [UIView]?
     
     private var otpCode: String = ""
     

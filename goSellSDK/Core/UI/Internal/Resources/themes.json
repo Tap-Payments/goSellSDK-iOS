@@ -540,7 +540,7 @@
 			}
 		},
 		"otp_screen": {
-			
+            "otp_digits_holder_background":"#ffffff",
 			"digits_style": {
 				
 				"font": {
@@ -1204,7 +1204,7 @@
             }
         },
         "otp_screen": {
-            
+            "otp_digits_holder_background":"#515151",
             "digits_style": {
                 
                 "font": {
@@ -1212,7 +1212,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 24.0
                 },
-                "color": "#535353",
+                "color": "#ffffff",
                 "alignment": "center"
             },
             
