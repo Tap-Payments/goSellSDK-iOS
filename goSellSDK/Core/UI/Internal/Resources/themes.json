@@ -487,7 +487,7 @@
 			}
 		},
 		"search_bar": {
-			
+            "search_holder_background_color": "#E1E2E5",
 			"placeholder_style": {
 				
 				"font": {
@@ -1151,7 +1151,7 @@
             }
         },
         "search_bar": {
-            
+            "search_holder_background_color": "#000000",
             "placeholder_style": {
                 
                 "font": {
