@@ -1117,7 +1117,7 @@
         },
         "navigation_bar": {
             
-            "background_color": "#515151",
+            "background_color": "#151515",
             "back_icon": "ic_arrow_left",
             "title_style": {
                 
@@ -1151,7 +1151,7 @@
             }
         },
         "search_bar": {
-            "search_holder_background_color": "#000000",
+            "search_holder_background_color": "#515151",
             "placeholder_style": {
                 
                 "font": {
