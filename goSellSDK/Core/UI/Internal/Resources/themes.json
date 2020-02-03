@@ -1159,7 +1159,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 17.0
                 },
-                "color": "#c7c7cd",
+                "color": "#bdbdbd",
                 "alignment": "leading"
             },
             "text_style": {
@@ -1169,7 +1169,7 @@
                     "typeface": "helvetica-neue-regular",
                     "size": 17.0
                 },
-                "color": "#535353",
+                "color": "#ffffff",
                 "alignment": "leading"
             }
         },
