@@ -416,6 +416,8 @@
 		E828073423C71BC600C628DD /* SetupApplePayViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828073323C71BC600C628DD /* SetupApplePayViewControllerDelegate.swift */; };
 		E82A208523EC00ED00F152C5 /* AsyncPaymentResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82A208423EC00ED00F152C5 /* AsyncPaymentResultView.xib */; };
 		E82A208823EC017800F152C5 /* AsyncPaymentResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A208723EC017800F152C5 /* AsyncPaymentResultView.swift */; };
+		E82A208C23EC28BF00F152C5 /* TransactionExpiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A208B23EC28BF00F152C5 /* TransactionExpiry.swift */; };
+		E82A208E23EC3DC900F152C5 /* TransactionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A208D23EC3DC900F152C5 /* TransactionOrder.swift */; };
 		E82B006423C4BC2900FE0D05 /* ApplePayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */; };
 		E82B006623C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */; };
 		E8CDF34223CA26F300E0C847 /* CreateTokenApplePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34123CA26F300E0C847 /* CreateTokenApplePay.swift */; };
@@ -840,6 +842,8 @@
 		E828073323C71BC600C628DD /* SetupApplePayViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupApplePayViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E82A208423EC00ED00F152C5 /* AsyncPaymentResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AsyncPaymentResultView.xib; sourceTree = "<group>"; };
 		E82A208723EC017800F152C5 /* AsyncPaymentResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPaymentResultView.swift; sourceTree = "<group>"; };
+		E82A208B23EC28BF00F152C5 /* TransactionExpiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExpiry.swift; sourceTree = "<group>"; };
+		E82A208D23EC3DC900F152C5 /* TransactionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionOrder.swift; sourceTree = "<group>"; };
 		E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTableViewCell.swift; sourceTree = "<group>"; };
 		E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePaymentOptionTableViewCellModel.swift; sourceTree = "<group>"; };
 		E8CDF34123CA26F300E0C847 /* CreateTokenApplePay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenApplePay.swift; sourceTree = "<group>"; };
@@ -1032,6 +1036,8 @@
 				A4694B22211B480600B335F1 /* TrackingURL.swift */,
 				A4A9827E20D2B31F00770690 /* TransactionDetails.swift */,
 				14A8428B2243B1B80026CC16 /* Transfer.swift */,
+				E82A208B23EC28BF00F152C5 /* TransactionExpiry.swift */,
+				E82A208D23EC3DC900F152C5 /* TransactionOrder.swift */,
 				147951CC22004DBE0073B49F /* Errors */,
 			);
 			path = Models;
@@ -2120,6 +2126,7 @@
 				A4B3FB8C212467DA000C05EB /* CreateAuthorizeRequest.swift in Sources */,
 				A482F7632085DAF100AA76A4 /* TapSDKError.swift in Sources */,
 				A4752A3B208EFF5C003118DB /* WebPaymentOptionTableViewCell.swift in Sources */,
+				E82A208C23EC28BF00F152C5 /* TransactionExpiry.swift in Sources */,
 				1432427E21F9FB14003B5E5D /* Process.WebPaymentHandler.swift in Sources */,
 				A4BD8D0F20A1F12500EFF2CE /* PaymentOptionsViewController+UITableView.swift in Sources */,
 				141284DC21610E3C00C2873E /* WebCellStyle.swift in Sources */,
@@ -2220,6 +2227,7 @@
 				A482F7762085DD3800AA76A4 /* RSAUtils.swift in Sources */,
 				A4A8545921076FED00B9DE00 /* CardsCollectionViewLayout.swift in Sources */,
 				A4D53121208A54C400830AD8 /* ExtraFee.swift in Sources */,
+				E82A208E23EC3DC900F152C5 /* TransactionOrder.swift in Sources */,
 				A4C13AB420F4F17600037EDC /* ExpirationDate+Additions.swift in Sources */,
 				A408C06C20BC05D3005E74AD /* KeychainManager.swift in Sources */,
 				A4C13A6C20F4EF5500037EDC /* _ObjCMeasurement.swift in Sources */,

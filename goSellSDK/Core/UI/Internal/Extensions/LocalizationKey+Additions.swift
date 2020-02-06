@@ -63,6 +63,18 @@ internal extension LocalizationKey {
 	static let otp_guide_text		= LocalizationKey("otp_guide_text")
 	static let btn_confirm_title	= LocalizationKey("btn_confirm_title")
 	static let btn_resend_title		= LocalizationKey("btn_resend_title")
+    
+    
+    // MARK: Async Screen
+    
+    static let async_status_text            = LocalizationKey("async_status_text")
+    static let async_pay_reference_text     = LocalizationKey("async_pay_reference_text")
+    static let async_pay_order_code_text    = LocalizationKey("async_pay_order_code_text")
+    static let async_pay_code_expire_text   = LocalizationKey("async_pay_code_expire_text")
+    static let async_pay_hint_footer_text   = LocalizationKey("async_pay_hint_footer_text")
+    static let async_pay_email_text         = LocalizationKey("async_pay_email_text")
+    static let async_pay_sms_text           = LocalizationKey("async_pay_sms_text")
+    
 	
 	
 	// MARK: -

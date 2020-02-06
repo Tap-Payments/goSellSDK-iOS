@@ -59,6 +59,18 @@
 "btn_resend_title"	= "RESEND";
 
 
+// MARK: Async Screen
+
+"async_status_text"             = "Payment in progress";
+"async_pay_reference_text"      = "With your Fawry Pay Reference";
+"async_pay_sms_text"            = "An sms has been sent to";
+"async_pay_email_text"          = "An email has been sent to";
+"async_pay_order_code_text"     = "Order Code";
+"async_pay_code_expire_text"    = "Code Expires on\n%@";
+"async_pay_hint_footer_text"    = "Please visit a Fawry Cash Location\nusing the link below to complete your payment";
+
+
+
 // MARK: -
 // MARK: Alert: Delete Card
 
