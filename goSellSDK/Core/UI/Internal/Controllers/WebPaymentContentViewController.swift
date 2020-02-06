@@ -30,11 +30,7 @@ internal final class WebPaymentContentViewController: BaseViewController {
         didSet{
             if self.isAsnycPayment
             {
-                self.webView.removeFromSuperview()
-                self.webView.isHidden = true
-                let label:UILabel = UILabel(frame: UIScreen.main.bounds)
-                label.text = "I DID IT MAN"
-                self.view.tap_addSubviewWithConstraints(label)
+                self.addAsyncViewOnScreen()
             }
         }
     }
@@ -117,6 +113,15 @@ internal final class WebPaymentContentViewController: BaseViewController {
         
         self.webView.navigationDelegate = self
         self.webViewContainer?.tap_addSubviewWithConstraints(self.webView)
+    }
+    
+    
+    private func addAsyncViewOnScreen() {
+    
+        self.webView.isHidden = true
+        self.webView.removeFromSuperview()
+        let asyncPaymentResultView:AsyncPaymentResultView = AsyncPaymentResultView(frame: UIScreen.main.bounds)
+        self.webViewContainer?.tap_addSubviewWithConstraints(asyncPaymentResultView)
     }
     
     private func loadURLIfNotYetLoaded() {

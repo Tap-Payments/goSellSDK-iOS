@@ -62,7 +62,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
 		self.headerNavigationView?.updateContentAndLayout(animated: true)
         if async
         {
-            if let webPaymentContentController = self.contentController as? WebPaymentContentViewController {
+            if let webPaymentContentController = self.contentController {
                 webPaymentContentController.isAsnycPayment = async
             }
             self.headerNavigationView?.backButtonContainerView?.isHidden = true
