@@ -45,6 +45,7 @@ class AsyncPaymentResultView: TapNibView {
         
         paymentStatusLabel.setLocalizedText(.async_status_text)
         orderCodeTitleLabel.setLocalizedText(.async_pay_order_code_text)
+        hintFooterLabel.setLocalizedText(.async_pay_hint_footer_text)
         
         if let nonNullCharge:ChargeProtocol = Process.shared.dataManagerInterface.currentChargeOrAuthorize
         {
@@ -80,7 +81,7 @@ class AsyncPaymentResultView: TapNibView {
                 }
                 let expirationDate = calendar.date(byAdding: expirationDateComponent, value: expiration.period, to: currentDate)
                 let dateFormatter:DateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd/MM/yyyy @ HH:mmm aaa"
+                dateFormatter.dateFormat = "dd/MM/yyyy @ HH:mm aaa"
                 codeExpirationLabel.text = String(format: LocalizationManager.shared.localizedString(for: .async_pay_code_expire_text), dateFormatter.string(from: expirationDate ?? currentDate))
             }else
             {
@@ -91,6 +92,7 @@ class AsyncPaymentResultView: TapNibView {
             if let order = nonNullCharge.transactionDetails.order
             {
                 codeReferenceLabel.text = order.reference
+                storeLinkLabel.text = order.storeUrl
             }else
             {
                 codeReferenceLabel.text = ""
