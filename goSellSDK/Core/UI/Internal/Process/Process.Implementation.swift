@@ -105,6 +105,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 		self.dataManager.urlToLoadInWebPaymentController = url
 		self.openWebPaymentScreen(for: paymentOption, url: url, binNumber: binNumber)
 	}
+    
+    internal func showAsyncPaymentResult(_ charge: ChargeProtocol, for paymentOption: PaymentOption) {
+        self.openAsyncPaymentScreen(for: paymentOption, charge: charge)
+    }
 	
 	internal func continuePaymentWithCurrentChargeOrAuthorize<T>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) where T : ChargeProtocol {
 		
@@ -333,6 +337,19 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 		}
 	}
 	
+    fileprivate func openAsyncPaymentScreen(for paymentOption: PaymentOption, charge: ChargeProtocol, completion: TypeAlias.ArgumentlessClosure? = nil) {
+        self.dataManager.currentPaymentOption            = paymentOption
+        if let alreadyOpenedWebPaymentController = WebPaymentViewController.tap_findInHierarchy() {
+            
+            self.webPaymentHandler.prepareWebPaymentController(alreadyOpenedWebPaymentController,async: true)
+            completion?()
+        }
+        else {
+            
+            PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
+        }
+    }
+    
 	fileprivate func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL?, binNumber: String?, completion: TypeAlias.ArgumentlessClosure? = nil) {
 		
 		self.dataManager.currentPaymentOption			= paymentOption

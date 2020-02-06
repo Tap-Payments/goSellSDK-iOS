@@ -24,6 +24,21 @@ internal final class WebPaymentContentViewController: BaseViewController {
     
     internal weak var delegate: WebPaymentContentViewControllerDelegate?
     
+    
+    var isAsnycPayment:Bool = false {
+        
+        didSet{
+            if self.isAsnycPayment
+            {
+                self.webView.removeFromSuperview()
+                self.webView.isHidden = true
+                let label:UILabel = UILabel(frame: UIScreen.main.bounds)
+                label.text = "I DID IT MAN"
+                self.view.tap_addSubviewWithConstraints(label)
+            }
+        }
+    }
+    
     internal var isLoading: Bool {
         
         return self.webView.isLoading

@@ -11,15 +11,18 @@ internal protocol WebPaymentHandlerInterface {
 	
 	var returnURL: URL { get }
 	
-	func prepareWebPaymentController(_ controller: WebPaymentViewController)
+    func prepareWebPaymentController(_ controller: WebPaymentViewController,async:Bool?)
+    func prepareWebPaymentController(_ controller: WebPaymentViewController)
 	func decision(forWebPayment url: URL) -> WebPaymentURLDecision
 	func webPaymentProcessFinished(_ tapID: String)
 }
 
 internal extension Process {
 	
-	final class WebPaymentHandler: WebPaymentHandlerInterface {
-	
+    final class WebPaymentHandler: WebPaymentHandlerInterface {
+        
+        
+        
 		// MARK: - Internal -
 		// MARK: Properties
 		
@@ -37,7 +40,11 @@ internal extension Process {
 			self.process = process
 		}
 		
-		internal func prepareWebPaymentController(_ controller: WebPaymentViewController) {
+        internal func prepareWebPaymentController(_ controller: WebPaymentViewController) {
+            self.prepareWebPaymentController(controller, async: false)
+        }
+        
+        internal func prepareWebPaymentController(_ controller: WebPaymentViewController,async:Bool?) {
 			
 			guard let paymentOption = self.process.dataManagerInterface.currentPaymentOption else {
 				
@@ -50,7 +57,7 @@ internal extension Process {
 				binInformation = BINDataManager.shared.cachedBINData(for: binNumber)
 			}
 			
-			controller.setup(with: paymentOption, url: self.process.dataManagerInterface.urlToLoadInWebPaymentController, binInformation: binInformation)
+            controller.setup(with: paymentOption, url: self.process.dataManagerInterface.urlToLoadInWebPaymentController, binInformation: binInformation, async: async ?? false)
 		}
 		
 		internal func decision(forWebPayment url: URL) -> WebPaymentURLDecision {
