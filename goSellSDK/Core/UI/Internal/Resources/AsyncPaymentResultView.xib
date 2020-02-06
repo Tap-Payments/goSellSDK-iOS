@@ -84,8 +84,14 @@ with your Fawry Pay Reference</string>
                         <constraint firstAttribute="trailing" secondItem="bvF-S5-D2a" secondAttribute="trailing" constant="8" id="wap-mD-alB"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUP-OT-TjP">
+                    <rect key="frame" x="8" y="335.5" width="398" height="30"/>
+                    <connections>
+                        <action selector="openMerchantUrlClicked:" destination="-1" eventType="touchUpInside" id="sZh-jF-WAo"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Http://google.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJF-cs-r0f">
-                    <rect key="frame" x="8" y="335.5" width="398" height="20"/>
+                    <rect key="frame" x="8" y="335.5" width="398" height="30"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -95,11 +101,14 @@ with your Fawry Pay Reference</string>
             <constraints>
                 <constraint firstItem="CCa-ZL-AVH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2tz-Th-UkZ"/>
                 <constraint firstItem="dzU-2m-dIm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5ux-nY-JFQ"/>
+                <constraint firstItem="gUP-OT-TjP" firstAttribute="top" secondItem="aJF-cs-r0f" secondAttribute="top" id="8dN-R2-lIY"/>
                 <constraint firstItem="mNt-7C-bjZ" firstAttribute="top" secondItem="U2D-0V-VGx" secondAttribute="bottom" constant="25" id="B5U-FZ-uhH"/>
                 <constraint firstAttribute="trailing" secondItem="h1R-nz-IXw" secondAttribute="trailing" constant="8" id="JCB-Bb-iL3"/>
+                <constraint firstItem="gUP-OT-TjP" firstAttribute="bottom" secondItem="aJF-cs-r0f" secondAttribute="bottom" id="JlH-e4-ONq"/>
                 <constraint firstItem="mNt-7C-bjZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LpU-Ot-z5H"/>
                 <constraint firstItem="h1R-nz-IXw" firstAttribute="top" secondItem="dzU-2m-dIm" secondAttribute="bottom" constant="25" id="M4H-yI-bXo"/>
                 <constraint firstItem="dzU-2m-dIm" firstAttribute="top" secondItem="uB8-9d-EUZ" secondAttribute="bottom" constant="25" id="ODp-eG-JBp"/>
+                <constraint firstItem="gUP-OT-TjP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="OIk-Ba-vAU"/>
                 <constraint firstItem="CCa-ZL-AVH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Ruq-9f-gFg"/>
                 <constraint firstItem="h1R-nz-IXw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Tzg-OX-uT4"/>
                 <constraint firstItem="aJF-cs-r0f" firstAttribute="top" secondItem="h1R-nz-IXw" secondAttribute="bottom" id="US0-Cn-kwF"/>
@@ -113,6 +122,7 @@ with your Fawry Pay Reference</string>
                 <constraint firstItem="aJF-cs-r0f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="r4z-fN-QhX"/>
                 <constraint firstItem="U2D-0V-VGx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tiQ-jO-f0y"/>
                 <constraint firstAttribute="bottom" secondItem="yns-QB-pEH" secondAttribute="bottom" constant="32" id="wA7-pC-hWi"/>
+                <constraint firstAttribute="trailing" secondItem="gUP-OT-TjP" secondAttribute="trailing" constant="8" id="wRk-lI-gJE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="137.68115942028987" y="-8.0357142857142847"/>
