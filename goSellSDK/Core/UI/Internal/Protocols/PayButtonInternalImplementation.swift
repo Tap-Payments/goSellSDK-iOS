@@ -163,6 +163,10 @@ internal extension PayButtonInternalImplementation {
 		case .confirmOTP:
 			
 			fatalError("Impossible case here.")
+            // Async press handler here
+        case .async:
+            
+            fatalError("Impossible case here.")
 		}
 	}
 }

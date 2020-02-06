@@ -130,7 +130,6 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     private weak var contentController: WebPaymentContentViewController? {
         
         didSet {
-            
             self.contentController?.delegate = self
             self.passURLToContentController()
         }

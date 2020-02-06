@@ -122,6 +122,7 @@ internal final class WebPaymentContentViewController: BaseViewController {
         self.webView.removeFromSuperview()
         let asyncPaymentResultView:AsyncPaymentResultView = AsyncPaymentResultView(frame: UIScreen.main.bounds)
         self.webViewContainer?.tap_addSubviewWithConstraints(asyncPaymentResultView)
+        
     }
     
     private func loadURLIfNotYetLoaded() {

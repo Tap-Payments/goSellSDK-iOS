@@ -24,6 +24,10 @@ internal extension LocalizationKey {
 	
 	static let btn_save_title			= LocalizationKey("btn_save_title")
 	static let btn_save_action_title	= LocalizationKey("btn_save_action_title")
+    
+    // MARK: Async Button Title
+    
+    static let btn_async_title            = LocalizationKey("btn_async_title")
 	
 	// MARK: Payment Option Group Titles
 	
