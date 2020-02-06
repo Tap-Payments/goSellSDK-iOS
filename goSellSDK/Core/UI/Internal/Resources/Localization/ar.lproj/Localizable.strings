@@ -20,6 +20,9 @@
 "btn_save_title" = "احفظ البطاقة";
 "btn_save_action_title" = "احفظ البطاقة";
 
+// MARK: Async Button Title
+"btn_async_title" = "تم";
+
 // MARK: Payment Option Group Titles
 
 "payment_options_group_title_recent" = "مستخدم حديثاً";

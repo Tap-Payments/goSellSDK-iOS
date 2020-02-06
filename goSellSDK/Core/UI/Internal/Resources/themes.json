@@ -255,7 +255,91 @@
 						"alignment": "center"
 					}
 				}
-			}
+			},
+            {
+                "type": "close_async",
+                "enabled": {
+                    
+                    "background_color": "#009aff",
+                    "loader_color": "#00ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": false,
+                    "security_icon_visible": false,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "disabled": {
+                    
+                    "background_color": "#c9c9c9",
+                    "loader_color": "#00ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": false,
+                    "security_icon_visible": false,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "highlighted": {
+                    
+                    "background_color": "#0077FF",
+                    "loader_color": "#00ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": false,
+                    "security_icon_visible": false,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                }
+            }
 		],
 		"merchant_header": {
 			

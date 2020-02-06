@@ -20,6 +20,9 @@
 "btn_save_title" = "SAVE CARD";
 "btn_save_action_title" = "SAVE";
 
+// MARK: Async Button Title
+"btn_async_title" = "CLOSE";
+
 // MARK: Payment Option Group Titles
 
 "payment_options_group_title_recent" = "RECENT";
