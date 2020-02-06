@@ -11,6 +11,11 @@ import class PassKit.PKPaymentToken
 
 extension Process: ProcessInterface {
     
+    func showAsyncPaymentResult(_ charge: ChargeProtocol, for paymentOption: PaymentOption) {
+        
+    }
+    
+    
     func createApplePayTokenizationApiRequest(with appleTokenData: PKPaymentToken) -> CreateTokenWithApplePayRequest? {
         var token = String(data: appleTokenData.paymentData, encoding: .utf8) ?? ""
         if token == ""

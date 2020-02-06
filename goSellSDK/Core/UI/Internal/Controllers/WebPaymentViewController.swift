@@ -53,7 +53,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
 	
     // MARK: Methods
     
-    internal func setup(with paymentOption: PaymentOption, url: URL?, binInformation: BINResponse?) {
+    internal func setup(with paymentOption: PaymentOption, url: URL?, binInformation: BINResponse?,async: Bool = false) {
         
         self.paymentOption  = paymentOption
         self.binInformation = binInformation
@@ -67,6 +67,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         super.prepare(for: segue, sender: sender)
         
         if let webPaymentContentController = segue.destination as? WebPaymentContentViewController {
+            webPaymentContentController.isAsnycPayment = true
             
             self.contentController = webPaymentContentController
         }
