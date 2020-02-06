@@ -99,32 +99,26 @@ class AsyncPaymentResultView: TapNibView {
             }
             
         }
-        
-        
-        
-        
-        
-           /*guard let nonnullLabel = self.descriptionLabel, self.phoneNumber.tap_length > 0 else { return }
-           
-           let numberString = "\u{202A}\(self.phoneNumber)\u{202C}"
-           
-           let descriptionText = String(format: LocalizationManager.shared.localizedString(for: .otp_guide_text), numberString)
-           
-           let themeSettings = Theme.current.otpScreenStyle
-           
-           let descriptionAttributes = themeSettings.descriptionText.asStringAttributes
-           
-           let attributedDescriptionText = NSMutableAttributedString(string: descriptionText, attributes: descriptionAttributes)
-           
-           if let range = attributedDescriptionText.string.tap_nsRange(of: numberString) {
-               
-               let numberAttributes = themeSettings.descriptionNumber.asStringAttributes
-               
-               let attributedMaskedNumberText = NSAttributedString(string: numberString, attributes: numberAttributes)
-               
-               attributedDescriptionText.replaceCharacters(in: range, with: attributedMaskedNumberText)
-           }
-           
-           nonnullLabel.attributedText = NSAttributedString(attributedString: attributedDescriptionText)*/
-       }
+    }
+    
+    @IBAction func openMerchantUrlClicked(_ sender: Any) {
+        if let nonNullCharge:ChargeProtocol = Process.shared.dataManagerInterface.currentChargeOrAuthorize
+        {
+            if let order = nonNullCharge.transactionDetails.order
+            {
+                if let url = URL(string: order.storeUrl) {
+                    if #available(iOS 10.0, *) {
+                        if UIApplication.shared.canOpenURL(url) {
+                           UIApplication.shared.open(url, options:[:], completionHandler: nil)
+                        }
+                    } else {
+                        // Fallback on earlier versions
+                        if UIApplication.shared.canOpenURL(url) {
+                           UIApplication.shared.openURL(url)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
