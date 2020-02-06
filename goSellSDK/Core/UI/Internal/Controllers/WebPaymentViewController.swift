@@ -58,8 +58,13 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         self.paymentOption  = paymentOption
         self.binInformation = binInformation
         self.initialURL     = url
-		
+        self.async = async
 		self.headerNavigationView?.updateContentAndLayout(animated: true)
+        if async
+        {
+            self.headerNavigationView?.backButtonContainerView?.isHidden = true
+        }
+        
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,7 +72,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         super.prepare(for: segue, sender: sender)
         
         if let webPaymentContentController = segue.destination as? WebPaymentContentViewController {
-            webPaymentContentController.isAsnycPayment = true
+            webPaymentContentController.isAsnycPayment = async
             
             self.contentController = webPaymentContentController
         }
@@ -109,6 +114,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
 	@IBOutlet private weak var contentContainerView: UIView?
     
     private var paymentOption: PaymentOption?
+    private var async: Bool = false
     private var binInformation: BINResponse?
     private var initialURL: URL? {
         
