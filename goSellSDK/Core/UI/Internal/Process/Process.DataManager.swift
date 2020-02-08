@@ -971,8 +971,11 @@ internal extension Process {
 					
 					self.process.openPaymentURL(url, for: paymentOption, binNumber: cardBIN)
 				}
-				
-			case .inProgress, .abandoned, .cancelled, .failed, .declined, .restricted, .unknown, .void:
+            case .inProgress:
+                
+                self.process.showAsyncPaymentResult(nonnullChargeOrAuthorize, for: paymentOption)
+                
+			case .abandoned, .cancelled, .failed, .declined, .restricted, .unknown, .void:
 				
 				self.process.paymentFailure(with: nonnullChargeOrAuthorize.status, chargeOrAuthorize: nonnullChargeOrAuthorize, error: error)
 				

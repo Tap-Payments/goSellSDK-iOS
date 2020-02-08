@@ -53,13 +53,21 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
 	
     // MARK: Methods
     
-    internal func setup(with paymentOption: PaymentOption, url: URL?, binInformation: BINResponse?) {
+    internal func setup(with paymentOption: PaymentOption, url: URL?, binInformation: BINResponse?,async: Bool = false) {
         
         self.paymentOption  = paymentOption
         self.binInformation = binInformation
         self.initialURL     = url
-		
+        self.async = async
 		self.headerNavigationView?.updateContentAndLayout(animated: true)
+        if async
+        {
+            if let webPaymentContentController = self.contentController {
+                webPaymentContentController.isAsnycPayment = async
+            }
+            self.headerNavigationView?.backButtonContainerView?.isHidden = true
+        }
+        
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,6 +75,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
         super.prepare(for: segue, sender: sender)
         
         if let webPaymentContentController = segue.destination as? WebPaymentContentViewController {
+            webPaymentContentController.isAsnycPayment = async
             
             self.contentController = webPaymentContentController
         }
@@ -108,6 +117,7 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
 	@IBOutlet private weak var contentContainerView: UIView?
     
     private var paymentOption: PaymentOption?
+    private var async: Bool = false
     private var binInformation: BINResponse?
     private var initialURL: URL? {
         
@@ -120,7 +130,6 @@ internal class WebPaymentViewController: HeaderNavigatedViewController {
     private weak var contentController: WebPaymentContentViewController? {
         
         didSet {
-            
             self.contentController?.delegate = self
             self.passURLToContentController()
         }
