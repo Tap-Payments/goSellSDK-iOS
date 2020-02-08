@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AsyncPaymentResultView" customModule="goSellSDK">
+            <connections>
+                <outlet property="acknolwedgementLabel" destination="U2D-0V-VGx" id="p57-df-l3f"/>
+                <outlet property="closeButton" destination="bvF-S5-D2a" id="L6j-EP-1bs"/>
+                <outlet property="codeExpirationLabel" destination="dzU-2m-dIm" id="cCk-1h-MW9"/>
+                <outlet property="codeReferenceLabel" destination="uB8-9d-EUZ" id="7b3-QL-siQ"/>
+                <outlet property="hintFooterLabel" destination="h1R-nz-IXw" id="lMm-Nf-AiO"/>
+                <outlet property="orderCodeTitleLabel" destination="mNt-7C-bjZ" id="QOK-59-Kp7"/>
+                <outlet property="paymentStatusLabel" destination="CCa-ZL-AVH" id="Cnt-3n-P90"/>
+                <outlet property="storeLinkLabel" destination="aJF-cs-r0f" id="9Hr-pu-3RK"/>
+                <outletCollection property="asyncResponseLabels" destination="CCa-ZL-AVH" collectionClass="NSMutableArray" id="pyA-DP-pnK"/>
+                <outletCollection property="asyncResponseLabels" destination="U2D-0V-VGx" collectionClass="NSMutableArray" id="i68-Xf-Mvl"/>
+                <outletCollection property="asyncResponseLabels" destination="dzU-2m-dIm" collectionClass="NSMutableArray" id="e09-Tm-3iD"/>
+                <outletCollection property="asyncResponseLabels" destination="mNt-7C-bjZ" collectionClass="NSMutableArray" id="Vuo-y5-feL"/>
+                <outletCollection property="asyncResponseLabels" destination="uB8-9d-EUZ" collectionClass="NSMutableArray" id="6IO-iL-oTi"/>
+                <outletCollection property="asyncResponseLabels" destination="h1R-nz-IXw" collectionClass="NSMutableArray" id="bdr-r8-Lip"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="416"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment in Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCa-ZL-AVH">
+                    <rect key="frame" x="128.5" y="15" width="157.5" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2D-0V-VGx">
+                    <rect key="frame" x="89.5" y="60" width="235.5" height="59.5"/>
+                    <string key="text">An sms has been sent to
+90064541
+with your Fawry Pay Reference</string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzU-2m-dIm">
+                    <rect key="frame" x="115.5" y="230.5" width="183.5" height="40"/>
+                    <string key="text">Code expires on
+13/13/2020 @ 13:13 PM</string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Code" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNt-7C-bjZ">
+                    <rect key="frame" x="162.5" y="144.5" width="89.5" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0294383243" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uB8-9d-EUZ">
+                    <rect key="frame" x="109.5" y="164.5" width="195" height="41"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="35"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please visit a Fawry Cash Location using the link below to complete your payment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1R-nz-IXw">
+                    <rect key="frame" x="8" y="295.5" width="398" height="40"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yns-QB-pEH">
+                    <rect key="frame" x="0.0" y="384" width="414" height="6"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvF-S5-D2a" customClass="TapButton" customModule="goSellSDK">
+                            <rect key="frame" x="8" y="8" width="398" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="0GY-KW-OCP"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="bvF-S5-D2a" firstAttribute="top" secondItem="yns-QB-pEH" secondAttribute="top" constant="8" id="8dz-g7-ulj"/>
+                        <constraint firstAttribute="height" constant="60" id="F0s-ku-6qx"/>
+                        <constraint firstItem="bvF-S5-D2a" firstAttribute="leading" secondItem="yns-QB-pEH" secondAttribute="leading" constant="8" id="TcL-6x-3Nf"/>
+                        <constraint firstAttribute="trailing" secondItem="bvF-S5-D2a" secondAttribute="trailing" constant="8" id="wap-mD-alB"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUP-OT-TjP">
+                    <rect key="frame" x="8" y="335.5" width="398" height="30"/>
+                    <connections>
+                        <action selector="openMerchantUrlClicked:" destination="-1" eventType="touchUpInside" id="sZh-jF-WAo"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Http://google.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJF-cs-r0f">
+                    <rect key="frame" x="8" y="335.5" width="398" height="30"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="CCa-ZL-AVH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2tz-Th-UkZ"/>
+                <constraint firstItem="dzU-2m-dIm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5ux-nY-JFQ"/>
+                <constraint firstItem="gUP-OT-TjP" firstAttribute="top" secondItem="aJF-cs-r0f" secondAttribute="top" id="8dN-R2-lIY"/>
+                <constraint firstItem="mNt-7C-bjZ" firstAttribute="top" secondItem="U2D-0V-VGx" secondAttribute="bottom" constant="25" id="B5U-FZ-uhH"/>
+                <constraint firstAttribute="trailing" secondItem="h1R-nz-IXw" secondAttribute="trailing" constant="8" id="JCB-Bb-iL3"/>
+                <constraint firstItem="gUP-OT-TjP" firstAttribute="bottom" secondItem="aJF-cs-r0f" secondAttribute="bottom" id="JlH-e4-ONq"/>
+                <constraint firstItem="mNt-7C-bjZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LpU-Ot-z5H"/>
+                <constraint firstItem="h1R-nz-IXw" firstAttribute="top" secondItem="dzU-2m-dIm" secondAttribute="bottom" constant="25" id="M4H-yI-bXo"/>
+                <constraint firstItem="dzU-2m-dIm" firstAttribute="top" secondItem="uB8-9d-EUZ" secondAttribute="bottom" constant="25" id="ODp-eG-JBp"/>
+                <constraint firstItem="gUP-OT-TjP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="OIk-Ba-vAU"/>
+                <constraint firstItem="CCa-ZL-AVH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Ruq-9f-gFg"/>
+                <constraint firstItem="h1R-nz-IXw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Tzg-OX-uT4"/>
+                <constraint firstItem="aJF-cs-r0f" firstAttribute="top" secondItem="h1R-nz-IXw" secondAttribute="bottom" id="US0-Cn-kwF"/>
+                <constraint firstItem="h1R-nz-IXw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UdI-iH-rtD"/>
+                <constraint firstItem="uB8-9d-EUZ" firstAttribute="top" secondItem="mNt-7C-bjZ" secondAttribute="bottom" id="Uro-Nv-b9c"/>
+                <constraint firstItem="yns-QB-pEH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vfh-v6-x33"/>
+                <constraint firstItem="uB8-9d-EUZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="esV-ns-5WP"/>
+                <constraint firstAttribute="trailing" secondItem="yns-QB-pEH" secondAttribute="trailing" id="ixK-Nh-j9Q"/>
+                <constraint firstItem="U2D-0V-VGx" firstAttribute="top" secondItem="CCa-ZL-AVH" secondAttribute="bottom" constant="25" id="lgr-KX-k3j"/>
+                <constraint firstAttribute="trailing" secondItem="aJF-cs-r0f" secondAttribute="trailing" constant="8" id="nG1-MR-xHO"/>
+                <constraint firstItem="aJF-cs-r0f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="r4z-fN-QhX"/>
+                <constraint firstItem="U2D-0V-VGx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tiQ-jO-f0y"/>
+                <constraint firstAttribute="bottom" secondItem="yns-QB-pEH" secondAttribute="bottom" constant="32" id="wA7-pC-hWi"/>
+                <constraint firstAttribute="trailing" secondItem="gUP-OT-TjP" secondAttribute="trailing" constant="8" id="wRk-lI-gJE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-8.0357142857142847"/>
+        </view>
+    </objects>
+</document>
