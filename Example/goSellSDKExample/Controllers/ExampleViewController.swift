@@ -36,7 +36,7 @@ import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
 import class	goSellSDK.Token
 import enum     goSellSDK.TransactionMode
-import enum    goSellSDK.PaymentType
+import enum     goSellSDK.PaymentType
 import class	UIKit.UIActivityIndicatorView.UIActivityIndicatorView
 import class	UIKit.UIBarButtonItem.UIBarButtonItem
 import class	UIKit.UIBlurEffect.UIBlurEffect
@@ -51,8 +51,10 @@ import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
-import UIKit
-import class PassKit.PKPaymentToken
+import class    PassKit.PKPaymentToken
+import class    UIKit.UITraitCollection
+import class    UIKit.UIAlertController
+import class    UIKit.UIAlertAction
 
 internal class ExampleViewController: BaseViewController {
     
@@ -81,7 +83,7 @@ internal class ExampleViewController: BaseViewController {
 
         session.dataSource = self
         session.delegate = self
-        session.appearance = self
+        //session.appearance = self
         
     }
     
@@ -123,6 +125,14 @@ internal class ExampleViewController: BaseViewController {
             
             self.performSegue(withIdentifier: "\(PaymentItemViewController.tap_className)Segue", sender: self)
         }
+    }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        self.itemsTableView?.reloadData()
+        
     }
     
     internal func updatePayButtonAmount() {
@@ -548,7 +558,7 @@ extension ExampleViewController: SessionDelegate {
         }
     }
 }
-
+/*
 // MARK: - SessionAppearance
 extension ExampleViewController: SessionAppearance {
 
@@ -750,3 +760,4 @@ extension ExampleViewController: SessionAppearance {
 		return self.paymentSettings.appearance.tapButtonHeight
 	}
 }
+*/

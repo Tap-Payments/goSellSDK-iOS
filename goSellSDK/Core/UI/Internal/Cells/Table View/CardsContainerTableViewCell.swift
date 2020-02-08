@@ -37,6 +37,7 @@ extension CardsContainerTableViewCell: BindingWithModelCell {
         self.model?.collectionViewCellModels.forEach { $0.collectionView = self.cardsCollectionView }
 		
 		self.isContentBinded = true
+        self.backgroundColor = UIColor.clear
     }
     
     internal func unbindContent() {
@@ -55,5 +56,6 @@ extension CardsContainerTableViewCell: LoadingWithModelCell {
     internal func updateContent(animated: Bool) {
 		
         self.cardsCollectionView?.reloadData()
+        self.backgroundColor = UIColor.clear
     }
 }

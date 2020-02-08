@@ -49,6 +49,7 @@ extension PaymentOptionsViewController: UITableViewDataSource {
         else if let emptyCellModel = model as? EmptyTableViewCellModel {
             
             let cell = emptyCellModel.dequeueCell(from: tableView)
+            cell.backgroundColor = .clear
             return cell
         }
         else if let groupCellModel = model as? GroupTableViewCellModel {

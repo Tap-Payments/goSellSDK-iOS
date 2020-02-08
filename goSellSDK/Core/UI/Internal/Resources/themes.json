@@ -2,6 +2,7 @@
 	"themes": [{
 		"name": "light",
 		"default": true,
+        "dark":false,
 		"tap_buttons": [
 			
 			{
@@ -570,7 +571,7 @@
 			}
 		},
 		"search_bar": {
-			
+            "search_holder_background_color": "#E1E2E5",
 			"placeholder_style": {
 				
 				"font": {
@@ -623,7 +624,8 @@
 			}
 		},
 		"otp_screen": {
-			
+            "otp_digits_holder_border":"#CECECE",
+            "otp_digits_holder_background":"#ffffff",
 			"digits_style": {
 				
 				"font": {
@@ -745,5 +747,754 @@
 				"close": "ic_close"
 			}
 		}
-	}]
+	},
+    {
+        "name": "dark",
+        "default": false,
+        "dark":true,
+        "tap_buttons": [
+            
+            {
+                "type": "pay",
+                "enabled": {
+                    
+                    "background_color": "#2ace00",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "disabled": {
+                    
+                    "background_color": "#515151",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "highlighted": {
+                    
+                    "background_color": "#1e9a00",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                }
+            },
+            {
+                "type": "confirm_otp",
+                "enabled": {
+                    
+                    "background_color": "#009aff",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "disabled": {
+                    
+                    "background_color": "#c9c9c9",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "highlighted": {
+                    
+                    "background_color": "#007ac9",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                }
+            },
+            {
+                "type": "save",
+                "enabled": {
+                    
+                    "background_color": "#009aff",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "disabled": {
+                    
+                    "background_color": "#c9c9c9",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "highlighted": {
+                    
+                    "background_color": "#007ac9",
+                    "loader_color": "#ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": true,
+                    "security_icon_visible": true,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                }
+            },
+            {
+                "type": "close_async",
+                "enabled": {
+                    
+                    "background_color": "#009aff",
+                    "loader_color": "#00ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": false,
+                    "security_icon_visible": false,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "disabled": {
+                    
+                    "background_color": "#c9c9c9",
+                    "loader_color": "#00ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": false,
+                    "security_icon_visible": false,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                },
+                "highlighted": {
+                    
+                    "background_color": "#0077FF",
+                    "loader_color": "#00ffffff",
+                    "security_icon": "btn_security",
+                    "loader_visible": false,
+                    "security_icon_visible": false,
+                    "corner_radius": 22.0,
+                    "height": 44.0,
+                    "insets": {
+                        
+                        "top": 8.0,
+                        "left": 8.0,
+                        "bottom": 8.0,
+                        "right": 8.0
+                    },
+                    "title_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-medium",
+                            "size": 17.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "center"
+                    }
+                }
+            }
+        ],
+        "merchant_header": {
+            
+            "background_color": "#151515",
+            "back_icon": "ic_arrow_left",
+            "title_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 17.0
+                },
+                "color": "#e5e5e5",
+                "alignment": "leading"
+            },
+            "cancel_normal_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-light",
+                    "size": 12.0
+                },
+                "color": "#ffffff",
+                "alignment": "center"
+            },
+            "cancel_highlighted_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-light",
+                    "size": 12.0
+                },
+                "color": "#ffffff",
+                "alignment": "center"
+            },
+            "icon_style": {
+                
+                "placeholder": "ic_merchant_logo_placeholder",
+                "corner_radius": 23
+            }
+        },
+        "payment_option_cells": {
+            
+            "currency": {
+                
+                "icon": "ic_bill",
+                "transaction_text_style": {
+                    
+                    "font": {
+                        
+                        "typeface": "helvetica-neue-regular",
+                        "size": 13.0
+                    },
+                    "color": "#e5e5e5",
+                    "alignment": "leading"
+                },
+                "selected_text_style": {
+                    
+                    "font": {
+                        
+                        "typeface": "helvetica-neue-regular",
+                        "size": 20.0
+                    },
+                    "color": "#e5e5e5",
+                    "alignment": "leading"
+                }
+            },
+            "group": {
+                
+                "title_style": {
+                    
+                    "font": {
+                        
+                        "typeface": "helvetica-neue-regular",
+                        "size": 13.0
+                    },
+                    "color": "#e5e5e5",
+                    "alignment": "leading"
+                }
+            },
+            "group_button": {
+                
+                "title_style": {
+                    
+                    "font": {
+                        
+                        "typeface": "helvetica-neue-regular",
+                        "size": 13.0
+                    },
+                    "color": "#e5e5e5",
+                    "alignment": "leading"
+                },
+                "button_title_style": {
+                    
+                    "font": {
+                        
+                        "typeface": "helvetica-neue-regular",
+                        "size": 13.0
+                    },
+                    "color": "#e5e5e5",
+                    "alignment": "trailing"
+                }
+            },
+            "web": {
+                
+                "title_style": {
+                    
+                    "font": {
+                        
+                        "typeface": "helvetica-neue-regular",
+                        "size": 17.0
+                    },
+                    "color": "#e5e5e5",
+                    "alignment": "leading"
+                }
+            },
+            "card": {
+                
+                "scan_icon_frame": "btn_scan_frame",
+                "scan_icon_icon": "btn_scan_icon",
+                "input_styles": {
+                    
+                    "valid": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-light",
+                            "size": 15.0
+                        },
+                        "color": "#ffffff",
+                        "alignment": "leading"
+                    },
+                    "invalid": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-light",
+                            "size": 15.0
+                        },
+                        "color": "#ee0000",
+                        "alignment": "leading"
+                    },
+                    "placeholder": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-light",
+                            "size": 15.0
+                        },
+                        "color": "#bdbdbd",
+                        "alignment": "leading"
+                    }
+                },
+                "save_card": {
+                    
+                    "text_style": {
+                        
+                        "font": {
+                            
+                            "typeface": "helvetica-neue-regular",
+                            "size": 12.0
+                        },
+                        "color": "#e5e5e5",
+                        "alignment": "leading"
+                    }
+                }
+            },
+            "saved_card": {
+                
+                "number_style": {
+                    
+                    "font": {
+                        
+                        "typeface": "helvetica-neue-regular",
+                        "size": 12.0
+                    },
+                    "color": "#474747",
+                    "alignment": "trailing"
+                },
+                "checkmark_icon": "ic_checkmark_green_small"
+            },
+            "glow_style": {
+                
+                "color": "#e5e5e5",
+                "radius": 3.0,
+                "duration": 0.3
+            },
+            "always_glow_style": {
+                
+                "color": "#00000026",
+                "radius": 3.0,
+                "duration": 0.3
+            }
+        },
+        "navigation_bar": {
+            
+            "background_color": "#151515",
+            "back_icon": "ic_arrow_left",
+            "title_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 19.0
+                },
+                "color": "#e5e5e5",
+                "alignment": "leading"
+            },
+            "cancel_normal_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-light",
+                    "size": 12.0
+                },
+                "color": "#595959",
+                "alignment": "center"
+            },
+            "cancel_highlighted_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-light",
+                    "size": 12.0
+                },
+                "color": "#000000",
+                "alignment": "center"
+            }
+        },
+        "search_bar": {
+            "search_holder_background_color": "#515151",
+            "placeholder_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 17.0
+                },
+                "color": "#bdbdbd",
+                "alignment": "leading"
+            },
+            "text_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 17.0
+                },
+                "color": "#ffffff",
+                "alignment": "leading"
+            }
+        },
+        "case_selection_cell": {
+            
+            "title_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 15.0
+                },
+                "color": "#e5e5e5",
+                "alignment": "leading"
+            },
+            
+            "value_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 15.0
+                },
+                "color": "#e5e5e5",
+                "alignment": "trailing"
+            },
+
+            "separator_color": {
+                
+                "fullscreen": "#797878",
+                "windowed": "#e1e1e1ff"
+            }
+        },
+        "otp_screen": {
+            "otp_digits_holder_border":"#000000",
+            "otp_digits_holder_background":"#515151",
+            "digits_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 24.0
+                },
+                "color": "#ffffff",
+                "alignment": "center"
+            },
+            
+            "timer_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 13.0
+                },
+                "color": "#ffffff",
+                "alignment": "trailing"
+            },
+            
+            "resend_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-medium",
+                    "size": 13.0
+                },
+                "color": "#ffffff",
+                "alignment": "center"
+            },
+            "description_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 14.0
+                },
+                "color": "#e5e5e5",
+                "alignment": "leading"
+            },
+            "description_number_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 14.0
+                },
+                "color": "#ffffff",
+                "alignment": "leading"
+            },
+            "arrow_icon": "ic_close_otp"
+        },
+        "status_popup": {
+            
+            "title_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 17.0
+                },
+                "color": "#535353",
+                "alignment": "leading"
+            },
+            
+            "subtitle_style": {
+                
+                "font": {
+                    
+                    "typeface": "helvetica-neue-regular",
+                    "size": 13.0
+                },
+                "color": "#9ea0a5",
+                "alignment": "leading"
+            },
+            
+            "success_icon": "ic_checkmark_green",
+            "failure_icon": "ic_x_red"
+        },
+        "common": {
+            
+            "loader_animation_duration": 3.0,
+            "keyboard_appearance": "light",
+            "status_bar": {
+                
+                "fullscreen": "dark",
+                "windowed": "dark"
+            },
+            "blur_style": {
+                
+                "fullscreen": {
+                    
+                    "style": "dark",
+                    "progress": 1,
+                },
+                "windowed": {
+                    
+                    "style": "dark",
+                    "progress": 1,
+                }
+            },
+            "background_color": {
+                
+                "fullscreen": "#00000000",
+                "windowed": "#00000000"
+            },
+            "content_background_color": {
+                
+                "fullscreen": "#00000000",
+                "windowed": "#515151"
+            },
+            "icons": {
+                
+                "arrow_left": "ic_arrow_left",
+                "arrow_right": "ic_arrow_right",
+                "checkmark": "ic_checkmark",
+                "close": "ic_close"
+            }
+        }
+    }]
 }
