@@ -772,12 +772,14 @@ internal extension Process {
 				post = TrackingURL(url: nonnullPostURL)
 			}
 			// the Amounted Currency assigned by the merchant
+
             var totalAmount:Decimal = dataSource.amount  ?? 0
             if totalAmount == 0
             {
                 totalAmount = transactionCurrency.amount
             }
             let amountedCurrency    =  AmountedCurrency(dataSource.currency!!, totalAmount)
+
 			// the Amounted Currency selected by the user
 			let amountedSelectedCurrency = self.selectedCurrency
 

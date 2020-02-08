@@ -19,6 +19,7 @@ import class    UIKit.UITableView.UITableViewRowAction
 import class    UIKit.UITableViewCell.UITableViewCell
 import class    UIKit.UITableViewController.UITableViewController
 import class    UIKit.UIView.UIView
+import class    UIKit.UITraitCollection
 
 internal class CustomersListViewController: UITableViewController {
     
@@ -81,6 +82,14 @@ internal class CustomersListViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        self.tableView.reloadData()
+        
     }
     
     internal override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

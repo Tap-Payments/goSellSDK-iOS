@@ -97,6 +97,8 @@ internal final class OTPViewController: SeparateWindowViewController {
 		let settings = Theme.current.otpScreenStyle
 		
 		self.otpInputView?.setDigitsStyle(settings.digits)
+        self.otpInputView?.setDigitsHolderViewBackgroundColor(settings.otpDigitsBackgroundColor.color)
+        self.otpInputView?.setDigitsHolderBorderColor(settings.otpDigitsBorderColor.color)
 		self.updateDescriptionLabelText()
 		self.updateResendButtonTitle(with: self.timerDataManager.state)
 		self.dismissalArrowImageView?.image = settings.arrowIcon
@@ -208,6 +210,12 @@ internal final class OTPViewController: SeparateWindowViewController {
     
     @IBOutlet private weak var dismissalView: UIView?
     
+    @IBOutlet weak var otpHolderView: UIView?{
+        didSet
+        {
+            self.otpHolderView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.36).loadCompatibleDarkModeColor(forColorNamed: "OTPHolderColor")
+        }
+    }
     @IBOutlet private weak var dismissalArrowImageView: UIImageView? {
         
         didSet {

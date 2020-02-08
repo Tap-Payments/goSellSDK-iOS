@@ -424,6 +424,10 @@
 		E8CDF34423CA299100E0C847 /* CreateTokenWithApplePayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34323CA299100E0C847 /* CreateTokenWithApplePayRequest.swift */; };
 		E8CDF34C23CA454900E0C847 /* AppleTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34B23CA454900E0C847 /* AppleTokenModel.swift */; };
 		E8CDF34E23CA45C800E0C847 /* AppleTokenHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34D23CA45C800E0C847 /* AppleTokenHeaderModel.swift */; };
+		E872CCA123D6DBD400D79EF2 /* SDKLightDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E872CCA023D6DBD400D79EF2 /* SDKLightDarkMode.swift */; };
+		E8C56F2823D70D5500564AB1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C56F2723D70D5500564AB1 /* Colors.xcassets */; };
+		E8C56F2A23D7197800564AB1 /* PaymentCellSeprator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C56F2923D7197800564AB1 /* PaymentCellSeprator.swift */; };
+		E8C56F3023D71DAE00564AB1 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C56F2F23D71DAE00564AB1 /* UIColor+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -838,6 +842,7 @@
 		A4F7106F20B5546A0064FE4B /* AddressFieldInputType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressFieldInputType.swift; sourceTree = "<group>"; };
 		CF65A0C457E3C3D928DEE7AB /* Pods-goSellSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDK/Pods-goSellSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		D70054A323A11AE600D15A4C /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
+
 		E828073123C71A5900C628DD /* SetupApplePayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupApplePayViewController.swift; sourceTree = "<group>"; };
 		E828073323C71BC600C628DD /* SetupApplePayViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupApplePayViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E82A208423EC00ED00F152C5 /* AsyncPaymentResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AsyncPaymentResultView.xib; sourceTree = "<group>"; };
@@ -850,6 +855,12 @@
 		E8CDF34323CA299100E0C847 /* CreateTokenWithApplePayRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenWithApplePayRequest.swift; sourceTree = "<group>"; };
 		E8CDF34B23CA454900E0C847 /* AppleTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenModel.swift; sourceTree = "<group>"; };
 		E8CDF34D23CA45C800E0C847 /* AppleTokenHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenHeaderModel.swift; sourceTree = "<group>"; };
+
+		E872CCA023D6DBD400D79EF2 /* SDKLightDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKLightDarkMode.swift; sourceTree = "<group>"; };
+		E8C56F2723D70D5500564AB1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		E8C56F2923D7197800564AB1 /* PaymentCellSeprator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCellSeprator.swift; sourceTree = "<group>"; };
+		E8C56F2F23D71DAE00564AB1 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
+
 		FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1198,6 +1209,7 @@
 			children = (
 				1495976921F5452E00DFA0A2 /* SDKAppearanceMode.swift */,
 				14A842912243E7F40026CC16 /* TapBlurStyle.swift */,
+				E872CCA023D6DBD400D79EF2 /* SDKLightDarkMode.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1352,6 +1364,7 @@
 				141284B42160E4D400C2873E /* themes.json */,
 				A43A0A6F20DA4B0A006B39F1 /* WebViewProgressBar.xib */,
 				E82A208423EC00ED00F152C5 /* AsyncPaymentResultView.xib */,
+				E8C56F2723D70D5500564AB1 /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1383,6 +1396,7 @@
 				A4BD8C9A20A1EEB800EFF2CE /* ImageTableViewCell.swift */,
 				A4752A36208EFF5C003118DB /* WebPaymentOptionTableViewCell.swift */,
 				E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */,
+				E8C56F2923D7197800564AB1 /* PaymentCellSeprator.swift */,
 			);
 			path = "Table View";
 			sourceTree = "<group>";
@@ -1721,6 +1735,7 @@
 				1412847C215CD83C00C2873E /* UITextField+Additions.swift */,
 				1412847D215CD83C00C2873E /* UIView+Additions.swift */,
 				148C65FF2278BFD60064760B /* UIWindow.Level+Additions.swift */,
+				E8C56F2F23D71DAE00564AB1 /* UIColor+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1845,6 +1860,7 @@
 				A4D5FE1920830ECB007D52F5 /* Payment.storyboard in Resources */,
 				1433816921FA3E8F00E0B90B /* LoadingView.xib in Resources */,
 				E82A208523EC00ED00F152C5 /* AsyncPaymentResultView.xib in Resources */,
+				E8C56F2823D70D5500564AB1 /* Colors.xcassets in Resources */,
 				A468772820DAC84900123391 /* Popups.storyboard in Resources */,
 				A424875C20E4F071001C4FAF /* TapButton.xib in Resources */,
 			);
@@ -2036,6 +2052,7 @@
 				149F5AFD2204809800A57C9A /* SessionAppearance.swift in Sources */,
 				A4BE547920A9D4ED004E979E /* CommonImages.swift in Sources */,
 				A4BD8CDD20A1EFFE00EFF2CE /* AmountedCurrencyTableViewCellModel.swift in Sources */,
+				E872CCA123D6DBD400D79EF2 /* SDKLightDarkMode.swift in Sources */,
 				A4571EEE20FE2319006D96DC /* APIClient+BillingAddress.swift in Sources */,
 				141284D621610CD800C2873E /* PaymentOptionCellsStyle.swift in Sources */,
 				A4C0FC61208CEC7900C5FBC6 /* GroupTableViewCellModel.swift in Sources */,
@@ -2095,6 +2112,7 @@
 				A456717420AD69EC0057A504 /* BINDataManager.swift in Sources */,
 				A4C13A8720F4EF9900037EDC /* CardsContainerTableViewCellModel.swift in Sources */,
 				147951C621FF77470073B49F /* APIClient+CardVerification.swift in Sources */,
+				E8C56F2A23D7197800564AB1 /* PaymentCellSeprator.swift in Sources */,
 				149AC19A21ED0F5A002D31A7 /* Metadata.swift in Sources */,
 				A424879420E4F2C9001C4FAF /* OTPInputViewDelegate.swift in Sources */,
 				A4B3FB94212467DA000C05EB /* Authorize.swift in Sources */,
@@ -2243,6 +2261,7 @@
 				A4BD8D0620A1F0B300EFF2CE /* CurrencyFormatter.swift in Sources */,
 				A4BD8D1920A1F3C800EFF2CE /* ValidationType.swift in Sources */,
 				A4BD8CF820A1F0B300EFF2CE /* CardValidator.swift in Sources */,
+				E8C56F3023D71DAE00564AB1 /* UIColor+Additions.swift in Sources */,
 				147951C321FF77290073B49F /* CreateCardVerificationRequest.swift in Sources */,
 				A4B6E43B20860BFC00078072 /* SDKSettingsData.swift in Sources */,
 				A4F7102B20B550760064FE4B /* TextFieldInputDataValidation.swift in Sources */,
