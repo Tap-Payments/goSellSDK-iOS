@@ -45,7 +45,7 @@ internal protocol ChargeProtocol: Authenticatable, Retrievable {
 	var destinations: DestinationGroup? { get }
 	
     /// Charge status.
-    var status: ChargeStatus { get }
+    var status: ChargeStatus { get set }
     
     /// Defines if 3D secure is required for the transaction.
     var requires3DSecure: Bool { get }
