@@ -26,6 +26,9 @@ internal struct PaymentOption: IdentifiableWithString {
     /// Image URL of the payment option.
     internal let imageURL: URL
     
+    /// If the payment option is async or not
+    internal let isAsync: Bool
+    
     /// Payment type.
     internal let paymentType: PaymentType
     
@@ -57,6 +60,7 @@ internal struct PaymentOption: IdentifiableWithString {
         case extraFees              = "extra_fees"
         case supportedCurrencies    = "supported_currencies"
         case orderBy                = "order_by"
+        case isAsync                = "asynchronous"
     }
     
     internal func applePayNetworkMapper() -> [PKPaymentNetwork]
@@ -119,6 +123,7 @@ extension PaymentOption: Decodable {
         let extraFees           = try container.decodeIfPresent ([ExtraFee].self,   forKey: .extraFees) ?? []
         let supportedCurrencies = try container.decode          ([Currency].self,   forKey: .supportedCurrencies)
         let orderBy             = try container.decode          (Int.self,          forKey: .orderBy)
+        let isAsync             = try container.decode          (Bool.self,         forKey: .isAsync)
 		
 		supportedCardBrands = supportedCardBrands.filter { $0 != .unknown }
 		
@@ -126,7 +131,7 @@ extension PaymentOption: Decodable {
                   brand: brand,
                   title: title,
                   imageURL: imageURL,
-				  paymentType: paymentType,
+                  isAsync: isAsync, paymentType: paymentType,
                   sourceIdentifier: sourceIdentifier,
                   supportedCardBrands: supportedCardBrands,
                   extraFees: extraFees,
