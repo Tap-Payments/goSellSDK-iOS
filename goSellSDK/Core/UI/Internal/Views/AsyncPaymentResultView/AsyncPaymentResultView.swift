@@ -16,7 +16,16 @@ class AsyncPaymentResultView: TapNibView {
     @IBOutlet weak var codeReferenceLabel: UILabel!
     @IBOutlet weak var codeExpirationLabel: UILabel!
     @IBOutlet weak var hintFooterLabel: UILabel!
-    @IBOutlet weak var closeButton: TapButton!
+    @IBOutlet weak var closeButton: TapButton!{
+        
+        didSet {
+            
+            if let nonnullPayButton = self.closeButton {
+                
+                Process.shared.buttonHandlerInterface.setButton(nonnullPayButton)
+            }
+        }
+    }
     @IBOutlet weak var storeLinkLabel: UILabel!
     
     @IBOutlet var asyncResponseLabels: [UILabel]!
@@ -32,6 +41,8 @@ class AsyncPaymentResultView: TapNibView {
         self.closeButton?.setLocalizedText(.btn_async_title)
         self.closeButton?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == .async })!
         self.updateLabels()
+        self.closeButton?.isEnabled = true
+        self.closeButton?.delegate = self
     }
     
     
@@ -103,6 +114,10 @@ class AsyncPaymentResultView: TapNibView {
             }
             
         }
+        
+        
+        self.closeButton?.isEnabled = true
+        self.closeButton?.setup()
     }
     
     @IBAction func openMerchantUrlClicked(_ sender: Any) {
@@ -125,4 +140,28 @@ class AsyncPaymentResultView: TapNibView {
             }
         }
     }
+}
+
+
+extension AsyncPaymentResultView:TapButtonDelegate
+{
+    var canBeHighlighted: Bool {
+        return true
+    }
+    
+    func buttonTouchUpInside() {
+        print("OSAMA")
+        if let nonNullCharge:ChargeProtocol = Process.shared.dataManagerInterface.currentChargeOrAuthorize
+        {
+           // let charge: = Charge(identifier: "", apiVersion: nonNullCharge.apiVersion, amount: nonNullCharge.amount, currency: nonNullCharge.currency, customer: nonNullCharge.customer, isLiveMode: nonNullCharge.isLiveMode, cardSaved: nonNullCharge.cardSaved, object: nonNullCharge.object, authentication: nonNullCharge.authentication, redirect: nonNullCharge.redirect, post: nonNullCharge.post, card: nonNullCharge.card, source: nonNullCharge.source, destinations: nonNullCharge.destinations, status: nonNullCharge.status, requires3DSecure: nonNullCharge.requires3DSecure, transactionDetails: nonNullCharge.transactionDetails, descriptionText: nonNullCharge.descriptionText, metadata: nonNullCharge.metadata, reference: nonNullCharge.reference, receiptSettings: nonNullCharge.receiptSettings, acquirer: nonNullCharge.acquirer, response: nonNullCharge.response, statementDescriptor: nonNullCharge.statementDescriptor)
+            Process.shared.dataManagerInterface.currentChargeOrAuthorize?.status = ChargeStatus.captured
+            Process.shared.closePayment(with: .successfulCharge(nonNullCharge as! Charge), fadeAnimation: true, force: false, completion: nil)
+        }
+    }
+    
+    func securityButtonTouchUpInside() {}
+    
+    func disabledButtonTouchUpInside() {}
+    
+    
 }
