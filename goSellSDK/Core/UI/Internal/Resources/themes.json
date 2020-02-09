@@ -1493,7 +1493,7 @@
                 "arrow_left": "ic_arrow_left",
                 "arrow_right": "ic_arrow_right",
                 "checkmark": "ic_checkmark",
-                "close": "ic_close"
+                "close": "delete_card_icon"
             }
         }
     }]
