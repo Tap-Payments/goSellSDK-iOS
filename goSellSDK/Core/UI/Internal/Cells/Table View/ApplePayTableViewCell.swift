@@ -43,8 +43,11 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
         //self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
         
         self.iconImageView?.image   = self.model?.iconImage
-        
-        let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ?? .buy
+        var defaultApplePayType:PKPaymentButtonType = .plain
+        if #available(iOS 10.0, *) {
+            defaultApplePayType = .inStore
+        }
+        let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ??  defaultApplePayType
         
         let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: model?.applePayButtonTypeStyle() ?? .black)
         
@@ -53,6 +56,9 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
         frame.size.width = self.frame.width - 30
         frame.size.height = 40
         applePayButton.frame = frame
+        applePayButton.tap_borderColor = UIColor(tap_hex: "E1E1E1")
+        applePayButton.tap_borderWidth = 1
+        applePayButton.layer.cornerRadius = 4
         
         applePayButton.center = contentView.center
         applePayButton.addTarget(self, action: #selector(applePayButtonClicked(_:)), for: .touchUpInside)
