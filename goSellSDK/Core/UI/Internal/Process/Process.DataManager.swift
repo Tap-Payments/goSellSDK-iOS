@@ -24,7 +24,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	var currentPaymentOption: PaymentOption? { get }
 	var currentPaymentCardBINNumber: String? { get }
 	var urlToLoadInWebPaymentController: URL? { get }
-	var currentChargeOrAuthorize: ChargeProtocol? { get }
+	var currentChargeOrAuthorize: ChargeProtocol? { get set }
 	var currentVerification: CardVerification? { get }
 	
 	var isExecutingAPICalls: Bool { get }
