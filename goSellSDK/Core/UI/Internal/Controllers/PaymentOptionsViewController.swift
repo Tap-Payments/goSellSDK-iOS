@@ -48,6 +48,7 @@ internal class PaymentOptionsViewController: BaseViewController {
 		self.shouldShowMask = true
 		self.updateMask()
 		self.addTableViewContentSizeObserver()
+        self.themeChanged()
 	}
 	
 	internal override func viewDidDisappear(_ animated: Bool) {
