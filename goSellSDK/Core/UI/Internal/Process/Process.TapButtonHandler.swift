@@ -106,7 +106,10 @@ internal extension Process {
 		}
 		
 		internal func updateButtonState() {
-			
+            if self.button?.themeStyle.type == .async
+            {
+                return
+            }
 			if let payProcessHandler = self as? TapButtonProcessHandler<PaymentClass, Implementation<PaymentClass>> {
 				
 				payProcessHandler.updatePayProcessButtonState()
