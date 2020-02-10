@@ -204,7 +204,7 @@ internal extension Process.TapButtonHandler where Mode: Payment {
 		self.updateAmountOnTheButton()
 	}
 	
-	private func updateAmountOnTheButton() {
+	 func updateAmountOnTheButton() {
 		
 		guard let displayedAmount = self.amount, displayedAmount.amount > 0.0 else {
 			
