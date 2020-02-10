@@ -1200,8 +1200,8 @@
 
             "separator_color": {
                 
-                "fullscreen": "#00797878",
-                "windowed": "#00e1e1e1ff"
+                "fullscreen": "#515151",
+                "windowed": "#515151"
             }
         },
         "otp_screen": {
