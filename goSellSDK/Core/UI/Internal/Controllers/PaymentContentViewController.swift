@@ -144,7 +144,7 @@ internal class PaymentContentViewController: HeaderNavigatedViewController {
 			self?.payButtonLeadingOffsetConstraint?.constant					= insets.left
 			self?.payButtonTrailingOffsetConstraint?.constant					= insets.right
 			self?.payButtonHeightConstraint?.constant							= height
-            self?.payButtonUI?.setup()
+            Process.shared.buttonHandlerInterface.updateButtonState()
 			self?.view.tap_layout()
 		}
 	}
