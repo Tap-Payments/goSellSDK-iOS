@@ -26,6 +26,8 @@ class AsyncPaymentResultView: TapNibView {
             }
         }
     }
+    
+    
     @IBOutlet weak var storeLinkLabel: UILabel!
     
     @IBOutlet var asyncResponseLabels: [UILabel]!
@@ -38,6 +40,12 @@ class AsyncPaymentResultView: TapNibView {
     override init(frame: CGRect) {
 
         super.init(frame: frame)
+        setupUI()
+    }
+    
+    
+    func setupUI()
+    {
         self.closeButton?.setLocalizedText(.btn_async_title)
         self.closeButton?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == .async })!
         self.updateLabels()
@@ -45,10 +53,18 @@ class AsyncPaymentResultView: TapNibView {
         self.closeButton?.delegate = self
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        setupUI()
+        
+    }
+    
     
     override internal func setup() {
         super.setup()
