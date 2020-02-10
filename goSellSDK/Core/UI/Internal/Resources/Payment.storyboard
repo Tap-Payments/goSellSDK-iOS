@@ -2099,6 +2099,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="blurView" destination="zyS-GH-z2N" id="nKc-tD-XWN"/>
                         <outlet property="bottomKeyboardOffsetConstraint" destination="SII-E2-ysj" id="2HV-1o-99m"/>
                         <outlet property="confirmationButton" destination="MfM-f5-uut" id="tYy-NL-iDr"/>
                         <outlet property="contentMaskView" destination="hYk-bh-ISq" id="ChF-6N-eHf"/>
