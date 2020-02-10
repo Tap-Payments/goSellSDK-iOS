@@ -56,6 +56,19 @@ internal class PaymentViewController: SeparateWindowViewController {
             self.blurView?.style = .none
         }
     }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+       // self.paymentOptionsTableView?.reloadData()
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        themeChanged()
+        self.blurView?.style = Theme.current.commonStyle.blurStyle[Process.shared.appearance].style
+        PaymentContentViewController.tap_findInHierarchy()?.themeChanged()
+        PaymentOptionsViewController.tap_findInHierarchy()?.themeChanged()
+        
+    }
 
     private var hasShownPaymentController = false
 	
