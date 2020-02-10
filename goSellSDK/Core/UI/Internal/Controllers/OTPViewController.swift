@@ -103,6 +103,14 @@ internal final class OTPViewController: SeparateWindowViewController {
 		self.updateResendButtonTitle(with: self.timerDataManager.state)
 		self.dismissalArrowImageView?.image = settings.arrowIcon
 	}
+    
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        themeChanged()
+    }
 	
     deinit {
         
