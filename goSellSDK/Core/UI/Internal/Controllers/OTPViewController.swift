@@ -23,6 +23,7 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
+import class    TapVisualEffectView.TapVisualEffectView
 
 /// View controller that handles Tap OTP input.
 internal final class OTPViewController: SeparateWindowViewController {
@@ -102,7 +103,16 @@ internal final class OTPViewController: SeparateWindowViewController {
 		self.updateDescriptionLabelText()
 		self.updateResendButtonTitle(with: self.timerDataManager.state)
 		self.dismissalArrowImageView?.image = settings.arrowIcon
+        blurView.style = Theme.current.commonStyle.blurStyle[Process.shared.appearance].style
 	}
+    
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        themeChanged()
+    }
 	
     deinit {
         
@@ -209,6 +219,7 @@ internal final class OTPViewController: SeparateWindowViewController {
     // MARK: Properties
     
     @IBOutlet private weak var dismissalView: UIView?
+    @IBOutlet weak var blurView: TapVisualEffectView!
     
     @IBOutlet weak var otpHolderView: UIView?{
         didSet

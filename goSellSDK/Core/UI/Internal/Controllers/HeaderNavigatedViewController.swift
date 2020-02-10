@@ -78,6 +78,10 @@ internal class HeaderNavigatedViewController: BaseViewController, NavigationCont
 		
 		super.themeChanged()
 		self.headerNavigationView?.setStyle(self.headerStyle)
+        if let nonnullHeaderView = self.headerNavigationView {
+            
+            self.headerNavigationViewLoaded(nonnullHeaderView)
+        }
 	}
 	
     internal func updateHeaderShadowOpacity(with contentOverlapping: CGFloat) {

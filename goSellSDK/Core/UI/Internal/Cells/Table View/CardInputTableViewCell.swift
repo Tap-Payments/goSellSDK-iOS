@@ -57,7 +57,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         if !selected {
             
             self.tap_firstResponder?.resignFirstResponder()
-            self.controls?.forEach { $0.isUserInteractionEnabled = false }
+            self.controls?.forEach { $0.isUserInteractionEnabled = true }
         }
         
         

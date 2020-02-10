@@ -51,6 +51,16 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         decision(true)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+       // self.paymentOptionsTableView?.reloadData()
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        themeChanged()
+        self.tableView?.reloadData()
+        
+    }
+    
     internal override func tableViewLoaded(_ aTableView: UITableView) {
         
         super.tableViewLoaded(aTableView)
