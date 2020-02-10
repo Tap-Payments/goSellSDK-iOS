@@ -206,6 +206,17 @@ extension WebPaymentViewController: TapNavigationView.DataSource {
 		}
 	}
 	
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+       // self.paymentOptionsTableView?.reloadData()
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        themeChanged()
+        headerNavigationView?.setStyle(Theme.current.navigationBarStyle)
+        
+    }
+    
 	internal func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
 		
 		if let bankName = self.binInformation?.bank, bankName.tap_length > 0 {
