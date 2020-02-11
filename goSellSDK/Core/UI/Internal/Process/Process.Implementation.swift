@@ -341,7 +341,7 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
         self.dataManager.currentPaymentOption            = paymentOption
         
         ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen {
-            let asyncControllerFrame = self.process.loadingControllerFrame(coveringHeader: true)
+            let asyncControllerFrame = PaymentOptionsViewController.tap_findInHierarchy()?.view.frame ?? UIScreen.main.bounds//self.process.loadingControllerFrame(coveringHeader: true)
             AsyncResponseViewController.show(with: asyncControllerFrame.minY, with: charge)
         }
     }
