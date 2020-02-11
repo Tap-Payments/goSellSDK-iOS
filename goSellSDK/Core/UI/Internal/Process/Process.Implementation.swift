@@ -339,14 +339,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 	
     fileprivate func openAsyncPaymentScreen(for paymentOption: PaymentOption, charge: ChargeProtocol, completion: TypeAlias.ArgumentlessClosure? = nil) {
         self.dataManager.currentPaymentOption            = paymentOption
-        if let alreadyOpenedWebPaymentController = WebPaymentViewController.tap_findInHierarchy() {
-            
-            self.webPaymentHandler.prepareWebPaymentController(alreadyOpenedWebPaymentController,async: true)
-            completion?()
-        }
-        else {
-            
-            PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
+        
+        ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen {
+            let asyncControllerFrame = self.process.loadingControllerFrame(coveringHeader: true)
+            AsyncResponseViewController.show(with: asyncControllerFrame.minY, with: charge)
         }
     }
     
