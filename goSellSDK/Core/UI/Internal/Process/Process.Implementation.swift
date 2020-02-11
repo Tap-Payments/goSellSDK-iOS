@@ -756,6 +756,30 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 		
 		let source = SourceRequest(identifier: sourceIdentifier)
 		
+        if paymentOption.isAsync
+        {
+            let loaderContainer: LoadingViewSupport? = PaymentContentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
+            
+            if let nonnullLoadingContainer = loaderContainer {
+                
+                LoadingView.show(in: nonnullLoadingContainer, animated: true)
+            }
+            let retryAction: TypeAlias.ArgumentlessClosure = {
+                
+                self.startPayment(withWebPaymentOption: paymentOption)
+            }
+            
+            self.dataManager.callChargeOrAuthorizeAPI(with:                             source,
+                                                      paymentOption:                    paymentOption,
+                                                      token:                            nil,
+                                                      cardBIN:                          nil,
+                                                      saveCard:                         nil,
+                                                      loader:                           loaderContainer,
+                                                      retryAction:                      retryAction,
+                                                      alertDismissButtonClickHandler:   nil)
+            return
+        }
+        
 		self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil) {
 			
 			let loaderContainer: LoadingViewSupport? = WebPaymentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
