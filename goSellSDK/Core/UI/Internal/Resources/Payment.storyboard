@@ -61,7 +61,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q54-VW-1wv">
-                                <rect key="frame" x="0.0" y="110" width="375" height="608"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="642"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="FQa-YX-yrw" kind="embed" id="ZNO-Es-KPw"/>
@@ -72,7 +72,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-mu-d3E">
-                                <rect key="frame" x="0.0" y="718" width="375" height="94"/>
+                                <rect key="frame" x="0.0" y="752" width="375" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoP-JX-Gmp" customClass="TapButton" customModule="goSellSDK">
                                         <rect key="frame" x="8" y="8" width="359" height="44"/>
@@ -1252,7 +1252,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6W-0a-6TY">
-                                                    <rect key="frame" x="293" y="13.666666666666664" width="37" height="17"/>
+                                                    <rect key="frame" x="293" y="13.5" width="37" height="17"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2278,8 +2278,15 @@
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euU-j8-Vw6">
                                                 <rect key="frame" x="0.0" y="52" width="375" height="760"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lZ-jI-jZy" customClass="TapNavigationView" customModule="goSellSDK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="pNN-va-zbe"/>
+                                                        </constraints>
+                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment in Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HV-ZA-l5Z">
-                                                        <rect key="frame" x="108.66666666666667" y="15" width="157.66666666666663" height="20"/>
+                                                        <rect key="frame" x="108.5" y="68" width="157.5" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -2361,21 +2368,24 @@ with your Fawry Pay Reference</string>
                                                     <constraint firstItem="2IT-WW-9u3" firstAttribute="top" secondItem="kap-D9-wOs" secondAttribute="bottom" id="Nru-aJ-P6H"/>
                                                     <constraint firstItem="6PC-N4-RyC" firstAttribute="centerX" secondItem="euU-j8-Vw6" secondAttribute="centerX" id="Ptu-WP-V7Z"/>
                                                     <constraint firstItem="kap-D9-wOs" firstAttribute="centerX" secondItem="euU-j8-Vw6" secondAttribute="centerX" id="Q7u-eQ-QT3"/>
+                                                    <constraint firstItem="4HV-ZA-l5Z" firstAttribute="top" secondItem="4lZ-jI-jZy" secondAttribute="bottom" constant="15" id="QRo-IR-kT4"/>
                                                     <constraint firstItem="onS-4L-BaW" firstAttribute="centerX" secondItem="euU-j8-Vw6" secondAttribute="centerX" id="S1L-DK-wID"/>
                                                     <constraint firstItem="MDv-uI-hDb" firstAttribute="leading" secondItem="euU-j8-Vw6" secondAttribute="leading" constant="8" id="SYX-mX-dZE"/>
                                                     <constraint firstAttribute="trailing" secondItem="kap-D9-wOs" secondAttribute="trailing" constant="8" id="SdN-uJ-Rpl"/>
+                                                    <constraint firstItem="4lZ-jI-jZy" firstAttribute="leading" secondItem="euU-j8-Vw6" secondAttribute="leading" id="Udc-Bf-YAe"/>
                                                     <constraint firstAttribute="bottom" secondItem="Igg-Oo-Te2" secondAttribute="bottom" constant="32" id="XJo-6Q-94O"/>
                                                     <constraint firstItem="Pn2-B3-qgs" firstAttribute="top" secondItem="g9H-lB-y2z" secondAttribute="bottom" constant="25" id="Yff-2E-0iN"/>
                                                     <constraint firstItem="4HV-ZA-l5Z" firstAttribute="centerX" secondItem="euU-j8-Vw6" secondAttribute="centerX" id="cR7-FX-rdU"/>
                                                     <constraint firstItem="MDv-uI-hDb" firstAttribute="bottom" secondItem="2IT-WW-9u3" secondAttribute="bottom" id="dE1-Yl-A1d"/>
                                                     <constraint firstItem="MDv-uI-hDb" firstAttribute="top" secondItem="2IT-WW-9u3" secondAttribute="top" id="gpE-e6-Mva"/>
                                                     <constraint firstItem="g9H-lB-y2z" firstAttribute="top" secondItem="4HV-ZA-l5Z" secondAttribute="bottom" constant="25" id="iNM-Ez-kDG"/>
+                                                    <constraint firstItem="4lZ-jI-jZy" firstAttribute="top" secondItem="euU-j8-Vw6" secondAttribute="top" id="kMu-RX-3lw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="4lZ-jI-jZy" secondAttribute="trailing" id="klc-od-6RS"/>
                                                     <constraint firstAttribute="trailing" secondItem="MDv-uI-hDb" secondAttribute="trailing" constant="8" id="muR-N3-m6R"/>
                                                     <constraint firstAttribute="trailing" secondItem="Igg-Oo-Te2" secondAttribute="trailing" id="uM1-wn-Cdn"/>
                                                     <constraint firstItem="6PC-N4-RyC" firstAttribute="top" secondItem="Pn2-B3-qgs" secondAttribute="bottom" id="vz9-q7-KBd"/>
                                                     <constraint firstItem="2IT-WW-9u3" firstAttribute="leading" secondItem="euU-j8-Vw6" secondAttribute="leading" constant="8" id="xJ8-Fw-bSa"/>
                                                     <constraint firstItem="onS-4L-BaW" firstAttribute="top" secondItem="6PC-N4-RyC" secondAttribute="bottom" constant="25" id="xTf-Es-G3A"/>
-                                                    <constraint firstItem="4HV-ZA-l5Z" firstAttribute="top" secondItem="euU-j8-Vw6" secondAttribute="top" constant="15" id="zKC-RL-CDg"/>
                                                     <constraint firstItem="kap-D9-wOs" firstAttribute="top" secondItem="onS-4L-BaW" secondAttribute="bottom" constant="25" id="zXx-qX-gqd"/>
                                                 </constraints>
                                             </view>
@@ -2391,7 +2401,7 @@ with your Fawry Pay Reference</string>
                                             <constraint firstItem="Vad-Kj-vEo" firstAttribute="leading" secondItem="Rm9-zc-qek" secondAttribute="leading" id="d0n-pU-FCw"/>
                                             <constraint firstItem="r8N-xV-dYg" firstAttribute="leading" secondItem="Rm9-zc-qek" secondAttribute="leading" id="krl-nh-yGh"/>
                                             <constraint firstAttribute="trailing" secondItem="euU-j8-Vw6" secondAttribute="trailing" id="tHG-QO-hIv"/>
-                                            <constraint firstItem="euU-j8-Vw6" firstAttribute="top" secondItem="Rm9-zc-qek" secondAttribute="top" constant="52" id="tpZ-le-N5o"/>
+                                            <constraint firstItem="euU-j8-Vw6" firstAttribute="top" secondItem="Rm9-zc-qek" secondAttribute="top" id="tpZ-le-N5o"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2434,6 +2444,7 @@ with your Fawry Pay Reference</string>
                         <outlet property="codeReferenceLabel" destination="6PC-N4-RyC" id="24i-Bq-TQd"/>
                         <outlet property="contentMaskView" destination="hd3-0e-MaZ" id="41e-2R-wer"/>
                         <outlet property="contentViewTopOffsetConstraint" destination="PMG-N9-gbd" id="r9l-Ym-ZQB"/>
+                        <outlet property="headerVieq" destination="4lZ-jI-jZy" id="qad-iX-wN4"/>
                         <outlet property="hintFooterLabel" destination="kap-D9-wOs" id="AKv-dX-gjZ"/>
                         <outlet property="orderCodeTitleLabel" destination="Pn2-B3-qgs" id="Nqm-dn-Ivl"/>
                         <outlet property="paymentStatusLabel" destination="4HV-ZA-l5Z" id="u3d-ZU-Qx4"/>
