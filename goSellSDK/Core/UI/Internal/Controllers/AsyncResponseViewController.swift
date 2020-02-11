@@ -220,7 +220,6 @@ extension AsyncResponseViewController: DelayedDestroyable {
         
         if let nonnullStorage = self.storage {
             
-            
             nonnullStorage.hide(animated: true,async: true) {
                 
                 self.storage = nil
@@ -247,7 +246,7 @@ extension AsyncResponseViewController:TapButtonDelegate
         if let nonNullCharge:ChargeProtocol = Process.shared.dataManagerInterface.currentChargeOrAuthorize
         {
             Process.shared.dataManagerInterface.currentChargeOrAuthorize?.status = ChargeStatus.captured
-            AsyncResponseViewController.destroyInstance()
+            //AsyncResponseViewController.destroyInstance()
             Process.shared.closePayment(with: .successfulCharge(nonNullCharge as! Charge), fadeAnimation: false, force: false, completion: nil)
         }
     }

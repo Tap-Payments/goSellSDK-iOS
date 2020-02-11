@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wPo-3k-AO1">
-    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
@@ -2154,27 +2154,27 @@
                         <viewControllerLayoutGuide type="bottom" id="DvI-rU-nya"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1o6-MO-4OL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1LO-nX-glP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HX-iU-Tgv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </containerView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SetupApplePaySplash" translatesAutoresizingMaskIntoConstraints="NO" id="3Kf-5Z-Wrx">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We support Apple Pay! Pay with a touch!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5L-Hm-7K8">
-                                        <rect key="frame" x="20" y="376.66666666666669" width="335" height="59"/>
+                                        <rect key="frame" x="20" y="418.5" width="374" height="59"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplePayMark" translatesAutoresizingMaskIntoConstraints="NO" id="SIS-Er-ZnC">
-                                        <rect key="frame" x="149.66666666666666" y="455.66666666666669" width="76" height="50"/>
+                                        <rect key="frame" x="169" y="497.5" width="76" height="50"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztm-kQ-DxY">
                                         <rect key="frame" x="20" y="20" width="40" height="40"/>
@@ -2188,7 +2188,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nr8-1N-dXb">
-                                        <rect key="frame" x="84" y="730" width="207" height="40"/>
+                                        <rect key="frame" x="103.5" y="814" width="207" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="RGR-lc-fhu"/>
                                             <constraint firstAttribute="width" secondItem="nr8-1N-dXb" secondAttribute="height" multiplier="207:40" id="hTx-iI-tTp"/>
@@ -2275,30 +2275,8 @@
                                                     <constraint firstAttribute="height" id="H0G-zV-eIR"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETf-jT-eqZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y2a-cu-jSY">
-                                                        <rect key="frame" x="165" y="26" width="45" height="12"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="45" id="TG5-dg-7TB"/>
-                                                            <constraint firstAttribute="height" constant="12" id="j6z-ey-mil"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <gestureRecognizers/>
-                                                <constraints>
-                                                    <constraint firstItem="Y2a-cu-jSY" firstAttribute="centerX" secondItem="ETf-jT-eqZ" secondAttribute="centerX" id="uCz-4z-kMf"/>
-                                                    <constraint firstAttribute="height" constant="64" id="viv-KD-Qzp"/>
-                                                    <constraint firstItem="Y2a-cu-jSY" firstAttribute="centerY" secondItem="ETf-jT-eqZ" secondAttribute="centerY" id="zfc-xk-d9u"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="Fdj-bp-SpG" appends="YES" id="ufG-ax-hBl"/>
-                                                </connections>
-                                            </view>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euU-j8-Vw6">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="748"/>
+                                                <rect key="frame" x="0.0" y="52" width="375" height="760"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment in Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HV-ZA-l5Z">
                                                         <rect key="frame" x="108.66666666666667" y="15" width="157.66666666666663" height="20"/>
@@ -2406,17 +2384,14 @@ with your Fawry Pay Reference</string>
                                         <constraints>
                                             <constraint firstItem="Vad-Kj-vEo" firstAttribute="top" secondItem="r8N-xV-dYg" secondAttribute="bottom" id="44H-xo-34z"/>
                                             <constraint firstItem="euU-j8-Vw6" firstAttribute="leading" secondItem="Rm9-zc-qek" secondAttribute="leading" id="9WL-hb-j5R"/>
-                                            <constraint firstAttribute="trailing" secondItem="ETf-jT-eqZ" secondAttribute="trailing" id="Cz2-bb-S6J"/>
-                                            <constraint firstItem="ETf-jT-eqZ" firstAttribute="top" secondItem="Rm9-zc-qek" secondAttribute="top" id="ITm-VS-nyZ"/>
                                             <constraint firstAttribute="trailing" secondItem="Vad-Kj-vEo" secondAttribute="trailing" id="L3n-lO-Ror"/>
-                                            <constraint firstItem="euU-j8-Vw6" firstAttribute="top" secondItem="ETf-jT-eqZ" secondAttribute="bottom" id="Qfc-cS-ICt"/>
                                             <constraint firstAttribute="trailing" secondItem="r8N-xV-dYg" secondAttribute="trailing" id="TuI-l4-54Z"/>
                                             <constraint firstAttribute="bottom" secondItem="Vad-Kj-vEo" secondAttribute="bottom" id="WIg-1D-sZA"/>
                                             <constraint firstItem="Vad-Kj-vEo" firstAttribute="top" secondItem="euU-j8-Vw6" secondAttribute="bottom" id="YyQ-iO-SKH"/>
-                                            <constraint firstItem="ETf-jT-eqZ" firstAttribute="leading" secondItem="Rm9-zc-qek" secondAttribute="leading" id="Z8k-Od-hXo"/>
                                             <constraint firstItem="Vad-Kj-vEo" firstAttribute="leading" secondItem="Rm9-zc-qek" secondAttribute="leading" id="d0n-pU-FCw"/>
                                             <constraint firstItem="r8N-xV-dYg" firstAttribute="leading" secondItem="Rm9-zc-qek" secondAttribute="leading" id="krl-nh-yGh"/>
                                             <constraint firstAttribute="trailing" secondItem="euU-j8-Vw6" secondAttribute="trailing" id="tHG-QO-hIv"/>
+                                            <constraint firstItem="euU-j8-Vw6" firstAttribute="top" secondItem="Rm9-zc-qek" secondAttribute="top" constant="52" id="tpZ-le-N5o"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2469,7 +2444,7 @@ with your Fawry Pay Reference</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oKd-9I-TNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Fdj-bp-SpG"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="2028"/>
+            <point key="canvasLocation" x="1869.5652173913045" y="2027.6785714285713"/>
         </scene>
     </scenes>
     <resources>
