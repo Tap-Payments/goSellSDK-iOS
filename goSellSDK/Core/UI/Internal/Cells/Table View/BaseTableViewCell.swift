@@ -28,6 +28,9 @@ internal class BaseTableViewCell: UITableViewCell {
         }
 		
 		self.tap_updateLayoutDirectionIfRequired()
+        
+        self.backgroundColor = UIColor.white.loadCompatibleDarkModeColor(forColorNamed: "DefaultCellColor")
+       
     }
     
     internal override func prepareForReuse() {

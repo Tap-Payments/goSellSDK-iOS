@@ -25,6 +25,8 @@ internal struct Theme: Decodable {
 	internal let name: String
 	
 	internal let isDefault: Bool
+    
+    internal let dark: Bool
 	
 	internal var buttonStyles: [TapButtonStyle]
 	
@@ -50,6 +52,7 @@ internal struct Theme: Decodable {
 		
 		case name						= "name"
 		case isDefault					= "default"
+        case dark                       = "dark"
 		case buttonStyles				= "tap_buttons"
 		case merchantHeaderStyle		= "merchant_header"
 		case paymentOptionsCellStyle	= "payment_option_cells"
