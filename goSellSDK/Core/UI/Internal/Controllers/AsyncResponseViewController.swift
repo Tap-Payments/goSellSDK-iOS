@@ -8,9 +8,10 @@
 
 import UIKit
 import struct   TapAdditionsKit.TypeAlias
+import class    TapVisualEffectView.TapVisualEffectView
 
 internal final class AsyncResponseViewController: SeparateWindowViewController {
-
+    
     
     @IBOutlet weak var headerVieq: TapNavigationView!
     private var chargeProtocol:ChargeProtocol?
@@ -19,23 +20,26 @@ internal final class AsyncResponseViewController: SeparateWindowViewController {
     
     @IBOutlet private weak var contentViewTopOffsetConstraint: NSLayoutConstraint?
     @IBOutlet weak var paymentStatusLabel: UILabel!
-       @IBOutlet weak var acknolwedgementLabel: UILabel!
-       @IBOutlet weak var orderCodeTitleLabel: UILabel!
-       @IBOutlet weak var codeReferenceLabel: UILabel!
-       @IBOutlet weak var codeExpirationLabel: UILabel!
-       @IBOutlet weak var hintFooterLabel: UILabel!
-       @IBOutlet weak var closeButton: TapButton!{
-           
-           didSet {
-               
-               if let nonnullPayButton = self.closeButton {
-                   
-                   Process.shared.buttonHandlerInterface.setButton(nonnullPayButton)
-               }
-           }
-       }
-       @IBOutlet weak var storeLinkLabel: UILabel!
-       
+    @IBOutlet weak var acknolwedgementLabel: UILabel!
+    @IBOutlet weak var orderCodeTitleLabel: UILabel!
+    @IBOutlet weak var codeReferenceLabel: UILabel!
+    @IBOutlet weak var codeExpirationLabel: UILabel!
+    @IBOutlet weak var hintFooterLabel: UILabel!
+    @IBOutlet weak var blurView: TapVisualEffectView!
+    
+    @IBOutlet weak var closeButton: TapButton!{
+        
+        didSet {
+            
+            if let nonnullPayButton = self.closeButton {
+                
+                Process.shared.buttonHandlerInterface.setButton(nonnullPayButton)
+            }
+        }
+    }
+    @IBOutlet weak var storeLinkLabel: UILabel!
+    
+    @IBOutlet var asyncResponseLabels: [UILabel]!
     
     internal override var preferredStatusBarStyle: UIStatusBarStyle {
         
@@ -55,28 +59,40 @@ internal final class AsyncResponseViewController: SeparateWindowViewController {
     
     
     private static func createAndSetupController() -> AsyncResponseViewController {
-             
+        
         KnownStaticallyDestroyableTypes.add(AsyncResponseViewController.self)
-           let controller = self.shared
-           controller.modalPresentationStyle = .custom
-           return controller
-       }
+        let controller = self.shared
+        controller.modalPresentationStyle = .custom
+        return controller
+    }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupUI()
+        headerVieq.dataSource = self
+        headerVieq.closeButtonContainerView?.isHidden = true
+        // Do any additional setup after loading the view.
+    }
+    
+    internal func setupUI()
+    {
         self.closeButton?.setLocalizedText(.btn_async_title)
         self.closeButton?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == .async })!
         self.updateLabels()
         self.closeButton?.isEnabled = true
         self.closeButton?.delegate = self
         headerVieq.setStyle(Theme.current.navigationBarStyle)
-        headerVieq.dataSource = self
-        headerVieq.closeButtonContainerView?.isHidden = true
-        // Do any additional setup after loading the view.
+        blurView.style = Theme.current.commonStyle.blurStyle[Process.shared.appearance].style
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        setupUI()
+        
+    }
     
     @IBAction func openMerchantUrlClicked(_ sender: Any) {
         if let nonNullCharge:ChargeProtocol = Process.shared.dataManagerInterface.currentChargeOrAuthorize
@@ -86,12 +102,12 @@ internal final class AsyncResponseViewController: SeparateWindowViewController {
                 if let url = URL(string: order.storeUrl) {
                     if #available(iOS 10.0, *) {
                         if UIApplication.shared.canOpenURL(url) {
-                           UIApplication.shared.open(url, options:[:], completionHandler: nil)
+                            UIApplication.shared.open(url, options:[:], completionHandler: nil)
                         }
                     } else {
                         // Fallback on earlier versions
                         if UIApplication.shared.canOpenURL(url) {
-                           UIApplication.shared.openURL(url)
+                            UIApplication.shared.openURL(url)
                         }
                     }
                 }
@@ -100,6 +116,8 @@ internal final class AsyncResponseViewController: SeparateWindowViewController {
     }
     
     private func updateLabels() {
+        
+        self.asyncResponseLabels?.forEach { $0.textColor = UIColor(tap_hex: "535353")?.loadCompatibleDarkModeColor(forColorNamed: "AsyncLabelColors") }
         
         paymentStatusLabel.setLocalizedText(.async_status_text)
         orderCodeTitleLabel.setLocalizedText(.async_pay_order_code_text)
@@ -162,17 +180,17 @@ internal final class AsyncResponseViewController: SeparateWindowViewController {
         self.closeButton?.isEnabled = true
         self.closeButton?.setup()
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 
