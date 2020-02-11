@@ -749,21 +749,35 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
             self.process.buttonHandlerInterface.stopButtonLoader()
         }
     }
-	
-	private func startPayment(withWebPaymentOption paymentOption: PaymentOption) {
-		
-		guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
-		
-		let source = SourceRequest(identifier: sourceIdentifier)
-		
+    
+    private func startPayment(withWebPaymentOption paymentOption: PaymentOption) {
+        
         if paymentOption.isAsync
         {
-            let loaderContainer: LoadingViewSupport? = PaymentContentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
+            startPaymentHelperAsync(withWebPaymentOption: paymentOption)
+        }else
+        {
+            startPaymentHelperWeb(withWebPaymentOption: paymentOption)
+        }
+    }
+    
+    private func startPaymentHelperWeb(withWebPaymentOption paymentOption: PaymentOption)
+    {
+        guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
+        
+        let source = SourceRequest(identifier: sourceIdentifier)
+        
+        self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil) {
+            
+            let loaderContainer: LoadingViewSupport? = WebPaymentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
             
             if let nonnullLoadingContainer = loaderContainer {
                 
                 LoadingView.show(in: nonnullLoadingContainer, animated: true)
             }
+            
+            let alertDissmissClosure = { self.closeWebPaymentScreen() }
+            
             let retryAction: TypeAlias.ArgumentlessClosure = {
                 
                 self.startPayment(withWebPaymentOption: paymentOption)
@@ -776,36 +790,35 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
                                                       saveCard:                         nil,
                                                       loader:                           loaderContainer,
                                                       retryAction:                      retryAction,
-                                                      alertDismissButtonClickHandler:   nil)
-            return
+                                                      alertDismissButtonClickHandler:   alertDissmissClosure)
+        }
+    }
+    private func startPaymentHelperAsync(withWebPaymentOption paymentOption: PaymentOption)
+    {
+        guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
+        
+        let source = SourceRequest(identifier: sourceIdentifier)
+        
+        let loaderContainer: LoadingViewSupport? = PaymentContentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
+        
+        if let nonnullLoadingContainer = loaderContainer {
+            
+            LoadingView.show(in: nonnullLoadingContainer, animated: true)
+        }
+        let retryAction: TypeAlias.ArgumentlessClosure = {
+            
+            self.startPayment(withWebPaymentOption: paymentOption)
         }
         
-		self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil) {
-			
-			let loaderContainer: LoadingViewSupport? = WebPaymentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
-			
-			if let nonnullLoadingContainer = loaderContainer {
-				
-				LoadingView.show(in: nonnullLoadingContainer, animated: true)
-			}
-			
-			let alertDissmissClosure = { self.closeWebPaymentScreen() }
-			
-			let retryAction: TypeAlias.ArgumentlessClosure = {
-				
-				self.startPayment(withWebPaymentOption: paymentOption)
-			}
-			
-			self.dataManager.callChargeOrAuthorizeAPI(with:                             source,
-													  paymentOption:                    paymentOption,
-													  token:							nil,
-													  cardBIN:                          nil,
-													  saveCard:                         nil,
-													  loader:                           loaderContainer,
-													  retryAction:                      retryAction,
-													  alertDismissButtonClickHandler:   alertDissmissClosure)
-		}
-	}
+        self.dataManager.callChargeOrAuthorizeAPI(with:                             source,
+                                                  paymentOption:                    paymentOption,
+                                                  token:                            nil,
+                                                  cardBIN:                          nil,
+                                                  saveCard:                         nil,
+                                                  loader:                           loaderContainer,
+                                                  retryAction:                      retryAction,
+                                                  alertDismissButtonClickHandler:   nil)
+    }
     
     
     private func startPayment(withApplePaymentOption paymentOption: PaymentOption) {
