@@ -26,6 +26,8 @@ internal class WebPaymentOptionTableViewCell: BaseTableViewCell {
     @IBOutlet private weak var titleLabel:      UILabel?
     @IBOutlet private weak var iconImageView:   UIImageView?
     @IBOutlet private weak var arrowImageView:  UIImageView?
+    @IBOutlet weak var iconViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var paddingView: UIView!
 }
 
 // MARK: - LoadingWithModelCell
@@ -38,5 +40,26 @@ extension WebPaymentOptionTableViewCell: LoadingWithModelCell {
 		
         self.iconImageView?.image   = self.model?.iconImage
         self.arrowImageView?.image  = self.model?.arrowImage
+        
+        self.iconImageView?.translatesAutoresizingMaskIntoConstraints = false
+        self.iconViewWidthConstraint.constant = 32
+        
+        if #available(iOS 13.0, *) {
+           if UITraitCollection.current.userInterfaceStyle == .dark {
+            self.paddingView.layer.cornerRadius = 8
+            self.paddingView.layer.masksToBounds = true
+            self.iconViewWidthConstraint.constant = 22
+           }else{
+            self.paddingView.layer.cornerRadius = 0
+            self.paddingView.layer.masksToBounds = true
+            self.iconViewWidthConstraint.constant = 32
+            }
+        }
+        
+        
+        DispatchQueue.main.async {
+            self.layoutIfNeeded()
+            self.iconImageView?.layoutIfNeeded()
+        }
     }
 }

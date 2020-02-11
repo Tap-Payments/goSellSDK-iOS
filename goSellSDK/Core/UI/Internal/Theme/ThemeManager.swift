@@ -15,15 +15,27 @@ internal final class ThemeManager {
 	
 	internal var originalCurrentTheme: Theme {
 		
-		return self.themes.first { $0.isDefault }!
+		return getCorrectTheme()
 	}
 	
 	// MARK: Methods
 	
 	internal func resetCurrentThemeToDefault() {
-		
-		self.currentTheme = self.themes.first { $0.isDefault }!
+		self.currentTheme = getCorrectTheme()
 	}
+    
+    
+    internal func getCorrectTheme() -> Theme
+    {
+        var selectedTheme:Theme = self.themes.first { $0.isDefault }!
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                selectedTheme = self.themes.first { $0.dark }!
+            }
+        }
+        return selectedTheme
+    }
 	
 	// MARK: - Private -
 	
@@ -44,11 +56,20 @@ internal final class ThemeManager {
 	// MARK: Methods
 	
 	private init() {
-		
+        
 		KnownStaticallyDestroyableTypes.add(ThemeManager.self)
 		
 		self.themes 		= ThemeManager.loadThemes()
-		self.currentTheme	= self.themes.first { $0.isDefault }!
+        
+        var selectedTheme:Theme = self.themes.first { $0.isDefault }!
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                selectedTheme = self.themes.first { $0.dark }!
+            }
+        }
+        
+        self.currentTheme	= selectedTheme
 	}
 	
 	private static func loadThemes() -> [Theme] {

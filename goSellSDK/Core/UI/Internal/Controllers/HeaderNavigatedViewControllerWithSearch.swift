@@ -115,7 +115,7 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
 	
     // MARK: Properties
     
-    @IBOutlet private weak var searchView: TapSearchView? {
+    @IBOutlet internal weak var searchView: TapSearchView? {
         
         didSet {
             

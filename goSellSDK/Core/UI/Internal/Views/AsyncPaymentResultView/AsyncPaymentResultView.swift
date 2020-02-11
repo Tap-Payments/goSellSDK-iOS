@@ -26,9 +26,13 @@ class AsyncPaymentResultView: TapNibView {
             }
         }
     }
+    
+    
     @IBOutlet weak var storeLinkLabel: UILabel!
     
-     internal override class var bundle: Bundle {
+    @IBOutlet var asyncResponseLabels: [UILabel]!
+    
+    internal override class var bundle: Bundle {
 		   
 		   return .goSellSDKResources
 	   }
@@ -36,6 +40,12 @@ class AsyncPaymentResultView: TapNibView {
     override init(frame: CGRect) {
 
         super.init(frame: frame)
+        setupUI()
+    }
+    
+    
+    func setupUI()
+    {
         self.closeButton?.setLocalizedText(.btn_async_title)
         self.closeButton?.themeStyle = Theme.current.buttonStyles.first(where: { $0.type == .async })!
         self.updateLabels()
@@ -43,16 +53,26 @@ class AsyncPaymentResultView: TapNibView {
         self.closeButton?.delegate = self
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        setupUI()
+        
+    }
+    
     
     override internal func setup() {
         super.setup()
     }
     
      private func updateLabels() {
+        
+        self.asyncResponseLabels?.forEach { $0.textColor = UIColor(tap_hex: "535353")?.loadCompatibleDarkModeColor(forColorNamed: "AsyncLabelColors") }
         
         paymentStatusLabel.setLocalizedText(.async_status_text)
         orderCodeTitleLabel.setLocalizedText(.async_pay_order_code_text)

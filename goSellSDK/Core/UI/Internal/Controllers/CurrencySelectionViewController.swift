@@ -25,6 +25,11 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
 		
 		return Theme.current.commonStyle.statusBar[Process.shared.appearance].uiStatusBarStyle
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.searchView?.setBackGround(UIColor.tap_hex("#F7F7F7").loadCompatibleDarkModeColor(forColorNamed: "CurrencyHolderViewColor"))
+    }
 	
     internal weak var delegate: CurrencySelectionViewControllerDelegate?
     
@@ -44,6 +49,16 @@ internal class CurrencySelectionViewController: HeaderNavigatedViewControllerWit
         
         self.notifyDelegateIfCurrencyChanged()
         decision(true)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+       // self.paymentOptionsTableView?.reloadData()
+        ThemeManager.shared.resetCurrentThemeToDefault()
+        themeChanged()
+        self.tableView?.reloadData()
+        
     }
     
     internal override func tableViewLoaded(_ aTableView: UITableView) {

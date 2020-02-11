@@ -81,7 +81,7 @@ internal class ExampleViewController: BaseViewController {
 
         session.dataSource = self
         session.delegate = self
-        session.appearance = self
+        //session.appearance = self
         
     }
     
@@ -123,6 +123,14 @@ internal class ExampleViewController: BaseViewController {
             
             self.performSegue(withIdentifier: "\(PaymentItemViewController.tap_className)Segue", sender: self)
         }
+    }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        self.itemsTableView?.reloadData()
+        
     }
     
     internal func updatePayButtonAmount() {
@@ -548,7 +556,7 @@ extension ExampleViewController: SessionDelegate {
         }
     }
 }
-
+/*
 // MARK: - SessionAppearance
 extension ExampleViewController: SessionAppearance {
 
@@ -750,3 +758,4 @@ extension ExampleViewController: SessionAppearance {
 		return self.paymentSettings.appearance.tapButtonHeight
 	}
 }
+*/

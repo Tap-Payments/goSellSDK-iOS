@@ -17,6 +17,12 @@
                 <outlet property="orderCodeTitleLabel" destination="mNt-7C-bjZ" id="QOK-59-Kp7"/>
                 <outlet property="paymentStatusLabel" destination="CCa-ZL-AVH" id="Cnt-3n-P90"/>
                 <outlet property="storeLinkLabel" destination="aJF-cs-r0f" id="9Hr-pu-3RK"/>
+                <outletCollection property="asyncResponseLabels" destination="CCa-ZL-AVH" collectionClass="NSMutableArray" id="pyA-DP-pnK"/>
+                <outletCollection property="asyncResponseLabels" destination="U2D-0V-VGx" collectionClass="NSMutableArray" id="i68-Xf-Mvl"/>
+                <outletCollection property="asyncResponseLabels" destination="dzU-2m-dIm" collectionClass="NSMutableArray" id="e09-Tm-3iD"/>
+                <outletCollection property="asyncResponseLabels" destination="mNt-7C-bjZ" collectionClass="NSMutableArray" id="Vuo-y5-feL"/>
+                <outletCollection property="asyncResponseLabels" destination="uB8-9d-EUZ" collectionClass="NSMutableArray" id="6IO-iL-oTi"/>
+                <outletCollection property="asyncResponseLabels" destination="h1R-nz-IXw" collectionClass="NSMutableArray" id="bdr-r8-Lip"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

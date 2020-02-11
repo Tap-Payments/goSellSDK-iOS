@@ -48,6 +48,7 @@ internal class PaymentOptionsViewController: BaseViewController {
 		self.shouldShowMask = true
 		self.updateMask()
 		self.addTableViewContentSizeObserver()
+        self.themeChanged()
 	}
 	
 	internal override func viewDidDisappear(_ animated: Bool) {
@@ -107,6 +108,7 @@ internal class PaymentOptionsViewController: BaseViewController {
 		let topInset	= glowingInset
 		let bottomInset = glowingInset + Constants.tableViewBottomGradientHeight
 		self.paymentOptionsTableView?.contentInset = UIEdgeInsets(top: topInset, left: 0.0, bottom: bottomInset, right: 0.0)
+        self.paymentOptionsTableView?.reloadData()
 	}
     
     deinit {
