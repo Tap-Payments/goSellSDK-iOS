@@ -147,7 +147,7 @@ internal final class TapNavigationView: TapNibView {
 	@IBOutlet private		var constraintsToDeactivateWhenBackButtonIsAvailable: [NSLayoutConstraint]?
 	@IBOutlet private		var constraintsToActivateWhenBackButtonIsAvailable: [NSLayoutConstraint]?
 	
-	@IBOutlet private weak	var closeButtonContainerView: UIView?
+	@IBOutlet weak	var closeButtonContainerView: UIView?
 	@IBOutlet private weak	var closeButton: UIButton?
 	@IBOutlet private		var constraintsToDeactivateWhenCloseButtonIsAvailable: [NSLayoutConstraint]?
 	@IBOutlet private		var constraintsToActivateWhenCloseButtonIsAvailable: [NSLayoutConstraint]?

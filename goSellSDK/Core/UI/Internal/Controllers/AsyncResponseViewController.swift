@@ -12,8 +12,11 @@ import struct   TapAdditionsKit.TypeAlias
 internal final class AsyncResponseViewController: SeparateWindowViewController {
 
     
+    @IBOutlet weak var headerVieq: TapNavigationView!
     private var chargeProtocol:ChargeProtocol?
+    private var paymentOption:PaymentOption?
     private static var storage: AsyncResponseViewController?
+    
     @IBOutlet private weak var contentViewTopOffsetConstraint: NSLayoutConstraint?
     @IBOutlet weak var paymentStatusLabel: UILabel!
        @IBOutlet weak var acknolwedgementLabel: UILabel!
@@ -42,10 +45,11 @@ internal final class AsyncResponseViewController: SeparateWindowViewController {
     
     // MARK: Methods
     
-    internal static func show(with topOffset: CGFloat = 0.0, with chargeProtocol: ChargeProtocol) {
+    internal static func show(with topOffset: CGFloat = 0.0, with chargeProtocol: ChargeProtocol, for paymentOption:PaymentOption) {
         
         let controller = self.createAndSetupController()
         controller.chargeProtocol = chargeProtocol
+        controller.paymentOption = paymentOption
         controller.showExternally(topOffset: topOffset)
     }
     
@@ -67,6 +71,9 @@ internal final class AsyncResponseViewController: SeparateWindowViewController {
         self.updateLabels()
         self.closeButton?.isEnabled = true
         self.closeButton?.delegate = self
+        headerVieq.setStyle(Theme.current.navigationBarStyle)
+        headerVieq.dataSource = self
+        headerVieq.closeButtonContainerView?.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -255,5 +262,40 @@ extension AsyncResponseViewController:TapButtonDelegate
     
     func disabledButtonTouchUpInside() {}
     
+    
+}
+
+
+extension AsyncResponseViewController:TapNavigationViewDataSource
+{
+    func navigationViewIconPlaceholder(for navigationView: TapNavigationView) -> Image? {
+        nil
+    }
+    
+    func navigationViewIcon(for navigationView: TapNavigationView) -> Image? {
+        if let imageURL =  self.paymentOption?.imageURL {
+            
+            return .remote(imageURL)
+        }
+        else {
+            
+            return nil
+        }
+    }
+    
+    func navigationViewTitle(for navigationView: TapNavigationView) -> String? {
+        if let paymentName =  self.paymentOption?.title {
+            
+            return paymentName
+        }
+        else {
+            
+            return ""
+        }
+    }
+    
+    func navigationViewCanGoBack(_ navigationView: TapNavigationView) -> Bool {
+        false
+    }
     
 }
