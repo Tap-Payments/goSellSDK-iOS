@@ -308,7 +308,11 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 		
 		guard let image = Theme.current.paymentOptionsCellStyle.card.scanIcon else
         {
-            return UIImage()
+            guard let imageBackup = UIImage(tap_byCombining: [Theme.current.paymentOptionsCellStyle.card.scanIconFrame, Theme.current.paymentOptionsCellStyle.card.scanIconIcon]) else
+            {
+                return UIImage()
+            }
+            return imageBackup
         }
         return image
 	}
