@@ -786,27 +786,18 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
     
     private func startPayment(withApplePaymentOption paymentOption: PaymentOption) {
         
-        // We need to decide whether we need to show the apple pay sheet or the setup controller
-        
-        if self.dataManagerInterface.canStartApplePayPurchase()
-        {
-            let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
-            
-            if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
-            {
-                if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
-                    applePayController.delegate = self
-                    topController.present(applePayController, animated: true, completion: nil)
-                }
-            }
-        }else
-        {
-            let setupApplePayController:SetupApplePayViewController = SetupApplePayViewController.instantiate()
-            if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
-                setupApplePayController.delegate = self
-                topController.present(setupApplePayController, animated: true, completion: nil)
-            }
-        }
+         if self.dataManagerInterface.canStartApplePayPurchase()
+               {
+                   let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
+                   
+                   if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
+                   {
+                       if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
+                           applePayController.delegate = self
+                           topController.present(applePayController, animated: true, completion: nil)
+                       }
+                   }
+               }
     }
 }
 
