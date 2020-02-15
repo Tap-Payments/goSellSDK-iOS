@@ -14,6 +14,7 @@ import class UIKit.UIImage.UIImage
 import enum PassKit.PKPaymentButtonType
 import enum PassKit.PKPaymentButtonStyle
 import class PassKit.PKPaymentAuthorizationViewController
+import struct PassKit.PKPaymentNetwork
 
 internal class ApplePaymentOptionTableViewCellModel: PaymentOptionTableCellViewModel {
     
@@ -94,6 +95,15 @@ internal class ApplePaymentOptionTableViewCellModel: PaymentOptionTableCellViewM
             }
         }
     }
+    
+    
+    internal var applePayMappedSupportedNetworks: [PKPaymentNetwork] {
+        get{
+            var applePayMappedSupportedNetworks:[PKPaymentNetwork] = []
+            applePayMappedSupportedNetworks.append(contentsOf: paymentOption.applePayNetworkMapper())
+            return applePayMappedSupportedNetworks.removingDuplicates()
+        }
+    }
 }
 
 // MARK: - SingleCellModel
@@ -114,7 +124,7 @@ extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
             }
         }
         // First we check if we need to show setup pay
-        let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
+        let supportedNetworks = self.applePayMappedSupportedNetworks
         if PKPaymentAuthorizationViewController.canMakePayments()
         {
             if !PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedNetworks)
