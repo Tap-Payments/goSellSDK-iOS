@@ -331,11 +331,6 @@ extension ExampleViewController: SessionDataSource {
         return "merchant.tap.gosell"
     }
     
-    internal var applePayCountryCode: String
-    {
-        return "KW"
-    }
-    
     internal var customer: Customer? {
         
         return self.paymentSettings.dataSource.customer?.customer
