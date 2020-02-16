@@ -26,6 +26,9 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
     /// Transaction currency.
     internal let currency: Currency
     
+    /// Merchant iso country code.
+    internal let merchantCountryCode: String?
+    
     /// Amount for different currencies.
     internal let supportedCurrenciesAmounts: [AmountedCurrency]
     
@@ -44,6 +47,8 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
 		
         case orderIdentifier            = "order_id"
         case savedCards                 = "cards"
+        
+        case merchantCountryCode        = "country"
     }
 	
 	// MARK: Methods
@@ -54,7 +59,8 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
 				 paymentOptions:				[PaymentOption],
 				 currency:						Currency,
 				 supportedCurrenciesAmounts:	[AmountedCurrency],
-				 savedCards:					[SavedCard]?) {
+				 savedCards:					[SavedCard]?,
+                 merchantCountryCode:           String?) {
 		
 		self.identifier					= identifier
 		self.orderIdentifier			= orderIdentifier
@@ -63,6 +69,7 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
 		self.currency					= currency
 		self.supportedCurrenciesAmounts	= supportedCurrenciesAmounts
 		self.savedCards					= savedCards
+        self.merchantCountryCode        = merchantCountryCode
 	}
 }
 
@@ -80,6 +87,7 @@ extension PaymentOptionsResponse: Decodable {
 		let currency					= try container.decode(Currency.self, forKey: .currency)
 		let supportedCurrenciesAmounts	= try container.decode([AmountedCurrency].self, forKey: .supportedCurrenciesAmounts)
 		let savedCards					= try container.decodeIfPresent([SavedCard].self, forKey: .savedCards)
+        let merchantCountryCode         = try container.decodeIfPresent(String.self, forKey: .merchantCountryCode)
 		
         /*let applePayPaymentOption:PaymentOption = PaymentOption(identifier: "2", brand: .apple, title: "APPLE PAY", imageURL: URL(string: "https://i.ibb.co/sP9Tkck/Apple-Pay-Pay-With-2x.png")!, paymentType: .apple, sourceIdentifier: "src_kw.knet", supportedCardBrands: [.apple], extraFees: [], supportedCurrencies: [try! Currency.init(isoCode: "KWD"),try! Currency.init(isoCode: "SAR"),try! Currency.init(isoCode: "AED"),try! Currency.init(isoCode: "BHD")], orderBy: 2)
         
@@ -92,6 +100,7 @@ extension PaymentOptionsResponse: Decodable {
 				  paymentOptions:				paymentOptions,
 				  currency:						currency,
 				  supportedCurrenciesAmounts:	supportedCurrenciesAmounts,
-				  savedCards:					savedCards)
+				  savedCards:					savedCards,
+                  merchantCountryCode:          merchantCountryCode)
 	}
 }
