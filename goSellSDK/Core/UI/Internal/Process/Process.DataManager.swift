@@ -164,6 +164,19 @@ internal extension Process {
 				return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
 			}
 		}
+        
+        
+        internal var merchnantCountryCode: String {
+            
+            guard
+                let nonnullPaymentOptionsResponse = self.paymentOptionsResponse,
+                let merchantCountryCode = nonnullPaymentOptionsResponse.merchantCountryCode else {
+                
+                return "SA"
+            }
+            
+           return merchantCountryCode
+        }
 		
 		internal var recentCards: [SavedCard] {
 			
@@ -628,13 +641,7 @@ internal extension Process {
             request.merchantCapabilities = [PKMerchantCapability.capability3DS]
             if let session = Process.shared.externalSession?.dataSource
             {
-                if let countryCode = session.applePayCountryCode
-                {
-                    request.countryCode = countryCode
-                }else
-                {
-                    request.countryCode = "KW"
-                }
+                let countryCode = self.merchnantCountryCode
                 
                 if let merchantID = session.applePayMerchantID
                 {
@@ -643,10 +650,11 @@ internal extension Process {
                 {
                     request.merchantIdentifier = "merchant.tap.gosell"
                 }
-            }else
-            {
-                request.countryCode = "KW"
+                request.countryCode = countryCode
             }
+            
+            
+            
             print("Networks \(request.supportedNetworks)")
             request.currencyCode = self.selectedCurrency.currency.isoCode.uppercased()
             request.paymentSummaryItems = []
