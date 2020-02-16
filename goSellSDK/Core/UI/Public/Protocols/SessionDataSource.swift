@@ -20,9 +20,6 @@ import class PassKit.PKPaymentToken
     /// Details if the merchant wants to start apple session
     @objc optional var isApplePay: Bool { get }
     
-    /// The country code is a must to start to work with apple payments. The country code should be given in iso 2 letters code. If not provided, the apple pay option will not be shown
-    @objc optional var applePayCountryCode: String { get }
-    
     /// The apple pay merchanrt id registered in the Apple developer account. If not provided, the apple pay option will not be shown
     @objc optional var applePayMerchantID: String { get }
     
