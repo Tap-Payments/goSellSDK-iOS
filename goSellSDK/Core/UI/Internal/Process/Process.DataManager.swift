@@ -587,14 +587,21 @@ internal extension Process {
          */
         internal override func canStartApplePayPurchase() -> Bool
         {
-            let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
-            if PKPaymentAuthorizationViewController.canMakePayments()
+            //let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
+            for cellViewModel:CellViewModel in Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels
             {
-                if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedNetworks)
+                if let appleViewModel:ApplePaymentOptionTableViewCellModel = cellViewModel as? ApplePaymentOptionTableViewCellModel
                 {
-                    return true
+                    if PKPaymentAuthorizationViewController.canMakePayments()
+                    {
+                        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: appleViewModel.applePayMappedSupportedNetworks)
+                        {
+                            return true
+                        }
+                    }
                 }
             }
+            
             return false
         }
         /**
@@ -607,6 +614,7 @@ internal extension Process {
                 
                 let dataSource    = self.process.process.externalSession?.dataSource,
                 let customer    = dataSource.customer,
+                let applePaymentOption:ApplePaymentOptionTableViewCellModel = Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel as? ApplePaymentOptionTableViewCellModel,
                 let _     = self.orderIdentifier else {
                     
                     fatalError("This case should never happen.")
@@ -615,7 +623,7 @@ internal extension Process {
             
             let request = PKPaymentRequest()
              //
-            request.supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
+            request.supportedNetworks = applePaymentOption.applePayMappedSupportedNetworks
             //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
             request.merchantCapabilities = [PKMerchantCapability.capability3DS]
             if let session = Process.shared.externalSession?.dataSource
@@ -639,7 +647,7 @@ internal extension Process {
             {
                 request.countryCode = "KW"
             }
-            
+            print("Networks \(request.supportedNetworks)")
             request.currencyCode = self.selectedCurrency.currency.isoCode.uppercased()
             request.paymentSummaryItems = []
             let contact:PKContact = PKContact.init()
