@@ -32,17 +32,6 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 			self.updatePaymentOptions()
 		}
 	}
-    
-    internal var applePayMappedSupportedNetworks: [PKPaymentNetwork] {
-        get{
-            var applePayMappedSupportedNetworks:[PKPaymentNetwork] = []
-            for merchantTapPaymentOption:PaymentOption in paymentOptions
-            {
-                applePayMappedSupportedNetworks.append(contentsOf: merchantTapPaymentOption.applePayNetworkMapper())
-            }
-            return applePayMappedSupportedNetworks.removingDuplicates()
-        }
-    }
 	
 	internal var tableViewCellModels: [ImageTableViewCellModel]
 	internal var displayedTableViewCellModels: [ImageTableViewCellModel] {

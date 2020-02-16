@@ -69,6 +69,7 @@ internal struct PaymentOption: IdentifiableWithString {
         
         // Check if the original brand is in the supported, otherwise add it to the list we need to search
         var toBeCheckedCardBrands:[CardBrand] = supportedCardBrands
+        
         if !toBeCheckedCardBrands.contains(brand)
         {
             toBeCheckedCardBrands.insert(brand, at: 0)
