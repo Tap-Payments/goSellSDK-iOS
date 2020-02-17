@@ -116,13 +116,13 @@ extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
             applPayButtonType = .inStore
         }
         
-        if let session = Process.shared.externalSession, let sessionDatSource = session.dataSource
+        /*if let session = Process.shared.externalSession, let sessionDatSource = session.dataSource
         {
             if let dataSourceApplePayButtonType = sessionDatSource.applePayButtonType
             {
                 applPayButtonType = dataSourceApplePayButtonType
             }
-        }
+        }*/
         // First we check if we need to show setup pay
         let supportedNetworks = self.applePayMappedSupportedNetworks
         if PKPaymentAuthorizationViewController.canMakePayments()
