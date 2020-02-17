@@ -23,8 +23,8 @@ import class PassKit.PKPaymentToken
     /// The apple pay merchanrt id registered in the Apple developer account. If not provided, the apple pay option will not be shown
     @objc optional var applePayMerchantID: String { get }
     
-    /// The type of the apple pay you want to show to user. By default it is 'Buy with Apple Pay'
-    @objc optional var applePayButtonType: PKPaymentButtonType { get }
+    // /// The type of the apple pay you want to show to user. By default it is 'Buy with Apple Pay'
+   // @objc optional var applePayButtonType: PKPaymentButtonType { get }
     
     /// The type of the apple pay you want to show to user. By default it is 'White outline'
     @objc optional var applePayButtonStyle: PKPaymentButtonStyle { get }
