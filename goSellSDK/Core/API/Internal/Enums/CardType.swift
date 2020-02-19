@@ -8,24 +8,30 @@
 
 import Foundation
 /// Card Types the merchanty will use to define what types of cards he wants his clients to use
-@objc internal enum CardType: Int {
+@objc public class CardType:NSObject {
 	
-	case Credit = 0
-	case Debit = 1
-    case Unknown = 2
-}
-
-extension CardType
-{
-    internal static func mapToType(stringCardType:String) -> CardType
+    
+    @objc var cardType:cardTypes = .Unknown
+    
+    @objc public enum cardTypes:Int
     {
-        if stringCardType.lowercased() == "credit"
-        {
-            return Credit
-        }else if stringCardType.lowercased() == "debit"
-        {
-            return Debit
-        }
-        return Unknown
+        case Credit
+        case Debit
+        case Unknown
     }
+    
+      init(cardType:String) {
+        if cardType.lowercased() == "credit"
+        {
+            self.cardType = .Credit
+        }else if cardType.lowercased() == "debit"
+        {
+            self.cardType = .Debit
+        }
+        self.cardType = .Unknown
+    }
+    
+    @objc public init(cardType:cardTypes) {
+           self.cardType = cardType
+       }
 }
