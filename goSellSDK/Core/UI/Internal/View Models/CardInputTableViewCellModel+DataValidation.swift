@@ -255,7 +255,41 @@ internal extension CardInputTableViewCellModel {
             
             self.binData = newBINData
         }
+        
+        if cardInAllowedCardTypes(newBINData)
+        {
+            print("CARD ACCEPTED")
+        }else
+        {
+            print("CARD NOT SUPPORTED")
+        }
     }
+    
+    private func cardInAllowedCardTypes(_ newBINData: BINResponse?)-> Bool {
+        
+        if let nonNullBinData = newBINData {
+            
+            guard
+                let session = Process.shared.externalSession,
+                let dataSource = session.dataSource,
+                let allowedCards = dataSource.allowedCadTypes
+            else {
+                return true
+            }
+            
+            for allowedCardType in allowedCards! {
+                if allowedCardType.cardType == nonNullBinData.cardType.cardType
+                {
+                    return true
+                }
+            }
+            
+            return false
+            
+        }else
+        {
+            return true
+        }    }
 }
 
 // MARK: - CardValidatorDelegate

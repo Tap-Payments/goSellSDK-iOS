@@ -27,8 +27,10 @@ import Foundation
         }else if cardType.lowercased() == "debit"
         {
             self.cardType = .Debit
+        }else
+        {
+            self.cardType = .Unknown
         }
-        self.cardType = .Unknown
     }
     
     @objc public init(cardType:cardTypes) {
