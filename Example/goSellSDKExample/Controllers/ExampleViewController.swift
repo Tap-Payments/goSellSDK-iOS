@@ -386,7 +386,7 @@ extension ExampleViewController: SessionDataSource {
 	
     var allowedCadTypes: [CardType]? {
         
-        return [CardType(cardType: .Credit),CardType(cardType: .Debit)]
+        return [CardType(cardType: .Debit)]
     }
 	
 	internal var paymentType: PaymentType {
