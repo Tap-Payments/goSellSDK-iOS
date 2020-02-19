@@ -37,6 +37,23 @@
         self.maxFee = maxFee
         self.minFee = minFee
         super.init()
+        
+        applyMinMaxFees()
+        
+    }
+    
+    
+    /// This method adjusts the vale of the extra fees to be within the range of Min - Max fees
+    public func applyMinMaxFees() {
+        
+        if self.minFee > 0 && self.value < self.minFee
+        {
+            self.value = self.minFee
+        }
+        if self.maxFee > 0 && self.value > self.maxFee
+        {
+            self.value = self.maxFee
+        }
     }
     
     /// Initializes percent based amount modification.
