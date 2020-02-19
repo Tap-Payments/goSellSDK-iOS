@@ -17,6 +17,12 @@
     /// Value.
     public var value: Decimal
     
+    /// The minimum fees allowed for this extra fees.
+    public var minFee: Decimal
+    
+    /// The maximum fees allowed for this extra fees.
+    public var maxFee: Decimal
+    
     // MARK: Methods
     
     /// Initializes amount modificator with modification type and value.
@@ -24,11 +30,12 @@
     /// - Parameters:
     ///   - type: Modification type.
     ///   - value: Modification value.
-    public init(type: AmountModificatorType, value: Decimal) {
+    public init(type: AmountModificatorType, value: Decimal, minFee: Decimal = 0, maxFee: Decimal = 0) {
         
         self.type = type
         self.value = value
-        
+        self.maxFee = maxFee
+        self.minFee = minFee
         super.init()
     }
     
@@ -65,8 +72,10 @@
     
     private enum CodingKeys: String, CodingKey {
         
-        case type   = "type"
-        case value  = "value"
+        case type       = "type"
+        case value      = "value"
+        case maxFee     = "maximum_fee"
+        case minFee     = "minimum_fee"
     }
 }
 

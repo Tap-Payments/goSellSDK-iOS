@@ -16,10 +16,10 @@ internal final class ExtraFee: AmountModificator {
     
     // MARK: Methods
     
-    internal required init(type: AmountModificatorType, value: Decimal, currency: Currency) {
+    internal required init(type: AmountModificatorType, value: Decimal, currency: Currency, minFee:Decimal = 0, maxFee:Decimal = 0) {
         
         self.currency = currency
-        super.init(type: type, value: value)
+        super.init(type: type, value: value, minFee: minFee, maxFee: maxFee)
     }
     
     internal required convenience init(from decoder: Decoder) throws {
@@ -28,9 +28,11 @@ internal final class ExtraFee: AmountModificator {
         
         let type = try container.decode(AmountModificatorType.self, forKey: .type)
         let value = try container.decode(Decimal.self, forKey: .value)
+        let maxFee = try container.decodeIfPresent(Decimal.self, forKey: .minFee) ?? 0
+        let minFee = try container.decodeIfPresent(Decimal.self, forKey: .maxFee) ?? 0
         let currency = try container.decode(Currency.self, forKey: .currency)
         
-        self.init(type: type, value: value, currency: currency)
+        self.init(type: type, value: value, currency: currency,minFee:minFee, maxFee: maxFee)
     }
 
     // MARK: - Private -
@@ -40,5 +42,7 @@ internal final class ExtraFee: AmountModificator {
         case type       = "type"
         case value      = "value"
         case currency   = "currency"
+        case maxFee     = "maximum_fee"
+        case minFee     = "minimum_fee"
     }
 }
