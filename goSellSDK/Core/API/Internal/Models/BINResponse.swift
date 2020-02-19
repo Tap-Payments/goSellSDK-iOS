@@ -31,11 +31,11 @@ internal struct BINResponse {
     /// Card scheme.
     internal let scheme: CardScheme?
     
-    /// Card scheme.
-    internal let allowedCardTypes: [CardType]
-    
     /// Card issuing country.
     internal let country: Country?
+    
+    /// Card Type.
+    internal let cardType: CardType
     
     // MARK: - Private -
     
@@ -73,6 +73,7 @@ extension BINResponse: Decodable {
         let bankLogoURL         = container.decodeURLIfPresent(for: .bankLogoURL)
         let binNumber           = try container.decode(String.self, forKey: .binNumber)
         let cardBrand           = try container.decodeIfPresent(CardBrand.self, forKey: .cardBrand) ?? .unknown
+        let cardType            = try container.decodeIfPresent(String.self, forKey: .cardType) ?? ""
         let scheme              = try container.decodeIfPresent(CardScheme.self, forKey: .scheme)
         
         var country: Country? = nil
@@ -81,6 +82,6 @@ extension BINResponse: Decodable {
             country = try container.decodeIfPresent(Country.self, forKey: .country)
         }
         
-        self.init(isAddressRequired: isAddressRequired, bank: bank, bankLogoURL: bankLogoURL, binNumber: binNumber, cardBrand: cardBrand, scheme: scheme, country: country)
+        self.init(isAddressRequired: isAddressRequired, bank: bank, bankLogoURL: bankLogoURL, binNumber: binNumber, cardBrand: cardBrand, scheme: scheme, country: country, cardType: CardType.mapToType(stringCardType: cardType))
     }
 }
