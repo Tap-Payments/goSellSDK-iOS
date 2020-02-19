@@ -12,4 +12,20 @@ import Foundation
 	
 	case Credit = 0
 	case Debit = 1
+    case Unknown = 2
+}
+
+extension CardType
+{
+    internal static func mapToType(stringCardType:String) -> CardType
+    {
+        if stringCardType.lowercased() == "credit"
+        {
+            return Credit
+        }else if stringCardType.lowercased() == "debit"
+        {
+            return Debit
+        }
+        return Unknown
+    }
 }
