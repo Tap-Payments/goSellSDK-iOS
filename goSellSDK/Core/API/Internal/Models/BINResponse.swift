@@ -31,6 +31,9 @@ internal struct BINResponse {
     /// Card scheme.
     internal let scheme: CardScheme?
     
+    /// Card scheme.
+    internal let allowedCardTypes: [CardType]
+    
     /// Card issuing country.
     internal let country: Country?
     
@@ -45,6 +48,7 @@ internal struct BINResponse {
         case cardBrand          = "card_brand"
         case scheme             = "card_scheme"
         case country            = "country"
+        case cardType           = "card_type"
     }
 }
 
