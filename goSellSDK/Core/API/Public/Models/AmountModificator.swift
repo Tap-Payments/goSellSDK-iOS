@@ -38,7 +38,7 @@
         self.minFee = minFee
         super.init()
         
-        applyMinMaxFees()
+        //applyMinMaxFees()
         
     }
     

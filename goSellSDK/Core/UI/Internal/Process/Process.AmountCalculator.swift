@@ -111,6 +111,16 @@ internal extension Process.AmountCalculator where Mode: Payment {
 			case .percents:
 				
 				result += currency.amount * fee.normalizedValue
+                
+                if fee.minFee > 0 && result < fee.minFee
+                {
+                    result = fee.minFee
+                }
+                
+                if fee.maxFee > 0 && result > fee.maxFee
+                {
+                    result = fee.maxFee
+                }
 			}
 		}
 		
