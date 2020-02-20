@@ -92,20 +92,8 @@ internal final class SettingsDataManager {
     }
 	
 	private func update(settings updatedSettings: SDKSettings?, error: TapSDKError?) {
-        let unVerifiedApplicationError =  (SettingsDataManager.shared.settings?.verifiedApplication ?? true) ? nil : TapSDKError(type: .unVerifiedApplication)
-        
-        var finalError:TapSDKError?
-        
-        if let nonnullError = error
-        {
-            finalError = nonnullError
-        }else if let nonnullError = unVerifiedApplicationError
-        {
-            finalError = nonnullError
-            print(nonnullError.description)
-        }
-        
-		if let nonnullError = finalError {
+		
+		if let nonnullError = error {
 			
 			self.status = .notInitiated
 			

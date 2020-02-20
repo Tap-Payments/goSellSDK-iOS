@@ -91,13 +91,6 @@ internal extension LocalizationKey {
 	static let alert_extra_charges_message 				= LocalizationKey("alert_extra_charges_message")
 	static let alert_extra_charges_btn_cancel_title 	= LocalizationKey("alert_extra_charges_btn_cancel_title")
 	static let alert_extra_charges_btn_confirm_title	= LocalizationKey("alert_extra_charges_btn_confirm_title")
-    
-    
-    // MARK: Alert: Un supported card type
-    
-    static let alert_un_supported_card_title                 = LocalizationKey("alert_un_supported_card_title")
-    static let alert_un_supported_card_message                 = LocalizationKey("alert_un_supported_card_message")
-    static let alert_un_supported_card_btn_confirm_title    = LocalizationKey("alert_un_supported_card_btn_confirm_title")
 	
 	// MARK: Alert: Cancel Payment (status undefined)
 	

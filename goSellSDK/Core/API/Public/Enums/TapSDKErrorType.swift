@@ -28,9 +28,6 @@
     /// Unknown error.
     case unknown
     
-    case unVerifiedApplication
-
-    
     // MARK: - Private -
     // MARK: Properties
     
@@ -43,7 +40,6 @@
         case .network: return "Network"
         case .serialization: return "Serialization"
         case .internal: return "Internal"
-        case .unVerifiedApplication: return "Un verified Application"
         case .unknown: return "Unknown"
         }
     }

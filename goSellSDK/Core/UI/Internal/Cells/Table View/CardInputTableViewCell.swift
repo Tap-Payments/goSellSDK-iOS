@@ -35,10 +35,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
 	internal private(set) var isContentBinded: Bool = false
 
     // MARK: Methods
-    internal func unSpportedCardType()
-    {
-        self.cardNumberTextField?.text = ""
-    }
+    
     internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
         if self.isSelected {
