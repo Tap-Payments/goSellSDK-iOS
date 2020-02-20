@@ -8,6 +8,7 @@
 import enum     TapCardValidator.CardBrand
 import struct   TapCardValidator.DefinedCardBrand
 import class    TapEditableView.TapEditableView
+import struct    TapAdditionsKit.TypeAlias
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UISwitch.UISwitch
@@ -255,7 +256,55 @@ internal extension CardInputTableViewCellModel {
             
             self.binData = newBINData
         }
+        
+        if cardInAllowedCardTypes(newBINData)
+        {
+            print("CARD ACCEPTED")
+        }else
+        {
+            showUnSupportedCardTypeAlert() { [weak self] (clearCardField) in
+                if clearCardField
+                {
+                    self?.cardTypeNotSupported()
+                }
+            }
+            print("CARD NOT SUPPORTED")
+        }
     }
+    
+    private func cardInAllowedCardTypes(_ newBINData: BINResponse?)-> Bool {
+        
+        if let nonNullBinData = newBINData {
+            
+            guard
+                let session = Process.shared.externalSession,
+                let dataSource = session.dataSource,
+                let allowedCards = dataSource.allowedCadTypes
+            else {
+                return true
+            }
+            
+            for allowedCardType in allowedCards! {
+                if allowedCardType.cardType == nonNullBinData.cardType.cardType
+                {
+                    return true
+                }
+            }
+            
+            return false
+            
+        }else
+        {
+            return true
+        }
+    }
+    
+    private func cardTypeNotSupported()
+    {
+        self.cell?.unSpportedCardType()
+        
+    }
+    
 }
 
 // MARK: - CardValidatorDelegate
@@ -334,5 +383,29 @@ extension CardInputTableViewCellModel: CardBrandChangeReporting {
         
         let toBeDisplayedCellModels = self.tableViewCellModels.filter { possibleURLs.contains($0.imageURL) }
         self.displayedTableViewCellModels = toBeDisplayedCellModels
+    }
+}
+
+
+extension CardInputTableViewCellModel
+{
+    private func showUnSupportedCardTypeAlert( decision: @escaping TypeAlias.BooleanClosure) {
+        
+        UIResponder.tap_resign {
+            
+            let alert = TapAlertController(titleKey:         .alert_un_supported_card_title,
+                                           messageKey:         .alert_un_supported_card_message,
+                                           preferredStyle:    .alert)
+            
+            let confirmAction = TapAlertController.Action(titleKey: .alert_un_supported_card_btn_confirm_title, style: .default) { [weak alert] (action) in
+                
+                alert?.hide()
+                decision(true)
+            }
+            
+            alert.addAction(confirmAction)
+            
+            alert.show()
+        }
     }
 }
