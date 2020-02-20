@@ -54,6 +54,9 @@ import class PassKit.PKPaymentToken
 	
 	/// Taxes.
 	@objc optional var taxes: [Tax]? { get }
+    
+    /// allowed Card Types, if not set all will be accepeted.
+    @objc optional var allowedCadTypes: [CardType]? { get }
 	
 	/// Shipping options.
 	@objc optional var shipping: [Shipping]? { get }
