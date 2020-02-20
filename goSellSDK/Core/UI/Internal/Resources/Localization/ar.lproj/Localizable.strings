@@ -65,7 +65,7 @@
 "async_pay_ack_text"            = "تم إرسال رسالة نصية لـ";
 "async_pay_email_text"          = "تم إرسال بريد إلكتروني لـ";
 "async_pay_order_code_text"     = "كود الطلب";
-"async_pay_code_expire_text"    = "ينتهي الكود في\n"
+"async_pay_code_expire_text"    = "ينتهي الكود في\n";
 "async_pay_hint_footer_text"    = "برجاء زيارة أقرب فرع فوري\nالموجود في الرابط ادناه لاستكمال عملية الدفع";
 
 
