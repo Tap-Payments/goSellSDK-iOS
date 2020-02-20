@@ -136,7 +136,7 @@ internal extension Process.AmountCalculator where Mode: CardTokenization {
 	static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
 		
 		var result: Decimal = 0.0
-		
+		/*
 		extraFees.forEach { fee in
 			
 			switch fee.type {
@@ -167,7 +167,7 @@ internal extension Process.AmountCalculator where Mode: CardTokenization {
                 }
 			}
 		}
-		
+		*/
 		return result
 	}
 }
