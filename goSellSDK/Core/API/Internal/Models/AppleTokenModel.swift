@@ -13,7 +13,7 @@ internal struct AppleTokenModel: Encodable,Decodable {
     
 	
     // MARK: - Internal -
-    // MARK: Properties
+    // MARK: Properties  
     
     /// Card identifier.
     internal let version: String
