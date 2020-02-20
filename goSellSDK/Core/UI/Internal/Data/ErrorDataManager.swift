@@ -99,11 +99,6 @@ internal class ErrorDataManager {
 			
 			let errorDetail = ErrorDetail(code: .unknown)
 			self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
-            
-        case .unVerifiedApplication:
-        
-        let errorDetail = ErrorDetail(code: .unknown,description: "Un verified Application")
-        self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
 		}
 	}
 	

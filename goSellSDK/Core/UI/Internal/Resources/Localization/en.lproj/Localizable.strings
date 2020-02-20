@@ -86,13 +86,6 @@
 "alert_extra_charges_btn_cancel_title" 	= "Cancel";
 "alert_extra_charges_btn_confirm_title"	= "Confirm";
 
-
-// MARK: Alert: Un Supported Card Type Alert
-
-"alert_un_supported_card_title"             = "Opps";
-"alert_un_supported_card_message"             = "Card type is not supported";
-"alert_un_supported_card_btn_confirm_title"     = "Cancel";
-
 // MARK: Alert: Cancel Payment (status undefined)
 
 "alert_cancel_payment_status_undefined_title" 				= "Cancel Payment";
