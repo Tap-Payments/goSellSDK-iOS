@@ -61,7 +61,7 @@ internal struct PaymentOptionsRequest {
         self.shipping           	= shipping
         self.taxes              	= taxes
         self.currency           	= currency
-		self.merchantID			= merchantID
+		self.merchantID			    = merchantID
         self.customer           	= customer
 		self.destinationGroup		= destinationGroup
 		self.paymentType			= paymentType

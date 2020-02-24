@@ -332,6 +332,11 @@ extension ExampleViewController: SessionDataSource {
         return "merchant.tap.gosell"
     }
     
+    internal var merchantID: String?
+    {
+        return "599424"
+    }
+    
     internal var customer: Customer? {
         
         return self.paymentSettings.dataSource.customer?.customer
@@ -394,7 +399,7 @@ extension ExampleViewController: SessionDataSource {
 	
     var allowedCadTypes: [CardType]? {
         
-        return [CardType(cardType: .Debit)]
+        return [CardType(cardType: .Debit),CardType(cardType: .Credit)]
     }
 	
 	internal var paymentType: PaymentType {
