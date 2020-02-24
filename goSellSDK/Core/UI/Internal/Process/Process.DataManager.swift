@@ -810,7 +810,17 @@ internal extension Process {
 			let reference           	= dataSource.paymentReference ?? nil
 			var shouldSaveCard      	= saveCard ?? false
 			let statementDescriptor 	= dataSource.paymentStatementDescriptor ?? nil
-			let requires3DSecure    	= self.requires3DSecure || (dataSource.require3DSecure ?? false)
+            var requires3DSecure    	= (self.requires3DSecure || (dataSource.require3DSecure ?? false))
+            switch paymentOption.threeDLevel {
+            case .always:
+                requires3DSecure = true
+                break
+            case .never:
+                requires3DSecure = false
+                break
+            default:
+                break
+            }
 			let receiptSettings     	= dataSource.receiptSettings ?? nil
 			let merchantID			= dataSource.merchantID ?? nil
 			
