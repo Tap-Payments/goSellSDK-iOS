@@ -47,6 +47,9 @@ internal struct PaymentOption: IdentifiableWithString {
     /// Ordering parameter.
     internal let orderBy: Int
     
+    /// Decide if the 3ds should be disabled, enabled or set by user for this payment option
+    internal let threeDLevel: ThreeDSecurityState
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -61,6 +64,7 @@ internal struct PaymentOption: IdentifiableWithString {
         case supportedCurrencies    = "supported_currencies"
         case orderBy                = "order_by"
         case isAsync                = "asynchronous"
+        case threeDLevel            = "threeDS"
     }
     
     internal func applePayNetworkMapper() -> [PKPaymentNetwork]
@@ -105,6 +109,20 @@ internal struct PaymentOption: IdentifiableWithString {
         
         return applePayMappednNetworks.removingDuplicates()
     }
+    
+    private static func mapThreeDLevel(with threeD:String) -> ThreeDSecurityState
+    {
+        if threeD.lowercased() == "n"
+        {
+            return .never
+        }else if threeD.lowercased() == "y"
+        {
+            return .always
+        }else
+        {
+            return .definedByMerchant
+        }
+    }
 }
 
 // MARK: - Decodable
@@ -125,6 +143,7 @@ extension PaymentOption: Decodable {
         let supportedCurrencies = try container.decode          ([Currency].self,   forKey: .supportedCurrencies)
         let orderBy             = try container.decode          (Int.self,          forKey: .orderBy)
         let isAsync             = try container.decode          (Bool.self,         forKey: .isAsync)
+        let threeDLevel         = try container.decodeIfPresent (String.self,       forKey: .threeDLevel) ?? "U"
 		
 		supportedCardBrands = supportedCardBrands.filter { $0 != .unknown }
 		
@@ -137,7 +156,18 @@ extension PaymentOption: Decodable {
                   supportedCardBrands: supportedCardBrands,
                   extraFees: extraFees,
                   supportedCurrencies: supportedCurrencies,
-                  orderBy: orderBy)
+                  orderBy: orderBy,
+                  threeDLevel: PaymentOption.mapThreeDLevel(with: threeDLevel))
+    }
+}
+
+extension PaymentOption
+{
+    internal enum ThreeDSecurityState {
+        
+        case always
+        case never
+        case definedByMerchant
     }
 }
 
