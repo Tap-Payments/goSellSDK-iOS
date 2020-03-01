@@ -38,6 +38,7 @@ import class	goSellSDK.Token
 import enum     goSellSDK.TransactionMode
 import enum    goSellSDK.PaymentType
 import class    goSellSDK.CardType
+import enum    goSellSDK.cardTypes
 import class	UIKit.UIActivityIndicatorView.UIActivityIndicatorView
 import class	UIKit.UIBarButtonItem.UIBarButtonItem
 import class	UIKit.UIBlurEffect.UIBlurEffect
@@ -384,6 +385,17 @@ extension ExampleViewController: SessionDataSource {
         return .capture(after: 8)
     }
 	
+    
+    internal var allowedCadTypes: [CardType]? {
+        let selectedAllowedCards:cardTypes = self.paymentSettings.dataSource.allowedCards
+        if selectedAllowedCards == .All {
+            return [CardType(cardType: .Debit), CardType(cardType: .Credit)]
+        }else
+        {
+            return [CardType(cardType: selectedAllowedCards)]
+        }
+    }
+    
     /*var allowedCadTypes: [CardType]? {
         
         return [CardType(cardType: .Debit)]

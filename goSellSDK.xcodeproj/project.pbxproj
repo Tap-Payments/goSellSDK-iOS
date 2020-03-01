@@ -417,6 +417,7 @@
 		E82B006423C4BC2900FE0D05 /* ApplePayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */; };
 		E82B006623C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */; };
 		E856F87623FD5E7B00AC78BE /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856F87523FD5E7B00AC78BE /* CardType.swift */; };
+		E894E670240BCBD4002D9383 /* cardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E894E66F240BCBD4002D9383 /* cardType.swift */; };
 		E8CDF34223CA26F300E0C847 /* CreateTokenApplePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34123CA26F300E0C847 /* CreateTokenApplePay.swift */; };
 		E8CDF34423CA299100E0C847 /* CreateTokenWithApplePayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34323CA299100E0C847 /* CreateTokenWithApplePayRequest.swift */; };
 		E8CDF34C23CA454900E0C847 /* AppleTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34B23CA454900E0C847 /* AppleTokenModel.swift */; };
@@ -840,6 +841,7 @@
 		E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTableViewCell.swift; sourceTree = "<group>"; };
 		E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePaymentOptionTableViewCellModel.swift; sourceTree = "<group>"; };
 		E856F87523FD5E7B00AC78BE /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		E894E66F240BCBD4002D9383 /* cardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardType.swift; sourceTree = "<group>"; };
 		E8CDF34123CA26F300E0C847 /* CreateTokenApplePay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenApplePay.swift; sourceTree = "<group>"; };
 		E8CDF34323CA299100E0C847 /* CreateTokenWithApplePayRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenWithApplePayRequest.swift; sourceTree = "<group>"; };
 		E8CDF34B23CA454900E0C847 /* AppleTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenModel.swift; sourceTree = "<group>"; };
@@ -969,6 +971,7 @@
 		147951CA22004AD80073B49F /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				E894E66F240BCBD4002D9383 /* cardType.swift */,
 				14FC5D5C2242E47700930204 /* AddressType.swift */,
 				A408C04120BC0563005E74AD /* AmountModificatorType.swift */,
 				A4C13AA320F4F0CD00037EDC /* AuthenticationRequirer.swift */,
@@ -1874,6 +1877,7 @@
 				149597B521F67BF200DFA0A2 /* SessionDataSource.swift in Sources */,
 				14FC5D5E2242E47700930204 /* AddressType.swift in Sources */,
 				A4A8545621076DC600B9DE00 /* DeleteCardResponse.swift in Sources */,
+				E894E670240BCBD4002D9383 /* cardType.swift in Sources */,
 				141284BB2160FBEF00C2873E /* ThemesContainer.swift in Sources */,
 				A4C13A8320F4EF9900037EDC /* TableViewCellViewModel.swift in Sources */,
 				A4C0FC8D208DFA2200C5FBC6 /* SingleCellModel.swift in Sources */,
