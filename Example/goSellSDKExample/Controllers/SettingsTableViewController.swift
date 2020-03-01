@@ -13,6 +13,7 @@ import class	goSellSDK.Destination
 import class	goSellSDK.GoSellSDK
 import enum		goSellSDK.SDKAppearanceMode
 import enum     goSellSDK.SDKMode
+import enum     goSellSDK.cardTypes
 import class    goSellSDK.Shipping
 import class    goSellSDK.Tax
 import class	goSellSDK.TapBlurStyle
@@ -275,6 +276,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 				caseSelectionController.title = "SDK Mode"
 				caseSelectionController.allValues = SDKMode.allCases
 				caseSelectionController.preselectedValue = self.currentSettings?.dataSource.sdkMode
+                
+            case Constants.allowedCardsCellReuseIdentifier:
+            
+            caseSelectionController.title = "Cards Types"
+            caseSelectionController.allValues = cardTypes.allCases
+            caseSelectionController.preselectedValue = self.currentSettings?.dataSource.allowedCards
 				
 			case Constants.appearanceModeCellReuseIdentifier:
 				
@@ -367,6 +374,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		case Constants.currencyCellReuseIdentifier,
 			 Constants.sdkLanguageCelReuseIdentifier,
 			 Constants.sdkModeCellReuseIdentifier,
+             Constants.allowedCardsCellReuseIdentifier,
 			 Constants.appearanceModeCellReuseIdentifier,
 			 Constants.transactionModeCellReuseIdentifier,
 			 Constants.backgroundBlurStyleCellReuseIdentifier,
@@ -461,6 +469,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		fileprivate static let sdkLanguageCelReuseIdentifier							= "sdk_language_cell"
 		
         fileprivate static let sdkModeCellReuseIdentifier          						= "sdk_mode_cell"
+        fileprivate static let allowedCardsCellReuseIdentifier                          = "cards_list_cell"
         fileprivate static let transactionModeCellReuseIdentifier   					= "transaction_mode_cell"
         fileprivate static let currencyCellReuseIdentifier          					= "currency_cell"
         fileprivate static let customerCellReuseIdentifier          					= "customer_cell"
@@ -506,6 +515,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 	@IBOutlet private weak var sdkLanguageValueLabel: UILabel?
 	
     @IBOutlet private weak var sdkModeValueLabel: UILabel?
+    @IBOutlet private weak var cardsValueLabel: UILabel!
     @IBOutlet private weak var transactionModeValueLabel: UILabel?
     @IBOutlet private weak var paymentTypeValueLabel: UILabel?
     @IBOutlet private weak var currencyValueLabel: UILabel?
@@ -642,6 +652,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		// Data source
 		
 		self.sdkModeValueLabel?.text            			= self.currentSettings?.dataSource.sdkMode.description
+        self.cardsValueLabel?.text                          = self.currentSettings?.dataSource.allowedCards.description
         self.transactionModeValueLabel?.text    			= self.currentSettings?.dataSource.transactionMode.description
         self.currencyValueLabel?.text           			= self.currentSettings?.dataSource.currency.localizedSymbol
 		self.threeDSecureSwitch?.isOn						= self.currentSettings?.dataSource.isThreeDSecure ?? Settings.default.dataSource.isThreeDSecure
@@ -1018,6 +1029,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		self.sdkLanguageValueLabel?.textAlignment							= trailing
 		
 		self.sdkModeValueLabel?.textAlignment								= trailing
+        self.cardsValueLabel?.textAlignment                                 = trailing
 		self.transactionModeValueLabel?.textAlignment						= trailing
 		self.currencyValueLabel?.textAlignment								= trailing
 		self.customerNameLabel?.textAlignment								= trailing
@@ -1183,6 +1195,14 @@ extension SettingsTableViewController: CaseSelectionTableViewControllerDelegate 
                     
                     self.currentSettings?.dataSource.customer = nil
                 }
+            }
+            
+            
+            case Constants.allowedCardsCellReuseIdentifier:
+            
+            if let cardMode = value as? cardTypes {
+                
+                self.currentSettings?.dataSource.allowedCards = cardMode
             }
 			
 		case Constants.appearanceModeCellReuseIdentifier:

@@ -11,14 +11,7 @@ import Foundation
 @objc public class CardType:NSObject {
 	
     
-    @objc var cardType:cardTypes = .Unknown
-    
-    @objc public enum cardTypes:Int
-    {
-        case Credit
-        case Debit
-        case Unknown
-    }
+    @objc var cardType:cardTypes = .All
     
       init(cardType:String) {
         if cardType.lowercased() == "credit"
@@ -29,7 +22,7 @@ import Foundation
             self.cardType = .Debit
         }else
         {
-            self.cardType = .Unknown
+            self.cardType = .All
         }
     }
     
@@ -45,5 +38,7 @@ import Foundation
         }
     }
 }
+
+
 
 
