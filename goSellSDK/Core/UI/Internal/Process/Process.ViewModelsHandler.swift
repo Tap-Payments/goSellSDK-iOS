@@ -466,7 +466,6 @@ internal extension Process {
             }
             
 			let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
-            
 			let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
             
 			let savedCards = self.process.dataManagerInterface.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)

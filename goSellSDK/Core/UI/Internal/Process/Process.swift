@@ -19,7 +19,23 @@ internal final class Process {
 	internal private(set) var appearance:		AppearanceMode	= .fullscreen
 	
 	internal private(set) var externalSession: SessionProtocol?
-	
+    
+    internal var allowedCardTypes:[CardType]?
+       {
+           guard
+               let session = self.externalSession,
+               let dataSource = session.dataSource,
+               let allowedCards = dataSource.allowedCadTypes
+           else {
+               return nil
+           }
+           return allowedCards
+
+
+       }
+    
+    
+    
 	internal var wrappedImplementation: Wrapped {
 		
 		if let existing = self.wrapped {
@@ -136,6 +152,9 @@ internal final class Process {
 		
 		KnownStaticallyDestroyableTypes.add(Process.self)
 	}
+    
+    
+   
 	
 	private func obtainAppearanceMode(from session: SessionProtocol) -> AppearanceMode {
 		

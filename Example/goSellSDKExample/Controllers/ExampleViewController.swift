@@ -398,7 +398,6 @@ extension ExampleViewController: SessionDataSource {
     }
 	
     var allowedCadTypes: [CardType]? {
-        
         return [CardType(cardType: .Debit),CardType(cardType: .Credit)]
     }
 	
