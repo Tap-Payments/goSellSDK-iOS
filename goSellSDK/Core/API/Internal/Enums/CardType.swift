@@ -36,4 +36,14 @@ import Foundation
     @objc public init(cardType:cardTypes) {
            self.cardType = cardType
        }
+    
+    override public func isEqual(_ object: Any?) -> Bool {
+        if let other = object as? CardType {
+            return self.cardType == other.cardType
+        } else {
+            return false
+        }
+    }
 }
+
+
