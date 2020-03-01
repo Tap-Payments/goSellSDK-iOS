@@ -86,14 +86,23 @@ extension PaymentOptionsResponse: Decodable {
 		var paymentOptions				= try container.decode([PaymentOption].self, forKey: .paymentOptions)
 		let currency					= try container.decode(Currency.self, forKey: .currency)
 		let supportedCurrenciesAmounts	= try container.decode([AmountedCurrency].self, forKey: .supportedCurrenciesAmounts)
-		let savedCards					= try container.decodeIfPresent([SavedCard].self, forKey: .savedCards)
+		var savedCards					= try container.decodeIfPresent([SavedCard].self, forKey: .savedCards)
         let merchantCountryCode         = try container.decodeIfPresent(String.self, forKey: .merchantCountryCode)
 		
         /*let applePayPaymentOption:PaymentOption = PaymentOption(identifier: "2", brand: .apple, title: "APPLE PAY", imageURL: URL(string: "https://i.ibb.co/sP9Tkck/Apple-Pay-Pay-With-2x.png")!, paymentType: .apple, sourceIdentifier: "src_kw.knet", supportedCardBrands: [.apple], extraFees: [], supportedCurrencies: [try! Currency.init(isoCode: "KWD"),try! Currency.init(isoCode: "SAR"),try! Currency.init(isoCode: "AED"),try! Currency.init(isoCode: "BHD")], orderBy: 2)
         
         paymentOptions.append(applePayPaymentOption)*/
 		paymentOptions = paymentOptions.filter { ($0.brand != .unknown || $0.paymentType == .apple) }
-		
+        
+        
+        // Filter saved cards based on allowed card types if any
+      
+        
+        if let merchnantAllowedCards = Process.shared.allowedCardTypes
+        {
+            savedCards     = savedCards?.filter { (merchnantAllowedCards.contains($0.cardType)) }
+        }
+        
 		self.init(identifier:					identifier,
 				  orderIdentifier:				orderIdentifier,
 				  object:						object,
