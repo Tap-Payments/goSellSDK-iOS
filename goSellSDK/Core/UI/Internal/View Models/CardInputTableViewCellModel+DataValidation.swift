@@ -275,28 +275,13 @@ internal extension CardInputTableViewCellModel {
     private func cardInAllowedCardTypes(_ newBINData: BINResponse?)-> Bool {
         
         if let nonNullBinData = newBINData {
-            
-            guard
-                let session = Process.shared.externalSession,
-                let dataSource = session.dataSource,
-                let allowedCards = dataSource.allowedCadTypes
-            else {
-                return true
+           if let allowedCards = Process.shared.allowedCardTypes
+           {
+                return allowedCards.contains(nonNullBinData.cardType)
             }
-            
-            for allowedCardType in allowedCards! {
-                if allowedCardType.cardType == nonNullBinData.cardType.cardType
-                {
-                    return true
-                }
-            }
-            
-            return false
-            
-        }else
-        {
-            return true
         }
+        
+        return true
     }
     
     private func cardTypeNotSupported()

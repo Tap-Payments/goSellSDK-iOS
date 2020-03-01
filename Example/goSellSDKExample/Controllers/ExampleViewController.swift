@@ -384,10 +384,10 @@ extension ExampleViewController: SessionDataSource {
         return .capture(after: 8)
     }
 	
-    var allowedCadTypes: [CardType]? {
+    /*var allowedCadTypes: [CardType]? {
         
         return [CardType(cardType: .Debit)]
-    }
+    }*/
 	
 	internal var paymentType: PaymentType {
 		 
