@@ -29,6 +29,8 @@
     /// Merchant order number.
     public var orderNumber: String?
     
+    public var gosellID: String?
+    
     // MARK: Methods
     
     /// Initializes reference object with transaction number and order number.
@@ -54,5 +56,6 @@
         case trackingNumber     = "track"
         case transactionNumber  = "transaction"
         case orderNumber        = "order"
+        case gosellID           = "gosell_id"
     }
 }
