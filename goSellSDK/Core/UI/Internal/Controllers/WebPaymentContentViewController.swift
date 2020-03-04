@@ -145,6 +145,12 @@ extension WebPaymentContentViewController: WKNavigationDelegate {
     
     internal func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         
+        let errorCode = (error as NSError).code
+        if errorCode == 102 {
+            return
+        }
+       
+        
 		let tapError = TapSDKKnownError(type: .network, error: error, response: nil, body: nil)
         
         var retryAction: TypeAlias.ArgumentlessClosure? = nil
