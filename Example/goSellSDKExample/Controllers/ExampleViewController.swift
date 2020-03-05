@@ -52,7 +52,6 @@ import class    UIKit.UIViewController.UIViewController
 import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
 import UIKit
-import class PassKit.PKPaymentToken
 
 internal class ExampleViewController: BaseViewController {
     
@@ -299,20 +298,7 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
 
 // MARK: - SessionDataSource
 extension ExampleViewController: SessionDataSource {
-    var appleTokenData: PKPaymentToken? {
-        return nil
-    }
-    
-    var isApplePay: Bool
-    {
-        return applePay
-    }
-    
-    var isApplePayUI: Bool
-    {
-        return applePayUI
-    }
-    
+   
     internal var currency: Currency? {
         
         return self.paymentSettings.dataSource.currency
