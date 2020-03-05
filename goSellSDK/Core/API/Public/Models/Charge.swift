@@ -11,6 +11,8 @@
 /// Charges are identified by a unique random ID.
 @objcMembers public final class Charge: NSObject, ChargeProtocol, IdentifiableWithString {
     
+    
+    
     // MARK: - Public -
     // MARK: Properties
     
@@ -58,7 +60,7 @@
 	public private(set) var destinations: DestinationGroup?
     
     /// Charge status.
-    public let status: ChargeStatus
+    public var status: ChargeStatus
     
     /// Defines if 3D secure is required for the transaction.
     public let requires3DSecure: Bool
@@ -122,7 +124,7 @@
     
     // MARK: Methods
     
-	private init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, destinations: DestinationGroup?, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
+	internal init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, destinations: DestinationGroup?, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
         
         self.identifier             = identifier
         self.apiVersion             = apiVersion
@@ -148,13 +150,13 @@
         self.acquirer               = acquirer
         self.response               = response
         self.statementDescriptor    = statementDescriptor
-        
         super.init()
     }
 }
 
 // MARK: - Decodable
 extension Charge: Decodable {
+    
     
     public convenience init(from decoder: Decoder) throws {
         

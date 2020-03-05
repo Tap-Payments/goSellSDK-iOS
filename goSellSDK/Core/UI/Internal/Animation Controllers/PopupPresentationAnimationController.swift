@@ -17,6 +17,7 @@ import struct   UIKit.UIView.UIViewKeyframeAnimationOptions
 import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
+import enum     TapVisualEffectView.TapBlurEffectStyle
 
 internal class PopupPresentationAnimationController: NSObject {
     
@@ -215,21 +216,33 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
 	
 	private func animate(_ blurView: TapVisualEffectView, with duration: TimeInterval) {
 		
-		blurView.style = self.operation == .presentation ? .none : .light
+		blurView.style = self.operation == .presentation ? .none : blurStyle()
 		
 		let animations: TypeAlias.ArgumentlessClosure = {
 			
 			UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0) {
 				
-				blurView.style = self.operation == .presentation ? .light : .none
+                blurView.style = self.operation == .presentation ? self.blurStyle() : .none
 			}
 		}
-		
+        
 		let animationOption: UIView.KeyframeAnimationOptions = UIView.KeyframeAnimationOptions(tap_animationOptions: .curveEaseOut)
 		let animationOptions: UIView.KeyframeAnimationOptions = [.beginFromCurrentState, animationOption]
 		
 		UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: animationOptions, animations: animations, completion: nil)
 	}
+    
+    
+    private func blurStyle()->TapBlurEffectStyle
+    {
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark
+           {
+                return .dark
+           }
+       }
+        return .light
+    }
 }
 
 // MARK: - InteractiveTransitionControllerDelegate

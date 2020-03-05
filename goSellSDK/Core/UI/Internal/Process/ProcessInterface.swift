@@ -8,6 +8,7 @@
 import struct	CoreGraphics.CGGeometry.CGRect
 import protocol	TapAdditionsKit.ClassProtocol
 import struct	TapAdditionsKit.TypeAlias
+import class PassKit.PKPaymentToken
 
 internal protocol ProcessInterface: ClassProtocol {
 	
@@ -21,6 +22,7 @@ internal protocol ProcessInterface: ClassProtocol {
 	func startPayment(with paymentOption: PaymentOptionCellViewModel)
 	func openOTPScreen(with phoneNumber: String, for paymentOption: PaymentOption)
 	func openPaymentURL(_ url: URL, for paymentOption: PaymentOption, binNumber: String?)
+    func showAsyncPaymentResult(_ charge: ChargeProtocol,for paymentOption: PaymentOption)
 	func continuePaymentWithCurrentChargeOrAuthorize<T: ChargeProtocol>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?)
 	func continueCardSaving(with identifier: String, paymentOption: PaymentOption, binNumber: String?, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?)
 	func showPaymentController()

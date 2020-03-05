@@ -37,5 +37,6 @@ internal extension TapButtonStyle {
 		case pay 		= "pay"
 		case confirmOTP	= "confirm_otp"
 		case save		= "save"
+        case async      = "close_async"
 	}
 }

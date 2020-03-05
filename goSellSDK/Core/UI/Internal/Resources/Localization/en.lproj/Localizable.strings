@@ -20,6 +20,9 @@
 "btn_save_title" = "SAVE CARD";
 "btn_save_action_title" = "SAVE";
 
+// MARK: Async Button Title
+"btn_async_title" = "CLOSE";
+
 // MARK: Payment Option Group Titles
 
 "payment_options_group_title_recent" = "RECENT";
@@ -56,6 +59,18 @@
 "btn_resend_title"	= "RESEND";
 
 
+// MARK: Async Screen
+
+"async_status_text"             = "Payment in progress";
+"async_pay_reference_text"      = "With your Fawry Pay Reference";
+"async_pay_sms_text"            = "An sms has been sent to";
+"async_pay_email_text"          = "An email has been sent to";
+"async_pay_order_code_text"     = "Order Code";
+"async_pay_code_expire_text"    = "Code Expires on\n%@";
+"async_pay_hint_footer_text"    = "Please visit a Fawry Cash Location\nusing the link below to complete your payment";
+
+
+
 // MARK: -
 // MARK: Alert: Delete Card
 
@@ -70,6 +85,13 @@
 "alert_extra_charges_message" 			= "You will be charged an additional fee of %@ for this type of payment, totalling an amount of %@";
 "alert_extra_charges_btn_cancel_title" 	= "Cancel";
 "alert_extra_charges_btn_confirm_title"	= "Confirm";
+
+
+// MARK: Alert: Un Supported Card Type Alert
+
+"alert_un_supported_card_title"             = "Opps";
+"alert_un_supported_card_message"             = "Card type is not supported";
+"alert_un_supported_card_btn_confirm_title"     = "Cancel";
 
 // MARK: Alert: Cancel Payment (status undefined)
 

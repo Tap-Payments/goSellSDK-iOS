@@ -19,8 +19,8 @@ internal extension APIClient {
     ///   - request: Create token request.
     ///   - completion: Completion that will be called when request finishes.
     func createToken(with request: CreateTokenRequest, completion: @escaping Completion<Token>) {
-        
         guard let bodyDictionary = self.convertModelToDictionary(request, callingCompletionOnFailure: completion) else { return }
+        
         
         let body = TapBodyModel(body: bodyDictionary)
         let operation = TapNetworkRequestOperation(path:            request.route.rawValue,

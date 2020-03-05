@@ -24,6 +24,17 @@ internal final class WebPaymentContentViewController: BaseViewController {
     
     internal weak var delegate: WebPaymentContentViewControllerDelegate?
     
+    
+    var isAsnycPayment:Bool = false {
+        
+        didSet{
+            if self.isAsnycPayment
+            {
+                self.addAsyncViewOnScreen()
+            }
+        }
+    }
+    
     internal var isLoading: Bool {
         
         return self.webView.isLoading
@@ -102,6 +113,16 @@ internal final class WebPaymentContentViewController: BaseViewController {
         
         self.webView.navigationDelegate = self
         self.webViewContainer?.tap_addSubviewWithConstraints(self.webView)
+    }
+    
+    
+    private func addAsyncViewOnScreen() {
+    
+        self.webView.isHidden = true
+        self.webView.removeFromSuperview()
+        let asyncPaymentResultView:AsyncPaymentResultView = AsyncPaymentResultView(frame: UIScreen.main.bounds)
+        self.webViewContainer?.tap_addSubviewWithConstraints(asyncPaymentResultView)
+        
     }
     
     private func loadURLIfNotYetLoaded() {

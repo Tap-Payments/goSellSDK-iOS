@@ -10,13 +10,14 @@ import protocol	TapAdditionsKit.ClassProtocol
 import struct	TapAdditionsKit.TypeAlias
 import class	UIKit.UIResponder.UIResponder
 import class	UIKit.UIScreen.UIScreen
+import PassKit
 
 internal extension Process {
 	
 	typealias Implementation = __ProcessImplementation
 }
 
-internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGenericInterface {
+internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, ProcessGenericInterface {
 	
 	// MARK: - Internal -
 	// MARK: Properties
@@ -104,6 +105,10 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		self.dataManager.urlToLoadInWebPaymentController = url
 		self.openWebPaymentScreen(for: paymentOption, url: url, binNumber: binNumber)
 	}
+    
+    internal func showAsyncPaymentResult(_ charge: ChargeProtocol, for paymentOption: PaymentOption) {
+        self.openAsyncPaymentScreen(for: paymentOption, charge: charge)
+    }
 	
 	internal func continuePaymentWithCurrentChargeOrAuthorize<T>(with identifier: String, of type: T.Type, paymentOption: PaymentOption, loader: LoadingViewSupport?, retryAction: @escaping TypeAlias.ArgumentlessClosure, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) where T : ChargeProtocol {
 		
@@ -332,6 +337,15 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 		}
 	}
 	
+    fileprivate func openAsyncPaymentScreen(for paymentOption: PaymentOption, charge: ChargeProtocol, completion: TypeAlias.ArgumentlessClosure? = nil) {
+        self.dataManager.currentPaymentOption            = paymentOption
+        
+        ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen {
+            let asyncControllerFrame = PaymentOptionsViewController.tap_findInHierarchy()?.view.frame ?? UIScreen.main.bounds//self.process.loadingControllerFrame(coveringHeader: true)
+            AsyncResponseViewController.show(with: asyncControllerFrame.minY, with: charge, for: paymentOption)
+        }
+    }
+    
 	fileprivate func openWebPaymentScreen(for paymentOption: PaymentOption, url: URL?, binNumber: String?, completion: TypeAlias.ArgumentlessClosure? = nil) {
 		
 		self.dataManager.currentPaymentOption			= paymentOption
@@ -371,9 +385,27 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 				
 				PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
 			}
-			
+        case .apple:
+            guard let nonnullURL = url else {
+                
+                completion?()
+                return
+            }
+            
+            ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen { [weak self] in
+                
+                guard let strongSelf = self else {
+                    
+                    completion?()
+                    return
+                }
+                
+                let webPopupControllerFrame = strongSelf.loadingControllerFrame(coveringHeader: false)
+                
+                WebPaymentPopupViewController.show(with: webPopupControllerFrame.minY, with: nonnullURL, completion: completion)
+            }
 		case .all:
-			print("paymentType always web or card")
+			print("paymentType always web or card or apple pay")
 
 		}
 	}
@@ -435,7 +467,47 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: ProcessGeneric
 	}
 }
 
-internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode> {
+internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode>, PKPaymentAuthorizationViewControllerDelegate,SetupApplePayViewControllerDelegate {
+    
+    func setupApplePayViewControllerSetpButtonTouchUpInside(_ controller: SetupApplePayViewController) {
+         controller.dismiss(animated: true) {
+             let library = PKPassLibrary()
+             library.openPaymentSetup()
+         }
+     }
+     
+     func setupApplePayViewControllerDidCancel(_ controller: SetupApplePayViewController) {
+         controller.dismiss(animated: true, completion: nil)
+     }
+     
+    
+     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+         controller.dismiss(animated: true) {
+             if let session:SessionProtocol = Process.shared.externalSession
+             {
+                 session.delegate?.applePaymentCanceled?(on: session)
+             }
+            
+             //guard let strongSelf = self else { return }
+            //self?.dataManager.ale showMissingInformationAlert(with: "Payment Canceled", message: "User did not authorize the payment.")
+            //self?.closePayment(with: .cancelled, fadeAnimation: false, force: true, completion: nil)
+         }
+     }
+     
+     @available(iOS 11.0, *)
+     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        controller.dismiss(animated: true) {[weak self] in
+            self?.startPayment(with: payment.token)
+            
+            /*if let session:SessionProtocol = Process.shared.externalSession
+            {
+                session.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(token)", on: session)
+            }*/
+        }
+     }
+    
 	
 	// MARK: - Internal -
 	// MARK: Methods
@@ -599,6 +671,10 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 			
 			self.startPayment(withWebPaymentOption: webPaymentOption.paymentOption)
 		}
+        else if let applePaymentOption = paymentOption as? ApplePaymentOptionTableViewCellModel {
+            
+            self.startPayment(withApplePaymentOption: applePaymentOption.paymentOption)
+        }
 		else if let cardPaymentOption = paymentOption as? CardInputTableViewCellModel, let card = cardPaymentOption.card {
 			
 			guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else {
@@ -657,39 +733,105 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 		let request = CreateTokenWithCardDataRequest(card: card)
 		self.dataManager.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 	}
-	
-	private func startPayment(withWebPaymentOption paymentOption: PaymentOption) {
-		
-		guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
-		
-		let source = SourceRequest(identifier: sourceIdentifier)
-		
-		self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil) {
-			
-			let loaderContainer: LoadingViewSupport? = WebPaymentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
-			
-			if let nonnullLoadingContainer = loaderContainer {
-				
-				LoadingView.show(in: nonnullLoadingContainer, animated: true)
-			}
-			
-			let alertDissmissClosure = { self.closeWebPaymentScreen() }
-			
-			let retryAction: TypeAlias.ArgumentlessClosure = {
-				
-				self.startPayment(withWebPaymentOption: paymentOption)
-			}
-			
-			self.dataManager.callChargeOrAuthorizeAPI(with:                             source,
-													  paymentOption:                    paymentOption,
-													  token:							nil,
-													  cardBIN:                          nil,
-													  saveCard:                         nil,
-													  loader:                           loaderContainer,
-													  retryAction:                      retryAction,
-													  alertDismissButtonClickHandler:   alertDissmissClosure)
-		}
-	}
+    
+    private func startPayment(with appleTokenData: PKPaymentToken) {
+        let paymentOption:PaymentOption = self.dataManager.paymentOption(for: .apple)
+        
+        if let tokenApiRequest = Process.shared.createApplePayTokenizationApiRequest(with: appleTokenData)
+        {
+            self.dataManager.callTokenAPI(with: tokenApiRequest, paymentOption: paymentOption, saveCard: nil)
+        }else
+        {
+            self.process.buttonHandlerInterface.stopButtonLoader()
+        }
+    }
+    
+    private func startPayment(withWebPaymentOption paymentOption: PaymentOption) {
+        
+        if paymentOption.isAsync
+        {
+            startPaymentHelperAsync(withWebPaymentOption: paymentOption)
+        }else
+        {
+            startPaymentHelperWeb(withWebPaymentOption: paymentOption)
+        }
+    }
+    
+    private func startPaymentHelperWeb(withWebPaymentOption paymentOption: PaymentOption)
+    {
+        guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
+        
+        let source = SourceRequest(identifier: sourceIdentifier)
+        
+        self.openWebPaymentScreen(for: paymentOption, url: nil, binNumber: nil) {
+            
+            let loaderContainer: LoadingViewSupport? = WebPaymentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
+            
+            if let nonnullLoadingContainer = loaderContainer {
+                
+                LoadingView.show(in: nonnullLoadingContainer, animated: true)
+            }
+            
+            let alertDissmissClosure = { self.closeWebPaymentScreen() }
+            
+            let retryAction: TypeAlias.ArgumentlessClosure = {
+                
+                self.startPayment(withWebPaymentOption: paymentOption)
+            }
+            
+            self.dataManager.callChargeOrAuthorizeAPI(with:                             source,
+                                                      paymentOption:                    paymentOption,
+                                                      token:                            nil,
+                                                      cardBIN:                          nil,
+                                                      saveCard:                         nil,
+                                                      loader:                           loaderContainer,
+                                                      retryAction:                      retryAction,
+                                                      alertDismissButtonClickHandler:   alertDissmissClosure)
+        }
+    }
+    private func startPaymentHelperAsync(withWebPaymentOption paymentOption: PaymentOption)
+    {
+        guard let sourceIdentifier = paymentOption.sourceIdentifier else { return }
+        
+        let source = SourceRequest(identifier: sourceIdentifier)
+        
+        let loaderContainer: LoadingViewSupport? = PaymentContentViewController.tap_findInHierarchy() ?? WebPaymentPopupViewController.tap_findInHierarchy()
+        
+        if let nonnullLoadingContainer = loaderContainer {
+            
+            LoadingView.show(in: nonnullLoadingContainer, animated: true)
+        }
+        let retryAction: TypeAlias.ArgumentlessClosure = {
+            
+            self.startPayment(withWebPaymentOption: paymentOption)
+        }
+        
+        self.dataManager.callChargeOrAuthorizeAPI(with:                             source,
+                                                  paymentOption:                    paymentOption,
+                                                  token:                            nil,
+                                                  cardBIN:                          nil,
+                                                  saveCard:                         nil,
+                                                  loader:                           loaderContainer,
+                                                  retryAction:                      retryAction,
+                                                  alertDismissButtonClickHandler:   nil)
+    }
+    
+    
+    private func startPayment(withApplePaymentOption paymentOption: PaymentOption) {
+        
+         if self.dataManagerInterface.canStartApplePayPurchase()
+               {
+                   let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
+                   
+                   if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
+                   {
+                       if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
+                           applePayController.delegate = self
+                           topController.present(applePayController, animated: true, completion: nil)
+                       }
+                   }
+               }
+    }
 }
 
 internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode> {
@@ -798,4 +940,22 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
 		
 		self.closePayment(with: .cardTokenizeFailure(error), fadeAnimation: false, force: false, completion: nil)
 	}
+}
+
+extension UIWindow {
+    func topViewController() -> UIViewController? {
+        var top = self.rootViewController
+        while true {
+            if let presented = top?.presentedViewController {
+                top = presented
+            } else if let nav = top as? UINavigationController {
+                top = nav.visibleViewController
+            } else if let tab = top as? UITabBarController {
+                top = tab.selectedViewController
+            } else {
+                break
+            }
+        }
+        return top
+    }
 }

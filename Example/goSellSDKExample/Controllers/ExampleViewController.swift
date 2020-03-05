@@ -18,6 +18,7 @@ import class    goSellSDK.Customer
 import class	goSellSDK.Destination
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.GoSellSDK
+import class    goSellSDK.Session
 import class    goSellSDK.PayButton
 import class    goSellSDK.PaymentItem
 import class    goSellSDK.PhoneNumber
@@ -36,6 +37,8 @@ import class    goSellSDK.Tax
 import class	goSellSDK.Token
 import enum     goSellSDK.TransactionMode
 import enum    goSellSDK.PaymentType
+import class    goSellSDK.CardType
+import enum    goSellSDK.cardTypes
 import class	UIKit.UIActivityIndicatorView.UIActivityIndicatorView
 import class	UIKit.UIBarButtonItem.UIBarButtonItem
 import class	UIKit.UIBlurEffect.UIBlurEffect
@@ -50,6 +53,8 @@ import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
+import UIKit
+import class PassKit.PKPaymentToken
 
 internal class ExampleViewController: BaseViewController {
     
@@ -61,6 +66,10 @@ internal class ExampleViewController: BaseViewController {
     internal var selectedPaymentItems: [PaymentItem]?
     internal var plainAmount: Decimal?
     
+    var applePay = false
+    var applePayUI = false
+    
+    let session:Session = Session()
     // MARK: Methods
     
     internal override func viewDidLoad() {
@@ -71,7 +80,11 @@ internal class ExampleViewController: BaseViewController {
 		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
 		GoSellSDK.language = self.paymentSettings.global.sdkLanguage.localeIdentifier
         GoSellSDK.mode = self.paymentSettings.dataSource.sdkMode
-		
+
+        session.dataSource = self
+        session.delegate = self
+        //session.appearance = self
+        
     }
     
     internal override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +92,7 @@ internal class ExampleViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.updatePayButtonAmount()
 		self.updateSavedCardsButtonVisibility()
+        
     }
     
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,8 +127,15 @@ internal class ExampleViewController: BaseViewController {
         }
     }
     
-    internal func updatePayButtonAmount() {
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        self.itemsTableView?.reloadData()
         
+    }
+    
+    internal func updatePayButtonAmount() {
         self.payButton?.updateDisplayedState()
     }
     
@@ -158,6 +179,16 @@ internal class ExampleViewController: BaseViewController {
         self.showPaymentItemViewController()
     }
 	
+    @IBAction func applePayUIClicked(_ sender: Any) {
+        applePay = false
+        applePayUI = true
+        session.startAppleUIPay()
+    }
+    @IBAction func applePayClicked(_ sender: Any) {
+        applePay = true
+        applePayUI = false
+        session.startApplePay()
+    }
     private func createPaymentItemsTableViewHandler() {
         
         guard let nonnullTableView = self.itemsTableView else { return }
@@ -278,10 +309,33 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
 
 // MARK: - SessionDataSource
 extension ExampleViewController: SessionDataSource {
+    var appleTokenData: PKPaymentToken? {
+        return nil
+    }
+    
+    var isApplePay: Bool
+    {
+        return applePay
+    }
+    
+    var isApplePayUI: Bool
+    {
+        return applePayUI
+    }
     
     internal var currency: Currency? {
         
         return self.paymentSettings.dataSource.currency
+    }
+    
+    internal var applePayMerchantID: String
+    {
+        return "merchant.tap.gosell"
+    }
+    
+    internal var merchantID: String?
+    {
+        return "599424"
     }
     
     internal var customer: Customer? {
@@ -343,8 +397,21 @@ extension ExampleViewController: SessionDataSource {
         
         return .capture(after: 8)
     }
-	
-	
+
+    internal var allowedCadTypes: [CardType]? {
+        let selectedAllowedCards:cardTypes = self.paymentSettings.dataSource.allowedCards
+        if selectedAllowedCards == .All {
+            return [CardType(cardType: .Debit), CardType(cardType: .Credit)]
+        }else
+        {
+            return [CardType(cardType: selectedAllowedCards)]
+        }
+    }
+    
+    /*var allowedCadTypes: [CardType]? {
+        
+        return [CardType(cardType: .Debit)]
+    }*/
 	
 	internal var paymentType: PaymentType {
 		 
@@ -367,6 +434,51 @@ extension ExampleViewController: SessionDelegate {
             self.saveCustomer(customerID)
 			
 			self.updateSavedCardsButtonVisibility()
+        }
+    }
+    
+    
+    internal func applePaymentTokenizationFailed(_ error: String, on session: SessionProtocol) {
+        
+    }
+    internal func applePaymentTokenizationSucceeded(_ token: Token, on session: SessionProtocol) {
+        
+    }
+    
+    internal func applePaymentSucceed(_ charge: String, on session: SessionProtocol) {
+        //print(charge)
+        let alert = UIAlertController(title: "Message from SDK delegate", message: charge, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.session.stop {
+            self.present(alert, animated: true)
+        }
+    }
+    
+    internal func applePaymentCanceled(on session: SessionProtocol)
+    {
+        let alert = UIAlertController(title: "Message from SDK delegate", message: "User Canceled", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        //self.session.stop {
+          //  self.present(alert, animated: true)
+        //}
+    }
+    
+    
+    internal func applePaymen(_ charge: String, on session: SessionProtocol) {
+        //print(charge)
+        let alert = UIAlertController(title: "Message from SDK delegate", message: charge, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.session.stop {
+            self.present(alert, animated: true)
         }
     }
     
@@ -459,7 +571,7 @@ extension ExampleViewController: SessionDelegate {
         }
     }
 }
-
+/*
 // MARK: - SessionAppearance
 extension ExampleViewController: SessionAppearance {
 
@@ -661,3 +773,4 @@ extension ExampleViewController: SessionAppearance {
 		return self.paymentSettings.appearance.tapButtonHeight
 	}
 }
+*/

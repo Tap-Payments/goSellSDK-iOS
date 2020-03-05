@@ -9,6 +9,7 @@ import protocol	TapAdditionsKit.ClassProtocol
 import struct	TapAdditionsKit.TypeAlias
 import enum		TapCardValidator.CardBrand
 import class	UIKit.UIResponder.UIResponder
+import PassKit
 
 internal protocol DataManagerInterface: ClassProtocol {
 	
@@ -23,7 +24,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	var currentPaymentOption: PaymentOption? { get }
 	var currentPaymentCardBINNumber: String? { get }
 	var urlToLoadInWebPaymentController: URL? { get }
-	var currentChargeOrAuthorize: ChargeProtocol? { get }
+	var currentChargeOrAuthorize: ChargeProtocol? { get set }
 	var currentVerification: CardVerification? { get }
 	
 	var isExecutingAPICalls: Bool { get }
@@ -40,6 +41,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	func currencySymbol(for currency: Currency) -> String
 	func iconURL(for cardBrand: CardBrand, scheme: CardScheme?) -> URL?
 	func paymentOption(for savedCard: SavedCard) -> PaymentOption
+    func paymentOption(for type: PaymentType) -> PaymentOption
 	func paymentOptions(of type: PaymentType) -> [PaymentOption]
 	
 	func updateUIByRemoving(_ card: SavedCard)
@@ -49,6 +51,10 @@ internal protocol DataManagerInterface: ClassProtocol {
 	
 	var paymentOptionsResponse: PaymentOptionsResponse? { get }
 	
+    func createApplePayRequest() -> PKPaymentRequest
+    func canStartApplePayPurchase() -> Bool
+    func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+    
 	func callChargeOrAuthorizeAPI(with source:						SourceRequest,
 								  paymentOption:					PaymentOption,
 								  token:							Token?,
@@ -57,6 +63,8 @@ internal protocol DataManagerInterface: ClassProtocol {
 								  loader:							LoadingViewSupport?,
 								  retryAction:						@escaping TypeAlias.ArgumentlessClosure,
 								  alertDismissButtonClickHandler:	TypeAlias.ArgumentlessClosure?)
+    
+    func callChargeApplePayAPI(for session: SessionProtocol)
 	
 	func handleChargeOrAuthorizeResponse<T>(_ chargeOrAuthorize: T?,
 															error: TapSDKError?,
@@ -77,7 +85,20 @@ internal protocol DataManagerInterface: ClassProtocol {
 
 internal extension Process {
 	
-	class DataManager: DataManagerInterface {
+    class DataManager: NSObject,DataManagerInterface
+    {
+        
+        internal func createApplePayRequest() -> PKPaymentRequest {
+            fatalError("Must be implemented in extension")
+        }
+        
+        internal func canStartApplePayPurchase() -> Bool
+        {
+            fatalError("Must be implemented in extension")
+        }
+        
+        
+        
 	
 		// MARK: - Internal -
 		// MARK: Properties
@@ -143,6 +164,19 @@ internal extension Process {
 				return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
 			}
 		}
+        
+        
+        internal var merchnantCountryCode: String {
+            
+            guard
+                let nonnullPaymentOptionsResponse = self.paymentOptionsResponse,
+                let merchantCountryCode = nonnullPaymentOptionsResponse.merchantCountryCode else {
+                
+                return "SA"
+            }
+            
+           return merchantCountryCode
+        }
 		
 		internal var recentCards: [SavedCard] {
 			
@@ -202,6 +236,11 @@ internal extension Process {
 			
 			fatalError("Should be implemented in subclass.")
 		}
+        
+        internal func paymentOption(for type: PaymentType) -> PaymentOption
+        {
+            fatalError("Should be implemented in subclass.")
+        }
 		
 		@discardableResult internal func loadPaymentOptions(for session: SessionProtocol) -> Bool {
 			
@@ -255,6 +294,16 @@ internal extension Process {
 			
 			fatalError("Must be implemented in extension")
 		}
+        
+        internal func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+        {
+            fatalError("Must be impleneted in extenstion")
+        }
+        
+        
+        internal func callChargeApplePayAPI(for session: SessionProtocol) {
+            fatalError("Must be implemented in extension")
+        }
 		
 		internal func handleChargeOrAuthorizeResponse<T>(_ chargeOrAuthorize: T?, error: TapSDKError?, retryAction: @escaping TypeAlias.ArgumentlessClosure) where T : ChargeProtocol {
 			
@@ -330,6 +379,14 @@ internal extension Process {
 		
 		fileprivate func shouldSaveCard(with token: Token) -> Bool {
 			
+            if let permissions = SettingsDataManager.shared.settings?.permissions {
+                
+                if !permissions.contains(.merchantCheckout)
+                {
+                    return false
+                }
+            }
+            
 			let existingCardFingerprints = self.recentCards.compactMap { $0.fingerprint }.filter { $0.tap_length > 0 }
 			if !existingCardFingerprints.contains(token.card.fingerprint) {
 				
@@ -477,6 +534,17 @@ internal extension Process {
 			
 			return firstAndOnlyOption
 		}
+        
+        internal override func paymentOption(for type: PaymentType) -> PaymentOption
+        {
+            let options = self.paymentOptions.filter { $0.paymentType == .apple }
+            guard let firstAndOnlyOption = options.first, options.count == 1 else {
+                
+                fatalError("Cannot uniqely identify payment option.")
+            }
+            
+            return firstAndOnlyOption
+        }
 		
 		internal override func currencySymbol(for currency: Currency) -> String {
 			
@@ -523,6 +591,177 @@ internal extension Process {
 										  alertDismissButtonClickHandler:  	nil)
 		}
 		
+        internal override func callChargeApplePayAPI(for session: SessionProtocol) {
+            session.delegate?.applePaymentSucceed?("You will get back the charge object back", on: session)
+        }
+        /**
+         Use  this method on Apple pay click handler to determine we can start the apple sheet pay or the setup controller
+         - Returns: True if we can start the Apple pay sheet and false to indicate we need to another thing
+         */
+        internal override func canStartApplePayPurchase() -> Bool
+        {
+            //let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
+            for cellViewModel:CellViewModel in Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels
+            {
+                if let appleViewModel:ApplePaymentOptionTableViewCellModel = cellViewModel as? ApplePaymentOptionTableViewCellModel
+                {
+                    if PKPaymentAuthorizationViewController.canMakePayments()
+                    {
+                        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: appleViewModel.applePayMappedSupportedNetworks)
+                        {
+                            return true
+                        }
+                    }
+                }
+            }
+            
+            return false
+        }
+        /**
+         The method creates a valid apple pay request to be used inside the apple pay sheet. It will convert TAP payment networks and Merchant items to understandable information by Apple Pay Kit
+         - Returns: A PKPaymentRequest that wrapes the merchant's items and Tap's payment networks
+         */
+        internal override func createApplePayRequest() -> PKPaymentRequest
+        {
+            guard
+                
+                let dataSource    = self.process.process.externalSession?.dataSource,
+                let customer    = dataSource.customer,
+                let applePaymentOption:ApplePaymentOptionTableViewCellModel = Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel as? ApplePaymentOptionTableViewCellModel,
+                let _     = self.orderIdentifier else {
+                    
+                    fatalError("This case should never happen.")
+            }
+            
+            
+            let request = PKPaymentRequest()
+             //
+            request.supportedNetworks = applePaymentOption.applePayMappedSupportedNetworks
+            //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
+            request.merchantCapabilities = [PKMerchantCapability.capability3DS]
+            if let session = Process.shared.externalSession?.dataSource
+            {
+                let countryCode = self.merchnantCountryCode
+                
+                if let merchantID = session.applePayMerchantID
+                {
+                    request.merchantIdentifier = merchantID
+                }else
+                {
+                    request.merchantIdentifier = "merchant.tap.gosell"
+                }
+                request.countryCode = countryCode
+            }
+            
+            
+            
+            print("Networks \(request.supportedNetworks)")
+            request.currencyCode = self.selectedCurrency.currency.isoCode.uppercased()
+            request.paymentSummaryItems = []
+            let contact:PKContact = PKContact.init()
+            contact.name = PersonNameComponents.init()
+            
+            if let phoneNumber = customer.phoneNumber?.phoneNumber
+            {
+                contact.phoneNumber = CNPhoneNumber(stringValue:"+\(customer.phoneNumber?.isdNumber ?? "")\(phoneNumber)")
+            }
+            if let firstName = customer.firstName
+            {
+                contact.name?.givenName = firstName
+            }
+            if let lastName = customer.lastName
+            {
+                contact.name?.familyName = lastName
+            }
+            request.billingContact = contact
+            var totalValue:Decimal = 0
+            
+            
+            /*if let newCurrenself.supportedCurrencies.first(where: { $0.currency == currency })
+            {
+                
+            }
+            let currency = nonnullPaymentOptionsResponse.currency
+            
+            if let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) {
+                
+                return amountedCurrency
+            }
+            else {
+                
+                return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
+            }*/
+            
+            // Check if items are provided or plain amount
+            if let paymentItems:[PaymentItem] = dataSource.items ?? nil
+            {
+                for item:PaymentItem in paymentItems
+                {
+                    var convertedPaymentItemPrice:Decimal = item.totalItemAmount
+                    
+                    if let userCurrency = self.userSelectedCurrency
+                    {
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
+                        
+                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    }
+                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                    totalValue += convertedPaymentItemPrice
+                    
+                }
+                if totalValue > 0
+                {
+                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
+                }
+            }else
+            {
+                if let userCurrency = self.userSelectedCurrency
+                {
+                    totalValue = userCurrency.amount
+                }else
+                {
+                    totalValue = transactionCurrency.amount
+                }
+                
+                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
+            }
+            
+            //self.process.dataManagerInterface.transactionCurrency
+            
+            
+            return request
+        }
+        
+        
+        internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+        {
+            self.isExecutingAPICalls = true
+            
+            APIClient.shared.createToken(with: applePayTokenRequest) { [weak self] (token, error) in
+                
+                self?.isExecutingAPICalls = false
+                
+                if let nonnullError = error {
+                    
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?(nonnullError.description, on: Process.shared.externalSession!)
+                    }
+                }
+                else if let nonnullToken = token {
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationSucceeded?(nonnullToken, on: Process.shared.externalSession!)
+                    }
+                }else {
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?("Cannot create the request.", on: Process.shared.externalSession!)
+                    }
+                }
+            }
+        }
+        
 		internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
 														paymentOption:					PaymentOption,
 														token:							Token?,
@@ -549,7 +788,12 @@ internal extension Process {
 				post = TrackingURL(url: nonnullPostURL)
 			}
 			// the Amounted Currency assigned by the merchant
-			let amountedCurrency    =  AmountedCurrency(dataSource.currency as! Currency, dataSource.amount ?? 0)
+            var totalAmount:Decimal = dataSource.amount  ?? 0
+            if totalAmount == 0
+            {
+                totalAmount = transactionCurrency.amount
+            }
+            let amountedCurrency    =  AmountedCurrency(dataSource.currency!!, totalAmount)
 			// the Amounted Currency selected by the user
 			let amountedSelectedCurrency = self.selectedCurrency
 
@@ -566,7 +810,17 @@ internal extension Process {
 			let reference           	= dataSource.paymentReference ?? nil
 			var shouldSaveCard      	= saveCard ?? false
 			let statementDescriptor 	= dataSource.paymentStatementDescriptor ?? nil
-			let requires3DSecure    	= self.requires3DSecure || (dataSource.require3DSecure ?? false)
+            var requires3DSecure    	= (self.requires3DSecure || (dataSource.require3DSecure ?? false))
+            switch paymentOption.threeDLevel {
+            case .always:
+                requires3DSecure = true
+                break
+            case .never:
+                requires3DSecure = false
+                break
+            default:
+                break
+            }
 			let receiptSettings     	= dataSource.receiptSettings ?? nil
 			let merchantID			= dataSource.merchantID ?? nil
 			
@@ -743,8 +997,11 @@ internal extension Process {
 					
 					self.process.openPaymentURL(url, for: paymentOption, binNumber: cardBIN)
 				}
-				
-			case .inProgress, .abandoned, .cancelled, .failed, .declined, .restricted, .unknown, .void:
+            case .inProgress:
+                
+                self.process.showAsyncPaymentResult(nonnullChargeOrAuthorize, for: paymentOption)
+                
+			case .abandoned, .cancelled, .failed, .declined, .restricted, .unknown, .void:
 				
 				self.process.paymentFailure(with: nonnullChargeOrAuthorize.status, chargeOrAuthorize: nonnullChargeOrAuthorize, error: error)
 				

@@ -16,6 +16,9 @@
 	
 	/// Saved card token.
     @objc(TokenTypeSavedCard) case savedCard
+    
+    /// Apple pay token.
+    @objc(TokenTypeApplePay) case applePay
 	
 	// MARK: - Private -
 	
@@ -23,6 +26,7 @@
 		
 		fileprivate static let cardKey	= "CARD"
 		fileprivate static let savedCardKey	= "SAVED_CARD"
+        fileprivate static let applePay    = "APPLEPAY"
 		
 		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 	}
@@ -35,6 +39,7 @@
 			
 		case .card:			return Constants.cardKey
 		case .savedCard:	return Constants.savedCardKey
+        case .applePay:     return Constants.applePay
 			
 		}
 	}
@@ -47,6 +52,7 @@
 			
 		case Constants.cardKey:			self = .card
 		case Constants.savedCardKey:	self = .savedCard
+        case Constants.applePay:        self = .applePay
 			
 		default:
 			

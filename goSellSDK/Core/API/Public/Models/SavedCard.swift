@@ -65,6 +65,10 @@ import enum TapCardValidator.CardBrand
 	
 	/// Cardholder name.
 	public let cardholderName: String?
+    
+    
+    /// Card Type
+    public let cardType: CardType
 	
 	// MARK: Methods
 	
@@ -119,6 +123,7 @@ import enum TapCardValidator.CardBrand
 		case orderBy                    = "order_by"
 		case expirationMonth			= "exp_month"
 		case expirationYear				= "exp_year"
+        case cardType                   = "funding"
 	}
 	
 	// MARK: Properties
@@ -129,7 +134,7 @@ import enum TapCardValidator.CardBrand
 	
 	// MARK: Methods
 	
-	private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, fingerprint: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int, expirationMonth: Int?, expirationYear: Int?) {
+    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, fingerprint: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int, expirationMonth: Int?, expirationYear: Int?, cardType:CardType) {
 		
 		self.identifier                 = identifier
 		self.object                     = object
@@ -146,6 +151,7 @@ import enum TapCardValidator.CardBrand
 		self.orderBy                    = orderBy
 		self.exp_month					= expirationMonth
 		self.exp_year					= expirationYear
+        self.cardType                   = cardType
 		
 		super.init()
 	}
@@ -173,6 +179,7 @@ extension SavedCard: Decodable {
 		let orderBy             = try container.decodeIfPresent(Int.self,               forKey: .orderBy) ?? 0
 		let expirationMonth		= try container.decodeIfPresent(Int.self,				forKey: .expirationMonth)
 		let expirationYear		= try container.decodeIfPresent(Int.self,				forKey: .expirationYear)
+        let cardType            = CardType(cardType: try container.decode(String.self,  forKey: .cardType))
 		
 		self.init(identifier:               identifier,
 				  object:                   object,
@@ -188,7 +195,8 @@ extension SavedCard: Decodable {
 				  supportedCurrencies:      supportedCurrencies,
 				  orderBy:                  orderBy,
 				  expirationMonth:			expirationMonth,
-				  expirationYear:			expirationYear)
+				  expirationYear:			expirationYear,
+                  cardType:                 cardType)
 	}
 }
 

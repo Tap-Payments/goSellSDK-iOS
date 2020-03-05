@@ -197,6 +197,9 @@ internal class TapButton: TapNibView {
 			strongSelf.securityButton?.setImage(stateSettings.securityIcon, for: strongSelf.isHighlighted ? .highlighted : .normal)
 			
 			strongSelf.internalButton?.setTitleStyle(stateSettings.titleStyle)
+            
+            strongSelf.loader?.isHidden = !stateSettings.isLoaderVisible || settings.type == .async
+            strongSelf.securityButton?.isHidden = !stateSettings.isSecurityIconVisible || settings.type == .async
 		}
 		
 		let duration = animated ? Constants.stateUpdateAnimationDuration : 0.0
