@@ -68,7 +68,7 @@ import enum TapCardValidator.CardBrand
     
     
     /// Card Type
-    public let cardType: CardType
+    public let cardType: CardType?
 	
 	// MARK: Methods
 	
@@ -134,7 +134,7 @@ import enum TapCardValidator.CardBrand
 	
 	// MARK: Methods
 	
-    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, fingerprint: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int, expirationMonth: Int?, expirationYear: Int?, cardType:CardType) {
+    private init(identifier: String?, object: String, firstSixDigits: String, lastFourDigits: String, brand: CardBrand, paymentOptionIdentifier: String?, expiry: ExpirationDate?, cardholderName: String?, fingerprint: String?, currency: Currency?, scheme: CardScheme?, supportedCurrencies: [Currency], orderBy: Int, expirationMonth: Int?, expirationYear: Int?, cardType:CardType?) {
 		
 		self.identifier                 = identifier
 		self.object                     = object
@@ -179,7 +179,11 @@ extension SavedCard: Decodable {
 		let orderBy             = try container.decodeIfPresent(Int.self,               forKey: .orderBy) ?? 0
 		let expirationMonth		= try container.decodeIfPresent(Int.self,				forKey: .expirationMonth)
 		let expirationYear		= try container.decodeIfPresent(Int.self,				forKey: .expirationYear)
-        let cardType            = CardType(cardType: try container.decode(String.self,  forKey: .cardType))
+        var cardType:CardType?            = nil
+        if let cardFunding = (try container.decodeIfPresent(String.self,  forKey: .cardType) ?? nil)
+        {
+            cardType = CardType(cardType: cardFunding)
+        }
 		
 		self.init(identifier:               identifier,
 				  object:                   object,
