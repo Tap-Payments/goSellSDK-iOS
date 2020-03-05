@@ -182,7 +182,7 @@ extension SavedCard: Decodable {
         var cardType:CardType?            = nil
         if let cardFunding = (try container.decodeIfPresent(String.self,  forKey: .cardType) ?? nil)
         {
-            cardType = CardType(cardTypeString: cardFunding)
+            cardType = CardType(cardType: cardFunding)
         }
 		
 		self.init(identifier:               identifier,

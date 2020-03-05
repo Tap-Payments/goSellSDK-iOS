@@ -73,7 +73,7 @@ extension BINResponse: Decodable {
         let bankLogoURL         = container.decodeURLIfPresent(for: .bankLogoURL)
         let binNumber           = try container.decode(String.self, forKey: .binNumber)
         let cardBrand           = try container.decodeIfPresent(CardBrand.self, forKey: .cardBrand) ?? .unknown
-        let cardType            = CardType(cardTypeString:try container.decodeIfPresent(String.self, forKey: .cardType) ?? "")
+        let cardType            = CardType(cardType:try container.decodeIfPresent(String.self, forKey: .cardType) ?? "")
         let scheme              = try container.decodeIfPresent(CardScheme.self, forKey: .scheme)
         
         var country: Country? = nil
