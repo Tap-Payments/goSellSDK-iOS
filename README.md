@@ -600,6 +600,18 @@ The following table describes its structure and specifies which fields are requi
         <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Defines if same card can be saved more than once.<br><b>Note:</b> Same cards means absolutely equal data set. For example, if customer specifies same card details, but different cardholder names, we will treat this like different cards.</sub></td>
     </tr>
+	<tr>
+        <td><sub><i>applePayMerchantID</i></sub></td>
+        <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines the Apple pay merchant id you get from Apple developer account</sub></td>
+    </tr>
+	<tr>
+        <td><sub><i>allowedCadTypes</i></sub></td>
+        <td><sub><b>NSArray<\CardType *></b></sub></td><td><sub><b>[CardType]</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines the allowed card types the merchant wants his clients to pay with (Credit, Debit, All)</sub></td>
+    </tr>
     <tr>
         <td><sub><i>isSaveCardSwitchOnByDefault</i></sub></td>
         <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
@@ -1086,6 +1098,48 @@ var allowsToSaveSameCardMoreThanOnce: Bool {
 }
 ```
 
+
+#### Apple Pay Merchant ID
+
+**Objective-C**
+
+```objective-c
+-(NSString *)applePayMerchantID
+{
+    return @"merchant.com.example";
+}
+```
+
+**Swift**
+
+```swift
+var applePayMerchantID: String
+{
+	return "merchant.com.example"
+}
+```
+
+
+#### Define acceptable card types
+
+**Objective-C**
+
+```objective-c
+- (NSArray<CardType *> *)allowedCadTypes {
+    CardType* credit = [[CardType alloc]initWithCardType:Credit];
+    CardType* debit = [[CardType alloc]initWithCardType:Debit];
+    return @[credit,debit];
+}
+```
+
+**Swift**
+
+```swift
+var allowedCadTypes: [CardType]? {
+	return [CardType(cardType: .Debit), CardType(cardType: .Credit)]
+}
+```
+
 <a name="session_delegate"></a>
 ## Session Delegate
 
@@ -1412,3 +1466,4 @@ Also documented sources are attached to the library.
 [1]:https://www.tap.company/developers/
 [2]:Example
 [3]:https://tap-payments.github.io/goSellSDK-iOS/
+
