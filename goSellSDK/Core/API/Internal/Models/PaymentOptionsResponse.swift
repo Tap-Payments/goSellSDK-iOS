@@ -100,7 +100,7 @@ extension PaymentOptionsResponse: Decodable {
         
         if let merchnantAllowedCards = Process.shared.allowedCardTypes
         {
-            savedCards     = savedCards?.filter { (merchnantAllowedCards.contains($0.cardType)) }
+            savedCards     = savedCards?.filter { (merchnantAllowedCards.contains($0.cardType ?? CardType(cardType: .All))) }
         }
         
 		self.init(identifier:					identifier,
