@@ -20,6 +20,22 @@ internal struct AmountedCurrency: Decodable {
     /// Currency symbol.
     internal let currencySymbol: String
     
+    /// Conversion factor to transaction currency from baclend
+    internal var rate: Decimal?
+        
+    /// Conversion factor to transaction currency computed
+    internal var conversionFactor: Decimal{
+        get{
+            if let parsedRate:Decimal = rate
+            {
+                return parsedRate
+            }else
+            {
+                return amount/Process.shared.dataManagerInterface.transactionCurrency.amount
+            }
+        }
+    }
+    
     // MARK: Methods
     
     internal init(_ currency: Currency, _ amount: Decimal) {
@@ -35,6 +51,13 @@ internal struct AmountedCurrency: Decodable {
         self.currencySymbol = currencySymbol
     }
     
+    
+    
+    func calculateConvrsionRate()
+    {
+        //
+    }
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -42,6 +65,7 @@ internal struct AmountedCurrency: Decodable {
         case currency       = "currency"
         case amount         = "amount"
         case currencySymbol = "symbol"
+        case rate = "rate"
     }
 }
 

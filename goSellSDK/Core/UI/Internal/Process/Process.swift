@@ -19,7 +19,23 @@ internal final class Process {
 	internal private(set) var appearance:		AppearanceMode	= .fullscreen
 	
 	internal private(set) var externalSession: SessionProtocol?
-	
+    
+    internal var allowedCardTypes:[CardType]?
+       {
+           guard
+               let session = self.externalSession,
+               let dataSource = session.dataSource,
+               let allowedCards = dataSource.allowedCadTypes
+           else {
+               return nil
+           }
+           return allowedCards
+
+
+       }
+    
+    
+    
 	internal var wrappedImplementation: Wrapped {
 		
 		if let existing = self.wrapped {
@@ -91,6 +107,37 @@ internal final class Process {
 		
 		return result
 	}
+    
+    
+    @discardableResult internal func startApplePay(_ session: SessionProtocol) -> Bool {
+        
+        /*self.transactionMode    = session.dataSource?.mode ?? .default
+        self.appearance            = self.obtainAppearanceMode(from: session)
+        
+        let result = self.dataManagerInterface.loadPaymentOptions(for: session)
+        
+        if result {
+            
+            self.externalSession = session
+            self.customizeAppearance(for: session)
+        }*/
+        //self.dataManagerInterface.callChargeApplePayAPI(for: session)
+        if let providedApplePayToken = session.dataSource?.appleTokenData
+        {
+            if let tokenApiRequest = Process.shared.createApplePayTokenizationApiRequest(with: providedApplePayToken)
+            {
+                self.dataManagerInterface.callApplePayTokenApi(with: tokenApiRequest)
+            }else
+            {
+                if let delegate = session.delegate
+                {
+                    delegate.applePaymentTokenizationFailed?("API Request cannot be created", on: session)
+                }
+            }
+        }
+        
+        return true
+    }
 	
 	// MARK: - Private -
 	// MARK: Properties
@@ -105,6 +152,9 @@ internal final class Process {
 		
 		KnownStaticallyDestroyableTypes.add(Process.self)
 	}
+    
+    
+   
 	
 	private func obtainAppearanceMode(from session: SessionProtocol) -> AppearanceMode {
 		

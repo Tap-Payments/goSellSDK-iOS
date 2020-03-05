@@ -16,6 +16,9 @@
     
     /// Only web payments.
     @objc(web) case web
+    
+    /// Only web payments.
+    @objc(apple) case apple
 	
 
 	
@@ -37,6 +40,7 @@
 		case .all:			return "all"
         case .card:        	return "card"
         case .web: 			return "web"
+        case .apple:        return "apple_pay"
 
         }
     }
@@ -58,6 +62,10 @@
         case PaymentType.web.stringRepresentation:
             
             self = .web
+        
+        case PaymentType.apple.stringRepresentation:
+            
+            self = .apple
 		
 			
         default:
@@ -77,7 +85,7 @@ extension PaymentType: CustomStringConvertible {
 		case .all:		return "all"
         case .card:		return "card"
         case .web:		return "web"
-
+        case .apple:    return "apple_pay"
         }
     }
 }

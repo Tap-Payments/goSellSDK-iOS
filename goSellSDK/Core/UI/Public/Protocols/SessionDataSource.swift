@@ -4,6 +4,9 @@
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
+import enum PassKit.PKPaymentButtonType
+import enum PassKit.PKPaymentButtonStyle
+import class PassKit.PKPaymentToken
 
 /// Payment data source.
 @objc public protocol SessionDataSource: class, NSObjectProtocol {
@@ -13,6 +16,22 @@
 	
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
 	@objc var customer: Customer? { get }
+    
+    /// Details if the merchant wants to start apple session
+    @objc optional var isApplePay: Bool { get }
+    
+    /// The apple pay merchanrt id registered in the Apple developer account. If not provided, the apple pay option will not be shown
+    @objc optional var applePayMerchantID: String { get }
+    
+    // /// The type of the apple pay you want to show to user. By default it is 'Buy with Apple Pay'
+   // @objc optional var applePayButtonType: PKPaymentButtonType { get }
+    
+    /// The type of the apple pay you want to show to user. By default it is 'White outline'
+    @objc optional var applePayButtonStyle: PKPaymentButtonStyle { get }
+    
+    /// Details of the apple token data
+    @objc var appleTokenData: PKPaymentToken? { get }
+    
 	
 	/// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
 	@objc optional var currency: Currency? { get }
@@ -35,6 +54,9 @@
 	
 	/// Taxes.
 	@objc optional var taxes: [Tax]? { get }
+    
+    /// allowed Card Types, if not set all will be accepeted.
+    @objc optional var allowedCadTypes: [CardType]? { get }
 	
 	/// Shipping options.
 	@objc optional var shipping: [Shipping]? { get }

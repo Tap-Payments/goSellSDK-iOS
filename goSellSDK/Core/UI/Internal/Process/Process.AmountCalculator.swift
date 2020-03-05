@@ -111,6 +111,16 @@ internal extension Process.AmountCalculator where Mode: Payment {
 			case .percents:
 				
 				result += currency.amount * fee.normalizedValue
+                
+                if fee.minFee > 0 && result < fee.minFee
+                {
+                    result = fee.minFee
+                }
+                
+                if fee.maxFee > 0 && result > fee.maxFee
+                {
+                    result = fee.maxFee
+                }
 			}
 		}
 		
@@ -126,7 +136,7 @@ internal extension Process.AmountCalculator where Mode: CardTokenization {
 	static func extraFeeAmount(from extraFees: [ExtraFee], in currency: AmountedCurrency) -> Decimal {
 		
 		var result: Decimal = 0.0
-		
+		/*
 		extraFees.forEach { fee in
 			
 			switch fee.type {
@@ -145,9 +155,19 @@ internal extension Process.AmountCalculator where Mode: CardTokenization {
 			case .percents:
 				
 				result += currency.amount * fee.normalizedValue
+                
+                if fee.minFee > 0 && result < fee.minFee
+                {
+                    result = fee.minFee
+                }
+                
+                if fee.maxFee > 0 && result > fee.maxFee
+                {
+                    result = fee.maxFee
+                }
 			}
 		}
-		
+		*/
 		return result
 	}
 }

@@ -6,6 +6,7 @@
 //
 
 import struct	TapBundleLocalization.LocalizationKey
+import PassKit
 
 internal protocol ViewModelsHandlerInterface {
 	
@@ -219,6 +220,25 @@ internal extension Process {
 			
 			return newModel
 		}
+        
+        
+        internal func applePaymentCellModel(with paymentOption: PaymentOption) -> ApplePaymentOptionTableViewCellModel {
+            
+            let applePayModels = self.cellModels(of: ApplePaymentOptionTableViewCellModel.self)
+            
+            for model in applePayModels {
+                
+                if model.paymentOption == paymentOption {
+                    
+                    return model
+                }
+            }
+            
+            let newModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: self.paymentOptionsScreenCellViewModels), paymentOption: paymentOption)
+            self.paymentOptionsScreenCellViewModels.append(newModel)
+            
+            return newModel
+        }
 		
 		internal func emptyCellModel(with identifier: String) -> EmptyTableViewCellModel {
 			
@@ -347,11 +367,13 @@ internal extension Process {
 			
 			let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).sorted(by: sortingClosure)
 			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).sorted(by: sortingClosure)
-			
+			let applePaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .apple).sorted(by: sortingClosure)
+            
 			let hasSavedCards = savedCards.count > 0
 			let hasWebPaymentOptions = webPaymentOptions.count > 0
 			let hasCardPaymentOptions = cardPaymentOptions.count > 0
-			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions
+            let hasApplaPaymentOption = applePaymentOptions.count > 0
+			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions || hasApplaPaymentOption
 			let displaysGroupTitles = hasSavedCards && hasOtherPaymentOptions
 			
 			if displaysGroupTitles {
@@ -371,10 +393,27 @@ internal extension Process {
 				let othersGroupModel = GroupTableViewCellModel(indexPath: self.nextIndexPath(for: result), key: Constants.othersGroupModelKey)
 				result.append(othersGroupModel)
 			}
+            
+            if hasApplaPaymentOption
+            {
+                if !hasSavedCards {
+                    
+                    let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                 identifier: Constants.spaceBetweenCurrencyAndApplePayOptionsIdentifier)
+                    result.append(emptyCellModel)
+                }
+                
+                applePaymentOptions.forEach {
+                    
+                    let applePayOptionCellModel = ApplePaymentOptionTableViewCellModel(indexPath: self.nextIndexPath(for: result),
+                                                                        paymentOption: $0)
+                    result.append(applePayOptionCellModel)
+                }
+            }
 			
 			if hasWebPaymentOptions {
 				
-				if !hasSavedCards {
+				if !hasSavedCards || hasApplaPaymentOption {
 					
 					let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
 																 identifier: Constants.spaceBeforeWebPaymentOptionsIdentifier)
@@ -391,7 +430,7 @@ internal extension Process {
 			
 			if hasCardPaymentOptions {
 				
-				if hasWebPaymentOptions || !displaysGroupTitles {
+                if hasWebPaymentOptions || !displaysGroupTitles || hasApplaPaymentOption {
 					
 					let emptyCellModel = EmptyTableViewCellModel(indexPath: self.nextIndexPath(for: result),
 																 identifier: Constants.spaceBetweenWebAndCardOptionsIdentifier)
@@ -402,7 +441,7 @@ internal extension Process {
 				
 				result.append(cardOptionsCellModel)
 			}
-			
+            
 			self.paymentOptionsScreenCellViewModels = result
 			
 			self.filterPaymentOptionCellViewModels()
@@ -414,18 +453,31 @@ internal extension Process {
 			result.append(self.currencyCellViewModel)
 			
 			let currency = self.process.dataManagerInterface.selectedCurrency.currency
-			
+            var paymentNetworks = [PKPaymentNetwork.amex, PKPaymentNetwork.masterCard,  PKPaymentNetwork.visa]
+            if #available(iOS 12.0, *) {
+                paymentNetworks.append(contentsOf: [PKPaymentNetwork.electron,PKPaymentNetwork.maestro])
+            } else {
+                // Fallback on earlier versions
+            }
+            if #available(iOS 12.1.1, *) {
+                paymentNetworks.append(PKPaymentNetwork.mada)
+            } else {
+                // Fallback on earlier versions
+            }
+            
 			let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
 			let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
-			
+            
 			let savedCards = self.process.dataManagerInterface.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)
 			let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).filter(currenciesFilter).sorted(by: sortingClosure)
+            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
 			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
-			
+			let hasApplaPaymentOption = applePaymentOptions.count > 0
+            
 			let hasSavedCards = savedCards.count > 0
 			let hasWebPaymentOptions = webPaymentOptions.count > 0
 			let hasCardPaymentOptions = cardPaymentOptions.count > 0
-			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions
+			let hasOtherPaymentOptions = hasWebPaymentOptions || hasCardPaymentOptions || hasApplaPaymentOption
 			let displaysGroupTitles = hasSavedCards && hasOtherPaymentOptions
 			
 			if displaysGroupTitles {
@@ -449,10 +501,30 @@ internal extension Process {
 				othersGroupModel.indexPath = self.nextIndexPath(for: result)
 				result.append(othersGroupModel)
 			}
+          
+            if hasApplaPaymentOption
+            {
+                if !hasSavedCards {
+                    
+                    let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenCurrencyAndApplePayOptionsIdentifier)
+                    emptyModel.indexPath = self.nextIndexPath(for: result)
+                    
+                    result.append(emptyModel)
+                }
+                
+                applePaymentOptions.forEach {
+                    
+                    let applePayModel = self.applePaymentCellModel(with: $0)
+                    applePayModel.indexPath = self.nextIndexPath(for: result)
+                    
+                    result.append(applePayModel)
+                }
+            }
+            
 			
 			if hasWebPaymentOptions {
 				
-				if !hasSavedCards {
+				if !hasSavedCards || hasApplaPaymentOption {
 					
 					let emptyModel = self.emptyCellModel(with: Constants.spaceBeforeWebPaymentOptionsIdentifier)
 					emptyModel.indexPath = self.nextIndexPath(for: result)
@@ -468,10 +540,14 @@ internal extension Process {
 					result.append(webModel)
 				}
 			}
+            
+            
+            
+            
 			
 			if hasCardPaymentOptions {
 				
-				if hasWebPaymentOptions || !displaysGroupTitles {
+				if hasWebPaymentOptions || !displaysGroupTitles || hasApplaPaymentOption {
 					
 					let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenWebAndCardOptionsIdentifier)
 					emptyModel.indexPath = self.nextIndexPath(for: result)
@@ -646,6 +722,8 @@ private struct __ViewModelsHandlerConstants {
 	
 	fileprivate static let spaceBeforeWebPaymentOptionsIdentifier   = "space_before_web_payment_options"
 	fileprivate static let spaceBetweenWebAndCardOptionsIdentifier  = "space_between_web_and_card_options"
+    fileprivate static let spaceBetweenCardAndApplePayOptionsIdentifier  = "space_between_card_and_apple_options"
+    fileprivate static let spaceBetweenCurrencyAndApplePayOptionsIdentifier  = "space_between_currency_and_apple_options"
 	
 	@available(*, unavailable) private init() {}
 }

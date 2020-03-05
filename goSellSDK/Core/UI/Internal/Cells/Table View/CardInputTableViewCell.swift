@@ -35,7 +35,10 @@ internal class CardInputTableViewCell: BaseTableViewCell {
 	internal private(set) var isContentBinded: Bool = false
 
     // MARK: Methods
-    
+    internal func unSpportedCardType()
+    {
+        self.cardNumberTextField?.text = ""
+    }
     internal override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
         if self.isSelected {
@@ -57,7 +60,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         if !selected {
             
             self.tap_firstResponder?.resignFirstResponder()
-            self.controls?.forEach { $0.isUserInteractionEnabled = false }
+            self.controls?.forEach { $0.isUserInteractionEnabled = true }
         }
         
         
@@ -248,6 +251,8 @@ extension CardInputTableViewCell: LoadingWithModelCell {
         
         self.addressOnCardArrowImageView?.image = self.model?.addressOnCardArrowImage
         self.cardScannerButton?.setImage(self.model?.scanButtonImage, for: .normal)
+        
+        
     }
 
 	private func updateLocalization() {
@@ -350,6 +355,13 @@ extension CardInputTableViewCell: BindingWithModelCell {
         self.updateSectionsVisibility(animated: false, updateConstraintsOnly: true, forceLayout: false)
 		
 		self.isContentBinded = true
+        
+        self.saveCardSwitch?.onTintColor = UIColor(tap_hex: "2ACE00")?.loadCompatibleDarkModeColor(forColorNamed: "SaveCardSwitchTintColor")
+        self.cardNumberTextField?.textColor = UIColor(tap_hex: "FFFFFF")?.loadCompatibleDarkModeColor(forColorNamed: "CardInputTextFieldColor")
+        self.cvvTextField?.textColor = UIColor(tap_hex: "FFFFFF")?.loadCompatibleDarkModeColor(forColorNamed: "CardInputTextFieldColor")
+        self.nameOnCardTextField?.textColor = UIColor(tap_hex: "FFFFFF")?.loadCompatibleDarkModeColor(forColorNamed: "CardInputTextFieldColor")
+        self.expirationDateTextField?.textColor = UIColor(tap_hex: "FFFFFF")?.loadCompatibleDarkModeColor(forColorNamed: "CardInputTextFieldColor")
+        
     }
     
     internal func unbindContent() {

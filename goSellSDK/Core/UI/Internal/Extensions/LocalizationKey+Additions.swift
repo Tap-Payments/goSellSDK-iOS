@@ -24,6 +24,10 @@ internal extension LocalizationKey {
 	
 	static let btn_save_title			= LocalizationKey("btn_save_title")
 	static let btn_save_action_title	= LocalizationKey("btn_save_action_title")
+    
+    // MARK: Async Button Title
+    
+    static let btn_async_title            = LocalizationKey("btn_async_title")
 	
 	// MARK: Payment Option Group Titles
 	
@@ -59,6 +63,18 @@ internal extension LocalizationKey {
 	static let otp_guide_text		= LocalizationKey("otp_guide_text")
 	static let btn_confirm_title	= LocalizationKey("btn_confirm_title")
 	static let btn_resend_title		= LocalizationKey("btn_resend_title")
+    
+    
+    // MARK: Async Screen
+    
+    static let async_status_text            = LocalizationKey("async_status_text")
+    static let async_pay_reference_text     = LocalizationKey("async_pay_reference_text")
+    static let async_pay_order_code_text    = LocalizationKey("async_pay_order_code_text")
+    static let async_pay_code_expire_text   = LocalizationKey("async_pay_code_expire_text")
+    static let async_pay_hint_footer_text   = LocalizationKey("async_pay_hint_footer_text")
+    static let async_pay_email_text         = LocalizationKey("async_pay_email_text")
+    static let async_pay_sms_text           = LocalizationKey("async_pay_sms_text")
+    
 	
 	
 	// MARK: -
@@ -75,6 +91,13 @@ internal extension LocalizationKey {
 	static let alert_extra_charges_message 				= LocalizationKey("alert_extra_charges_message")
 	static let alert_extra_charges_btn_cancel_title 	= LocalizationKey("alert_extra_charges_btn_cancel_title")
 	static let alert_extra_charges_btn_confirm_title	= LocalizationKey("alert_extra_charges_btn_confirm_title")
+    
+    
+    // MARK: Alert: Un supported card type
+    
+    static let alert_un_supported_card_title                 = LocalizationKey("alert_un_supported_card_title")
+    static let alert_un_supported_card_message                 = LocalizationKey("alert_un_supported_card_message")
+    static let alert_un_supported_card_btn_confirm_title    = LocalizationKey("alert_un_supported_card_btn_confirm_title")
 	
 	// MARK: Alert: Cancel Payment (status undefined)
 	

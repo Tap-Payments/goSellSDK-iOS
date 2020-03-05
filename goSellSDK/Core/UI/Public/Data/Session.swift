@@ -8,7 +8,7 @@
 import struct	TapAdditionsKit.TypeAlias
 
 /// SDK session class. Use this class if you don't want to place Pay Button and make it do everything for you.
-@objcMembers public final class Session: NSObject, SessionProtocol {
+@objcMembers public final class  Session: NSObject, SessionProtocol {
 	
 	// MARK: - Public -
 	// MARK: Properties
@@ -49,7 +49,25 @@ import struct	TapAdditionsKit.TypeAlias
 		
 		return self.implementationStart()
 	}
+    
+    
+    /// Initiates the session.
+    ///
+    /// - Returns: Returns boolean value which determines whether all conditions are met to start the sesssion.
+    @discardableResult public func startApplePay() -> Bool {
+        
+        return self.implementationApplyPayStart()
+    }
 	
+    /// Initiates the session.
+    ///
+    /// - Returns: Returns boolean value which determines whether all conditions are met to start the sesssion.
+    @discardableResult public func startAppleUIPay() -> Bool {
+        
+        return self.implementationApplyPayStart(ui:true)
+    }
+    
+    
 	/// Stops the receiving session dismissing all the user interface. Treats this action as if session was cancelled by the user.
 	/// Use this method when your app wants to interrupt payment process (f.ex. when you perform a deep link and need to show your UI).
 	///

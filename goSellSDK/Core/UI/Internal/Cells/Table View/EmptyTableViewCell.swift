@@ -19,5 +19,7 @@ internal class EmptyTableViewCell: BaseTableViewCell {
 // MARK: - LoadingWithModelCell
 extension EmptyTableViewCell: LoadingWithModelCell {
     
-    internal func updateContent(animated: Bool) { }
+    internal func updateContent(animated: Bool) {
+        self.backgroundColor = UIColor.clear
+    }
 }

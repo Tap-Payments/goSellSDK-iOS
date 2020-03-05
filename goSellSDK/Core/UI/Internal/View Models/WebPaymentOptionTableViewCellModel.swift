@@ -14,7 +14,7 @@ internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewMod
     // MARK: - Internal -
     // MARK: Properties
     
-    internal var title: String {
+    internal var title: String { 
         
         return self.paymentOption.title
     }

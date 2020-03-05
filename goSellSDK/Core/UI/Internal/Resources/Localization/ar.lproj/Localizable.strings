@@ -20,6 +20,9 @@
 "btn_save_title" = "احفظ البطاقة";
 "btn_save_action_title" = "احفظ البطاقة";
 
+// MARK: Async Button Title
+"btn_async_title" = "تم";
+
 // MARK: Payment Option Group Titles
 
 "payment_options_group_title_recent" = "مستخدم حديثاً";
@@ -55,6 +58,16 @@
 "btn_confirm_title"	= "تأكيد";
 "btn_resend_title"	= "إعادة إرسال";
 
+// MARK: Async Screen
+
+"async_status_text"             = "جاري الدفع";
+"async_pay_reference_text"      = "مع كود فوري الخاص بك";
+"async_pay_ack_text"            = "تم إرسال رسالة نصية لـ";
+"async_pay_email_text"          = "تم إرسال بريد إلكتروني لـ";
+"async_pay_order_code_text"     = "كود الطلب";
+"async_pay_code_expire_text"    = "ينتهي الكود في\n";
+"async_pay_hint_footer_text"    = "برجاء زيارة أقرب فرع فوري\nالموجود في الرابط ادناه لاستكمال عملية الدفع";
+
 
 // MARK: -
 // MARK: Alert: Delete Card
@@ -70,6 +83,13 @@
 "alert_extra_charges_message" 			= "سوف تتم إضافة  %@ لهذا النوع العملية، إجمالي المبلغ المطلوب   %@";
 "alert_extra_charges_btn_cancel_title" 	= "إلغاء";
 "alert_extra_charges_btn_confirm_title"	= "تأكيد";
+
+
+// MARK: Alert: Un Supported Card Type Alert
+
+"alert_un_supported_card_title"             = "تنبيه";
+"alert_un_supported_card_message"             = "نوع البطاقة غير مدعوم";
+"alert_un_supported_card_btn_confirm_title"     = "إلغاء";
 
 // MARK: Alert: Cancel Payment (status undefined)
 

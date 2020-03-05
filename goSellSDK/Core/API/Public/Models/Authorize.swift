@@ -55,7 +55,7 @@
 	public private(set) var destinations: DestinationGroup?
 	
     /// Charge status.
-    public let status: ChargeStatus
+    public var status: ChargeStatus
     
     /// Defines if 3D secure is required for the transaction.
     public let requires3DSecure: Bool

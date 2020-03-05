@@ -17,7 +17,7 @@ import class	UIKit.UIResponder.UIResponder
 import protocol UIKit.UITableView.UITableViewDataSource
 import protocol UIKit.UITableView.UITableViewDelegate
 import class	UIKit.UIView.UIView
-
+import struct PassKit.PKPaymentNetwork
 /// View model that handles manual card input table view cell.
 internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	
@@ -29,7 +29,6 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	internal var paymentOptions: [PaymentOption] = [] {
 		
 		didSet {
-			
 			self.updatePaymentOptions()
 		}
 	}
@@ -296,7 +295,15 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 	
 	internal var scanButtonImage: UIImage {
 		
-		return Theme.current.paymentOptionsCellStyle.card.scanIcon!
+		guard let image = Theme.current.paymentOptionsCellStyle.card.scanIcon else
+        {
+            guard let imageBackup = UIImage(tap_byCombining: [Theme.current.paymentOptionsCellStyle.card.scanIconFrame, Theme.current.paymentOptionsCellStyle.card.scanIconIcon]) else
+            {
+                return UIImage()
+            }
+            return imageBackup
+        }
+        return image
 	}
 	
 	internal var isScanButtonVisible: Bool {

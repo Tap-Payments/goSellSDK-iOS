@@ -116,8 +116,13 @@ internal final class APIClient {
         var modelDictionary: [String: Any]
         
         do {
-            
-            modelDictionary = try model.tap_asDictionary()
+            if let applePayModel:CreateTokenWithApplePayRequest = model as? CreateTokenWithApplePayRequest
+            {
+                modelDictionary = try applePayModel.applePayToken.tap_asDictionary()
+            }else
+            {
+                modelDictionary = try model.tap_asDictionary()
+            }
         }
         catch let error {
 			

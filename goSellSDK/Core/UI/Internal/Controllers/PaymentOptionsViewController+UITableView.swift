@@ -49,6 +49,7 @@ extension PaymentOptionsViewController: UITableViewDataSource {
         else if let emptyCellModel = model as? EmptyTableViewCellModel {
             
             let cell = emptyCellModel.dequeueCell(from: tableView)
+            cell.backgroundColor = .clear
             return cell
         }
         else if let groupCellModel = model as? GroupTableViewCellModel {
@@ -70,6 +71,11 @@ extension PaymentOptionsViewController: UITableViewDataSource {
         else if let webCellModel = model as? WebPaymentOptionTableViewCellModel {
             
             let cell = webCellModel.dequeueCell(from: tableView)
+            return cell
+        }
+        else if let appleCellModel = model as? ApplePaymentOptionTableViewCellModel {
+            
+            let cell = appleCellModel.dequeueCell(from: tableView)
             return cell
         }
         else if let cardCellModel = model as? CardInputTableViewCellModel {
@@ -111,6 +117,10 @@ extension PaymentOptionsViewController: UITableViewDelegate {
         else if let webCellModel = model as? WebPaymentOptionTableViewCellModel {
             
             webCellModel.updateCell()
+        }
+        else if let applePayCellModel = model as? ApplePaymentOptionTableViewCellModel {
+            
+            applePayCellModel.updateCell()
         }
         else if let cardCellModel = model as? CardInputTableViewCellModel {
             
