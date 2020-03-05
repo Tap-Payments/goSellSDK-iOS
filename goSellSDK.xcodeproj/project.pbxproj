@@ -420,19 +420,17 @@
 		E82A208E23EC3DC900F152C5 /* TransactionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A208D23EC3DC900F152C5 /* TransactionOrder.swift */; };
 		E82B006423C4BC2900FE0D05 /* ApplePayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */; };
 		E82B006623C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */; };
-
-		E8733DD223F2A7FB00ED75A6 /* AsyncResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8733DD123F2A7FB00ED75A6 /* AsyncResponseViewController.swift */; };
-
 		E856F87623FD5E7B00AC78BE /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856F87523FD5E7B00AC78BE /* CardType.swift */; };
+		E872CCA123D6DBD400D79EF2 /* SDKLightDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E872CCA023D6DBD400D79EF2 /* SDKLightDarkMode.swift */; };
+		E8733DD223F2A7FB00ED75A6 /* AsyncResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8733DD123F2A7FB00ED75A6 /* AsyncResponseViewController.swift */; };
 		E894E670240BCBD4002D9383 /* cardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E894E66F240BCBD4002D9383 /* cardType.swift */; };
+		E8C56F2823D70D5500564AB1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C56F2723D70D5500564AB1 /* Colors.xcassets */; };
+		E8C56F2A23D7197800564AB1 /* PaymentCellSeprator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C56F2923D7197800564AB1 /* PaymentCellSeprator.swift */; };
+		E8C56F3023D71DAE00564AB1 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C56F2F23D71DAE00564AB1 /* UIColor+Additions.swift */; };
 		E8CDF34223CA26F300E0C847 /* CreateTokenApplePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34123CA26F300E0C847 /* CreateTokenApplePay.swift */; };
 		E8CDF34423CA299100E0C847 /* CreateTokenWithApplePayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34323CA299100E0C847 /* CreateTokenWithApplePayRequest.swift */; };
 		E8CDF34C23CA454900E0C847 /* AppleTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34B23CA454900E0C847 /* AppleTokenModel.swift */; };
 		E8CDF34E23CA45C800E0C847 /* AppleTokenHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDF34D23CA45C800E0C847 /* AppleTokenHeaderModel.swift */; };
-		E872CCA123D6DBD400D79EF2 /* SDKLightDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E872CCA023D6DBD400D79EF2 /* SDKLightDarkMode.swift */; };
-		E8C56F2823D70D5500564AB1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C56F2723D70D5500564AB1 /* Colors.xcassets */; };
-		E8C56F2A23D7197800564AB1 /* PaymentCellSeprator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C56F2923D7197800564AB1 /* PaymentCellSeprator.swift */; };
-		E8C56F3023D71DAE00564AB1 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C56F2F23D71DAE00564AB1 /* UIColor+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -855,19 +853,17 @@
 		E82A208D23EC3DC900F152C5 /* TransactionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionOrder.swift; sourceTree = "<group>"; };
 		E82B006323C4BC2900FE0D05 /* ApplePayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayTableViewCell.swift; sourceTree = "<group>"; };
 		E82B006523C4E8D600FE0D05 /* ApplePaymentOptionTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePaymentOptionTableViewCellModel.swift; sourceTree = "<group>"; };
-
-		E8733DD123F2A7FB00ED75A6 /* AsyncResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResponseViewController.swift; sourceTree = "<group>"; };
-
 		E856F87523FD5E7B00AC78BE /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		E872CCA023D6DBD400D79EF2 /* SDKLightDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKLightDarkMode.swift; sourceTree = "<group>"; };
+		E8733DD123F2A7FB00ED75A6 /* AsyncResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResponseViewController.swift; sourceTree = "<group>"; };
 		E894E66F240BCBD4002D9383 /* cardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardType.swift; sourceTree = "<group>"; };
+		E8C56F2723D70D5500564AB1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		E8C56F2923D7197800564AB1 /* PaymentCellSeprator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCellSeprator.swift; sourceTree = "<group>"; };
+		E8C56F2F23D71DAE00564AB1 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		E8CDF34123CA26F300E0C847 /* CreateTokenApplePay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenApplePay.swift; sourceTree = "<group>"; };
 		E8CDF34323CA299100E0C847 /* CreateTokenWithApplePayRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenWithApplePayRequest.swift; sourceTree = "<group>"; };
 		E8CDF34B23CA454900E0C847 /* AppleTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenModel.swift; sourceTree = "<group>"; };
 		E8CDF34D23CA45C800E0C847 /* AppleTokenHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTokenHeaderModel.swift; sourceTree = "<group>"; };
-		E872CCA023D6DBD400D79EF2 /* SDKLightDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKLightDarkMode.swift; sourceTree = "<group>"; };
-		E8C56F2723D70D5500564AB1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		E8C56F2923D7197800564AB1 /* PaymentCellSeprator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCellSeprator.swift; sourceTree = "<group>"; };
-		E8C56F2F23D71DAE00564AB1 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		FEEB7048D062EDBFA88DDD48 /* Pods_goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -2555,7 +2551,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.13;
+				MARKETING_VERSION = 2.2.12;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2586,7 +2582,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.13;
+				MARKETING_VERSION = 2.2.12;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
