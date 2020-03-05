@@ -8,16 +8,16 @@
 
 import Foundation
 /// Card Types the merchanty will use to define what types of cards he wants his clients to use
-@objc public class CardType:NSObject {
+@objcMembers public class CardType:NSObject {
 	
     
-    @objc var cardType:cardTypes = .All
+    var cardType:cardTypes = .All
     
-      init(cardType:String) {
-        if cardType.lowercased() == "credit"
+      init(cardTypeString:String) {
+        if cardTypeString.lowercased() == "credit"
         {
             self.cardType = .Credit
-        }else if cardType.lowercased() == "debit"
+        }else if cardTypeString.lowercased() == "debit"
         {
             self.cardType = .Debit
         }else
@@ -26,7 +26,7 @@ import Foundation
         }
     }
     
-    @objc public init(cardType:cardTypes) {
+    public init(cardType:cardTypes) {
            self.cardType = cardType
        }
     
