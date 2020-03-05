@@ -106,7 +106,7 @@ internal final class Process {
             self.customizeAppearance(for: session)
         }*/
         //self.dataManagerInterface.callChargeApplePayAPI(for: session)
-        if let providedApplePayToken = session.dataSource?.appleTokenData
+       /* if let providedApplePayToken = session.dataSource?.appleTokenData
         {
             if let tokenApiRequest = Process.shared.createApplePayTokenizationApiRequest(with: providedApplePayToken)
             {
@@ -118,7 +118,7 @@ internal final class Process {
                     delegate.applePaymentTokenizationFailed?("API Request cannot be created", on: session)
                 }
             }
-        }
+        }*/
         
         return true
     }

@@ -17,8 +17,8 @@ import class PassKit.PKPaymentToken
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
 	@objc var customer: Customer? { get }
     
-    /// Details if the merchant wants to start apple session
-    @objc optional var isApplePay: Bool { get }
+    // /// Details if the merchant wants to start apple session
+    //@objc optional var isApplePay: Bool { get }
     
     /// The apple pay merchanrt id registered in the Apple developer account. If not provided, the apple pay option will not be shown
     @objc optional var applePayMerchantID: String { get }
@@ -29,8 +29,8 @@ import class PassKit.PKPaymentToken
     /// The type of the apple pay you want to show to user. By default it is 'White outline'
     @objc optional var applePayButtonStyle: PKPaymentButtonStyle { get }
     
-    /// Details of the apple token data
-    @objc var appleTokenData: PKPaymentToken? { get }
+   //  /// Details of the apple token data
+    // @objc var appleTokenData: PKPaymentToken? { get }
     
 	
 	/// Transaction currency code. Although the type is nullable, in order to start payment, currency should be nonnull.
