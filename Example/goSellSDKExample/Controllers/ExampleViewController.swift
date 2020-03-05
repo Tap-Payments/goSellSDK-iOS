@@ -319,10 +319,10 @@ extension ExampleViewController: SessionDataSource {
         return "merchant.tap.gosell"
     }
     
-    /*internal var merchantID: String?
+    internal var merchantID: String?
     {
         return "599424"
-    }*/
+    }
     
     internal var customer: Customer? {
         
