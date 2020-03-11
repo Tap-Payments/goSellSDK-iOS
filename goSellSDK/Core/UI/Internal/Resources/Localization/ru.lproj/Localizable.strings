@@ -274,6 +274,7 @@
 "payment_status_captured" 		= "Захвачено";
 "payment_status_authorized" 	= "Одобрено";
 "payment_status_unknown"		= "Неизвестно";
+"payment_status_timeout"        = "TIMEDOUT";
 "payment_status_void" 			= "Недействительно";
 
 "payment_status_alert_successful"	= "Успешно";

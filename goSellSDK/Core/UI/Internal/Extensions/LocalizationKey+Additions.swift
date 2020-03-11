@@ -301,6 +301,7 @@ internal extension LocalizationKey {
 	static let payment_status_restricted	= LocalizationKey("payment_status_restricted")
 	static let payment_status_captured		= LocalizationKey("payment_status_captured")
 	static let payment_status_authorized	= LocalizationKey("payment_status_authorized")
+    static let payment_status_timeout       = LocalizationKey("payment_status_timeout")
 	static let payment_status_unknown		= LocalizationKey("payment_status_unknown")
 	static let payment_status_void			= LocalizationKey("payment_status_void")
 	

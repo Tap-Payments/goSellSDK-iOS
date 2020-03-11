@@ -293,6 +293,7 @@
 "payment_status_restricted" 	= "Restricted";
 "payment_status_captured" 		= "Captured";
 "payment_status_authorized" 	= "Authorized";
+"payment_status_timeout"        = "TIMEDOUT";
 "payment_status_unknown"		= "Unknown";
 "payment_status_void" 			= "Void";
 
