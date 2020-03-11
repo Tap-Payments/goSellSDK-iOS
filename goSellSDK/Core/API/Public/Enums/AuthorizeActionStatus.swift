@@ -26,6 +26,22 @@
     /// Amount was void.
     case void
     
+    case authorized
+    
+    case initiated
+    
+    case inProgress
+    
+    case abandoned
+    
+    case cancelled
+    
+    case restricted
+    
+    case timeout
+    
+    case unknown
+    
     // MARK: - Private -
     // MARK: Properties
     
@@ -39,6 +55,14 @@
         case .failed:       return "FAILED"
         case .declined:     return "DECLINED"
         case .void:         return "VOID"
+        case .authorized:   return "AUTHORIZED"
+        case .initiated:   return "INITIATED"
+        case .inProgress:   return "IN_PROGRESS"
+        case .abandoned:   return "ABANDONED"
+        case .cancelled:   return "CANCELLED"
+        case .restricted:   return "RESTRICTED"
+        case .timeout:   return "TIMEDOUT"
+        case .unknown:   return "UNKNOWN"
 
         }
     }
@@ -55,6 +79,14 @@
         case AuthorizeActionStatus.failed.stringValue:      self = .failed
         case AuthorizeActionStatus.declined.stringValue:    self = .declined
         case AuthorizeActionStatus.void.stringValue:        self = .void
+        case AuthorizeActionStatus.authorized.stringValue:  self = .authorized
+        case AuthorizeActionStatus.initiated.stringValue:  self = .initiated
+        case AuthorizeActionStatus.inProgress.stringValue:  self = .inProgress
+        case AuthorizeActionStatus.abandoned.stringValue:  self = .abandoned
+        case AuthorizeActionStatus.cancelled.stringValue:  self = .cancelled
+        case AuthorizeActionStatus.restricted.stringValue:  self = .restricted
+        case AuthorizeActionStatus.timeout.stringValue:  self = .timeout
+        case AuthorizeActionStatus.unknown.stringValue:  self = .unknown
             
         default:
             

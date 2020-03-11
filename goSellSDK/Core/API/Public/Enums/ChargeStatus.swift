@@ -39,6 +39,9 @@ import struct	TapBundleLocalization.LocalizationKey
 	
 	/// Charge status is unknown.
 	case unknown
+    
+    /// Charge status is unknown.
+    case timeout
 	
     /// Charge/authorize void.
     case void
@@ -68,6 +71,7 @@ import struct	TapBundleLocalization.LocalizationKey
         case .captured:     return "CAPTURED"
         case .authorized:   return "AUTHORIZED"
 		case .unknown:		return "UNKNOWN"
+        case .timeout:      return "TIMEDOUT"
         case .void:         return "VOID"
 
         }
@@ -86,6 +90,7 @@ import struct	TapBundleLocalization.LocalizationKey
 		case .restricted:   return .payment_status_restricted
 		case .captured:     return .payment_status_captured
 		case .authorized:   return .payment_status_authorized
+        case .timeout:      return .payment_status_timeout
 		case .unknown:		return .payment_status_unknown
 		case .void:         return .payment_status_void
 			
@@ -108,6 +113,7 @@ import struct	TapBundleLocalization.LocalizationKey
         case ChargeStatus.captured.stringValue:     self = .captured
         case ChargeStatus.authorized.stringValue:   self = .authorized
 		case ChargeStatus.unknown.stringValue:		self = .unknown
+        case ChargeStatus.timeout.stringValue:      self = .timeout
         case ChargeStatus.void.stringValue:         self = .void
             
         default:
