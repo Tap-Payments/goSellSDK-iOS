@@ -54,7 +54,7 @@ PODS:
   - goSellSDK/ErrorReporting (2.2.12-beta):
     - goSellSDK/Core
     - TapErrorReporting (>= 1.0.3)
-  - SDWebImage/Core (5.5.2)
+  - SDWebImage/Core (5.6.0)
   - TapAdditionsKit/CoreGraphics/CGContext (1.3.6)
   - TapAdditionsKit/CoreGraphics/CGImage (1.3.6):
     - TapAdditionsKit/CoreGraphics/CGContext
@@ -264,7 +264,7 @@ SPEC CHECKSUMS:
   EditableTextInsetsTextField: 7298bfd622a614307dc3b0de74c28ae19c9d7753
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   goSellSDK: f79037f22e7353d0c49664bbaeac592fb1903d24
-  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
   TapAdditionsKit: 136b2174e775b105f8fd17eac6a4da2951e0f05b
   TapAlertViewController: 23d436d5c556e8146e0dfd4e1be2aea2fdb61c7c
   TapApplication: bed1013cb48402e39fea913a6096ebd2d326cd36

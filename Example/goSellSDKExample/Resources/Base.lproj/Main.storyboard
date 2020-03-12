@@ -4916,45 +4916,8 @@
                         <sections>
                             <tableViewSection id="a0B-iU-PBN">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="teo-uS-Vvw">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="teo-uS-Vvw" id="2Av-tx-DA8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vsd-xs-Uf4">
-                                                    <rect key="frame" x="15" y="0.0" width="70" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="xfd-hG-GTU"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gXa-lB-YFO">
-                                                    <rect key="frame" x="100" y="0.0" width="265" height="43.666666666666664"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="43.5" id="XM5-7X-LPr"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gXa-lB-YFO" firstAttribute="leading" secondItem="Vsd-xs-Uf4" secondAttribute="trailing" constant="15" id="LQd-oc-ur5"/>
-                                                <constraint firstAttribute="trailing" secondItem="gXa-lB-YFO" secondAttribute="trailing" constant="10" id="WhK-ha-ka7"/>
-                                                <constraint firstItem="gXa-lB-YFO" firstAttribute="top" secondItem="2Av-tx-DA8" secondAttribute="top" id="YF8-sf-ZYd"/>
-                                                <constraint firstAttribute="bottom" secondItem="Vsd-xs-Uf4" secondAttribute="bottom" id="nRa-d8-4rJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="gXa-lB-YFO" secondAttribute="bottom" id="oUP-ZF-qne"/>
-                                                <constraint firstItem="Vsd-xs-Uf4" firstAttribute="top" secondItem="2Av-tx-DA8" secondAttribute="top" id="vVs-Py-DJX"/>
-                                                <constraint firstItem="Vsd-xs-Uf4" firstAttribute="leading" secondItem="2Av-tx-DA8" secondAttribute="leading" constant="15" id="y9N-kM-LiQ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="bTu-cB-OTh">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bTu-cB-OTh" id="MAt-UD-cU4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -5013,7 +4976,6 @@
                     <connections>
                         <outlet property="doneButton" destination="48D-Rr-b8c" id="z5A-vU-Ue5"/>
                         <outlet property="maximumTextField" destination="usC-va-O0X" id="Z86-v3-DvF"/>
-                        <outlet property="minimumTextField" destination="gXa-lB-YFO" id="UOi-fU-xOs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ofV-uJ-MJS" userLabel="First Responder" sceneMemberID="firstResponder"/>

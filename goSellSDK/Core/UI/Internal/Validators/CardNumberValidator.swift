@@ -25,9 +25,7 @@ internal class CardNumberValidator: CardValidator {
     internal var recognizedCardType: BrandWithScheme {
         
         let scheme = self.currentBINData?.scheme
-        let localData = TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands,
-                                                                minimumAllowedLength: Process.shared.externalSession?.dataSource?.minimumAllowedCardNumber ?? 0,
-                                                                maximumAllowedLength: Process.shared.externalSession?.dataSource?.maximumAllowedCardNumber ?? 0)
+        let localData = TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
         let state = localData.validationState
         let brand = self.currentBINData?.cardBrand ?? localData.cardBrand ?? .unknown
         
@@ -299,8 +297,8 @@ extension CardNumberValidator.CardNumberTextFieldDelegate: UITextFieldDelegate {
         
         let desiredText = textField.attributedText?.string.tap_replacing(range: range, withString: string) ?? .tap_empty
         let numberOnlyText = desiredText.trimmingCharacters(in: .whitespaces)
-        
-        return numberOnlyText.tap_containsOnlyInternationalDigits
+        let maximumAllowedLength:Int = Process.shared.externalSession?.dataSource?.maximumAllowedCardNumber ?? 0
+        return numberOnlyText.tap_containsOnlyInternationalDigits && (maximumAllowedLength <= 0 || numberOnlyText.count <= maximumAllowedLength)
     }
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
