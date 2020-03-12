@@ -329,11 +329,6 @@ extension ExampleViewController: SessionDataSource {
         return self.paymentSettings.dataSource.maxCardLengthAllowed
     }
     
-    internal var minimumAllowedCardNumber: Int
-    {
-        return self.paymentSettings.dataSource.minCardLengthAllowed
-    }
-    
     internal var customer: Customer? {
         
         return self.paymentSettings.dataSource.customer?.customer

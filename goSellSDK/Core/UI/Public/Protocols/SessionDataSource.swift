@@ -82,8 +82,8 @@ import class PassKit.PKPaymentToken
     /// Defines the maximum allowed card number
     @objc optional var maximumAllowedCardNumber: Int { get }
     
-    /// Defines the minimum allowed card number
-    @objc optional var minimumAllowedCardNumber: Int { get }
+   // /// Defines the minimum allowed card number
+   // @objc optional var minimumAllowedCardNumber: Int { get }
 	
 	/// Receipt dispatch settings.
 	@objc optional var receiptSettings: Receipt? { get }

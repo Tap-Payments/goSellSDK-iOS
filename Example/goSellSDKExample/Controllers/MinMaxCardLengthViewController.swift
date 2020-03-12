@@ -38,7 +38,7 @@ internal final class MinMaxCardLengthViewController: ModalNavigationTableViewCon
         
         self.addInputFieldTextChangeObserver()
         self.updateTitle()
-        self.minimumTextField?.text = "\(self.currentMin)"
+        //self.minimumTextField?.text = "\(self.currentMin)"
         self.maximumTextField?.text = "\(self.currentMax)"
     }
     
@@ -47,7 +47,7 @@ internal final class MinMaxCardLengthViewController: ModalNavigationTableViewCon
         //self.dismiss(animated: true, completion: nil)
         if let nonNulldelegate = self.delegate
         {
-            nonNulldelegate.minMaxCardLengthViewControllerViewController(self, didFinishWith: Int(self.minimumTextField?.text ?? "0") ?? 0, max: Int(self.maximumTextField?.text ?? "0") ?? 0)
+            nonNulldelegate.minMaxCardLengthViewControllerViewController(self, didFinishWith: 0, max: Int(self.maximumTextField?.text ?? "0") ?? 0)
         }
     }
     
@@ -67,7 +67,7 @@ internal final class MinMaxCardLengthViewController: ModalNavigationTableViewCon
    
     // MARK: Properties
     
-    @IBOutlet private weak var minimumTextField: UITextField?
+   // @IBOutlet private weak var minimumTextField: UITextField?
     @IBOutlet private weak var maximumTextField: UITextField?
     
  
@@ -75,7 +75,7 @@ internal final class MinMaxCardLengthViewController: ModalNavigationTableViewCon
     
     private func updateTitle() {
         
-        self.title = "Card Min/Max Length"
+        self.title = "Card Number Max Length"
         
     }
   
