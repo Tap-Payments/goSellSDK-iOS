@@ -31,7 +31,9 @@ internal struct DataSourceSettings: Encodable {
 													   shippingList:						[],
 													   taxes:								[],
 													   paymentType:							.all,
-                                                       allowedCards:                        .All
+                                                       allowedCards:                        .All,
+                                                       minAllowed:                              0,
+                                                       maxAllowed:                              0
 													   )
 	
 	internal var sdkMode: SDKMode
@@ -57,6 +59,10 @@ internal struct DataSourceSettings: Encodable {
 	internal var taxes: [Tax]
 	
 	internal var paymentType: PaymentType
+    
+    internal var minCardLengthAllowed: Int
+    
+    internal var maxCardLengthAllowed: Int
 
 	// MARK: Methods
 	
@@ -71,7 +77,9 @@ internal struct DataSourceSettings: Encodable {
 				  shippingList:								[Shipping],
 				  taxes:									[Tax],
 				  paymentType:								PaymentType,
-                  allowedCards:                             cardTypes) {
+                  allowedCards:                             cardTypes,
+                  minAllowed:                               Int = 0,
+                  maxAllowed:                               Int = 0) {
 		
 		self.sdkMode            					= sdkMode
 		
@@ -86,6 +94,8 @@ internal struct DataSourceSettings: Encodable {
 		self.taxes              					= taxes
 		self.paymentType							= paymentType
         self.allowedCards                           = allowedCards
+        self.minCardLengthAllowed                   = minAllowed
+        self.maxCardLengthAllowed                   = maxAllowed
 	}
 	
 	// MARK: - Private -
@@ -104,6 +114,8 @@ internal struct DataSourceSettings: Encodable {
 		case taxes              					= "taxes"
 		case paymentType              				= "paymentType"
         case allowedCards                           = "allowedCards"
+        case minCardLengthAllowed                             = "minCardLengthAllowed"
+        case maxCardLengthAllowed                             = "maxCardLengthAllowed"
 
 	}
 }
@@ -126,6 +138,10 @@ extension DataSourceSettings: Decodable {
 		let taxes           				= try container.decode			([Tax].self,				forKey: .taxes)
 		let paymentType        				= try container.decode			(PaymentType.self,				forKey: .paymentType)
         let allowedCards                    = try container.decode(cardTypes.self,                forKey: .allowedCards)
+        let minAllowed        = try container.decodeIfPresent    (Int.self,                    forKey: .minCardLengthAllowed)                ?? DataSourceSettings.default.minCardLengthAllowed
+        
+        let maxAllowed        = try container.decodeIfPresent    (Int.self,                    forKey: .maxCardLengthAllowed)                ?? DataSourceSettings.default.maxCardLengthAllowed
+        
 
 		if envCustomer == nil {
 			
@@ -163,7 +179,9 @@ extension DataSourceSettings: Decodable {
 				  shippingList:						shippingList,
 				  taxes:							taxes,
 				  paymentType:						paymentType,
-                  allowedCards:                     allowedCards)
+                  allowedCards:                     allowedCards,
+                  minAllowed:                       minAllowed,
+                  maxAllowed:                       maxAllowed)
 	}
 }
 

@@ -25,7 +25,9 @@ internal class CardNumberValidator: CardValidator {
     internal var recognizedCardType: BrandWithScheme {
         
         let scheme = self.currentBINData?.scheme
-        let localData = TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
+        let localData = TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands,
+                                                                minimumAllowedLength: Process.shared.externalSession?.dataSource?.minimumAllowedCardNumber ?? 0,
+                                                                maximumAllowedLength: Process.shared.externalSession?.dataSource?.maximumAllowedCardNumber ?? 0)
         let state = localData.validationState
         let brand = self.currentBINData?.cardBrand ?? localData.cardBrand ?? .unknown
         

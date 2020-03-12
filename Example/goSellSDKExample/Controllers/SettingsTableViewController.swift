@@ -95,6 +95,12 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 			destinationController.delegate		= self
 			destinationController.destination	= self.selectedDestination
 		}
+        else if let minMaxController = (segue.destination as? UINavigationController)?.tap_rootViewController as? MinMaxCardLengthViewController {
+            
+            minMaxController.delegate        = self
+            minMaxController.currentMin = self.currentSettings?.dataSource.minCardLengthAllowed ?? 0
+            minMaxController.currentMax = self.currentSettings?.dataSource.maxCardLengthAllowed ?? 0
+        }
         else if let taxController = (segue.destination as? UINavigationController)?.tap_rootViewController as? TaxViewController {
             
             taxController.delegate  = self
@@ -474,6 +480,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         fileprivate static let currencyCellReuseIdentifier          					= "currency_cell"
         fileprivate static let customerCellReuseIdentifier          					= "customer_cell"
 		fileprivate static let destinationsListCellReuseIdentifier						= "destinations_list_cell"
+        fileprivate static let minMaxCardListCellReuseIdentifier                        = "minMaxCard_list_cell"
         fileprivate static let taxListCellReuseIdentifier           					= "tax_list_cell"
         fileprivate static let shippingListCellReuseIdentifier      					= "shipping_list_cell"
         fileprivate static let paymentTypeCellReuseIdentifier      						= "payment_type_cell"
@@ -989,10 +996,19 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
         
         self.showTaxController()
     }
+    
+    
+    @IBAction private func setMinMaxCardLengthButtonTouchUpInside(_ sender: Any) {
+        self.showMinMaxCardController()
+    }
 	
     private func showDetails(of tax: Tax) {
         
         self.showTaxController(with: tax)
+    }
+    
+    private func showMinMaxCardController() {
+        self.show(MinMaxCardLengthViewController.self)
     }
     
     private func showTaxController(with tax: Tax? = nil) {
@@ -1081,6 +1097,15 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 
 // MARK: - SeguePresenter
 extension SettingsTableViewController: SeguePresenter {}
+
+// MARK: - MinMaxCardLengthViewControllerDelegate
+extension SettingsTableViewController: MinMaxCardLengthViewControllerDelegate {
+    
+    internal func minMaxCardLengthViewControllerViewController(_ controller: MinMaxCardLengthViewController, didFinishWith min: Int, max: Int) {
+        self.currentSettings?.dataSource.minCardLengthAllowed = min
+        self.currentSettings?.dataSource.maxCardLengthAllowed = max
+    }
+}
 
 // MARK: - DestinationViewControllerDelegate
 extension SettingsTableViewController: DestinationViewControllerDelegate {

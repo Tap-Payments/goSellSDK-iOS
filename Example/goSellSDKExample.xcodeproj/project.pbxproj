@@ -69,6 +69,9 @@
 		A4DF066320C03778006F59D8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066220C03778006F59D8 /* Settings.swift */; };
 		A4DF066520C038C9006F59D8 /* SeguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066420C038C9006F59D8 /* SeguePresenter.swift */; };
 		A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */; };
+		E8B0ECDE241A4E7200F6B634 /* MinMaxCardLengthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B0ECDD241A4E7200F6B634 /* MinMaxCardLengthViewController.swift */; };
+		E8B0ECE0241A52F400F6B634 /* MinMaxCardLengthViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B0ECDF241A52F400F6B634 /* MinMaxCardLengthViewControllerDelegate.swift */; };
+		E8B0ECE2241A5F5400F6B634 /* MinMaxCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B0ECE1241A5F5400F6B634 /* MinMaxCardCell.swift */; };
 		E8CDF34A23CA449200E0C847 /* sampleAppleToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8CDF34923CA449100E0C847 /* sampleAppleToken.txt */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +143,9 @@
 		A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
 		CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82B005F23C486CB00FE0D05 /* goSellSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = goSellSDKExample.entitlements; sourceTree = "<group>"; };
+		E8B0ECDD241A4E7200F6B634 /* MinMaxCardLengthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxCardLengthViewController.swift; sourceTree = "<group>"; };
+		E8B0ECDF241A52F400F6B634 /* MinMaxCardLengthViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxCardLengthViewControllerDelegate.swift; sourceTree = "<group>"; };
+		E8B0ECE1241A5F5400F6B634 /* MinMaxCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMaxCardCell.swift; sourceTree = "<group>"; };
 		E8CDF34923CA449100E0C847 /* sampleAppleToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleAppleToken.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,6 +238,7 @@
 				14010702220200F30080A149 /* FontTableViewCell.swift */,
 				14713746220B0BCE002EBEE4 /* SavedCardCell.swift */,
 				147B07762230181300CD0379 /* DestinationTableViewCell.swift */,
+				E8B0ECE1241A5F5400F6B634 /* MinMaxCardCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -253,6 +260,7 @@
 				A4DF065F20C03659006F59D8 /* SettingsTableViewController.swift */,
 				A4B35FE120C7D39A00847031 /* ShippingViewController.swift */,
 				A4CFAF3820B849F400B5D83B /* TaxViewController.swift */,
+				E8B0ECDD241A4E7200F6B634 /* MinMaxCardLengthViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -270,6 +278,7 @@
 				A412AE1020C95703002BFCDD /* SettingsTableViewControllerDelegate.swift */,
 				A4B35FE320C7D5D100847031 /* ShippingViewControllerDelegate.swift */,
 				A4CFAF4720B9A80500B5D83B /* TaxViewControllerDelegate.swift */,
+				E8B0ECDF241A52F400F6B634 /* MinMaxCardLengthViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -476,8 +485,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B0ECDE241A4E7200F6B634 /* MinMaxCardLengthViewController.swift in Sources */,
 				147B077B22301AD400CD0379 /* DestinationViewControllerDelegate.swift in Sources */,
 				A4DF066520C038C9006F59D8 /* SeguePresenter.swift in Sources */,
+				E8B0ECE0241A52F400F6B634 /* MinMaxCardLengthViewControllerDelegate.swift in Sources */,
 				A4CFAF3F20B96E1500B5D83B /* TitleTableViewCell.swift in Sources */,
 				A4CFAF3120B83E0B00B5D83B /* TaxTableViewCell.swift in Sources */,
 				1414ADAD215AA87200CA2CCD /* Language.swift in Sources */,
@@ -495,6 +506,7 @@
 				A4CFAF3920B849F400B5D83B /* TaxViewController.swift in Sources */,
 				A4CFAF3320B83E3300B5D83B /* PaymentItemTableViewCell.swift in Sources */,
 				147B077922301A9D00CD0379 /* DestinationViewController.swift in Sources */,
+				E8B0ECE2241A5F5400F6B634 /* MinMaxCardCell.swift in Sources */,
 				A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */,
 				A45A5DCA214127C500B7DDE9 /* GroupHeaderCellModel.swift in Sources */,
 				A408C03720BAB577005E74AD /* Measurement+Additions.swift in Sources */,

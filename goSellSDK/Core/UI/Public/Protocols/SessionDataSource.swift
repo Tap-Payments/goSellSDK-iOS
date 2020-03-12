@@ -78,6 +78,12 @@ import class PassKit.PKPaymentToken
 	
 	/// Defines if 3D secure check is required.
 	@objc optional var require3DSecure: Bool { get }
+    
+    /// Defines the maximum allowed card number
+    @objc optional var maximumAllowedCardNumber: Int { get }
+    
+    /// Defines the minimum allowed card number
+    @objc optional var minimumAllowedCardNumber: Int { get }
 	
 	/// Receipt dispatch settings.
 	@objc optional var receiptSettings: Receipt? { get }
