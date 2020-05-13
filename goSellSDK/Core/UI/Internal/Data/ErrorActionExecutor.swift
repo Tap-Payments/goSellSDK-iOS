@@ -32,7 +32,9 @@ internal class ErrorActionExecutor {
 	internal static func showAlert(for error: TapSDKError?, with title: String, message: String, retryAction: TypeAlias.ArgumentlessClosure?, report: Bool, completion: TypeAlias.BooleanClosure? = nil) {
         
         let alert = TapAlertController(title: title, message: message, preferredStyle: .alert)
-		
+		if let nonnullError = error {
+            print("TAP SDK ERROR : \(nonnullError)")
+        }
 		func hide(_ alertController: TapAlertController?, witResult result: Bool) {
 			
 			if let nonnullAlert = alertController {
