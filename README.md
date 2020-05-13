@@ -254,6 +254,7 @@ For those who would like to keep their design and start the SDK process manually
 
 ### Apple Pay
 
+*Make sure, your current goSellSDK version is >= 2.2.12-beta*
 1. Ask for the CSR from Tap team.
 
 2. From your Apple Developer account:
