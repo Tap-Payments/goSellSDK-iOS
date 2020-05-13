@@ -21,20 +21,18 @@ internal class ErrorDataManager {
 	}
 	
 	internal static func handle(_ error: TapSDKError, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
-		
-		if let apiError = error as? TapSDKAPIError {
-			
-			self.handleAPIError(apiError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
-		}
-		else if let knownError = error as? TapSDKKnownError {
-			
-			self.handleKnownError(knownError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
-		}
-		else if let unknownError = error as? TapSDKUnknownError {
-			
-			self.handleUnknownError(unknownError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
-		}
-	}
+        if let apiError = error as? TapSDKAPIError {
+            print("TAP SDK ERROR \(apiError.error)")
+            self.handleAPIError(apiError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+        }
+        else if let knownError = error as? TapSDKKnownError {
+            print("TAP SDK ERROR \(knownError.error)")
+            self.handleKnownError(knownError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+        }
+        else if let unknownError = error as? TapSDKUnknownError {
+            self.handleUnknownError(unknownError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+        }
+    }
 	
 	// MARK: - Private -
 	// MARK: Methods
