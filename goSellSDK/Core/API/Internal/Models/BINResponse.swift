@@ -44,7 +44,7 @@ internal struct BINResponse {
         case isAddressRequired  = "address_required"
         case bank               = "bank"
         case bankLogoURL        = "bank_logo"
-        case binNumber          = "sdfdsfdsf2"
+        case binNumber          = "bin"
         case cardBrand          = "card_brand"
         case scheme             = "card_scheme"
         case country            = "country"
