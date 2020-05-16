@@ -68,6 +68,10 @@ extension SDKSettingsData: Decodable {
 		let deviceID 		= try container.decodeIfPresent(String.self,		forKey: .deviceID)
 		let sessionToken	= try container.decodeIfPresent(String.self,		forKey: .sessionToken)
 		
+        if encryptionKey == "" {
+            throw "TAP SDK ERROR : Empty Encryption Key"
+        }
+        
 		self.init(isLiveMode: 		    isLiveMode,
 				  permissions: 		    permissions,
 				  encryptionKey: 	    encryptionKey,
@@ -78,3 +82,4 @@ extension SDKSettingsData: Decodable {
                   verifiedApplication:  verifiedApplication)
 	}
 }
+extension String: Error {}
