@@ -20,15 +20,18 @@
     /// Underlying error.
     public private(set) var error: Error?
     
+    /// Descriptive missing keys description
+    public private(set) var customDescription: String = ""
     /// Readable description of the error.
     public override var description: String {
         
         let firstLine   = super.description
-        let secondLine  = "Underlying error: " + self.errorDescription
-        let thirdLine   = "URL response: " + self.urlResponseDescription
-		let fourthLine	= "Body: " + self.responseBodyDescription
+        let secondLine  = self.customDescription
+        let thirdLine  = "Underlying error: " + self.errorDescription
+        let fourthLine   = "URL response: " + self.urlResponseDescription
+		let fifthLine	= "Body: " + self.responseBodyDescription
         
-        let lines: [String] = [firstLine, secondLine, thirdLine, fourthLine]
+        let lines: [String] = [firstLine, secondLine, thirdLine, fourthLine,fifthLine]
         
         return lines.joined(separator: "\n")
     }
@@ -47,12 +50,12 @@
 		
 		if self.error != nil {
 		
-			try container.encode(self.error.debugDescription, forKey: .error)
+			try container.encodeIfPresent(self.error.debugDescription, forKey: .error)
 		}
 		
 		if let urlResponseDescription = self.urlResponse?.debugDescription {
 			
-			try container.encode(urlResponseDescription, forKey: .urlResponse)
+			try container.encodeIfPresent(urlResponseDescription, forKey: .urlResponse)
 		}
 		
 		if
@@ -61,7 +64,7 @@
 			let bodyData = try? JSONSerialization.data(withJSONObject: nonnullBody, options: []),
 			let bodyJSONString = String(data: bodyData, encoding: .utf8) {
 			
-			try container.encode(bodyJSONString, forKey: .responseBody)
+			try container.encodeIfPresent(bodyJSONString, forKey: .responseBody)
 		}
 	}
     
@@ -74,13 +77,15 @@
     ///   - type: Error type.
     ///   - error: Underlying error.
     ///   - response: URL response.
-	internal init(type: TapSDKErrorType, error: Error?, response: URLResponse?, body: Any?) {
+	@objc public init(type: TapSDKErrorType, error: Error, response: URLResponse?, body: Any?) {
         
         super.init(type: type)
-		
         self.error			= error
         self.urlResponse	= response
 		self.responseBody	= body
+        self.customDescription = "TAP SDK KNOWN ERROR : \(type.description) \n Error description : \(self.errorDescription) \(error) \n URL : \(response?.url?.absoluteString ?? "") \n Error Response Body : \(self.responseBodyDescription)\n Error URL Body : \(self.urlResponseDescription)"
+        
+        print(self.customDescription)
     }
     
     // MARK: - Private -

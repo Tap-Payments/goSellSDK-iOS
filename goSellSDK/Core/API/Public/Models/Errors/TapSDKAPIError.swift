@@ -57,6 +57,7 @@
         self.error = error
         self.urlResponse = response
         super.init(type: .api)
+        print("TAP SDK API ERROR : \(type.description) \n \(self.description)")
     }
 	
 	// MARK: - Private -

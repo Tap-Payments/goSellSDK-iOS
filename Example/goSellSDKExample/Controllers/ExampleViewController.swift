@@ -31,6 +31,7 @@ import protocol goSellSDK.SessionDataSource
 import protocol goSellSDK.SessionDelegate
 import protocol	goSellSDK.SessionProtocol
 import class    goSellSDK.Shipping
+import class    goSellSDK.TapSDKKnownError
 import class	goSellSDK.TapBlurStyle
 import class    goSellSDK.TapSDKError
 import class    goSellSDK.Tax
@@ -421,6 +422,10 @@ extension ExampleViewController: SessionDelegate {
 			
 			self.updateSavedCardsButtonVisibility()
         }
+    }
+    
+    internal func serializationErrorOccured(_ error: TapSDKKnownError, on session: SessionProtocol) {
+        print("Error occoured")
     }
     
     

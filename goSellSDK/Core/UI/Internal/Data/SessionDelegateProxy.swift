@@ -40,6 +40,16 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 		}
 	}
     
+    internal func serializationErrorOccured(_ error: TapSDKKnownError, on session: SessionProtocol) {
+        
+        let targetSession = self.targetSession(for: session)
+        
+        self.removeNilDelegatesAndSynchronized { theDelegates in
+            
+            theDelegates.forEach { $0.serializationErrorOccured(error, on: targetSession) }
+        }
+    }
+    
     
     internal func applePaymentTokenizationEnded(_ charge: String, on session: SessionProtocol) {
         
