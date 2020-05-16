@@ -342,8 +342,9 @@ internal final class APIClient {
                 catch let parsingError {
                     
                     performOnMainThread {
-                         
-						completion(nil, TapSDKKnownError(type: .serialization, error: parsingError, response: httpResponse, body: dictionary))
+                         let errorReturn = TapSDKKnownError(type: .serialization, error: parsingError, response: httpResponse, body: dictionary)
+                         print(errorReturn)
+						completion(nil, errorReturn)
                     }
                     
                     return

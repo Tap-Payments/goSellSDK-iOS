@@ -163,6 +163,11 @@ extension PayButton: SessionDelegate {
 		self.uiElement?.stopLoader()
 		self.processFinished()
 	}
+    
+    public func serializationErrorOccured(_ error: TapSDKKnownError, on session: SessionProtocol) {
+        self.uiElement?.stopLoader()
+        self.processFinished()
+    }
 
 	public func sessionHasStarted(_ session: SessionProtocol) {
 

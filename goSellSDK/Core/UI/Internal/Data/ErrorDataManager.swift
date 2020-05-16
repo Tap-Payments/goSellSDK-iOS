@@ -22,11 +22,12 @@ internal class ErrorDataManager {
 	
 	internal static func handle(_ error: TapSDKError, retryAction: TypeAlias.ArgumentlessClosure?, alertDismissButtonClickHandler: TypeAlias.ArgumentlessClosure?) {
         if let apiError = error as? TapSDKAPIError {
-            print("TAP SDK ERROR \(apiError.error)")
+            print("TAP API SDK ERROR \(apiError.error)")
             self.handleAPIError(apiError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
         }
         else if let knownError = error as? TapSDKKnownError {
-            print("TAP SDK ERROR \(knownError.error)")
+            print("TAP KNOWN SDK ERROR \(knownError.error)")
+            
             self.handleKnownError(knownError, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
         }
         else if let unknownError = error as? TapSDKUnknownError {
@@ -142,38 +143,48 @@ internal class ErrorDataManager {
 		let paymentPotentiallyClosedClosure: TypeAlias.ArgumentlessClosure = {
 			
 			if action.contains(.alert) {
-				
-				let alertTitle = LocalizationManager.shared.localizedErrorTitle(for: errorDetail.code)
-				let alertMessage = LocalizationManager.shared.localizedErrorMessage(for: errorDetail.code)
-				
-				let localCompletion: TypeAlias.BooleanClosure  = { (retryClicked) in
-					
-					if !retryClicked {
-						
-						alertDismissButtonClickHandler?()
-					}
-					
-					completion?(retryClicked)
-				}
-				
-				#if GOSELLSDK_ERROR_REPORTING_AVAILABLE
-				
-					let report = action.contains(.report)
-				
-				#else
-				
-					let report = false
-				
-				#endif
-				
-				if action.contains(.retry) {
-					
-					ErrorActionExecutor.showAlert(for: error, with: alertTitle, message: alertMessage, retryAction: retryAction, report: report, completion: localCompletion)
-				}
-				else {
-					
-					ErrorActionExecutor.showAlert(for: error, with: alertTitle, message: alertMessage, retryAction: nil, report: report, completion: localCompletion)
-				}
+				// Stop showing alerts for serialization errors and just pass it back to the user
+                if error.type == .serialization,
+                   let knownError: TapSDKKnownError = error as? TapSDKKnownError {
+                    if let session    = Process.shared.externalSession,
+                       let delegate   = session.delegate {
+                        delegate.serializationErrorOccured(knownError, on: session)
+                    }else {
+                        print("Error occured but you didn't implement the session delegate so we can pass the error to you.\n\(knownError.description)")
+                    }
+                }else {
+                    let alertTitle = LocalizationManager.shared.localizedErrorTitle(for: errorDetail.code)
+                    let alertMessage = LocalizationManager.shared.localizedErrorMessage(for: errorDetail.code)
+                    
+                    let localCompletion: TypeAlias.BooleanClosure  = { (retryClicked) in
+                        
+                        if !retryClicked {
+                            
+                            alertDismissButtonClickHandler?()
+                        }
+                        
+                        completion?(retryClicked)
+                    }
+                    
+                    #if GOSELLSDK_ERROR_REPORTING_AVAILABLE
+                    
+                        let report = action.contains(.report)
+                    
+                    #else
+                    
+                        let report = false
+                    
+                    #endif
+                    
+                    if action.contains(.retry) {
+                        
+                        ErrorActionExecutor.showAlert(for: error, with: alertTitle, message: alertMessage, retryAction: retryAction, report: report, completion: localCompletion)
+                    }
+                    else {
+                        
+                        ErrorActionExecutor.showAlert(for: error, with: alertTitle, message: alertMessage, retryAction: nil, report: report, completion: localCompletion)
+                    }
+                }
 			}
 		}
 		
