@@ -146,12 +146,8 @@ internal class ErrorDataManager {
 				// Stop showing alerts for serialization errors and just pass it back to the user
                 if error.type == .serialization,
                    let knownError: TapSDKKnownError = error as? TapSDKKnownError {
-                    if let session    = Process.shared.externalSession,
-                       let delegate   = session.delegate {
-                        delegate.serializationErrorOccured(knownError, on: session)
-                    }else {
-                        print("Error occured but you didn't implement the session delegate so we can pass the error to you.\n\(knownError.description)")
-                    }
+                     print("Error occured but you didn't implement the session delegate so we can pass the error to you.\n\(knownError.description)")
+                    ErrorActionExecutor.closePayment(with: knownError, nil)
                 }else {
                     let alertTitle = LocalizationManager.shared.localizedErrorTitle(for: errorDetail.code)
                     let alertMessage = LocalizationManager.shared.localizedErrorMessage(for: errorDetail.code)

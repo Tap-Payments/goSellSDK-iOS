@@ -424,10 +424,6 @@ extension ExampleViewController: SessionDelegate {
         }
     }
     
-    internal func serializationErrorOccured(_ error: TapSDKKnownError, on session: SessionProtocol) {
-        print("Error occoured")
-    }
-    
     
     internal func applePaymentTokenizationFailed(_ error: String, on session: SessionProtocol) {
         
@@ -485,9 +481,17 @@ extension ExampleViewController: SessionDelegate {
         }
     }
     
-    internal func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol) {
-        
-        // payment failed, payment screen closed.
+    // payment failed, payment screen closed.
+    func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol) {
+        if let error = error {
+            let errorMessage:String = "\(error) \n \(error.description)"
+            let alert:UIAlertController  = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            let copyAction:UIAlertAction = UIAlertAction(title: "Copy", style: .destructive) { (_) in
+                UIPasteboard.general.string = errorMessage
+            }
+            alert.addAction(copyAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
 	
     internal func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol) {

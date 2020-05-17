@@ -14,15 +14,6 @@
 	///   - charge: Successful charge object.
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc(paymentSucceed:onSession:) optional func paymentSucceed(_ charge: Charge, on session: SessionProtocol)
-	
-    
-    /// Notifies the receiver that a serialization error had occured, this means the backend responsed in a way that is not expected. You have to handle this by showing your custom error message
-    ///
-    /// - Parameters:
-    ///   - error: All the data you need to identify the problem happened
-    ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-    @objc(serializationErrorOccured:onSession:) func serializationErrorOccured(_ error: TapSDKKnownError, on session: SessionProtocol)
-    
     
     /// Notifies the receiver that apple payment has succeed, passing `charge` and `session` which has initiated payment as arguments.
     ///
