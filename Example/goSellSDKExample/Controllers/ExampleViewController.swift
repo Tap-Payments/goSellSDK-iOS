@@ -317,7 +317,7 @@ extension ExampleViewController: SessionDataSource {
     
     internal var applePayMerchantID: String
     {
-        return "merchant.tap.gosell"
+        return "merchant.tap.gosellauto"
     }
     
     internal var merchantID: String?
