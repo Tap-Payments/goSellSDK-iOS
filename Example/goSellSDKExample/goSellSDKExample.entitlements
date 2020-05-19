@@ -6,6 +6,7 @@
 	<array>
 		<string>merchant.tap.ApplePayTemplate</string>
 		<string>merchant.tap.gosell</string>
+		<string>merchant.tap.gosellauto</string>
 	</array>
 </dict>
 </plist>
