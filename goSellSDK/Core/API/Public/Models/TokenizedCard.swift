@@ -104,7 +104,7 @@ extension TokenizedCard: Decodable {
         let cardholderName     = try container.decodeIfPresent                  (String.self,       forKey: .cardholderName)
         let customerIdentifier = try container.decodeIfPresent             		(String.self,       forKey: .customerIdentifier)
         let fingerprint        = try container.decode                      		(String.self,       forKey: .fingerprint)
-        let address            = try container.tap_decodeIfPresentAndNotEmpty	(Address.self,      forKey: .address)
+        let address            = try container.decodeIfPresent	(Address.self,      forKey: .address)
         
         self.init(identifier:           identifier,
                   object:               object,
