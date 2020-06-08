@@ -315,6 +315,11 @@ extension ExampleViewController: SessionDataSource {
         return self.paymentSettings.dataSource.currency
     }
     
+    
+    internal var cardHolderName: String? {
+        return ""
+    }
+    
     internal var applePayMerchantID: String
     {
         return "merchant.tap.gosell"

@@ -13,6 +13,9 @@ import class PassKit.PKPaymentToken
 	
 	/// Transaction mode.
 	@objc optional var mode: TransactionMode { get }
+    
+    /// Provide a default card holder name to be written in the card input view
+    @objc optional var cardHolderName: String? { get }
 	
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
 	@objc var customer: Customer? { get }
