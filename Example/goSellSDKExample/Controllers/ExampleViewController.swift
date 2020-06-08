@@ -316,7 +316,8 @@ extension ExampleViewController: SessionDataSource {
     }
     
     internal var cardHolderName: String? {
-        return "tap default card holder name"
+        guard let customer = customer, let firstName = customer.firstName else { return "tap default card holder name" }
+        return firstName
     }
     
     internal var applePayMerchantID: String
