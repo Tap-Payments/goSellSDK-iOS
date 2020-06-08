@@ -35,9 +35,14 @@ internal class CardholderNameValidator: CardValidator {
     internal init(textField: UITextField) {
         
         self.textField = textField
+        
         super.init(validationType: .nameOnCard)
         
         self.setupTextField()
+        
+        guard let session = Process.shared.externalSession, let dataSource = session.dataSource, let providedCardName:String = dataSource.cardHolderName as? String else { return }
+        
+        update(with: providedCardName.uppercased())
     }
     
     internal override func update(with inputData: Any?) {
