@@ -10,49 +10,52 @@ iOS SDK to use [goSell API][1].
 A library that fully covers payment/authorization/card saving process inside your iOS application.
 
 # Table of Contents 
+
 ---
 
 1. [Requirements](#requirements)
 2. [Installation](#installation)
    1. [Installation with CocoaPods](#installation_with_cocoapods)
 3. [Setup](#setup)
-    1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
-    2. [goSellSDK Class Methods](#setup_gosellsdk_class_methods)
-    3. [Setup Steps](#setup_steps)
+   1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
+   2. [goSellSDK Class Methods](#setup_gosellsdk_class_methods)
+   3. [Setup Steps](#setup_steps)
 4. [Usage](#usage)
-    1. [SDK modes](#sdk_modes)
-    2. [Pay Button](#pay_button)
-        1. [Pay Button Placement](#pay_button_placement)
-        2. [Properties](#pay_button_properties)
-        3. [Methods](#pay_button_methods)
-    3. [Session](#session)
-    	 1. [Properties](#session_properties)
-    	 2. [Methods](#session_methods)
-    4. [API Session](#api_session)
-    	 1. [Properties](#api_session_properties)
-    	 2. [Methods](#api_session_methods)
-    5. [Session Data Source](#session_data_source)
-        1. [Structure](#session_data_source_structure)
-        2. [Samples](#session_data_source_samples)
-    6. [Session Delegate](#session_delegate)
-        1. [Payment Success Callback](#payment_success_callback)
-        2. [Payment Failure Callback](#payment_failure_callback)
-        3. [Authorization Success Callback](#authorization_success_callback)
-        4. [Authorization Failure Callback](#authorization_failure_callback)
-        5. [Card Saving Success Callback](#card_saving_success_callback)
-        6. [Card Saving Failure Callback](#card_saving_failure_callback)
-        7. [Card Tokenization Success Callback](#card_tokenization_success_callback)
-        8. [Card Tokenization Failure Callback](#card_tokenization_failure_callback)
-        9. [Session Is Starting Callback](#session_is_starting_callback)
-        10. [Session Has Started Callback](#session_has_started_callback)
-        11. [Session Has Failed to Start Callback](#session_has_failed_to_start_callback)
-        12. [Session Cancel Callback](#session_cancel_callback)
-    6. [Session Appearance](#session_appearance)
+   1. [SDK modes](#sdk_modes)
+   2. [Pay Button](#pay_button)
+      1. [Pay Button Placement](#pay_button_placement)
+      2. [Properties](#pay_button_properties)
+      3. [Methods](#pay_button_methods)
+   3. [Session](#session)
+      1. [Properties](#session_properties)
+       2. [Methods](#session_methods)
+   4. [API Session](#api_session)
+      1. [Properties](#api_session_properties)
+       2. [Methods](#api_session_methods)
+   5. [Session Data Source](#session_data_source)
+      1. [Structure](#session_data_source_structure)
+      2. [Samples](#session_data_source_samples)
+   6. [Session Delegate](#session_delegate)
+      1. [Payment Success Callback](#payment_success_callback)
+      2. [Payment Failure Callback](#payment_failure_callback)
+      3. [Authorization Success Callback](#authorization_success_callback)
+      4. [Authorization Failure Callback](#authorization_failure_callback)
+      5. [Card Saving Success Callback](#card_saving_success_callback)
+      6. [Card Saving Failure Callback](#card_saving_failure_callback)
+      7. [Card Tokenization Success Callback](#card_tokenization_success_callback)
+      8. [Card Tokenization Failure Callback](#card_tokenization_failure_callback)
+      9. [Session Is Starting Callback](#session_is_starting_callback)
+      10. [Session Has Started Callback](#session_has_started_callback)
+      11. [Session Has Failed to Start Callback](#session_has_failed_to_start_callback)
+      12. [Session Cancel Callback](#session_cancel_callback)
+   7. [Session Appearance](#session_appearance)
 5. [Sample](#sample) 
         
 
 <a name="requirements"></a>
+
 # Requirements
+
 ---
 
 To use the SDK the following requirements must be met:
@@ -62,10 +65,13 @@ To use the SDK the following requirements must be met:
 3. Deployment target SDK for the  app: **iOS 8.0** or later
 
 <a name="installation"></a>
+
 # Installation
+
 ---
 
 <a name="installation_with_cocoapods"></a>
+
 ## Installation with CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager, which automates and simplifies the process of using 3rd-party libraries in your projects.<br>You can install it with the following command:
@@ -96,7 +102,9 @@ Then, run the following command:
 ```bash
 $ pod update
 ```
+
 <!---
+
 ## Installation with Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
@@ -135,16 +143,21 @@ end
 ```
 
 <a name="setup"></a>
+
 # Setup
+
 ---
+
 First of all, `goSellSDK` should be set up. In this section only secret key is required.
 
 <a name="setup_gosellsdk_class_properties"></a>
+
 ## goSellSDK Class Properties
 
 Below is the list of properties in goSellSDK class you can manipulate. Make sure you do the setup before any usage of the SDK.
 
 <a name="setup_gosellsdk_class_properties_secret_key"></a>
+
 ### Secret Key
 
 To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `goSellSDK`, otherwise an exception will be thrown. **Required**.
@@ -177,6 +190,7 @@ import goSellSDK
 ```objective-c
 @import goSellSDK;
 ```
+
 or
 
 ```objective-c
@@ -184,6 +198,7 @@ or
 ```
 
 <a name="setup_gosellsdk_class_properties_mode"></a>
+
 ### Mode
 
 SDK mode is a mode SDK is operating in, either **sandbox** or **production**.
@@ -193,6 +208,7 @@ Use this property to test your integration with the sandbox transactions.
 **WARNING:** Default value of this property is *production* which means your transaction are real transactions. Switch to *sandbox* while in development.
 
 <a name="setup_gosellsdk_class_properties_language"></a>
+
 ### Language
 
 Localization language of the UI part of the SDK. This is locale identifier. 
@@ -220,11 +236,13 @@ Currently we support the following languages:
 	</tr>
 </table>
 
+
 ### SDK Version
 
 This property returns current SDK version.
 
 <a name="setup_gosellsdk_class_methods"></a>
+
 ## goSellSDK Class Methods
 
 ### Reset
@@ -234,6 +252,7 @@ Might be useful when you are switching accounts.<br>
 Also when you are logging the user out, although that's not required.
 
 <a name="setup_steps"></a>
+
 ## Setup Steps
 
 ### With PayButton
@@ -255,6 +274,7 @@ For those who would like to keep their design and start the SDK process manually
 ### Apple Pay
 
 *Make sure, your current goSellSDK version is >= 2.2.12-beta*
+
 1. Ask for the CSR from Tap team.
 
 2. From your Apple Developer account:
@@ -306,13 +326,16 @@ For those who would like to keep their design and start the SDK process manually
 
 
 <a name="usage"></a>
+
 # Usage
+
 ---
 
 After `goSellSDK` is set up, you can actually use the SDK.<br>
 We have tried to make the SDK integration as simple as possible, requiring the minimum from you.
 
 <a name="sdk_modes"></a>
+
 ## SDK Modes
 
 **goSellSDK** works in 4 modes:
@@ -325,15 +348,19 @@ We have tried to make the SDK integration as simple as possible, requiring the m
 The mode is set through **SessionDataSource** interface.
 
 <a name="pay_button"></a>
+
 ## Pay Button
+
 Here at Tap, we have designed our custom Pay button and all you need to do is just to put it somewhere on the screen and provide at least required payment details through its ```dataSource``` property.
 
 <a name="pay_button_placement"></a>
+
 ### Pay Button Placement 
 
 Pay Button is restricted to the height of exactly **44 points**. For better experience, make sure that it has enough **width** to display the content.
 
 #### XIB/Storyboard
+
 You can add Pay button on your view in XIB/Storyboard file.
 To do that, do the following:
 
@@ -345,6 +372,7 @@ To do that, do the following:
 4. For your convenience, you may also connect ```dataSource``` and ```delegate``` outlets.
 
 #### Code
+
 You can also add Pay button with the code:
 
 *Swift*:
@@ -382,6 +410,7 @@ func addPayButton() {
 ```
 
 <a name="pay_button_properties"></a>
+
 ### Properties
 
 Below is the list of Pay button properties
@@ -416,7 +445,9 @@ Below is the list of Pay button properties
     </tr>
 </table>
 
+
 <a name ="pay_button_methods"></a>
+
 ### Methods
 
 <table style="text-align:center">
@@ -431,12 +462,15 @@ Below is the list of Pay button properties
     </tr>
 </table>
 
+
 <a name="session"></a>
+
 ## Session
 
 You want to use `Session` object if you are not using `PayButton`.
 
 <a name="session_properties"></a>
+
 ### Properties
 
 <table style="text-align:center">
@@ -469,7 +503,9 @@ You want to use `Session` object if you are not using `PayButton`.
     </tr>
 </table>
 
+
 <a name="session_methods"></a>
+
 ### Methods
 
 <table style="text-align:center">
@@ -497,12 +533,15 @@ You want to use `Session` object if you are not using `PayButton`.
     </tr>
 </table>
 
+
 <a name="api_session"></a>
+
 ## API Session
 
 **APISession** is a class you want to use when you need to call plain APIs without the UI. Currently not all APIs are available.
 
 <a name="api_session_properties"></a>
+
 ### Properties
 
 <table style="text-align:center">
@@ -521,17 +560,21 @@ You want to use `Session` object if you are not using `PayButton`.
     </tr>
 </table>
 
+
 <a name="api_session_methods"></a>
+
 ### Methods
 
 Please refer to `APISession` class documentation for more details.
 
 <a name="session_data_source"></a>
+
 ## Session Data Source
 
 **SessionDataSource** is an interface which you should implement somewhere in your code to pass payment information  in order to be able to access payment flow within the SDK.
 
 <a name="session_data_source_structure"></a>
+
 ### Strucure
 
 The following table describes its structure and specifies which fields are required for each of the modes.
@@ -677,10 +720,24 @@ The following table describes its structure and specifies which fields are requi
         <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Defines payment types to show.</sub></td>
     </tr>
+  <tr>
+        <td><sub><i>cardHolderName</i></sub></td>
+        <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Provide a default card holder name to be written in the card input view.</sub></td>
+    </tr>
+       <tr>
+        <td><sub><i>paymentType</i></sub></td>
+        <td colspan=2><sub><b>PaymentType</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines payment types to show.</sub></td>
+    </tr>
 </table>
 
 <a name="session_data_source_samples"></a>
+
 ### Samples
+
 ---
 
 #### Mode
@@ -783,8 +840,8 @@ Tap supports processing payments in 10+ currencies, allowing you to charge custo
 
 ##### SupportedCurrencies
 
-|      Currency     | Code |
-|-------------------|------|
+| Currency          | Code |
+| ----------------- | ---- |
 | UAE Dirham        | AED  |
 | Bahraini Dinar    | BHD  |
 | Egyptian Pound    | EGP  |
@@ -1194,6 +1251,7 @@ var allowedCadTypes: [CardType]? {
 ```
 
 <a name="session_delegate"></a>
+
 ## Session Delegate
 
 **SessionDelegate** is an interface which you may want to implement to receive payment/authorization/card saving status updates and update your user interface accordingly when payment window closes.
@@ -1201,6 +1259,7 @@ var allowedCadTypes: [CardType]? {
 Below are listed down all available callbacks:
 
 <a name="payment_success_callback"></a>
+
 ### Payment Success Callback
 
 Notifies the receiver that payment has succeed. Can be called only in **purchase** mode.
@@ -1226,6 +1285,7 @@ func paymentSucceed(_ charge: Charge, on session: SessionProtocol)
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="payment_failure_callback"></a>
+
 ### Payment Failure Callback
 
 Notifies the receiver that payment has failed. Can be called only in **purchase** mode.
@@ -1243,6 +1303,7 @@ Notifies the receiver that payment has failed. Can be called only in **purchase*
 ```swift
 func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol)
 ```
+
 #### Arguments
 
 **charge**: Charge object that has failed (if reached the stage of charging).
@@ -1254,6 +1315,7 @@ func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: Sessio
 You may assume that at least one, `charge` or `error` is not `nil`.
 
 <a name="authorization_success_callback"></a>
+
 ### Authorization Success Callback
 
 Notifies the receiver that authorization has succeed. Can be called only in **authorization** mode.
@@ -1279,6 +1341,7 @@ func authorizationSucceed(_ authorize: Authorize, on session: SessionProtocol)
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="authorization_failure_callback"></a>
+
 ### Authorization Failure Callback
 
 Notifies the receiver that authorization has failed. Can be called only in **authorization** mode.
@@ -1296,6 +1359,7 @@ Notifies the receiver that authorization has failed. Can be called only in **aut
 ```swift
 func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol)
 ```
+
 #### Arguments
 
 **authorize**: Authorize object that has failed (if reached the stage of authorization).
@@ -1307,6 +1371,7 @@ func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on ses
 You may assume that at least one, `authorize` or `error` is not `nil`.
 
 <a name="card_saving_success_callback"></a>
+
 ### Card Saving Success Callback
 
 Notifies the receiver that the customer has successfully saved the card. Can be called only in **card saving** mode.
@@ -1332,6 +1397,7 @@ func cardSaved(_ cardVerification: CardVerification, on session: SessionProtocol
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="card_saving_failure_callback"></a>
+
 ### Card Saving Failure Callback
 
 Notifies the receiver that the customer failed to save the card. Can be called only in **card saving** mode.
@@ -1359,6 +1425,7 @@ func cardSavingFailed(with cardVerification: CardVerification?, error: TapSDKErr
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="card_tokenization_success_callback"></a>
+
 ### Card Tokenization Success Callback
 
 Notifies the receiver that card token has successfully created. Can be called only in **card tokenization** mode.
@@ -1384,6 +1451,7 @@ func cardTokenized(_ token: Token, on session: SessionProtocol, customerRequeste
 **saveCard**: Boolean flag which determines whether the customer wants to save the card. Actual card saving process is not happening.
 
 <a name="card_tokenization_failure_callback"></a>
+
 ### Card Tokenization Failure Callback
 
 Notifies the receiver that card token has failed to be created. Can be called only in **card tokenization** mode.
@@ -1408,6 +1476,7 @@ func cardTokenizationFailed(with error: TapSDKError, on session: SessionProtocol
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="session_is_starting_callback"></a>
+
 ### Session Is Starting Callback
 
 Notifies the receiver that session is about to start, but hasn't yet shown the SDK UI. You might want to use this method if you are not using `PayButton` in your application and want to show a loader before SDK UI appears on the screen. Will be called in all modes.
@@ -1431,6 +1500,7 @@ func sessionIsStarting(_ session: SessionProtocol)
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="session_has_started_callback"></a>
+
 ### Session Has Started Callback
 
 Notifies the receiver that session has successfully started and shown the SDK UI on the screen. You might want to use this method if you are not using `PayButton` in your application and want to hide a loader after SDK UI has appeared on the screen. Will be called in all modes.
@@ -1454,6 +1524,7 @@ func sessionHasStarted(_ session: SessionProtocol)
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="session_has_failed_to_start_callback"></a>
+
 ### Session Has Failed to Start Callback
 
 Notifies the receiver that session has failed to start and will not show the SDK UI on the screen. You might want to use this method if you are not using `PayButton` in your application and want to hide a loader because the session has failed. For the actual failure cause please implement other methods from this protocol and listen to the callbacks. Will be called in all modes.
@@ -1477,6 +1548,7 @@ func sessionHasFailedToStart(_ session: SessionProtocol)
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="session_cancel_callback"></a>
+
 ### Session Cancel Callback
 
 Notifies the receiver that payment/authorization was cancelled by user. Will be called in all modes.
@@ -1500,6 +1572,7 @@ func sessionCancelled(_ session: SessionProtocol)
 **session**: Session object. It can be either a PayButton or an instance of Session if you are not using PayButton.
 
 <a name="session_appearance"></a>
+
 ## Session Appearance
 
 You might want to implement `SessionAppearance` protocol if you need some UI customization to match your user interface and provide great user experience.
@@ -1507,16 +1580,18 @@ You might want to implement `SessionAppearance` protocol if you need some UI cus
 Please refer to `SessionAppearance` class documentation to see what kind of customization is currently available.
 
 <a name="sample"></a>
+
 # Sample
 
 Sample application integration is available in [Example][2] folder.
 
 -----
+
 # Documentation
+
 Documentation is available at [github-pages][3].<br>
 Also documented sources are attached to the library.
 
 [1]:https://www.tap.company/developers/
 [2]:Example
 [3]:https://tap-payments.github.io/goSellSDK-iOS/
-
