@@ -315,11 +315,6 @@ extension ExampleViewController: SessionDataSource {
         return self.paymentSettings.dataSource.currency
     }
     
-    internal var cardHolderName: String? {
-        guard let customer = customer, let firstName = customer.firstName else { return "tap default card holder name" }
-        return firstName
-    }
-    
     internal var applePayMerchantID: String
     {
         return "merchant.tap.gosell"

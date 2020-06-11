@@ -362,6 +362,12 @@ extension CardInputTableViewCell: BindingWithModelCell {
         self.nameOnCardTextField?.textColor = UIColor(tap_hex: "FFFFFF")?.loadCompatibleDarkModeColor(forColorNamed: "CardInputTextFieldColor")
         self.expirationDateTextField?.textColor = UIColor(tap_hex: "FFFFFF")?.loadCompatibleDarkModeColor(forColorNamed: "CardInputTextFieldColor")
         
+        
+        guard let session = Process.shared.externalSession, let dataSource = session.dataSource, let providedCardName:String = dataSource.cardHolderName as? String else { return }
+        
+        self.nameOnCardTextField?.text = providedCardName.uppercased()
+        print(providedCardName.uppercased())
+        self.model?.inputData[.nameOnCard] = providedCardName.uppercased()
     }
     
     internal func unbindContent() {
