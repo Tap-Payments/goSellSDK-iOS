@@ -692,7 +692,7 @@ internal extension Process {
                 return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
             }*/
             
-            // Check if items are provided or plain amount
+            // Check if items are provided, we need to add them to Apple pay sheet
             if let paymentItems:[PaymentItem] = dataSource.items ?? nil
             {
                 for item:PaymentItem in paymentItems
@@ -706,15 +706,54 @@ internal extension Process {
                         //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
                     }
                     request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    totalValue += convertedPaymentItemPrice
+                    //totalValue += convertedPaymentItemPrice
                     
                 }
-                if totalValue > 0
-                {
-                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
-                }
-            }else
+            }
+            
+            
+            // Check if shipping are provided, we need to add them to Apple pay sheet
+            if let shippingItem:[Shipping] = dataSource.shipping ?? nil
             {
+                for item:Shipping in shippingItem
+                {
+                    var convertedPaymentItemPrice:Decimal = item.amount
+                    
+                    if let userCurrency = self.userSelectedCurrency
+                    {
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
+                        
+                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    }
+                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.name, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                    //totalValue += convertedPaymentItemPrice
+                    
+                }
+            }
+            
+            
+            // Check if shipping are provided, we need to add them to Apple pay sheet
+            if let taxesItem:[Tax] = dataSource.taxes ?? nil
+            {
+                for item:Tax in taxesItem
+                {
+                    var convertedPaymentItemPrice:Decimal = item.amount.value
+                    
+                    if let userCurrency = self.userSelectedCurrency
+                    {
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
+                        
+                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    }
+                    if item.amount.type == AmountModificatorType.fixedAmount {
+                        request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                    }
+                    //totalValue += convertedPaymentItemPrice
+                }
+            }
+            
+            
+            // Make sure total paid amount matches the original total amount
                 if let userCurrency = self.userSelectedCurrency
                 {
                     totalValue = userCurrency.amount
@@ -724,7 +763,7 @@ internal extension Process {
                 }
                 
                 request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
-            }
+            
             
             //self.process.dataManagerInterface.transactionCurrency
             
