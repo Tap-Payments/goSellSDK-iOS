@@ -320,6 +320,11 @@ extension ExampleViewController: SessionDataSource {
         return firstName
     }
     
+    internal var cardHolderNameIsEditable: Bool {
+        guard let _ = cardHolderName else { return true }
+        return false
+    }
+    
     internal var applePayMerchantID: String
     {
         return "merchant.tap.gosell"

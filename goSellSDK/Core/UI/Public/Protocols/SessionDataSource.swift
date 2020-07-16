@@ -16,6 +16,9 @@ import class PassKit.PKPaymentToken
     
     /// Provide a default card holder name to be written in the card input view
     @objc optional var cardHolderName: String? { get }
+    
+    /// Tells if the payer can change the card holder name, if there is no default card holder name stated this will be neglected
+    @objc optional var cardHolderNameIsEditable: Bool { get }
 	
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
 	@objc var customer: Customer? { get }
