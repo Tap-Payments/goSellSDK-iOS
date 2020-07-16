@@ -366,6 +366,8 @@ extension CardInputTableViewCell: BindingWithModelCell {
         guard let session = Process.shared.externalSession, let dataSource = session.dataSource, let providedCardName:String = dataSource.cardHolderName as? String else { return }
         
         self.nameOnCardTextField?.text = providedCardName.uppercased()
+        self.nameOnCardTextField?.isUserInteractionEnabled = dataSource.cardHolderNameIsEditable ?? true
+        self.nameOnCardTextField?.isEnabled = dataSource.cardHolderNameIsEditable ?? true
         print(providedCardName.uppercased())
         self.model?.inputData[.nameOnCard] = providedCardName.uppercased()
     }
