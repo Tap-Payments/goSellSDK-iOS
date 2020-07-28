@@ -759,7 +759,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.19;
+				MARKETING_VERSION = 2.2.23;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -786,7 +786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.19;
+				MARKETING_VERSION = 2.2.23;
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

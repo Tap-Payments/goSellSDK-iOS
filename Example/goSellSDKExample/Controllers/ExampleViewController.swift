@@ -314,8 +314,8 @@ extension ExampleViewController: SessionDataSource {
         
         return self.paymentSettings.dataSource.currency
     }
-    
-    internal var cardHolderName: String? {
+    // use this if you want to set the card holder name without the user entering it (prefill it)
+    /*internal var cardHolderName: String? {
         guard let customer = customer, let firstName = customer.firstName else { return "tap default card holder name" }
         return firstName
     }
@@ -323,7 +323,7 @@ extension ExampleViewController: SessionDataSource {
     internal var cardHolderNameIsEditable: Bool {
         guard let _ = cardHolderName else { return true }
         return false
-    }
+    }*/
     
     internal var applePayMerchantID: String
     {
