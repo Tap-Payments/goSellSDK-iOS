@@ -49,7 +49,6 @@ def shared_pods
     pod 'TapSearchView'
     pod 'TapSwiftFixes/Threading'
     pod 'TapVisualEffectView'
-    pod 'SwiftyRSA'
     
 end
 

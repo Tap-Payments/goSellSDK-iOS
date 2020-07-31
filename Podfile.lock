@@ -4,7 +4,6 @@ PODS:
     - TapAdditionsKit/Foundation/Locale (>= 1.3.3)
     - TapAdditionsKit/UIKit/UIView (>= 1.3.3)
   - SDWebImage/Core (5.8.0)
-  - SwiftyRSA (0.3.0)
   - TapAdditionsKit/CoreGraphics/CGContext (1.3.6)
   - TapAdditionsKit/CoreGraphics/CGImage (1.3.6):
     - TapAdditionsKit/CoreGraphics/CGContext
@@ -177,7 +176,6 @@ PODS:
 DEPENDENCIES:
   - CardIODynamic
   - EditableTextInsetsTextField
-  - SwiftyRSA
   - TapAdditionsKit/Foundation/Bundle
   - TapAdditionsKit/Foundation/Date
   - TapAdditionsKit/Foundation/Locale
@@ -226,7 +224,6 @@ SPEC REPOS:
     - CardIODynamic
     - EditableTextInsetsTextField
     - SDWebImage
-    - SwiftyRSA
     - TapAdditionsKit
     - TapAlertViewController
     - TapApplication
@@ -248,7 +245,6 @@ SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextField: 7298bfd622a614307dc3b0de74c28ae19c9d7753
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
-  SwiftyRSA: 16627e161a69bfdda7d867cf9438d14a331939ca
   TapAdditionsKit: 136b2174e775b105f8fd17eac6a4da2951e0f05b
   TapAlertViewController: 23d436d5c556e8146e0dfd4e1be2aea2fdb61c7c
   TapApplication: bed1013cb48402e39fea913a6096ebd2d326cd36
@@ -266,6 +262,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: db2aeb21942dd81ee051a31ed319dab0d03547a2
   TapVisualEffectView: 53dfaf835daa1ca8572d9f3a52659da45220bc1c
 
-PODFILE CHECKSUM: 8eb4aec01bb322895e8c7985c37fe1c0e78c1715
+PODFILE CHECKSUM: 6f22ab20ae40308386825cf0a847d23d7e6d7c78
 
 COCOAPODS: 1.9.3
