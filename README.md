@@ -63,6 +63,7 @@ To use the SDK the following requirements must be met:
 1. **Xcode 10.0** or newer
 2. **Swift 4.0** or newer (preinstalled with Xcode)   
 3. Deployment target SDK for the  app: **iOS 11.0** or later
+4. To support apps below iOS 11 please use this command : **pod "goSellSDK", '2.2.22'**
 
 <a name="installation"></a>
 
@@ -82,7 +83,7 @@ $ gem install cocoapods
 
 ### Podfile
 
-To integrate goSellSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate goSellSDK into your 11+ Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 platform :ios, '11.0'
@@ -101,6 +102,21 @@ Then, run the following command:
 
 ```bash
 $ pod update
+```
+
+To integrate goSellSDK into your less than iOS 11 Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+platform :ios, '11.0'
+use_frameworks!
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MyApp' do
+    
+    pod "goSellSDK", '2.2.22'
+
+end
 ```
 
 <!---
