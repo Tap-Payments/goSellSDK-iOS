@@ -62,7 +62,7 @@ To use the SDK the following requirements must be met:
 
 1. **Xcode 10.0** or newer
 2. **Swift 4.0** or newer (preinstalled with Xcode)   
-3. Deployment target SDK for the  app: **iOS 8.0** or later
+3. Deployment target SDK for the  app: **iOS 11.0** or later
 
 <a name="installation"></a>
 
@@ -85,7 +85,7 @@ $ gem install cocoapods
 To integrate goSellSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-platform :ios, '8.0'
+platform :ios, '11.0'
 use_frameworks!
 
 source 'https://github.com/CocoaPods/Specs.git'
