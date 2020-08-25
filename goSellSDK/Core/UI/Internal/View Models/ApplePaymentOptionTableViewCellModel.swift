@@ -139,7 +139,7 @@ extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
     func applePayButtonTypeStyle() -> PKPaymentButtonStyle
     {
         // First we set the default apple pay button style
-        var applPayButtonStyle:PKPaymentButtonStyle = .white
+        var applPayButtonStyle:PKPaymentButtonStyle = .whiteOutline
         
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark

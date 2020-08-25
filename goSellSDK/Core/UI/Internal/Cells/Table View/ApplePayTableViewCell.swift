@@ -56,8 +56,8 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
         frame.size.width = self.frame.width - 30
         frame.size.height = 40
         applePayButton.frame = frame
-        applePayButton.tap_borderColor = UIColor(tap_hex: "E1E1E1")
-        applePayButton.tap_borderWidth = 1
+        //applePayButton.tap_borderColor = UIColor(tap_hex: "E1E1E1")
+        //applePayButton.tap_borderWidth = 1
         applePayButton.layer.cornerRadius = 4
         
         applePayButton.center = contentView.center
