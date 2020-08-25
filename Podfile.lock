@@ -3,7 +3,7 @@ PODS:
   - EditableTextInsetsTextField (1.0.6):
     - TapAdditionsKit/Foundation/Locale (>= 1.3.3)
     - TapAdditionsKit/UIKit/UIView (>= 1.3.3)
-  - SDWebImage/Core (5.8.0)
+  - SDWebImage/Core (5.8.4)
   - SwiftyRSA (0.3.0)
   - TapAdditionsKit/CoreGraphics/CGContext (1.3.6)
   - TapAdditionsKit/CoreGraphics/CGImage (1.3.6):
@@ -247,7 +247,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextField: 7298bfd622a614307dc3b0de74c28ae19c9d7753
-  SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SwiftyRSA: 16627e161a69bfdda7d867cf9438d14a331939ca
   TapAdditionsKit: 136b2174e775b105f8fd17eac6a4da2951e0f05b
   TapAlertViewController: 23d436d5c556e8146e0dfd4e1be2aea2fdb61c7c
