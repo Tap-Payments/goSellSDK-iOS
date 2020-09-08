@@ -53,8 +53,7 @@
     ///   - phoneNumber: Phone number.
     ///   - name: Name.
     /// - Throws: Invalid customer info error.
-    public convenience init(emailAddress: EmailAddress, phoneNumber: PhoneNumber, name: String) throws {
-        
+    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, name: String) throws {
         try self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: name, middleName: nil, lastName: nil)
     }
     
@@ -81,8 +80,10 @@
     ///   - middleName: Middle name.
     ///   - lastName: Last name.
     /// - Throws: Invalid customer info error.
-    public convenience init(emailAddress: EmailAddress, phoneNumber: PhoneNumber, firstName: String, middleName: String?, lastName: String?) throws {
-        
+    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String, middleName: String?, lastName: String?) throws {
+        if emailAddress == nil && phoneNumber == nil {
+            throw("A customer must have at least an email or a phone number")
+        }
         try self.init(identifier: nil, emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName)
     }
     
