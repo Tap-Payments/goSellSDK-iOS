@@ -83,6 +83,7 @@ internal class ExampleViewController: BaseViewController {
 
         session.dataSource = self
         session.delegate = self
+        payButton?.dataSource = self
         //session.appearance = self
         
     }
@@ -394,6 +395,10 @@ extension ExampleViewController: SessionDataSource {
     internal var authorizeAction: AuthorizeAction {
         
         return .capture(after: 8)
+    }
+    
+    internal var buttonTitle: String? {
+        return "Custom Label"
     }
 
     internal var allowedCadTypes: [CardType]? {

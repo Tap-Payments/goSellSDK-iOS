@@ -57,7 +57,10 @@ import class PassKit.PKPaymentToken
 	
 	/// Merchant ID. Optional. Useful when you have multiple Tap accounts and would like to do the `switch` on the fly within the single app.
 	@objc optional var merchantID: String? { get }
-	
+    
+    /// Pay. iotinal string to pass if you want to show a different word for PAY, Save or Tokenize state on the button. This title will override the default values providede by TAP
+    @objc optional var buttonTitle: String? { get }
+    
 	/// Taxes.
 	@objc optional var taxes: [Tax]? { get }
     

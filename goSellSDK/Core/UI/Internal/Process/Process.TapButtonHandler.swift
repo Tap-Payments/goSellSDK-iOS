@@ -211,14 +211,25 @@ internal extension Process.TapButtonHandler where Mode: Payment {
 		
 		guard let displayedAmount = self.amount, displayedAmount.amount > 0.0 else {
 			
-			self.button?.setLocalizedText(.btn_pay_title_generic)
+            
+            if let payString = Process.shared.externalSession?.dataSource?.buttonTitle {
+                self.button?.setTitle(payString)
+            }else{
+                self.button?.setLocalizedText(.btn_pay_title_generic)
+            }
+			
 			self.button?.forceDisabled = true
 			
 			return
 		}
 		
 		let amountString = CurrencyFormatter.shared.format(displayedAmount)
-		self.button?.setLocalizedText(.btn_pay_title_amount, amountString)
+        if let payString = Process.shared.externalSession?.dataSource?.buttonTitle {
+            self.button?.setTitle(String(format: "\(payString!) %@", amountString))
+        }else{
+            self.button?.setLocalizedText(.btn_pay_title_amount, amountString)
+        }
+		
 		
 		self.button?.forceDisabled = false
 	}
@@ -231,7 +242,11 @@ internal extension Process.TapButtonHandler where Mode: CardSaving {
 	
 	func updateSaveButtonState() {
 		
-		self.button?.setLocalizedText(.btn_save_title)
+        if let saveString = Process.shared.externalSession?.dataSource?.buttonTitle {
+            self.button?.setTitle(saveString)
+        }else{
+            self.button?.setLocalizedText(.btn_save_title)
+        }
 		self.button?.forceDisabled = false
 	}
 }
@@ -266,14 +281,22 @@ internal extension Process.TapButtonHandler where Mode: CardTokenization {
 		
 		guard let displayedAmount = self.amount, displayedAmount.amount > 0.0 else {
 			
-			self.button?.setLocalizedText(.btn_pay_title_generic)
+            if let payString = Process.shared.externalSession?.dataSource?.buttonTitle {
+                self.button?.setTitle(payString)
+            }else{
+                self.button?.setLocalizedText(.btn_pay_title_generic)
+            }
 			self.button?.forceDisabled = true
 			
 			return
 		}
 		
 		let amountString = CurrencyFormatter.shared.format(displayedAmount)
-		self.button?.setLocalizedText(.btn_pay_title_amount, amountString)
+        if let payString = Process.shared.externalSession?.dataSource?.buttonTitle {
+            self.button?.setTitle(String(format: "\(payString!) %@", amountString))
+        }else{
+            self.button?.setLocalizedText(.btn_pay_title_amount, amountString)
+        }
 		
 		self.button?.forceDisabled = false
 	}
@@ -416,7 +439,12 @@ internal extension Process.TapButtonProcessHandler where Mode: CardSaving {
 	func updateSaveProcessButtonState() {
 		
 		self.buttonStyle = .save
-		self.button?.setLocalizedText(.btn_save_action_title)
+        if let saveString = Process.shared.externalSession?.dataSource?.buttonTitle {
+            self.button?.setTitle(saveString)
+        }else{
+            self.button?.setLocalizedText(.btn_save_action_title)
+        }
+		
 		
 		guard let selectedPaymentViewModel = self.process.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel else {
 			
