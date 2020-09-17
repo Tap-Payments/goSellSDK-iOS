@@ -133,7 +133,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
         
         guard
 			
-			let customerIdentifier = Process.shared.externalSession?.dataSource?.customer?.identifier,
+			let customerIdentifier = Process.shared.externalSession?.dataSource?.customer.identifier,
 			let cardIdentifier = self.card.identifier,
 			let paymentContentController = PaymentContentViewController.tap_findInHierarchy()
 			

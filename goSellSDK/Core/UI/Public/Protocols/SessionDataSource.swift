@@ -21,7 +21,7 @@ import class PassKit.PKPaymentToken
     @objc optional var cardHolderNameIsEditable: Bool { get }
 	
 	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
-	@objc var customer: Customer? { get }
+	@objc var customer: Customer { get }
     
     // /// Details if the merchant wants to start apple session
     //@objc optional var isApplePay: Bool { get }

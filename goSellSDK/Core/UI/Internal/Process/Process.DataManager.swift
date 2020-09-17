@@ -426,11 +426,7 @@ internal extension Process {
 				return nil
 			}
 			
-			guard let customer = nonnullDataSource.customer else {
-				
-				closure("Error", "Customer information must be provided.")
-				return nil
-			}
+			let customer = nonnullDataSource.customer
 			
 			let itemsCount = (nonnullDataSource.items ?? [])?.count ?? 0
 			guard nonnullDataSource.amount != nil || itemsCount > 0 else {
@@ -623,17 +619,18 @@ internal extension Process {
          */
         internal override func createApplePayRequest() -> PKPaymentRequest
         {
+            
+            
             guard
                 
                 let dataSource    = self.process.process.externalSession?.dataSource,
-                let customer    = dataSource.customer,
                 let applePaymentOption:ApplePaymentOptionTableViewCellModel = Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel as? ApplePaymentOptionTableViewCellModel,
                 let _     = self.orderIdentifier else {
                     
                     fatalError("This case should never happen.")
             }
             
-            
+            let customer    = dataSource.customer
             let request = PKPaymentRequest()
              //
             request.supportedNetworks = applePaymentOption.applePayMappedSupportedNetworks
@@ -810,15 +807,18 @@ internal extension Process {
 														retryAction:					@escaping TypeAlias.ArgumentlessClosure,
 														alertDismissButtonClickHandler:	TypeAlias.ArgumentlessClosure?) {
 			
-			guard
+            
+			
+            guard
 				
 				let dataSource	= self.process.process.externalSession?.dataSource,
-				let customer	= dataSource.customer,
 				let orderID     = self.orderIdentifier else {
 					
 					fatalError("This case should never happen.")
 			}
 			
+            let customer    = dataSource.customer
+            
 			self.isExecutingAPICalls = true
 			
 			var post: TrackingURL? = nil
@@ -1113,11 +1113,7 @@ internal extension Process {
 				return nil
 			}
 			
-			guard let customer = nonnullDataSource.customer else {
-				
-				closure("Error", "Customer information must be provided.")
-				return nil
-			}
+			let customer = nonnullDataSource.customer
 			
 			let paymentRequest = PaymentOptionsRequest(customer: customer.identifier)
 			
@@ -1149,11 +1145,13 @@ internal extension Process {
 		
 		private func callCardVerificationAPI(with token: Token, saveCard: Bool?, retryAction: @escaping TypeAlias.ArgumentlessClosure) {
 			
-			guard let dataSource = self.process.process.externalSession?.dataSource, let customer = dataSource.customer else {
+			guard let dataSource = self.process.process.externalSession?.dataSource else {
 				
 				fatalError("This case should never happen.")
 			}
 			
+            let customer = dataSource.customer
+            
 			self.isExecutingAPICalls = true
 			
 			let requires3DSecure    = self.requires3DSecure || (dataSource.require3DSecure ?? false)
@@ -1230,11 +1228,7 @@ internal extension Process {
 				return nil
 			}
 			
-			guard let customer = nonnullDataSource.customer else {
-				
-				closure("Error", "Customer information must be provided.")
-				return nil
-			}
+			let customer = nonnullDataSource.customer
 			
 			let itemsCount = (nonnullDataSource.items ?? [])?.count ?? 0
 			guard nonnullDataSource.amount != nil || itemsCount > 0 else {
