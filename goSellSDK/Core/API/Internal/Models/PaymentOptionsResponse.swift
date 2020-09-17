@@ -84,9 +84,7 @@ extension PaymentOptionsResponse: Decodable {
 		let orderIdentifier				= try container.decodeIfPresent(String.self, forKey: .orderIdentifier)
 		let object						= try container.decode(String.self, forKey: .object)
 		var paymentOptions				= try container.decode([PaymentOption].self, forKey: .paymentOptions)
-        
-        let tabbyPaymentOption:PaymentOption = .init(identifier: "99", brand: .tabby, title: "TABBY", imageURL: URL(string: "https://i.ibb.co/H2NLb7H/tabby.png")!, isAsync: false, paymentType: .web, sourceIdentifier: "src_ae.tabby_pay_later", supportedCardBrands: [.tabby], extraFees: [], supportedCurrencies: [Currency.init("AED")!,Currency.init("SAR")!], orderBy: 3, threeDLevel: .always)
-        //paymentOptions.insert(tabbyPaymentOption, at: 1)
+       
         
 		let currency					= try container.decode(Currency.self, forKey: .currency)
 		let supportedCurrenciesAmounts	= try container.decode([AmountedCurrency].self, forKey: .supportedCurrenciesAmounts)

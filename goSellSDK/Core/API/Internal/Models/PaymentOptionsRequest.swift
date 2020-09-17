@@ -29,7 +29,7 @@ internal struct PaymentOptionsRequest {
 	internal let merchantID: String?
 	
     /// Customer (payer).
-    internal var customer: String?
+    internal var customer: Customer?
     
 	/// List of destinations (grouped by "destination" key).
 	internal private(set) var destinationGroup: DestinationGroup?
@@ -39,7 +39,7 @@ internal struct PaymentOptionsRequest {
 
     // MARK: Methods
 	
-	internal init(customer: String?) {
+	internal init(customer: Customer?) {
 		
 		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil)
 	}
@@ -51,7 +51,7 @@ internal struct PaymentOptionsRequest {
 				  taxes:			[Tax]?,
 				  currency:			Currency?,
 				  merchantID:		String?,
-				  customer:			String?,
+				  customer:			Customer?,
 				  destinationGroup:	DestinationGroup?,
 				  paymentType:		PaymentType?
 		
@@ -88,8 +88,9 @@ internal struct PaymentOptionsRequest {
 		case taxes              	= "taxes"
 		case currency           	= "currency"
 		case customer           	= "customer"
+        case customerObject         = "buyer"
 		case totalAmount        	= "total_amount"
-		case merchantID			= "merchant_id"
+		case merchantID			    = "merchant_id"
 		case destinationGroup		= "destinations"
 		case paymentType			= "payment_type"
     }
@@ -127,9 +128,14 @@ extension PaymentOptionsRequest: Encodable {
 		
 		try container.encodeIfPresent(self.merchantID, forKey: .merchantID)
 		
-        if self.customer?.tap_length ?? 0 > 0 {
+        if self.customer?.identifier?.tap_length ?? 0 > 0 {
             
-            try container.encodeIfPresent(self.customer, forKey: .customer)
+            try container.encodeIfPresent(self.customer?.identifier, forKey: .customer)
+        }
+        
+        if let nonNullCustomer = self.customer {
+            
+            try container.encodeIfPresent(nonNullCustomer, forKey: .customerObject)
         }
 		
 		if self.totalAmount > 0.0 {

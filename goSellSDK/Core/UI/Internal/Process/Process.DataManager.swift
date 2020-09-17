@@ -452,7 +452,7 @@ internal extension Process {
 													   taxes:           taxes,
 													   currency:        currency,
 													   merchantID:		merchantID,
-													   customer:        customer.identifier,
+													   customer:        customer,
 													   destinationGroup:	destinationsGroup,
 													   paymentType:			paymentType)
 			
@@ -1115,7 +1115,7 @@ internal extension Process {
 			
 			let customer = nonnullDataSource.customer
 			
-			let paymentRequest = PaymentOptionsRequest(customer: customer.identifier)
+			let paymentRequest = PaymentOptionsRequest(customer: customer)
 			
 			return paymentRequest
 		}
@@ -1254,7 +1254,7 @@ internal extension Process {
 													   taxes:           taxes,
 													   currency:        currency,
 													   merchantID:		merchantID,
-													   customer:        customer.identifier,
+													   customer:        customer,
 													   destinationGroup:	destinationsGroup,
 													   paymentType:			paymentType)
 			
