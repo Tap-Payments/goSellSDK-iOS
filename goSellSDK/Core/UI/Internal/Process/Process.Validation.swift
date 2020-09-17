@@ -30,8 +30,9 @@ internal extension Process {
             {
                 guard let _ = dataSource.appleTokenData, let _ = dataSource.applePayMerchantID else { return false }
             }*/
-			
-			guard let customer = dataSource.customer, self.isCustomerValid(customer) else { return false }
+			let customer = dataSource.customer
+            
+			guard self.isCustomerValid(customer) else { return false }
 			
 			if mode == .cardSaving { return true }
 			

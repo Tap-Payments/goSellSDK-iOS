@@ -720,7 +720,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 	
 	private func startPayment(with savedCard: SavedCard, paymentOption: PaymentOption) {
 		
-		guard let customerIdentifier = self.process.externalSession?.dataSource?.customer?.identifier, let cardIdentifier = savedCard.identifier else { return }
+		guard let customerIdentifier = self.process.externalSession?.dataSource?.customer.identifier, let cardIdentifier = savedCard.identifier else { return }
 		
 		let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
 		let request = CreateTokenWithSavedCardRequest(savedCard: card)

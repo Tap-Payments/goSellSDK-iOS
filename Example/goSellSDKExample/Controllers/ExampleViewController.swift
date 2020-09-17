@@ -336,9 +336,10 @@ extension ExampleViewController: SessionDataSource {
         return "599424"
     }
     
-    internal var customer: Customer? {
+    internal var customer: Customer {
+        let defaultCustomer:Customer = try! Customer.init(emailAddress: .init(emailAddressString: "hello@tap.company"), phoneNumber: .init(isdNumber: "965", phoneNumber: "90064542"), firstName: "TAP", middleName: "AMAZING", lastName: "PAYMENTS")
         
-        return self.paymentSettings.dataSource.customer?.customer
+        return self.paymentSettings.dataSource.customer?.customer ?? defaultCustomer
     }
 
     
@@ -395,10 +396,6 @@ extension ExampleViewController: SessionDataSource {
     internal var authorizeAction: AuthorizeAction {
         
         return .capture(after: 8)
-    }
-    
-    internal var buttonTitle: String? {
-        return "Custom Label"
     }
 
     internal var allowedCadTypes: [CardType]? {
@@ -573,13 +570,12 @@ extension ExampleViewController: SessionDelegate {
 	
     private func saveCustomer(_ customerID: String) {
         
-        if let nonnullCustomer = self.customer {
+        let nonnullCustomer = self.customer
             
             let envCustomer = SerializationHelper.updateCustomer(nonnullCustomer, with: customerID)
             
             self.paymentSettings.dataSource.customer = envCustomer
             Serializer.serialize(self.paymentSettings)
-        }
     }
 }
 
