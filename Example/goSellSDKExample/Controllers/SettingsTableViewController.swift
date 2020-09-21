@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   Foundation.NSIndexPath.IndexPath
+import CoreGraphics
+import Foundation
 import class    goSellSDK.Currency
 import class    goSellSDK.Customer
 import class	goSellSDK.Destination
@@ -507,7 +507,7 @@ internal class SettingsTableViewController: ModalNavigationTableViewController {
 		fileprivate static let contentBackgroundColorCellReuseIdentifier				= "content_background_color_cell"
 		fileprivate static let backgroundBlurStyleCellReuseIdentifier					= "background_blur_style_cell"
 		
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() {}
     }
     
     // MARK: Properties

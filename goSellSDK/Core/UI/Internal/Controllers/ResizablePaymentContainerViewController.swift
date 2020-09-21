@@ -98,7 +98,7 @@ internal class ResizablePaymentContainerViewController: BaseViewController
 		
 		fileprivate static let navigationControllerContentSizeChangeAnimationDuration: TimeInterval = 0.3
 		
-		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+		//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 	}
 	
 	// MARK: Properties

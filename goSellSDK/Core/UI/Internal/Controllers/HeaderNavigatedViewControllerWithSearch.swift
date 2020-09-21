@@ -5,10 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGAffineTransform.CGAffineTransform
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGPoint
-import struct   CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import func     TapAdditionsKit.tap_clamp
 import protocol TapSearchView.TapSearchUpdating
 import class    TapSearchView.TapSearchView
@@ -104,7 +101,7 @@ internal class HeaderNavigatedViewControllerWithSearch: HeaderNavigatedViewContr
         fileprivate static let shadowHeight: CGFloat = 2.0
 		fileprivate static let searchViewShadowColor = UIColor(tap_hex: "B5B5B5A8")
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 	
 	private enum SearchViewState {

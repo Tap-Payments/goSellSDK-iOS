@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	Foundation.NSLocale.Locale
+import Foundation
 
 internal struct GlobalSettings: Encodable {
 	

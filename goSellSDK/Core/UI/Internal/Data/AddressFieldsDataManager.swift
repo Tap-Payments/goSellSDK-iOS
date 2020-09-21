@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import func     TapSwiftFixes.performOnMainThread
 import class    UIKit.UIFont.UIFont
@@ -27,7 +26,7 @@ internal class AddressFieldsDataManager {
         fileprivate static let descriptionFont: UIFont = .helveticaNeueRegular(15.0)
         fileprivate static let extraDescriptionWidth: CGFloat = 3.0
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

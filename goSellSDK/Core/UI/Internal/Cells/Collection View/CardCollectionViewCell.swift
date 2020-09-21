@@ -36,7 +36,7 @@ internal class CardCollectionViewCell: BaseCollectionViewCell {
         
         fileprivate static let animationDuration: TimeInterval = 0.3
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

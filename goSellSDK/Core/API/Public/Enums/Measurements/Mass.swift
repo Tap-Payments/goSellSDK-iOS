@@ -93,7 +93,7 @@
         fileprivate static let ouncesTroy   = "ounces_troy"
         fileprivate static let slugs        = "slugs"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

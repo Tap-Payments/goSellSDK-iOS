@@ -57,6 +57,6 @@ extension AddressFieldInputType: Decodable {
         fileprivate static let numberInputType      = "NUMBER"
         fileprivate static let dropdownInputType    = "DROPDOWN"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }

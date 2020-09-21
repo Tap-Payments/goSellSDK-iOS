@@ -28,7 +28,7 @@
 		fileprivate static let savedCardKey	= "SAVED_CARD"
         fileprivate static let applePay    = "APPLEPAY"
 		
-		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+		//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 	}
 	
 	// MARK: Properties

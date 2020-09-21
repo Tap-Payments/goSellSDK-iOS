@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class    QuartzCore.CAAnimation.CAKeyframeAnimation
 import var      QuartzCore.CAMediaTiming.kCAFillModeForwards
 import struct   QuartzCore.CATransform3D.CATransform3D
@@ -75,5 +75,5 @@ private struct WobblingConstants {
     fileprivate static let animationKeyPath: String     = "transform"
     fileprivate static let wobbleAnimationKey: String   = "wobble"
     
-    @available(*, unavailable) private init() {}
+    //@available(*, unavailable) private init() { }
 }

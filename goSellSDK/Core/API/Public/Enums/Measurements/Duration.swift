@@ -53,7 +53,7 @@
         fileprivate static let quarters = "quarters"
         fileprivate static let years    = "years"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

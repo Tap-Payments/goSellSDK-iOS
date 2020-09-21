@@ -83,7 +83,7 @@
         fileprivate static let ares                 = "ares"
         fileprivate static let hectares             = "hectares"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

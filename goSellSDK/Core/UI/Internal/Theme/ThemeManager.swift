@@ -44,7 +44,7 @@ internal final class ThemeManager {
 		fileprivate static let themesFileName 		= "themes"
 		fileprivate static let themesFileExtension	= "json"
 		
-		@available(*, unavailable) private init() {}
+		//@available(*, unavailable) private init() { }
 	}
 	
 	// MARK: Properties

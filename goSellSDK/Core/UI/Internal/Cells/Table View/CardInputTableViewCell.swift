@@ -5,9 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGPoint
-import struct   CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import class    EditableTextInsetsTextField.EditableTextInsetsTextField
 import struct   TapAdditionsKit.TypeAlias
 import class    TapEditableView.TapEditableView
@@ -82,7 +80,7 @@ internal class CardInputTableViewCell: BaseTableViewCell {
         fileprivate static let extraAddressHeight: CGFloat = 2.0
         fileprivate static let saveCardContainerViewHeight: CGFloat = 55.0
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

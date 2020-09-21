@@ -160,7 +160,7 @@ internal final class APIClient {
             fileprivate static let application      = "application"
             fileprivate static let sessionToken     = "session_token"
             
-            @available(*, unavailable) private init() { }
+            //@available(*, unavailable) private init() { }
         }
         
         fileprivate struct HTTPHeaderValueKey {
@@ -179,12 +179,12 @@ internal final class APIClient {
             fileprivate static let requirerSimNetworkName	= "requirer_sim_network_name"
             fileprivate static let requirerSimCountryIso	= "requirer_sim_country_iso"
 
-            @available(*, unavailable) private init() { }
+            //@available(*, unavailable) private init() { }
         }
         
         private static let baseURLString = "https://api.tap.company/v2/"
         
-        @available(*, unavailable) private init() { }
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

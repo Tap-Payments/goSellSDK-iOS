@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import class    CoreGraphics.CGColor.CGColor
+import CoreGraphics
 import class    QuartzCore.CAAnimation.CABasicAnimation
 import class    QuartzCore.CALayer.CALayer
 import struct   TapAdditionsKit.TypeAlias

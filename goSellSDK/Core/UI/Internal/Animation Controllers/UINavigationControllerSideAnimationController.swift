@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class    UIKit.UINavigationController.UINavigationController
 import class    UIKit.UIView.UIView
 import struct   UIKit.UIView.UIViewAnimationOptions
@@ -42,7 +42,7 @@ internal final class UINavigationControllerSideAnimationController: NSObject {
         fileprivate static let minimalAlpha:        CGFloat         = 0.2
         fileprivate static let maximalAlpha:        CGFloat         = 1.0
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

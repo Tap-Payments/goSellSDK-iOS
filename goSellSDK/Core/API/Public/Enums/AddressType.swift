@@ -42,7 +42,7 @@
 		fileprivate static let residentialKey	= "RESIDENTIAL"
 		fileprivate static let commercialKey	= "COMMERCIAL"
 		
-		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+		//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 	}
 	
 	// MARK: Properties

@@ -43,10 +43,10 @@ internal final class Reporter {
 		
 		fileprivate static let product	= "goSellSDK"
 		
-		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+		//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 	}
 	
 	// MARK: Methods
 	
-	@available(*, unavailable) private init() { fatalError("This class cannot be instantiated.") }
+	//@available(*, unavailable) private init() { fatalError("This class cannot be instantiated.") }
 }

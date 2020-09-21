@@ -61,7 +61,7 @@ internal class OTPTimerDataManager {
         
         fileprivate static let tickDuration: TimeInterval = 1.0
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

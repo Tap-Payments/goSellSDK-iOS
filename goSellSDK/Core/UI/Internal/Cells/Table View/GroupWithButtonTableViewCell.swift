@@ -23,7 +23,7 @@ internal class GroupWithButtonTableViewCell: BaseTableViewCell {
 		
 		fileprivate static let labelTextChangeAnimationDuration: TimeInterval = 0.3
 		
-		@available(*, unavailable) private init() {}
+		//@available(*, unavailable) private init() { }
 	}
 	
 	// MARK: Properties

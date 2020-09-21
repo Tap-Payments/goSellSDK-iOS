@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import func     TapAdditionsKit.tap_clamp
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIColor.UIColor

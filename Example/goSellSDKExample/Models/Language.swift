@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	Foundation.NSLocale.Locale
+import Foundation
 import class	goSellSDK.GoSellSDK
 
 internal struct Language {

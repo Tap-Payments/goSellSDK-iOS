@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 
 @objc internal protocol InteractiveTransitionControllerDelegate: NSObjectProtocol {

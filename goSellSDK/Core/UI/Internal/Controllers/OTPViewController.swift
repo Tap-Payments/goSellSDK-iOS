@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import enum		UIKit.UIApplication.UIStatusBarStyle
@@ -213,7 +213,7 @@ internal final class OTPViewController: SeparateWindowViewController {
         fileprivate static let updateTimerTimeInterval: TimeInterval = 1.0
         fileprivate static let resendButtonTitleDateFormat = "mm:ss"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

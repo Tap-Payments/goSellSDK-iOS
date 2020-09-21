@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import class    TapNibView.TapNibView
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
@@ -93,7 +92,7 @@ import class    WebKit.WKWebView.WKWebView
         
         
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

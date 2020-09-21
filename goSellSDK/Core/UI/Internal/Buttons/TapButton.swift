@@ -94,7 +94,7 @@ internal class TapButton: TapNibView {
         
         fileprivate static let stateUpdateAnimationDuration: TimeInterval = 0.2
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

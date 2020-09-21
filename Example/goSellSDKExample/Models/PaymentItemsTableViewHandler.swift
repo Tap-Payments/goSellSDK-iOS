@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   Foundation.NSDecimal.Decimal
-import struct   Foundation.NSIndexPath.IndexPath
+import Foundation
 import class    goSellSDK.PaymentItem
 import class    ObjectiveC.NSObject.NSObject
 import class    UIKit.UIResponder.UIResponder

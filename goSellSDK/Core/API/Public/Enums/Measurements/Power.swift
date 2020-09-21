@@ -71,7 +71,7 @@
         fileprivate static let mechanicalHorsepower = "mechanical_horsepower"
         fileprivate static let metricHorsepower     = "metric_horsepower"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

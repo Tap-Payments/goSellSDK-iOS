@@ -38,7 +38,7 @@
         fileprivate static let milliamperes = "milliamperes"
         fileprivate static let microamperes = "microamperes"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

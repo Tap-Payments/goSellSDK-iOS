@@ -24,7 +24,7 @@
         fileprivate static let percentBasedKey  = "P"
         fileprivate static let fixedAmountKey   = "F"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

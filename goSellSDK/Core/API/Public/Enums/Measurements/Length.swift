@@ -123,7 +123,7 @@
         fileprivate static let astronomicalUnits    = "astronomical_units"
         fileprivate static let parsecs              = "parsecs"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

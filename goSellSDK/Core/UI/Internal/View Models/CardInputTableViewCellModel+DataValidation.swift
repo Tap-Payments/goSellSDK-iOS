@@ -104,7 +104,7 @@ internal extension CardInputTableViewCellModel {
         
         fileprivate static let binNumberLength = 6
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

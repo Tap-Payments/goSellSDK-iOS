@@ -43,7 +43,7 @@ internal final class PaymentDismissalAnimationController: NSObject {
         
         fileprivate static let animationDuration: TimeInterval = 0.4
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

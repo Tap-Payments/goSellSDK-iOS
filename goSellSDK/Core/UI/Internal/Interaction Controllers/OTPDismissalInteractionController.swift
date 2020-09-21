@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import func     TapAdditionsKit.tap_clamp
 import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
 import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate
@@ -68,7 +68,7 @@ internal final class OTPDismissalInteractionController: BaseInteractionControlle
         
         fileprivate static let translationPercentageToFinishTransition: CGFloat = 0.4
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

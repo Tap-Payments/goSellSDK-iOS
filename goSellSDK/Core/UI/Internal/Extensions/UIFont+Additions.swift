@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class	UIKit.UIFont.UIFont
 
 internal extension UIFont {
@@ -36,7 +36,7 @@ internal extension UIFont {
         fileprivate static let helveticaNeueMediumFontName = "HelveticaNeue-Medium"
         fileprivate static let helveticaNeueRegularFontName = "HelveticaNeue"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Methods

@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   Foundation.NSNotification.Notification
+import Foundation
 import class    goSellSDK.Customer
 import class    goSellSDK.EmailAddress
 import class    goSellSDK.PhoneNumber

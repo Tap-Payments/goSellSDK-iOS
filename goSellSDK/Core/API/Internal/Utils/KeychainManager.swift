@@ -34,12 +34,12 @@ internal class KeychainManager {
         
         private static let keyPrefix = "goSellSDK."
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Methods
     
-    @available(*, unavailable) private init() {}
+    //@available(*, unavailable) private init() { }
     
     private static func deviceIDKey(for mode: SDKMode) -> String {
         

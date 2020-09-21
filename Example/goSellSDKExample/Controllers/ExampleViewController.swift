@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class    Dispatch.DispatchQueue
 import struct   Foundation.NSDecimal.Decimal
 import class    goSellSDK.AmountModificator

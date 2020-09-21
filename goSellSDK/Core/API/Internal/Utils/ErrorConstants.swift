@@ -27,8 +27,8 @@ internal struct ErrorConstants {
         internal static let enumName                = "enum_name"
         internal static let enumValue               = "enum_value"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
-    @available(*, unavailable) private init() {}
+    //@available(*, unavailable) private init() { }
 }

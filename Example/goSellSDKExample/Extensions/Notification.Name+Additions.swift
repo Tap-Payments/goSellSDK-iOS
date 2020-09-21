@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	Foundation.NSNotification.Notification
+import Foundation
 
 #if swift(>=4.2)
 import class	UIKit.UIResponder.UIResponder
