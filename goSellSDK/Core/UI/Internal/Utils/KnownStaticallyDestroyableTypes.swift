@@ -92,7 +92,7 @@ internal struct KnownStaticallyDestroyableTypes {
     
     // MARK: Methods
     
-    @available(*, unavailable) private init() {}
+    //@available(*, unavailable) private init() { }
     
     private static func addImmediateDestroyable(_ type: ImmediatelyDestroyable.Type) {
         

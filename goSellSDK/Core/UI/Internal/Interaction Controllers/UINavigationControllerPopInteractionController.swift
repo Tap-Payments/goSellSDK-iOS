@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import func     TapAdditionsKit.tap_clamp
 import struct   UIKit.UIGeometry.UIRectEdge
 import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
@@ -54,7 +54,7 @@ internal final class UINavigationControllerPopInteractionController: BaseInterac
         
         fileprivate static let edgeTranslationPercentageToFinishTransition: CGFloat = 0.5
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

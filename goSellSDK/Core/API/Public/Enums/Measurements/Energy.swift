@@ -38,7 +38,7 @@
         fileprivate static let calories         = "calories"
         fileprivate static let kilowattHours    = "kilowatt_hours"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

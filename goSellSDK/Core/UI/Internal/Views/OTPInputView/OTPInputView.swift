@@ -5,10 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGAffineTransform.CGAffineTransform
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGPoint
-import struct   CoreGraphics.CGGeometry.CGRect
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import class    TapEditableView.TapEditableView
 import class    TapNibView.TapNibView
@@ -148,7 +145,7 @@ internal final class OTPInputView: TapNibView {
         fileprivate static let maxTextZoomScale:                        CGFloat         = 1.6
         fileprivate static let minTextZoomScale:                        CGFloat         = 0.2
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

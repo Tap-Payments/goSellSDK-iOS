@@ -150,5 +150,5 @@ private struct UIBlurEffectStyleConstants {
 	fileprivate static let prominent	= "prominent"
 	fileprivate static let regular		= "regular"
 	
-	@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+	//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 }

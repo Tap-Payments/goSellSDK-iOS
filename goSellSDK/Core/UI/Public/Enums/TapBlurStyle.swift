@@ -147,7 +147,7 @@ import enum	TapVisualEffectView.TapBlurEffectStyle
 		fileprivate static let prominentRawValue	= "prominent"
 		fileprivate static let noneRawValue			= "none"
 		
-		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+		//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 	}
 	
 	// MARK: Properties

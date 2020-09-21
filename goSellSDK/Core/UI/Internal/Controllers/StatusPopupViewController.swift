@@ -5,9 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGRect
-import struct   CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIButton.UIButton
@@ -119,7 +117,7 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
         fileprivate static let contentHeight: CGFloat = 65.0
         fileprivate static let closeButtonImage: UIImage = .tap_named("ic_close", in: .goSellSDKResources)!
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

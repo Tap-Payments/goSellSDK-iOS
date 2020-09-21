@@ -5,9 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   Foundation.NSData.Data
-import class    Foundation.NSJSONSerialization.JSONSerialization
-import class    Foundation.NSUserDefaults.UserDefaults
+import Foundation
 import class    goSellSDK.Customer
 import class    goSellSDK.PaymentItem
 
@@ -111,7 +109,7 @@ internal class Serializer {
         private static let keyPrefix            = "goSellSDKExample."
         
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() {}
     }
     
     private typealias DictionaryType            = [String: Any]

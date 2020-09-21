@@ -92,7 +92,7 @@ internal final class LocalizationManager {
 		
 		fileprivate static let localeFolderExtension = "lproj"
 		
-		@available(*, unavailable) private init() {}
+		//@available(*, unavailable) private init() { }
 	}
 	
 	// MARK: Properties

@@ -23,7 +23,7 @@ internal class CountryTableViewCell: BaseTableViewCell {
         
         fileprivate static let selectionAnimationDuration: TimeInterval = 0.25
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

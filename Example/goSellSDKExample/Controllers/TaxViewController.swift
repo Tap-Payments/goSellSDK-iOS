@@ -7,7 +7,7 @@
 
 import class    Dispatch.DispatchQueue
 
-import struct   Foundation.NSNotification.Notification
+import Foundation
 import class    goSellSDK.AmountModificator
 import enum     goSellSDK.AmountModificatorType
 import class    goSellSDK.Tax

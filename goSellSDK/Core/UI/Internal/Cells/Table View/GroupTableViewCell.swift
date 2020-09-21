@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class UIKit.UILabel.UILabel
 import class UIKit.UITableViewCell.UITableViewCell
 

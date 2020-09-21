@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class    TapAdditionsKit.SeparateWindowRootViewController
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint

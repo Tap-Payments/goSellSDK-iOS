@@ -42,7 +42,7 @@
 		private static let prepaidWallet	= ["PREPAID_WALLET",	"WALLET"]
 		private static let null				= ["null"]
 		
-		@available(*, unavailable) private init() {}
+		//@available(*, unavailable) private init() { }
 	}
 	
 	// MARK: Properties

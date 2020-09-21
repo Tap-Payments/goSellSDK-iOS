@@ -117,7 +117,7 @@ internal class CardAddressValidator: CardValidator {
         fileprivate static let placeholderDisplayText = "Address on Card"
         fileprivate static let addressFieldsDisplaySeparatorText = ", "
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

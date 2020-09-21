@@ -92,7 +92,7 @@
         fileprivate static let plusSign     = "+"
         fileprivate static let doubleZero   = "00"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     private enum CodingKeys: String, CodingKey {

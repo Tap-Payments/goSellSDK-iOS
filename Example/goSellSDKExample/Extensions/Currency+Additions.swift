@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   Foundation.NSLocale.Locale
-import class    Foundation.NSLocale.NSLocale
+import Foundation
 import class    goSellSDK.Currency
 
 internal extension Currency {

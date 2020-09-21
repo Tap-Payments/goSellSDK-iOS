@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import func     TapAdditionsKit.tap_clamp
 import protocol TapAdditionsKit.ClassProtocol
 import struct	TapBundleLocalization.LocalizationKey
@@ -296,7 +296,7 @@ fileprivate extension ExpirationDateValidator {
             fileprivate static let monthComponentWidth:             CGFloat = 50.0
             fileprivate static let yearComponentWidth:              CGFloat = 100.0
             
-            @available(*, unavailable) private init() {}
+            //@available(*, unavailable) private init() { }
         }
         
         fileprivate static var currentYear: Int = Date().tap_year

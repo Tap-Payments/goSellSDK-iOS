@@ -71,6 +71,6 @@ internal struct Permissions: OptionSet, Decodable {
             ]
         }()
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }

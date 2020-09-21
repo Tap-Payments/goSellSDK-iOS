@@ -5,9 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGPoint
-import struct   CoreGraphics.CGGeometry.CGRect
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import class    UIKit.UIView.UIView
 import struct   UIKit.UIView.UIViewKeyframeAnimationOptions
@@ -37,7 +35,7 @@ internal final class PopupAnimationController: NSObject {
         fileprivate static let moveDownDuration:        TimeInterval    = 0.3
         fileprivate static let middleFrameBottomOffset: CGFloat         = 8.0
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     private struct PopupAnimationParameters {

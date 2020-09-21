@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	Foundation.NSIndexPath.IndexPath
+import Foundation
 import class	goSellSDK.APISession
 import class	goSellSDK.SavedCard
 import class	UIKit.UIActivityIndicatorView

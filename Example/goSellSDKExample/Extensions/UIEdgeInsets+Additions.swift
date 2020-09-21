@@ -7,7 +7,7 @@
 
 #if !swift(>=5)
 
-import struct	CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import struct	UIKit.UIGeometry.UIEdgeInsets
 
 fileprivate extension UIEdgeInsets {

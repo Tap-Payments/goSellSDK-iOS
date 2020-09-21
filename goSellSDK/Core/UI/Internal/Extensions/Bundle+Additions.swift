@@ -21,6 +21,6 @@ internal extension Bundle {
         
         fileprivate static let goSellSDKResourcesBundleName = "goSellSDKResources"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }

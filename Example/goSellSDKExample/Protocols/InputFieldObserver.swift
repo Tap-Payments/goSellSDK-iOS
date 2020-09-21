@@ -7,8 +7,7 @@
 
 import ObjectiveC
 
-import struct   Foundation.NSNotification.Notification
-import class    Foundation.NSNotification.NotificationCenter
+import Foundation
 import class    UIKit.UITextField.UITextField
 import class    UIKit.UITextView.UITextView
 

@@ -64,7 +64,7 @@ internal class CardholderNameValidator: CardValidator {
         private static let lowerBound = "20".fromHex
         private static let upperBound = "5F".fromHex
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

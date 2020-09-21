@@ -31,5 +31,5 @@ internal class SerializationHelper {
     // MARK: - Private -
     // MARK: Methods
     
-    @available(*, unavailable) private init() {}
+    //@available(*, unavailable) private init() {}
 }

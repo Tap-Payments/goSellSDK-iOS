@@ -8,7 +8,7 @@
 
 import UIKit
 
-import struct CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class UIKit.UIImageView.UIImageView
 import class UIKit.UILabel.UILabel

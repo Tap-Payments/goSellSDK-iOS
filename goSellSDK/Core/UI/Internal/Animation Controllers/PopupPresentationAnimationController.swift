@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGRect
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import class    TapVisualEffectView.TapVisualEffectView
 import class    UIKit.UIColor.CGColor
@@ -50,7 +49,7 @@ internal class PopupPresentationAnimationController: NSObject {
         
         fileprivate static let animationDuration: TimeInterval = 0.4
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

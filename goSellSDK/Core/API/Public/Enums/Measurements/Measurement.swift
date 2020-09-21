@@ -110,7 +110,7 @@ public enum Measurement {
         fileprivate static let volume           = "volume"
         fileprivate static let units            = "units"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

@@ -25,6 +25,6 @@ internal extension UIStoryboard {
         fileprivate static let paymentStoryboardName    = "Payment"
         fileprivate static let popupsStoryboardName     = "Popups"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }

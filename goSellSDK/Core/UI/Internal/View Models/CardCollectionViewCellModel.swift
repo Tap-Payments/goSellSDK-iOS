@@ -57,7 +57,7 @@ internal class CardCollectionViewCellModel: PaymentOptionCollectionCellViewModel
     private struct Constants {
         
         fileprivate static let cardNumberMaskingSymbols = "●●●●"
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

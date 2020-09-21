@@ -7,10 +7,7 @@
 
 import ObjectiveC
 
-import struct   Foundation.NSNotification.Notification
-import class    Foundation.NSNotification.NotificationCenter
-import class    Foundation.NSValue.NSNumber
-import class    Foundation.NSValue.NSValue
+import Foundation
 import func     TapSwiftFixes.performOnMainThread
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIResponder.UIResponder

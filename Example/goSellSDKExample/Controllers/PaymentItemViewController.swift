@@ -5,11 +5,9 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import class    Dispatch.DispatchQueue
-import struct   Foundation.NSIndexPath.IndexPath
-import class    Foundation.NSNotification.NotificationCenter
-import struct   Foundation.NSNotification.Notification
+import Foundation
 import class    goSellSDK.AmountModificator
 import enum     goSellSDK.AmountModificatorType
 import enum     goSellSDK.Area
@@ -255,7 +253,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         fileprivate static let discountTypeCellReuseIdentifier          = "discount_type_cell"
         fileprivate static let taxListCellReuseIdentifier               = "tax_list_cell"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() {}
     }
     
     // MARK: Properties

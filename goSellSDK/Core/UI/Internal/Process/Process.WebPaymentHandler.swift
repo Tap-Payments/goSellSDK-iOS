@@ -129,5 +129,5 @@ private struct __WebPaymentHandlerConstants {
 	fileprivate static let returnURL = URL(string: "gosellsdk://return_url")!
 	fileprivate static let tapIDKey = "tap_id"
 	
-	@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+	//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 }

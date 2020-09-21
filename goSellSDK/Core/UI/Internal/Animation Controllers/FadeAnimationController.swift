@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   CoreGraphics.CGBase.CGFloat
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import enum     TapVisualEffectView.TapBlurEffectStyle
 import class    TapVisualEffectView.TapVisualEffectView
@@ -36,7 +36,7 @@ internal final class FadeAnimationController: NSObject {
         
         fileprivate static let animationDuration: TimeInterval = 0.4
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

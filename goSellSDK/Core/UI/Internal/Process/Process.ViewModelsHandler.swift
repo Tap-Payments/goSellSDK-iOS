@@ -725,5 +725,5 @@ private struct __ViewModelsHandlerConstants {
     fileprivate static let spaceBetweenCardAndApplePayOptionsIdentifier  = "space_between_card_and_apple_options"
     fileprivate static let spaceBetweenCurrencyAndApplePayOptionsIdentifier  = "space_between_currency_and_apple_options"
 	
-	@available(*, unavailable) private init() {}
+	//@available(*, unavailable) private init() { }
 }

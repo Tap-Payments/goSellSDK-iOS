@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	Foundation.NSIndexPath.IndexPath
-import struct	Foundation.NSNotification.Notification
+import Foundation
 import class	goSellSDK.Currency
 import class	goSellSDK.Destination
 import class	UIKit.UILabel.UILabel
@@ -92,7 +91,7 @@ internal final class DestinationViewController: ModalNavigationTableViewControll
 		
 		fileprivate static let currencyCellReuseIdentifier: String = "currency_cell"
 		
-		@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
+		//@available(*, unavailable) private init() { fatalError("This struct cannot be instantiated.") }
 	}
 	
 	// MARK: Properties

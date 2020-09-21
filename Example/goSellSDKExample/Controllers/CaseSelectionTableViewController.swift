@@ -8,7 +8,7 @@
 import ObjectiveC
 
 import class	Dispatch.DispatchQueue
-import struct	Foundation.NSIndexPath.IndexPath
+import Foundation
 import class	UIKit.UIBarButtonItem.UIBarButtonItem
 import class	UIKit.UITableView.UITableView
 import class	UIKit.UITableViewCell.UITableViewCell

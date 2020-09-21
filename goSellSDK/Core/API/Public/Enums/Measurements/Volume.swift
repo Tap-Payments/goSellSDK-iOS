@@ -168,7 +168,7 @@
         fileprivate static let imperialGallons      = "imperial_gallons"
         fileprivate static let metricCups           = "metric_cups"
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
 }
 

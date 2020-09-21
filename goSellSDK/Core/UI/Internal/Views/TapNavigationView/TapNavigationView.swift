@@ -5,8 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	CoreGraphics.CGBase.CGFloat
-import struct	CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import struct	TapAdditionsKit.TypeAlias
 import class	TapNetworkManager.TapImageLoader
 import class	TapNibView.TapNibView
@@ -135,7 +134,7 @@ internal final class TapNavigationView: TapNibView {
         fileprivate static let height: CGFloat = 66.0
 		fileprivate static let animationDuration: TimeInterval = 0.3
         
-        @available(*, unavailable) private init() {}
+        //@available(*, unavailable) private init() { }
     }
     
     // MARK: Properties

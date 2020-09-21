@@ -8,7 +8,7 @@
 import ObjectiveC
 
 import class    Dispatch.DispatchQueue
-import struct   Foundation.NSIndexPath.IndexPath
+import Foundation
 import class    goSellSDK.Customer
 import enum     goSellSDK.SDKMode
 import class    UIKit.UIBarButtonItem.UIBarButtonItem

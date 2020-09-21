@@ -5,9 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	CoreGraphics.CGBase.CGFloat
-import struct   CoreGraphics.CGGeometry.CGPoint
-import struct	CoreGraphics.CGGeometry.CGSize
+import CoreGraphics
 import struct   TapAdditionsKit.TypeAlias
 import class    TapNetworkManager.TapImageLoader
 import enum		UIKit.UIApplication.UIStatusBarStyle
