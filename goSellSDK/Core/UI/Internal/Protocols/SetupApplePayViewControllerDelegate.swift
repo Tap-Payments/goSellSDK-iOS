@@ -7,7 +7,7 @@
 //
 
 
-import protocol TapAdditionsKit.ClassProtocol
+import protocol TapAdditionsKitV2.ClassProtocol
 
 internal protocol SetupApplePayViewControllerDelegate: ClassProtocol {
     /**

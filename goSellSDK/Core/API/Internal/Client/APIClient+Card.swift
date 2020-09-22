@@ -5,9 +5,9 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapNetworkManager.TapBodyModel
-import class    TapNetworkManager.TapNetworkRequestOperation
-import enum     TapNetworkManager.TapURLModel
+import struct	TapNetworkManagerV2.TapBodyModel
+import class    TapNetworkManagerV2.TapNetworkRequestOperation
+import enum     TapNetworkManagerV2.TapURLModel
 
 internal extension APIClient {
     

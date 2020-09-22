@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import enum 	TapFontsKit.TapFont
+import enum 	TapFontsKitV2.TapFont
 import class	UIKit.UIFont.UIFont
 
 internal struct Font: Decodable {

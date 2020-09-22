@@ -7,7 +7,7 @@
 
 import struct	TapBundleLocalization.LocalizationKey
 import class	TapBundleLocalization.LocalizationProvider
-import class	TapResponderChainInputView.TapResponderChainInputView
+import class	TapResponderChainInputViewV2.TapResponderChainInputView
 import enum		UIKit.UIInterface.UIUserInterfaceLayoutDirection
 
 /// Localization provider.

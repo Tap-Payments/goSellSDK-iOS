@@ -6,7 +6,7 @@
 //
 
 import struct	CoreGraphics.CGGeometry.CGRect
-import struct	TapAdditionsKit.TypeAlias
+import struct	TapAdditionsKitV2.TypeAlias
 import class PassKit.PKPaymentToken
 
 extension Process: ProcessInterface {

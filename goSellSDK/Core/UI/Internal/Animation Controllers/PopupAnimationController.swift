@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.UIView.UIView
 import struct   UIKit.UIView.UIViewKeyframeAnimationOptions
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning

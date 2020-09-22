@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	TapAdditionsKit.SeparateWindowRootViewController
-import struct	TapAdditionsKit.TypeAlias
+import class	TapAdditionsKitV2.SeparateWindowRootViewController
+import struct	TapAdditionsKitV2.TypeAlias
 import struct	TapBundleLocalization.LocalizationKey
 import class	UIKit.UIAlertController.UIAlertAction
 import class	UIKit.UIAlertController.UIAlertController

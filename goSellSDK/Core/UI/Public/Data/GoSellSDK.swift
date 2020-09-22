@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	TapApplication.TapBundlePlistInfo
+import class	TapApplicationV2.TapBundlePlistInfo
 
 /// Base settings class for goSell SDK.
 @objcMembers public final class GoSellSDK: NSObject {

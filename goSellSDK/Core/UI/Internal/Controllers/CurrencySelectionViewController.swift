@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   TapAdditionsKit.TypeAlias
+import struct   TapAdditionsKitV2.TypeAlias
 import func     TapSwiftFixes.performOnMainThread
 import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIButton.UIButton

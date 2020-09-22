@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import func     TapAdditionsKit.tap_clamp
+import func     TapAdditionsKitV2.tap_clamp
 import struct   UIKit.UIGeometry.UIRectEdge
 import class    UIKit.UIGestureRecognizer.UIGestureRecognizer
 import protocol UIKit.UIGestureRecognizer.UIGestureRecognizerDelegate

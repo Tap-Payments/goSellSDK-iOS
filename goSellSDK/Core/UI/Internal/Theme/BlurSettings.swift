@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import enum		TapVisualEffectView.TapBlurEffectStyle
+import enum		TapVisualEffectViewV2.TapBlurEffectStyle
 
 internal struct BlurSettings: Decodable {
 	

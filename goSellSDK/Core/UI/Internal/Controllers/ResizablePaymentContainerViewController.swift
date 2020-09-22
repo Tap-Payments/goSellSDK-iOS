@@ -6,7 +6,7 @@
 //
 
 import struct	CoreGraphics.CGBase.CGSize
-import struct	TapAdditionsKit.TypeAlias
+import struct	TapAdditionsKitV2.TypeAlias
 import class	UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class	UIKit.UIApplication.UIApplication
 import enum		UIKit.UIApplication.UIStatusBarStyle

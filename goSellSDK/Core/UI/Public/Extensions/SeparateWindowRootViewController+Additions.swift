@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	TapAdditionsKit.SeparateWindowRootViewController
+import class	TapAdditionsKitV2.SeparateWindowRootViewController
 import class	UIKit.UIApplication.UIApplication
 import enum		UIKit.UIApplication.UIStatusBarStyle
 

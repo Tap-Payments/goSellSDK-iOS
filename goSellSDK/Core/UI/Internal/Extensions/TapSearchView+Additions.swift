@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class TapSearchView.TapSearchView
+import class TapSearchViewV2.TapSearchView
 
 internal extension TapSearchView {
 	

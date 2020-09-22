@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class TapNetworkManager.TapNetworkRequestOperation
-import enum TapNetworkManager.TapURLModel
+import class TapNetworkManagerV2.TapNetworkRequestOperation
+import enum TapNetworkManagerV2.TapURLModel
 
 internal extension APIClient {
     

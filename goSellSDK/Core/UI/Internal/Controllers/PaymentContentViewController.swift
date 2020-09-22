@@ -6,8 +6,8 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
-import class    TapVisualEffectView.TapVisualEffectView
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapVisualEffectViewV2.TapVisualEffectView
 import class	UIKit.NSLayoutConstraint.NSLayoutConstraint
 import enum		UIKit.UIApplication.UIStatusBarStyle
 import class	UIKit.UIScreen.UIScreen

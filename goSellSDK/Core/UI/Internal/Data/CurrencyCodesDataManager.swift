@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct TapAdditionsKit.TypeAlias
+import struct TapAdditionsKitV2.TypeAlias
 
 /// Data manager to handle currency selection.
 internal class CurrencyCodesDataManager {

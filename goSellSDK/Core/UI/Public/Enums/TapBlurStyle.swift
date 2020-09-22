@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum	TapVisualEffectView.TapBlurEffectStyle
+import enum	TapVisualEffectViewV2.TapBlurEffectStyle
 
 /// Blur style.
 ///

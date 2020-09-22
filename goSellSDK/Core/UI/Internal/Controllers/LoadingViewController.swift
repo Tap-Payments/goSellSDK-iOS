@@ -6,10 +6,10 @@
 //
 
 import CoreGraphics
-import class    TapAdditionsKit.SeparateWindowRootViewController
-import struct   TapAdditionsKit.TypeAlias
-import class    TapGLKit.TapActivityIndicatorView
-import class    TapVisualEffectView.TapVisualEffectView
+import class    TapAdditionsKitV2.SeparateWindowRootViewController
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapGLKitV2.TapActivityIndicatorView
+import class    TapVisualEffectViewV2.TapVisualEffectView
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UIScreen.UIScreen
 import class    UIKit.UIStoryboard.UIStoryboard

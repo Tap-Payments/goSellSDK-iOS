@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapAdditionsKit.TypeAlias
+import struct	TapAdditionsKitV2.TypeAlias
 import class	UIKit.UIButton.UIButton
 import class	UIKit.UILabel.UILabel
 import class	UIKit.UIView.UIView

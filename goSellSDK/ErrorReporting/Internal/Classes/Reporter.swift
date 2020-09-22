@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	TapErrorReporting.ErrorReporter
-import protocol	TapErrorReporting.ErrorReporting
+import class	TapErrorReportingV2.ErrorReporter
+import protocol	TapErrorReportingV2.ErrorReporting
 
 internal final class Reporter {
 

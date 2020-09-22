@@ -6,9 +6,9 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
-import class    TapEditableView.TapEditableView
-import class    TapNibView.TapNibView
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapEditableViewV2.TapEditableView
+import class    TapNibViewV2.TapNibView
 import class    UIKit.UIEvent.UIEvent
 import class    UIKit.UILabel.UILabel
 import protocol UIKit.UITextInput.UIKeyInput

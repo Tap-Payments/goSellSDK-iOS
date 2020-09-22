@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	TapNibView.TapNibView
+import class	TapNibViewV2.TapNibView
 import class 	UIKit.UIButton.UIButton
 import class 	UIKit.UIView.UIView
 

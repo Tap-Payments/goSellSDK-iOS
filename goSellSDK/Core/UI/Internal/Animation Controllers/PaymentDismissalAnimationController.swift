@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapAdditionsKit.TypeAlias
-import class	TapVisualEffectView.TapVisualEffectView
+import struct	TapAdditionsKitV2.TypeAlias
+import class	TapVisualEffectViewV2.TapVisualEffectView
 import class	UIKit.UIDevice.UIDevice
 import class	UIKit.UIView.UIView
 import struct	UIKit.UIView.UIViewAnimationOptions
