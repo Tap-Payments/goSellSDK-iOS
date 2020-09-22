@@ -10,7 +10,7 @@ def shared_pods
     pod 'TapAdditionsKitV2'
     pod 'TapAlertViewControllerV2'
     pod 'TapApplicationV2'
-    pod 'TapBundleLocalizationV2'
+    pod 'TapBundleLocalization'
     pod 'TapCardValidator'
     pod 'TapEditableViewV2'
     pod 'TapErrorReportingV2'

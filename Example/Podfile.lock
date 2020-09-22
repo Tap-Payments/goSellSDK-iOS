@@ -6,15 +6,15 @@ PODS:
     - SwiftLint
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.2.30):
-    - goSellSDK/Core (= 2.2.30)
-  - goSellSDK/Core (2.2.30):
+  - goSellSDK (2.2.31):
+    - goSellSDK/Core (= 2.2.31)
+  - goSellSDK/Core (2.2.31):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
     - TapAdditionsKitV2
     - TapApplicationV2
-    - TapBundleLocalizationV2
+    - TapBundleLocalization
     - TapCardValidator
     - TapEditableViewV2
     - TapFontsKitV2
@@ -26,7 +26,7 @@ PODS:
     - TapSearchViewV2
     - TapSwiftFixes/Threading
     - TapVisualEffectViewV2
-  - goSellSDK/ErrorReporting (2.2.30):
+  - goSellSDK/ErrorReporting (2.2.31):
     - goSellSDK/Core
     - TapErrorReportingV2
   - SDWebImage/Core (5.9.1)
@@ -46,8 +46,6 @@ PODS:
     - TapAdditionsKitV2
     - TapSwiftFixes/Threading
   - TapBundleLocalization (1.0.3)
-  - TapBundleLocalizationV2 (0.0.2):
-    - SwiftLint
   - TapCardValidator (1.2.6)
   - TapEditableViewV2 (0.0.1):
     - SwiftLint
@@ -58,7 +56,7 @@ PODS:
     - TapApplicationV2
     - TapBundleLocalization
     - TapNetworkManagerV2
-  - TapFontsKitV2 (0.0.1):
+  - TapFontsKitV2 (0.0.2):
     - SwiftLint
     - TapAdditionsKitV2
     - TapSwiftFixes/Threading
@@ -105,7 +103,6 @@ SPEC REPOS:
     - TapAlertViewControllerV2
     - TapApplicationV2
     - TapBundleLocalization
-    - TapBundleLocalizationV2
     - TapCardValidator
     - TapEditableViewV2
     - TapErrorReportingV2
@@ -128,7 +125,7 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 1a58f373146cba9cf570e28ae84f44f3d342da00
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: 4969d67a63f38783bf72027092edae46c846e174
+  goSellSDK: 2d3d9cdd1f3d818784aef8714fa04778edac0807
   SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SwiftLint: 1216c910d27c2633ade33b4f071bb6b930982e62
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
@@ -136,11 +133,10 @@ SPEC CHECKSUMS:
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: d5299d0f5bac323ece9a3f03605d8ab0b59d4b66
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
-  TapBundleLocalizationV2: cda201bbe0b7123cbb0250138e8623d25d234663
   TapCardValidator: 8d43b6e8a1a78276c03116a5b625041adeffeb0d
   TapEditableViewV2: 7633cd81625b76634b3d4d82a3b660a4de6efbe2
   TapErrorReportingV2: 31fb33acd175b5c670fe07ca487f924fc0f7d11d
-  TapFontsKitV2: 66585b322632c7c03d5a07528bbdd9349d69bbd3
+  TapFontsKitV2: 4f6452a0be663583b75e2c26dc1656079f3cb17b
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
   TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
   TapNetworkManagerV2: 13c970d1fdb0f3f54065e8b608db3917e89c7d07
