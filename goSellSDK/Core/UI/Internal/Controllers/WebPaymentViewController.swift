@@ -6,8 +6,8 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
-import class    TapNetworkManager.TapImageLoader
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapNetworkManagerV2.TapImageLoader
 import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIImage.UIImage
 import class    UIKit.UIScreen.UIScreen

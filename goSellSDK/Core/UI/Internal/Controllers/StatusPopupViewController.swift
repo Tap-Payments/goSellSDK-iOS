@@ -6,8 +6,8 @@
 //
 
 import CoreGraphics
-import class    TapAdditionsKit.SeparateWindowRootViewController
-import struct   TapAdditionsKit.TypeAlias
+import class    TapAdditionsKitV2.SeparateWindowRootViewController
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIImage.UIImage
 import class    UIKit.UIImageView.UIImageView

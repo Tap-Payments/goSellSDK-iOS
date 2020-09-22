@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum TapFontsKit.TapFont
+import enum TapFontsKitV2.TapFont
 
 // MARK: - Decodable
 extension TapFont: Decodable {

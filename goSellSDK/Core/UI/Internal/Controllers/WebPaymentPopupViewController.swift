@@ -6,8 +6,8 @@
 //
 
 import CoreGraphics
-import class    TapAdditionsKit.SeparateWindowRootViewController
-import struct   TapAdditionsKit.TypeAlias
+import class    TapAdditionsKitV2.SeparateWindowRootViewController
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIStoryboard.UIStoryboard
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue

@@ -6,7 +6,7 @@
 //
 
 import class    CardIO.CardIOUtilities.CardIOUtilities
-import class    TapApplication.TapApplicationPlistInfo
+import class    TapApplicationV2.TapApplicationPlistInfo
 import struct	TapBundleLocalization.LocalizationKey
 import enum     TapCardValidator.CardBrand
 import struct   TapCardValidator.DefinedCardBrand

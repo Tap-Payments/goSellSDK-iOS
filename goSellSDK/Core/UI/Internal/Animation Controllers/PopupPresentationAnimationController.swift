@@ -6,8 +6,8 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
-import class    TapVisualEffectView.TapVisualEffectView
+import struct   TapAdditionsKitV2.TypeAlias
+import     TapVisualEffectViewV2
 import class    UIKit.UIColor.CGColor
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIResponder.UIResponder
@@ -16,7 +16,6 @@ import struct   UIKit.UIView.UIViewKeyframeAnimationOptions
 import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerContextTransitioning
-import enum     TapVisualEffectView.TapBlurEffectStyle
 
 internal class PopupPresentationAnimationController: NSObject {
     

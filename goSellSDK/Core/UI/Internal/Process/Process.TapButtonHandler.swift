@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapAdditionsKit.TypeAlias
+import struct	TapAdditionsKitV2.TypeAlias
 
 private var tap_processTapButtonHandlerAmountKey: UInt8 = 0
 private var tap_processTapButtonHandlerProcessKey: UInt8 = 0

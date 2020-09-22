@@ -6,8 +6,8 @@
 //
 
 import struct   CoreGraphics.CGGeometry.CGRect
-import struct   TapAdditionsKit.TypeAlias
-import class    TapVisualEffectView.TapVisualEffectView
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapVisualEffectViewV2.TapVisualEffectView
 import class	UIKit.UIColor.UIColor
 import class    UIKit.UINavigationController.UINavigationController
 import protocol UIKit.UINavigationController.UINavigationControllerDelegate

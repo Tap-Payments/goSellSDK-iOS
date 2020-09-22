@@ -6,9 +6,9 @@
 //
 
 import CoreGraphics
-import func     TapAdditionsKit.tap_clamp
-import protocol TapSearchView.TapSearchUpdating
-import class    TapSearchView.TapSearchView
+import func     TapAdditionsKitV2.tap_clamp
+import protocol TapSearchViewV2.TapSearchUpdating
+import class    TapSearchViewV2.TapSearchView
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIColor.UIColor
 import struct   UIKit.UIGeometry.UIEdgeInsets

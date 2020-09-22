@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import protocol	TapAdditionsKit.ClassProtocol
+import protocol	TapAdditionsKitV2.ClassProtocol
 
 internal class WeaklyWrapped<Object: NSObjectProtocol> {
 	

@@ -6,11 +6,11 @@
 //
 
 import CoreGraphics
-import func     TapAdditionsKit.tap_clamp
-import protocol TapAdditionsKit.ClassProtocol
+import func     TapAdditionsKitV2.tap_clamp
+import protocol TapAdditionsKitV2.ClassProtocol
 import struct	TapBundleLocalization.LocalizationKey
-import class    TapEditableView.TapEditableView
-import protocol TapEditableView.TapEditableViewDelegate
+import class    TapEditableViewV2.TapEditableView
+import protocol TapEditableViewV2.TapEditableViewDelegate
 import class	UIKit.UIPickerView.UIPickerView
 import protocol	UIKit.UIPickerView.UIPickerViewDataSource
 import protocol	UIKit.UIPickerView.UIPickerViewDelegate

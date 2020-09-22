@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class TapNetworkManager.TapImageLoader
+import class TapNetworkManagerV2.TapImageLoader
 import class UIKit.UIImage.UIImage
 
 internal class ImageTableViewCellModel: TableViewCellViewModel {

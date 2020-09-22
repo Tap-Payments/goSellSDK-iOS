@@ -6,12 +6,12 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class    TapApplication.TapApplicationPlistInfo
-import class    TapApplication.TapBundlePlistInfo
+import class    TapApplicationV2.TapApplicationPlistInfo
+import class    TapApplicationV2.TapBundlePlistInfo
 import func     TapSwiftFixes.performOnBackgroundThread
 import func     TapSwiftFixes.performOnMainThread
-import class    TapNetworkManager.TapNetworkManager
-import class    TapNetworkManager.TapNetworkRequestOperation
+import class    TapNetworkManagerV2.TapNetworkManager
+import class    TapNetworkManagerV2.TapNetworkRequestOperation
 import class    UIKit.UIDevice.UIDevice
 import CoreTelephony
 /// API client.

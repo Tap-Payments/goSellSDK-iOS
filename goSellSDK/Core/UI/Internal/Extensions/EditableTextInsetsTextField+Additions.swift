@@ -1,11 +1,11 @@
 //
-//  EditableTextInsetsTextField.swift
+//  EditableTextInsetsTextFieldV2.swift
 //  goSellSDK
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	EditableTextInsetsTextField.EditableTextInsetsTextField
+import class	EditableTextInsetsTextFieldV2.EditableTextInsetsTextField
 
 internal extension EditableTextInsetsTextField {
 	

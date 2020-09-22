@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapAdditionsKit.TypeAlias
-import enum		TapVisualEffectView.TapBlurEffectStyle
+import struct	TapAdditionsKitV2.TypeAlias
+import enum		TapVisualEffectViewV2.TapBlurEffectStyle
 import class	UIKit.UIImage.UIImage
 
 /// Process class.

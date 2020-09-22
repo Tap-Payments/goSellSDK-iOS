@@ -5,9 +5,9 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct   TapAdditionsKit.TypeAlias
-import class    TapGLKit.TapActivityIndicatorView
-import class    TapNibView.TapNibView
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapGLKitV2.TapActivityIndicatorView
+import class    TapNibViewV2.TapNibView
 import func     TapSwiftFixes.performOnMainThread
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIView.UIView

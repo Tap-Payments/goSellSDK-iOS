@@ -11,7 +11,7 @@ import protocol	QuartzCore.CALayer.CAAction
 import class	QuartzCore.CALayer.CALayer
 import protocol	QuartzCore.CALayer.CALayerDelegate
 import var		QuartzCore.CAGradientLayer.kCAGradientLayerAxial
-import struct   TapAdditionsKit.TypeAlias
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class	UIKit.UIColor.UIColor
 import struct   UIKit.UIGeometry.UIEdgeInsets

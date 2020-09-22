@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import protocol TapAdditionsKit.ClassProtocol
+import protocol TapAdditionsKitV2.ClassProtocol
 import class UIKit.UITextField.UITextField
 
 /// Data validation protocol.

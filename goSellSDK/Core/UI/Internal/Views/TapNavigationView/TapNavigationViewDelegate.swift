@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import protocol TapAdditionsKit.ClassProtocol
+import protocol TapAdditionsKitV2.ClassProtocol
 
 /// Delegate for TapNavigationView class.
 internal protocol TapNavigationViewDelegate: ClassProtocol {

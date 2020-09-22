@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import protocol TapAdditionsKit.ClassProtocol
-import struct   TapAdditionsKit.TypeAlias
+import protocol TapAdditionsKitV2.ClassProtocol
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIView.UIView
 

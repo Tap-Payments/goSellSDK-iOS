@@ -6,7 +6,7 @@
 //
 
 import enum TapCardValidator.CardBrand
-import class TapNetworkManager.TapImageLoader
+import class TapNetworkManagerV2.TapImageLoader
 import class UIKit.UIImage.UIImage
 
 internal class WebPaymentOptionTableViewCellModel: PaymentOptionTableCellViewModel {

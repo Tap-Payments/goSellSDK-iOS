@@ -6,7 +6,7 @@
 //
 
 import struct   CoreGraphics.CGGeometry.CGPoint
-import protocol TapAdditionsKit.ClassProtocol
+import protocol TapAdditionsKitV2.ClassProtocol
 
 internal protocol WebPaymentContentViewControllerDelegate: ClassProtocol {
     

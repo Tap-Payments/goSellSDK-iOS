@@ -6,9 +6,9 @@
 //
 
 import CoreGraphics
-import struct	TapAdditionsKit.TypeAlias
-import class	TapNetworkManager.TapImageLoader
-import class	TapNibView.TapNibView
+import struct	TapAdditionsKitV2.TypeAlias
+import class	TapNetworkManagerV2.TapImageLoader
+import class	TapNibViewV2.TapNibView
 import class	UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class	UIKit.UIButton.UIButton
 import class	UIKit.UIImage.UIImage

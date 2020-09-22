@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import protocol	TapErrorReporting.OrientationHandler
+import protocol	TapErrorReportingV2.OrientationHandler
 
 // MARK: - OrientationHandler
 extension InterfaceOrientationManager: OrientationHandler {}

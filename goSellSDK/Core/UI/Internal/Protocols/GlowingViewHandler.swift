@@ -8,7 +8,7 @@
 import CoreGraphics
 import class    QuartzCore.CAAnimation.CABasicAnimation
 import class    QuartzCore.CALayer.CALayer
-import struct   TapAdditionsKit.TypeAlias
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIView.UIView
 

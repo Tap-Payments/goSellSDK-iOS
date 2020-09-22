@@ -6,8 +6,8 @@
 //
 
 import CoreGraphics
-import func     TapAdditionsKit.tap_clamp
-import struct   TapAdditionsKit.TypeAlias
+import func     TapAdditionsKitV2.tap_clamp
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIView.UIView
 

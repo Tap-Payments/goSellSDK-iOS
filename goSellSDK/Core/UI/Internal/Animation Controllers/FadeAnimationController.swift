@@ -6,9 +6,9 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
-import enum     TapVisualEffectView.TapBlurEffectStyle
-import class    TapVisualEffectView.TapVisualEffectView
+import struct   TapAdditionsKitV2.TypeAlias
+import enum     TapVisualEffectViewV2.TapBlurEffectStyle
+import class    TapVisualEffectViewV2.TapVisualEffectView
 import class    UIKit.UIView.UIView
 import struct   UIKit.UIView.UIViewAnimationOptions
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning

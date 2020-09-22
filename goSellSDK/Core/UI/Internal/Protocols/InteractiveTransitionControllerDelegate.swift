@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
+import struct   TapAdditionsKitV2.TypeAlias
 
 @objc internal protocol InteractiveTransitionControllerDelegate: NSObjectProtocol {
     

@@ -6,9 +6,9 @@
 //
 
 import CoreGraphics
-import class    EditableTextInsetsTextField.EditableTextInsetsTextField
-import struct   TapAdditionsKit.TypeAlias
-import class    TapEditableView.TapEditableView
+import class    EditableTextInsetsTextFieldV2.EditableTextInsetsTextField
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapEditableViewV2.TapEditableView
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UICollectionView.UICollectionView

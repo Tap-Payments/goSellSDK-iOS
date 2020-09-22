@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import struct   TapAdditionsKit.TypeAlias
-import class    TapVisualEffectView.TapVisualEffectView
+import struct   TapAdditionsKitV2.TypeAlias
+import class    TapVisualEffectViewV2.TapVisualEffectView
 
 internal final class AsyncResponseViewController: SeparateWindowViewController {
     

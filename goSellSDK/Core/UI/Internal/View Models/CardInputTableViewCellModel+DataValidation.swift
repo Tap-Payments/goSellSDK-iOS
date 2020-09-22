@@ -7,8 +7,8 @@
 
 import enum     TapCardValidator.CardBrand
 import struct   TapCardValidator.DefinedCardBrand
-import class    TapEditableView.TapEditableView
-import struct    TapAdditionsKit.TypeAlias
+import class    TapEditableViewV2.TapEditableView
+import struct    TapAdditionsKitV2.TypeAlias
 import class    UIKit.UILabel.UILabel
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UISwitch.UISwitch

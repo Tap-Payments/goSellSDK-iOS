@@ -6,7 +6,7 @@
 //
 
 import CoreGraphics
-import struct   TapAdditionsKit.TypeAlias
+import struct   TapAdditionsKitV2.TypeAlias
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIButton.UIButton
@@ -23,7 +23,7 @@ import class    UIKit.UIViewController.UIViewController
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerAnimatedTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerInteractiveTransitioning
 import protocol UIKit.UIViewControllerTransitioning.UIViewControllerTransitioningDelegate
-import class    TapVisualEffectView.TapVisualEffectView
+import class    TapVisualEffectViewV2.TapVisualEffectView
 
 /// View controller that handles Tap OTP input.
 internal final class OTPViewController: SeparateWindowViewController {
