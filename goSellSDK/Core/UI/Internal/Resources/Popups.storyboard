@@ -24,14 +24,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAu-b0-Oes">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-Sy-KrK" customClass="TapVisualEffectView" customModule="TapVisualEffectView">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-Sy-KrK" customClass="TapVisualEffectView" customModule="TapVisualEffectViewV2">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-y2-vBG">
                                         <rect key="frame" x="25" y="297.5" width="325" height="72.5"/>
                                         <subviews>
-                                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-86-atf" customClass="TapActivityIndicatorView" customModule="TapGLKit">
+                                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-86-atf" customClass="TapActivityIndicatorView" customModule="TapGLKitV2">
                                                 <rect key="frame" x="144" y="0.0" width="37" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="37" id="nmn-m1-ro9"/>
@@ -55,7 +55,7 @@
                                             <constraint firstAttribute="trailing" secondItem="tvm-9s-RMI" secondAttribute="trailing" id="jS4-pB-qVM"/>
                                         </constraints>
                                     </view>
-                                    <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hs2-rG-qv8" customClass="LinearGradientView" customModule="TapGLKit">
+                                    <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hs2-rG-qv8" customClass="LinearGradientView" customModule="TapGLKitV2">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="eCZ-a1-lLG"/>
