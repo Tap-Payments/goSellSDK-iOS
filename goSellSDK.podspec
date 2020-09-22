@@ -22,7 +22,7 @@ Pod::Spec.new do |goSellSDK|
 		core.dependency 'EditableTextInsetsTextFieldV2'
 		core.dependency 'TapAdditionsKitV2'
 		core.dependency 'TapApplicationV2'
-		core.dependency	'TapBundleLocalizationV2'
+		core.dependency	'TapBundleLocalization'
 		core.dependency 'TapCardValidator'
 		core.dependency 'TapEditableViewV2'
 		core.dependency 'TapFontsKitV2'
