@@ -6,9 +6,9 @@ PODS:
     - SwiftLint
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.2.32):
-    - goSellSDK/Core (= 2.2.32)
-  - goSellSDK/Core (2.2.32):
+  - goSellSDK (2.2.33):
+    - goSellSDK/Core (= 2.2.33)
+  - goSellSDK/Core (2.2.33):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -26,11 +26,11 @@ PODS:
     - TapSearchViewV2
     - TapSwiftFixes/Threading
     - TapVisualEffectViewV2
-  - goSellSDK/ErrorReporting (2.2.32):
+  - goSellSDK/ErrorReporting (2.2.33):
     - goSellSDK/Core
     - TapErrorReportingV2
   - SDWebImage/Core (5.9.1)
-  - SwiftLint (0.40.2)
+  - SwiftLint (0.40.3)
   - SwiftyRSA (1.6.0):
     - SwiftyRSA/ObjC (= 1.6.0)
   - SwiftyRSA/ObjC (1.6.0)
@@ -125,9 +125,9 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 1a58f373146cba9cf570e28ae84f44f3d342da00
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: 040e6ad0b702eb0a289895d75042b90856fe9d40
+  goSellSDK: d0fc7a473036ce923ac5eaccf5c10ec7c3de6f5d
   SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
-  SwiftLint: 1216c910d27c2633ade33b4f071bb6b930982e62
+  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
   TapAdditionsKitV2: 5752ee6837d690d4f38449d83155ab631fc4fc13
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
