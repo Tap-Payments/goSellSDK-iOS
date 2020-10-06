@@ -266,6 +266,39 @@ internal extension Process {
         }
         
         
+        internal func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption? = nil)
+        {
+            self.isExecutingAPICalls = true
+            
+            APIClient.shared.createToken(with: applePayTokenRequest) { [weak self] (token, error) in
+                
+                self?.isExecutingAPICalls = false
+                
+                if let nonnullError = error {
+                    
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?(nonnullError.description, on: Process.shared.externalSession!)
+                    }
+                }
+                else if let nonnullToken = token {
+                    if let nonNullPaymentOption = paymentOption {
+                        self?.didReceive(nonnullToken, from: applePayTokenRequest, paymentOption: nonNullPaymentOption, saveCard: false)
+                    }else {
+                        if let delegate = Process.shared.externalSession?.delegate
+                        {
+                            delegate.applePaymentTokenizationSucceeded?(nonnullToken, on: Process.shared.externalSession!)
+                        }
+                    }
+                }else {
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?("Cannot create the request.", on: Process.shared.externalSession!)
+                    }
+                }
+            }
+        }
+        
         
 	
 		// MARK: - Internal -
@@ -462,11 +495,6 @@ internal extension Process {
 			
 			fatalError("Must be implemented in extension")
 		}
-        
-        internal func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption?)
-        {
-            fatalError("Must be impleneted in extenstion")
-        }
         
         
         internal func callChargeApplePayAPI(for session: SessionProtocol) {
@@ -763,37 +791,7 @@ internal extension Process {
             session.delegate?.applePaymentSucceed?("You will get back the charge object back", on: session)
         }
         
-        
-        internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption? = nil)
-        {
-            self.isExecutingAPICalls = true
-            
-            APIClient.shared.createToken(with: applePayTokenRequest) { [weak self] (token, error) in
-                
-                self?.isExecutingAPICalls = false
-                
-                if let nonnullError = error {
-                    
-                    if let delegate = Process.shared.externalSession?.delegate
-                    {
-                        delegate.applePaymentTokenizationFailed?(nonnullError.description, on: Process.shared.externalSession!)
-                    }
-                }
-                else if let nonnullToken = token {
-                    if let delegate = Process.shared.externalSession?.delegate
-                    {
-                        delegate.applePaymentTokenizationSucceeded?(nonnullToken, on: Process.shared.externalSession!)
-                    }
-                }else {
-                    if let delegate = Process.shared.externalSession?.delegate
-                    {
-                        delegate.applePaymentTokenizationFailed?("Cannot create the request.", on: Process.shared.externalSession!)
-                    }
-                }
-            }
-        }
-        
-		internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
+        internal override func callChargeOrAuthorizeAPI(with source:					SourceRequest,
 														paymentOption:					PaymentOption,
 														token:							Token?,
 														cardBIN:						String?,
@@ -1264,32 +1262,6 @@ internal extension Process {
 			return (self.process.process.externalSession?.dataSource?.isSaveCardSwitchOnByDefault ?? true) && !self.didToggleSaveCardSwitchToOnAutomatically
 		}
         
-        
-        internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption?)
-        {
-            self.isExecutingAPICalls = true
-            
-            APIClient.shared.createToken(with: applePayTokenRequest) { [weak self] (token, error) in
-                
-                self?.isExecutingAPICalls = false
-                
-                if let nonnullError = error {
-                    
-                    if let delegate = Process.shared.externalSession?.delegate
-                    {
-                        delegate.applePaymentTokenizationFailed?(nonnullError.description, on: Process.shared.externalSession!)
-                    }
-                }
-                else if let nonnullToken = token {
-                    self?.didReceive(nonnullToken, from: applePayTokenRequest, paymentOption: paymentOption!, saveCard: false)
-                }else {
-                    if let delegate = Process.shared.externalSession?.delegate
-                    {
-                        delegate.applePaymentTokenizationFailed?("Cannot create the request.", on: Process.shared.externalSession!)
-                    }
-                }
-            }
-        }
 		
 		internal override func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
 			
