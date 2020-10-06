@@ -918,12 +918,14 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
         
         completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
         controller.dismiss(animated: true) {[weak self] in
-            //self?.startPayment(with: payment.token)
-            print("OSAMA");
-            /*if let session:SessionProtocol = Process.shared.externalSession
-             {
-             session.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(token)", on: session)
-             }*/
+            
+            
+            guard let applePayTokenRequest:CreateTokenWithApplePayRequest = self?.process.createApplePayTokenizationApiRequest(with: payment.token) else {
+                self?.cardTokenizationFailure(with: .init(type: .unknown))
+                return
+            }
+            
+            self?.dataManager.callApplePayTokenApi(with: applePayTokenRequest,paymentOption: Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel?.paymentOption)
         }
     }
 	
@@ -944,11 +946,11 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
             
             let request = CreateTokenWithCardDataRequest(card: card)
             self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: saveCard)
-        }else if let applePaymentOption = paymentOption as? ApplePaymentOptionTableViewCellModel { // the Apple pay option
+        }else if let _ = paymentOption as? ApplePaymentOptionTableViewCellModel { // the Apple pay option
             if self.dataManagerInterface.canStartApplePayPurchase()
             {
-                let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
                 
+                let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
                 if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
                 {
                     if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
