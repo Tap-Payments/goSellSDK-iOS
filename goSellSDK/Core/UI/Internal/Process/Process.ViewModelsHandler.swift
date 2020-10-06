@@ -643,8 +643,8 @@ internal extension Process {
 	final class CardTokenizationViewModelsHandler: ViewModelsHandler {
 		
 		internal override var selectedPaymentOptionCellViewModel: PaymentOptionCellViewModel? {
-			
-			return self.cardPaymentOptionsCellModel
+            
+			return self.lastSelectedPaymentOption
 		}
 		
 		internal override func restorePaymentOptionSelection() { }
@@ -688,11 +688,53 @@ internal extension Process {
 			
 			let currency = self.process.dataManagerInterface.selectedCurrency.currency
 			
+            var paymentNetworks = [PKPaymentNetwork.amex, PKPaymentNetwork.masterCard,  PKPaymentNetwork.visa]
+            if #available(iOS 12.0, *) {
+                paymentNetworks.append(contentsOf: [PKPaymentNetwork.electron,PKPaymentNetwork.maestro])
+            } else {
+                // Fallback on earlier versions
+            }
+            if #available(iOS 12.1.1, *) {
+                paymentNetworks.append(PKPaymentNetwork.mada)
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            
 			let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
 			let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
 			
+            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
+            let hasApplePaymentOption = applePaymentOptions.count > 0
+            let hasOtherPaymentOptions = hasApplePaymentOption
+            let displaysGroupTitles = hasOtherPaymentOptions
+            
 			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
 			
+            
+            if displaysGroupTitles {
+                
+                let othersGroupModel = self.groupCellModel(with: Constants.othersGroupModelKey)
+                othersGroupModel.indexPath = self.nextIndexPath(for: result)
+                result.append(othersGroupModel)
+            }
+            
+            if hasApplePaymentOption
+            {
+                let emptyModel = self.emptyCellModel(with: Constants.spaceBetweenCurrencyAndApplePayOptionsIdentifier)
+                emptyModel.indexPath = self.nextIndexPath(for: result)
+                
+                result.append(emptyModel)
+                
+                applePaymentOptions.forEach {
+                    
+                    let applePayModel = self.applePaymentCellModel(with: $0)
+                    applePayModel.indexPath = self.nextIndexPath(for: result)
+                    result.append(applePayModel)
+                }
+            }
+            
+            
 			if cardPaymentOptions.count > 0 {
 				
 				if Process.shared.appearance == .fullscreen {
@@ -712,6 +754,35 @@ internal extension Process {
 			
 			self.paymentOptionCellViewModels = result
 		}
+        
+        
+        
+        internal override func deselectAllPaymentOptionsModels(except model: PaymentOptionCellViewModel) {
+            
+            guard  model is ApplePaymentOptionTableViewCellModel || model is CardInputTableViewCellModel else {
+                
+                self.deselectAllPaymentOptionsModels()
+                self.process.buttonHandlerInterface.updateButtonState()
+                return
+            }
+           
+            
+            let allModels = self.ableToBeSelectedPaymentOptionCellModels
+            
+            allModels.forEach { $0.isSelected = $0 === model }
+            
+            self.lastSelectedPaymentOption = model
+            
+            self.process.buttonHandlerInterface.updateButtonState()
+            
+            if model.initiatesPaymentOnSelection {
+                
+                self.process.startPayment(with: model)
+                
+                self.deselectPaymentOption(model)
+            }
+        }
+        
 	}
 }
 

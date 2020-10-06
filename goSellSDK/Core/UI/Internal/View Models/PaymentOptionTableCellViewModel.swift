@@ -32,22 +32,18 @@ internal class PaymentOptionTableCellViewModel: TableViewCellViewModel, PaymentO
     }
     
     internal var affectsPayButtonState: Bool {
-        
         return false
     }
     
     internal var initiatesPaymentOnSelection: Bool {
-        
         return false
     }
     
     internal var paymentOption: PaymentOption? {
-        
         return nil
     }
 	
 	internal var errorCode: ErrorCode? {
-		
 		return nil
 	}
     

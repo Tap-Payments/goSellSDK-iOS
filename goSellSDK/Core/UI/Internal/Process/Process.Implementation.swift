@@ -898,19 +898,68 @@ internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process
 	}
 }
 
-internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode> {
+internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: Process.Implementation<HandlerMode>, PKPaymentAuthorizationViewControllerDelegate {
+   
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true) {
+            if let session:SessionProtocol = Process.shared.externalSession
+            {
+                session.delegate?.applePaymentCanceled?(on: session)
+            }
+            
+            //guard let strongSelf = self else { return }
+            //self?.dataManager.ale showMissingInformationAlert(with: "Payment Canceled", message: "User did not authorize the payment.")
+            //self?.closePayment(with: .cancelled, fadeAnimation: false, force: true, completion: nil)
+        }
+    }
+    
+    @available(iOS 11.0, *)
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        controller.dismiss(animated: true) {[weak self] in
+            //self?.startPayment(with: payment.token)
+            print("OSAMA");
+            /*if let session:SessionProtocol = Process.shared.externalSession
+             {
+             session.delegate?.applePaymentSucceed?("Method: \(paymentMethod.uppercased())\nTransID: \(transactionID)\nEncodedData: \(token)", on: session)
+             }*/
+        }
+    }
 	
 	internal override func startPayment(with paymentOption: PaymentOptionCellViewModel) {
 		
-		guard let cardPaymentOption = paymentOption as? CardInputTableViewCellModel, let card = cardPaymentOption.card else { return }
+        // We need to know if we are tokenizing Apple pay or Card
+        
+        guard paymentOption is ApplePaymentOptionTableViewCellModel || paymentOption is CardInputTableViewCellModel else { return }
+        
+        // Now tokenize based on the selected option
+        
+        // The card option
+        if let cardPaymentOption = paymentOption as? CardInputTableViewCellModel, let card = cardPaymentOption.card {
+            guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else { return }
+            
+            //Added by Floward tech team
+            let saveCard = cardPaymentOption.cell?.saveCardSwitch?.isOn ?? false
+            
+            let request = CreateTokenWithCardDataRequest(card: card)
+            self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: saveCard)
+        }else if let applePaymentOption = paymentOption as? ApplePaymentOptionTableViewCellModel { // the Apple pay option
+            if self.dataManagerInterface.canStartApplePayPurchase()
+            {
+                let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
+                
+                if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
+                {
+                    if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
+                        applePayController.delegate = self
+                        topController.present(applePayController, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        		
 		
-		guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else { return }
-		
-		//Added by Floward tech team
-		let saveCard = cardPaymentOption.cell?.saveCardSwitch?.isOn ?? false
-		
-		let request = CreateTokenWithCardDataRequest(card: card)
-		self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: saveCard)
 	}
 	
 	internal override func closePayment(with status: PaymentStatus, fadeAnimation: Bool, force: Bool, completion: TypeAlias.ArgumentlessClosure?) {

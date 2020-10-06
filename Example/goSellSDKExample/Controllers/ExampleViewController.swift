@@ -54,6 +54,7 @@ import class    UIKit.UIView.UIView
 import class    UIKit.UIViewController.UIViewController
 import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
+import goSellSDK
 import UIKit
 
 internal class ExampleViewController: BaseViewController {

@@ -13,7 +13,7 @@ import Foundation
     
     var cardType:cardTypes = .All
     
-      init(cardTypeString:String) {
+      public init(cardTypeString:String) {
         if cardTypeString.lowercased() == "credit"
         {
             self.cardType = .Credit
