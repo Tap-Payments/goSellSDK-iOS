@@ -166,7 +166,6 @@ extension AsyncPaymentResultView:TapButtonDelegate
     }
     
     func buttonTouchUpInside() {
-        print("OSAMA")
         if let nonNullCharge:ChargeProtocol = Process.shared.dataManagerInterface.currentChargeOrAuthorize
         {
            // let charge: = Charge(identifier: "", apiVersion: nonNullCharge.apiVersion, amount: nonNullCharge.amount, currency: nonNullCharge.currency, customer: nonNullCharge.customer, isLiveMode: nonNullCharge.isLiveMode, cardSaved: nonNullCharge.cardSaved, object: nonNullCharge.object, authentication: nonNullCharge.authentication, redirect: nonNullCharge.redirect, post: nonNullCharge.post, card: nonNullCharge.card, source: nonNullCharge.source, destinations: nonNullCharge.destinations, status: nonNullCharge.status, requires3DSecure: nonNullCharge.requires3DSecure, transactionDetails: nonNullCharge.transactionDetails, descriptionText: nonNullCharge.descriptionText, metadata: nonNullCharge.metadata, reference: nonNullCharge.reference, receiptSettings: nonNullCharge.receiptSettings, acquirer: nonNullCharge.acquirer, response: nonNullCharge.response, statementDescriptor: nonNullCharge.statementDescriptor)

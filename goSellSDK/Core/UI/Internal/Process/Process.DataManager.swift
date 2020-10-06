@@ -53,7 +53,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	
     func createApplePayRequest() -> PKPaymentRequest
     func canStartApplePayPurchase() -> Bool
-    func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+    func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption?)
     
 	func callChargeOrAuthorizeAPI(with source:						SourceRequest,
 								  paymentOption:					PaymentOption,
@@ -295,7 +295,7 @@ internal extension Process {
 			fatalError("Must be implemented in extension")
 		}
         
-        internal func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+        internal func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption?)
         {
             fatalError("Must be impleneted in extenstion")
         }
@@ -772,7 +772,7 @@ internal extension Process {
         }
         
         
-        internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest)
+        internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption? = nil)
         {
             self.isExecutingAPICalls = true
             
@@ -1448,6 +1448,33 @@ internal extension Process {
 			
 			return (self.process.process.externalSession?.dataSource?.isSaveCardSwitchOnByDefault ?? true) && !self.didToggleSaveCardSwitchToOnAutomatically
 		}
+        
+        
+        internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption?)
+        {
+            self.isExecutingAPICalls = true
+            
+            APIClient.shared.createToken(with: applePayTokenRequest) { [weak self] (token, error) in
+                
+                self?.isExecutingAPICalls = false
+                
+                if let nonnullError = error {
+                    
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?(nonnullError.description, on: Process.shared.externalSession!)
+                    }
+                }
+                else if let nonnullToken = token {
+                    self?.didReceive(nonnullToken, from: applePayTokenRequest, paymentOption: paymentOption!, saveCard: false)
+                }else {
+                    if let delegate = Process.shared.externalSession?.delegate
+                    {
+                        delegate.applePaymentTokenizationFailed?("Cannot create the request.", on: Process.shared.externalSession!)
+                    }
+                }
+            }
+        }
 		
 		internal override func didReceive(_ token: Token, from request: CreateTokenRequest, paymentOption: PaymentOption, saveCard: Bool?) {
 			
