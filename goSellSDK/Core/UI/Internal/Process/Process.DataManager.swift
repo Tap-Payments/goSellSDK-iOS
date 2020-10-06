@@ -88,8 +88,157 @@ internal extension Process {
     class DataManager: NSObject,DataManagerInterface
     {
         
-        internal func createApplePayRequest() -> PKPaymentRequest {
-            fatalError("Must be implemented in extension")
+        /**
+         The method creates a valid apple pay request to be used inside the apple pay sheet. It will convert TAP payment networks and Merchant items to understandable information by Apple Pay Kit
+         - Returns: A PKPaymentRequest that wrapes the merchant's items and Tap's payment networks
+         */
+        internal func createApplePayRequest() -> PKPaymentRequest
+        {
+            guard
+                
+                let dataSource    = self.process.process.externalSession?.dataSource,
+                let customer    = dataSource.customer,
+                let applePaymentOption:ApplePaymentOptionTableViewCellModel = Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel as? ApplePaymentOptionTableViewCellModel else {
+                
+                fatalError("This case should never happen.")
+            }
+            
+            
+            let request = PKPaymentRequest()
+            //
+            request.supportedNetworks = applePaymentOption.applePayMappedSupportedNetworks
+            //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
+            request.merchantCapabilities = [PKMerchantCapability.capability3DS]
+            if let session = Process.shared.externalSession?.dataSource
+            {
+                let countryCode = self.merchnantCountryCode
+                
+                if let merchantID = session.applePayMerchantID
+                {
+                    request.merchantIdentifier = merchantID
+                }else
+                {
+                    request.merchantIdentifier = "merchant.tap.gosell"
+                }
+                request.countryCode = countryCode
+            }
+            
+            
+            
+            print("Networks \(request.supportedNetworks)")
+            request.currencyCode = self.selectedCurrency.currency.isoCode.uppercased()
+            request.paymentSummaryItems = []
+            let contact:PKContact = PKContact.init()
+            contact.name = PersonNameComponents.init()
+            
+            if let phoneNumber = customer.phoneNumber?.phoneNumber
+            {
+                contact.phoneNumber = CNPhoneNumber(stringValue:"+\(customer.phoneNumber?.isdNumber ?? "")\(phoneNumber)")
+            }
+            if let firstName = customer.firstName
+            {
+                contact.name?.givenName = firstName
+            }
+            if let lastName = customer.lastName
+            {
+                contact.name?.familyName = lastName
+            }
+            request.billingContact = contact
+            var totalValue:Decimal = 0
+            
+            
+            /*if let newCurrenself.supportedCurrencies.first(where: { $0.currency == currency })
+             {
+             
+             }
+             let currency = nonnullPaymentOptionsResponse.currency
+             
+             if let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) {
+             
+             return amountedCurrency
+             }
+             else {
+             
+             return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
+             }*/
+            
+            // Check if items are provided, we need to add them to Apple pay sheet
+            if let paymentItems:[PaymentItem] = dataSource.items ?? nil
+            {
+                for item:PaymentItem in paymentItems
+                {
+                    var convertedPaymentItemPrice:Decimal = item.totalItemAmount
+                    
+                    if let userCurrency = self.userSelectedCurrency
+                    {
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
+                        
+                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    }
+                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                    //totalValue += convertedPaymentItemPrice
+                    
+                }
+            }
+            
+            
+            // Check if shipping are provided, we need to add them to Apple pay sheet
+            if let shippingItem:[Shipping] = dataSource.shipping ?? nil
+            {
+                for item:Shipping in shippingItem
+                {
+                    var convertedPaymentItemPrice:Decimal = item.amount
+                    
+                    if let userCurrency = self.userSelectedCurrency
+                    {
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
+                        
+                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    }
+                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.name, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                    //totalValue += convertedPaymentItemPrice
+                    
+                }
+            }
+            
+            
+            // Check if shipping are provided, we need to add them to Apple pay sheet
+            if let taxesItem:[Tax] = dataSource.taxes ?? nil
+            {
+                for item:Tax in taxesItem
+                {
+                    var convertedPaymentItemPrice:Decimal = item.amount.value
+                    
+                    if let userCurrency = self.userSelectedCurrency
+                    {
+                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
+                        
+                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
+                    }
+                    if item.amount.type == AmountModificatorType.fixedAmount {
+                        request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
+                    }
+                    //totalValue += convertedPaymentItemPrice
+                }
+            }
+            
+            
+            // Make sure total paid amount matches the original total amount
+            if let userCurrency = self.userSelectedCurrency
+            {
+                totalValue = userCurrency.amount
+            }else
+            {
+                totalValue = transactionCurrency.amount
+            }
+            
+            request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
+            
+            
+            //self.process.dataManagerInterface.transactionCurrency
+            
+            
+            return request
         }
         
         /**
@@ -613,159 +762,6 @@ internal extension Process {
         internal override func callChargeApplePayAPI(for session: SessionProtocol) {
             session.delegate?.applePaymentSucceed?("You will get back the charge object back", on: session)
         }
-        /**
-         The method creates a valid apple pay request to be used inside the apple pay sheet. It will convert TAP payment networks and Merchant items to understandable information by Apple Pay Kit
-         - Returns: A PKPaymentRequest that wrapes the merchant's items and Tap's payment networks
-         */
-        internal override func createApplePayRequest() -> PKPaymentRequest
-        {
-            guard
-                
-                let dataSource    = self.process.process.externalSession?.dataSource,
-                let customer    = dataSource.customer,
-                let applePaymentOption:ApplePaymentOptionTableViewCellModel = Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel as? ApplePaymentOptionTableViewCellModel,
-                let _     = self.orderIdentifier else {
-                    
-                    fatalError("This case should never happen.")
-            }
-            
-            
-            let request = PKPaymentRequest()
-             //
-            request.supportedNetworks = applePaymentOption.applePayMappedSupportedNetworks
-            //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
-            request.merchantCapabilities = [PKMerchantCapability.capability3DS]
-            if let session = Process.shared.externalSession?.dataSource
-            {
-                let countryCode = self.merchnantCountryCode
-                
-                if let merchantID = session.applePayMerchantID
-                {
-                    request.merchantIdentifier = merchantID
-                }else
-                {
-                    request.merchantIdentifier = "merchant.tap.gosell"
-                }
-                request.countryCode = countryCode
-            }
-            
-            
-            
-            print("Networks \(request.supportedNetworks)")
-            request.currencyCode = self.selectedCurrency.currency.isoCode.uppercased()
-            request.paymentSummaryItems = []
-            let contact:PKContact = PKContact.init()
-            contact.name = PersonNameComponents.init()
-            
-            if let phoneNumber = customer.phoneNumber?.phoneNumber
-            {
-                contact.phoneNumber = CNPhoneNumber(stringValue:"+\(customer.phoneNumber?.isdNumber ?? "")\(phoneNumber)")
-            }
-            if let firstName = customer.firstName
-            {
-                contact.name?.givenName = firstName
-            }
-            if let lastName = customer.lastName
-            {
-                contact.name?.familyName = lastName
-            }
-            request.billingContact = contact
-            var totalValue:Decimal = 0
-            
-            
-            /*if let newCurrenself.supportedCurrencies.first(where: { $0.currency == currency })
-            {
-                
-            }
-            let currency = nonnullPaymentOptionsResponse.currency
-            
-            if let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) {
-                
-                return amountedCurrency
-            }
-            else {
-                
-                return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
-            }*/
-            
-            // Check if items are provided, we need to add them to Apple pay sheet
-            if let paymentItems:[PaymentItem] = dataSource.items ?? nil
-            {
-                for item:PaymentItem in paymentItems
-                {
-                    var convertedPaymentItemPrice:Decimal = item.totalItemAmount
-                    
-                    if let userCurrency = self.userSelectedCurrency
-                    {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
-                        
-                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
-                    }
-                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    //totalValue += convertedPaymentItemPrice
-                    
-                }
-            }
-            
-            
-            // Check if shipping are provided, we need to add them to Apple pay sheet
-            if let shippingItem:[Shipping] = dataSource.shipping ?? nil
-            {
-                for item:Shipping in shippingItem
-                {
-                    var convertedPaymentItemPrice:Decimal = item.amount
-                    
-                    if let userCurrency = self.userSelectedCurrency
-                    {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
-                        
-                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
-                    }
-                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.name, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    //totalValue += convertedPaymentItemPrice
-                    
-                }
-            }
-            
-            
-            // Check if shipping are provided, we need to add them to Apple pay sheet
-            if let taxesItem:[Tax] = dataSource.taxes ?? nil
-            {
-                for item:Tax in taxesItem
-                {
-                    var convertedPaymentItemPrice:Decimal = item.amount.value
-                    
-                    if let userCurrency = self.userSelectedCurrency
-                    {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
-                        
-                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
-                    }
-                    if item.amount.type == AmountModificatorType.fixedAmount {
-                        request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    }
-                    //totalValue += convertedPaymentItemPrice
-                }
-            }
-            
-            
-            // Make sure total paid amount matches the original total amount
-                if let userCurrency = self.userSelectedCurrency
-                {
-                    totalValue = userCurrency.amount
-                }else
-                {
-                    totalValue = transactionCurrency.amount
-                }
-                
-                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
-            
-            
-            //self.process.dataManagerInterface.transactionCurrency
-            
-            
-            return request
-        }
         
         
         internal override func callApplePayTokenApi(with applePayTokenRequest:CreateTokenWithApplePayRequest, paymentOption:PaymentOption? = nil)
@@ -1212,160 +1208,7 @@ internal extension Process {
 	
 	final class CardTokenizationDataManager: DataManager {
         
-        /**
-         The method creates a valid apple pay request to be used inside the apple pay sheet. It will convert TAP payment networks and Merchant items to understandable information by Apple Pay Kit
-         - Returns: A PKPaymentRequest that wrapes the merchant's items and Tap's payment networks
-         */
-        internal override func createApplePayRequest() -> PKPaymentRequest
-        {
-            guard
-                
-                let dataSource    = self.process.process.externalSession?.dataSource,
-                let customer    = dataSource.customer,
-                let applePaymentOption:ApplePaymentOptionTableViewCellModel = Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel as? ApplePaymentOptionTableViewCellModel else {
-                
-                fatalError("This case should never happen.")
-            }
-            
-            
-            let request = PKPaymentRequest()
-            //
-            request.supportedNetworks = applePaymentOption.applePayMappedSupportedNetworks
-            //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
-            request.merchantCapabilities = [PKMerchantCapability.capability3DS]
-            if let session = Process.shared.externalSession?.dataSource
-            {
-                let countryCode = self.merchnantCountryCode
-                
-                if let merchantID = session.applePayMerchantID
-                {
-                    request.merchantIdentifier = merchantID
-                }else
-                {
-                    request.merchantIdentifier = "merchant.tap.gosell"
-                }
-                request.countryCode = countryCode
-            }
-            
-            
-            
-            print("Networks \(request.supportedNetworks)")
-            request.currencyCode = self.selectedCurrency.currency.isoCode.uppercased()
-            request.paymentSummaryItems = []
-            let contact:PKContact = PKContact.init()
-            contact.name = PersonNameComponents.init()
-            
-            if let phoneNumber = customer.phoneNumber?.phoneNumber
-            {
-                contact.phoneNumber = CNPhoneNumber(stringValue:"+\(customer.phoneNumber?.isdNumber ?? "")\(phoneNumber)")
-            }
-            if let firstName = customer.firstName
-            {
-                contact.name?.givenName = firstName
-            }
-            if let lastName = customer.lastName
-            {
-                contact.name?.familyName = lastName
-            }
-            request.billingContact = contact
-            var totalValue:Decimal = 0
-            
-            
-            /*if let newCurrenself.supportedCurrencies.first(where: { $0.currency == currency })
-             {
-             
-             }
-             let currency = nonnullPaymentOptionsResponse.currency
-             
-             if let amountedCurrency = nonnullPaymentOptionsResponse.supportedCurrenciesAmounts.first(where: { $0.currency == currency }) {
-             
-             return amountedCurrency
-             }
-             else {
-             
-             return nonnullPaymentOptionsResponse.supportedCurrenciesAmounts[0]
-             }*/
-            
-            // Check if items are provided, we need to add them to Apple pay sheet
-            if let paymentItems:[PaymentItem] = dataSource.items ?? nil
-            {
-                for item:PaymentItem in paymentItems
-                {
-                    var convertedPaymentItemPrice:Decimal = item.totalItemAmount
-                    
-                    if let userCurrency = self.userSelectedCurrency
-                    {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
-                        
-                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
-                    }
-                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    //totalValue += convertedPaymentItemPrice
-                    
-                }
-            }
-            
-            
-            // Check if shipping are provided, we need to add them to Apple pay sheet
-            if let shippingItem:[Shipping] = dataSource.shipping ?? nil
-            {
-                for item:Shipping in shippingItem
-                {
-                    var convertedPaymentItemPrice:Decimal = item.amount
-                    
-                    if let userCurrency = self.userSelectedCurrency
-                    {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
-                        
-                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
-                    }
-                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.name, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    //totalValue += convertedPaymentItemPrice
-                    
-                }
-            }
-            
-            
-            // Check if shipping are provided, we need to add them to Apple pay sheet
-            if let taxesItem:[Tax] = dataSource.taxes ?? nil
-            {
-                for item:Tax in taxesItem
-                {
-                    var convertedPaymentItemPrice:Decimal = item.amount.value
-                    
-                    if let userCurrency = self.userSelectedCurrency
-                    {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
-                        
-                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
-                    }
-                    if item.amount.type == AmountModificatorType.fixedAmount {
-                        request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    }
-                    //totalValue += convertedPaymentItemPrice
-                }
-            }
-            
-            
-            // Make sure total paid amount matches the original total amount
-            if let userCurrency = self.userSelectedCurrency
-            {
-                totalValue = userCurrency.amount
-            }else
-            {
-                totalValue = transactionCurrency.amount
-            }
-            
-            request.paymentSummaryItems.append(PKPaymentSummaryItem(label: "to \(SettingsDataManager.shared.settings?.merchant.name ?? "Tap Payments")", amount: NSDecimalNumber(decimal: totalValue)))
-            
-            
-            //self.process.dataManagerInterface.transactionCurrency
-            
-            
-            return request
-        }
-		
-		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
+        internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
 			
 			guard let nonnullDataSource = session.dataSource else {
 				
