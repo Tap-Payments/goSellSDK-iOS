@@ -92,9 +92,28 @@ internal extension Process {
             fatalError("Must be implemented in extension")
         }
         
+        /**
+         Use  this method on Apple pay click handler to determine we can start the apple sheet pay or the setup controller
+         - Returns: True if we can start the Apple pay sheet and false to indicate we need to another thing
+         */
         internal func canStartApplePayPurchase() -> Bool
         {
-            fatalError("Must be implemented in extension")
+            //let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
+            for cellViewModel:CellViewModel in Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels
+            {
+                if let appleViewModel:ApplePaymentOptionTableViewCellModel = cellViewModel as? ApplePaymentOptionTableViewCellModel
+                {
+                    if PKPaymentAuthorizationViewController.canMakePayments()
+                    {
+                        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: appleViewModel.applePayMappedSupportedNetworks)
+                        {
+                            return true
+                        }
+                    }
+                }
+            }
+            
+            return false
         }
         
         
@@ -593,29 +612,6 @@ internal extension Process {
 		
         internal override func callChargeApplePayAPI(for session: SessionProtocol) {
             session.delegate?.applePaymentSucceed?("You will get back the charge object back", on: session)
-        }
-        /**
-         Use  this method on Apple pay click handler to determine we can start the apple sheet pay or the setup controller
-         - Returns: True if we can start the Apple pay sheet and false to indicate we need to another thing
-         */
-        internal override func canStartApplePayPurchase() -> Bool
-        {
-            //let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
-            for cellViewModel:CellViewModel in Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels
-            {
-                if let appleViewModel:ApplePaymentOptionTableViewCellModel = cellViewModel as? ApplePaymentOptionTableViewCellModel
-                {
-                    if PKPaymentAuthorizationViewController.canMakePayments()
-                    {
-                        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: appleViewModel.applePayMappedSupportedNetworks)
-                        {
-                            return true
-                        }
-                    }
-                }
-            }
-            
-            return false
         }
         /**
          The method creates a valid apple pay request to be used inside the apple pay sheet. It will convert TAP payment networks and Merchant items to understandable information by Apple Pay Kit
@@ -1215,30 +1211,6 @@ internal extension Process {
 	}
 	
 	final class CardTokenizationDataManager: DataManager {
-        
-        /**
-         Use  this method on Apple pay click handler to determine we can start the apple sheet pay or the setup controller
-         - Returns: True if we can start the Apple pay sheet and false to indicate we need to another thing
-         */
-        internal override func canStartApplePayPurchase() -> Bool
-        {
-            //let supportedNetworks = Process.shared.viewModelsHandlerInterface.cardPaymentOptionsCellModel.applePayMappedSupportedNetworks
-            for cellViewModel:CellViewModel in Process.shared.viewModelsHandlerInterface.paymentOptionCellViewModels
-            {
-                if let appleViewModel:ApplePaymentOptionTableViewCellModel = cellViewModel as? ApplePaymentOptionTableViewCellModel
-                {
-                    if PKPaymentAuthorizationViewController.canMakePayments()
-                    {
-                        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: appleViewModel.applePayMappedSupportedNetworks)
-                        {
-                            return true
-                        }
-                    }
-                }
-            }
-            
-            return false
-        }
         
         /**
          The method creates a valid apple pay request to be used inside the apple pay sheet. It will convert TAP payment networks and Merchant items to understandable information by Apple Pay Kit
