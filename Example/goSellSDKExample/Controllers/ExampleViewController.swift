@@ -334,7 +334,7 @@ extension ExampleViewController: SessionDataSource {
     
     internal var merchantID: String?
     {
-        return "599424"
+        return "1124340"
     }
     
     internal var customer: Customer? {
