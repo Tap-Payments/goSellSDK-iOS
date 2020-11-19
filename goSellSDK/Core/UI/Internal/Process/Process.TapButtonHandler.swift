@@ -225,7 +225,11 @@ internal extension Process.TapButtonHandler where Mode: Payment {
 		
 		let amountString = CurrencyFormatter.shared.format(displayedAmount)
         if let payString = Process.shared.externalSession?.dataSource?.buttonTitle {
-            self.button?.setTitle(String(format: "\(payString!) %@", amountString))
+            if Process.shared.externalSession?.dataSource?.showAmountOnPayButton ?? true {
+                self.button?.setTitle(String(format: "\(payString!) %@", amountString))
+            }else{
+                self.button?.setTitle(payString)
+            }
         }else{
             self.button?.setLocalizedText(.btn_pay_title_amount, amountString)
         }
@@ -293,7 +297,11 @@ internal extension Process.TapButtonHandler where Mode: CardTokenization {
 		
 		let amountString = CurrencyFormatter.shared.format(displayedAmount)
         if let payString = Process.shared.externalSession?.dataSource?.buttonTitle {
-            self.button?.setTitle(String(format: "\(payString!) %@", amountString))
+            if Process.shared.externalSession?.dataSource?.showAmountOnPayButton ?? true {
+                self.button?.setTitle(String(format: "\(payString!) %@", amountString))
+            }else{
+                self.button?.setTitle(payString)
+            }
         }else{
             self.button?.setLocalizedText(.btn_pay_title_amount, amountString)
         }
