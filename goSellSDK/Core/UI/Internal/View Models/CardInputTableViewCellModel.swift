@@ -130,7 +130,7 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 			
 			fatalError("Should never reach here, because settings are not loaded and SDK not initialized.")
 		}
-		return permissions.contains(.merchantCheckout)
+        return Permissions.merchantCheckoutAllowed
 	}
 	
 	internal var shouldSaveCard: Bool {

@@ -382,6 +382,10 @@ extension ExampleViewController: SessionDataSource {
 		
 		return self.paymentSettings.dataSource.canSaveSameCardMultipleTimes
 	}
+    
+    internal var enableSaveCard: Bool {
+        return true
+    }
 	
 	internal var isSaveCardSwitchOnByDefault: Bool {
 		
