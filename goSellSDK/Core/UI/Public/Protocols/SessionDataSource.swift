@@ -97,6 +97,11 @@ import class PassKit.PKPaymentToken
 	/// Defines if same card can be saved more than once.
 	/// Default is `true`.
 	@objc optional var allowsToSaveSameCardMoreThanOnce: Bool { get }
+    
+    
+    /// Defines if the customer can save his card for upcoming payments
+    /// Default is `true`.
+    @objc optional var enableSaveCard: Bool { get }
 	
 	/// Defines if save card switch is on by default.
 	/// - Note: If value of this property is `true`, then switch will be remaining off until card information is filled and valid.
