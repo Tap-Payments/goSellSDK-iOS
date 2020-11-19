@@ -405,6 +405,10 @@ extension ExampleViewController: SessionDataSource {
     internal var buttonTitle: String? {
         return "Custom Label"
     }
+    
+    internal var showAmountOnPayButton: Bool {
+        return false
+    }
 
     internal var allowedCadTypes: [CardType]? {
         let selectedAllowedCards:cardTypes = self.paymentSettings.dataSource.allowedCards

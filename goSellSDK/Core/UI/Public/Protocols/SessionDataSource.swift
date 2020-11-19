@@ -61,6 +61,9 @@ import class PassKit.PKPaymentToken
     /// Pay. iotinal string to pass if you want to show a different word for PAY, Save or Tokenize state on the button. This title will override the default values providede by TAP
     @objc optional var buttonTitle: String? { get }
     
+    /// Decides if to show the amount inside the checkout pay button beside the title. Default is true
+    @objc optional var showAmountOnPayButton: Bool { get }
+    
 	/// Taxes.
 	@objc optional var taxes: [Tax]? { get }
     
