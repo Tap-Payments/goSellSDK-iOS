@@ -69,8 +69,39 @@
 		A4DF066320C03778006F59D8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066220C03778006F59D8 /* Settings.swift */; };
 		A4DF066520C038C9006F59D8 /* SeguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066420C038C9006F59D8 /* SeguePresenter.swift */; };
 		A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */; };
+		E804038525677F29009AB43E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804038425677F29009AB43E /* AppDelegate.swift */; };
+		E804038725677F29009AB43E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804038625677F29009AB43E /* SceneDelegate.swift */; };
+		E804038925677F29009AB43E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804038825677F29009AB43E /* ViewController.swift */; };
+		E804038C25677F29009AB43E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E804038A25677F29009AB43E /* Main.storyboard */; };
+		E804038E25677F2A009AB43E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E804038D25677F2A009AB43E /* Assets.xcassets */; };
+		E804039125677F2A009AB43E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E804038F25677F2A009AB43E /* LaunchScreen.storyboard */; };
+		E804039625677F2A009AB43E /* GoSellAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = E804038225677F29009AB43E /* GoSellAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E8CDF34A23CA449200E0C847 /* sampleAppleToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8CDF34923CA449100E0C847 /* sampleAppleToken.txt */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E804039425677F2A009AB43E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4D5FE472083235E007D52F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E804038125677F29009AB43E;
+			remoteInfo = GoSellAppClip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E804039725677F2A009AB43E /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				E804039625677F2A009AB43E /* GoSellAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0D556C088C774FC337DECC2B /* Pods-goSellSDKExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +170,15 @@
 		A4DF066420C038C9006F59D8 /* SeguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeguePresenter.swift; sourceTree = "<group>"; };
 		A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
 		CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E804038225677F29009AB43E /* GoSellAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoSellAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E804038425677F29009AB43E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E804038625677F29009AB43E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E804038825677F29009AB43E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E804038B25677F29009AB43E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E804038D25677F2A009AB43E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E804039025677F2A009AB43E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E804039225677F2A009AB43E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E804039325677F2A009AB43E /* GoSellAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoSellAppClip.entitlements; sourceTree = "<group>"; };
 		E82B005F23C486CB00FE0D05 /* goSellSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = goSellSDKExample.entitlements; sourceTree = "<group>"; };
 		E8CDF34923CA449100E0C847 /* sampleAppleToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleAppleToken.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +189,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E197292A213A9AC83C5B789 /* Pods_goSellSDKExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E804037F25677F29009AB43E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D5FE512083235E007D52F5 /* goSellSDKExample */,
+				E804038325677F29009AB43E /* GoSellAppClip */,
 				A4D5FE502083235E007D52F5 /* Products */,
 				FA37CABE97025B08BE0384F3 /* Pods */,
 				11E015A4CEFFF66769DA8EDB /* Frameworks */,
@@ -288,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D5FE4F2083235E007D52F5 /* goSellSDKExample.app */,
+				E804038225677F29009AB43E /* GoSellAppClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,6 +373,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E804038325677F29009AB43E /* GoSellAppClip */ = {
+			isa = PBXGroup;
+			children = (
+				E804038425677F29009AB43E /* AppDelegate.swift */,
+				E804038625677F29009AB43E /* SceneDelegate.swift */,
+				E804038825677F29009AB43E /* ViewController.swift */,
+				E804038A25677F29009AB43E /* Main.storyboard */,
+				E804038D25677F2A009AB43E /* Assets.xcassets */,
+				E804038F25677F2A009AB43E /* LaunchScreen.storyboard */,
+				E804039225677F2A009AB43E /* Info.plist */,
+				E804039325677F2A009AB43E /* GoSellAppClip.entitlements */,
+			);
+			path = GoSellAppClip;
+			sourceTree = "<group>";
+		};
 		FA37CABE97025B08BE0384F3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,15 +411,34 @@
 				A499025420EA6A7F0062B3E9 /* Mark all FIXMEs as warning */,
 				6C2E03FD2AEB88150E9CC7A2 /* [CP] Embed Pods Frameworks */,
 				A4C0488B20EE635C007DA004 /* Fabric */,
+				E804039725677F2A009AB43E /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E804039525677F2A009AB43E /* PBXTargetDependency */,
 			);
 			name = goSellSDKExample;
 			productName = goSellSDKExample;
 			productReference = A4D5FE4F2083235E007D52F5 /* goSellSDKExample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E804038125677F29009AB43E /* GoSellAppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E804039A25677F2A009AB43E /* Build configuration list for PBXNativeTarget "GoSellAppClip" */;
+			buildPhases = (
+				E804037E25677F29009AB43E /* Sources */,
+				E804037F25677F29009AB43E /* Frameworks */,
+				E804038025677F29009AB43E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoSellAppClip;
+			productName = GoSellAppClip;
+			productReference = E804038225677F29009AB43E /* GoSellAppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -363,13 +446,17 @@
 		A4D5FE472083235E007D52F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				DefaultBuildSystemTypeForWorkspace = Latest;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Tap Payments";
 				TargetAttributes = {
 					A4D5FE4E2083235E007D52F5 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1020;
+					};
+					E804038125677F29009AB43E = {
+						CreatedOnToolsVersion = 12.1;
 					};
 				};
 			};
@@ -387,6 +474,7 @@
 			projectRoot = "";
 			targets = (
 				A4D5FE4E2083235E007D52F5 /* goSellSDKExample */,
+				E804038125677F29009AB43E /* GoSellAppClip */,
 			);
 		};
 /* End PBXProject section */
@@ -400,6 +488,16 @@
 				A4D5FE5A2083235F007D52F5 /* Assets.xcassets in Resources */,
 				A4D5FE582083235E007D52F5 /* Main.storyboard in Resources */,
 				E8CDF34A23CA449200E0C847 /* sampleAppleToken.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E804038025677F29009AB43E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E804039125677F2A009AB43E /* LaunchScreen.storyboard in Resources */,
+				E804038E25677F2A009AB43E /* Assets.xcassets in Resources */,
+				E804038C25677F29009AB43E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,7 +635,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E804037E25677F29009AB43E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E804038925677F29009AB43E /* ViewController.swift in Sources */,
+				E804038525677F29009AB43E /* AppDelegate.swift in Sources */,
+				E804038725677F29009AB43E /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E804039525677F2A009AB43E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E804038125677F29009AB43E /* GoSellAppClip */;
+			targetProxy = E804039425677F2A009AB43E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A4D5FE562083235E007D52F5 /* Main.storyboard */ = {
@@ -552,6 +668,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				A4D5FE5C2083235F007D52F5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E804038A25677F29009AB43E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E804038B25677F29009AB43E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E804038F25677F2A009AB43E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E804039025677F2A009AB43E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -745,6 +877,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D556C088C774FC337DECC2B /* Pods-goSellSDKExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = goSellSDKExample/goSellSDKExample.entitlements;
@@ -772,6 +905,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = goSellSDKExample/goSellSDKExample.entitlements;
@@ -793,6 +927,62 @@
 			};
 			name = Release;
 		};
+		E804039825677F2A009AB43E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = GoSellAppClip/GoSellAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = G46S76PUH4;
+				INFOPLIST_FILE = GoSellAppClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E804039925677F2A009AB43E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = GoSellAppClip/GoSellAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G46S76PUH4;
+				INFOPLIST_FILE = GoSellAppClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -810,6 +1000,15 @@
 			buildConfigurations = (
 				A4D5FE622083235F007D52F5 /* Debug */,
 				A4D5FE632083235F007D52F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E804039A25677F2A009AB43E /* Build configuration list for PBXNativeTarget "GoSellAppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E804039825677F2A009AB43E /* Debug */,
+				E804039925677F2A009AB43E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
