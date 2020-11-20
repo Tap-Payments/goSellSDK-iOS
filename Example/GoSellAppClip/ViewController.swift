@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import goSellSDK
 
 class ViewController: UIViewController {
 

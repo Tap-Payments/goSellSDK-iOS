@@ -3,15 +3,24 @@ use_frameworks!
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'goSellSDKExample' do
-    
-    pod 'Crashlytics'
-    pod 'Fabric'
-    
-    pod 'goSellSDK', :path => '../'
-	pod 'goSellSDK/ErrorReporting', :path => '../'
-
+def default_pods
+  pod 'Crashlytics'
+  pod 'Fabric'
+  
+  pod 'goSellSDK', :path => '../'
+  pod 'goSellSDK/ErrorReporting', :path => '../'
 end
+
+target 'goSellSDKExample' do
+    default_pods
+end
+
+target 'GoSellAppClip' do
+  default_pods
+  pod 'HHCustomCorner'
+end
+
+
 
 post_install do |installer|
 	
