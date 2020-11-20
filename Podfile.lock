@@ -3,17 +3,16 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.1):
     - SwiftLint
     - TapAdditionsKitV2
-  - Kingfisher (5.15.6):
-    - Kingfisher/Core (= 5.15.6)
-  - Kingfisher/Core (5.15.6)
-  - SwiftLint (0.40.3)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
+  - SwiftLint (0.41.0)
   - SwiftyRSA (1.6.0):
     - SwiftyRSA/ObjC (= 1.6.0)
   - SwiftyRSA/ObjC (1.6.0)
-  - TapAdditionsKitV2 (0.0.3):
+  - TapAdditionsKitV2 (0.0.6):
     - SwiftLint
-    - TapSwiftFixes/Exceptions
-    - TapSwiftFixes/Threading
+    - TapSwiftFixesV2
   - TapAlertViewControllerV2 (0.0.2):
     - TapAdditionsKitV2
     - TapVisualEffectViewV2
@@ -26,7 +25,7 @@ PODS:
   - TapEditableViewV2 (0.0.1):
     - SwiftLint
     - TapAdditionsKitV2
-  - TapErrorReportingV2 (0.0.2):
+  - TapErrorReportingV2 (0.0.3):
     - TapAdditionsKitV2
     - TapAlertViewControllerV2
     - TapApplicationV2
@@ -54,8 +53,14 @@ PODS:
     - SwiftLint
     - TapAdditionsKitV2
     - TapNibViewV2
-  - TapSwiftFixes/Exceptions (1.0.9)
   - TapSwiftFixes/Threading (1.0.9)
+  - TapSwiftFixesV2 (1.0.0):
+    - TapSwiftFixesV2/CoreGraphics (= 1.0.0)
+    - TapSwiftFixesV2/Exceptions (= 1.0.0)
+    - TapSwiftFixesV2/Threading (= 1.0.0)
+  - TapSwiftFixesV2/CoreGraphics (1.0.0)
+  - TapSwiftFixesV2/Exceptions (1.0.0)
+  - TapSwiftFixesV2/Threading (1.0.0)
   - TapVisualEffectViewV2 (0.0.2):
     - TapAdditionsKitV2
     - TapNibViewV2
@@ -103,21 +108,22 @@ SPEC REPOS:
     - TapResponderChainInputViewV2
     - TapSearchViewV2
     - TapSwiftFixes
+    - TapSwiftFixesV2
     - TapVisualEffectViewV2
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextFieldV2: 1a58f373146cba9cf570e28ae84f44f3d342da00
-  Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
-  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
-  TapAdditionsKitV2: 5752ee6837d690d4f38449d83155ab631fc4fc13
+  TapAdditionsKitV2: 95c95584ecc4b3ab8fd777eade780b5c82aee996
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: d5299d0f5bac323ece9a3f03605d8ab0b59d4b66
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
   TapCardValidator: 8d43b6e8a1a78276c03116a5b625041adeffeb0d
   TapEditableViewV2: 7633cd81625b76634b3d4d82a3b660a4de6efbe2
-  TapErrorReportingV2: 31fb33acd175b5c670fe07ca487f924fc0f7d11d
+  TapErrorReportingV2: b73217b68150071f72e6a1b1bef20c5157d49c5c
   TapFontsKitV2: 4f6452a0be663583b75e2c26dc1656079f3cb17b
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
   TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
@@ -126,6 +132,7 @@ SPEC CHECKSUMS:
   TapResponderChainInputViewV2: cf9463ff71dd1f811c2266a9b8cc24b510edea6e
   TapSearchViewV2: 279f4bf66966528aff4d05920f934274ba6273dc
   TapSwiftFixes: db2aeb21942dd81ee051a31ed319dab0d03547a2
+  TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
 PODFILE CHECKSUM: 6f74524a224bcaf25802e59dabe74a72441d8fee

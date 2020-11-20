@@ -6,9 +6,9 @@ PODS:
     - SwiftLint
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.2.33):
-    - goSellSDK/Core (= 2.2.33)
-  - goSellSDK/Core (2.2.33):
+  - goSellSDK (2.2.37):
+    - goSellSDK/Core (= 2.2.37)
+  - goSellSDK/Core (2.2.37):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -26,9 +26,10 @@ PODS:
     - TapSearchViewV2
     - TapSwiftFixes/Threading
     - TapVisualEffectViewV2
-  - goSellSDK/ErrorReporting (2.2.33):
+  - goSellSDK/ErrorReporting (2.2.37):
     - goSellSDK/Core
     - TapErrorReportingV2
+  - HHCustomCorner (0.1.3)
   - SDWebImage/Core (5.9.1)
   - SwiftLint (0.40.3)
   - SwiftyRSA (1.6.0):
@@ -89,6 +90,7 @@ DEPENDENCIES:
   - Fabric
   - goSellSDK (from `../`)
   - goSellSDK/ErrorReporting (from `../`)
+  - HHCustomCorner
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -96,6 +98,7 @@ SPEC REPOS:
     - Crashlytics
     - EditableTextInsetsTextFieldV2
     - Fabric
+    - HHCustomCorner
     - SDWebImage
     - SwiftLint
     - SwiftyRSA
@@ -125,7 +128,8 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 1a58f373146cba9cf570e28ae84f44f3d342da00
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: d0fc7a473036ce923ac5eaccf5c10ec7c3de6f5d
+  goSellSDK: 01feeeeb3922974c534313b9b870fd528331a10e
+  HHCustomCorner: d7817fc58b894347245363dd8a0d0beafd474bcd
   SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
@@ -146,6 +150,6 @@ SPEC CHECKSUMS:
   TapSwiftFixes: db2aeb21942dd81ee051a31ed319dab0d03547a2
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
-PODFILE CHECKSUM: c39cc3407465c00f5f8872cf488440069d53bf55
+PODFILE CHECKSUM: bf961c8eec724f4449ff30e8eec3e5d27f60fb3d
 
 COCOAPODS: 1.9.3
