@@ -186,6 +186,7 @@
 		E80403BF25678400009AB43E /* AppClip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppClip.framework; path = System/Library/Frameworks/AppClip.framework; sourceTree = SDKROOT; };
 		E80403C125678408009AB43E /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8040435256785D3009AB43E /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E804084C2567B424009AB43E /* goSellSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = goSellSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82B005F23C486CB00FE0D05 /* goSellSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = goSellSDKExample.entitlements; sourceTree = "<group>"; };
 		E8CDF34923CA449100E0C847 /* sampleAppleToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleAppleToken.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +214,7 @@
 		11E015A4CEFFF66769DA8EDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E804084C2567B424009AB43E /* goSellSDK.framework */,
 				E8040435256785D3009AB43E /* goSellSDK.framework */,
 				E80403C125678408009AB43E /* goSellSDK.framework */,
 				E80403BF25678400009AB43E /* AppClip.framework */,
@@ -445,6 +447,7 @@
 				E804037E25677F29009AB43E /* Sources */,
 				E804037F25677F29009AB43E /* Frameworks */,
 				E804038025677F29009AB43E /* Resources */,
+				E80408772567B678009AB43E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -603,6 +606,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E80408772567B678009AB43E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoSellAppClip/Pods-GoSellAppClip-frameworks.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -919,17 +940,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = goSellSDKExample/goSellSDKExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = G46S76PUH4;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/goSellSDKExample/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.35;
+				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -947,17 +968,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = goSellSDKExample/goSellSDKExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = G46S76PUH4;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/goSellSDKExample/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.35;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -977,6 +998,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = GoSellAppClip/GoSellAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = G46S76PUH4;
 				INFOPLIST_FILE = GoSellAppClip/Info.plist;
@@ -1007,6 +1029,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = GoSellAppClip/GoSellAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = G46S76PUH4;
 				INFOPLIST_FILE = GoSellAppClip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;

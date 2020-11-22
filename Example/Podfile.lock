@@ -29,16 +29,16 @@ PODS:
   - goSellSDK/ErrorReporting (2.2.37):
     - goSellSDK/Core
     - TapErrorReportingV2
-  - HHCustomCorner (0.1.3)
-  - SDWebImage/Core (5.9.1)
-  - SwiftLint (0.40.3)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
+  - SwiftLint (0.41.0)
   - SwiftyRSA (1.6.0):
     - SwiftyRSA/ObjC (= 1.6.0)
   - SwiftyRSA/ObjC (1.6.0)
-  - TapAdditionsKitV2 (0.0.3):
+  - TapAdditionsKitV2 (0.0.6):
     - SwiftLint
-    - TapSwiftFixes/Exceptions
-    - TapSwiftFixes/Threading
+    - TapSwiftFixesV2
   - TapAlertViewControllerV2 (0.0.2):
     - TapAdditionsKitV2
     - TapVisualEffectViewV2
@@ -51,7 +51,7 @@ PODS:
   - TapEditableViewV2 (0.0.1):
     - SwiftLint
     - TapAdditionsKitV2
-  - TapErrorReportingV2 (0.0.2):
+  - TapErrorReportingV2 (0.0.3):
     - TapAdditionsKitV2
     - TapAlertViewControllerV2
     - TapApplicationV2
@@ -64,8 +64,8 @@ PODS:
   - TapGLKitV2 (0.0.2):
     - TapAdditionsKitV2
   - TapKeychain (1.0.5)
-  - TapNetworkManagerV2 (0.0.1):
-    - SDWebImage/Core
+  - TapNetworkManagerV2 (0.0.2):
+    - Kingfisher
     - SwiftLint
     - TapAdditionsKitV2
   - TapNibViewV2 (0.0.1):
@@ -79,8 +79,14 @@ PODS:
     - SwiftLint
     - TapAdditionsKitV2
     - TapNibViewV2
-  - TapSwiftFixes/Exceptions (1.0.9)
   - TapSwiftFixes/Threading (1.0.9)
+  - TapSwiftFixesV2 (1.0.0):
+    - TapSwiftFixesV2/CoreGraphics (= 1.0.0)
+    - TapSwiftFixesV2/Exceptions (= 1.0.0)
+    - TapSwiftFixesV2/Threading (= 1.0.0)
+  - TapSwiftFixesV2/CoreGraphics (1.0.0)
+  - TapSwiftFixesV2/Exceptions (1.0.0)
+  - TapSwiftFixesV2/Threading (1.0.0)
   - TapVisualEffectViewV2 (0.0.2):
     - TapAdditionsKitV2
     - TapNibViewV2
@@ -90,7 +96,6 @@ DEPENDENCIES:
   - Fabric
   - goSellSDK (from `../`)
   - goSellSDK/ErrorReporting (from `../`)
-  - HHCustomCorner
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -98,8 +103,7 @@ SPEC REPOS:
     - Crashlytics
     - EditableTextInsetsTextFieldV2
     - Fabric
-    - HHCustomCorner
-    - SDWebImage
+    - Kingfisher
     - SwiftLint
     - SwiftyRSA
     - TapAdditionsKitV2
@@ -117,6 +121,7 @@ SPEC REPOS:
     - TapResponderChainInputViewV2
     - TapSearchViewV2
     - TapSwiftFixes
+    - TapSwiftFixesV2
     - TapVisualEffectViewV2
 
 EXTERNAL SOURCES:
@@ -129,27 +134,27 @@ SPEC CHECKSUMS:
   EditableTextInsetsTextFieldV2: 1a58f373146cba9cf570e28ae84f44f3d342da00
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   goSellSDK: 01feeeeb3922974c534313b9b870fd528331a10e
-  HHCustomCorner: d7817fc58b894347245363dd8a0d0beafd474bcd
-  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
-  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
-  TapAdditionsKitV2: 5752ee6837d690d4f38449d83155ab631fc4fc13
+  TapAdditionsKitV2: 95c95584ecc4b3ab8fd777eade780b5c82aee996
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: d5299d0f5bac323ece9a3f03605d8ab0b59d4b66
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
   TapCardValidator: 8d43b6e8a1a78276c03116a5b625041adeffeb0d
   TapEditableViewV2: 7633cd81625b76634b3d4d82a3b660a4de6efbe2
-  TapErrorReportingV2: 31fb33acd175b5c670fe07ca487f924fc0f7d11d
+  TapErrorReportingV2: b73217b68150071f72e6a1b1bef20c5157d49c5c
   TapFontsKitV2: 4f6452a0be663583b75e2c26dc1656079f3cb17b
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
   TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
-  TapNetworkManagerV2: 13c970d1fdb0f3f54065e8b608db3917e89c7d07
+  TapNetworkManagerV2: 06b8b308b86eb9dc3738ea01a649148c8e1ae674
   TapNibViewV2: 38cd87dea5d868139df922bbeae4fed9724f65e1
   TapResponderChainInputViewV2: cf9463ff71dd1f811c2266a9b8cc24b510edea6e
   TapSearchViewV2: 279f4bf66966528aff4d05920f934274ba6273dc
   TapSwiftFixes: db2aeb21942dd81ee051a31ed319dab0d03547a2
+  TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
-PODFILE CHECKSUM: bf961c8eec724f4449ff30e8eec3e5d27f60fb3d
+PODFILE CHECKSUM: e434e0e79c755fc393a6a7731ff2916f480e6342
 
 COCOAPODS: 1.9.3
