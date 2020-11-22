@@ -31,10 +31,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZ2-LY-tJJ">
                                 <rect key="frame" x="119" y="203.5" width="176" height="30"/>
                                 <state key="normal" title="Complete payment in app"/>
+                                <connections>
+                                    <action selector="payInMainApp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lrr-Uu-Jet"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgS-ra-XQK">
                                 <rect key="frame" x="103" y="253.5" width="208" height="30"/>
                                 <state key="normal" title="Complete payment in App Clip"/>
+                                <connections>
+                                    <action selector="payInAppClip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ozA-T3-wys"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -53,6 +59,9 @@
                             <constraint firstItem="xZ2-LY-tJJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ye5-MZ-dAR"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="amoountTextField" destination="gcP-kG-jzB" id="Whg-M3-eo1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

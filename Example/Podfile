@@ -17,7 +17,6 @@ end
 
 target 'GoSellAppClip' do
   default_pods
-  pod 'HHCustomCorner'
 end
 
 
