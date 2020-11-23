@@ -9,8 +9,6 @@ end
 
 target 'goSellSDKExample' do
     default_pods
-    pod 'Crashlytics'
-    pod 'Fabric'
 end
 
 target 'GoSellAppClip' do

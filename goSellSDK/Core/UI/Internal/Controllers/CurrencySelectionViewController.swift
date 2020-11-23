@@ -6,7 +6,7 @@
 //
 
 import struct   TapAdditionsKitV2.TypeAlias
-import func     TapSwiftFixes.performOnMainThread
+import func     TapSwiftFixesV2.performOnMainThread
 import enum		UIKit.UIApplication.UIStatusBarStyle
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIImageView.UIImageView

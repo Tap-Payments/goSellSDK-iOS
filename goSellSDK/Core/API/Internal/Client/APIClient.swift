@@ -8,8 +8,8 @@
 
 import class    TapApplicationV2.TapApplicationPlistInfo
 import class    TapApplicationV2.TapBundlePlistInfo
-import func     TapSwiftFixes.performOnBackgroundThread
-import func     TapSwiftFixes.performOnMainThread
+import func     TapSwiftFixesV2.performOnBackgroundThread
+import func     TapSwiftFixesV2.performOnMainThread
 import class    TapNetworkManagerV2.TapNetworkManager
 import class    TapNetworkManagerV2.TapNetworkRequestOperation
 import class    UIKit.UIDevice.UIDevice
