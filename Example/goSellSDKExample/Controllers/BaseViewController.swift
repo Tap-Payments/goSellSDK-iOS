@@ -8,7 +8,7 @@
 import ObjectiveC
 
 import Foundation
-import func     TapSwiftFixes.performOnMainThread
+import func     TapSwiftFixesV2.performOnMainThread
 import class    UIKit.NSLayoutConstraint.NSLayoutConstraint
 import class    UIKit.UIResponder.UIResponder
 import class    UIKit.UIView.UIView

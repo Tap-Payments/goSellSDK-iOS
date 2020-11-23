@@ -7,35 +7,35 @@
 //
 
 import UIKit
-import goSellSDK
+//import goSellSDK
 
 class ViewController: UIViewController {
 
     var transactionAmount:Double = 100
-    var session:Session = .init()
+  //  var session:Session = .init()
     @IBOutlet weak var amoountTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        GoSellSDK.secretKey = SecretKey(sandbox:    "YOUR_SANDBOX_SECRET_KEY",
+    /*    GoSellSDK.secretKey = SecretKey(sandbox:    "YOUR_SANDBOX_SECRET_KEY",
                                         production:    "YOUR_PRODUCTION_SECRET_KEY")
         GoSellSDK.mode = .sandbox
         GoSellSDK.language = "en"
         
-        session.dataSource = self
+        session.dataSource = self*/
         
     }
 
     @IBAction func payInMainApp(_ sender: Any) {
     }
     @IBAction func payInAppClip(_ sender: Any) {
-        session.start()
+        //session.start()
     }
 }
 
 
-extension ViewController:SessionDataSource {
+/*extension ViewController:SessionDataSource {
     var customer: Customer? {
         return try! .init(emailAddress: nil, phoneNumber: .init(isdNumber: "965", phoneNumber: "90064542") , firstName: "Tap", middleName: "Payments", lastName: "Clips")
     }
@@ -64,4 +64,4 @@ extension ViewController:SessionDataSource {
         return .init(Double(amoountTextField.text ?? "100") ?? transactionAmount)
     }
 }
-
+*/

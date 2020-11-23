@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import func TapSwiftFixes.performOnMainThread
+import func TapSwiftFixesV2.performOnMainThread
 
 internal class OTPTimerDataManager {
     
