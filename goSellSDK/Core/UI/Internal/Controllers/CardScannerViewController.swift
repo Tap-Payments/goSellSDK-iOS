@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	CardIO.CardIOCreditCardInfo.CardIOCreditCardInfo
+/*import class	CardIO.CardIOCreditCardInfo.CardIOCreditCardInfo
 import class	CardIO.CardIOView.CardIOView
 import protocol	CardIO.CardIOViewDelegate.CardIOViewDelegate
 import struct	CoreGraphics.CGGeometry.CGSize
@@ -117,3 +117,4 @@ extension CardScannerViewController: CardIOViewDelegate {
         self.pop()
     }
 }
+*/

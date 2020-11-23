@@ -1,5 +1,4 @@
 PODS:
-  - CardIODynamic (5.4.1)
   - EditableTextInsetsTextFieldV2 (0.0.1):
     - SwiftLint
     - TapAdditionsKitV2
@@ -66,7 +65,6 @@ PODS:
     - TapNibViewV2
 
 DEPENDENCIES:
-  - CardIODynamic
   - EditableTextInsetsTextFieldV2
   - SwiftyRSA
   - TapAdditionsKitV2
@@ -88,7 +86,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - Kingfisher
     - SwiftLint
@@ -112,7 +109,6 @@ SPEC REPOS:
     - TapVisualEffectViewV2
 
 SPEC CHECKSUMS:
-  CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextFieldV2: 1a58f373146cba9cf570e28ae84f44f3d342da00
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
@@ -135,6 +131,6 @@ SPEC CHECKSUMS:
   TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
-PODFILE CHECKSUM: 6f74524a224bcaf25802e59dabe74a72441d8fee
+PODFILE CHECKSUM: ee39d9096b0056b4c83ef559c7e656df1800f1e4
 
 COCOAPODS: 1.9.3

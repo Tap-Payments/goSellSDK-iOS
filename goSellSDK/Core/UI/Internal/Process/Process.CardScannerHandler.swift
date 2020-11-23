@@ -6,7 +6,7 @@
 //
 
 
-internal protocol CardScannerHandlerInterface {
+/*internal protocol CardScannerHandlerInterface {
 	
 	func prepareCardScannerController(_ cardScannerController: CardScannerViewController)
 }
@@ -44,4 +44,4 @@ internal extension Process {
 																					   cardholderName:	cardholderName)
 		}
 	}
-}
+}*/

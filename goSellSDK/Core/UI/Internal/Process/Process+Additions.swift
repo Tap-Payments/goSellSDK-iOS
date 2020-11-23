@@ -125,26 +125,6 @@ extension Process: ProcessInterface {
 		}
 	}
 	
-	internal var cardScannerHandlerInterface: CardScannerHandlerInterface {
-		
-		if let payment: PaymentImplementation = self.wrappedImplementation.implementation() {
-			
-			return payment.cardScannerHandler
-		}
-		else if let cardSaving: CardSavingImplementation = self.wrappedImplementation.implementation() {
-			
-			return cardSaving.cardScannerHandler
-		}
-		else if let cardTokenization: CardTokenizationImplementation = self.wrappedImplementation.implementation() {
-			
-			return cardTokenization.cardScannerHandler
-		}
-		else {
-			
-			fatalError("Wrong implementation.")
-		}
-	}
-	
 	internal var dataManagerInterface: DataManagerInterface {
 		
 		if let payment: PaymentImplementation = self.wrappedImplementation.implementation() {

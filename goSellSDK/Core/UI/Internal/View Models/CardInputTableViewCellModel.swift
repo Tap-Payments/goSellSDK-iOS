@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class    CardIO.CardIOUtilities.CardIOUtilities
+//import class    CardIO.CardIOUtilities.CardIOUtilities
 import class    TapApplicationV2.TapApplicationPlistInfo
 import struct	TapBundleLocalization.LocalizationKey
 import enum     TapCardValidator.CardBrand
@@ -126,7 +126,7 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	
 	internal var showsSaveCardSection: Bool {
 		
-		guard let permissions = SettingsDataManager.shared.settings?.permissions else {
+		guard let _ = SettingsDataManager.shared.settings?.permissions else {
 			
 			fatalError("Should never reach here, because settings are not loaded and SDK not initialized.")
 		}
@@ -167,7 +167,7 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 		
 		if self.isScanButtonVisible {
 			
-			CardIOUtilities.preload()
+			//CardIOUtilities.preload()
 		}
 		
 		self.addObservers()
@@ -308,7 +308,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 	
 	internal var isScanButtonVisible: Bool {
 		
-		return CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
+		return false//CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
 	}
 	
 	internal var showsSaveCardSwitch: Bool {
