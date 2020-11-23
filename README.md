@@ -89,7 +89,7 @@ $ gem install cocoapods
 To integrate goSellSDK into your iOS 11+ Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-platform :ios, '11.0'
+platform :ios, '12.0'
 use_frameworks!
 
 source 'https://github.com/CocoaPods/Specs.git'
