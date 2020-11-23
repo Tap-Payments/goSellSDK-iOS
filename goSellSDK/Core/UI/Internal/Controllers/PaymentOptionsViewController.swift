@@ -67,10 +67,6 @@ internal class PaymentOptionsViewController: BaseViewController {
 			
 			Process.shared.currencySelectionHandlerInterface.prepareCurrencySelectionController(currencySelectionController)
         }
-        else if let cardScannerController = segue.destination as? CardScannerViewController {
-			
-			Process.shared.cardScannerHandlerInterface.prepareCardScannerController(cardScannerController)
-        }
         else if let addressInputController = segue.destination as? AddressInputViewController {
 			
 			Process.shared.addressInputHandlerInterface.prepareAddressInputController(addressInputController)

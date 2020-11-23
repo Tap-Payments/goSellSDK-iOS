@@ -1,5 +1,4 @@
 PODS:
-  - CardIODynamic (5.4.1)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - EditableTextInsetsTextFieldV2 (0.0.1):
@@ -9,7 +8,6 @@ PODS:
   - goSellSDK (2.2.37):
     - goSellSDK/Core (= 2.2.37)
   - goSellSDK/Core (2.2.37):
-    - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
     - TapAdditionsKitV2
@@ -26,9 +24,6 @@ PODS:
     - TapSearchViewV2
     - TapSwiftFixes/Threading
     - TapVisualEffectViewV2
-  - goSellSDK/ErrorReporting (2.2.37):
-    - goSellSDK/Core
-    - TapErrorReportingV2
   - Kingfisher (5.15.7):
     - Kingfisher/Core (= 5.15.7)
   - Kingfisher/Core (5.15.7)
@@ -39,9 +34,6 @@ PODS:
   - TapAdditionsKitV2 (0.0.6):
     - SwiftLint
     - TapSwiftFixesV2
-  - TapAlertViewControllerV2 (0.0.2):
-    - TapAdditionsKitV2
-    - TapVisualEffectViewV2
   - TapApplicationV2 (0.0.1):
     - SwiftLint
     - TapAdditionsKitV2
@@ -51,12 +43,6 @@ PODS:
   - TapEditableViewV2 (0.0.1):
     - SwiftLint
     - TapAdditionsKitV2
-  - TapErrorReportingV2 (0.0.3):
-    - TapAdditionsKitV2
-    - TapAlertViewControllerV2
-    - TapApplicationV2
-    - TapBundleLocalization
-    - TapNetworkManagerV2
   - TapFontsKitV2 (0.0.2):
     - SwiftLint
     - TapAdditionsKitV2
@@ -95,11 +81,9 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - goSellSDK (from `../`)
-  - goSellSDK/ErrorReporting (from `../`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - CardIODynamic
     - Crashlytics
     - EditableTextInsetsTextFieldV2
     - Fabric
@@ -107,12 +91,10 @@ SPEC REPOS:
     - SwiftLint
     - SwiftyRSA
     - TapAdditionsKitV2
-    - TapAlertViewControllerV2
     - TapApplicationV2
     - TapBundleLocalization
     - TapCardValidator
     - TapEditableViewV2
-    - TapErrorReportingV2
     - TapFontsKitV2
     - TapGLKitV2
     - TapKeychain
@@ -129,21 +111,18 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 1a58f373146cba9cf570e28ae84f44f3d342da00
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: 01feeeeb3922974c534313b9b870fd528331a10e
+  goSellSDK: 06c74cd238379eadb4397c24de5ec960d1e226cf
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
   TapAdditionsKitV2: 95c95584ecc4b3ab8fd777eade780b5c82aee996
-  TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: d5299d0f5bac323ece9a3f03605d8ab0b59d4b66
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
   TapCardValidator: 8d43b6e8a1a78276c03116a5b625041adeffeb0d
   TapEditableViewV2: 7633cd81625b76634b3d4d82a3b660a4de6efbe2
-  TapErrorReportingV2: b73217b68150071f72e6a1b1bef20c5157d49c5c
   TapFontsKitV2: 4f6452a0be663583b75e2c26dc1656079f3cb17b
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
   TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
@@ -155,6 +134,6 @@ SPEC CHECKSUMS:
   TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
-PODFILE CHECKSUM: e434e0e79c755fc393a6a7731ff2916f480e6342
+PODFILE CHECKSUM: f8457c1552fe30a44b6b3b795e05e48b16788e49
 
 COCOAPODS: 1.9.3

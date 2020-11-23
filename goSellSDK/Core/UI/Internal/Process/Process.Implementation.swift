@@ -76,7 +76,6 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 		}
 	}()
 	
-	internal private(set) lazy var cardScannerHandler	= Process.CardScannerHandler(process: self)
 	internal private(set) lazy var addressInputHandler	= Process.AddressInputHandler(process: self)
 	internal private(set) lazy var otpHandler			= Process.OTPHandler(process: self)
 	internal private(set) lazy var webPaymentHandler	= Process.WebPaymentHandler(process: self)
