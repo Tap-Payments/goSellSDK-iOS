@@ -1,16 +1,21 @@
-platform :ios, '11.0'
+
 use_frameworks!
 
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'goSellSDKExample' do
-    
+    platform :ios, '11.0'
     pod 'Crashlytics'
     pod 'Fabric'
     
     pod 'goSellSDK', :path => '../'
 	pod 'goSellSDK/ErrorReporting', :path => '../'
 
+end
+
+target 'Clip' do
+   platform :ios, '14.0'
+   pod 'goSellAppClipSDK' 
 end
 
 post_install do |installer|
