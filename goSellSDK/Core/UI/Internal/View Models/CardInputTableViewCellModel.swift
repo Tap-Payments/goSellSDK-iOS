@@ -4,8 +4,9 @@
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
-
+#if canImport(CardIO)
 import class    CardIO.CardIOUtilities.CardIOUtilities
+#endif
 import class    TapApplicationV2.TapApplicationPlistInfo
 import struct	TapBundleLocalization.LocalizationKey
 import enum     TapCardValidator.CardBrand
@@ -166,8 +167,9 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 		self.paymentOptions = paymentOptions
 		
 		if self.isScanButtonVisible {
-			
+            #if canImport(CardIO)
 			CardIOUtilities.preload()
+            #endif
 		}
 		
 		self.addObservers()
@@ -307,8 +309,11 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 	}
 	
 	internal var isScanButtonVisible: Bool {
-		
-		return CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
+        #if canImport(CardIO)
+            return CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
+        #else
+            return false
+        #endif
 	}
 	
 	internal var showsSaveCardSwitch: Bool {
