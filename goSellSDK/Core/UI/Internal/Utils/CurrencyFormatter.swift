@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import func TapSwiftFixes.synchronized
+import func TapSwiftFixesV2.synchronized
 
 /// Currency Formatter utility class.
 internal final class CurrencyFormatter {

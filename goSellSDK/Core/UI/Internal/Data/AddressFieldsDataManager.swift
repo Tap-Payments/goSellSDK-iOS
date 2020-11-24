@@ -7,7 +7,7 @@
 
 import CoreGraphics
 import struct   TapAdditionsKitV2.TypeAlias
-import func     TapSwiftFixes.performOnMainThread
+import func     TapSwiftFixesV2.performOnMainThread
 import class    UIKit.UIFont.UIFont
 import class    UIKit.UITextField.UITextField
 

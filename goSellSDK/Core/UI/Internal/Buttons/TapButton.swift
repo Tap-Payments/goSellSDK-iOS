@@ -8,7 +8,7 @@
 import struct   TapAdditionsKitV2.TypeAlias
 import class    TapGLKitV2.TapActivityIndicatorView
 import class    TapNibViewV2.TapNibView
-import func     TapSwiftFixes.performOnMainThread
+import func     TapSwiftFixesV2.performOnMainThread
 import class    UIKit.UIButton.UIButton
 import class    UIKit.UIView.UIView
 
