@@ -4,10 +4,9 @@
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
-
-import class	CardIO.CardIOCreditCardInfo.CardIOCreditCardInfo
-import class	CardIO.CardIOView.CardIOView
-import protocol	CardIO.CardIOViewDelegate.CardIOViewDelegate
+#if canImport(CardIO)
+import CardIO
+#endif
 import struct	CoreGraphics.CGGeometry.CGSize
 import enum		UIKit.UIApplication.UIStatusBarStyle
 import class	UIKit.UIScreen.UIScreen
@@ -42,7 +41,7 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
 	
     // MARK: - Private -
     // MARK: Properties
-    
+    #if canImport(CardIO)
     @IBOutlet private weak var scannerView: CardIOView? {
         
         didSet {
@@ -57,6 +56,7 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
             self.scannerView?.allowFreelyRotatingCardGuide  = true
         }
     }
+    #endif
 }
 
 // MARK: - TapNavigationView.DataSource
@@ -90,6 +90,7 @@ extension CardScannerViewController: TapNavigationView.DataSource {
 	}
 }
 
+#if canImport(CardIO)
 // MARK: - CardIOViewDelegate
 extension CardScannerViewController: CardIOViewDelegate {
     
@@ -117,3 +118,4 @@ extension CardScannerViewController: CardIOViewDelegate {
         self.pop()
     }
 }
+#endif

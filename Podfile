@@ -21,7 +21,6 @@ def shared_pods
     pod 'TapNibViewV2'
     pod 'TapResponderChainInputViewV2'
     pod 'TapSearchViewV2'
-    pod 'TapSwiftFixes/Threading'
     pod 'TapVisualEffectViewV2'
     pod 'SwiftyRSA'
     
