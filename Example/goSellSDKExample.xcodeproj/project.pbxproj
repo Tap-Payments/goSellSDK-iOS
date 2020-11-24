@@ -69,8 +69,40 @@
 		A4DF066320C03778006F59D8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066220C03778006F59D8 /* Settings.swift */; };
 		A4DF066520C038C9006F59D8 /* SeguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066420C038C9006F59D8 /* SeguePresenter.swift */; };
 		A4DF066720C04C6F006F59D8 /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */; };
+		D416789DF2E1315A78752659 /* Pods_Clip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7ED7C4FDCB444AC29BB863D /* Pods_Clip.framework */; };
+		E8C55D19256D2CEF00A8017C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C55D18256D2CEF00A8017C /* AppDelegate.swift */; };
+		E8C55D1B256D2CEF00A8017C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C55D1A256D2CEF00A8017C /* SceneDelegate.swift */; };
+		E8C55D1D256D2CEF00A8017C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C55D1C256D2CEF00A8017C /* ViewController.swift */; };
+		E8C55D20256D2CEF00A8017C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C55D1E256D2CEF00A8017C /* Main.storyboard */; };
+		E8C55D22256D2CF100A8017C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C55D21256D2CF100A8017C /* Assets.xcassets */; };
+		E8C55D25256D2CF100A8017C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C55D23256D2CF100A8017C /* LaunchScreen.storyboard */; };
+		E8C55D2A256D2CF100A8017C /* Clip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = E8C55D16256D2CEF00A8017C /* Clip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E8CDF34A23CA449200E0C847 /* sampleAppleToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8CDF34923CA449100E0C847 /* sampleAppleToken.txt */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E8C55D28256D2CF100A8017C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4D5FE472083235E007D52F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8C55D15256D2CEF00A8017C;
+			remoteInfo = Clip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E8C55D2B256D2CF100A8017C /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				E8C55D2A256D2CF100A8017C /* Clip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0D556C088C774FC337DECC2B /* Pods-goSellSDKExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +126,7 @@
 		14C251FC22479AB700940A98 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
 		14F625BA2209ED6B003D77F4 /* UIBlurEffect.Style+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBlurEffect.Style+Additions.swift"; sourceTree = "<group>"; };
 		3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goSellSDKExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample.release.xcconfig"; sourceTree = "<group>"; };
+		98A160648A88915BC6925AFC /* Pods-Clip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clip.release.xcconfig"; path = "Pods/Target Support Files/Pods-Clip/Pods-Clip.release.xcconfig"; sourceTree = "<group>"; };
 		A408C03120B9F6FA005E74AD /* PaymentItemViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A408C03620BAB577005E74AD /* Measurement+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Measurement+Additions.swift"; sourceTree = "<group>"; };
 		A408C03920BAC2EE005E74AD /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
@@ -138,8 +171,19 @@
 		A4DF066220C03778006F59D8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A4DF066420C038C9006F59D8 /* SeguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeguePresenter.swift; sourceTree = "<group>"; };
 		A4DF066620C04C6F006F59D8 /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
+		B350F31857F32C98C1157C48 /* Pods-Clip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Clip/Pods-Clip.debug.xcconfig"; sourceTree = "<group>"; };
+		B7ED7C4FDCB444AC29BB863D /* Pods_Clip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goSellSDKExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82B005F23C486CB00FE0D05 /* goSellSDKExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = goSellSDKExample.entitlements; sourceTree = "<group>"; };
+		E8C55D16256D2CEF00A8017C /* Clip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8C55D18256D2CEF00A8017C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E8C55D1A256D2CEF00A8017C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E8C55D1C256D2CEF00A8017C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E8C55D1F256D2CEF00A8017C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E8C55D21256D2CF100A8017C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8C55D24256D2CF100A8017C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E8C55D26256D2CF100A8017C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8C55D27256D2CF100A8017C /* Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clip.entitlements; sourceTree = "<group>"; };
 		E8CDF34923CA449100E0C847 /* sampleAppleToken.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleAppleToken.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +196,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8C55D13256D2CEF00A8017C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D416789DF2E1315A78752659 /* Pods_Clip.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -159,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				CBDF77820905CE057C22E7DC /* Pods_goSellSDKExample.framework */,
+				B7ED7C4FDCB444AC29BB863D /* Pods_Clip.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D5FE512083235E007D52F5 /* goSellSDKExample */,
+				E8C55D17256D2CEF00A8017C /* Clip */,
 				A4D5FE502083235E007D52F5 /* Products */,
 				FA37CABE97025B08BE0384F3 /* Pods */,
 				11E015A4CEFFF66769DA8EDB /* Frameworks */,
@@ -288,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D5FE4F2083235E007D52F5 /* goSellSDKExample.app */,
+				E8C55D16256D2CEF00A8017C /* Clip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,11 +379,28 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E8C55D17256D2CEF00A8017C /* Clip */ = {
+			isa = PBXGroup;
+			children = (
+				E8C55D18256D2CEF00A8017C /* AppDelegate.swift */,
+				E8C55D1A256D2CEF00A8017C /* SceneDelegate.swift */,
+				E8C55D1C256D2CEF00A8017C /* ViewController.swift */,
+				E8C55D1E256D2CEF00A8017C /* Main.storyboard */,
+				E8C55D21256D2CF100A8017C /* Assets.xcassets */,
+				E8C55D23256D2CF100A8017C /* LaunchScreen.storyboard */,
+				E8C55D26256D2CF100A8017C /* Info.plist */,
+				E8C55D27256D2CF100A8017C /* Clip.entitlements */,
+			);
+			path = Clip;
+			sourceTree = "<group>";
+		};
 		FA37CABE97025B08BE0384F3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				0D556C088C774FC337DECC2B /* Pods-goSellSDKExample.debug.xcconfig */,
 				3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */,
+				B350F31857F32C98C1157C48 /* Pods-Clip.debug.xcconfig */,
+				98A160648A88915BC6925AFC /* Pods-Clip.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -347,15 +419,36 @@
 				A499025420EA6A7F0062B3E9 /* Mark all FIXMEs as warning */,
 				6C2E03FD2AEB88150E9CC7A2 /* [CP] Embed Pods Frameworks */,
 				A4C0488B20EE635C007DA004 /* Fabric */,
+				E8C55D2B256D2CF100A8017C /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E8C55D29256D2CF100A8017C /* PBXTargetDependency */,
 			);
 			name = goSellSDKExample;
 			productName = goSellSDKExample;
 			productReference = A4D5FE4F2083235E007D52F5 /* goSellSDKExample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E8C55D15256D2CEF00A8017C /* Clip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8C55D2E256D2CF100A8017C /* Build configuration list for PBXNativeTarget "Clip" */;
+			buildPhases = (
+				8D66B82C16AC2352D26FA088 /* [CP] Check Pods Manifest.lock */,
+				E8C55D12256D2CEF00A8017C /* Sources */,
+				E8C55D13256D2CEF00A8017C /* Frameworks */,
+				E8C55D14256D2CEF00A8017C /* Resources */,
+				E8C55D31256D2D0000A8017C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Clip;
+			productName = Clip;
+			productReference = E8C55D16256D2CEF00A8017C /* Clip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -363,13 +456,17 @@
 		A4D5FE472083235E007D52F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1120;
+				DefaultBuildSystemTypeForWorkspace = Latest;
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Tap Payments";
 				TargetAttributes = {
 					A4D5FE4E2083235E007D52F5 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1020;
+					};
+					E8C55D15256D2CEF00A8017C = {
+						CreatedOnToolsVersion = 12.1;
 					};
 				};
 			};
@@ -387,6 +484,7 @@
 			projectRoot = "";
 			targets = (
 				A4D5FE4E2083235E007D52F5 /* goSellSDKExample */,
+				E8C55D15256D2CEF00A8017C /* Clip */,
 			);
 		};
 /* End PBXProject section */
@@ -400,6 +498,16 @@
 				A4D5FE5A2083235F007D52F5 /* Assets.xcassets in Resources */,
 				A4D5FE582083235E007D52F5 /* Main.storyboard in Resources */,
 				E8CDF34A23CA449200E0C847 /* sampleAppleToken.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8C55D14256D2CEF00A8017C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8C55D25256D2CF100A8017C /* LaunchScreen.storyboard in Resources */,
+				E8C55D22256D2CF100A8017C /* Assets.xcassets in Resources */,
+				E8C55D20256D2CEF00A8017C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +529,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goSellSDKExample/Pods-goSellSDKExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D66B82C16AC2352D26FA088 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Clip-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A499025420EA6A7F0062B3E9 /* Mark all FIXMEs as warning */ = {
@@ -468,6 +598,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E8C55D31256D2D0000A8017C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Clip/Pods-Clip-frameworks.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -537,7 +685,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8C55D12256D2CEF00A8017C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8C55D1D256D2CEF00A8017C /* ViewController.swift in Sources */,
+				E8C55D19256D2CEF00A8017C /* AppDelegate.swift in Sources */,
+				E8C55D1B256D2CEF00A8017C /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8C55D29256D2CF100A8017C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8C55D15256D2CEF00A8017C /* Clip */;
+			targetProxy = E8C55D28256D2CF100A8017C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A4D5FE562083235E007D52F5 /* Main.storyboard */ = {
@@ -552,6 +718,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				A4D5FE5C2083235F007D52F5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E8C55D1E256D2CEF00A8017C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8C55D1F256D2CEF00A8017C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E8C55D23256D2CF100A8017C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8C55D24256D2CF100A8017C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -599,6 +781,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES_AGGRESSIVE;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_SEMICOLON_BEFORE_METHOD_BODY = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -642,7 +825,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -693,6 +876,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES_AGGRESSIVE;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_SEMICOLON_BEFORE_METHOD_BODY = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -730,7 +914,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -745,6 +929,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D556C088C774FC337DECC2B /* Pods-goSellSDKExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = goSellSDKExample/goSellSDKExample.entitlements;
@@ -772,6 +957,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3DC9587E4D3909941D816353 /* Pods-goSellSDKExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = goSellSDKExample/goSellSDKExample.entitlements;
@@ -793,6 +979,64 @@
 			};
 			name = Release;
 		};
+		E8C55D2C256D2CF100A8017C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B350F31857F32C98C1157C48 /* Pods-Clip.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = G46S76PUH4;
+				INFOPLIST_FILE = Clip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E8C55D2D256D2CF100A8017C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98A160648A88915BC6925AFC /* Pods-Clip.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G46S76PUH4;
+				INFOPLIST_FILE = Clip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -810,6 +1054,15 @@
 			buildConfigurations = (
 				A4D5FE622083235F007D52F5 /* Debug */,
 				A4D5FE632083235F007D52F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8C55D2E256D2CF100A8017C /* Build configuration list for PBXNativeTarget "Clip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8C55D2C256D2CF100A8017C /* Debug */,
+				E8C55D2D256D2CF100A8017C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t6q-Mv-K2g">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Pju-3W-wN5">
+            <objects>
+                <viewController id="t6q-Mv-K2g" customClass="ViewController" customModule="Clip" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O6b-Da-jT1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUI-dH-y15">
+                                <rect key="frame" x="20" y="59" width="374" height="60.5"/>
+                                <string key="text">Fill in these info, then choose whether you want to complete the payment witin the App Clip, or complete it within your main app.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OyE-oz-K0G">
+                                <rect key="frame" x="20" y="149.5" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" textContentType="tel"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3f-yn-bzv">
+                                <rect key="frame" x="119" y="203.5" width="176" height="30"/>
+                                <state key="normal" title="Complete payment in app"/>
+                                <connections>
+                                    <action selector="payInMainApp:" destination="t6q-Mv-K2g" eventType="touchUpInside" id="MsB-Hq-8K5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF8-Zt-mO4">
+                                <rect key="frame" x="103" y="253.5" width="208" height="30"/>
+                                <state key="normal" title="Complete payment in App Clip"/>
+                                <connections>
+                                    <action selector="payInAppClip:" destination="t6q-Mv-K2g" eventType="touchUpInside" id="clc-j9-IJc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cEr-yr-hkL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OUI-dH-y15" firstAttribute="top" secondItem="cEr-yr-hkL" secondAttribute="top" constant="15" id="516-cS-t5x"/>
+                            <constraint firstItem="K3f-yn-bzv" firstAttribute="centerX" secondItem="O6b-Da-jT1" secondAttribute="centerX" id="7eH-dC-01M"/>
+                            <constraint firstItem="OyE-oz-K0G" firstAttribute="leading" secondItem="cEr-yr-hkL" secondAttribute="leading" constant="20" id="DUl-29-iQR"/>
+                            <constraint firstAttribute="trailing" secondItem="OUI-dH-y15" secondAttribute="trailing" constant="20" id="HKJ-7t-eFe"/>
+                            <constraint firstItem="OUI-dH-y15" firstAttribute="centerX" secondItem="O6b-Da-jT1" secondAttribute="centerX" id="L79-wV-gW7"/>
+                            <constraint firstItem="K3f-yn-bzv" firstAttribute="top" secondItem="OyE-oz-K0G" secondAttribute="bottom" constant="20" id="P71-0Z-v9c"/>
+                            <constraint firstItem="cEr-yr-hkL" firstAttribute="trailing" secondItem="OyE-oz-K0G" secondAttribute="trailing" constant="20" id="URE-4I-xWx"/>
+                            <constraint firstItem="QF8-Zt-mO4" firstAttribute="top" secondItem="K3f-yn-bzv" secondAttribute="bottom" constant="20" id="a43-4v-MYA"/>
+                            <constraint firstItem="OUI-dH-y15" firstAttribute="leading" secondItem="O6b-Da-jT1" secondAttribute="leading" constant="20" id="iSm-aR-kt7"/>
+                            <constraint firstItem="OyE-oz-K0G" firstAttribute="top" secondItem="OUI-dH-y15" secondAttribute="bottom" constant="30" id="nCN-Ba-6bG"/>
+                            <constraint firstItem="QF8-Zt-mO4" firstAttribute="centerX" secondItem="O6b-Da-jT1" secondAttribute="centerX" id="xIH-C3-OWR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="amoountTextField" destination="OyE-oz-K0G" id="bxI-Yz-Fpf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lfe-DV-tlk" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="238" y="168"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

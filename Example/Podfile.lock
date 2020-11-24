@@ -5,9 +5,27 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.2.38):
-    - goSellSDK/Core (= 2.2.38)
-  - goSellSDK/Core (2.2.38):
+  - goSellAppClipSDK (1.0.4):
+    - goSellAppClipSDK/Core (= 1.0.4)
+  - goSellAppClipSDK/Core (1.0.4):
+    - EditableTextInsetsTextFieldV2
+    - SwiftyRSA
+    - TapAdditionsKitV2
+    - TapApplicationV2
+    - TapBundleLocalization
+    - TapCardValidator
+    - TapEditableViewV2
+    - TapFontsKitV2
+    - TapGLKitV2
+    - TapKeychain
+    - TapNetworkManagerV2
+    - TapNibViewV2
+    - TapResponderChainInputViewV2
+    - TapSearchViewV2
+    - TapVisualEffectViewV2
+  - goSellSDK (2.2.40):
+    - goSellSDK/Core (= 2.2.40)
+  - goSellSDK/Core (2.2.40):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -24,7 +42,7 @@ PODS:
     - TapResponderChainInputViewV2
     - TapSearchViewV2
     - TapVisualEffectViewV2
-  - goSellSDK/ErrorReporting (2.2.38):
+  - goSellSDK/ErrorReporting (2.2.40):
     - goSellSDK/Core
     - TapErrorReportingV2
   - Kingfisher (5.15.7):
@@ -80,6 +98,7 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
+  - goSellAppClipSDK
   - goSellSDK (from `../`)
   - goSellSDK/ErrorReporting (from `../`)
 
@@ -89,6 +108,7 @@ SPEC REPOS:
     - Crashlytics
     - EditableTextInsetsTextFieldV2
     - Fabric
+    - goSellAppClipSDK
     - Kingfisher
     - SwiftyRSA
     - TapAdditionsKitV2
@@ -117,7 +137,8 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: 208c5d4f992dfd0e08af2b4c3ef172e7ae9ab900
+  goSellAppClipSDK: 69945bc8997a0551ad9726d75f00f5df89c6042b
+  goSellSDK: b091cfead373ee241fab6d0bed141b7946bc55b2
   Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
   TapAdditionsKitV2: 89a0ef85d6aa659ff3102b632914466924ce3ccb
@@ -137,6 +158,6 @@ SPEC CHECKSUMS:
   TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
-PODFILE CHECKSUM: c39cc3407465c00f5f8872cf488440069d53bf55
+PODFILE CHECKSUM: da116589ac60dec0902d9a9c8722b4b56c8d7084
 
 COCOAPODS: 1.9.3
