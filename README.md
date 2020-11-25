@@ -16,6 +16,8 @@ A library that fully covers payment/authorization/card saving process inside you
 1. [Requirements](#requirements)
 2. [Installation](#installation)
    1. [Installation with CocoaPods](#installation_with_cocoapods)
+   2. [Installation with Carthage](#installation_with_carthage)
+   3. [Installation with App Clip](#Installation_To_App_Clip)
 3. [Setup](#setup)
    1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
    2. [goSellSDK Class Methods](#setup_gosellsdk_class_methods)
@@ -163,6 +165,14 @@ end
 
 <a name="setup"></a>
 
+## Installation To App Clip
+
+Apple introduced in iOS 14+ an app on demand fashion called it "App Clip", where it gives the merchant the opportunity to provide his services on the go without the need for his customers to download an app.
+
+In Tap we strive following the highest standards and utilising the latest provided technologies, hence we provided a comptible SDK to be embedded inside an App Clip target. The sdk is used exactly the same as this SDK code wise.
+
+For more info please follow : [goSellAppClipSDK](https://github.com/Tap-Payments/goSellAppClipSDK)
+
 # Setup
 
 ---
@@ -254,6 +264,7 @@ Currently we support the following languages:
 		<td>Russian</td><td>ru</td>
 	</tr>
 </table>
+
 
 
 ### SDK Version
@@ -465,6 +476,7 @@ Below is the list of Pay button properties
 </table>
 
 
+
 <a name ="pay_button_methods"></a>
 
 ### Methods
@@ -480,6 +492,7 @@ Below is the list of Pay button properties
         <td align="justify"><sub>Call this method to update displayed amount on the button.<br><b>Note:</b> If amount is non positive then pay button is force disabled.</sub></td>
     </tr>
 </table>
+
 
 
 <a name="session"></a>
@@ -523,6 +536,7 @@ You want to use `Session` object if you are not using `PayButton`.
 </table>
 
 
+
 <a name="session_methods"></a>
 
 ### Methods
@@ -553,6 +567,7 @@ You want to use `Session` object if you are not using `PayButton`.
 </table>
 
 
+
 <a name="api_session"></a>
 
 ## API Session
@@ -578,6 +593,7 @@ You want to use `Session` object if you are not using `PayButton`.
     	<td align="justify"><sub>Shared singleton APISession instance.</sub></td>
     </tr>
 </table>
+
 
 
 <a name="api_session_methods"></a>
@@ -752,6 +768,7 @@ The following table describes its structure and specifies which fields are requi
         <td align="left"><sub>Defines payment types to show.</sub></td>
     </tr>
 </table>
+
 
 <a name="session_data_source_samples"></a>
 
