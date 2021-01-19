@@ -5,9 +5,9 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.2.40):
-    - goSellSDK/Core (= 2.2.40)
-  - goSellSDK/Core (2.2.40):
+  - goSellSDK (2.2.41):
+    - goSellSDK/Core (= 2.2.41)
+  - goSellSDK/Core (2.2.41):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -24,13 +24,11 @@ PODS:
     - TapResponderChainInputViewV2
     - TapSearchViewV2
     - TapVisualEffectViewV2
-  - Kingfisher (5.15.7):
-    - Kingfisher/Core (= 5.15.7)
-  - Kingfisher/Core (5.15.7)
+  - Kingfisher (6.0.1)
   - SwiftyRSA (1.6.0):
     - SwiftyRSA/ObjC (= 1.6.0)
   - SwiftyRSA/ObjC (1.6.0)
-  - TapAdditionsKitV2 (0.0.7):
+  - TapAdditionsKitV2 (0.0.8):
     - TapSwiftFixesV2
   - TapApplicationV2 (0.0.2):
     - TapAdditionsKitV2
@@ -102,10 +100,10 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: 0cd1abeb6701c7d1a53c171d1d8789eb28e9379a
-  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  goSellSDK: 66742f386d33f6945c3aa98ee6ebe3a66eb741a8
+  Kingfisher: adde87a4f74f6a3845395769354efff593581740
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
-  TapAdditionsKitV2: 89a0ef85d6aa659ff3102b632914466924ce3ccb
+  TapAdditionsKitV2: ba369802e9575c3475ce6d5af228cf60c68edfc9
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
   TapCardValidator: 8d43b6e8a1a78276c03116a5b625041adeffeb0d
