@@ -401,7 +401,7 @@ extension ExampleViewController: SessionDataSource {
         
         return .capture(after: 8)
     }
-    
+    /*
     internal var buttonTitle: String? {
         return "Custom Label"
     }
@@ -409,7 +409,7 @@ extension ExampleViewController: SessionDataSource {
     internal var showAmountOnPayButton: Bool {
         return false
     }
-
+     */
     internal var allowedCadTypes: [CardType]? {
         let selectedAllowedCards:cardTypes = self.paymentSettings.dataSource.allowedCards
         if selectedAllowedCards == .All {
