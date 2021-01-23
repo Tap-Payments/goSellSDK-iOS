@@ -385,7 +385,7 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 				
 				PaymentOptionsViewController.tap_findInHierarchy()?.showWebPaymentViewController(completion)
 			}
-        case .apple:
+        case .apple,.device:
             guard let nonnullURL = url else {
                 
                 completion?()
