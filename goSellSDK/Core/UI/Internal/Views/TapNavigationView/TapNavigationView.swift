@@ -343,18 +343,19 @@ internal final class TapNavigationView: TapNibView {
 		
 		self.hasIcon = image != nil
 		let animationDuration = animated ? Constants.animationDuration : 0.0
-		
-		self.iconImageView?.image = image
-		
-		if layout {
-			
-			self.updateIconLayout(with: animationDuration, true)
-		}
-		
-		if let nonnullImage = self.iconImageView?.image, let size = self.iconImageView?.bounds.size {
-			
-			self.iconImageView?.contentMode = nonnullImage.tap_bestContentMode(toFit: size)
-		}
+        DispatchQueue.main.async() {
+            self.iconImageView?.image = image
+            
+            if layout {
+                
+                self.updateIconLayout(with: animationDuration, true)
+            }
+            
+            if let nonnullImage = self.iconImageView?.image, let size = self.iconImageView?.bounds.size {
+                
+                self.iconImageView?.contentMode = nonnullImage.tap_bestContentMode(toFit: size)
+            }
+        }
 	}
 	
     @IBAction private func backButtonTouchUpInside(_ sender: Any) {

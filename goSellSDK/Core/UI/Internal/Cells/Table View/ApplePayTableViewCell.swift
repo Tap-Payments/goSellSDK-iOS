@@ -17,6 +17,7 @@ import class UIKit.UITableViewCell.UITableViewCell
 import class UIKit.UIView.UIView
 import class PassKit.PKPaymentButton
 import class PassKit.PKPaymentAuthorizationViewController
+import class PassKit.PKPassLibrary
 import enum PassKit.PKPaymentButtonType
 
 internal class ApplePayTableViewCell: BaseTableViewCell {
@@ -73,6 +74,16 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
         //guard let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: model!.indexPath) as? TableViewCellViewModel else { return }
         
         //model.tableViewDidSelectCell(model.)
+        var defaultApplePayType:PKPaymentButtonType = .plain
+        if #available(iOS 10.0, *) {
+            defaultApplePayType = .inStore
+        }
+        let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ??  defaultApplePayType
+        if applPayButtonType == .setUp {
+            let library = PKPassLibrary()
+            library.openPaymentSetup()
+            return
+        }
         model?.tableViewDidSelectCell(model!.tableView!)
     }
 }
