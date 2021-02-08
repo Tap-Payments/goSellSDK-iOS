@@ -35,29 +35,30 @@ extension WebPaymentOptionTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
         
-        self.titleLabel?.text       = self.model?.title
-		self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
-		
-        self.iconImageView?.image   = self.model?.iconImage
-        self.arrowImageView?.image  = self.model?.arrowImage
-        
-        self.iconImageView?.translatesAutoresizingMaskIntoConstraints = false
-        self.iconViewWidthConstraint.constant = 32
-        
-        if #available(iOS 13.0, *) {
-           if UITraitCollection.current.userInterfaceStyle == .dark {
-            self.paddingView.layer.cornerRadius = 8
-            self.paddingView.layer.masksToBounds = true
-            self.iconViewWidthConstraint.constant = 22
-           }else{
-            self.paddingView.layer.cornerRadius = 0
-            self.paddingView.layer.masksToBounds = true
-            self.iconViewWidthConstraint.constant = 32
-            }
-        }
-        
-        
         DispatchQueue.main.async {
+
+            self.titleLabel?.text       = self.model?.title
+            self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
+            
+            self.iconImageView?.image   = self.model?.iconImage
+            self.arrowImageView?.image  = self.model?.arrowImage
+            
+            self.iconImageView?.translatesAutoresizingMaskIntoConstraints = false
+            self.iconViewWidthConstraint.constant = 32
+            
+            if #available(iOS 13.0, *) {
+               if UITraitCollection.current.userInterfaceStyle == .dark {
+                self.paddingView.layer.cornerRadius = 8
+                self.paddingView.layer.masksToBounds = true
+                self.iconViewWidthConstraint.constant = 22
+               }else{
+                self.paddingView.layer.cornerRadius = 0
+                self.paddingView.layer.masksToBounds = true
+                self.iconViewWidthConstraint.constant = 32
+                }
+            }
+        
+        
             self.layoutIfNeeded()
             self.iconImageView?.layoutIfNeeded()
         }

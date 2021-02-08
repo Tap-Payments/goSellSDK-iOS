@@ -42,31 +42,34 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
         
         //self.titleLabel?.text       = self.model?.title
         //self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
-        
-        self.iconImageView?.image   = self.model?.iconImage
-        var defaultApplePayType:PKPaymentButtonType = .plain
-        if #available(iOS 10.0, *) {
-            defaultApplePayType = .inStore
+        DispatchQueue.main.async {
+
+            self.iconImageView?.image   = self.model?.iconImage
+            var defaultApplePayType:PKPaymentButtonType = .plain
+            if #available(iOS 10.0, *) {
+                defaultApplePayType = .inStore
+            }
+            let applPayButtonType:PKPaymentButtonType = self.model?.applePayButtonType() ??  defaultApplePayType
+            
+            let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: self.model?.applePayButtonTypeStyle() ?? .black)
+            
+            //applePayButton.backgroundColor = .blue
+            var frame:CGRect = applePayButton.frame
+            frame.size.width = self.frame.width - 30
+            frame.size.height = 40
+            applePayButton.frame = frame
+            //applePayButton.tap_borderColor = UIColor(tap_hex: "E1E1E1")
+            //applePayButton.tap_borderWidth = 1
+            applePayButton.layer.cornerRadius = 4
+            
+            applePayButton.center = self.contentView.center
+            applePayButton.addTarget(self, action: #selector(self.applePayButtonClicked(_:)), for: .touchUpInside)
+            self.contentView.addSubview(applePayButton)
+            
+           // self.arrowImageView?.image  = self.model?.arrowImage
+            self.backgroundColor = UIColor.clear
+            
         }
-        let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ??  defaultApplePayType
-        
-        let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: model?.applePayButtonTypeStyle() ?? .black)
-        
-        //applePayButton.backgroundColor = .blue
-        var frame:CGRect = applePayButton.frame
-        frame.size.width = self.frame.width - 30
-        frame.size.height = 40
-        applePayButton.frame = frame
-        //applePayButton.tap_borderColor = UIColor(tap_hex: "E1E1E1")
-        //applePayButton.tap_borderWidth = 1
-        applePayButton.layer.cornerRadius = 4
-        
-        applePayButton.center = contentView.center
-        applePayButton.addTarget(self, action: #selector(applePayButtonClicked(_:)), for: .touchUpInside)
-        contentView.addSubview(applePayButton)
-        
-       // self.arrowImageView?.image  = self.model?.arrowImage
-        self.backgroundColor = UIColor.clear
     }
     
     @objc private func applePayButtonClicked(_ sender: Any) {

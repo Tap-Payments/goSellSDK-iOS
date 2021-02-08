@@ -29,26 +29,27 @@ extension ImageTableViewCell: LoadingWithModelCell {
 	
 	internal func updateContent(animated: Bool) {
 		
-		self.imageImageView?.image = self.model?.image
-        self.paddingView.layer.cornerRadius = 0
-        self.paddingView.layer.masksToBounds = true
-        
-        self.paddingView.translatesAutoresizingMaskIntoConstraints = false
-        self.imageImageView?.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.paddingWidthConstraint.constant = 32
-        self.imageViewWidthConstraint.constant = 32
-        
-        if #available(iOS 13.0, *) {
-            if self.traitCollection.userInterfaceStyle == .dark
-            {
-                self.paddingView.layer.cornerRadius = 8
-                self.paddingWidthConstraint.constant = 32
-                self.imageViewWidthConstraint.constant = 22
-            }
-        }
-        
         DispatchQueue.main.async {
+
+            self.imageImageView?.image = self.model?.image
+            self.paddingView.layer.cornerRadius = 0
+            self.paddingView.layer.masksToBounds = true
+            
+            self.paddingView.translatesAutoresizingMaskIntoConstraints = false
+            self.imageImageView?.translatesAutoresizingMaskIntoConstraints = false
+            
+            self.paddingWidthConstraint.constant = 32
+            self.imageViewWidthConstraint.constant = 32
+            
+            if #available(iOS 13.0, *) {
+                if self.traitCollection.userInterfaceStyle == .dark
+                {
+                    self.paddingView.layer.cornerRadius = 8
+                    self.paddingWidthConstraint.constant = 32
+                    self.imageViewWidthConstraint.constant = 22
+                }
+            }
+        
             self.layoutIfNeeded()
             self.paddingView.layoutIfNeeded()
             self.imageImageView?.layoutIfNeeded()
