@@ -761,7 +761,7 @@
 				);
 				MARKETING_VERSION = 2.2.42;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batelco.Batelco.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -787,7 +787,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.2.42;
-				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.batelco.Batelco.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

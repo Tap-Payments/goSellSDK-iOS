@@ -69,6 +69,9 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
            // self.arrowImageView?.image  = self.model?.arrowImage
             self.backgroundColor = UIColor.clear
             
+            // Hide the apple pay button if the device is not supporting Apple pay at all
+            self.isHidden = !PKPaymentAuthorizationViewController.canMakePayments()
+            
         }
     }
     
@@ -83,8 +86,12 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
         }
         let applPayButtonType:PKPaymentButtonType = model?.applePayButtonType() ??  defaultApplePayType
         if applPayButtonType == .setUp {
-            let library = PKPassLibrary()
-            library.openPaymentSetup()
+            Process.shared.closePayment(with: .cancelled, fadeAnimation: true, force: true) {
+                DispatchQueue.main.async {
+                    let library = PKPassLibrary()
+                    library.openPaymentSetup()
+                }
+            }
             return
         }
         model?.tableViewDidSelectCell(model!.tableView!)

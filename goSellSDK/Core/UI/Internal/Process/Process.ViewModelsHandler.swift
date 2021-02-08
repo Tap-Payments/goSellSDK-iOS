@@ -470,7 +470,7 @@ internal extension Process {
             
 			let savedCards = self.process.dataManagerInterface.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)
 			let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).filter(currenciesFilter).sorted(by: sortingClosure)
-            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
+            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments() ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
 			let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
 			let hasApplaPaymentOption = applePaymentOptions.count > 0
             
@@ -704,7 +704,7 @@ internal extension Process {
 			let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
 			let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
 			
-            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentNetworks) ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
+            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments() ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
             let hasApplePaymentOption = applePaymentOptions.count > 0
             let hasOtherPaymentOptions = hasApplePaymentOption
             let displaysGroupTitles = hasOtherPaymentOptions

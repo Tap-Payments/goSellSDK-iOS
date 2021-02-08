@@ -29,7 +29,7 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         /*GoSellSDK.secretKey = SecretKey(sandbox:	"sk_test_kovrMB0mupFJXfNZWx6Etg5y",
          production:	"sk_live_QglH8V7Fw6NPAom4qRcynDK2")*/
         
-        GoSellSDK.secretKey = SecretKey(sandbox:    "sk_test_cvSHaplrPNkJO7dhoUxDYjqA",
+        GoSellSDK.secretKey = SecretKey(sandbox:    "sk_test_yns7jegwC3PTKODm56iIvkBE",
                                         production:    "sk_live_V4UDhitI0r7sFwHCfNB6xMKp")
     }
     
