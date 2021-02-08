@@ -5,9 +5,9 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.2.41):
-    - goSellSDK/Core (= 2.2.41)
-  - goSellSDK/Core (2.2.41):
+  - goSellSDK (2.2.42):
+    - goSellSDK/Core (= 2.2.42)
+  - goSellSDK/Core (2.2.42):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -24,7 +24,7 @@ PODS:
     - TapResponderChainInputViewV2
     - TapSearchViewV2
     - TapVisualEffectViewV2
-  - Kingfisher (6.0.1)
+  - Kingfisher (6.1.0)
   - SwiftyRSA (1.6.0):
     - SwiftyRSA/ObjC (= 1.6.0)
   - SwiftyRSA/ObjC (1.6.0)
@@ -46,10 +46,10 @@ PODS:
     - TapAdditionsKitV2
   - TapNibViewV2 (0.0.2):
     - TapAdditionsKitV2
-  - TapResponderChainInputViewV2 (0.0.3):
+  - TapResponderChainInputViewV2 (0.0.4):
     - TapAdditionsKitV2
     - TapNibViewV2
-  - TapSearchViewV2 (0.0.3):
+  - TapSearchViewV2 (0.0.4):
     - TapAdditionsKitV2
     - TapNibViewV2
   - TapSwiftFixesV2 (1.0.0):
@@ -100,8 +100,8 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: 66742f386d33f6945c3aa98ee6ebe3a66eb741a8
-  Kingfisher: adde87a4f74f6a3845395769354efff593581740
+  goSellSDK: 261dc07008373841235a32c3c940f71720df1680
+  Kingfisher: f5d8d60a0ef3edd642fd781bae60918599901aff
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
   TapAdditionsKitV2: ba369802e9575c3475ce6d5af228cf60c68edfc9
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
@@ -113,8 +113,8 @@ SPEC CHECKSUMS:
   TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
   TapNetworkManagerV2: f6e844c76d49c764633722b70e14398409a10317
   TapNibViewV2: 814b18346837d9dab611a211a702b9b0b8369d07
-  TapResponderChainInputViewV2: 2bb2694e00093a0f64f25c6cf2c670fe25458172
-  TapSearchViewV2: 30e71bdeb9ab0d9bf4ddbf7179ab5614e927fec9
+  TapResponderChainInputViewV2: 2dcd4bda246b0bd8764ee7fe8dbbd092815d063f
+  TapSearchViewV2: a167173db767a2be86d66c319cbb6b8da1541531
   TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
