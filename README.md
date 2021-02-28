@@ -243,7 +243,11 @@ Use this property to test your integration with the sandbox transactions.
 ### Language
 
 Localization language of the UI part of the SDK. This is locale identifier. 
-
+```swift
+if let languageCode = Locale.current.languageCode, GoSellSDK.availableLanguages.contains(languageCode) {
+        GoSellSDK.language = languageCode
+}
+```
 Make sure it consists only from 2 lowercased letters and is presented in the list of **availableLanguages** property of *goSellSDK* class.
 
 **Notice:** Starting from *iOS 9* SDK user interface layout direction is based on the language you select, which means that if you would like to have it in Arabic language, the UI will be switched to RTL (right-to-left).
