@@ -195,7 +195,7 @@ To set it up, add the following line of code somewhere in your project and make 
 
 ```swift
 let secretKey = SecretKey(sandbox: "YOUR_SANDBOX_SECRET_KEY", production: "YOUR_PRODUCTION_SECRET_KEY") // (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
-goSellSDK.secretKey = secretKey // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+GoSellSDK.secretKey = secretKey // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
 ```
 
 *Objective-C*:
@@ -231,7 +231,9 @@ or
 ### Mode
 
 SDK mode is a mode SDK is operating in, either **sandbox** or **production**.
-
+```swift
+GoSellSDK.mode = .sandbox
+```
 Use this property to test your integration with the sandbox transactions.
 
 **WARNING:** Default value of this property is *production* which means your transaction are real transactions. Switch to *sandbox* while in development.
