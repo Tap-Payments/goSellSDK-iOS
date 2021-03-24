@@ -33,7 +33,7 @@
         
         let lines: [String] = [firstLine, secondLine, thirdLine, fourthLine,fifthLine]
         
-        return lines.joined(separator: "\n")
+        return "An error occured, please try again later."//lines.joined(separator: "\n")
     }
 	
 	// MARK: Methods
@@ -83,7 +83,7 @@
         self.error			= error
         self.urlResponse	= response
 		self.responseBody	= body
-        self.customDescription = "TAP SDK KNOWN ERROR : \(type.description) \n Error description : \(self.errorDescription) \(error) \n URL : \(response?.url?.absoluteString ?? "") \n Error Response Body : \(self.responseBodyDescription)\n Error URL Body : \(self.urlResponseDescription)"
+        self.customDescription = "An error occured, please try again."//TAP SDK KNOWN ERROR : \(type.description) \n Error description : \(self.errorDescription) \(error) \n URL : \(response?.url?.absoluteString ?? "") \n Error Response Body : \(self.responseBodyDescription)\n Error URL Body : \(self.urlResponseDescription)"
         
         print(self.customDescription)
     }

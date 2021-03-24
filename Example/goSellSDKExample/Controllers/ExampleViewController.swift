@@ -509,7 +509,7 @@ extension ExampleViewController: SessionDelegate {
     // payment failed, payment screen closed.
     func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol) {
         if let error = error {
-            let errorMessage:String = "\(error) \n \(error.description)"
+            let errorMessage:String =  "\(error.description)"
             let alert:UIAlertController  = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
             let copyAction:UIAlertAction = UIAlertAction(title: "Copy", style: .destructive) { (_) in
                 UIPasteboard.general.string = errorMessage
