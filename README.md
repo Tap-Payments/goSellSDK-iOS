@@ -190,6 +190,7 @@ Below is the list of properties in goSellSDK class you can manipulate. Make sure
 ### Secret Key
 
 To set it up, add the following line of code somewhere in your project and make sure it will be called before any usage of `goSellSDK`, otherwise an exception will be thrown. **Required**.
+PS: This key is just a ‘Tap identifier’ for the application integrating with our SDK. Please don’t confuse it with public/secret keys used for encryption and decryption, which are stored safely on our PCI approved servers.
 
 *Swift*:
 
