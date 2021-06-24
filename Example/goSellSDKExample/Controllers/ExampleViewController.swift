@@ -373,6 +373,10 @@ extension ExampleViewController: SessionDataSource {
         return self.paymentSettings.dataSource.shippingList
     }
     
+    /*internal var topup: Topup {
+        return .init(walletID: "wallet", reference: nil, application: nil, metdata: nil)
+    }*/
+    
     internal var require3DSecure: Bool {
         
         return self.paymentSettings.dataSource.isThreeDSecure
