@@ -31,6 +31,9 @@ internal struct PaymentOptionsRequest {
     /// Customer (payer).
     internal var customer: String?
     
+    /// Topup object if any
+    internal let topup: Topup?
+    
 	/// List of destinations (grouped by "destination" key).
 	internal private(set) var destinationGroup: DestinationGroup?
 	
@@ -41,7 +44,7 @@ internal struct PaymentOptionsRequest {
 	
 	internal init(customer: String?) {
 		
-		self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil)
+        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil, topup:nil)
 	}
 	
 	internal init(transactionMode:	TransactionMode?,
@@ -53,7 +56,8 @@ internal struct PaymentOptionsRequest {
 				  merchantID:		String?,
 				  customer:			String?,
 				  destinationGroup:	DestinationGroup?,
-				  paymentType:		PaymentType?
+				  paymentType:		PaymentType?,
+                  topup:            Topup?
 		
 	) {
         
@@ -65,7 +69,8 @@ internal struct PaymentOptionsRequest {
         self.customer           	= customer
 		self.destinationGroup		= destinationGroup
 		self.paymentType			= paymentType
-
+        self.topup                  = topup
+        
 		if let nonnullItems 		= items, nonnullItems.count > 0 {
 			
 			self.items = items
@@ -89,9 +94,10 @@ internal struct PaymentOptionsRequest {
 		case currency           	= "currency"
 		case customer           	= "customer"
 		case totalAmount        	= "total_amount"
-		case merchantID			= "merchant_id"
+		case merchantID			    = "merchant_id"
 		case destinationGroup		= "destinations"
 		case paymentType			= "payment_type"
+        case topup                  = "topup"
     }
     
     // MARK: Properties
@@ -111,6 +117,7 @@ extension PaymentOptionsRequest: Encodable {
         var container = encoder.container(keyedBy: CodingKeys.self)
 		
         try container.encodeIfPresent(self.transactionMode, forKey: .transactionMode)
+        try container.encodeIfPresent(self.topup, forKey: .topup)
         try container.encodeIfPresent(self.items, forKey: .items)
         
         if self.shipping?.count ?? 0 > 0 {

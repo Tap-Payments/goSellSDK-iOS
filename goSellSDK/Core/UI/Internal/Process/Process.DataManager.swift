@@ -636,6 +636,7 @@ internal extension Process {
 			let taxes           = nonnullDataSource.taxes       ?? nil
 			let destinations		= nonnullDataSource.destinations       ?? nil
 			let paymentType		= nonnullDataSource.paymentType       ?? nil
+            let topup        = nonnullDataSource.topup       ?? nil
 
 			/// the API is using destinationsGroup not destinations
 			let destinationsGroup = DestinationGroup(destinations: destinations)
@@ -648,7 +649,8 @@ internal extension Process {
 													   merchantID:		merchantID,
 													   customer:        customer.identifier,
 													   destinationGroup:	destinationsGroup,
-													   paymentType:			paymentType)
+													   paymentType:			paymentType,
+                                                       topup: topup)
 			
 			return paymentRequest
 		}
@@ -831,6 +833,7 @@ internal extension Process {
 			let paymentDescription  	= dataSource.paymentDescription ?? nil
 			let paymentMetadata     	= dataSource.paymentMetadata ?? nil
 			let reference           	= dataSource.paymentReference ?? nil
+            let topup                   = dataSource.topup ?? nil
 			var shouldSaveCard      	= saveCard ?? false
 			let statementDescriptor 	= dataSource.paymentStatementDescriptor ?? nil
             var requires3DSecure    	= (self.requires3DSecure || (dataSource.require3DSecure ?? false))
@@ -892,7 +895,8 @@ internal extension Process {
 														shouldSaveCard:         shouldSaveCard,
 														statementDescriptor:    statementDescriptor,
 														requires3DSecure:       requires3DSecure,
-														receipt:                receiptSettings)
+														receipt:                receiptSettings,
+                                                        topup:                  topup)
 				
 				APIClient.shared.createCharge(with: chargeRequest) { [weak self] (charge, error) in
 					
@@ -1236,6 +1240,7 @@ internal extension Process {
 			/// the API is using destinationsGroup not destinations
 			let destinationsGroup = DestinationGroup(destinations: destinations)
 			let paymentType		= nonnullDataSource.paymentType       ?? nil
+            let topup        = nonnullDataSource.topup       ?? nil
 
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
 													   amount:          nonnullDataSource.amount,
@@ -1246,7 +1251,8 @@ internal extension Process {
 													   merchantID:		merchantID,
 													   customer:        customer.identifier,
 													   destinationGroup:	destinationsGroup,
-													   paymentType:			paymentType)
+													   paymentType:			paymentType,
+                                                       topup: topup)
 			
 			return paymentRequest
 		}
