@@ -5,9 +5,9 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.2.43):
-    - goSellSDK/Core (= 2.2.43)
-  - goSellSDK/Core (2.2.43):
+  - goSellSDK (2.2.45):
+    - goSellSDK/Core (= 2.2.45)
+  - goSellSDK/Core (2.2.45):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: e80719e9cdb618d8d0ca85ffb097c3d6a2142e75
+  goSellSDK: 162580e64573cccd61fd38c1f5e220db42df9519
   SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
   TapAdditionsKitV2: ba369802e9575c3475ce6d5af228cf60c68edfc9
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
@@ -116,4 +116,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: dc0834a994af3dbfe06d4ef3464a15f4e92d9471
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

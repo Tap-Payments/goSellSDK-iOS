@@ -13,6 +13,9 @@ internal class CreateChargeRequest: Encodable {
     
     /// Amount that is selected by the merchant (initial amount).
     internal let amount: Decimal
+    
+    /// The topup details in this transaction if any
+    internal var topup: Topup?
    
 	/// Amount that is selected by the user .
     internal let selectedAmount: Decimal
@@ -122,7 +125,8 @@ internal class CreateChargeRequest: Encodable {
 				  shouldSaveCard:		Bool,
 				  statementDescriptor:	String?,
 				  requires3DSecure:		Bool?,
-				  receipt:				Receipt?) {
+                  receipt:				Receipt?,
+                  topup:                Topup?) {
         
         self.amount                 = amount
         self.selectedAmount        = selectedAmount
@@ -143,6 +147,7 @@ internal class CreateChargeRequest: Encodable {
         self.statementDescriptor    = statementDescriptor
         self.requires3DSecure       = requires3DSecure
         self.receipt                = receipt
+        self.topup                  = topup
     }
     
     // MARK: - Private -
@@ -150,7 +155,7 @@ internal class CreateChargeRequest: Encodable {
     private enum CodingKeys: String, CodingKey {
         
         case amount                 = "amount"
-        case selectedAmount          = "selected_amount"
+        case selectedAmount         = "selected_amount"
         case currency               = "currency"
         case selectedCurrency      	= "selected_currency"
         case customer               = "customer"
@@ -160,7 +165,7 @@ internal class CreateChargeRequest: Encodable {
         case redirect               = "redirect"
         case post                   = "post"
         case source                 = "source"
-		case destinationGroup			= "destinations"
+		case destinationGroup		= "destinations"
         case descriptionText        = "description"
         case metadata               = "metadata"
         case reference              = "reference"
@@ -168,5 +173,6 @@ internal class CreateChargeRequest: Encodable {
         case statementDescriptor    = "statement_descriptor"
         case requires3DSecure       = "threeDSecure"
         case receipt                = "receipt"
+        case topup                  = "topup"
     }
 }

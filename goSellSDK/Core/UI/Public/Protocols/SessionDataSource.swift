@@ -113,5 +113,8 @@ import class PassKit.PKPaymentToken
 	
 	/// Defines the required payments `web` or  `card`
 	@objc optional var paymentType: PaymentType { get }
+    
+    /// Defines the topup module if needed
+    @objc optional var topup: Topup { get }
 
 }

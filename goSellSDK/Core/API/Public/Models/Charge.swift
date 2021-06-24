@@ -87,6 +87,9 @@
     /// Charge response.
     public private(set) var response: Response?
     
+    /// Topup object if any
+    public let topup: Topup?
+    
     /// Extra information about a charge.
     /// This will appear on your customer’s credit card statement.
     /// It must contain at least one letter.
@@ -119,12 +122,13 @@
         case receiptSettings        = "receipt"
         case acquirer               = "acquirer"
         case response               = "response"
+        case topup                  = "topup"
         case statementDescriptor    = "statement_descriptor"
     }
     
     // MARK: Methods
     
-	internal init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, destinations: DestinationGroup?, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?) {
+    internal init(identifier: String, apiVersion: String, amount: Decimal, currency: Currency, customer: Customer, isLiveMode: Bool, cardSaved: Bool, object: String, authentication: Authentication?, redirect: TrackingURL, post: TrackingURL?, card: SavedCard?, source: Source, destinations: DestinationGroup?, status: ChargeStatus, requires3DSecure: Bool, transactionDetails: TransactionDetails, descriptionText: String?, metadata: Metadata?, reference: Reference?, receiptSettings: Receipt?, acquirer: Acquirer?, response: Response?, statementDescriptor: String?, topup: Topup?) {
         
         self.identifier             = identifier
         self.apiVersion             = apiVersion
@@ -150,6 +154,7 @@
         self.acquirer               = acquirer
         self.response               = response
         self.statementDescriptor    = statementDescriptor
+        self.topup                  = topup
         super.init()
     }
 }
@@ -186,6 +191,7 @@ extension Charge: Decodable {
         let acquirer            = try container.decodeIfPresent (Acquirer.self,             forKey: .acquirer)
         let response            = try container.decodeIfPresent (Response.self,             forKey: .response)
         let statementDescriptor = try container.decodeIfPresent (String.self,               forKey: .statementDescriptor)
+        let topup               = try container.decodeIfPresent (Topup.self,                forKey: .topup)
         
         self.init(identifier:           identifier,
                   apiVersion:           apiVersion,
@@ -210,7 +216,8 @@ extension Charge: Decodable {
                   receiptSettings:      receiptSettings,
                   acquirer:             acquirer,
                   response:             response,
-                  statementDescriptor:  statementDescriptor)
+                  statementDescriptor:  statementDescriptor,
+                  topup:                topup)
     }
 }
 
