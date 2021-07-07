@@ -834,6 +834,10 @@ internal extension Process {
 			let paymentMetadata     	= dataSource.paymentMetadata ?? nil
 			let reference           	= dataSource.paymentReference ?? nil
             let topup                   = dataSource.topup ?? nil
+            
+            topup?.amount = totalAmount
+            topup?.currency = dataSource.currency ?? nil
+            
 			var shouldSaveCard      	= saveCard ?? false
 			let statementDescriptor 	= dataSource.paymentStatementDescriptor ?? nil
             var requires3DSecure    	= (self.requires3DSecure || (dataSource.require3DSecure ?? false))
