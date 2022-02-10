@@ -17,7 +17,7 @@ internal final class SettingsDataManager {
     // MARK: Properties
     
     /// SDK settings.
-    internal private(set) var settings: SDKSettingsData? {
+    internal var settings: SDKSettingsData? {
         
         didSet {
             

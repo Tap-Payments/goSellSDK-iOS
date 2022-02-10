@@ -25,7 +25,7 @@ internal struct SDKSettingsData {
     internal let deviceID: String?
     
     /// Merchant information.
-    internal let merchant: Merchant
+    internal var merchant: Merchant
     
     /// Internal SDK settings.
     internal let internalSettings: InternalSDKSettings
