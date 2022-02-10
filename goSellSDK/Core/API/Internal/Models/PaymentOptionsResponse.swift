@@ -35,6 +35,9 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
     /// Saved cards.
     internal var savedCards: [SavedCard]?
     
+    /// Merchant data
+    internal var merchant: Merchant?
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -49,6 +52,8 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
         case savedCards                 = "cards"
         
         case merchantCountryCode        = "country"
+        
+        case merchant                   = "merchant"
     }
 	
 	// MARK: Methods
@@ -60,7 +65,8 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
 				 currency:						Currency,
 				 supportedCurrenciesAmounts:	[AmountedCurrency],
 				 savedCards:					[SavedCard]?,
-                 merchantCountryCode:           String?) {
+                 merchantCountryCode:           String?,
+                 merchant:                      Merchant?) {
 		
 		self.identifier					= identifier
 		self.orderIdentifier			= orderIdentifier
@@ -70,6 +76,7 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
 		self.supportedCurrenciesAmounts	= supportedCurrenciesAmounts
 		self.savedCards					= savedCards
         self.merchantCountryCode        = merchantCountryCode
+        self.merchant                   = merchant
 	}
 }
 
@@ -88,7 +95,10 @@ extension PaymentOptionsResponse: Decodable {
 		let supportedCurrenciesAmounts	= try container.decode([AmountedCurrency].self, forKey: .supportedCurrenciesAmounts)
 		var savedCards					= try container.decodeIfPresent([SavedCard].self, forKey: .savedCards)
         let merchantCountryCode         = try container.decodeIfPresent(String.self, forKey: .merchantCountryCode)
-		
+        let merchant                    = try container.decodeIfPresent(Merchant.self, forKey: .merchant)
+        if let nonNullMerchant = merchant {
+            SettingsDataManager.shared.settings?.merchant = nonNullMerchant
+        }
         /*let applePayPaymentOption:PaymentOption = PaymentOption(identifier: "2", brand: .apple, title: "APPLE PAY", imageURL: URL(string: "https://i.ibb.co/sP9Tkck/Apple-Pay-Pay-With-2x.png")!, paymentType: .apple, sourceIdentifier: "src_kw.knet", supportedCardBrands: [.apple], extraFees: [], supportedCurrencies: [try! Currency.init(isoCode: "KWD"),try! Currency.init(isoCode: "SAR"),try! Currency.init(isoCode: "AED"),try! Currency.init(isoCode: "BHD")], orderBy: 2)
         
         paymentOptions.append(applePayPaymentOption)*/
@@ -110,6 +120,7 @@ extension PaymentOptionsResponse: Decodable {
 				  currency:						currency,
 				  supportedCurrenciesAmounts:	supportedCurrenciesAmounts,
 				  savedCards:					savedCards,
-                  merchantCountryCode:          merchantCountryCode)
+                  merchantCountryCode:          merchantCountryCode,
+                  merchant:                     merchant)
 	}
 }

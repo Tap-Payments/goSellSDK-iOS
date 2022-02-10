@@ -2,13 +2,10 @@ PODS:
   - CardIODynamic (5.4.1)
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
-  - Kingfisher (5.15.7):
-    - Kingfisher/Core (= 5.15.7)
-  - Kingfisher/Core (5.15.7)
-  - SwiftyRSA (1.6.0):
-    - SwiftyRSA/ObjC (= 1.6.0)
-  - SwiftyRSA/ObjC (1.6.0)
-  - TapAdditionsKitV2 (0.0.7):
+  - SwiftyRSA (1.7.0):
+    - SwiftyRSA/ObjC (= 1.7.0)
+  - SwiftyRSA/ObjC (1.7.0)
+  - TapAdditionsKitV2 (0.0.8):
     - TapSwiftFixesV2
   - TapAlertViewControllerV2 (0.0.2):
     - TapAdditionsKitV2
@@ -17,7 +14,7 @@ PODS:
     - TapAdditionsKitV2
   - TapBundleLocalization (1.0.3)
   - TapCardValidator (1.2.6)
-  - TapEditableViewV2 (0.0.2):
+  - TapEditableViewV2 (1.0.1):
     - TapAdditionsKitV2
   - TapErrorReportingV2 (0.0.3):
     - TapAdditionsKitV2
@@ -25,20 +22,19 @@ PODS:
     - TapApplicationV2
     - TapBundleLocalization
     - TapNetworkManagerV2
-  - TapFontsKitV2 (0.0.3):
+  - TapFontsKitV2 (0.0.4):
     - TapAdditionsKitV2
   - TapGLKitV2 (0.0.2):
     - TapAdditionsKitV2
   - TapKeychain (1.0.5)
-  - TapNetworkManagerV2 (0.0.3):
-    - Kingfisher
+  - TapNetworkManagerV2 (0.0.5):
     - TapAdditionsKitV2
   - TapNibViewV2 (0.0.2):
     - TapAdditionsKitV2
-  - TapResponderChainInputViewV2 (0.0.3):
+  - TapResponderChainInputViewV2 (0.0.4):
     - TapAdditionsKitV2
     - TapNibViewV2
-  - TapSearchViewV2 (0.0.3):
+  - TapSearchViewV2 (0.0.4):
     - TapAdditionsKitV2
     - TapNibViewV2
   - TapSwiftFixesV2 (1.0.0):
@@ -76,7 +72,6 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
-    - Kingfisher
     - SwiftyRSA
     - TapAdditionsKitV2
     - TapAlertViewControllerV2
@@ -98,25 +93,24 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
-  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
-  SwiftyRSA: 3b9c9179744217951facc6a3e9ae8d8c97061ffa
-  TapAdditionsKitV2: 89a0ef85d6aa659ff3102b632914466924ce3ccb
+  SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
+  TapAdditionsKitV2: ba369802e9575c3475ce6d5af228cf60c68edfc9
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
   TapCardValidator: 8d43b6e8a1a78276c03116a5b625041adeffeb0d
-  TapEditableViewV2: 8f817337714ee2e89199a02aa2feaad009865ff2
+  TapEditableViewV2: 00370b2b6c967c382fa944be8c04156d584d630b
   TapErrorReportingV2: b73217b68150071f72e6a1b1bef20c5157d49c5c
-  TapFontsKitV2: f2a5b342c18784dd2068c1885313057780c49a3d
+  TapFontsKitV2: b05e5ed03fc182c227f0660a0b318f44934d353c
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
   TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
-  TapNetworkManagerV2: f6e844c76d49c764633722b70e14398409a10317
+  TapNetworkManagerV2: 857339ae980c9fb495ec9a4c609beabaeeeb5999
   TapNibViewV2: 814b18346837d9dab611a211a702b9b0b8369d07
-  TapResponderChainInputViewV2: 2bb2694e00093a0f64f25c6cf2c670fe25458172
-  TapSearchViewV2: 30e71bdeb9ab0d9bf4ddbf7179ab5614e927fec9
+  TapResponderChainInputViewV2: 2dcd4bda246b0bd8764ee7fe8dbbd092815d063f
+  TapSearchViewV2: a167173db767a2be86d66c319cbb6b8da1541531
   TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
 PODFILE CHECKSUM: 6396ab8597fd2a1c2bc10ab593ae76d2661b347e
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

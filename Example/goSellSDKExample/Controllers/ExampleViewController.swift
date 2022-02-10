@@ -551,7 +551,7 @@ extension ExampleViewController: SessionDelegate {
 	}
 	
 	internal func cardTokenized(_ token: Token, on session: SessionProtocol, customerRequestedToSaveTheCard saveCard: Bool) {
-		
+		print("Toknized with : \(saveCard)")
 		// card has successfully tokenized.
 	}
 	
