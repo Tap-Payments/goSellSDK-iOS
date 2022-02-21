@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum TapCardValidator.CardBrand
+import enum TapCardVlidatorKit_iOS.CardBrand
 import class TapNetworkManagerV2.TapImageLoader
 import class UIKit.UIImage.UIImage
 

@@ -13,7 +13,7 @@ PODS:
   - TapApplicationV2 (0.0.2):
     - TapAdditionsKitV2
   - TapBundleLocalization (1.0.3)
-  - TapCardValidator (1.2.6)
+  - TapCardVlidatorKit-iOS (1.0.14)
   - TapEditableViewV2 (1.0.1):
     - TapAdditionsKitV2
   - TapErrorReportingV2 (0.0.3):
@@ -56,7 +56,7 @@ DEPENDENCIES:
   - TapAlertViewControllerV2
   - TapApplicationV2
   - TapBundleLocalization
-  - TapCardValidator
+  - TapCardVlidatorKit-iOS
   - TapEditableViewV2
   - TapErrorReportingV2
   - TapFontsKitV2
@@ -77,7 +77,7 @@ SPEC REPOS:
     - TapAlertViewControllerV2
     - TapApplicationV2
     - TapBundleLocalization
-    - TapCardValidator
+    - TapCardVlidatorKit-iOS
     - TapEditableViewV2
     - TapErrorReportingV2
     - TapFontsKitV2
@@ -98,7 +98,7 @@ SPEC CHECKSUMS:
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
-  TapCardValidator: 8d43b6e8a1a78276c03116a5b625041adeffeb0d
+  TapCardVlidatorKit-iOS: fbf1c9adc629a0d822ca429c2e51feda9684a45b
   TapEditableViewV2: 00370b2b6c967c382fa944be8c04156d584d630b
   TapErrorReportingV2: b73217b68150071f72e6a1b1bef20c5157d49c5c
   TapFontsKitV2: b05e5ed03fc182c227f0660a0b318f44934d353c
@@ -111,6 +111,6 @@ SPEC CHECKSUMS:
   TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
-PODFILE CHECKSUM: 6396ab8597fd2a1c2bc10ab593ae76d2661b347e
+PODFILE CHECKSUM: 276da5c57c575f3098b48cba082fd8a79e8f0aa6
 
 COCOAPODS: 1.11.2

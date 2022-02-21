@@ -8,7 +8,7 @@
 
 import Foundation
 
-import enum TapCardValidator.CardBrand
+import TapCardVlidatorKit_iOS
 import class TapNetworkManagerV2.TapImageLoader
 import class UIKit.UIImage.UIImage
 import enum PassKit.PKPaymentButtonType

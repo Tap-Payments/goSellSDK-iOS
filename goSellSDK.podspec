@@ -6,7 +6,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.name                  = 'goSellSDK'
     goSellSDK.summary               = 'goSell SDK for iOS'
     goSellSDK.requires_arc          = true
-    goSellSDK.version               = '2.3.3'
+    goSellSDK.version               = '2.3.4'
     goSellSDK.license               = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author                = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
@@ -30,7 +30,7 @@ Pod::Spec.new do |goSellSDK|
 		core.dependency 'TapAdditionsKitV2'
 		core.dependency 'TapApplicationV2'
 		core.dependency	'TapBundleLocalization'
-		core.dependency 'TapCardValidator'
+		core.dependency 'TapCardVlidatorKit-iOS'
 		core.dependency 'TapEditableViewV2'
 		core.dependency 'TapFontsKitV2'
 		core.dependency 'TapGLKitV2'
@@ -64,7 +64,7 @@ Pod::Spec.new do |goSellSDK|
 		appClip.dependency 'TapAdditionsKitV2'
 		appClip.dependency 'TapApplicationV2'
 		appClip.dependency 'TapBundleLocalization'
-		appClip.dependency 'TapCardValidator'
+		appClip.dependency 'TapCardVlidatorKit_iOS'
 		appClip.dependency 'TapEditableViewV2'
 		appClip.dependency 'TapFontsKitV2'
 		appClip.dependency 'TapGLKitV2'

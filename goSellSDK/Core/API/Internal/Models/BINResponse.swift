@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum TapCardValidator.CardBrand
+import TapCardVlidatorKit_iOS
 
 /// BIN Response model.
 internal struct BINResponse {

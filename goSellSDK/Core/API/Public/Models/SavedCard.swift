@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum TapCardValidator.CardBrand
+import enum TapCardVlidatorKit_iOS.CardBrand
 
 /// Saved Card model.
 @objcMembers public final class SavedCard: NSObject, OptionallyIdentifiableWithString {

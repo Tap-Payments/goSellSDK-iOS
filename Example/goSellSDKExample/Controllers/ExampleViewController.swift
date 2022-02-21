@@ -414,7 +414,7 @@ extension ExampleViewController: SessionDataSource {
         return false
     }
      */
-    internal var allowedCadTypes: [CardType]? {
+    /*internal var allowedCadTypes: [CardType]? {
         let selectedAllowedCards:cardTypes = self.paymentSettings.dataSource.allowedCards
         if selectedAllowedCards == .All {
             return [CardType(cardType: .Debit), CardType(cardType: .Credit)]
@@ -422,12 +422,13 @@ extension ExampleViewController: SessionDataSource {
         {
             return [CardType(cardType: selectedAllowedCards)]
         }
-    }
-    
-    /*var allowedCadTypes: [CardType]? {
-        
-        return [CardType(cardType: .Debit)]
     }*/
+    
+    
+    var allowedCadTypes: [CardType]? {
+        
+        return [CardType(cardType: .All)]
+    }
 	
 	internal var paymentType: PaymentType {
 		 

@@ -29,6 +29,9 @@ internal final class Process {
            else {
                return nil
            }
+           if allowedCards?.contains(CardType(cardType: .All)) ?? false {
+               return [CardType(cardType: .Debit), CardType(cardType: .Credit)]
+           }
            return allowedCards
 
 

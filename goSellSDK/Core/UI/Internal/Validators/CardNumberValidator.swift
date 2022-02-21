@@ -7,9 +7,9 @@
 
 import protocol TapAdditionsKitV2.ClassProtocol
 import struct	TapBundleLocalization.LocalizationKey
-import enum     TapCardValidator.CardBrand
-import class    TapCardValidator.CardValidator
-import struct   TapCardValidator.DefinedCardBrand
+import enum     TapCardVlidatorKit_iOS.CardBrand
+import class    TapCardVlidatorKit_iOS.CardValidator
+import struct   TapCardVlidatorKit_iOS.DefinedCardBrand
 import class    UIKit.UITextField.UITextField
 import protocol UIKit.UITextField.UITextFieldDelegate
 import class    UIKit.UIView.UIView
@@ -25,7 +25,7 @@ internal class CardNumberValidator: CardValidator {
     internal var recognizedCardType: BrandWithScheme {
         
         let scheme = self.currentBINData?.scheme
-        let localData = TapCardValidator.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
+        let localData = TapCardVlidatorKit_iOS.CardValidator.validate(cardNumber: self.cardNumber, preferredBrands: self.preferredCardBrands)
         let state = localData.validationState
         let brand = self.currentBINData?.cardBrand ?? localData.cardBrand ?? .unknown
         
@@ -211,7 +211,7 @@ internal class CardNumberValidator: CardValidator {
 			}
 			else {
 			
-            	let trimRange = NSRange(location: 0, length: min(attributedText.length, TapCardValidator.CardValidator.maximalCardNumberLength(for: cardBrand)))
+            	let trimRange = NSRange(location: 0, length: min(attributedText.length, TapCardVlidatorKit_iOS.CardValidator.maximalCardNumberLength(for: cardBrand)))
             	text = attributedText.attributedSubstring(from: trimRange)
 			}
 			
@@ -229,7 +229,7 @@ internal class CardNumberValidator: CardValidator {
         
         let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
         
-        let spacings = TapCardValidator.CardValidator.spacings(for: cardBrand)
+        let spacings = TapCardVlidatorKit_iOS.CardValidator.spacings(for: cardBrand)
         let adoptedSpacings = self.adoptSpacings(from: spacings, cardNumberLength: stringLength)
         
         for index in 0..<stringLength {
