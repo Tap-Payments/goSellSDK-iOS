@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum TapCardValidator.CardBrand
-import enum TapCardValidator.CardValidationState
+import enum TapCardVlidatorKit_iOS.CardBrand
+import enum TapCardVlidatorKit_iOS.CardValidationState
 
 internal struct BrandWithScheme {
     

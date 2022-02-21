@@ -7,8 +7,8 @@
 
 import protocol	TapAdditionsKitV2.ClassProtocol
 import struct	TapBundleLocalization.LocalizationKey
-import enum		TapCardValidator.CardBrand
-import class	TapCardValidator.CardValidator
+import enum		TapCardVlidatorKit_iOS.CardBrand
+import class	TapCardVlidatorKit_iOS.CardValidator
 import class	UIKit.UITextField.UITextField
 import protocol	UIKit.UITextField.UITextFieldDelegate
 
@@ -79,7 +79,7 @@ internal class CVVValidator: CardValidator {
     
     fileprivate var requiredCVVLength: Int {
         
-        return TapCardValidator.CardValidator.cvvLength(for: self.cardBrand)
+        return TapCardVlidatorKit_iOS.CardValidator.cvvLength(for: self.cardBrand)
     }
     
     // MARK: Methods

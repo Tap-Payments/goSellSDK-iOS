@@ -11,7 +11,7 @@ def shared_pods
     pod 'TapAlertViewControllerV2'
     pod 'TapApplicationV2'
     pod 'TapBundleLocalization'
-    pod 'TapCardValidator'
+    pod 'TapCardVlidatorKit-iOS'
     pod 'TapEditableViewV2'
     pod 'TapErrorReportingV2'
     pod 'TapFontsKitV2'

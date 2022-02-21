@@ -7,7 +7,7 @@
 
 import protocol	TapAdditionsKitV2.ClassProtocol
 import struct	TapAdditionsKitV2.TypeAlias
-import enum		TapCardValidator.CardBrand
+import enum		TapCardVlidatorKit_iOS.CardBrand
 import class	UIKit.UIResponder.UIResponder
 import PassKit
 

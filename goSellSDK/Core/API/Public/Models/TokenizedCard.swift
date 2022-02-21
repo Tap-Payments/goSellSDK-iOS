@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import enum		TapCardValidator.CardBrand
+import enum		TapCardVlidatorKit_iOS.CardBrand
 
 /// Tokenized card model.
 @objcMembers public final class TokenizedCard: IdentifiableWithString {
