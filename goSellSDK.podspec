@@ -6,7 +6,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.name                  = 'goSellSDK'
     goSellSDK.summary               = 'goSell SDK for iOS'
     goSellSDK.requires_arc          = true
-    goSellSDK.version               = '2.3.4'
+    goSellSDK.version               = '2.3.5'
     goSellSDK.license               = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author                = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
@@ -51,30 +51,6 @@ Pod::Spec.new do |goSellSDK|
 		
 		errorReporting.dependency	'goSellSDK/Core'
 		errorReporting.dependency	'TapErrorReportingV2'
-		
-	end
-
-
-	goSellSDK.subspec 'AppClip' do |appClip|
-		
-		appClip.source_files			= 'goSellSDK/Core/**/*.{swift}'
-		appClip.ios.resource_bundle	= { 'goSellSDKResources' => ['goSellSDK/Core/UI/Internal/Resources/*.{xcassets,storyboard,xib,json}', 'goSellSDK/Core/UI/Internal/Resources/Localization/*.lproj'] }
-		appClip.ios.deployment_target = '14.0'
-		appClip.dependency 'EditableTextInsetsTextFieldV2'
-		appClip.dependency 'TapAdditionsKitV2'
-		appClip.dependency 'TapApplicationV2'
-		appClip.dependency 'TapBundleLocalization'
-		appClip.dependency 'TapCardVlidatorKit_iOS'
-		appClip.dependency 'TapEditableViewV2'
-		appClip.dependency 'TapFontsKitV2'
-		appClip.dependency 'TapGLKitV2'
-		appClip.dependency 'TapKeychain'
-		appClip.dependency 'TapNetworkManagerV2'
-		appClip.dependency 'TapNibViewV2'				
-		appClip.dependency 'TapResponderChainInputViewV2'
-		appClip.dependency 'TapSearchViewV2'
-		appClip.dependency 'TapVisualEffectViewV2'
-		appClip.dependency 'SwiftyRSA'
 		
 	end
 end
