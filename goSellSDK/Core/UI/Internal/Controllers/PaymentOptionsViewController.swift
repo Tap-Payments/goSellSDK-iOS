@@ -91,10 +91,14 @@ internal class PaymentOptionsViewController: BaseViewController {
         
         DispatchQueue.main.async {
 			
-			let controller = WebPaymentViewController.instantiate()
-			Process.shared.webPaymentHandlerInterface.prepareWebPaymentController(controller)
-			
-			self.navigationController?.tap_pushViewController(controller, animated: true, completion: completion)
+            if Process.shared.dataManagerInterface.currentPaymentOption?.brand == .careemPay {
+                UIApplication.shared.open(.init(string: "http://sagateway.careem-internal.com/wallet/users/payments?invoiceId=36f582f2-f050-4b17-ba24-604d1b29440e")!, options: [:], completionHandler: nil)
+            }else{
+                let controller = WebPaymentViewController.instantiate()
+                Process.shared.webPaymentHandlerInterface.prepareWebPaymentController(controller)
+                
+                self.navigationController?.tap_pushViewController(controller, animated: true, completion: completion)
+            }
         }
     }
 	
