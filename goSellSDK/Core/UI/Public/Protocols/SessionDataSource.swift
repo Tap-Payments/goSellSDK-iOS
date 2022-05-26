@@ -19,8 +19,8 @@ import class PassKit.PKPaymentToken
     
     /// Tells if the payer can change the card holder name, if there is no default card holder name stated this will be neglected
     @objc optional var cardHolderNameIsEditable: Bool { get }
-	
-	/// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
+   
+    /// Details of the person who pays. Although the type is nullable, in order to start payment, customer should be nonnull.
 	@objc var customer: Customer? { get }
     
     // /// Details if the merchant wants to start apple session

@@ -361,7 +361,7 @@ extension CardInputTableViewCell: BindingWithModelCell {
         self.expirationDateTextField?.textColor = UIColor(tap_hex: "FFFFFF")?.loadCompatibleDarkModeColor(forColorNamed: "CardInputTextFieldColor")
         
         
-        guard let session = Process.shared.externalSession, let dataSource = session.dataSource, let providedCardName:String = dataSource.cardHolderName as? String else { return }
+        guard let session = Process.shared.externalSession, let dataSource = session.dataSource, let providedCardName:String = dataSource.cardHolderName as? String, !providedCardName.isEmpty else { return }
         
         self.nameOnCardTextField?.text = providedCardName.uppercased()
         self.nameOnCardTextField?.isUserInteractionEnabled = dataSource.cardHolderNameIsEditable ?? true
