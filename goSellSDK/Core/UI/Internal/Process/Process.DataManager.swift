@@ -1222,11 +1222,11 @@ internal extension Process {
 				return nil
 			}
 			
-			guard let customer = nonnullDataSource.customer else {
+			/*guard let customer = nonnullDataSource.customer else {
 				
 				closure("Error", "Customer information must be provided.")
 				return nil
-			}
+			}*/
 			
 			let itemsCount = (nonnullDataSource.items ?? [])?.count ?? 0
 			guard nonnullDataSource.amount != nil || itemsCount > 0 else {
@@ -1253,7 +1253,7 @@ internal extension Process {
 													   taxes:           taxes,
 													   currency:        currency,
 													   merchantID:		merchantID,
-													   customer:        customer.identifier,
+													   customer:         nonnullDataSource.customer?.identifier,
 													   destinationGroup:	destinationsGroup,
 													   paymentType:			paymentType,
                                                        topup: topup)

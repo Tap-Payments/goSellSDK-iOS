@@ -560,6 +560,8 @@ extension ExampleViewController: SessionDelegate {
 		
 		// card failed to tokenize
 	}
+    
+    
 	
 	internal func sessionIsStarting(_ session: SessionProtocol) {
 		
