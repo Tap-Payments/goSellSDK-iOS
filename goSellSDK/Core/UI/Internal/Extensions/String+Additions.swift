@@ -13,4 +13,8 @@ extension String: Transformable {
         guard let stringValue = untransformedValue as? String else { return nil }
         self.init(stringValue)
     }
+    
+    internal func trunc(length: Int, trailing: String = "…") -> String {
+        return (self.count > length) ? self.prefix(length) + trailing : self
+    }
 }
