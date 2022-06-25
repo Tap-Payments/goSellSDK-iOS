@@ -102,7 +102,15 @@ extension PaymentOptionsResponse: Decodable {
         /*let applePayPaymentOption:PaymentOption = PaymentOption(identifier: "2", brand: .apple, title: "APPLE PAY", imageURL: URL(string: "https://i.ibb.co/sP9Tkck/Apple-Pay-Pay-With-2x.png")!, paymentType: .apple, sourceIdentifier: "src_kw.knet", supportedCardBrands: [.apple], extraFees: [], supportedCurrencies: [try! Currency.init(isoCode: "KWD"),try! Currency.init(isoCode: "SAR"),try! Currency.init(isoCode: "AED"),try! Currency.init(isoCode: "BHD")], orderBy: 2)
         
         paymentOptions.append(applePayPaymentOption)*/
-		paymentOptions = paymentOptions.filter { ($0.brand != .unknown || $0.paymentType == .apple) }
+        for i in 0...paymentOptions.count-1 {
+            if paymentOptions[i].brand == .unknown {
+                if paymentOptions[i].paymentType == .web {
+                    paymentOptions[i].brand = .webAdded
+                }
+            }
+        }
+        
+        paymentOptions = paymentOptions.filter { ($0.brand != .unknown || $0.paymentType == .apple) }
         
         
         // Filter saved cards based on allowed card types if any

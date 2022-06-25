@@ -18,7 +18,7 @@ internal struct PaymentOption: IdentifiableWithString {
     internal let identifier: String
     
     /// Payment option card brand.
-    internal let brand: CardBrand
+    internal var brand: CardBrand
     
     /// Name of the payment option.
     internal let title: String
