@@ -830,7 +830,7 @@ internal extension Process {
 
 			let order               	= Order(identifier: orderID)
 			let redirect            	= TrackingURL(url: self.process.webPaymentHandlerInterface.returnURL)
-			let paymentDescription  	= dataSource.paymentDescription ?? nil
+            let paymentDescription  	= dataSource.paymentDescription ?? "Payment to \(SettingsDataManager.shared.settings?.merchant.name ?? "")"
 			let paymentMetadata     	= dataSource.paymentMetadata ?? nil
 			let reference           	= dataSource.paymentReference ?? nil
             let topup                   = dataSource.topup ?? nil
@@ -838,7 +838,7 @@ internal extension Process {
             topup?.amount = totalAmount
             topup?.currency = dataSource.currency ?? nil
             
-			var shouldSaveCard      	= saveCard ?? false
+            var shouldSaveCard      	= saveCard ?? false
 			let statementDescriptor 	= dataSource.paymentStatementDescriptor ?? nil
             var requires3DSecure    	= (self.requires3DSecure || (dataSource.require3DSecure ?? false))
             switch paymentOption.threeDLevel {

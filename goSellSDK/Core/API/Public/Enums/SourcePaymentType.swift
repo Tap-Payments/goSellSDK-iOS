@@ -19,6 +19,9 @@
     
     /// Prepaid wallet.
     case prepaidWallet
+
+    /// PayPal
+    case payPal
     
     /// Other.
     case null
@@ -33,14 +36,16 @@
 			.creditCard:	RawValues.creditCard,
 			.prepaidCard:	RawValues.prepaidCard,
 			.prepaidWallet:	RawValues.prepaidWallet,
+            .payPal:        RawValues.payPal,
 			.null:			RawValues.null
 		]
 		
 		private static let debitCard		= ["DEBIT_CARD",		"DEBIT"]
+        private static let payPal           = ["PayPal"]
 		private static let creditCard		= ["CREDIT_CARD",		"CREDIT"]
 		private static let prepaidCard		= ["PREPAID_CARD",		"PREPAID"]
 		private static let prepaidWallet	= ["PREPAID_WALLET",	"WALLET"]
-		private static let null				= ["null"]
+		private static let null				= ["", "null"]
 		
 		//@available(*, unavailable) private init() { }
 	}
