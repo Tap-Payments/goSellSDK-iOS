@@ -173,7 +173,14 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
         self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
     }
+    
+    fileprivate func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
+
+
 
 // MARK: - String + Hex
 fileprivate extension String {
