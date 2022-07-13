@@ -4,6 +4,7 @@
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
+import TapCardVlidatorKit_iOS
 
 /// Payment Options Response model.
 internal struct PaymentOptionsResponse: IdentifiableWithString {
@@ -105,7 +106,7 @@ extension PaymentOptionsResponse: Decodable {
         for i in 0...paymentOptions.count-1 {
             if paymentOptions[i].brand == .unknown {
                 if paymentOptions[i].paymentType == .web {
-                    paymentOptions[i].brand = .webAdded
+                    paymentOptions[i].brand = CardBrand.aiywaLoyalty
                 }
             }
         }
