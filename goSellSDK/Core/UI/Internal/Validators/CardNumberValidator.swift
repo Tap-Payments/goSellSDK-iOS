@@ -296,9 +296,9 @@ extension CardNumberValidator.CardNumberTextFieldDelegate: UITextFieldDelegate {
     fileprivate func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let desiredText = textField.attributedText?.string.tap_replacing(range: range, withString: string) ?? .tap_empty
-        let numberOnlyText = desiredText.trimmingCharacters(in: .whitespaces)
+        //let numberOnlyText = desiredText.trimmingCharacters(in: .whitespaces)
         
-        return numberOnlyText.tap_containsOnlyInternationalDigits
+        return desiredText.tap_containsOnlyInternationalDigits
     }
     
     fileprivate func textFieldDidBeginEditing(_ textField: UITextField) {
