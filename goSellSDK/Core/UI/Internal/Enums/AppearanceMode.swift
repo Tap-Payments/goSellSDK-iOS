@@ -23,7 +23,7 @@ internal enum AppearanceMode: String, Decodable {
 			
 		case .fullscreen:	self = .fullscreen
 		case .windowed:		self = .windowed
-		case .default:		self = transactionMode == .cardSaving ? .windowed : .fullscreen
+		case .default:		self = (transactionMode == .cardSaving || transactionMode == .cardTokenization) ? .windowed : .fullscreen
 		}
 	}
 }
