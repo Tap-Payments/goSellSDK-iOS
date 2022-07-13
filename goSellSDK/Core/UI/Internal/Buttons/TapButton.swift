@@ -161,8 +161,9 @@ internal class TapButton: TapNibView {
     }
 	
 	@IBAction private func internalDisabledButtonTouchUpInside(_ sender: Any) {
-		
-		self.delegate?.disabledButtonTouchUpInside()
+        // Required not to do any action for a disabled button
+        return
+		//self.delegate?.disabledButtonTouchUpInside()
 	}
 	
     private func updateStateUI(animated: Bool) {

@@ -91,8 +91,7 @@ internal extension Process {
 			
 			guard Process.hasAliveInstance else { return }
 			guard let errorCode = Process.shared.viewModelsHandlerInterface.selectedPaymentOptionCellViewModel?.errorCode else { return }
-			
-			ErrorDataManager.handle(errorCode)
+            ErrorDataManager.handle(errorCode)
 		}
 		
 		internal func startButtonLoader() {
