@@ -221,7 +221,7 @@ extension PaymentContentViewController: TapNavigationView.DataSource {
 			
 		case .purchase, .authorizeCapture, .cardTokenization:
 			
-			if Process.shared.appearance == .windowed { return nil }
+			//if Process.shared.appearance == .windowed { return nil }
 			
 			if let logoURL = SettingsDataManager.shared.settings?.merchant.logoURL {
 				
@@ -242,7 +242,7 @@ extension PaymentContentViewController: TapNavigationView.DataSource {
 			
 		case .purchase, .authorizeCapture, .cardTokenization:
 			
-			if Process.shared.appearance == .fullscreen {
+			if Process.shared.appearance == .fullscreen || Process.shared.appearance == .windowed {
 				
 				return SettingsDataManager.shared.settings?.merchant.name
 			}
