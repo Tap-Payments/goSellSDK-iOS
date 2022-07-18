@@ -13,6 +13,8 @@ import struct   TapCardVlidatorKit_iOS.DefinedCardBrand
 import class    UIKit.UITextField.UITextField
 import protocol UIKit.UITextField.UITextFieldDelegate
 import class    UIKit.UIView.UIView
+import UIKit
+import TapEditableViewV2
 
 /// Card Number Validator class.
 internal class CardNumberValidator: CardValidator {
@@ -64,11 +66,12 @@ internal class CardNumberValidator: CardValidator {
 	
     // MARK: Methods
     
-    internal init(textField: UITextField, availableCardBrands: [CardBrand], preferredCardBrands: [CardBrand]) {
+    internal init(textField: UITextField, availableCardBrands: [CardBrand], preferredCardBrands: [CardBrand], goToTextField:TapEditableView? = nil) {
         
         self.textField = textField
         self.availableCardBrands = availableCardBrands
         self.preferredCardBrands = preferredCardBrands
+        self.goToTextField = goToTextField
         
         super.init(validationType: .cardNumber)
         
@@ -112,6 +115,7 @@ internal class CardNumberValidator: CardValidator {
     // MARK: Properties
     
     private unowned var textField: UITextField
+    internal unowned var goToTextField: TapEditableView?
     
     private lazy var textFieldDelegate = CardNumberTextFieldDelegate(validator: self)
     
@@ -311,5 +315,14 @@ extension CardNumberValidator.CardNumberTextFieldDelegate: UITextFieldDelegate {
         
         self.validator.updateInputFieldTextAndAttributes()
         self.validator.validate()
+    }
+    
+    fileprivate func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let goToNextField = self.validator.goToTextField {
+            DispatchQueue.main.async {
+                goToNextField.becomeFirstResponder()
+            }
+        }
+        return true
     }
 }

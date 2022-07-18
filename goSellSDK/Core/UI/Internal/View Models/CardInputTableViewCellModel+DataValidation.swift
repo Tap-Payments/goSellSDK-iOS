@@ -164,6 +164,11 @@ internal extension CardInputTableViewCellModel {
         let validator = ExpirationDateValidator(editableView: nonnullEditableView,
                                                 textField: textField)
         
+        if let cardNumberValidator:CardNumberValidator = self.cardDataValidators.first(where: { $0.validationType == ValidationType.cardNumber }) as? CardNumberValidator {
+            
+            cardNumberValidator.goToTextField = editableView
+        }
+        
         self.finishSettingUp(validator)
     }
     
