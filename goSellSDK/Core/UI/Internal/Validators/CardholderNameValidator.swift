@@ -8,6 +8,7 @@
 import struct	TapBundleLocalization.LocalizationKey
 import class	UIKit.UITextField.UITextField
 import protocol	UIKit.UITextField.UITextFieldDelegate
+import UIKit
 
 /// Cardholder name validator.
 internal class CardholderNameValidator: CardValidator {
@@ -131,8 +132,11 @@ fileprivate extension CardholderNameValidator {
 extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDelegate {
     
     fileprivate func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		
-        let resultString = (textField.attributedText?.string ?? .tap_empty).tap_replacing(range: range, withString: string).uppercased()
+        var finalString = string
+        if string == " " {
+            finalString = "."
+        }
+        let resultString = (textField.attributedText?.string ?? .tap_empty).replacingOccurrences(of: ".", with: " ").tap_replacing(range: range, withString: finalString).uppercased()
         
         var valid = true
         for character in resultString {
@@ -147,10 +151,20 @@ extension CardholderNameValidator.CardholderNameTextFieldDelegate: UITextFieldDe
         let canReplace = valid && resultString.tap_length <= CardholderNameValidator.Constants.maximalCardholderNameLength
         
         if canReplace {
+            var attributes = Theme.current.paymentOptionsCellStyle.card.textInput[.valid].asStringAttributes
+            if string == " " {
+                let combination = NSMutableAttributedString()
+                attributes.tap_setValue(UIColor.clear, forKey: .foregroundColor)
+                
+                combination.append(textField.attributedText ?? NSAttributedString(string: "") )
+                combination.append(NSAttributedString(string: finalString, attributes: attributes))
+                
+                textField.attributedText = combination
+            }else {
+                textField.attributedText = NSAttributedString(string: resultString, attributes: attributes)
+            }
             
-            textField.attributedText = NSAttributedString(string: resultString, attributes: Theme.current.paymentOptionsCellStyle.card.textInput[.valid].asStringAttributes)
-            
-            if let rangeStart = textField.position(from: textField.beginningOfDocument, offset: range.location + string.tap_length),
+            if let rangeStart = textField.position(from: textField.beginningOfDocument, offset: range.location + finalString.tap_length),
                let rangeEnd = textField.position(from: rangeStart, offset: 0) {
                 
                 textField.selectedTextRange = textField.textRange(from: rangeStart, to: rangeEnd)
