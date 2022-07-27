@@ -42,7 +42,7 @@ extension ImageTableViewCell: LoadingWithModelCell {
             self.imageViewWidthConstraint.constant = 32
             
             if #available(iOS 13.0, *) {
-                if self.traitCollection.userInterfaceStyle == .dark
+                if Process.shared.externalSession?.dataSource?.uiModeDisplay?.userInterface == .dark
                 {
                     self.paddingView.layer.cornerRadius = 8
                     self.paddingWidthConstraint.constant = 32

@@ -234,7 +234,7 @@ extension PopupPresentationAnimationController: UIViewControllerAnimatedTransiti
     private func blurStyle()->TapBlurEffectStyle
     {
         if #available(iOS 13.0, *) {
-            if UITraitCollection.current.userInterfaceStyle == .dark
+            if Process.shared.externalSession?.dataSource?.uiModeDisplay?.userInterface == .dark
            {
                 return .dark
            }

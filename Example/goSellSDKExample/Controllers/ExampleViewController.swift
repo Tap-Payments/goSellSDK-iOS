@@ -357,6 +357,10 @@ extension ExampleViewController: SessionDataSource {
 		
 		return self.paymentSettings.dataSource.destinations
 	}
+    
+    internal var uiModeDisplay: UIModeDisplayEnum {
+        return .followDevice
+    }
 	
     internal var mode: TransactionMode {
         

@@ -35,6 +35,9 @@ import class PassKit.PKPaymentToken
     /// The type of the apple pay you want to show to user. By default it is 'White outline'
     @objc optional var applePayButtonStyle: PKPaymentButtonStyle { get }
     
+    /// Decides which ui interface (light or dark) to follow
+    @objc optional var uiModeDisplay: UIModeDisplayEnum { get }
+    
    //  /// Details of the apple token data
     // @objc var appleTokenData: PKPaymentToken? { get }
     

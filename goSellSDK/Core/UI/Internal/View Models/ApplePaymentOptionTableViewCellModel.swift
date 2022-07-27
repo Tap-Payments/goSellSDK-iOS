@@ -142,7 +142,7 @@ extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
         var applPayButtonStyle:PKPaymentButtonStyle = .whiteOutline
         
         if #available(iOS 13.0, *) {
-            if UITraitCollection.current.userInterfaceStyle == .dark
+            if Process.shared.externalSession?.dataSource?.uiModeDisplay?.userInterface == .dark
             {
                 applPayButtonStyle = .white
             }
