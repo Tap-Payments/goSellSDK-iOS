@@ -31,7 +31,7 @@
 // MARK: Card Input Fields Placeholders
 
 "card_input_card_number_placeholder" 		= "رقم البطاقة";
-"card_input_expiration_date_placeholder" 	= "شش/سس";
+"card_input_expiration_date_placeholder" 	= "سنه/ شهر";
 "card_input_cvv_placeholder" 				= "الرمز الأمني";
 "card_input_cardholder_name_placeholder"	= "الاسم الموجود على البطاقة";
 "card_input_address_on_card_placeholder"	= "عنوان الدفع";
