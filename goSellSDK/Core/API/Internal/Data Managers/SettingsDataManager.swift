@@ -16,6 +16,15 @@ internal final class SettingsDataManager {
     
     // MARK: Properties
     
+    /// Auto computes which ui display mode to adapt to
+    @available(iOS 13.0, *)
+    internal var displayMode:UIUserInterfaceStyle {
+        if let mode = Process.shared.externalSession?.dataSource?.uiModeDisplay {
+            return mode.userInterface
+        }
+        return .light
+    }
+    
     /// SDK settings.
     internal var settings: SDKSettingsData? {
         

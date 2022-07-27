@@ -30,8 +30,10 @@ internal final class ThemeManager {
         var selectedTheme:Theme = self.themes.first { $0.isDefault }!
         
         if #available(iOS 13.0, *) {
-            if UITraitCollection.current.userInterfaceStyle == .dark {
+            if SettingsDataManager.shared.displayMode == .dark {
                 selectedTheme = self.themes.first { $0.dark }!
+            }else{
+                selectedTheme = self.themes.first { $0.isDefault }!
             }
         }
         return selectedTheme
@@ -64,7 +66,7 @@ internal final class ThemeManager {
         var selectedTheme:Theme = self.themes.first { $0.isDefault }!
         
         if #available(iOS 13.0, *) {
-            if UITraitCollection.current.userInterfaceStyle == .dark {
+            if Process.shared.externalSession?.dataSource?.uiModeDisplay?.userInterface == .dark {
                 selectedTheme = self.themes.first { $0.dark }!
             }
         }
