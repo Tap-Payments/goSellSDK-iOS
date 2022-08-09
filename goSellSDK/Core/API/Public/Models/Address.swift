@@ -23,6 +23,12 @@
     /// Address line 2.
     public internal(set) var line2: String?
     
+    /// Address line 3.
+    public internal(set) var line3: String?
+    
+    /// Address line 4.
+    public internal(set) var line4: String?
+    
     /// Address city.
     public internal(set) var city: String?
     
@@ -53,6 +59,9 @@
     /// Address floor.
     public internal(set) var floor: String?
     
+    /// Address apartment.
+    public internal(set) var apartment: String?
+    
     /// Address office.
     public internal(set) var office: String?
     
@@ -71,6 +80,8 @@
 		case country            = "country"
 		case line1              = "line1"
 		case line2              = "line2"
+        case line3              = "line3"
+        case line4              = "line4"
 		case city               = "city"
 		case state              = "state"
 		case zipCode            = "zip_code"
@@ -79,9 +90,10 @@
 		case block              = "block"
 		case avenue             = "avenue"
 		case street             = "street"
-		case buildingHouse      = "building_house"
+		case buildingHouse      = "building"
 		case floor              = "floor"
 		case office             = "office"
+        case apartment          = "apartment"
 		case postalBox          = "po_box"
 		case postalCode         = "postal_code"
 	}
@@ -116,6 +128,8 @@ extension Address: Encodable {
         try container.encodeIfPresent   (self.country,              forKey: .country)
         try container.encodeIfPresent   (self.line1,                forKey: .line1)
         try container.encodeIfPresent   (self.line2,                forKey: .line2)
+        try container.encodeIfPresent   (self.line3,                forKey: .line3)
+        try container.encodeIfPresent   (self.line4,                forKey: .line4)
         try container.encodeIfPresent   (self.city,                 forKey: .city)
         try container.encodeIfPresent   (self.state,                forKey: .state)
         try container.encodeIfPresent   (self.zipCode,              forKey: .zipCode)
@@ -126,6 +140,7 @@ extension Address: Encodable {
         try container.encodeIfPresent   (self.street,               forKey: .street)
         try container.encodeIfPresent   (self.buildingHouse,        forKey: .buildingHouse)
         try container.encodeIfPresent   (self.floor,                forKey: .floor)
+        try container.encodeIfPresent   (self.apartment,            forKey: .apartment)
         try container.encodeIfPresent   (self.office,               forKey: .office)
         try container.encodeIfPresent   (self.postalBox,            forKey: .postalBox)
         try container.encodeIfPresent   (self.postalCode,           forKey: .postalCode)
