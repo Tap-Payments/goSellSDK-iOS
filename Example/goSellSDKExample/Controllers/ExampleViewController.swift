@@ -359,7 +359,7 @@ extension ExampleViewController: SessionDataSource {
 	}
     
     internal var uiModeDisplay: UIModeDisplayEnum {
-        return .followDevice
+        return .light
     }
 	
     internal var mode: TransactionMode {
