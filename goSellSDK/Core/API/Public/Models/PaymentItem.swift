@@ -26,6 +26,9 @@
     /// Quantity of payment item(s).
     public var quantity: Quantity
     
+    /// The item's vendor
+    public var vendor: Vendor?
+    
     /// Amount per a single unit of quantity.
     public var amountPerUnit: Decimal
     
@@ -46,9 +49,9 @@
     ///   - productID: The product id
     ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "") {
+    public convenience init(title: String, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil) {
         
-        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, category: category)
+        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, category: category, vendor: vendor)
     }
     
     /// Initializes payment item with title, description, quantity and amount per unit.
@@ -61,9 +64,9 @@
     ///   - productID: The product id
     ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, category: category)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, category: category, vendor: vendor)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and discount.
@@ -77,9 +80,9 @@
     ///   - productID: The product id
     ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "", category:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "", category:String? = "", vendor:Vendor? = nil) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, category: category)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, category: category, vendor: vendor)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and taxes.
@@ -93,9 +96,9 @@
     ///   - productID: The product id
     ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value + taxes`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "", category:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, category: category)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, category: category, vendor: vendor)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit, discount and taxes.
@@ -110,7 +113,7 @@
     ///   - productID: The product id
     ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount + taxes`
-    public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "", category:String? = "") {
+    public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil) {
         
         self.title = title
         self.descriptionText = descriptionText
@@ -136,6 +139,7 @@
         case totalAmount        = "total_amount"
         case productID          = "product_id"
         case category           = "category"
+        case vendor             = "vendor"
     }
 }
 
@@ -188,12 +192,13 @@ extension PaymentItem: Decodable {
         let descriptionText = try container.decodeIfPresent (String.self            , forKey: .descriptionText  )
         let productID       = try container.decodeIfPresent (String.self            , forKey: .productID        )
         let category        = try container.decodeIfPresent (String.self            , forKey: .category         )
+        let vendor          = try container.decodeIfPresent (Vendor.self            , forKey: .vendor           )
         let quantity        = try container.decode          (Quantity.self          , forKey: .quantity         )
         let amountPerUnit   = try container.decode          (Decimal.self           , forKey: .amountPerUnit    )
         let discount        = try container.decodeIfPresent (AmountModificator.self , forKey: .discount         )
         let taxes           = try container.decodeIfPresent ([Tax].self             , forKey: .taxes            )
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, category: category)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, productID: productID, category: category, vendor: vendor)
     }
 }
 
@@ -208,6 +213,7 @@ extension PaymentItem: NSCopying {
         
         let quantityCopy = self.quantity.copy() as! Quantity
         let discountCopy = self.discount?.copy() as? AmountModificator
+        let vendorCopy = self.vendor?.copy() as? Vendor
         let taxesCopy = self.taxes?.compactMap { $0.copy() as? Tax }
         
         return PaymentItem(title: self.title,
@@ -217,6 +223,35 @@ extension PaymentItem: NSCopying {
                            discount: discountCopy,
                            taxes: taxesCopy,
                            productID: self.productID,
-                           category: self.category)
+                           category: self.category,
+                           vendor: vendorCopy)
+    }
+}
+
+
+/// The products vendor model
+@objcMembers public class Vendor: NSObject, Codable {
+    
+    @objc public init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
+    
+    // MARK: - Public -
+    // MARK: Properties
+    
+    /// Payment item title.
+    @objc public var id: String
+    
+    /// Payment item description text.
+    @objc public var name: String
+    
+    // MARK: - NSCopying
+    /// Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return Vendor(id: self.id, name: self.name)
     }
 }
