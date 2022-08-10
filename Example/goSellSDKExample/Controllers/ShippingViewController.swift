@@ -96,7 +96,7 @@ internal class ShippingViewController: ModalNavigationTableViewController {
             self.currentShipping.name = ""
         }
         
-        self.currentShipping.descriptionText = self.descriptionTextView?.text
+        self.currentShipping.descriptionText = .init(en: self.descriptionTextView?.text , ar: self.descriptionTextView?.text)
         
         if let amount = self.amountTextField?.text?.tap_decimalValue, amount > 0.0 {
             
@@ -111,7 +111,7 @@ internal class ShippingViewController: ModalNavigationTableViewController {
     private func updateWithCurrentShippingInfo() {
         
         self.titleTextField?.text = self.currentShipping.name
-        self.descriptionTextView?.text = self.currentShipping.descriptionText
+        self.descriptionTextView?.text = self.currentShipping.descriptionText?.en
         self.amountTextField?.text = "\(self.currentShipping.amount)"
     }
 }
