@@ -15,7 +15,7 @@
     public var name: String
     
     /// Shipping description.
-    public var descriptionText: String?
+    public var descriptionText: ShippingDescription?
     
     /// Shipping amount.
     public var amount: Decimal
@@ -38,7 +38,7 @@
     ///   - name: Shipping name.
     ///   - descriptionText: Shipping description.
     ///   - amount: Shipping amount.
-    public init(name: String, descriptionText: String?, amount: Decimal) {
+    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal) {
         
         self.name = name
         self.descriptionText = descriptionText
@@ -66,6 +66,33 @@ extension Shipping: NSCopying {
     /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
-        return Shipping(name: self.name, descriptionText: self.descriptionText, amount: self.amount)
+        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount)
+    }
+}
+
+
+/// Represents the shipping description model for the shipping
+@objcMembers public class ShippingDescription: NSObject, Codable {
+    
+    @objc public init(en: String? = nil, ar: String? = nil) {
+        self.en = en
+        self.ar = ar
+    }
+    
+    
+    // Shipping en description.
+    public var en: String?
+    
+    // Shipping ar description.
+    public var ar: String?
+    
+    
+    // Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
+    public func copy(with zone: NSZone? = nil) -> Any {
+        
+        return ShippingDescription(en: self.en, ar: self.ar)
     }
 }
