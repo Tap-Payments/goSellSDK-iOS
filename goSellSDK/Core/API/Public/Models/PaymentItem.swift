@@ -20,6 +20,9 @@
     /// Payment item id
     public var productID: String?
     
+    /// Payment item category
+    public var category: String?
+    
     /// Quantity of payment item(s).
     public var quantity: Quantity
     
@@ -41,10 +44,11 @@
     ///   - quantity: Payment item's quantity.
     ///   - amountPerUnit: Amount per a single unit of quantity.
     ///   - productID: The product id
+    ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "") {
+    public convenience init(title: String, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "") {
         
-        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, productID: productID)
+        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, category: category)
     }
     
     /// Initializes payment item with title, description, quantity and amount per unit.
@@ -55,10 +59,11 @@
     ///   - quantity: Payment item's quantity.
     ///   - amountPerUnit: Amount per a single unit of quantity.
     ///   - productID: The product id
+    ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "") {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, productID: productID)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, category: category)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and discount.
@@ -70,10 +75,11 @@
     ///   - amountPerUnit: Amount per a single unit of quantity.
     ///   - discount: Payment item's discount.
     ///   - productID: The product id
+    ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "", category:String? = "") {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, productID: productID)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, category: category)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and taxes.
@@ -85,10 +91,11 @@
     ///   - amountPerUnit: Amount per a single unit of quantity.
     ///   - taxes: Payment item's taxes.
     ///   - productID: The product id
+    ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value + taxes`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "", category:String? = "") {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, productID: productID)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, category: category)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit, discount and taxes.
@@ -101,8 +108,9 @@
     ///   - discount: Payment item's discount.
     ///   - taxes: Payment item's taxes.
     ///   - productID: The product id
+    ///   - category: The product category
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount + taxes`
-    public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "") {
+    public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "", category:String? = "") {
         
         self.title = title
         self.descriptionText = descriptionText
@@ -127,6 +135,7 @@
         case taxes              = "taxes"
         case totalAmount        = "total_amount"
         case productID          = "product_id"
+        case category           = "category"
     }
 }
 
@@ -178,12 +187,13 @@ extension PaymentItem: Decodable {
         let title           = try container.decode          (String.self            , forKey: .title            )
         let descriptionText = try container.decodeIfPresent (String.self            , forKey: .descriptionText  )
         let productID       = try container.decodeIfPresent (String.self            , forKey: .productID        )
+        let category        = try container.decodeIfPresent (String.self            , forKey: .category         )
         let quantity        = try container.decode          (Quantity.self          , forKey: .quantity         )
         let amountPerUnit   = try container.decode          (Decimal.self           , forKey: .amountPerUnit    )
         let discount        = try container.decodeIfPresent (AmountModificator.self , forKey: .discount         )
         let taxes           = try container.decodeIfPresent ([Tax].self             , forKey: .taxes            )
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, productID: productID)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, category: category)
     }
 }
 
@@ -206,6 +216,7 @@ extension PaymentItem: NSCopying {
                            amountPerUnit: self.amountPerUnit,
                            discount: discountCopy,
                            taxes: taxesCopy,
-                           productID: self.productID)
+                           productID: self.productID,
+                           category: self.category)
     }
 }
