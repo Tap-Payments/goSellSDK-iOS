@@ -26,6 +26,9 @@
     /// Shipping address.
     public var address: Address?
     
+    /// Shipping provider.
+    public var provider: ShippingProvider?
+    
     // MARK: Methods
     
     /// Initializes `Shipping` model with the `name` and `amount`.
@@ -35,9 +38,10 @@
     ///   - amount: Shipping amount.
     ///   - reciepntName: Shipping recipientName.
     ///   - address: Shipping address.
-    public convenience init(name: String, amount: Decimal, recipientName:String? = "", address:Address? = nil) {
+    ///   - provider: Shipping provider
+    public convenience init(name: String, amount: Decimal, recipientName:String? = "", address:Address? = nil, provider:ShippingProvider? = nil) {
         
-        self.init(name: name, descriptionText: nil, amount: amount, recipientName: recipientName, address: address)
+        self.init(name: name, descriptionText: nil, amount: amount, recipientName: recipientName, address: address, provider: provider)
     }
     
     /// Initializes `Shipping` model with the `name`, `descriptionText` and `amount`.
@@ -48,13 +52,15 @@
     ///   - amount: Shipping amount.
     ///   - reciepntName: Shipping recipientName.
     ///   - address: Shipping address.
-    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal, recipientName:String? = "", address:Address? = nil) {
+    ///   - provider: Shipping provider
+    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal, recipientName:String? = "", address:Address? = nil, provider:ShippingProvider? = nil) {
         
         self.name               = name
         self.descriptionText    = descriptionText
         self.amount             = amount
         self.recipientName      = recipientName
         self.address            = address
+        self.provider           = provider
         super.init()
     }
     
@@ -67,6 +73,7 @@
         case amount             = "amount"
         case recipientName      = "recipient_name"
         case address            = "address"
+        case provider           = "provider"
     }
 }
 
@@ -79,7 +86,7 @@ extension Shipping: NSCopying {
     /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
-        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount, recipientName: self.recipientName, address: self.address?.copy() as? Address)
+        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount, recipientName: self.recipientName, address: self.address?.copy() as? Address, provider: self.provider?.copy() as? ShippingProvider)
     }
 }
 
@@ -107,5 +114,34 @@ extension Shipping: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         
         return ShippingDescription(en: self.en, ar: self.ar)
+    }
+}
+
+
+
+
+/// Represents the shipping provider model for the shipping
+@objcMembers public class ShippingProvider: NSObject, Codable {
+    
+    @objc public init(id: String? = nil, name: String? = nil) {
+        self.id = id
+        self.name = name
+    }
+    
+    
+    // provider id
+    public var id: String?
+    
+    // provider name
+    public var name: String?
+    
+    
+    // Copies the receiver.
+    ///
+    /// - Parameter zone: Zone.
+    /// - Returns: Copy of the receiver.
+    public func copy(with zone: NSZone? = nil) -> Any {
+        
+        return ShippingProvider(id: self.id, name: self.name)
     }
 }
