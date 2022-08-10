@@ -17,6 +17,9 @@
     /// Shipping description.
     public var descriptionText: ShippingDescription?
     
+    /// Shipping recipientName.
+    public var recipientName: String?
+    
     /// Shipping amount.
     public var amount: Decimal
     
@@ -27,9 +30,10 @@
     /// - Parameters:
     ///   - name: Shipping name.
     ///   - amount: Shipping amount.
-    public convenience init(name: String, amount: Decimal) {
+    ///   - reciepntName: Shipping recipientName.
+    public convenience init(name: String, amount: Decimal, recipientName:String? = "") {
         
-        self.init(name: name, descriptionText: nil, amount: amount)
+        self.init(name: name, descriptionText: nil, amount: amount, recipientName: recipientName)
     }
     
     /// Initializes `Shipping` model with the `name`, `descriptionText` and `amount`.
@@ -38,11 +42,13 @@
     ///   - name: Shipping name.
     ///   - descriptionText: Shipping description.
     ///   - amount: Shipping amount.
-    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal) {
+    ///   - reciepntName: Shipping recipientName.
+    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal, recipientName:String? = "") {
         
         self.name = name
         self.descriptionText = descriptionText
         self.amount = amount
+        self.recipientName = recipientName
         
         super.init()
     }
@@ -54,6 +60,7 @@
         case name               = "name"
         case descriptionText    = "description"
         case amount             = "amount"
+        case recipientName      = "recipient_name"
     }
 }
 
@@ -66,7 +73,7 @@ extension Shipping: NSCopying {
     /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
-        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount)
+        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount, recipientName: self.recipientName)
     }
 }
 
