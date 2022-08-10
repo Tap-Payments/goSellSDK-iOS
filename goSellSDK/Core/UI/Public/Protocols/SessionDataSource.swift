@@ -119,5 +119,8 @@ import class PassKit.PKPaymentToken
     
     /// Defines the topup module if needed
     @objc optional var topup: Topup { get }
+    
+    /// Defines the reference module if needed
+    @objc optional var reference: Reference { get }
 
 }
