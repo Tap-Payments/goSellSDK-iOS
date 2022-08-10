@@ -26,6 +26,9 @@
     /// Payment item category
     public var category: String?
     
+    /// Payment item shiping
+    public var requiresShipping: Bool
+    
     /// Quantity of payment item(s).
     public var quantity: Quantity
     
@@ -53,9 +56,9 @@
     ///   - category: The product category
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "") {
+    public convenience init(title: String, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false) {
         
-        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, category: category, vendor: vendor, fulfillmentService: fulfillmentService)
+        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping)
     }
     
     /// Initializes payment item with title, description, quantity and amount per unit.
@@ -69,9 +72,9 @@
     ///   - category: The product category
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and discount.
@@ -86,9 +89,9 @@
     ///   - category: The product category
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and taxes.
@@ -103,9 +106,9 @@
     ///   - category: The product category
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value + taxes`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, category: category, vendor: vendor, fulfillmentService: fulfillmentService)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit, discount and taxes.
@@ -121,7 +124,7 @@
     ///   - category: The product category
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount + taxes`
-    public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "") {
+    public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false) {
         
         self.title = title
         self.descriptionText = descriptionText
@@ -130,6 +133,10 @@
         self.discount = discount
         self.taxes = taxes
         self.productID = productID
+        self.category = category
+        self.fulfillmentService = fulfillmentService
+        self.vendor = vendor
+        self.requiresShipping = requiresShipping
         
         super.init()
     }
@@ -149,6 +156,7 @@
         case category           = "category"
         case vendor             = "vendor"
         case fulfillmentService = "fulfillment_service"
+        case requiresShipping   = "requires_shipping"
     }
 }
 
@@ -186,6 +194,8 @@ extension PaymentItem: Encodable {
             try container.encodeIfPresent(self.fulfillmentService, forKey: .fulfillmentService)
         }
         
+        try container.encodeIfPresent(self.requiresShipping           , forKey: .requiresShipping           )
+        
         try container.encodeIfPresent(self.vendor           , forKey: .vendor           )
         try container.encodeIfPresent(self.quantity         , forKey: .quantity         )
         try container.encodeIfPresent(self.amountPerUnit    , forKey: .amountPerUnit    )
@@ -211,6 +221,7 @@ extension PaymentItem: Decodable {
         let title           = try container.decode          (String.self            , forKey: .title            )
         let descriptionText = try container.decodeIfPresent (String.self            , forKey: .descriptionText  )
         let productID       = try container.decodeIfPresent (String.self            , forKey: .productID        )
+        let requiresShipping = try container.decodeIfPresent (Bool.self            , forKey: .requiresShipping        ) ?? false
         let fulfillmentService = try container.decodeIfPresent (String.self            , forKey: .fulfillmentService        )
         let category        = try container.decodeIfPresent (String.self            , forKey: .category         )
         let vendor          = try container.decodeIfPresent (Vendor.self            , forKey: .vendor           )
@@ -219,7 +230,7 @@ extension PaymentItem: Decodable {
         let discount        = try container.decodeIfPresent (AmountModificator.self , forKey: .discount         )
         let taxes           = try container.decodeIfPresent ([Tax].self             , forKey: .taxes            )
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, productID: productID, category: category, vendor: vendor, fulfillmentService: fulfillmentService)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, productID: productID, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping)
     }
 }
 
@@ -246,7 +257,8 @@ extension PaymentItem: NSCopying {
                            productID: self.productID,
                            category: self.category,
                            vendor: vendorCopy,
-                           fulfillmentService: self.fulfillmentService)
+                           fulfillmentService: self.fulfillmentService,
+                           requiresShipping: requiresShipping)
     }
 }
 
