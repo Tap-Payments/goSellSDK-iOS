@@ -41,6 +41,12 @@ internal extension Address {
             case .postalBox:            if let postalBox            = String(untransformedValue:        value) { self.postalBox             = postalBox             } else if field.isRequired { return nil }
             case .postalCode:           if let postalCode           = String(untransformedValue:        value) { self.postalCode            = postalCode            } else if field.isRequired { return nil }
 
+            case .line3:
+                if let line3                = String(untransformedValue:        value) { self.line3                 = line3                 } else if field.isRequired { return nil }
+            case .line4:
+                if let line4                = String(untransformedValue:        value) { self.line4                = line4                } else if field.isRequired { return nil }
+            case .apartment:
+                if let apartment             = String(untransformedValue:        value) { self.apartment                 = apartment                 } else if field.isRequired { return nil }
             }
         }
     }

@@ -20,6 +20,9 @@
     /// Customer's phone number.
     public var phoneNumber: PhoneNumber?
     
+    /// Customer's address
+    public var address: Address?
+    
     /// Customer's first name.
     public var firstName: String?
     
@@ -52,9 +55,10 @@
     ///   - emailAddress: Email address.
     ///   - phoneNumber: Phone number.
     ///   - name: Name.
+    ///   - address: Address.
     /// - Throws: Invalid customer info error.
-    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, name: String) throws {
-        try self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: name, middleName: nil, lastName: nil)
+    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, name: String, address:Address?) throws {
+        try self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: name, middleName: nil, lastName: nil, address: address)
     }
     
     /// Initializes the customer with email address, phone number and a name.
@@ -63,12 +67,13 @@
     ///   - emailAddress: Email address.
     ///   - phoneNumber: Phone number.
     ///   - name: Name.
+    ///   - address: Address.
     /// - Warning: This method returns `nil` if you pass invalid customer data.
     @available(swift, obsoleted: 1.0)
-    @objc(initWithEmailAddress:phoneNumber:name:)
-    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, name: String) {
+    @objc(initWithEmailAddress:phoneNumber:name:address:)
+    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, name: String, address:Address) {
         
-        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, name: name)
+        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, name: name, address: address)
     }
     
     /// Initializes the customer with email address, phone number, first name, middle name and last name.
@@ -79,12 +84,13 @@
     ///   - firstName: First name.
     ///   - middleName: Middle name.
     ///   - lastName: Last name.
+    ///   - address: Address.
     /// - Throws: Invalid customer info error.
-    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String, middleName: String?, lastName: String?) throws {
+    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String, middleName: String?, lastName: String?, address: Address?) throws {
         if emailAddress == nil && phoneNumber == nil {
             throw("A customer must have at least an email or a phone number")
         }
-        try self.init(identifier: nil, emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName)
+        try self.init(identifier: nil, emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName,address: address)
     }
     
     /// Initializes the customer with email address, phone number, first name, middle name and last name.
@@ -97,10 +103,10 @@
     ///   - lastName: Last name.
     /// - Warning: This method returns `nil` if you pass invalid customer data.
     @available(swift, obsoleted: 1.0)
-    @objc(initWithEmailAddress:phoneNumber:firstName:middleName:lastName:)
-    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, firstName: String, middleName: String?, lastName: String?) {
+    @objc(initWithEmailAddress:phoneNumber:firstName:middleName:lastName:address:)
+    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, firstName: String, middleName: String?, lastName: String?, address: Address) {
         
-        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName)
+        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName, address: address)
     }
     
     /// Initializes the customer with the customer identifier.
@@ -109,7 +115,7 @@
     /// - Throws: Invalid customer info error.
     public convenience init(identifier: String) throws {
         
-        try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, middleName: nil, lastName: nil)
+        try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, middleName: nil, lastName: nil, address: nil)
     }
     
     /// Initializes the customer with the customer identifier.
@@ -189,13 +195,14 @@
 		case title				= "title"
 		case nationality		= "nationality"
 		case currency			= "currency"
+        case address            = "address"
     }
     
     // MARK: Methods
     
     @available(*, unavailable) private override init() { super.init() }
     
-    private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String?, middleName: String?, lastName: String?) throws {
+    private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String?, middleName: String?, lastName: String?, address:Address?) throws {
 		
 		self.identifier		= identifier
 		self.emailAddress	= emailAddress
@@ -203,6 +210,7 @@
 		self.firstName		= firstName
 		self.middleName		= middleName
 		self.lastName		= lastName
+        self.address        = address
 		
 		super.init()
 		
@@ -229,13 +237,15 @@ extension Customer: NSCopying {
         let emailAddressCopy	= self.emailAddress?.copy() as? EmailAddress
 		let phoneNumberCopy		= self.phoneNumber?.copy() as? PhoneNumber
 		let currencyCopy		= self.currency?.copy() as? Currency
+        let addressCopy         = self.address?.copy() as? Address
 		
 		let result = try! Customer(identifier:		self.identifier,
 								   emailAddress:	emailAddressCopy,
 								   phoneNumber:		phoneNumberCopy,
 								   firstName:		self.firstName,
 								   middleName:		self.middleName,
-								   lastName:		self.lastName)
+                                   lastName:		self.lastName,
+                                   address:         addressCopy)
 		
 		result.descriptionText	= self.descriptionText
 		result.metadata			= self.metadata
