@@ -39,12 +39,15 @@ internal struct PaymentOptionsRequest {
 	
 	/// Payment type.
 	internal private(set) var paymentType: PaymentType?
+    
+    /// Reference.
+    internal private(set) var reference: Reference?
 
     // MARK: Methods
 	
 	internal init(customer: String?) {
 		
-        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil, topup:nil)
+        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil, topup:nil, reference:nil)
 	}
 	
 	internal init(transactionMode:	TransactionMode?,
@@ -57,7 +60,8 @@ internal struct PaymentOptionsRequest {
 				  customer:			String?,
 				  destinationGroup:	DestinationGroup?,
 				  paymentType:		PaymentType?,
-                  topup:            Topup?
+                  topup:            Topup?,
+                  reference:        Reference?
 		
 	) {
         
@@ -70,6 +74,7 @@ internal struct PaymentOptionsRequest {
 		self.destinationGroup		= destinationGroup
 		self.paymentType			= paymentType
         self.topup                  = topup
+        self.reference              = reference
         
 		if let nonnullItems 		= items, nonnullItems.count > 0 {
 			
@@ -98,6 +103,7 @@ internal struct PaymentOptionsRequest {
 		case destinationGroup		= "destinations"
 		case paymentType			= "payment_type"
         case topup                  = "topup"
+        case reference              = "reference"
     }
     
     // MARK: Properties
@@ -119,6 +125,7 @@ extension PaymentOptionsRequest: Encodable {
         try container.encodeIfPresent(self.transactionMode, forKey: .transactionMode)
         try container.encodeIfPresent(self.topup, forKey: .topup)
         try container.encodeIfPresent(self.items, forKey: .items)
+        try container.encodeIfPresent(self.reference, forKey: .reference)
         
         if self.shipping?.count ?? 0 > 0 {
             

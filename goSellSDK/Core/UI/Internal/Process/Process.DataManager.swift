@@ -637,6 +637,7 @@ internal extension Process {
 			let destinations		= nonnullDataSource.destinations       ?? nil
 			let paymentType		= nonnullDataSource.paymentType       ?? nil
             let topup        = nonnullDataSource.topup       ?? nil
+            let reference        = nonnullDataSource.reference       ?? nil
 
 			/// the API is using destinationsGroup not destinations
 			let destinationsGroup = DestinationGroup(destinations: destinations)
@@ -650,7 +651,8 @@ internal extension Process {
 													   customer:        customer.identifier,
 													   destinationGroup:	destinationsGroup,
 													   paymentType:			paymentType,
-                                                       topup: topup)
+                                                       topup: topup,
+                                                       reference: reference)
 			
 			return paymentRequest
 		}
@@ -1245,6 +1247,7 @@ internal extension Process {
 			let destinationsGroup = DestinationGroup(destinations: destinations)
 			let paymentType		= nonnullDataSource.paymentType       ?? nil
             let topup        = nonnullDataSource.topup       ?? nil
+            let reference        = nonnullDataSource.reference       ?? nil
 
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
 													   amount:          nonnullDataSource.amount,
@@ -1256,7 +1259,8 @@ internal extension Process {
 													   customer:         nonnullDataSource.customer?.identifier,
 													   destinationGroup:	destinationsGroup,
 													   paymentType:			paymentType,
-                                                       topup: topup)
+                                                       topup: topup,
+                                                       reference: reference)
 			
 			return paymentRequest
 		}
