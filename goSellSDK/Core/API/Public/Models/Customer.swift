@@ -43,6 +43,9 @@
 	
 	/// Customer's nationality.
 	public var nationality: String?
+    
+    /// Customer's locale.
+    public var locale: String?
 	
 	/// Currency in which customer can be charged.
 	public var currency: Currency?
@@ -56,9 +59,10 @@
     ///   - phoneNumber: Phone number.
     ///   - name: Name.
     ///   - address: Address.
+    ///   - address: Locale.
     /// - Throws: Invalid customer info error.
-    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, name: String, address:Address?) throws {
-        try self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: name, middleName: nil, lastName: nil, address: address)
+    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, name: String, address:Address?, locale:String?) throws {
+        try self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: name, middleName: nil, lastName: nil, address: address, locale:locale)
     }
     
     /// Initializes the customer with email address, phone number and a name.
@@ -70,10 +74,10 @@
     ///   - address: Address.
     /// - Warning: This method returns `nil` if you pass invalid customer data.
     @available(swift, obsoleted: 1.0)
-    @objc(initWithEmailAddress:phoneNumber:name:address:)
-    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, name: String, address:Address) {
+    @objc(initWithEmailAddress:phoneNumber:name:address:locale:)
+    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, name: String, address:Address,locale:String?) {
         
-        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, name: name, address: address)
+        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, name: name, address: address, locale:locale)
     }
     
     /// Initializes the customer with email address, phone number, first name, middle name and last name.
@@ -86,11 +90,11 @@
     ///   - lastName: Last name.
     ///   - address: Address.
     /// - Throws: Invalid customer info error.
-    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String, middleName: String?, lastName: String?, address: Address?) throws {
+    public convenience init(emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String, middleName: String?, lastName: String?, address: Address?,locale:String?) throws {
         if emailAddress == nil && phoneNumber == nil {
             throw("A customer must have at least an email or a phone number")
         }
-        try self.init(identifier: nil, emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName,address: address)
+        try self.init(identifier: nil, emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName,address: address, locale:locale)
     }
     
     /// Initializes the customer with email address, phone number, first name, middle name and last name.
@@ -103,10 +107,10 @@
     ///   - lastName: Last name.
     /// - Warning: This method returns `nil` if you pass invalid customer data.
     @available(swift, obsoleted: 1.0)
-    @objc(initWithEmailAddress:phoneNumber:firstName:middleName:lastName:address:)
-    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, firstName: String, middleName: String?, lastName: String?, address: Address) {
+    @objc(initWithEmailAddress:phoneNumber:firstName:middleName:lastName:address:locale:)
+    public convenience init?(with emailAddress: EmailAddress, phoneNumber: PhoneNumber, firstName: String, middleName: String?, lastName: String?, address: Address,locale:String?) {
         
-        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName, address: address)
+        try? self.init(emailAddress: emailAddress, phoneNumber: phoneNumber, firstName: firstName, middleName: middleName, lastName: lastName, address: address, locale: locale)
     }
     
     /// Initializes the customer with the customer identifier.
@@ -115,7 +119,7 @@
     /// - Throws: Invalid customer info error.
     public convenience init(identifier: String) throws {
         
-        try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, middleName: nil, lastName: nil, address: nil)
+        try self.init(identifier: identifier, emailAddress: nil, phoneNumber: nil, firstName: nil, middleName: nil, lastName: nil, address: nil, locale: nil)
     }
     
     /// Initializes the customer with the customer identifier.
@@ -196,13 +200,14 @@
 		case nationality		= "nationality"
 		case currency			= "currency"
         case address            = "address"
+        case locale             = "locale"
     }
     
     // MARK: Methods
     
     @available(*, unavailable) private override init() { super.init() }
     
-    private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String?, middleName: String?, lastName: String?, address:Address?) throws {
+    private init(identifier: String?, emailAddress: EmailAddress?, phoneNumber: PhoneNumber?, firstName: String?, middleName: String?, lastName: String?, address:Address?, locale:String?) throws {
 		
 		self.identifier		= identifier
 		self.emailAddress	= emailAddress
@@ -211,6 +216,7 @@
 		self.middleName		= middleName
 		self.lastName		= lastName
         self.address        = address
+        self.locale         = locale
 		
 		super.init()
 		
@@ -245,7 +251,8 @@ extension Customer: NSCopying {
 								   firstName:		self.firstName,
 								   middleName:		self.middleName,
                                    lastName:		self.lastName,
-                                   address:         addressCopy)
+                                   address:         addressCopy,
+                                   locale:          self.locale)
 		
 		result.descriptionText	= self.descriptionText
 		result.metadata			= self.metadata
@@ -281,5 +288,7 @@ extension Customer: Encodable {
 		try container.encodeIfPresent(self.title,			forKey: .title)
 		try container.encodeIfPresent(self.nationality,		forKey: .nationality)
 		try container.encodeIfPresent(self.currency,		forKey: .currency)
+        try container.encodeIfPresent(self.address,         forKey: .address)
+        try container.encodeIfPresent(self.locale,          forKey: .locale)
     }
 }
