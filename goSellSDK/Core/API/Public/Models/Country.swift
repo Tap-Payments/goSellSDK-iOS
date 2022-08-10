@@ -6,7 +6,7 @@
 //
 
 /// Country model.
-@objcMembers public final class Country {
+@objcMembers public final class Country: NSObject {
     
     // MARK: - Public -
     // MARK: Properties
@@ -72,13 +72,4 @@ extension Country: Encodable {
         var container = encoder.singleValueContainer()
         try container.encode(self.isoCode)
     }
-}
-
-// MARK: - Hashable
-extension Country: Hashable {
-	
-	public func hash(into hasher: inout Hasher) {
-		
-		hasher.combine(self.isoCode)
-	}
 }
