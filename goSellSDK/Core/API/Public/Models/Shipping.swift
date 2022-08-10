@@ -23,6 +23,9 @@
     /// Shipping amount.
     public var amount: Decimal
     
+    /// Shipping address.
+    public var address: Address?
+    
     // MARK: Methods
     
     /// Initializes `Shipping` model with the `name` and `amount`.
@@ -31,9 +34,10 @@
     ///   - name: Shipping name.
     ///   - amount: Shipping amount.
     ///   - reciepntName: Shipping recipientName.
-    public convenience init(name: String, amount: Decimal, recipientName:String? = "") {
+    ///   - address: Shipping address.
+    public convenience init(name: String, amount: Decimal, recipientName:String? = "", address:Address? = nil) {
         
-        self.init(name: name, descriptionText: nil, amount: amount, recipientName: recipientName)
+        self.init(name: name, descriptionText: nil, amount: amount, recipientName: recipientName, address: address)
     }
     
     /// Initializes `Shipping` model with the `name`, `descriptionText` and `amount`.
@@ -43,13 +47,14 @@
     ///   - descriptionText: Shipping description.
     ///   - amount: Shipping amount.
     ///   - reciepntName: Shipping recipientName.
-    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal, recipientName:String? = "") {
+    ///   - address: Shipping address.
+    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal, recipientName:String? = "", address:Address? = nil) {
         
-        self.name = name
-        self.descriptionText = descriptionText
-        self.amount = amount
-        self.recipientName = recipientName
-        
+        self.name               = name
+        self.descriptionText    = descriptionText
+        self.amount             = amount
+        self.recipientName      = recipientName
+        self.address            = address
         super.init()
     }
     
@@ -61,6 +66,7 @@
         case descriptionText    = "description"
         case amount             = "amount"
         case recipientName      = "recipient_name"
+        case address            = "address"
     }
 }
 
@@ -73,7 +79,7 @@ extension Shipping: NSCopying {
     /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
-        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount, recipientName: self.recipientName)
+        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount, recipientName: self.recipientName, address: self.address?.copy() as? Address)
     }
 }
 
