@@ -29,6 +29,9 @@
     /// Payment item code
     public var itemCode: String?
     
+    /// Payment item tags
+    public var tags: String?
+    
     /// Payment item account code
     public var accountCode: String?
     
@@ -36,7 +39,11 @@
     public var requiresShipping: Bool
     
     /// Quantity of payment item(s).
-    public var quantity: Quantity
+    public var quantity: Decimal
+    
+    
+    /// Quantity of payment item(s).
+    public var quantityOld: Quantity
     
     /// The item's vendor
     public var vendor: Vendor?
@@ -50,6 +57,9 @@
     /// Items(s) taxes.
     public var taxes: [Tax]?
     
+    /// Items currency
+    public var currency: Currency?
+    
     // MARK: Methods
     
     /// Initializes payment item with title, quantity and amount per unit.
@@ -60,11 +70,14 @@
     ///   - amountPerUnit: Amount per a single unit of quantity.
     ///   - productID: The product id
     ///   - category: The product category
-    /// Payment item fulfillment_service
+    ///   - tags: Payment item tags
+    ///   - currency: Item currency
+    ///   - fullfilment_service: Item service
+    ///
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "") {
+    public convenience init(title: String, quantity: Decimal, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "", tags:String? = "", currency: Currency? = nil) {
         
-        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode)
+        self.init(title: title, descriptionText: nil, quantity: quantity, amountPerUnit: amountPerUnit, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode, tags: tags, currency: currency)
     }
     
     /// Initializes payment item with title, description, quantity and amount per unit.
@@ -76,11 +89,13 @@
     ///   - amountPerUnit: Amount per a single unit of quantity.
     ///   - productID: The product id
     ///   - category: The product category
+    ///   - tags: Payment item tags
+    ///   - currency: Item currency
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Decimal, amountPerUnit: Decimal, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "", tags:String? = "", currency: Currency? = nil) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode, tags: tags, currency: currency)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and discount.
@@ -93,11 +108,13 @@
     ///   - discount: Payment item's discount.
     ///   - productID: The product id
     ///   - category: The product category
+    ///   - tags: Payment item tags
+    ///   - currency: Item currency
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Decimal, amountPerUnit: Decimal, discount: AmountModificator?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "", tags:String? = "", currency: Currency? = nil) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: nil, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode, tags: tags, currency: currency)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit and taxes.
@@ -110,11 +127,13 @@
     ///   - taxes: Payment item's taxes.
     ///   - productID: The product id
     ///   - category: The product category
+    ///   - tags: Payment item tags
+    ///   - currency: Item currency
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value + taxes`
-    public convenience init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "") {
+    public convenience init(title: String, descriptionText: String?, quantity: Decimal, amountPerUnit: Decimal, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "", tags:String? = "", currency: Currency? = nil) {
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: nil, taxes: taxes, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode, tags: tags, currency: currency)
     }
     
     /// Initializes payment item with title, description, quantity, amount per unit, discount and taxes.
@@ -128,9 +147,12 @@
     ///   - taxes: Payment item's taxes.
     ///   - productID: The product id
     ///   - category: The product category
+    ///   - tags: Payment item tags
+    ///   - currency: Item currency
+    ///   - currency: Item currency
     /// Payment item fulfillment_service
     /// - Attention: Total amount of the payment item is calculated with the following formula: `amountPerUnit * quantity.value - discount + taxes`
-    public required init(title: String, descriptionText: String?, quantity: Quantity, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "") {
+    public required init(title: String, descriptionText: String?, quantity: Decimal, amountPerUnit: Decimal, discount: AmountModificator?, taxes: [Tax]?, productID:String? = "", category:String? = "", vendor:Vendor? = nil, fulfillmentService:String? = "", requiresShipping:Bool = false, itemCode:String? = "", accountCode:String? = "", tags:String? = "", currency: Currency? = nil) {
         
         self.title = title
         self.descriptionText = descriptionText
@@ -145,7 +167,9 @@
         self.requiresShipping = requiresShipping
         self.itemCode = itemCode
         self.accountCode = accountCode
-        
+        self.tags = tags
+        self.currency = currency
+        self.quantityOld = .init(value: quantity, unitOfMeasurement: .units)
         super.init()
     }
     
@@ -156,10 +180,11 @@
         case title              = "name"
         case descriptionText    = "description"
         case quantity           = "quantity"
-        case amountPerUnit      = "amount_per_unit"
+        case amountPerUnit      = "amount"
         case discount           = "discount"
         case taxes              = "taxes"
-        case totalAmount        = "total_amount"
+        case tags               = "tags"
+        case currency           = "currency"
         case productID          = "product_id"
         case category           = "category"
         case vendor             = "vendor"
@@ -216,6 +241,7 @@ extension PaymentItem: Encodable {
         }
         
         try container.encodeIfPresent(self.requiresShipping           , forKey: .requiresShipping           )
+        try container.encodeIfPresent(self.currency           , forKey: .currency           )
         
         try container.encodeIfPresent(self.vendor           , forKey: .vendor           )
         try container.encodeIfPresent(self.quantity         , forKey: .quantity         )
@@ -227,8 +253,6 @@ extension PaymentItem: Encodable {
             
             try container.encodeIfPresent(self.taxes        , forKey: .taxes            )
         }
-        
-        try container.encodeIfPresent(self.totalItemAmount  , forKey: .totalAmount      )
     }
 }
 
@@ -248,12 +272,14 @@ extension PaymentItem: Decodable {
         let fulfillmentService = try container.decodeIfPresent (String.self            , forKey: .fulfillmentService        )
         let category        = try container.decodeIfPresent (String.self            , forKey: .category         )
         let vendor          = try container.decodeIfPresent (Vendor.self            , forKey: .vendor           )
-        let quantity        = try container.decode          (Quantity.self          , forKey: .quantity         )
+        let quantity        = try container.decode          (Decimal.self          , forKey: .quantity         )
         let amountPerUnit   = try container.decode          (Decimal.self           , forKey: .amountPerUnit    )
         let discount        = try container.decodeIfPresent (AmountModificator.self , forKey: .discount         )
         let taxes           = try container.decodeIfPresent ([Tax].self             , forKey: .taxes            )
+        let tags            = try container.decodeIfPresent (String.self             , forKey: .tags            )
+        let currency            = try container.decodeIfPresent (Currency.self             , forKey: .currency            )
         
-        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, productID: productID, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode)
+        self.init(title: title, descriptionText: descriptionText, quantity: quantity, amountPerUnit: amountPerUnit, discount: discount, taxes: taxes, productID: productID, category: category, vendor: vendor, fulfillmentService: fulfillmentService, requiresShipping: requiresShipping, itemCode: itemCode, accountCode: accountCode, tags: tags, currency: currency)
     }
 }
 
@@ -266,14 +292,14 @@ extension PaymentItem: NSCopying {
     /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
-        let quantityCopy = self.quantity.copy() as! Quantity
         let discountCopy = self.discount?.copy() as? AmountModificator
+        let currencyCopy = self.currency?.copy() as? Currency
         let vendorCopy = self.vendor?.copy() as? Vendor
         let taxesCopy = self.taxes?.compactMap { $0.copy() as? Tax }
         
         return PaymentItem(title: self.title,
                            descriptionText: self.descriptionText,
-                           quantity: quantityCopy,
+                           quantity: self.quantity,
                            amountPerUnit: self.amountPerUnit,
                            discount: discountCopy,
                            taxes: taxesCopy,
@@ -282,7 +308,10 @@ extension PaymentItem: NSCopying {
                            vendor: vendorCopy,
                            fulfillmentService: self.fulfillmentService,
                            requiresShipping: requiresShipping,
-                           itemCode: itemCode, accountCode: accountCode)
+                           itemCode: self.itemCode,
+                           accountCode: self.accountCode,
+                           tags: self.tags,
+                           currency: currencyCopy)
     }
 }
 

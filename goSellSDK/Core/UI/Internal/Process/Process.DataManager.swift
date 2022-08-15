@@ -673,7 +673,7 @@ internal extension Process {
 		
 		internal var orderIdentifier: String? {
 			
-			return self.paymentOptionsResponse?.orderIdentifier
+            return self.paymentOptionsResponse?.order?.identifier
 		}
 		
 		internal override var isInDeleteSavedCardsMode: Bool {

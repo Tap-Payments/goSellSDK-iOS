@@ -14,7 +14,7 @@ internal struct PaymentOptionsRequest {
     internal let transactionMode: TransactionMode?
     
     /// Items to pay for.
-    internal let items: [PaymentItem]?
+    internal var items: [PaymentItem]?
     
     /// Items shippings.
     internal var shipping: [Shipping]?
@@ -42,7 +42,11 @@ internal struct PaymentOptionsRequest {
     
     /// Reference.
     internal private(set) var reference: Reference?
-
+    
+    /// Order.
+    internal private(set) var order: PaymentOptionsOrder?
+    
+    
     // MARK: Methods
 	
 	internal init(customer: String?) {
@@ -86,6 +90,18 @@ internal struct PaymentOptionsRequest {
 		}
 		
 		self.totalAmount = Process.NonGenericAmountCalculator.totalAmount(of: items, with: taxes, and: shipping, plainAmount: amount)
+        
+        
+        if self.items == nil,
+           let nonNullAmount = amount {
+            self.items = []
+            // we will have to create a default item model here
+            self.items?.append(.init(title: "Default item", quantity: 1, amountPerUnit: nonNullAmount, currency: currency))
+        }
+        
+        self.order = .init(transactionMode: transactionMode, amount: self.totalAmount, items: self.items, shipping: self.shipping, taxes: self.taxes, currency: self.currency, merchantID: self.merchantID, customer: self.customer, destinationGroup: self.destinationGroup, paymentType: self.paymentType, topup: self.topup, reference: self.reference)
+        // We will stop passing items in the payment options and pass it in order object only
+        self.items = []
     }
     
     // MARK: - Private -
@@ -104,6 +120,7 @@ internal struct PaymentOptionsRequest {
 		case paymentType			= "payment_type"
         case topup                  = "topup"
         case reference              = "reference"
+        case order                  = "order"
     }
     
     // MARK: Properties
@@ -126,6 +143,7 @@ extension PaymentOptionsRequest: Encodable {
         try container.encodeIfPresent(self.topup, forKey: .topup)
         try container.encodeIfPresent(self.items, forKey: .items)
         try container.encodeIfPresent(self.reference, forKey: .reference)
+        try container.encodeIfPresent(self.order, forKey: .order)
         
         if self.shipping?.count ?? 0 > 0 {
             

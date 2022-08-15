@@ -180,8 +180,8 @@ extension PaymentItemsTableViewHandler: UITableViewDelegate {
             let item = model.paymentItem
             
             let itemTitle           = item.title
-            let quantityValue       = "\(item.quantity.value)"
-            let quantityMeasurement = item.quantity.measurementUnit
+            let quantityValue       = "\(item.quantityOld.value)"
+            let quantityMeasurement = item.quantityOld.measurementUnit
             let price               = "\(item.amountPerUnit)"
             let amount              = "\(item.plainAmount)"
             let discount            = "\(item.discountAmount)"
