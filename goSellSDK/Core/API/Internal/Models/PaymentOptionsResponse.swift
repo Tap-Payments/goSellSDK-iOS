@@ -39,6 +39,9 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
     /// Merchant data
     internal var merchant: Merchant?
     
+    /// Order data
+    internal var order: Order?
+    
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
@@ -55,6 +58,8 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
         case merchantCountryCode        = "country"
         
         case merchant                   = "merchant"
+        
+        case order                      = "order"
     }
 	
 	// MARK: Methods
@@ -67,7 +72,8 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
 				 supportedCurrenciesAmounts:	[AmountedCurrency],
 				 savedCards:					[SavedCard]?,
                  merchantCountryCode:           String?,
-                 merchant:                      Merchant?) {
+                 merchant:                      Merchant?,
+                 order:                         Order?) {
 		
 		self.identifier					= identifier
 		self.orderIdentifier			= orderIdentifier
@@ -78,6 +84,7 @@ internal struct PaymentOptionsResponse: IdentifiableWithString {
 		self.savedCards					= savedCards
         self.merchantCountryCode        = merchantCountryCode
         self.merchant                   = merchant
+        self.order                      = order
 	}
 }
 
@@ -97,6 +104,8 @@ extension PaymentOptionsResponse: Decodable {
 		var savedCards					= try container.decodeIfPresent([SavedCard].self, forKey: .savedCards)
         let merchantCountryCode         = try container.decodeIfPresent(String.self, forKey: .merchantCountryCode)
         let merchant                    = try container.decodeIfPresent(Merchant.self, forKey: .merchant)
+        let order                       = try container.decodeIfPresent(Order.self, forKey: .order)
+        
         if let nonNullMerchant = merchant {
             SettingsDataManager.shared.settings?.merchant = nonNullMerchant
         }
@@ -130,6 +139,7 @@ extension PaymentOptionsResponse: Decodable {
 				  supportedCurrenciesAmounts:	supportedCurrenciesAmounts,
 				  savedCards:					savedCards,
                   merchantCountryCode:          merchantCountryCode,
-                  merchant:                     merchant)
+                  merchant:                     merchant,
+                  order:                        order)
 	}
 }

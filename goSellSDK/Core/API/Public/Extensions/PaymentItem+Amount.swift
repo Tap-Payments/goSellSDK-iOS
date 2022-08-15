@@ -13,7 +13,7 @@ public extension PaymentItem {
     /// Plain amount.
     @objc var plainAmount: Decimal {
         
-        return self.amountPerUnit * self.quantity.value
+        return self.amountPerUnit * self.quantity
     }
     
     /// Discount amount.

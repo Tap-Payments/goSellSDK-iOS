@@ -64,7 +64,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
     
     internal override var isDoneButtonEnabled: Bool {
         
-        return !self.currentPaymentItem.title.isEmpty && self.currentPaymentItem.quantity.value > 0.0 && self.currentPaymentItem.amountPerUnit > 0.0
+        return !self.currentPaymentItem.title.isEmpty && self.currentPaymentItem.quantityOld.value > 0.0 && self.currentPaymentItem.amountPerUnit > 0.0
     }
     
     // MARK: Methods
@@ -100,53 +100,53 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                 
                 caseSelectionController.title = "Measurement Category"
                 caseSelectionController.allValues = Measurement.allCategoriesWithDefaultUnitsOfMeasurement
-                caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.unitOfMeasurement
+                caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.unitOfMeasurement
                 
             case Constants.measurementUnitCellReuseIdentifier:
                 
                 caseSelectionController.title = "Measurement Unit"
                 
-                switch self.currentPaymentItem.quantity.unitOfMeasurement {
+                switch self.currentPaymentItem.quantityOld.unitOfMeasurement {
                     
                 case .area(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .duration(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .electricCharge(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .electricCurrent(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .energy(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .length(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .mass(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .power(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                     
                 case .units:
                     
@@ -155,7 +155,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
                 case .volume(let measurement):
                     
                     caseSelectionController.allValues = type(of: measurement).allCases
-                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantity.measurementUnit
+                    caseSelectionController.preselectedValue = self.currentPaymentItem.quantityOld.measurementUnit
                 }
                 
             case Constants.discountTypeCellReuseIdentifier:
@@ -207,7 +207,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
             
         case Constants.measurementUnitCellReuseIdentifier:
             
-            guard self.currentPaymentItem.quantity.unitOfMeasurement != .units else { break }
+            guard self.currentPaymentItem.quantityOld.unitOfMeasurement != .units else { break }
             
             self.showCaseSelectionController(with: reuseIdentifier)
             
@@ -277,7 +277,7 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
     
     private var currentPaymentItem: PaymentItem = PaymentItem(title: "",
                                                               descriptionText: nil,
-                                                              quantity: Quantity(value: 0.0, unitOfMeasurement: .units),
+                                                              quantity: 0,
                                                               amountPerUnit: 0.0,
                                                               discount: nil,
                                                               taxes: []) {
@@ -322,11 +322,11 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         
         if let quantityValue = self.quantityValueTextField?.text?.tap_decimalValue, quantityValue > 0.0 {
             
-            self.currentPaymentItem.quantity.value = quantityValue
+            self.currentPaymentItem.quantityOld.value = quantityValue
         }
         else {
             
-            self.currentPaymentItem.quantity.value = 0.0
+            self.currentPaymentItem.quantityOld.value = 0.0
         }
         
         if let amountPerUnit = self.amountPerUnitTextField?.text?.tap_decimalValue, amountPerUnit > 0.0 {
@@ -353,9 +353,9 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         
         self.titleTextField?.text = self.currentPaymentItem.title
         self.descriptionTextView?.text = self.currentPaymentItem.descriptionText
-        self.selectedMeasurementCategoryLabel?.text = self.currentPaymentItem.quantity.measurementGroup
-        self.selectedMeasurementSubcategoryLabel?.text = self.currentPaymentItem.quantity.measurementUnit
-        self.quantityValueTextField?.text = "\(self.currentPaymentItem.quantity.value)"
+        self.selectedMeasurementCategoryLabel?.text = self.currentPaymentItem.quantityOld.measurementGroup
+        self.selectedMeasurementSubcategoryLabel?.text = self.currentPaymentItem.quantityOld.measurementUnit
+        self.quantityValueTextField?.text = "\(self.currentPaymentItem.quantityOld.value)"
         self.amountPerUnitTextField?.text = "\(self.currentPaymentItem.amountPerUnit)"
         self.selectedDiscountTypeLabel?.text = self.currentPaymentItem.discount?.type.description
         self.discountValueTextField?.text = "\(self.currentPaymentItem.discount?.value ?? 0.0)"
@@ -441,29 +441,29 @@ extension PaymentItemViewController: CaseSelectionTableViewControllerDelegate {
         case Constants.measurementCategoryCellReuseIdentifier:
             
             guard let unit = value as? Measurement else { return }
-            self.currentPaymentItem.quantity.unitOfMeasurement = unit
+            self.currentPaymentItem.quantityOld.unitOfMeasurement = unit
             
         case Constants.measurementUnitCellReuseIdentifier:
             
             if let areaUnit = value as? Area {
                 
-                self.currentPaymentItem.quantity.unitOfMeasurement = .area(areaUnit)
+                self.currentPaymentItem.quantityOld.unitOfMeasurement = .area(areaUnit)
             }
             else if let durationUnit = value as? Duration {
                 
-                self.currentPaymentItem.quantity.unitOfMeasurement = .duration(durationUnit)
+                self.currentPaymentItem.quantityOld.unitOfMeasurement = .duration(durationUnit)
             }
             else if let lengthUnit = value as? Length {
                 
-                self.currentPaymentItem.quantity.unitOfMeasurement = .length(lengthUnit)
+                self.currentPaymentItem.quantityOld.unitOfMeasurement = .length(lengthUnit)
             }
             else if let massUnit = value as? Mass {
                 
-                self.currentPaymentItem.quantity.unitOfMeasurement = .mass(massUnit)
+                self.currentPaymentItem.quantityOld.unitOfMeasurement = .mass(massUnit)
             }
             else if let powerUnit = value as? Power {
                 
-                self.currentPaymentItem.quantity.unitOfMeasurement = .power(powerUnit)
+                self.currentPaymentItem.quantityOld.unitOfMeasurement = .power(powerUnit)
             }
             
         case Constants.discountTypeCellReuseIdentifier:
