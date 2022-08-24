@@ -26,6 +26,9 @@ import class	TapApplicationV2.TapBundlePlistInfo
 			}
 		}
 	}
+    
+    /// Holds the network calls logs stack trace
+    public static var networkLogs:[String] = []
 	
 	/// SDK mode. By default, `production`.
 	///
