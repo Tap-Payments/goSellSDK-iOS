@@ -5,9 +5,9 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.3.8):
-    - goSellSDK/Core (= 2.3.8)
-  - goSellSDK/Core (2.3.8):
+  - goSellSDK (2.3.13):
+    - goSellSDK/Core (= 2.3.13)
+  - goSellSDK/Core (2.3.13):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -32,7 +32,7 @@ PODS:
   - TapApplicationV2 (0.0.2):
     - TapAdditionsKitV2
   - TapBundleLocalization (1.0.3)
-  - TapCardVlidatorKit-iOS (1.0.15)
+  - TapCardVlidatorKit-iOS (1.0.18)
   - TapEditableViewV2 (1.0.1):
     - TapAdditionsKitV2
   - TapFontsKitV2 (0.0.4):
@@ -97,12 +97,12 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: ab4650047b04df5cb39f58f2559c69b6098b7d0a
+  goSellSDK: 11bd79c8638a68bc37a956669b74a0c79bbff5a0
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
   TapAdditionsKitV2: ba369802e9575c3475ce6d5af228cf60c68edfc9
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
-  TapCardVlidatorKit-iOS: 3cf41059e6496f02ca1c2a78a8cd000d3643cd13
+  TapCardVlidatorKit-iOS: d0157551ee8ef3827e86a7f7180129a6fcd9521e
   TapEditableViewV2: 00370b2b6c967c382fa944be8c04156d584d630b
   TapFontsKitV2: b05e5ed03fc182c227f0660a0b318f44934d353c
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
