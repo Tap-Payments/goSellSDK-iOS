@@ -10,7 +10,7 @@ import class    CardIO.CardIOUtilities.CardIOUtilities
 import class    TapApplicationV2.TapApplicationPlistInfo
 import struct	TapBundleLocalization.LocalizationKey
 import enum     TapCardVlidatorKit_iOS.CardBrand
-import struct   TapCardVlidatorKit_iOS.DefinedCardBrand
+import class   TapCardVlidatorKit_iOS.DefinedCardBrand
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIFont.UIFont
 import class    UIKit.UIImage.UIImage

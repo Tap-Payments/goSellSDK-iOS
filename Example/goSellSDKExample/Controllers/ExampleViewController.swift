@@ -180,7 +180,6 @@ internal class ExampleViewController: BaseViewController {
         
         self.showPaymentItemViewController()
     }
-	
     @IBAction func applePayUIClicked(_ sender: Any) {
         applePay = false
         applePayUI = true

@@ -6,7 +6,7 @@
 //
 
 import enum     TapCardVlidatorKit_iOS.CardBrand
-import struct   TapCardVlidatorKit_iOS.DefinedCardBrand
+import class   TapCardVlidatorKit_iOS.DefinedCardBrand
 import class    TapEditableViewV2.TapEditableView
 import struct    TapAdditionsKitV2.TypeAlias
 import class    UIKit.UILabel.UILabel

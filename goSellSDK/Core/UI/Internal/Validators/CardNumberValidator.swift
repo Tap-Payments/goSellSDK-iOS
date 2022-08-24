@@ -9,7 +9,7 @@ import protocol TapAdditionsKitV2.ClassProtocol
 import struct	TapBundleLocalization.LocalizationKey
 import enum     TapCardVlidatorKit_iOS.CardBrand
 import class    TapCardVlidatorKit_iOS.CardValidator
-import struct   TapCardVlidatorKit_iOS.DefinedCardBrand
+import class   TapCardVlidatorKit_iOS.DefinedCardBrand
 import class    UIKit.UITextField.UITextField
 import protocol UIKit.UITextField.UITextFieldDelegate
 import class    UIKit.UIView.UIView

@@ -6,6 +6,7 @@
 //
 
 import func TapSwiftFixesV2.synchronized
+import UIKit
 
 /// Settings data manager.
 internal final class SettingsDataManager {
@@ -91,6 +92,9 @@ internal final class SettingsDataManager {
     }
     
     private func callInitializationAPI() {
+        
+        // reset the stack tracs
+        UIPasteboard.general.string = ""
         
         self.status = .initiated
         
