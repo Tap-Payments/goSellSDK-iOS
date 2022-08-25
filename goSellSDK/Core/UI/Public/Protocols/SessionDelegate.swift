@@ -15,6 +15,14 @@
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc(paymentSucceed:onSession:) optional func paymentSucceed(_ charge: Charge, on session: SessionProtocol)
     
+    
+    /// Notifies the receiver that payment has succeed, passing `charge` and `session` which has initiated payment as arguments.
+    ///
+    /// - Parameters:
+    ///   - charge: Asynuc charge object.
+    ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+    @objc(asyncPaymentStarted:onSession:) optional func asyncPaymentStarted(_ charge: Charge, on session: SessionProtocol)
+    
     /// Notifies the receiver that apple payment has succeed, passing `charge` and `session` which has initiated payment as arguments.
     ///
     /// - Parameters:

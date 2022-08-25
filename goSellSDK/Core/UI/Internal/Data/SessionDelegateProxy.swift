@@ -40,6 +40,16 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 		}
 	}
     
+    internal func asyncPaymentStarted(_ charge: Charge, on session: SessionProtocol) {
+        
+        let targetSession = self.targetSession(for: session)
+        
+        self.removeNilDelegatesAndSynchronized { theDelegates in
+            
+            theDelegates.forEach { $0.asyncPaymentStarted?(charge, on: targetSession) }
+        }
+    }
+    
     
     internal func applePaymentTokenizationEnded(_ charge: String, on session: SessionProtocol) {
         
