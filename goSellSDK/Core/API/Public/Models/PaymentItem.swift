@@ -43,7 +43,11 @@
     
     
     /// Quantity of payment item(s).
-    public var quantityOld: Quantity
+    public var quantityOld: Quantity {
+        didSet {
+            quantity = quantityOld.value
+        }
+    }
     
     /// The item's vendor
     public var vendor: Vendor?

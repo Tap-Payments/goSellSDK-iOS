@@ -628,6 +628,15 @@ internal extension Process {
 				closure("Error", "Either amount or items should be implemented in payment data source. If items is implemented, number of items should be > 0.")
 				return nil
 			}
+            
+            // Assign the default currency for the items with create charge request
+            (nonnullDataSource.items ?? [])?.forEach({ item in
+                if let _ = item.currency {
+                    
+                }else{
+                    item.currency = currency
+                }
+            })
 			
 			let transactionMode	= nonnullDataSource.mode        ?? .default
 			let merchantID		= nonnullDataSource.merchantID	?? nil

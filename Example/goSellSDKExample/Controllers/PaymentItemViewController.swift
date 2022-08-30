@@ -323,10 +323,12 @@ internal class PaymentItemViewController: ModalNavigationTableViewController {
         if let quantityValue = self.quantityValueTextField?.text?.tap_decimalValue, quantityValue > 0.0 {
             
             self.currentPaymentItem.quantityOld.value = quantityValue
+            self.currentPaymentItem.quantity = quantityValue
         }
         else {
             
             self.currentPaymentItem.quantityOld.value = 0.0
+            self.currentPaymentItem.quantity = 0.0
         }
         
         if let amountPerUnit = self.amountPerUnitTextField?.text?.tap_decimalValue, amountPerUnit > 0.0 {
