@@ -19,10 +19,10 @@ internal class ErrorActionExecutor {
 		
         switch mode {
             
-        case .purchase:         status = .chargeFailure(nil, error)
-        case .authorizeCapture: status = .authorizationFailure(nil, error)
-		case .cardSaving:		status = .cardSaveFailure(nil, error)
-		case .cardTokenization:	status = .cardTokenizeFailure(error)
+        case .purchase, .invalidTransactionMode:    status = .chargeFailure(nil, error)
+        case .authorizeCapture:                     status = .authorizationFailure(nil, error)
+		case .cardSaving:                           status = .cardSaveFailure(nil, error)
+		case .cardTokenization:                     status = .cardTokenizeFailure(error)
             
         }
         

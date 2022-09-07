@@ -77,7 +77,7 @@ internal final class Process {
 			
 			return w
 			
-		case .cardTokenization:
+        case .cardTokenization, .invalidTransactionMode:
 			
 			let impl = Implementation<CardTokenizationClass>.with(process: self, mode: CardTokenizationClass.self)
 			let w = Wrapped(impl)
