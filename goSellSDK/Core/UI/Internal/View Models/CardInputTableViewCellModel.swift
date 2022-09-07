@@ -334,7 +334,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 			
 			return .save_card_promotion_text
 			
-		case .cardSaving:
+        case .cardSaving, .invalidTransactionMode:
 			
 			return .saved_cards_usage_description
 		}

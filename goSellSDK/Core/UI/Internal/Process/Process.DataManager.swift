@@ -963,6 +963,10 @@ internal extension Process {
 			case .cardTokenization:
 				
 				fatalError("Internal SDK error. Attempt to charge in card tokenization mode.")
+                
+            case .invalidTransactionMode:
+                
+                fatalError("Internal SDK error. Attempt to charge in invalid mode.")
 			}
 		}
 		
