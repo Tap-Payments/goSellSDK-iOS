@@ -8,6 +8,7 @@
 
 internal struct PaymentOptionsOrder {
     
+    
     // MARK: - Internal -
     // MARK: Properties
     
@@ -18,7 +19,7 @@ internal struct PaymentOptionsOrder {
     internal let items: [PaymentItem]?
     
     /// Items shippings.
-    internal var shipping: [Shipping]?
+    internal var shipping: Shipping?
     
     /// Taxes.
     internal var taxes: [Tax]?
@@ -30,7 +31,7 @@ internal struct PaymentOptionsOrder {
     internal let merchant: MerchantIDPaymentTypesOrder?
     
     /// Customer (payer).
-    internal var customer: String?
+    internal var customer: Customer?
     
     /// Topup object if any
     internal let topup: Topup?
@@ -47,19 +48,19 @@ internal struct PaymentOptionsOrder {
     
     // MARK: Methods
     
-    internal init(customer: String?) {
+    internal init(customer: String) {
         
-        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil, topup:nil, reference:nil)
+        self.init(transactionMode: nil, amount: 0, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: try! .init(identifier: customer), destinationGroup: nil, paymentType: nil, topup:nil, reference:nil)
     }
     
     internal init(transactionMode:    TransactionMode?,
-                  amount:            Decimal?,
+                  amount:            Double,
                   items:            [PaymentItem]?,
-                  shipping:            [Shipping]?,
+                  shipping:            Shipping?,
                   taxes:            [Tax]?,
                   currency:            Currency?,
                   merchantID:        String?,
-                  customer:            String?,
+                  customer:            Customer?,
                   destinationGroup:    DestinationGroup?,
                   paymentType:        PaymentType?,
                   topup:            Topup?,
@@ -87,7 +88,8 @@ internal struct PaymentOptionsOrder {
             self.items = nil
         }
         
-        self.totalAmount = Process.NonGenericAmountCalculator.totalAmount(of: items, with: taxes, and: shipping, plainAmount: amount)
+        self.totalAmount = amount
+        
     }
     
     // MARK: - Private -
@@ -110,7 +112,7 @@ internal struct PaymentOptionsOrder {
     
     // MARK: Properties
     
-    private let totalAmount: Decimal
+    private let totalAmount: Double
 }
 
 // MARK: - Encodable
@@ -128,11 +130,7 @@ extension PaymentOptionsOrder: Encodable {
         try container.encodeIfPresent(self.topup, forKey: .topup)
         try container.encodeIfPresent(self.items, forKey: .items)
         try container.encodeIfPresent(self.reference, forKey: .reference)
-        
-        if self.shipping?.count ?? 0 > 0 {
-            
-            try container.encodeIfPresent(self.shipping, forKey: .shipping)
-        }
+        try container.encodeIfPresent(self.shipping, forKey: .shipping)
         
         if self.taxes?.count ?? 0 > 0 {
             
@@ -143,10 +141,7 @@ extension PaymentOptionsOrder: Encodable {
         
         try container.encodeIfPresent(self.merchant, forKey: .merchantID)
         
-        if self.customer?.tap_length ?? 0 > 0 {
-            
-            try container.encodeIfPresent(self.customer, forKey: .customer)
-        }
+        try container.encodeIfPresent(self.customer, forKey: .customer)
         
         if self.totalAmount > 0.0 {
             
@@ -157,7 +152,7 @@ extension PaymentOptionsOrder: Encodable {
             
             try container.encodeIfPresent(self.destinationGroup, forKey: .destinationGroup)
         }
-        try container.encodeIfPresent(self.paymentType?.description.uppercased(), forKey: .paymentType)
+        try container.encodeIfPresent(self.paymentType, forKey: .paymentType)
         
         
     }
