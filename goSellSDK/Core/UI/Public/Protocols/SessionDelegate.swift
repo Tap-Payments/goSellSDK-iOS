@@ -132,7 +132,7 @@
 	/// For the actual failure cause please implement other methods from this protocol and listen to the callbacks.
 	///
 	/// - Parameter session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
-	@objc optional func sessionHasFailedToStart(_ session: SessionProtocol)
+    @objc optional func sessionHasFailedToStart(_ session: SessionProtocol)
 	
 	/// Notifies the receiver that session has been cancelled by the user.
 	///
