@@ -621,6 +621,13 @@ internal extension Process {
 				closure("Error", "Customer information must be provided.")
 				return nil
 			}
+            
+            if nonnullDataSource.mode == .invalidTransactionMode {
+                //closure("Error", "Not a valid transaction mode passed")
+                session.delegate?.paymentFailed?(with: nil, error: .init(type: .invalidTrxMode), on: session)
+                ErrorDataManager.handle(TapSDKError.init(type: TapSDKErrorType.invalidTrxMode), retryAction: nil, alertDismissButtonClickHandler: nil)
+                return nil
+            }
 			
 			let itemsCount = (nonnullDataSource.items ?? [])?.count ?? 0
 			guard nonnullDataSource.amount != nil || itemsCount > 0 else {
@@ -1114,6 +1121,13 @@ internal extension Process {
 				closure("Error", "Customer information must be provided.")
 				return nil
 			}
+            
+            if nonnullDataSource.mode == .invalidTransactionMode {
+                //closure("Error", "Not a valid transaction mode passed")
+                session.delegate?.cardSavingFailed?(with: nil, error: .init(type: .invalidTrxMode), on: session)
+                ErrorDataManager.handle(TapSDKError.init(type: TapSDKErrorType.invalidTrxMode), retryAction: nil, alertDismissButtonClickHandler: nil)
+                return nil
+            }
 			
 			let paymentRequest = PaymentOptionsRequest(customer: customer.identifier)
 			
@@ -1225,6 +1239,13 @@ internal extension Process {
 				closure("Error", "Currency must be provided.")
 				return nil
 			}
+            
+            if nonnullDataSource.mode == .invalidTransactionMode {
+                //closure("Error", "Not a valid transaction mode passed")
+                session.delegate?.cardTokenizationFailed?(with: .init(type: .invalidTrxMode), on: session)
+                ErrorDataManager.handle(TapSDKError.init(type: TapSDKErrorType.invalidTrxMode), retryAction: nil, alertDismissButtonClickHandler: nil)
+                return nil
+            }
 			
 			/*guard let customer = nonnullDataSource.customer else {
 				

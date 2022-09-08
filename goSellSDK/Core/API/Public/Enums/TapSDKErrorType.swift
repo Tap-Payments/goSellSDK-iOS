@@ -16,6 +16,9 @@
     /// API error.
     case api
     
+    /// invalidTrxMode
+    case invalidTrxMode
+    
     /// Network error.
     case network
     
@@ -44,6 +47,7 @@
         case .serialization: return "Serialization"
         case .internal: return "Internal"
         case .unVerifiedApplication: return "Un verified Application"
+        case .invalidTrxMode: return "Invalid transaction mode passed"
         case .unknown: return "Unknown"
         }
     }
