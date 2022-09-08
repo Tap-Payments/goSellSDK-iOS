@@ -6,6 +6,8 @@
 //
 
 /// Tax data model.
+import Foundation
+/// Tax data model to be added to the payment items
 @objcMembers public final class Tax: NSObject, Codable {
     
     // MARK: - Public -
@@ -17,7 +19,7 @@
     /// Tax description.
     public var descriptionText: String?
     
-    /// Tax amount.
+    /// Tax amount and type whether fixed or percentage
     public var amount: AmountModificator
     
     // MARK: Methods
@@ -53,7 +55,7 @@
         
         case title              = "name"
         case descriptionText    = "description"
-        case amount             = "amount"
+        case amount             = "rate"
     }
 }
 
