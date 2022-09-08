@@ -224,6 +224,9 @@
 	
 	/// Invalid token type.
 	case invalidTokenType						= 8006
+    
+    /// Invalid token type.
+    case invalidTransactionModeType             = 8008
 	
 	/// No merchant data.
 	case noMerchantData							= 8007

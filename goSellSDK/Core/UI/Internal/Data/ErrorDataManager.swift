@@ -103,6 +103,11 @@ internal class ErrorDataManager {
         
         let errorDetail = ErrorDetail(code: .unknown,description: "Un verified Application")
         self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
+            
+        case .invalidTrxMode:
+            
+            let errorDetail = ErrorDetail(code: .invalidTransactionModeType,description: "Invalid transaction mode passed/fetched")
+            self.handleErrorDetail(errorDetail, in: error, retryAction: retryAction, alertDismissButtonClickHandler: alertDismissButtonClickHandler)
 		}
 	}
 	
@@ -296,7 +301,8 @@ internal class ErrorDataManager {
 			 .invalidAPIKey,
 			 .missingAPICredentials,
 			 .publicKeyGivenInsteadOfSecret,
-			 .permissionDenied:
+			 .permissionDenied,
+             .invalidTransactionModeType:
 			
 			return [.closePayment]
 			

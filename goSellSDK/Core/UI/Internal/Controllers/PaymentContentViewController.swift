@@ -230,7 +230,7 @@ extension PaymentContentViewController: TapNavigationView.DataSource {
 			
 			return nil
 			
-		case .cardSaving:
+        case .cardSaving, .invalidTransactionMode:
 			
 			return nil
 		}
@@ -251,7 +251,7 @@ extension PaymentContentViewController: TapNavigationView.DataSource {
 				return LocalizationManager.shared.localizedString(for: .payment_screen_title_payment)
 			}
 			
-		case .cardSaving:
+        case .cardSaving, .invalidTransactionMode:
 			
 			return LocalizationManager.shared.localizedString(for: .payment_screen_title_card_saving)
 		}
