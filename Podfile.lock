@@ -5,7 +5,7 @@ PODS:
   - SwiftyRSA (1.7.0):
     - SwiftyRSA/ObjC (= 1.7.0)
   - SwiftyRSA/ObjC (1.7.0)
-  - TapAdditionsKitV2 (0.0.8):
+  - TapAdditionsKitV2 (0.0.9):
     - TapSwiftFixesV2
   - TapAlertViewControllerV2 (0.0.2):
     - TapAdditionsKitV2
@@ -94,7 +94,7 @@ SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
-  TapAdditionsKitV2: ba369802e9575c3475ce6d5af228cf60c68edfc9
+  TapAdditionsKitV2: 9846381c32b150303cbeff355550d3500a98f77d
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9

@@ -177,8 +177,8 @@ internal class ExampleViewController: BaseViewController {
     // MARK: Methods
     
     @IBAction private func addButtonTouchUpInside(_ sender: Any) {
-        
-        self.showPaymentItemViewController()
+        session.start()
+        //self.showPaymentItemViewController()
     }
     @IBAction func applePayUIClicked(_ sender: Any) {
         applePay = false
@@ -445,7 +445,13 @@ extension ExampleViewController: SessionDataSource {
 // MARK: - SessionDelegate
 extension ExampleViewController: SessionDelegate {
 	
-	internal func paymentSucceed(_ charge: Charge, on session: SessionProtocol) {
+    
+    internal func asyncPaymentStarted(_ charge: Charge, on session: SessionProtocol) {
+        print("Charge id: \(charge.identifier)")
+        print("Fawry reference: \(charge.transactionDetails.order?.reference ?? "")")
+    }
+    
+    internal func paymentSucceed(_ charge: Charge, on session: SessionProtocol) {
         
         // payment succeed, saving the customer for reuse.
         

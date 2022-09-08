@@ -19,12 +19,15 @@
 	
 	/// Mode to tokenize the card.
 	@objc(CardTokenization) case cardTokenization
+    
+    /// Mode to invalid transaction
+    @objc(InvalidTransaction) case invalidTransactionMode
 	
 	// MARK: - Internal -
 	// MARK: Properties
 	
 	/// Default transaction mode.
-	internal static let `default`: TransactionMode = .purchase
+	internal static let `default`: TransactionMode = .invalidTransactionMode
 	
     // MARK: - Private -
     // MARK: Properties
@@ -33,10 +36,11 @@
         
         switch self {
             
-        case .purchase:         return "PURCHASE"
-        case .authorizeCapture: return "AUTHORIZE_CAPTURE"
-		case .cardSaving:		return "SAVE_CARD"
-		case .cardTokenization:	return "TOKENIZE_CARD"
+        case .purchase:                 return "PURCHASE"
+        case .authorizeCapture:         return "AUTHORIZE_CAPTURE"
+		case .cardSaving:               return "SAVE_CARD"
+		case .cardTokenization:         return "TOKENIZE_CARD"
+        case .invalidTransactionMode:   return "INVALID_MODE"
 
         }
     }
@@ -65,7 +69,7 @@
 			
         default:
             
-            self = .purchase
+            self = .invalidTransactionMode
         }
     }
 }
@@ -77,10 +81,11 @@ extension TransactionMode: CustomStringConvertible {
         
         switch self {
             
-        case .purchase:			return "Payment"
-        case .authorizeCapture:	return "Authorize only"
-		case .cardSaving:		return "Save Card"
-		case .cardTokenization:	return "Tokenize Card"
+        case .purchase:                 return "Payment"
+        case .authorizeCapture:         return "Authorize only"
+		case .cardSaving:               return "Save Card"
+		case .cardTokenization:         return "Tokenize Card"
+        case .invalidTransactionMode:   return "Invalid Mode"
 
         }
     }
