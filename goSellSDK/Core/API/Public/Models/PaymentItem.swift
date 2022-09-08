@@ -36,7 +36,15 @@
     public var accountCode: String?
     
     /// Payment item shiping
-    public var requiresShipping: Bool
+    public var requiresShipping: Bool {
+        didSet {
+            if requiresShipping {
+                category = "PHYSICAL_GOODS"
+            }else{
+                category = "DIGITAL_GOODS"
+            }
+        }
+    }
     
     /// Quantity of payment item(s).
     public var quantity: Decimal
