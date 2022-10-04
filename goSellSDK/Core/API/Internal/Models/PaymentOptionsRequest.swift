@@ -17,7 +17,7 @@ internal struct PaymentOptionsRequest {
     internal var items: [PaymentItem]?
     
     /// Items shippings.
-    internal var shipping: [Shipping]?
+    internal var shipping: Shipping?
     
     /// Taxes.
     internal var taxes: [Tax]?
@@ -29,7 +29,7 @@ internal struct PaymentOptionsRequest {
 	internal let merchantID: String?
 	
     /// Customer (payer).
-    internal var customer: String?
+    internal var customer: Customer?
     
     /// Topup object if any
     internal let topup: Topup?
@@ -49,19 +49,19 @@ internal struct PaymentOptionsRequest {
     
     // MARK: Methods
 	
-	internal init(customer: String?) {
-		
-        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil, topup:nil, reference:nil)
-	}
+    internal init(customer: Customer?) {
+        
+        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: .all, topup:nil, reference:nil)
+    }
 	
 	internal init(transactionMode:	TransactionMode?,
 				  amount:			Decimal?,
 				  items:			[PaymentItem]?,
-				  shipping:			[Shipping]?,
+				  shipping:			Shipping?,
 				  taxes:			[Tax]?,
 				  currency:			Currency?,
 				  merchantID:		String?,
-				  customer:			String?,
+				  customer:			Customer?,
 				  destinationGroup:	DestinationGroup?,
 				  paymentType:		PaymentType?,
                   topup:            Topup?,
@@ -88,8 +88,11 @@ internal struct PaymentOptionsRequest {
 			
 			self.items = nil
 		}
-		
-		self.totalAmount = Process.NonGenericAmountCalculator.totalAmount(of: items, with: taxes, and: shipping, plainAmount: amount)
+        var shippingArray:[Shipping] = []
+        if let nonNullShipping = self.shipping {
+            shippingArray = [nonNullShipping]
+        }
+		self.totalAmount = Process.NonGenericAmountCalculator.totalAmount(of: items, with: taxes, and: shippingArray, plainAmount: amount)
         
         
         if self.items == nil,
@@ -99,9 +102,17 @@ internal struct PaymentOptionsRequest {
             self.items?.append(.init(title: "Default item", quantity: 1, amountPerUnit: nonNullAmount, currency: currency))
         }
         
-        self.order = .init(transactionMode: transactionMode, amount: self.totalAmount, items: self.items, shipping: self.shipping, taxes: self.taxes, currency: self.currency, merchantID: self.merchantID, customer: self.customer, destinationGroup: self.destinationGroup, paymentType: self.paymentType, topup: self.topup, reference: self.reference)
+        
+        // Create the order object with the payment options request data
+        self.order = .init(transactionMode: self.transactionMode, amount: NSDecimalNumber(decimal:self.totalAmount).doubleValue, items: self.items, shipping: self.shipping, taxes: self.taxes, currency: self.currency, merchantID: self.merchantID, customer: self.customer, destinationGroup: self.destinationGroup, paymentType: self.paymentType, topup: self.topup, reference: self.reference)
         // We will stop passing items in the payment options and pass it in order object only
         self.items = []
+        // We will not be sending customr info in the payment types anymore
+        self.customer = nil
+        // We will not be sending shipping info in the payment types anymore
+        self.shipping = nil
+        // We will not be sending tax info in the payment types anymore
+        self.taxes = nil
     }
     
     // MARK: - Private -
@@ -144,11 +155,8 @@ extension PaymentOptionsRequest: Encodable {
         try container.encodeIfPresent(self.items, forKey: .items)
         try container.encodeIfPresent(self.reference, forKey: .reference)
         try container.encodeIfPresent(self.order, forKey: .order)
-        
-        if self.shipping?.count ?? 0 > 0 {
-            
-            try container.encodeIfPresent(self.shipping, forKey: .shipping)
-        }
+        try container.encodeIfPresent(self.paymentType?.description.uppercased(), forKey: .paymentType)
+        try container.encodeIfPresent(self.shipping, forKey: .shipping)
         
         if self.taxes?.count ?? 0 > 0 {
             
@@ -159,9 +167,13 @@ extension PaymentOptionsRequest: Encodable {
 		
 		try container.encodeIfPresent(self.merchantID, forKey: .merchantID)
 		
-        if self.customer?.tap_length ?? 0 > 0 {
-            
-            try container.encodeIfPresent(self.customer, forKey: .customer)
+        if let customer:Customer = self.customer {
+            // Check if we need to pass ONLY the customer ID of the full customer object
+            if let customerID = customer.identifier {
+                try container.encode(customerID, forKey: .customer)
+            }else{
+                try container.encodeIfPresent(customer, forKey: .customer)
+            }
         }
 		
 		if self.totalAmount > 0.0 {
@@ -173,8 +185,6 @@ extension PaymentOptionsRequest: Encodable {
                
                try container.encodeIfPresent(self.destinationGroup, forKey: .destinationGroup)
 		}
-		try container.encodeIfPresent(self.paymentType?.description.uppercased(), forKey: .paymentType)
-
            
     }
 }
