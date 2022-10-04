@@ -74,7 +74,7 @@ import class PassKit.PKPaymentToken
     @objc optional var allowedCadTypes: [CardType]? { get }
 	
 	/// Shipping options.
-	@objc optional var shipping: [Shipping]? { get }
+	@objc optional var shipping: Shipping? { get }
 	
 	/// Post URL. The URL that will be called by Tap system notifying that payment has succeed or failed.
 	@objc optional var postURL: URL? { get }

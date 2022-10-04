@@ -183,22 +183,17 @@ internal extension Process {
             
             
             // Check if shipping are provided, we need to add them to Apple pay sheet
-            if let shippingItem:[Shipping] = dataSource.shipping ?? nil
+            if let item:Shipping = dataSource.shipping ?? nil
             {
-                for item:Shipping in shippingItem
+                var convertedPaymentItemPrice:Decimal = item.amount
+                
+                if let userCurrency = self.userSelectedCurrency
                 {
-                    var convertedPaymentItemPrice:Decimal = item.amount
+                    convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
                     
-                    if let userCurrency = self.userSelectedCurrency
-                    {
-                        convertedPaymentItemPrice = (convertedPaymentItemPrice*(userCurrency.conversionFactor ))
-                        
-                        //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
-                    }
-                    request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.name, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
-                    //totalValue += convertedPaymentItemPrice
-                    
+                    //convertedPaymentItemPrice = Decimal(string:CurrencyFormatter.shared.format(AmountedCurrency(userCurrency.currency, convertedPaymentItemPrice),displayCurrency: false)) ?? convertedPaymentItemPrice
                 }
+                request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.name, amount: NSDecimalNumber(decimal: convertedPaymentItemPrice)))
             }
             
             
@@ -664,7 +659,7 @@ internal extension Process {
 													   taxes:           taxes,
 													   currency:        currency,
 													   merchantID:		merchantID,
-													   customer:        customer.identifier,
+													   customer:        customer,
 													   destinationGroup:	destinationsGroup,
 													   paymentType:			paymentType,
                                                        topup: topup,
@@ -1140,7 +1135,7 @@ internal extension Process {
                 return nil
             }
 			
-			let paymentRequest = PaymentOptionsRequest(customer: customer.identifier)
+			let paymentRequest = PaymentOptionsRequest(customer: customer)
 			
 			return paymentRequest
 		}
@@ -1290,7 +1285,7 @@ internal extension Process {
 													   taxes:           taxes,
 													   currency:        currency,
 													   merchantID:		merchantID,
-													   customer:         nonnullDataSource.customer?.identifier,
+													   customer:         nonnullDataSource.customer,
 													   destinationGroup:	destinationsGroup,
 													   paymentType:			paymentType,
                                                        topup: topup,

@@ -23,7 +23,7 @@ internal extension Process {
 			let taxes		= dataSource.taxes		?? nil
 			let shipping	= dataSource.shipping	?? nil
 			
-			let result = self.totalAmount(of: items, with: taxes, and: shipping, plainAmount: dataSource.amount)
+            let result = self.totalAmount(of: items, with: taxes, and: shipping, plainAmount: dataSource.amount)
 			
 			return NSDecimalNumber(decimal: result)
 		}
@@ -74,6 +74,15 @@ internal extension Process {
 			
 			return result
 		}
+        
+        
+        internal static func totalAmount(of paymentItems: [PaymentItem]?, with taxes: [Tax]?, and shipping: Shipping?, plainAmount: Decimal?) -> Decimal {
+            var shippingArray:[Shipping] = []
+            if let nonNullShipping = shipping {
+                shippingArray = [nonNullShipping]
+            }
+            return totalAmount(of: paymentItems, with: taxes, and: shippingArray, plainAmount: plainAmount)
+        }
 		
 		// MARK: - Private -
 		// MARK: Methods

@@ -13,7 +13,7 @@ PODS:
   - TapApplicationV2 (0.0.2):
     - TapAdditionsKitV2
   - TapBundleLocalization (1.0.3)
-  - TapCardVlidatorKit-iOS (1.0.18)
+  - TapCardVlidatorKit-iOS (1.0.19)
   - TapEditableViewV2 (1.0.1):
     - TapAdditionsKitV2
   - TapErrorReportingV2 (0.0.3):
@@ -98,7 +98,7 @@ SPEC CHECKSUMS:
   TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
-  TapCardVlidatorKit-iOS: d0157551ee8ef3827e86a7f7180129a6fcd9521e
+  TapCardVlidatorKit-iOS: ad725812de9e5127bde0ed8903f303a0ea20803e
   TapEditableViewV2: 00370b2b6c967c382fa944be8c04156d584d630b
   TapErrorReportingV2: b73217b68150071f72e6a1b1bef20c5157d49c5c
   TapFontsKitV2: b05e5ed03fc182c227f0660a0b318f44934d353c
