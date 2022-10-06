@@ -183,6 +183,10 @@
         self.currency = currency
         self.quantityOld = .init(value: quantity, unitOfMeasurement: .units)
         super.init()
+        defer {
+            self.amountPerUnit = amountPerUnit
+            self.requiresShipping = requiresShipping
+        }
     }
     
     // MARK: - Private -

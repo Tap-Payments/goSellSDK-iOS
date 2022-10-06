@@ -24,7 +24,7 @@
     // MARK: - Internal -
     // MARK: Methods
 	
-	internal init(isoCode: String) throws {
+	public init(isoCode: String) throws {
 		
 		let code = isoCode.uppercased()
 		

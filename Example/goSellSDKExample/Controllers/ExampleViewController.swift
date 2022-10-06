@@ -331,14 +331,22 @@ extension ExampleViewController: SessionDataSource {
         return "merchant.tap.gosell"
     }
     
-    internal var merchantID: String?
-    {
-        return "1124340"
-    }
+    
     
     internal var customer: Customer? {
-        
-        return self.paymentSettings.dataSource.customer?.customer
+        var cust = self.paymentSettings.dataSource.customer?.customer
+        let tempCountry:Country = try! .init(isoCode: "KW")
+        let tempAdddress:Address = .init(type:.residential,
+                                         country: tempCountry,
+                                         line1: "asdasd",
+                                         line2: "sadsadas",
+                                         line3: "2312323",
+                                         city: "Hawally",
+                                         state: "Kuwait",
+                                         zipCode: "30003"
+                                         )
+        cust?.address = tempAdddress
+        return cust
     }
 
     
