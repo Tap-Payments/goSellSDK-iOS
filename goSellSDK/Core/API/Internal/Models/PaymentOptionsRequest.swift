@@ -79,6 +79,7 @@ internal struct PaymentOptionsRequest {
 		self.paymentType			= paymentType
         self.topup                  = topup
         self.reference              = reference
+        self.shipping?.currency     = currency
         
 		if let nonnullItems 		= items, nonnullItems.count > 0 {
 			
