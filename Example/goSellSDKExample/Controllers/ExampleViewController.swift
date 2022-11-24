@@ -374,15 +374,15 @@ extension ExampleViewController: SessionDataSource {
         return self.paymentSettings.dataSource.transactionMode
     }
 	
-    internal var taxes: [Tax]? {
+    /*internal var taxes: [Tax]? {
 
         return self.paymentSettings.dataSource.taxes
-    }
+    }*/
     
-    internal var shipping: [Shipping]? {
+    /*internal var shipping: Shipping? {
 
-        return self.paymentSettings.dataSource.shippingList
-    }
+        return self.paymentSettings.dataSource.shippingList.first
+    }*/
     
     /*internal var topup: Topup {
         return .init(walletID: "wallet", reference: nil, application: nil, metdata: nil)

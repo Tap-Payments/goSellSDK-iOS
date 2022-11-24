@@ -23,6 +23,9 @@
     /// Shipping amount.
     public var amount: Decimal
     
+    /// Shipping currency
+    public var currency:Currency?
+    
     /// Shipping address.
     public var address: Address?
     
@@ -39,9 +42,9 @@
     ///   - reciepntName: Shipping recipientName.
     ///   - address: Shipping address.
     ///   - provider: Shipping provider
-    public convenience init(name: String, amount: Decimal, recipientName:String? = "", address:Address? = nil, provider:ShippingProvider? = nil) {
+    public convenience init(name: String, amount: Decimal, recipientName:String? = "", address:Address? = nil, provider:ShippingProvider? = nil, currency: Currency? = nil) {
         
-        self.init(name: name, descriptionText: nil, amount: amount, recipientName: recipientName, address: address, provider: provider)
+        self.init(name: name, descriptionText: nil, amount: amount, recipientName: recipientName, address: address, provider: provider, currency: currency)
     }
     
     /// Initializes `Shipping` model with the `name`, `descriptionText` and `amount`.
@@ -53,7 +56,7 @@
     ///   - reciepntName: Shipping recipientName.
     ///   - address: Shipping address.
     ///   - provider: Shipping provider
-    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal, recipientName:String? = "", address:Address? = nil, provider:ShippingProvider? = nil) {
+    public init(name: String, descriptionText: ShippingDescription?, amount: Decimal, recipientName:String? = "", address:Address? = nil, provider:ShippingProvider? = nil, currency: Currency? = nil) {
         
         self.name               = name
         self.descriptionText    = descriptionText
@@ -61,6 +64,7 @@
         self.recipientName      = recipientName
         self.address            = address
         self.provider           = provider
+        self.currency           = currency
         super.init()
     }
     
@@ -74,6 +78,7 @@
         case recipientName      = "recipient_name"
         case address            = "address"
         case provider           = "provider"
+        case currency           = "currency"
     }
 }
 
@@ -86,7 +91,7 @@ extension Shipping: NSCopying {
     /// - Returns: Copy of the receiver.
     public func copy(with zone: NSZone? = nil) -> Any {
         
-        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount, recipientName: self.recipientName, address: self.address?.copy() as? Address, provider: self.provider?.copy() as? ShippingProvider)
+        return Shipping(name: self.name, descriptionText: self.descriptionText?.copy() as? ShippingDescription, amount: self.amount, recipientName: self.recipientName, address: self.address?.copy() as? Address, provider: self.provider?.copy() as? ShippingProvider, currency: self.currency)
     }
 }
 
