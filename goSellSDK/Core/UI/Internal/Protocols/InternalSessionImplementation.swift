@@ -52,26 +52,20 @@ internal extension InternalSessionImplementation {
     
     func startAppleKit()
     {
-        let request = PKPaymentRequest()
-        request.merchantIdentifier = ""
-        request.supportedNetworks = [PKPaymentNetwork.amex,PKPaymentNetwork.visa,PKPaymentNetwork.masterCard]
-        //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
-        request.merchantCapabilities = [PKMerchantCapability.capability3DS]
-        request.countryCode = "KW"
-        request.currencyCode = "KWD"
-        request.paymentSummaryItems = []
-        
-        for item:PaymentItem in ((self.dataSource?.items)!)!
-        {
-            request.paymentSummaryItems.append(PKPaymentSummaryItem(label: item.title, amount: NSDecimalNumber(decimal: item.totalItemAmount)))
-        }
+        let result = Process.shared.dataManagerInterface.loadPaymentOptions(for: self, onLoaded: {
+            print("WE ARE READY")
+            let paymentOption = Process.shared.dataManagerInterface.paymentOptions(of: .apple)
+            let request = Process.shared.dataManagerInterface.createApplePayRequest()
+        }, showPaymentController: false)
+        //let paymentOption = Process.shared.dataManagerInterface.paymentOptions(of: .apple)
+        /*let request = Process.shared.dataManagerInterface.createApplePayRequest()
         
         let applePayUI:ApplePayUI = ApplePayUI(completionHandler: { [unowned self] Result in
             self.delegate?.applePaymentSucceed?(Result, on: self)
         }) {
             self.delegate?.applePaymentCanceled?(on: self)
         }
-        applePayUI.showApplePay(with: request)
+        applePayUI.showApplePay(with: request)*/
         
     }
 	

@@ -57,6 +57,8 @@ import class	UIKit.UIVisualEffectView.UIVisualEffectView
 import goSellSDK
 import UIKit
 
+import PassKit
+
 internal class ExampleViewController: BaseViewController {
     
     // MARK: - Internal -
@@ -64,11 +66,14 @@ internal class ExampleViewController: BaseViewController {
     
     internal var paymentItems: [PaymentItem] = Serializer.deserialize()
     
+    @IBOutlet weak var paymentTypeSegment: UISegmentedControl!
     internal var selectedPaymentItems: [PaymentItem]?
     internal var plainAmount: Decimal?
     
     var applePay = false
     var applePayUI = false
+    
+    @IBOutlet weak var tapApplePayButton: TapApplePayButton!
     
     let session:Session = Session()
     // MARK: Methods
@@ -85,6 +90,7 @@ internal class ExampleViewController: BaseViewController {
         session.dataSource = self
         session.delegate = self
         payButton?.dataSource = self
+        tapApplePayButton.dataSource = self
         //session.appearance = self
         
     }
@@ -176,9 +182,14 @@ internal class ExampleViewController: BaseViewController {
     
     // MARK: Methods
     
+    @IBAction func paymentTypeChanged(_ sender: Any) {
+        payButton?.isHidden = !(paymentTypeSegment.selectedSegmentIndex == 0)
+        tapApplePayButton.isHidden = !(payButton?.isHidden ?? true)
+    }
     @IBAction private func addButtonTouchUpInside(_ sender: Any) {
         //session.start()
-        self.showPaymentItemViewController()
+        //self.showPaymentItemViewController()
+        applePayClicked(UIButton())
     }
     @IBAction func applePayUIClicked(_ sender: Any) {
         applePay = false
@@ -350,6 +361,10 @@ extension ExampleViewController: SessionDataSource {
     }
 
     
+    internal var sessionApplePayButtonStyle: PKPaymentButtonStyle {
+        return .black
+    }
+    
     internal var amount: Decimal {
         
         return self.plainAmount ?? 0
@@ -471,6 +486,20 @@ extension ExampleViewController: SessionDelegate {
         }
     }
     
+    
+    
+    
+    internal func appleTokenSucceed(_ token: PKPaymentToken, on session: SessionProtocol) {
+        //print(charge)
+        let alert = UIAlertController(title: "Message from SDK delegate", message: token.description, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.session.stop {
+            self.present(alert, animated: true)
+        }
+    }
     
     internal func applePaymentTokenizationFailed(_ error: String, on session: SessionProtocol) {
         
@@ -817,4 +846,27 @@ extension ExampleViewController: SessionAppearance {
 
 		return self.paymentSettings.appearance.tapButtonHeight
 	}
+}
+
+
+
+extension ExampleViewController:ApplePayButtonDataSource {
+    
+    
+    var applePayButtonStyle: PKPaymentButtonStyle {
+        return .black
+    }
+    
+    var applePayMode: ApplePayMode {
+        return .tapToken
+    }
+    
+    var applePayButtonType:PKPaymentButtonType {
+        return .plain
+    }
+    
+    
+    var applePaySession:Session {
+        return session
+    }
 }

@@ -42,7 +42,7 @@ internal extension Process {
         // MARK: - Internal -
         // MARK: Properties
         
-        internal unowned let process: ProcessInterface
+        internal let process: ProcessInterface
         
         /// All cell view models.
         internal lazy var paymentOptionsScreenCellViewModels: [CellViewModel] = []
@@ -470,6 +470,7 @@ internal extension Process {
             
             let savedCards = self.process.dataManagerInterface.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)
             let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).filter(currenciesFilter).sorted(by: sortingClosure)
+            let test = self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter)
             let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments() ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
             let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
             let hasApplaPaymentOption = applePaymentOptions.count > 0 && ((Process.shared.process.externalSession?.dataSource?.applePayMerchantID ?? "").hasPrefix("merchant."))
