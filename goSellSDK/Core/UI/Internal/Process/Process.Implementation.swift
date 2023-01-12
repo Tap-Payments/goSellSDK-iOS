@@ -741,7 +741,6 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
     
     private func startPayment(with appleTokenData: PKPaymentToken) {
         let paymentOption:PaymentOption = self.dataManager.paymentOption(for: .apple)
-        
         if let tokenApiRequest = Process.shared.createApplePayTokenizationApiRequest(with: appleTokenData)
         {
             self.dataManager.callTokenAPI(with: tokenApiRequest, paymentOption: paymentOption, saveCard: nil)
@@ -824,7 +823,8 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
     
     private func startPayment(withApplePaymentOption paymentOption: PaymentOption) {
         
-         if self.dataManagerInterface.canStartApplePayPurchase()
+         if self.dataManagerInterface.canStartApplePayPurchase(),
+            !self.dataManager.isExecutingAPICalls
                {
                    let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
                    
@@ -952,7 +952,8 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
             let request = CreateTokenWithCardDataRequest(card: card)
             self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: saveCard)
         }else if let _ = paymentOption as? ApplePaymentOptionTableViewCellModel { // the Apple pay option
-            if self.dataManagerInterface.canStartApplePayPurchase()
+            if self.dataManagerInterface.canStartApplePayPurchase(),
+               !self.dataManager.isExecutingAPICalls
             {
                 
                 let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
