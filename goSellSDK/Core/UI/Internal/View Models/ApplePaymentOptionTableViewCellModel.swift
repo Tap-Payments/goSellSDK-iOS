@@ -150,7 +150,7 @@ extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
         
         if let session = Process.shared.externalSession, let sessionDatSource = session.dataSource
         {
-            if let dataSourceApplePayStyle = sessionDatSource.applePayButtonStyle
+            if let dataSourceApplePayStyle = sessionDatSource.sessionApplePayButtonStyle
             {
                 applPayButtonStyle = dataSourceApplePayStyle
             }

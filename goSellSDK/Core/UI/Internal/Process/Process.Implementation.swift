@@ -742,7 +742,14 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
     private func startPayment(with appleTokenData: PKPaymentToken) {
         let paymentOption:PaymentOption = self.dataManager.paymentOption(for: .apple)
         
-        if let tokenApiRequest = Process.shared.createApplePayTokenizationApiRequest(with: appleTokenData)
+        /// if using the apple pay button, we decide the next action based on the passed apple pay mode
+        if let applePayButtonDataSource = Process.shared.applePayDataSource,
+           let session:SessionProtocol = Process.shared.externalSession,
+           applePayButtonDataSource.applePayMode == .applePayToken {
+            
+            session.delegate?.appleTokenSucceed?(appleTokenData, on: session)
+            
+        }else if let tokenApiRequest = Process.shared.createApplePayTokenizationApiRequest(with: appleTokenData)
         {
             self.dataManager.callTokenAPI(with: tokenApiRequest, paymentOption: paymentOption, saveCard: nil)
         }else

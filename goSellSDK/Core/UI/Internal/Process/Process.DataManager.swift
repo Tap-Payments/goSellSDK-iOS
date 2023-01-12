@@ -36,7 +36,7 @@ internal protocol DataManagerInterface: ClassProtocol {
 	var shouldToggleSaveCardSwitchToOnAutomatically: Bool { get }
 	var didToggleSaveCardSwitchToOnAutomatically: Bool { get set }
 	
-	func loadPaymentOptions(for session: SessionProtocol) -> Bool
+    func loadPaymentOptions(for session: SessionProtocol,onLoaded:(()->())?,showPaymentController:Bool) -> Bool
 	
 	func currencySymbol(for currency: Currency) -> String
 	func iconURL(for cardBrand: CardBrand, scheme: CardScheme?) -> URL?
@@ -438,7 +438,7 @@ internal extension Process {
             fatalError("Should be implemented in subclass.")
         }
 		
-		@discardableResult internal func loadPaymentOptions(for session: SessionProtocol) -> Bool {
+		@discardableResult internal func loadPaymentOptions(for session: SessionProtocol, onLoaded:(()->())? = nil, showPaymentController:Bool = true) -> Bool {
 			
 			guard !self.isLoadingPaymentOptions else { return false }
 			
@@ -476,10 +476,15 @@ internal extension Process {
 				else if let nonnullResponse = response {
 
 					strongSelf.paymentOptionsResponse = nonnullResponse
-
-					strongSelf.process.showPaymentController()
+                    if showPaymentController {
+                        strongSelf.process.showPaymentController()
+                    }
 
 					session.delegate?.sessionHasStarted?(session)
+                    
+                    if let nonNullOnLoadCallback = onLoaded {
+                        nonNullOnLoadCallback()
+                    }
 				}
 			}
 			
@@ -785,15 +790,23 @@ internal extension Process {
 				
 				self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 			}
-			
-			self.callChargeOrAuthorizeAPI(with:                           	source,
-										  paymentOption:                   	paymentOption,
-										  token:							token,
-										  cardBIN:                         	token.card.binNumber,
-										  saveCard:                        	saveCard,
-										  loader:                          	nil,
-										  retryAction:                     	retryAction,
-										  alertDismissButtonClickHandler:  	nil)
+            if paymentOption.paymentType == .apple,
+               let applePayButtonDataSource = Process.shared.applePayDataSource,
+               let session:SessionProtocol = Process.shared.externalSession,
+               applePayButtonDataSource.applePayMode == .tapToken {
+                
+                session.delegate?.applePaymentTokenizationSucceeded?(token, on: session)
+                
+            }else{
+                self.callChargeOrAuthorizeAPI(with:                               source,
+                                              paymentOption:                       paymentOption,
+                                              token:                            token,
+                                              cardBIN:                             token.card.binNumber,
+                                              saveCard:                            saveCard,
+                                              loader:                              nil,
+                                              retryAction:                         retryAction,
+                                              alertDismissButtonClickHandler:      nil)
+            }
 		}
 		
         internal override func callChargeApplePayAPI(for session: SessionProtocol) {

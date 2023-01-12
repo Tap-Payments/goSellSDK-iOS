@@ -10,6 +10,9 @@ import struct	TapAdditionsKitV2.TypeAlias
 /// SDK session class. Use this class if you don't want to place Pay Button and make it do everything for you.
 @objcMembers public final class  Session: NSObject, SessionProtocol {
 	
+    
+    
+    
 	// MARK: - Public -
 	// MARK: Properties
 	

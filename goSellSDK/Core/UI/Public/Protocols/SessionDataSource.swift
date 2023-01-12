@@ -9,7 +9,7 @@ import enum PassKit.PKPaymentButtonStyle
 import class PassKit.PKPaymentToken
 
 /// Payment data source.
-@objc public protocol SessionDataSource: class, NSObjectProtocol {
+@objc public protocol SessionDataSource: AnyObject, NSObjectProtocol {
 	
 	/// Transaction mode.
 	@objc optional var mode: TransactionMode { get }
@@ -32,8 +32,8 @@ import class PassKit.PKPaymentToken
     // /// The type of the apple pay you want to show to user. By default it is 'Buy with Apple Pay'
    // @objc optional var applePayButtonType: PKPaymentButtonType { get }
     
-    /// The type of the apple pay you want to show to user. By default it is 'White outline'
-    @objc optional var applePayButtonStyle: PKPaymentButtonStyle { get }
+    /// The style of the apple pay you want to show to user. By default it is 'White outline'
+    @objc optional var sessionApplePayButtonStyle: PKPaymentButtonStyle { get }
     
     /// Decides which ui interface (light or dark) to follow
     @objc optional var uiModeDisplay: UIModeDisplayEnum { get }
@@ -123,4 +123,24 @@ import class PassKit.PKPaymentToken
     /// Defines the reference module if needed
     @objc optional var reference: Reference { get }
 
+}
+
+
+/// Payment data source.
+@objc public protocol ApplePayButtonDataSource: AnyObject, NSObjectProtocol {
+    
+    /// The style of the apple pay you want to show to user. By default it is 'White outline'
+    @objc optional var applePayButtonStyle: PKPaymentButtonStyle { get }
+    
+    /// The type of the apple pay you want to show to user. By default it is 'Plain'
+    @objc optional var applePayButtonType: PKPaymentButtonType { get }
+    
+    /// Decides which logic to be performed when clicking on the tap apple pay button
+    @objc optional var applePayMode: ApplePayMode { get }
+    
+    /// The tap session that holds the data needed for the transactions
+    @objc optional var applePaySession:Session { get }
+    
+    
+    
 }

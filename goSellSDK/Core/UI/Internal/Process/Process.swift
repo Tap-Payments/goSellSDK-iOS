@@ -20,6 +20,10 @@ internal final class Process {
 	
 	internal private(set) var externalSession: SessionProtocol?
     
+    internal private(set) var applePayUI:ApplePayUI?
+    
+    internal var applePayDataSource:ApplePayButtonDataSource?
+    
     internal var allowedCardTypes:[CardType]?
        {
            guard
@@ -100,7 +104,7 @@ internal final class Process {
 		self.transactionMode	= session.dataSource?.mode ?? .default
 		self.appearance			= self.obtainAppearanceMode(from: session)
 		
-		let result = self.dataManagerInterface.loadPaymentOptions(for: session)
+		let result = self.dataManagerInterface.loadPaymentOptions(for: session, onLoaded: nil, showPaymentController: true)
 		
 		if result {
 			
@@ -114,16 +118,34 @@ internal final class Process {
     
     @discardableResult internal func startApplePay(_ session: SessionProtocol) -> Bool {
         
-        /*self.transactionMode    = session.dataSource?.mode ?? .default
+        self.transactionMode    = session.dataSource?.mode ?? .default
         self.appearance            = self.obtainAppearanceMode(from: session)
         
-        let result = self.dataManagerInterface.loadPaymentOptions(for: session)
+        let result = self.dataManagerInterface.loadPaymentOptions(for: session, onLoaded: {
+            self.externalSession = session
+            self.customizeAppearance(for: session)
+            
+            //let paymentOption = Process.shared.dataManagerInterface.paymentOptions(of: .apple).first
+
+            Process.shared.viewModelsHandlerInterface.cellModels(of: ApplePaymentOptionTableViewCellModel.self).first?.isSelected = true
+            
+            /*let request = Process.shared.dataManagerInterface.createApplePayRequest()
+            
+            self.applePayUI = ApplePayUI(completionHandler: { Result in
+                 Process.shared.externalSession?.delegate?.applePaymentSucceed?(Result, on: Process.shared.externalSession!)
+             }) {
+                 Process.shared.externalSession?.delegate?.applePaymentCanceled?(on: Process.shared.externalSession!)
+             }
+            self.applePayUI?.showApplePay(with: request)*/
+            
+            Process.shared.startPayment(with: Process.shared.viewModelsHandlerInterface.cellModels(of: ApplePaymentOptionTableViewCellModel.self).first!)
+        }, showPaymentController: false)
         
         if result {
             
             self.externalSession = session
             self.customizeAppearance(for: session)
-        }*/
+        }
         //self.dataManagerInterface.callChargeApplePayAPI(for: session)
        /* if let providedApplePayToken = session.dataSource?.appleTokenData
         {
