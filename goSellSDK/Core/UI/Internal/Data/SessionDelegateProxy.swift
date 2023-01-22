@@ -112,6 +112,15 @@ internal class SessionDelegateProxy: NSObject, SessionDelegate {
 			theDelegates.forEach { $0.paymentFailed?(with: charge, error: error, on: targetSession) }
 		}
 	}
+    
+    internal func paymentInitiated(with charge: Charge?, on session: SessionProtocol) {
+        let targetSession = self.targetSession(for: session)
+        
+        self.removeNilDelegatesAndSynchronized { theDelegates in
+            
+            theDelegates.forEach { $0.paymentInitiated?(with: charge, on: targetSession) }
+        }
+    }
 	
 	internal func authorizationFailed(with authorize: Authorize?, error: TapSDKError?, on session: SessionProtocol) {
 		

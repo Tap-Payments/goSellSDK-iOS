@@ -1021,7 +1021,10 @@ internal extension Process {
 			switch nonnullChargeOrAuthorize.status {
 				
 			case .initiated:
-				
+                if let session = self.process.process.externalSession,
+                   let charge:Charge = nonnullChargeOrAuthorize as? Charge {
+                    session.delegate?.paymentInitiated?(with: charge, on: session)
+                }
 				if let authentication = nonnullChargeOrAuthorize.authentication, authentication.status == .initiated {
 					
 					switch authentication.type {

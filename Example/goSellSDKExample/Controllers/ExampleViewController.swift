@@ -465,6 +465,11 @@ extension ExampleViewController: SessionDelegate {
     }
     
     
+    internal func paymentInitiated(with charge: Charge?, on session: SessionProtocol) {
+        print("CHARGE : \(charge?.identifier ?? "")")
+    }
+    
+    
     internal func applePaymentTokenizationFailed(_ error: String, on session: SessionProtocol) {
         
     }
