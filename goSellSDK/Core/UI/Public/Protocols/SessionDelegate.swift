@@ -84,6 +84,12 @@
 	///   - error: Error that has occured.
 	///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
 	@objc(paymentFailedWithCharge:error:onSession:) optional func paymentFailed(with charge: Charge?, error: TapSDKError?, on session: SessionProtocol)
+    
+    /// Notifies the receiver that charge has initiated, passing `session` which has initiated the payment.
+    /// - Parameters:
+    ///   - charge: Charge that has failed (if reached the stage of charging).
+    ///   - session: Session object. It might be either a `PayButton` instance or Session instance if you are not using `PayButton` in your application.
+    @objc(paymentInitiaedtWithCharge:onSession:) optional func paymentInitiated(with charge: Charge?, on session: SessionProtocol)
 	
 	/// Notifies the receiver that authorization has failed, passing `session` which has initiated the authorization.
 	///
