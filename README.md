@@ -17,7 +17,7 @@ A library that fully covers payment/authorization/card saving process inside you
 2. [Installation](#installation)
    1. [Installation with CocoaPods](#installation_with_cocoapods)
    2. [Installation with Carthage](#installation_with_carthage)
-   3. [M1 based Macs](#M1 based_Macs)
+   3. [M1 based Macs](#M1_based_Macs)
    4. [Installation with App Clip](#Installation_To_App_Clip)
 3. [Setup](#setup)
    1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
