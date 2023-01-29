@@ -17,7 +17,8 @@ A library that fully covers payment/authorization/card saving process inside you
 2. [Installation](#installation)
    1. [Installation with CocoaPods](#installation_with_cocoapods)
    2. [Installation with Carthage](#installation_with_carthage)
-   3. [Installation with App Clip](#Installation_To_App_Clip)
+   3. [M1 based Macs](#M1 based_Macs)
+   4. [Installation with App Clip](#Installation_To_App_Clip)
 3. [Setup](#setup)
    1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
    2. [goSellSDK Class Methods](#setup_gosellsdk_class_methods)
@@ -164,6 +165,24 @@ end
 ```
 
 <a name="setup"></a>
+
+## M1 based Macs
+
+You may face a compilation error when compiled using M1 based Mac devices, to solve this please follow these steps:
+
+1. Close the Xcode.
+  
+2. Go to the `application` folder.
+  
+3. Find the `Xcode` icon.
+  
+4. Right click on Xcode icon.
+  
+5. Choose `Get info`
+  
+6. Check the option `Open using Rosetta`
+
+![img](https://i.ibb.co/vQDnnwG/Stephen-Mickelsen-2-1645220554524.png)
 
 ## Installation To App Clip
 
