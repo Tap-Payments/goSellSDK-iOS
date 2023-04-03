@@ -177,8 +177,8 @@ internal class ExampleViewController: BaseViewController {
     // MARK: Methods
     
     @IBAction private func addButtonTouchUpInside(_ sender: Any) {
-        session.start()
-        //self.showPaymentItemViewController()
+        //session.start()
+        self.showPaymentItemViewController()
     }
 	
     @IBAction func applePayUIClicked(_ sender: Any) {
