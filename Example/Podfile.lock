@@ -1,13 +1,18 @@
 PODS:
   - CardIODynamic (5.4.1)
+  - CommonDataModelsKit-iOS (1.0.123):
+    - SwiftyRSA
+    - TapAdditionsKitV2
+    - TapCardVlidatorKit-iOS
+    - TapKeychain
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.3.20):
-    - goSellSDK/Core (= 2.3.20)
-  - goSellSDK/Core (2.3.20):
+  - goSellSDK (2.3.21):
+    - goSellSDK/Core (= 2.3.21)
+  - goSellSDK/Core (2.3.21):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -29,6 +34,10 @@ PODS:
   - SwiftyRSA/ObjC (1.7.0)
   - TapAdditionsKitV2 (0.0.9):
     - TapSwiftFixesV2
+  - TapApplePayKit-iOS (1.0.14):
+    - CommonDataModelsKit-iOS
+    - TapApplicationV2
+    - TapNetworkKit-iOS
   - TapApplicationV2 (0.0.2):
     - TapAdditionsKitV2
   - TapBundleLocalization (1.0.3)
@@ -40,6 +49,12 @@ PODS:
   - TapGLKitV2 (0.0.2):
     - TapAdditionsKitV2
   - TapKeychain (1.0.5)
+  - TapNetworkKit-iOS (1.0.14):
+    - CommonDataModelsKit-iOS
+    - SwiftyRSA
+    - TapAdditionsKitV2
+    - TapApplicationV2
+    - TapCardVlidatorKit-iOS
   - TapNetworkManagerV2 (0.0.5):
     - TapAdditionsKitV2
   - TapNibViewV2 (0.0.2):
@@ -65,15 +80,18 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - goSellSDK (from `../`)
+  - TapApplePayKit-iOS
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CardIODynamic
+    - CommonDataModelsKit-iOS
     - Crashlytics
     - EditableTextInsetsTextFieldV2
     - Fabric
     - SwiftyRSA
     - TapAdditionsKitV2
+    - TapApplePayKit-iOS
     - TapApplicationV2
     - TapBundleLocalization
     - TapCardVlidatorKit-iOS
@@ -81,6 +99,7 @@ SPEC REPOS:
     - TapFontsKitV2
     - TapGLKitV2
     - TapKeychain
+    - TapNetworkKit-iOS
     - TapNetworkManagerV2
     - TapNibViewV2
     - TapResponderChainInputViewV2
@@ -94,12 +113,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
+  CommonDataModelsKit-iOS: db862bc1c196fd4e0e66ec5168571792939a4e7a
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: b56e1b6348df87b447045e44db95ccd6a1ab1231
+  goSellSDK: ac79ee417cd709485adadaa4016d37bb4189e517
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
   TapAdditionsKitV2: 9846381c32b150303cbeff355550d3500a98f77d
+  TapApplePayKit-iOS: e45d9c999b427f327a70dc838919336d61a22ff7
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
   TapCardVlidatorKit-iOS: 00ac65c44019f955234640e5d4ca583f639edca2
@@ -107,6 +128,7 @@ SPEC CHECKSUMS:
   TapFontsKitV2: b05e5ed03fc182c227f0660a0b318f44934d353c
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
   TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
+  TapNetworkKit-iOS: 92c8c7feae384dc2595f8f270853ee3cf8ea3380
   TapNetworkManagerV2: 857339ae980c9fb495ec9a4c609beabaeeeb5999
   TapNibViewV2: 814b18346837d9dab611a211a702b9b0b8369d07
   TapResponderChainInputViewV2: 2dcd4bda246b0bd8764ee7fe8dbbd092815d063f
@@ -114,6 +136,6 @@ SPEC CHECKSUMS:
   TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
   TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
 
-PODFILE CHECKSUM: dc0834a994af3dbfe06d4ef3464a15f4e92d9471
+PODFILE CHECKSUM: df1cbf9e864411340fbaef977817db3974186d13
 
 COCOAPODS: 1.11.2

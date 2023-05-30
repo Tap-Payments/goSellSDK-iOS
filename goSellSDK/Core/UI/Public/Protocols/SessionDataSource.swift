@@ -93,6 +93,9 @@ import class PassKit.PKPaymentToken
 	
 	/// Defines if 3D secure check is required.
 	@objc optional var require3DSecure: Bool { get }
+    
+    /// Defines if scanner should be visible or not
+    @objc optional var setCardScannerIconVisible:Bool { get }
 	
 	/// Receipt dispatch settings.
 	@objc optional var receiptSettings: Receipt? { get }

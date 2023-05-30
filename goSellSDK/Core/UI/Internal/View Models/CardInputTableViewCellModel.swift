@@ -310,7 +310,7 @@ extension CardInputTableViewCellModel: CardInputTableViewCellLoading {
 	
 	internal var isScanButtonVisible: Bool {
         #if canImport(CardIO)
-            return CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera)
+        return CardIOUtilities.canReadCardWithCamera() && TapApplicationPlistInfo.shared.hasUsageDescription(for: .camera) && (Process.shared.externalSession?.dataSource?.setCardScannerIconVisible ?? false)
         #else
             return false
         #endif

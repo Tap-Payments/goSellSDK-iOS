@@ -312,6 +312,11 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
 // MARK: - SessionDataSource
 extension ExampleViewController: SessionDataSource {
    
+    
+    internal var setCardScannerIconVisible: Bool {
+        return true
+    }
+    
     internal var currency: Currency? {
         
         return self.paymentSettings.dataSource.currency
