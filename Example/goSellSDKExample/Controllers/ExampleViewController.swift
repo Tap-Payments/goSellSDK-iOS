@@ -436,7 +436,7 @@ extension ExampleViewController: SessionDataSource {
     
     var allowedCadTypes: [CardType]? {
         
-        return [CardType(cardType: .All)]
+        return [CardType(cardType: self.paymentSettings.dataSource.allowedCards)]
     }
 	
 	internal var paymentType: PaymentType {

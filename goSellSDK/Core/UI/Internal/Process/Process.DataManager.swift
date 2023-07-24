@@ -108,7 +108,18 @@ internal extension Process {
             //
             request.supportedNetworks = applePaymentOption.applePayMappedSupportedNetworks
             //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
-            request.merchantCapabilities = [PKMerchantCapability.capability3DS]
+            if let allowedCardTypes = dataSource.allowedCadTypes {
+                if allowedCardTypes?.contains(CardType(cardType: .All)) ?? false {
+                    request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityCredit, .capabilityDebit]
+                }else if allowedCardTypes?.contains(CardType(cardType: .Credit)) ?? false {
+                    request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityCredit]
+                }else if allowedCardTypes?.contains(CardType(cardType: .Debit)) ?? false {
+                    request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityDebit]
+                }
+            }else{
+                request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityCredit, .capabilityDebit]
+            }
+            
             if let session = Process.shared.externalSession?.dataSource
             {
                 let countryCode = self.merchnantCountryCode

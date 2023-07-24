@@ -56,7 +56,17 @@ internal extension InternalSessionImplementation {
         request.merchantIdentifier = ""
         request.supportedNetworks = [PKPaymentNetwork.amex,PKPaymentNetwork.visa,PKPaymentNetwork.masterCard]
         //request.requiredBillingContactFields = [PKContactField.name,PKContactField.phoneNumber]
-        request.merchantCapabilities = [PKMerchantCapability.capability3DS]
+        if let allowedCardTypes = self.dataSource?.allowedCadTypes {
+            if allowedCardTypes?.contains(CardType(cardType: .All)) ?? false {
+                request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityCredit, .capabilityDebit]
+            }else if allowedCardTypes?.contains(CardType(cardType: .Credit)) ?? false {
+                request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityCredit]
+            }else if allowedCardTypes?.contains(CardType(cardType: .Debit)) ?? false {
+                request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityDebit]
+            }
+        }else{
+            request.merchantCapabilities = [PKMerchantCapability.capability3DS, .capabilityCredit, .capabilityDebit]
+        }
         request.countryCode = "KW"
         request.currencyCode = "KWD"
         request.paymentSummaryItems = []
