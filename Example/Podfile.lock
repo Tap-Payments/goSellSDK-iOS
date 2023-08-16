@@ -1,6 +1,6 @@
 PODS:
   - CardIODynamic (5.4.1)
-  - CommonDataModelsKit-iOS (1.0.135):
+  - CommonDataModelsKit-iOS (1.0.139):
     - SwiftyRSA
     - TapAdditionsKitV2
     - TapCardVlidatorKit-iOS
@@ -10,9 +10,9 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.2):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.3.22):
-    - goSellSDK/Core (= 2.3.22)
-  - goSellSDK/Core (2.3.22):
+  - goSellSDK (2.3.24):
+    - goSellSDK/Core (= 2.3.24)
+  - goSellSDK/Core (2.3.24):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -34,14 +34,14 @@ PODS:
   - SwiftyRSA/ObjC (1.7.0)
   - TapAdditionsKitV2 (0.0.9):
     - TapSwiftFixesV2
-  - TapApplePayKit-iOS (1.0.18):
+  - TapApplePayKit-iOS (1.0.20):
     - CommonDataModelsKit-iOS
     - TapApplicationV2
     - TapNetworkKit-iOS
   - TapApplicationV2 (0.0.2):
     - TapAdditionsKitV2
   - TapBundleLocalization (1.0.3)
-  - TapCardVlidatorKit-iOS (1.0.20)
+  - TapCardVlidatorKit-iOS (1.0.21)
   - TapEditableViewV2 (1.0.1):
     - TapAdditionsKitV2
   - TapFontsKitV2 (0.0.4):
@@ -113,17 +113,17 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
-  CommonDataModelsKit-iOS: 96e65ce6922b468ab54e72580e6007dd75ae0e8c
+  CommonDataModelsKit-iOS: 2e8cf6d257c960699e8ee6cd6d28de270c966884
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: e9f5dfd2b17f29ddcae127974ea359649563554a
+  goSellSDK: eddb0cf76c2374dd3bd77a669fc5474294a48602
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
   TapAdditionsKitV2: 9846381c32b150303cbeff355550d3500a98f77d
-  TapApplePayKit-iOS: 77c154c075b631714b95eff63a49ae277c772926
+  TapApplePayKit-iOS: 7c9c7e75f678283c1334a2e2bf6fd9b94daea9b6
   TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
   TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
-  TapCardVlidatorKit-iOS: 00ac65c44019f955234640e5d4ca583f639edca2
+  TapCardVlidatorKit-iOS: c7be3b2831dd7f327ae8c4df328eb625653b4232
   TapEditableViewV2: 00370b2b6c967c382fa944be8c04156d584d630b
   TapFontsKitV2: b05e5ed03fc182c227f0660a0b318f44934d353c
   TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
