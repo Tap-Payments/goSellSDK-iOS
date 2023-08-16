@@ -132,5 +132,5 @@ extension TokenizedCard: Decodable {
 
 // MARK: - Issuer
 @objcMembers public final class Issuer: NSObject, Codable {
-    let bank, country, id: String?
+    @objc public let bank, country, id: String?
 }
