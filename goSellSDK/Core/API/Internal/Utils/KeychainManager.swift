@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class TapKeychain.Keychain
+import class TapKeychainV2.Keychain
 
 internal class KeychainManager {
     

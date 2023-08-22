@@ -8,7 +8,7 @@
 import class    CardIO.CardIOUtilities.CardIOUtilities
 #endif
 import class    TapApplicationV2.TapApplicationPlistInfo
-import struct	TapBundleLocalization.LocalizationKey
+import struct	TapBundleLocalizationV2.LocalizationKey
 import enum     TapCardVlidatorKit_iOS.CardBrand
 import class   TapCardVlidatorKit_iOS.DefinedCardBrand
 import class    UIKit.UIColor.UIColor

@@ -7,7 +7,7 @@
 
 import class	TapAdditionsKitV2.SeparateWindowRootViewController
 import struct	TapAdditionsKitV2.TypeAlias
-import struct	TapBundleLocalization.LocalizationKey
+import struct	TapBundleLocalizationV2.LocalizationKey
 import class	UIKit.UIAlertController.UIAlertAction
 import class	UIKit.UIAlertController.UIAlertController
 import enum		UIKit.UIApplication.UIStatusBarStyle

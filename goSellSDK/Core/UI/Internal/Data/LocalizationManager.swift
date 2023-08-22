@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapBundleLocalization.LocalizationKey
-import class	TapBundleLocalization.LocalizationProvider
+import struct	TapBundleLocalizationV2.LocalizationKey
+import class	TapBundleLocalizationV2.LocalizationProvider
 import class	TapResponderChainInputViewV2.TapResponderChainInputView
 import enum		UIKit.UIInterface.UIUserInterfaceLayoutDirection
 

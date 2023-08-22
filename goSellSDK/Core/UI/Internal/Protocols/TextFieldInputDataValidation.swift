@@ -5,7 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import struct	TapBundleLocalization.LocalizationKey
+import struct	TapBundleLocalizationV2.LocalizationKey
 import class	UIKit.UITextField.UITextField
 
 internal protocol TextFieldInputDataValidation: TextInputDataValidation {
