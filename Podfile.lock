@@ -1,50 +1,50 @@
 PODS:
   - CardIODynamic (5.4.1)
-  - EditableTextInsetsTextFieldV2 (0.0.2):
+  - EditableTextInsetsTextFieldV2 (0.0.3):
     - TapAdditionsKitV2
   - SwiftyRSA (1.7.0):
     - SwiftyRSA/ObjC (= 1.7.0)
   - SwiftyRSA/ObjC (1.7.0)
-  - TapAdditionsKitV2 (0.0.9):
+  - TapAdditionsKitV2 (0.0.17):
     - TapSwiftFixesV2
-  - TapAlertViewControllerV2 (0.0.2):
+  - TapAlertViewControllerV2 (0.0.3):
     - TapAdditionsKitV2
     - TapVisualEffectViewV2
-  - TapApplicationV2 (0.0.2):
+  - TapApplicationV2 (0.0.3):
     - TapAdditionsKitV2
-  - TapBundleLocalization (1.0.3)
+  - TapBundleLocalizationV2 (0.0.3)
   - TapCardVlidatorKit-iOS (1.0.21)
-  - TapEditableViewV2 (1.0.1):
+  - TapEditableViewV2 (1.0.2):
     - TapAdditionsKitV2
-  - TapErrorReportingV2 (0.0.3):
+  - TapErrorReportingV2 (0.0.5):
     - TapAdditionsKitV2
     - TapAlertViewControllerV2
     - TapApplicationV2
-    - TapBundleLocalization
+    - TapBundleLocalizationV2
     - TapNetworkManagerV2
-  - TapFontsKitV2 (0.0.4):
+  - TapFontsKitV2 (0.0.5):
     - TapAdditionsKitV2
-  - TapGLKitV2 (0.0.2):
+  - TapGLKitV2 (0.0.3):
     - TapAdditionsKitV2
-  - TapKeychain (1.0.5)
-  - TapNetworkManagerV2 (0.0.5):
+  - TapKeychainV2 (1.0.2)
+  - TapNetworkManagerV2 (0.0.6):
     - TapAdditionsKitV2
-  - TapNibViewV2 (0.0.2):
+  - TapNibViewV2 (0.0.3):
     - TapAdditionsKitV2
-  - TapResponderChainInputViewV2 (0.0.4):
-    - TapAdditionsKitV2
-    - TapNibViewV2
-  - TapSearchViewV2 (0.0.4):
+  - TapResponderChainInputViewV2 (0.0.5):
     - TapAdditionsKitV2
     - TapNibViewV2
-  - TapSwiftFixesV2 (1.0.0):
-    - TapSwiftFixesV2/CoreGraphics (= 1.0.0)
-    - TapSwiftFixesV2/Exceptions (= 1.0.0)
-    - TapSwiftFixesV2/Threading (= 1.0.0)
-  - TapSwiftFixesV2/CoreGraphics (1.0.0)
-  - TapSwiftFixesV2/Exceptions (1.0.0)
-  - TapSwiftFixesV2/Threading (1.0.0)
-  - TapVisualEffectViewV2 (0.0.2):
+  - TapSearchViewV2 (0.0.5):
+    - TapAdditionsKitV2
+    - TapNibViewV2
+  - TapSwiftFixesV2 (1.0.3):
+    - TapSwiftFixesV2/CoreGraphics (= 1.0.3)
+    - TapSwiftFixesV2/Exceptions (= 1.0.3)
+    - TapSwiftFixesV2/Threading (= 1.0.3)
+  - TapSwiftFixesV2/CoreGraphics (1.0.3)
+  - TapSwiftFixesV2/Exceptions (1.0.3)
+  - TapSwiftFixesV2/Threading (1.0.3)
+  - TapVisualEffectViewV2 (0.0.4):
     - TapAdditionsKitV2
     - TapNibViewV2
 
@@ -55,13 +55,13 @@ DEPENDENCIES:
   - TapAdditionsKitV2
   - TapAlertViewControllerV2
   - TapApplicationV2
-  - TapBundleLocalization
+  - TapBundleLocalizationV2
   - TapCardVlidatorKit-iOS
   - TapEditableViewV2
   - TapErrorReportingV2
   - TapFontsKitV2
   - TapGLKitV2
-  - TapKeychain
+  - TapKeychainV2
   - TapNetworkManagerV2
   - TapNibViewV2
   - TapResponderChainInputViewV2
@@ -76,13 +76,13 @@ SPEC REPOS:
     - TapAdditionsKitV2
     - TapAlertViewControllerV2
     - TapApplicationV2
-    - TapBundleLocalization
+    - TapBundleLocalizationV2
     - TapCardVlidatorKit-iOS
     - TapEditableViewV2
     - TapErrorReportingV2
     - TapFontsKitV2
     - TapGLKitV2
-    - TapKeychain
+    - TapKeychainV2
     - TapNetworkManagerV2
     - TapNibViewV2
     - TapResponderChainInputViewV2
@@ -92,25 +92,25 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CardIODynamic: 4a0d2d0e7b82993ceca67491564934c3475fbe79
-  EditableTextInsetsTextFieldV2: 09a945c086dbcef688fe4fbb8302b408c146c391
+  EditableTextInsetsTextFieldV2: 4734d3376d6b1ebe95afc824da5caa1c37b228a3
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
-  TapAdditionsKitV2: 9846381c32b150303cbeff355550d3500a98f77d
-  TapAlertViewControllerV2: c5d0d90d6c9531c567612e7a9663d9e0fa418b81
-  TapApplicationV2: aee3d046c4272778431e1535de6cab34e1269f8c
-  TapBundleLocalization: c7d7c14850223b0ef447aca1269d7308f78d54f9
+  TapAdditionsKitV2: 0bb217062d4df1db86b339e7693283b293b0ccff
+  TapAlertViewControllerV2: ac8bf77da5abffb8fdb2e3657bdb22cce55b8c37
+  TapApplicationV2: a5e256888515be65654f048605bfb871a5ad53a9
+  TapBundleLocalizationV2: 282e5a0ebfd08b502ec2ba22dde8da2de7340110
   TapCardVlidatorKit-iOS: c7be3b2831dd7f327ae8c4df328eb625653b4232
-  TapEditableViewV2: 00370b2b6c967c382fa944be8c04156d584d630b
-  TapErrorReportingV2: b73217b68150071f72e6a1b1bef20c5157d49c5c
-  TapFontsKitV2: b05e5ed03fc182c227f0660a0b318f44934d353c
-  TapGLKitV2: d3ef8bc5d1655a1d46e1696cfdcf19ae6e6d4d35
-  TapKeychain: 143aa70bb2d1b094e0298e944660264034c79849
-  TapNetworkManagerV2: 857339ae980c9fb495ec9a4c609beabaeeeb5999
-  TapNibViewV2: 814b18346837d9dab611a211a702b9b0b8369d07
-  TapResponderChainInputViewV2: 2dcd4bda246b0bd8764ee7fe8dbbd092815d063f
-  TapSearchViewV2: a167173db767a2be86d66c319cbb6b8da1541531
-  TapSwiftFixesV2: a8623a7273c6790b9754ec7e272e96fce7d3a800
-  TapVisualEffectViewV2: b612ffee4d05004c449d433fe45aba9563c8a508
+  TapEditableViewV2: 53f87bbf98d7599f564e6e5bad1be6c1a5b31d66
+  TapErrorReportingV2: a4d98c28aaa98843cb49d6cd2fdcba935c329279
+  TapFontsKitV2: 2b11cd69c4f8c4485376c92a1982387a5184ca13
+  TapGLKitV2: 5e5857e73e5a516807ec9c388f5c028de7616290
+  TapKeychainV2: aaa08a208f3e7aea042e2caf1b6b5abb39baecdc
+  TapNetworkManagerV2: 73a80838e7a30bd05e1030ff4b751421f14774a6
+  TapNibViewV2: a6df9bfe0a36dfa9039b8200f2921dd5f66874c5
+  TapResponderChainInputViewV2: d62b22fd9f1e6e9a195e4960c5679805a83ed44c
+  TapSearchViewV2: b6fb11576b6e20570768378d31499a3cb86f9010
+  TapSwiftFixesV2: ea726f752b6259d9e44624039fd6bad94b2a8633
+  TapVisualEffectViewV2: bc2b3b718acc3c1298ce7d21985633941d986345
 
-PODFILE CHECKSUM: 276da5c57c575f3098b48cba082fd8a79e8f0aa6
+PODFILE CHECKSUM: 507bcd78760632bfd795ed8996a93ee169f5bb34
 
 COCOAPODS: 1.12.1

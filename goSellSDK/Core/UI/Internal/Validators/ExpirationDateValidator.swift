@@ -8,7 +8,7 @@
 import CoreGraphics
 import func     TapAdditionsKitV2.tap_clamp
 import protocol TapAdditionsKitV2.ClassProtocol
-import struct	TapBundleLocalization.LocalizationKey
+import struct	TapBundleLocalizationV2.LocalizationKey
 import class    TapEditableViewV2.TapEditableView
 import protocol TapEditableViewV2.TapEditableViewDelegate
 import class	UIKit.UIPickerView.UIPickerView

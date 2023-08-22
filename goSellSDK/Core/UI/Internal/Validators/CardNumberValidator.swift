@@ -6,7 +6,7 @@
 //
 
 import protocol TapAdditionsKitV2.ClassProtocol
-import struct	TapBundleLocalization.LocalizationKey
+import struct	TapBundleLocalizationV2.LocalizationKey
 import enum     TapCardVlidatorKit_iOS.CardBrand
 import class    TapCardVlidatorKit_iOS.CardValidator
 import class   TapCardVlidatorKit_iOS.DefinedCardBrand

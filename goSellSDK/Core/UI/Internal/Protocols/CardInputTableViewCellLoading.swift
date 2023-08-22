@@ -6,7 +6,7 @@
 //
 
 import protocol TapAdditionsKitV2.ClassProtocol
-import struct	TapBundleLocalization.LocalizationKey
+import struct	TapBundleLocalizationV2.LocalizationKey
 import class    UIKit.UIColor.UIColor
 import class    UIKit.UIFont.UIFont
 import class    UIKit.UIImage.UIImage
