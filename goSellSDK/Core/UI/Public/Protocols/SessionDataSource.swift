@@ -7,6 +7,7 @@
 import enum PassKit.PKPaymentButtonType
 import enum PassKit.PKPaymentButtonStyle
 import class PassKit.PKPaymentToken
+import TapCardVlidatorKit_iOS
 
 /// Payment data source.
 @objc public protocol SessionDataSource: class, NSObjectProtocol {
@@ -56,7 +57,7 @@ import class PassKit.PKPaymentToken
 	@objc optional var items: [PaymentItem]? { get }
 	
 	/// List of merchant desired destination accounts to receive money from payment transactions.
-	@objc optional var destinations: [Destination]? { get }
+	@objc optional var destinations: DestinationGroup? { get }
 	
 	/// Merchant ID. Optional. Useful when you have multiple Tap accounts and would like to do the `switch` on the fly within the single app.
 	@objc optional var merchantID: String? { get }
@@ -79,6 +80,10 @@ import class PassKit.PKPaymentToken
 	/// Post URL. The URL that will be called by Tap system notifying that payment has succeed or failed.
 	@objc optional var postURL: URL? { get }
 	
+    /// The allowed payment methods (VISA, AMEX, KNET, ETC.) . if not passed, then all enabled payment methods will be allowed
+    /// It is an raw value if the enum CardBrand so for example [CardBrand.KNET.rawValue]
+    //@objc optional var supportedPaymentMethods: [String] { get }
+    
 	/// Description of the payment.
 	@objc optional var paymentDescription: String? { get }
 	

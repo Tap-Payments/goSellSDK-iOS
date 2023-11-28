@@ -56,6 +56,7 @@ import class	UIKit.UIVisualEffect.UIVisualEffect
 import class	UIKit.UIVisualEffectView.UIVisualEffectView
 import goSellSDK
 import UIKit
+import TapCardVlidatorKit_iOS
 
 internal class ExampleViewController: BaseViewController {
     
@@ -312,7 +313,6 @@ extension ExampleViewController: SettingsTableViewControlerDelegate {
 // MARK: - SessionDataSource
 extension ExampleViewController: SessionDataSource {
    
-    
     internal var setCardScannerIconVisible: Bool {
         return true
     }
@@ -357,11 +357,7 @@ extension ExampleViewController: SessionDataSource {
 
         return self.selectedPaymentItems
     }
-	
-	internal var destinations: [Destination]? {
-		
-		return self.paymentSettings.dataSource.destinations
-	}
+    
     
     internal var uiModeDisplay: UIModeDisplayEnum {
         return .followDevice
