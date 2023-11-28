@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import TapCardVlidatorKit_iOS
+
 internal struct PaymentOptionsRequest {
     
     // MARK: - Internal -
@@ -21,6 +23,9 @@ internal struct PaymentOptionsRequest {
     
     /// Taxes.
     internal var taxes: [Tax]?
+    
+    /// Taxes.
+    internal var supportedPaymentMethods: [String]?
     
     /// Items currency.
     internal let currency: Currency?
@@ -44,7 +49,7 @@ internal struct PaymentOptionsRequest {
 	
 	internal init(customer: String?) {
 		
-        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil, topup:nil)
+        self.init(transactionMode: nil, amount: nil, items: nil, shipping: nil, taxes: nil, currency: nil, merchantID: nil, customer: customer, destinationGroup: nil, paymentType: nil, topup:nil, supportedPaymentMethods: nil)
 	}
 	
 	internal init(transactionMode:	TransactionMode?,
@@ -57,7 +62,8 @@ internal struct PaymentOptionsRequest {
 				  customer:			String?,
 				  destinationGroup:	DestinationGroup?,
 				  paymentType:		PaymentType?,
-                  topup:            Topup?
+                  topup:            Topup?,
+                  supportedPaymentMethods: [String]?
 		
 	) {
         
@@ -70,6 +76,7 @@ internal struct PaymentOptionsRequest {
 		self.destinationGroup		= destinationGroup
 		self.paymentType			= paymentType
         self.topup                  = topup
+        self.supportedPaymentMethods    = supportedPaymentMethods
         
 		if let nonnullItems 		= items, nonnullItems.count > 0 {
 			
@@ -98,6 +105,7 @@ internal struct PaymentOptionsRequest {
 		case destinationGroup		= "destinations"
 		case paymentType			= "payment_type"
         case topup                  = "topup"
+        case supportedPaymentMethods    = "supported_payment_methods"
     }
     
     // MARK: Properties
@@ -148,6 +156,12 @@ extension PaymentOptionsRequest: Encodable {
                
                try container.encodeIfPresent(self.destinationGroup, forKey: .destinationGroup)
 		}
+        
+        if let paymentMethods:[String] = self.supportedPaymentMethods,
+           paymentMethods.count > 0 {
+               
+            try container.encodeIfPresent(paymentMethods.map{ $0.uppercased() }, forKey: .supportedPaymentMethods)
+        }
 		try container.encodeIfPresent(self.paymentType?.description.uppercased(), forKey: .paymentType)
 
            
