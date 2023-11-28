@@ -102,7 +102,7 @@ internal extension CardInputTableViewCellModel {
     
     private struct Constants {
         
-        fileprivate static let binNumberLength = 8
+        fileprivate static let binNumberLength = 10
         
         //@available(*, unavailable) private init() { }
     }
