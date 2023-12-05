@@ -656,7 +656,7 @@ internal extension Process {
 			let paymentType		= nonnullDataSource.paymentType       ?? nil
             let topup        = nonnullDataSource.topup       ?? nil
 
-            let supportedPaymentMethods:[String] = []//nonnullDataSource.supportedPaymentMethods?.map{ $0.uppercased() } ?? []
+            let supportedPaymentMethods:[String] = nonnullDataSource.supportedPaymentMethods?.map{ $0.uppercased() } ?? []
 			/// the API is using destinationsGroup not destinations
 			let destinationsGroup = destinations
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
@@ -1283,7 +1283,7 @@ internal extension Process {
             
 			let paymentType		= nonnullDataSource.paymentType       ?? nil
             let topup        = nonnullDataSource.topup       ?? nil
-            let supportedPaymentMethods:[String] = []//nonnullDataSource.supportedPaymentMethods?.map{ $0.uppercased() } ?? []
+            let supportedPaymentMethods:[String] = nonnullDataSource.supportedPaymentMethods?.map{ $0.uppercased() } ?? []
             
 			let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
 													   amount:          nonnullDataSource.amount,
