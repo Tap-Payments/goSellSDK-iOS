@@ -82,7 +82,7 @@ import TapCardVlidatorKit_iOS
 	
     /// The allowed payment methods (VISA, AMEX, KNET, ETC.) . if not passed, then all enabled payment methods will be allowed
     /// It is an raw value if the enum CardBrand so for example [CardBrand.KNET.rawValue]
-    //@objc optional var supportedPaymentMethods: [String] { get }
+    @objc optional var supportedPaymentMethods: [String] { get }
     
 	/// Description of the payment.
 	@objc optional var paymentDescription: String? { get }
