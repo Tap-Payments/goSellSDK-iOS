@@ -132,8 +132,9 @@ internal class HeaderNavigatedViewController: BaseViewController, NavigationCont
 extension HeaderNavigatedViewController: TapNavigationView.Delegate {
 	
 	internal func navigationViewCloseButtonClicked(_ navigationView: TapNavigationView) {
-		
-		self.close()
+        if !Process.shared.dataManagerInterface.isCallingPaymentAPI && !Process.shared.dataManagerInterface.isChargeOrAuthorizeInProgress {
+            self.close()
+        }
 	}
     
     internal func navigationViewBackButtonClicked(_ navigationView: TapNavigationView) {
