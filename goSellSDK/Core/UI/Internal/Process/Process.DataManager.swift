@@ -404,7 +404,9 @@ internal extension Process {
 		}
 		
 		internal var isChargeOrAuthorizeInProgress: Bool {
-			
+            if Process.shared.transactionMode == .cardSaving || Process.shared.transactionMode == .cardTokenization {
+                return false
+            }
 			fatalError("Should be implemented in subclass.")
 		}
 		
