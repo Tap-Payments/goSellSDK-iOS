@@ -178,8 +178,12 @@ internal class ErrorDataManager {
                     #endif
                     
                     if action.contains(.retry) {
-                        
-                        ErrorActionExecutor.showAlert(for: error, with: alertTitle, message: alertMessage, retryAction: retryAction, report: report, completion: localCompletion)
+                        let state = UIApplication.shared.applicationState
+                        if (state == .background || state == .inactive) &&  error.type == .network {
+                            retryAction?()
+                        }else {
+                            ErrorActionExecutor.showAlert(for: error, with: alertTitle, message: alertMessage, retryAction: retryAction, report: report, completion: localCompletion)
+                        }
                     }
                     else {
                         
