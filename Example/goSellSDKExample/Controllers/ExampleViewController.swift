@@ -184,7 +184,7 @@ internal class ExampleViewController: BaseViewController {
     // MARK: Methods
     
     @IBAction private func addButtonTouchUpInside(_ sender: Any) {
-        //session.start()
+        //
         self.showPaymentItemViewController()
     }
 	
@@ -193,6 +193,21 @@ internal class ExampleViewController: BaseViewController {
         applePayUI = true
         session.startAppleUIPay()
     }
+    
+    @IBAction func useSession(_ sender: Any) {
+        session.start()
+        let timeoutSeconds = TimeInterval(60 * 3)
+        Timer.scheduledTimer(timeInterval: timeoutSeconds,
+                             target: self,
+                             selector: #selector(terminateSession),
+                             userInfo: nil,
+                             repeats: false)
+    }
+    
+    @objc func terminateSession() {
+        session.stop()
+    }
+    
     @IBAction func applePayClicked(_ sender: Any) {
         applePay = true
         applePayUI = false
