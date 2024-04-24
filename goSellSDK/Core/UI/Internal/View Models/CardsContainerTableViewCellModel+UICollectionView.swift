@@ -111,6 +111,10 @@ extension CardsContainerTableViewCellModel.CardsContainerTableViewCellModelColle
         cellModel.updateCell()
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return !Process.shared.dataManagerInterface.isExecutingAPICalls && !Process.shared.dataManagerInterface.isChargeOrAuthorizeInProgress
+    }
+    
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cellModel = self.cardCellModel(at: indexPath)
