@@ -129,13 +129,12 @@ extension PaymentOptionsViewController: UITableViewDelegate {
     }
     
     internal func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        
         let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel
         return model?.indexPathOfCellToSelect
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        guard !Process.shared.dataManagerInterface.isExecutingAPICalls && !Process.shared.dataManagerInterface.isChargeOrAuthorizeInProgress else {return}
         guard let model = Process.shared.viewModelsHandlerInterface.paymentOptionViewModel(at: indexPath) as? TableViewCellViewModel else { return }
         model.tableViewDidSelectCell(tableView)
     }
