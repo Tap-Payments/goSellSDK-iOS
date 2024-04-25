@@ -518,7 +518,6 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 	// MARK: Methods
 	
 	internal override func startPayment(with paymentOption: PaymentOptionCellViewModel) {
-		
 		let amount = self.dataManager.selectedCurrency
 		let extraFees = paymentOption.paymentOption?.extraFees ?? []
 		let extraFeesAmount = AmountedCurrency(amount.currency, Process.AmountCalculator<PaymentClass>.extraFeeAmount(from: extraFees, in: amount))
@@ -751,7 +750,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
     }
     
     private func startPayment(withWebPaymentOption paymentOption: PaymentOption) {
-        
+        guard !self.process.dataManagerInterface.isExecutingAPICalls && !self.process.dataManagerInterface.isChargeOrAuthorizeInProgress else {return}
         if paymentOption.isAsync
         {
             startPaymentHelperAsync(withWebPaymentOption: paymentOption)

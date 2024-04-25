@@ -225,9 +225,15 @@ internal class CardInputTableViewCellModel: PaymentOptionTableCellViewModel {
 	}
 	
 	@objc private func keyboardWillShow(_ notification: Notification?) {
+        
 		
 		guard let nonnullCell = self.cell, let responder = UIResponder.tap_current as? UIView, responder.isDescendant(of: nonnullCell) else { return }
-		
+        
+        guard !Process.shared.dataManagerInterface.isExecutingAPICalls && !Process.shared.dataManagerInterface.isChargeOrAuthorizeInProgress else {
+            responder.resignFirstResponder()
+            return
+        }
+
 		DispatchQueue.main.async { [weak self] in
 			
 			guard let strongSelf = self else { return }
