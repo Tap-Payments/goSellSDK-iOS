@@ -568,7 +568,9 @@ internal extension Process {
 						self?.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 					}
 					
-					ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: nil)
+                    ErrorDataManager.handle(nonnullError, retryAction: retryAction, alertDismissButtonClickHandler: {
+                        self?.process.buttonHandlerInterface.stopButtonLoader()
+                    })
 				}
 				else if let nonnullToken = token {
 					
@@ -794,6 +796,8 @@ internal extension Process {
 				
 				self.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 			}
+            
+
 			
 			self.callChargeOrAuthorizeAPI(with:                           	source,
 										  paymentOption:                   	paymentOption,
@@ -900,7 +904,6 @@ internal extension Process {
 			switch mode {
 				
 			case .purchase:
-				
 				let chargeRequest = CreateChargeRequest(amount:                 amountedCurrency.amount,
 														selectedAmount:			amountedSelectedCurrency.amount,
 														currency:               amountedCurrency.currency,
