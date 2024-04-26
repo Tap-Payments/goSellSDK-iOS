@@ -10,9 +10,9 @@ PODS:
   - EditableTextInsetsTextFieldV2 (0.0.3):
     - TapAdditionsKitV2
   - Fabric (1.10.2)
-  - goSellSDK (2.3.27):
-    - goSellSDK/Core (= 2.3.27)
-  - goSellSDK/Core (2.3.27):
+  - goSellSDK (2.3.32):
+    - goSellSDK/Core (= 2.3.32)
+  - goSellSDK/Core (2.3.32):
     - CardIODynamic
     - EditableTextInsetsTextFieldV2
     - SwiftyRSA
@@ -34,7 +34,7 @@ PODS:
   - SwiftyRSA/ObjC (1.7.0)
   - TapAdditionsKitV2 (0.0.17):
     - TapSwiftFixesV2
-  - TapApplePayKit-iOS (1.0.21):
+  - TapApplePayKit-iOS (1.0.22):
     - CommonDataModelsKit-iOS
     - TapApplicationV2
     - TapNetworkKit-iOS
@@ -117,10 +117,10 @@ SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
   EditableTextInsetsTextFieldV2: 4734d3376d6b1ebe95afc824da5caa1c37b228a3
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
-  goSellSDK: 707e9157c595aa23fce23612ed34ba9d17413b72
+  goSellSDK: b6290beeabbbb126d00298ca02ee1dd593176c4e
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
   TapAdditionsKitV2: 0bb217062d4df1db86b339e7693283b293b0ccff
-  TapApplePayKit-iOS: 7e482f589b15bf86e7c077d225b8499420403ba4
+  TapApplePayKit-iOS: 77f1af8d17754b292e486b918b01fa28cb47f053
   TapApplicationV2: a5e256888515be65654f048605bfb871a5ad53a9
   TapBundleLocalizationV2: 282e5a0ebfd08b502ec2ba22dde8da2de7340110
   TapCardVlidatorKit-iOS: 05d3e644dddd6aa52dd95cc85a2c41f7ce0ba2f9
@@ -138,4 +138,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: df1cbf9e864411340fbaef977817db3974186d13
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.3
