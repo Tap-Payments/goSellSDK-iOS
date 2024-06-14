@@ -214,8 +214,8 @@ PS: This key is just a ‘Tap identifier’ for the application integrating with
 *Swift*:
 
 ```swift
-let secretKey = SecretKey(sanbox: "YOUR_SANDBOX_SECRET_KEY", production: "YOUR_PRODUCTION_SECRET_KEY") // (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
-goSellSDK.secretKey = secretKey // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+let secretKey = SecretKey(sandbox: "YOUR_SANDBOX_SECRET_KEY", production: "YOUR_PRODUCTION_SECRET_KEY") // (format of the key: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
+GoSellSDK.secretKey = secretKey // Secret key (format: "sk_XXXXXXXXXXXXXXXXXXXXXXXX")
 ```
 
 *Objective-C*:
@@ -251,7 +251,9 @@ or
 ### Mode
 
 SDK mode is a mode SDK is operating in, either **sandbox** or **production**.
-
+```swift
+GoSellSDK.mode = .sandbox
+```
 Use this property to test your integration with the sandbox transactions.
 
 **WARNING:** Default value of this property is *production* which means your transaction are real transactions. Switch to *sandbox* while in development.
@@ -261,7 +263,11 @@ Use this property to test your integration with the sandbox transactions.
 ### Language
 
 Localization language of the UI part of the SDK. This is locale identifier. 
-
+```swift
+if let languageCode = Locale.current.languageCode, GoSellSDK.availableLanguages.contains(languageCode) {
+        GoSellSDK.language = languageCode
+}
+```
 Make sure it consists only from 2 lowercased letters and is presented in the list of **availableLanguages** property of *goSellSDK* class.
 
 **Notice:** Starting from *iOS 9* SDK user interface layout direction is based on the language you select, which means that if you would like to have it in Arabic language, the UI will be switched to RTL (right-to-left).
