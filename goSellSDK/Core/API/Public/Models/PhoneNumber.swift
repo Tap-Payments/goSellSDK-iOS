@@ -30,20 +30,6 @@
         let isd = PhoneNumber.extractISDNumber(from: isdNumber)
         let number = phoneNumber
         
-        guard isd.tap_length > 0 && isd.tap_containsOnlyInternationalDigits else {
-            
-            let userInfo = [ErrorConstants.UserInfoKeys.isdNumber: isd]
-            let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidISDNumber.rawValue, userInfo: userInfo)
-			throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil, body: nil)
-        }
-        
-        guard number.tap_length > 0 && number.tap_containsOnlyInternationalDigits else {
-            
-            let userInfo = [ErrorConstants.UserInfoKeys.phoneNumber: number]
-            let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidPhoneNumber.rawValue, userInfo: userInfo)
-			throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil, body: nil)
-        }
-        
         self.isdNumber = isd
         self.phoneNumber = number
         
@@ -137,8 +123,8 @@ extension PhoneNumber: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let isdNumber   = try container.decode(String.self, forKey: .isdNumber)
-        let phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+        let isdNumber   = try container.decodeIfPresent(String.self, forKey: .isdNumber) ?? ""
+        let phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber) ?? ""
         
         try self.init(isdNumber: isdNumber, phoneNumber: phoneNumber)
     }
