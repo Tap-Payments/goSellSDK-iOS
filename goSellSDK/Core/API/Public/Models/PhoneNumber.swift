@@ -123,8 +123,8 @@ extension PhoneNumber: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let isdNumber   = try container.decode(String.self, forKey: .isdNumber)
-        let phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+        let isdNumber   = try container.decodeIfPresent(String.self, forKey: .isdNumber) ?? ""
+        let phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber) ?? ""
         
         try self.init(isdNumber: isdNumber, phoneNumber: phoneNumber)
     }
