@@ -30,20 +30,6 @@
         let isd = PhoneNumber.extractISDNumber(from: isdNumber)
         let number = phoneNumber
         
-        guard isd.tap_length > 0 && isd.tap_containsOnlyInternationalDigits else {
-            
-            let userInfo = [ErrorConstants.UserInfoKeys.isdNumber: isd]
-            let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidISDNumber.rawValue, userInfo: userInfo)
-			throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil, body: nil)
-        }
-        
-        guard number.tap_length > 0 && number.tap_containsOnlyInternationalDigits else {
-            
-            let userInfo = [ErrorConstants.UserInfoKeys.phoneNumber: number]
-            let underlyingError = NSError(domain: ErrorConstants.internalErrorDomain, code: InternalError.invalidPhoneNumber.rawValue, userInfo: userInfo)
-			throw TapSDKKnownError(type: .internal, error: underlyingError, response: nil, body: nil)
-        }
-        
         self.isdNumber = isd
         self.phoneNumber = number
         
