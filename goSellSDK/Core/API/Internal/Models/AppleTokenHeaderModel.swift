@@ -13,20 +13,22 @@ internal struct AppleTokenHeaderModel: Encodable,Decodable {
     // MARK: Properties
     
     /// Card identifier.
-    internal let ephemeralPublicKey: String
-    internal let publicKeyHash: String
-    internal let transactionId: String
+    internal let ephemeralPublicKey: String?
+    internal let publicKeyHash: String?
+    internal let transactionId: String?
+    internal let wrappedKey: String?
     // MARK: Methods
     
     /// Initializes the model with decoded apple pay token
     ///
     /// - Parameters:
     ///   - appleToken: The base64 apple pay token
-    internal init(ephemeralPublicKey: String,publicKeyHash: String,transactionId: String) {
+    internal init(ephemeralPublicKey: String? = "",publicKeyHash: String? = "",transactionId: String? = "",wrappedKey: String? = "") {
         
         self.ephemeralPublicKey = ephemeralPublicKey
         self.publicKeyHash = publicKeyHash
 		self.transactionId = transactionId
+        self.wrappedKey = wrappedKey
     }
     
     // MARK: - Private -
@@ -36,6 +38,7 @@ internal struct AppleTokenHeaderModel: Encodable,Decodable {
         case ephemeralPublicKey     = "ephemeralPublicKey"
         case publicKeyHash     		= "publicKeyHash"
 		case transactionId 			= "transactionId"
+        case wrappedKey             = "wrappedKey"
     }
 }
 
