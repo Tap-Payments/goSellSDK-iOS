@@ -515,9 +515,12 @@ internal extension Process {
                 applePaymentOptions.forEach {
                     
                     let applePayModel = self.applePaymentCellModel(with: $0)
+                    guard !applePayModel.isApplePayNeedsSetup() else {
+                        return
+                    }
                     applePayModel.indexPath = self.nextIndexPath(for: result)
-                    
                     result.append(applePayModel)
+                    
                 }
             }
             
