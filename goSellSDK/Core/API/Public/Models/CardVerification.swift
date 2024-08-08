@@ -37,6 +37,9 @@
 	
 	/// Authorization transaction details (authorization used internally to verify the card).
 	public let transactionDetails: TransactionDetails
+    
+    /// PaymentAgreement object
+    public let paymentAgreement: PaymentAgreement
 	
 	/// Customer, the cardholder.
 	public let customer: Customer
@@ -67,6 +70,7 @@
 		case source				= "source"
 		case redirect			= "redirect"
 		case card				= "card"
+        case paymentAgreement   = "payment_agreement"
 	}
 }
 
