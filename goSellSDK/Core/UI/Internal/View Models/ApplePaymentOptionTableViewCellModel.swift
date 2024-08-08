@@ -124,15 +124,24 @@ extension ApplePaymentOptionTableViewCellModel: SingleCellModel {
             }
         }*/
         // First we check if we need to show setup pay
-        let supportedNetworks = self.applePayMappedSupportedNetworks
-        if PKPaymentAuthorizationViewController.canMakePayments()
-        {
-            if !PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedNetworks)
-            {
-                applPayButtonType = .setUp
-            }
+        if isApplePayNeedsSetup() {
+            applPayButtonType = .setUp
         }
         return applPayButtonType
+    }
+    
+    
+    func isApplePayNeedsSetup() -> Bool {
+        let supportedNetworks = self.applePayMappedSupportedNetworks
+        guard PKPaymentAuthorizationViewController.canMakePayments() else {
+            return true
+        }
+        
+        guard PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: supportedNetworks) else {
+            return true
+        }
+
+        return false
     }
     
     
