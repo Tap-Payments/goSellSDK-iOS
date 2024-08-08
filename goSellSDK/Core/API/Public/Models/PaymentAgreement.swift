@@ -10,9 +10,9 @@ import Foundation
 
 // MARK: - PaymentAgreement
 @objcMembers public class PaymentAgreement: NSObject, Codable {
-    var id, type, traceID: String?
-    var totalPaymentsCount: Int?
-    var contract: Contract?
+   public var id, type, traceID: String?
+   public var totalPaymentsCount: Int?
+   public var contract: Contract?
 
     enum CodingKeys: String, CodingKey {
         case id, type
@@ -75,8 +75,8 @@ extension PaymentAgreement {
 }
 
 // MARK: - Contract
-@objcMembers class Contract: NSObject, Codable {
-    var id, customerID, type: String?
+@objcMembers public class Contract: NSObject, Codable {
+    public var id, customerID, type: String?
 
     enum CodingKeys: String, CodingKey {
         case id
