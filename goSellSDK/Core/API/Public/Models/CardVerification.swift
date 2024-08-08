@@ -39,7 +39,7 @@
 	public let transactionDetails: TransactionDetails
     
     /// PaymentAgreement object
-    public let paymentAgreement: PaymentAgreement
+    public let paymentAgreement: PaymentAgreement?
 	
 	/// Customer, the cardholder.
 	public let customer: Customer
