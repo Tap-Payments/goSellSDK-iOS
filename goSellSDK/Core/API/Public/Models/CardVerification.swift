@@ -52,6 +52,9 @@
 	
 	/// Saved card.
 	public let card: SavedCard
+    
+    /// Post
+    public let post: TrackingURL?
 	
 	// MARK: - Private -
 	
@@ -71,6 +74,7 @@
 		case redirect			= "redirect"
 		case card				= "card"
         case paymentAgreement   = "payment_agreement"
+        case post               = "post"
 	}
 }
 
