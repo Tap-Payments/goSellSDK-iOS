@@ -5,7 +5,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 def shared_pods
     
-    pod 'CardIODynamic'
     pod 'EditableTextInsetsTextFieldV2'
     pod 'TapAdditionsKitV2'
     pod 'TapAlertViewControllerV2'
