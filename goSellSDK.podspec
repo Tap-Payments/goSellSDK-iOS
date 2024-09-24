@@ -6,7 +6,7 @@ Pod::Spec.new do |goSellSDK|
     goSellSDK.name                  = 'goSellSDK'
     goSellSDK.summary               = 'goSell SDK for iOS'
     goSellSDK.requires_arc          = true
-    goSellSDK.version               = '2.3.39'
+    goSellSDK.version               = '2.3.40'
     goSellSDK.license               = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author                = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
@@ -25,7 +25,6 @@ Pod::Spec.new do |goSellSDK|
 		core.source_files			= 'goSellSDK/Core/**/*.{swift}'
 		core.ios.resource_bundle	= { 'goSellSDKResources' => ['goSellSDK/Core/UI/Internal/Resources/*.{xcassets,storyboard,xib,json}', 'goSellSDK/Core/UI/Internal/Resources/Localization/*.lproj'] }
 		
-		core.dependency 'CardIODynamic'
 		core.dependency 'EditableTextInsetsTextFieldV2'
 		core.dependency 'TapAdditionsKitV2'
 		core.dependency 'TapApplicationV2'
