@@ -1129,17 +1129,23 @@ internal extension Process {
 		
 		internal override func createPaymentOptionsRequest(for session: SessionProtocol, callingIfFailed closure: (String, String) -> Void) -> PaymentOptionsRequest? {
 			
-			guard let nonnullDataSource = session.dataSource else {
-				
-				closure("Error", "Payment data source cannot be nil.")
-				return nil
-			}
-			
-			guard let customer = nonnullDataSource.customer else {
-				
-				closure("Error", "Customer information must be provided.")
-				return nil
-			}
+            guard let nonnullDataSource = session.dataSource else {
+                
+                closure("Error", "Payment data source cannot be nil.")
+                return nil
+            }
+            
+            guard let customer = nonnullDataSource.customer else {
+                
+                closure("Error", "Customer information must be provided.")
+                return nil
+            }
+            
+            guard let currency = nonnullDataSource.currency else {
+                
+                closure("Error", "Currency must be provided.")
+                return nil
+            }
             
             if nonnullDataSource.mode == .invalidTransactionMode {
                 //closure("Error", "Not a valid transaction mode passed")
@@ -1147,8 +1153,31 @@ internal extension Process {
                 ErrorDataManager.handle(TapSDKError.init(type: TapSDKErrorType.invalidTrxMode), retryAction: nil, alertDismissButtonClickHandler: nil)
                 return nil
             }
-			
-			let paymentRequest = PaymentOptionsRequest(customer: customer.identifier)
+        
+            
+            let transactionMode                  = nonnullDataSource.mode        ?? .default
+            let merchantID                       = nonnullDataSource.merchantID    ?? nil
+            let shipping                         = nonnullDataSource.shipping    ?? nil
+            let taxes                            = nonnullDataSource.taxes       ?? nil
+            let destinations                     = nonnullDataSource.destinations       ?? nil
+            let paymentType                      = nonnullDataSource.paymentType       ?? nil
+            let topup                            = nonnullDataSource.topup       ?? nil
+            let supportedPaymentMethods:[String] = nonnullDataSource.supportedPaymentMethods?.map{ $0.uppercased() } ?? []
+            /// the API is using destinationsGroup not destinations
+            let destinationsGroup                = destinations
+            
+            let paymentRequest = PaymentOptionsRequest(transactionMode: transactionMode,
+                                                       amount:           nonnullDataSource.amount,
+                                                       items:            nonnullDataSource.items ?? [],
+                                                       shipping:         shipping,
+                                                       taxes:            taxes,
+                                                       currency:         currency,
+                                                       merchantID:       merchantID,
+                                                       customer:         customer.identifier,
+                                                       destinationGroup: destinationsGroup,
+                                                       paymentType:      paymentType,
+                                                       topup:            topup,
+            supportedPaymentMethods: supportedPaymentMethods)
 			
 			return paymentRequest
 		}
