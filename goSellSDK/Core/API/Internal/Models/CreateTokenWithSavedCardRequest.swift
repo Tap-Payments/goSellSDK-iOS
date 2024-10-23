@@ -14,6 +14,8 @@ internal struct CreateTokenWithSavedCardRequest: CreateTokenRequest {
     /// Saved card details.
     internal let savedCard: CreateTokenSavedCard
     
+    internal let merchant: Merchant?
+    
     internal let route: Route = .tokens
     
     // MARK: Methods
@@ -21,9 +23,9 @@ internal struct CreateTokenWithSavedCardRequest: CreateTokenRequest {
     /// Initializes the model with saved card.
     ///
     /// - Parameter savedCard: Saved card.
-    internal init(savedCard: CreateTokenSavedCard) {
-        
+    internal init(savedCard: CreateTokenSavedCard, merchant: Merchant?) {
         self.savedCard = savedCard
+        self.merchant = merchant
     }
     
     // MARK: - Private -
@@ -31,5 +33,6 @@ internal struct CreateTokenWithSavedCardRequest: CreateTokenRequest {
     private enum CodingKeys: String, CodingKey {
         
         case savedCard = "saved_card"
+        case merchant = "merchant"
     }
 }

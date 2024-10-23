@@ -14,6 +14,8 @@ internal struct CreateTokenWithCardDataRequest: CreateTokenRequest {
     /// Card to create token for.
     internal let card: CreateTokenCard
     
+    internal let merchant: Merchant?
+    
     internal let route: Route = .tokens
     
     // MARK: - Internal -
@@ -22,15 +24,15 @@ internal struct CreateTokenWithCardDataRequest: CreateTokenRequest {
     /// Initializes the request with card.
     ///
     /// - Parameter card: Card.
-    internal init(card: CreateTokenCard) {
-        
+    internal init(card: CreateTokenCard, merchant: Merchant?) {
         self.card = card
+        self.merchant = merchant
     }
     
     // MARK: - Private -
     
     private enum CodingKeys: String, CodingKey {
-        
         case card = "card"
+        case merchant = "merchant"
     }
 }

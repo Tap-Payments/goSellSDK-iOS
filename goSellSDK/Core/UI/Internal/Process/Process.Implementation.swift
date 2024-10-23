@@ -725,16 +725,21 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
 	private func startPayment(with savedCard: SavedCard, paymentOption: PaymentOption) {
 		
 		guard let customerIdentifier = self.process.externalSession?.dataSource?.customer?.identifier, let cardIdentifier = savedCard.identifier else { return }
-		
+        var merchant: Merchant?  = nil
+        if let merchantID = self.process.externalSession?.dataSource?.merchantID, merchantID != nil {
+            merchant = Merchant(identifier: merchantID!)
+        }
 		let card = CreateTokenSavedCard(cardIdentifier: cardIdentifier, customerIdentifier: customerIdentifier)
-		let request = CreateTokenWithSavedCardRequest(savedCard: card)
-		
+        let request = CreateTokenWithSavedCardRequest(savedCard: card , merchant: merchant)
 		self.dataManager.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: nil)
 	}
 	
 	private func startPaymentProcess(with card: CreateTokenCard, paymentOption: PaymentOption, saveCard: Bool) {
-		
-		let request = CreateTokenWithCardDataRequest(card: card)
+        var merchant: Merchant?  = nil
+        if let merchantID = self.process.externalSession?.dataSource?.merchantID, merchantID != nil {
+            merchant = Merchant(identifier: merchantID!)
+        }
+        let request = CreateTokenWithCardDataRequest(card: card, merchant: merchant)
 		self.dataManager.callTokenAPI(with: request, paymentOption: paymentOption, saveCard: saveCard)
 	}
     
@@ -849,7 +854,11 @@ internal final class CardSavingImplementation<HandlerMode: ProcessMode>: Process
 		
 		guard let selectedPaymentOption = cardPaymentOption.selectedPaymentOption else { return }
 		
-		let request = CreateTokenWithCardDataRequest(card: card)
+        var merchant: Merchant?  = nil
+        if let merchantID = self.process.externalSession?.dataSource?.merchantID, merchantID != nil {
+            merchant = Merchant(identifier: merchantID!)
+        }
+        let request = CreateTokenWithCardDataRequest(card: card, merchant: merchant)
 		self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: true)
 	}
 	
@@ -948,7 +957,11 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
             //Added by Floward tech team
             let saveCard = cardPaymentOption.cell?.saveCardSwitch?.isOn ?? false
             
-            let request = CreateTokenWithCardDataRequest(card: card)
+            var merchant: Merchant?  = nil
+            if let merchantID = self.process.externalSession?.dataSource?.merchantID, merchantID != nil {
+                merchant = Merchant(identifier: merchantID!)
+            }
+            let request = CreateTokenWithCardDataRequest(card: card, merchant: merchant)
             self.dataManager.callTokenAPI(with: request, paymentOption: selectedPaymentOption, saveCard: saveCard)
         }else if let _ = paymentOption as? ApplePaymentOptionTableViewCellModel { // the Apple pay option
             if self.dataManagerInterface.canStartApplePayPurchase(),
