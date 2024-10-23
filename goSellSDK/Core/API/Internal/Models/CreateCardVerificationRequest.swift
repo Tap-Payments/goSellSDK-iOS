@@ -25,6 +25,8 @@ internal struct CreateCardVerificationRequest: Encodable {
 	internal let redirect: TrackingURL
     
     internal let post: TrackingURL?
+    
+    internal let merchant: Merchant?
 	
 	// MARK: - Private -
 	
@@ -38,5 +40,6 @@ internal struct CreateCardVerificationRequest: Encodable {
 		case source				= "source"
         case redirect           = "redirect"
         case post               = "post"
+        case merchant           = "merchant"
 	}
 }
