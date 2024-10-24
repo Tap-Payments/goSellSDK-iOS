@@ -1221,10 +1221,16 @@ internal extension Process {
 			let redirect            = TrackingURL(url: self.process.webPaymentHandlerInterface.returnURL)
 			let currency			= self.selectedCurrency.currency
             var post: TrackingURL?  = nil
-            
+            var merchant: Merchant?  = nil
+
             if let postURL = dataSource.postURL, let nonnullPostURL = postURL {
                 post = TrackingURL(url: nonnullPostURL)
             }
+            
+            if let merchantID = dataSource.merchantID, merchantID != nil {
+                merchant = Merchant(identifier: merchantID!)
+            }
+            
 			
 			let verificationRequest = CreateCardVerificationRequest(is3DSecureRequired:	requires3DSecure,
 																	shouldSaveCard:		shouldSaveCard,
@@ -1233,7 +1239,8 @@ internal extension Process {
 																	currency:			currency,
 																	source:				source,
                                                                     redirect:           redirect,
-                                                                    post:               post)
+                                                                    post:               post,
+                                                                    merchant:           merchant)
 			
 			APIClient.shared.createCardVerification(with: verificationRequest) { [weak self] (response, error) in
 				
