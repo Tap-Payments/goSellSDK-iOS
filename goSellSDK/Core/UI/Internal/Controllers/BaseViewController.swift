@@ -121,6 +121,7 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 		guard self.keyboardObserver == nil else { return }
 		
 		self.keyboardObserver = NotificationCenter.default.addObserver(forName: .tap_keyboardWillChangeFrameNotificationName, object: nil, queue: .main) { [weak self] (notification) in
+            // Added to prevent animation in reduced motion enabled 
             if UIAccessibility.isReduceMotionEnabled { return }
 			self?.keyboardWillChangeFrame(notification)
 		}
