@@ -338,6 +338,8 @@ extension ExampleViewController: SessionDataSource {
         return false
     }*/
     
+    
+    
     internal var applePayMerchantID: String
     {
         return "merchant.tap.gosell"
