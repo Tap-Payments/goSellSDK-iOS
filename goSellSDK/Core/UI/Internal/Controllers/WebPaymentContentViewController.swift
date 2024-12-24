@@ -84,7 +84,7 @@ internal final class WebPaymentContentViewController: BaseViewController {
     private var webView: WKWebView = {
         
         let configuration = WKWebViewConfiguration()
-        configuration.suppressesIncrementalRendering = true
+        //configuration.suppressesIncrementalRendering = true
         
         let result = WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
         
