@@ -42,13 +42,21 @@ extension AmountedCurrencyTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
         
-        self.currencyNameLabel?.text	= self.model?.currencyNameText
-        self.amountLabel?.text 			= self.model?.amountText
+        self.currencyNameLabel?.text = self.model?.currencyNameText
 		
 		let cellStyle = Theme.current.caseSelectionCellStyle
 		
 		self.currencyNameLabel?.setTextStyle(cellStyle.title)
-		self.amountLabel?.setTextStyle(cellStyle.value)
+
+        let amountText = self.model?.amountText ?? ""
+        if let attributedTitle = self.model?.amountText.getAttributedTitleForSAR() {
+            self.amountLabel?.attributedText = attributedTitle
+        } else {
+            self.amountLabel?.attributedText = nil
+            self.amountLabel?.text = amountText
+            self.amountLabel?.setTextStyle(cellStyle.value)
+        }
+
 		
 		self.separatorView?.backgroundColor = cellStyle.separator[Process.shared.appearance].color
 		

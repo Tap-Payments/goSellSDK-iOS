@@ -26,8 +26,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Serializer.markAllCustomersAsSandboxIfNotYet()
         
-        GoSellSDK.secretKey = SecretKey(sandbox:    "sk_test_*********",
-                                        production:    "sk_live_*********")
+        GoSellSDK.secretKey = SecretKey(sandbox:    "sk_test_cvSHaplrPNkJO7dhoUxDYjqA",
+                                        production:    "sk_live_V4UDhitI0r7sFwHCfNB6xMKp")
     }
     
     internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {

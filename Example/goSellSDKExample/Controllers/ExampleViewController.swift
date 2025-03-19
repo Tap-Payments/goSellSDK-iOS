@@ -86,7 +86,7 @@ internal class ExampleViewController: BaseViewController {
         session.dataSource = self
         session.delegate = self
         payButton?.dataSource = self
-        let topup:Topup = try! .init(walletID: "wallet_xx", reference: .init(transactionNumber: "trx_xx", orderNumber: "ord_xx"), application: .init(amount: 1, currency: .init(isoCode: "KWD")), metdata: ["key":"value"], post: .init(url: URL(string: "https://www.post.com")!))
+        let topup:Topup = try! .init(walletID: "wallet_xx", reference: .init(transactionNumber: "trx_xx", orderNumber: "ord_xx"), application: .init(amount: 1, currency: .init(isoCode: "SAR")), metdata: ["key":"value"], post: .init(url: URL(string: "https://www.post.com")!))
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try! encoder.encode(topup)
