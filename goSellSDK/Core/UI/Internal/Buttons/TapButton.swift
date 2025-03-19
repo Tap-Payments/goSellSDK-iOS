@@ -84,8 +84,12 @@ internal class TapButton: TapNibView {
     }
     
     internal func setTitle(_ title: String?) {
-		
-		self.internalButton?.tap_title = title
+        if let attributedTitle = title?.getAttributedTitleForSAR() {
+            self.internalButton?.tap_attributedTitle = attributedTitle
+        } else {
+            self.internalButton?.tap_attributedTitle = nil
+            self.internalButton?.tap_title = title
+        }
     }
     
     // MARK: - Private -

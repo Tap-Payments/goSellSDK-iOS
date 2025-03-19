@@ -32,11 +32,27 @@ extension CurrencySelectionTableViewCell: LoadingWithModelCell {
 		
 		let style = Theme.current.paymentOptionsCellStyle.currency
 		
-        self.transactionCurrencyLabel?.text		= self.model?.displayedTransactionCurrencyText
-		self.transactionCurrencyLabel?.setTextStyle(style.transactionCurrencyTextStyle)
-		
-        self.userSelectedCurrencyLabel?.text	= self.model?.displayedUserCurrencyText
-		self.userSelectedCurrencyLabel?.setTextStyle(style.selectedCurrencyTextStyle)
+        
+        if let displayedTransactionCurrencyText = self.model?.displayedTransactionCurrencyText?.getAttributedTitleForSAR() {
+            self.transactionCurrencyLabel?.attributedText = displayedTransactionCurrencyText
+        } else {
+            self.transactionCurrencyLabel?.attributedText = nil
+            self.transactionCurrencyLabel?.text = self.model?.displayedTransactionCurrencyText
+            self.transactionCurrencyLabel?.setTextStyle(style.transactionCurrencyTextStyle)
+        }
+        
+
+     
+        if  let displayedUserCurrencyText = self.model?.displayedUserCurrencyText?.getAttributedTitleForSAR() {
+            self.userSelectedCurrencyLabel?.attributedText = displayedUserCurrencyText
+        } else {
+            self.userSelectedCurrencyLabel?.attributedText = nil
+            self.userSelectedCurrencyLabel?.text = self.model?.displayedUserCurrencyText
+            self.userSelectedCurrencyLabel?.setTextStyle(style.selectedCurrencyTextStyle)
+        }
+        
+
+
 		
         self.billImageView?.image 	= self.model?.billImage
         self.arrowImageView?.image	= self.model?.arrowImage
