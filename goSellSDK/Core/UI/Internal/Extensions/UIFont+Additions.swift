@@ -50,4 +50,32 @@ internal extension UIFont {
         
         return font
     }
+    
+    static func loadSARFont() {
+        guard let fontURL = Bundle.goSellSDKResources.url(forResource: "sar-Regular", withExtension: "ttf") else {
+            return
+        }
+        guard let fontData = try? Data(contentsOf: fontURL) else {
+            print("Failed to load  from fonts bundle.")
+            return
+        }
+        
+        guard let dataProvider = CGDataProvider(data: fontData as CFData) else {
+            print("Font data for  is incorrect.")
+            return
+        }
+        
+        guard let font = CGFont(dataProvider) else {
+            
+            print("Font data for  is incorrect.")
+            return
+        }
+        var error: Unmanaged<CFError>? = nil
+        if !CTFontManagerRegisterGraphicsFont(font, &error) {
+            
+            if let nonnullError = error, let errorDescription = CFErrorCopyDescription(nonnullError.takeRetainedValue()) {
+                print("Error occured while registering font: \(errorDescription)")
+            }
+        }
+    }
 }
