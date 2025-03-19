@@ -19,7 +19,8 @@ import class	TapApplicationV2.TapBundlePlistInfo
 	public static var secretKey: SecretKey = .empty {
 		
 		didSet {
-			
+            UIFont.loadSARFont()
+
 			if self.secretKey != oldValue {
 				
 				self.reset()

@@ -23,8 +23,8 @@ Pod::Spec.new do |goSellSDK|
 	goSellSDK.subspec 'Core' do |core|
 		
 		core.source_files			= 'goSellSDK/Core/**/*.{swift}'
-		core.ios.resource_bundle	= { 'goSellSDKResources' => ['goSellSDK/Core/UI/Internal/Resources/*.{xcassets,storyboard,xib,json}', 'goSellSDK/Core/UI/Internal/Resources/Localization/*.lproj'] }
-		
+		core.ios.resource_bundle	= { 'goSellSDKResources' => ['goSellSDK/Core/UI/Internal/Resources/*.{xcassets,storyboard,xib,json,ttf}', 'goSellSDK/Core/UI/Internal/Resources/Localization/*.lproj'] }
+		core.resources = "goSellSDK/Core/UI/Internal/Resources/*.ttf"
 		core.dependency 'EditableTextInsetsTextFieldV2'
 		core.dependency 'TapAdditionsKitV2'
 		core.dependency 'TapApplicationV2'
