@@ -100,10 +100,22 @@ internal class BaseViewController: UIViewController {
             endKeyboardFrame = window.convert(endKeyboardFrame, to: strongSelf.view)
             
             let screenSize = strongSelf.view.bounds.size
-			
-			let offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
-			let keyboardIsShown = offset > 0.0
-			
+            
+            // Fix for cross-fade animation issue
+            let offset: CGFloat
+            // Check if this might be a cross-fade animation with a zero frame
+            if endKeyboardFrame.equalTo(.zero) {
+                // For cross-fade animation with zero frame, set offset to 0
+                offset = 0.0
+            } else if endKeyboardFrame.origin.y > screenSize.height {
+                // For regular keyboard hiding animation
+                offset = 0.0
+            } else {
+                offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
+            }
+            
+            let keyboardIsShown = offset > 0.0
+            
             let animationDuration = (userInfo[keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
             var animationCurve: UIView.AnimationOptions
             if let animationCurveRawValue = ((userInfo[keyboardAnimationCurveUserInfoKey]) as? NSNumber)?.intValue {

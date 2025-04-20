@@ -121,8 +121,6 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 		guard self.keyboardObserver == nil else { return }
 		
 		self.keyboardObserver = NotificationCenter.default.addObserver(forName: .tap_keyboardWillChangeFrameNotificationName, object: nil, queue: .main) { [weak self] (notification) in
-            // Added to prevent animation in reduced motion enabled 
-            if UIAccessibility.isReduceMotionEnabled { return }
 			self?.keyboardWillChangeFrame(notification)
 		}
     }
@@ -162,10 +160,18 @@ internal class BaseViewController: UIViewController, LocalizationObserver, Layou
 			endKeyboardFrame = window.convert(endKeyboardFrame, to: strongSelf.view)
 			
 			let screenSize = strongSelf.view.bounds.size
-			
-			let offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
-			let keyboardIsShown = offset > 0.0
-			
+
+            let offset: CGFloat
+            if endKeyboardFrame.equalTo(.zero) {
+                offset = 0.0
+            } else if endKeyboardFrame.origin.y > screenSize.height {
+                offset = 0.0
+            } else {
+                offset = max(screenSize.height - endKeyboardFrame.origin.y, 0.0)
+            }
+            
+            let keyboardIsShown = offset > 0.0
+            
 			if let controllerWindow = self?.view.window, keyboardIsShown && (self?.ignoresKeyboardEventsWhenWindowIsNotKey ?? false) && !controllerWindow.isKeyWindow { return }
 			
 			let animationDuration = (userInfo[keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
