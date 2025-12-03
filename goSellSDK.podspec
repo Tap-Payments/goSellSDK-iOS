@@ -2,21 +2,19 @@ Pod::Spec.new do |goSellSDK|
     
     goSellSDK.platform              = :ios
     goSellSDK.ios.deployment_target = '11.0'
-	goSellSDK.swift_versions        = ['4.0', '4.2', '5.0']
+	goSellSDK.swift_versions        = ['4.0', '4.2', '5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8', '5.9']
     goSellSDK.name                  = 'goSellSDK'
     goSellSDK.summary               = 'goSell SDK for iOS'
     goSellSDK.requires_arc          = true
-    goSellSDK.version               = '2.3.46'
+    goSellSDK.version               = '2.3.47'
     goSellSDK.license               = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author                = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
     goSellSDK.source                = { :git => 'https://github.com/Tap-Payments/goSellSDK-iOS.git', :tag => goSellSDK.version.to_s }
 
 
-    goSellSDK.pod_target_xcconfig = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
-    goSellSDK.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+    # Removed ARM64 exclusion to support both Intel and M1 Macs
+    # Previous exclusion was a workaround for older CocoaPods versions
 
 	goSellSDK.default_subspec		= 'Core'
 	
