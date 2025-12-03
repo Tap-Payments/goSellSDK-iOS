@@ -5,8 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class    Crashlytics.Crashlytics
-import class    Fabric.Fabric
+//import class    Crashlytics.Crashlytics
+//import class    Fabric.Fabric
 import class    goSellSDK.GoSellSDK
 import class    goSellSDK.SecretKey
 import class    UIKit.UIApplication.UIApplication
@@ -22,7 +22,7 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internal func applicationDidFinishLaunching(_ application: UIApplication) {
         
-        Fabric.with([Crashlytics.self])
+//        Fabric.with([Crashlytics.self])
         
         Serializer.markAllCustomersAsSandboxIfNotYet()
         
