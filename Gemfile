@@ -1,3 +1,4 @@
 source "https://rubygems.org"
 
-gem 'cocoapods', :git => 'https://github.com/CocoaPods/CocoaPods.git', :tag => '1.7.0.beta.3'
+gem 'cocoapods', '~> 1.15'
+gem 'bigdecimal' # Required for Ruby 3.4+
