@@ -69,8 +69,13 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
            // self.arrowImageView?.image  = self.model?.arrowImage
             self.backgroundColor = UIColor.clear
             
-            // Hide the apple pay button if the device is not supporting Apple pay at all
-            self.isHidden = !PKPaymentAuthorizationViewController.canMakePayments()
+            // Only hide Apple Pay if setup is not enabled - allow setup buttons to show
+            let enableApplePaySetup = Process.shared.externalSession?.dataSource?.enableApplePaySetup ?? false
+            if !enableApplePaySetup {
+                self.isHidden = !PKPaymentAuthorizationViewController.canMakePayments()
+            } else {
+                self.isHidden = false // Always show when setup is enabled
+            }
             
         }
     }

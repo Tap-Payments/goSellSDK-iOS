@@ -30,6 +30,9 @@ import TapCardVlidatorKit_iOS
     /// The apple pay merchanrt id registered in the Apple developer account. If not provided, the apple pay option will not be shown
     @objc optional var applePayMerchantID: String { get }
     
+    /// Defines if Apple Pay setup should be shown when Apple Pay needs setup. If `true`, shows setup option. If `false` or not implemented, skips Apple Pay when setup is needed. Default is `false`.
+    @objc optional var enableApplePaySetup: Bool { get }
+    
     // /// The type of the apple pay you want to show to user. By default it is 'Buy with Apple Pay'
    // @objc optional var applePayButtonType: PKPaymentButtonType { get }
     
