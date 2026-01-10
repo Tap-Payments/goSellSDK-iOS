@@ -624,6 +624,10 @@ extension ExampleViewController: SessionDelegate {
             Serializer.serialize(self.paymentSettings)
         }
     }
+    
+    var enableApplePaySetup: Bool {
+        return true
+    }
 }
 
 // MARK: - SessionAppearance

@@ -17,8 +17,7 @@ A library that fully covers payment/authorization/card saving process inside you
 2. [Installation](#installation)
    1. [Installation with CocoaPods](#installation_with_cocoapods)
    2. [Installation with Carthage](#installation_with_carthage)
-   3. [M1 based Macs](#M1_based_Macs)
-   4. [Installation with App Clip](#Installation_To_App_Clip)
+   3. [Installation with App Clip](#Installation_To_App_Clip)
 3. [Setup](#setup)
    1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
    2. [goSellSDK Class Methods](#setup_gosellsdk_class_methods)
@@ -163,26 +162,6 @@ target 'MyApp' do
 end
 
 ```
-
-<a name="setup"></a>
-
-## M1 based Macs
-
-You may face a compilation error when compiled using M1 based Mac devices, to solve this please follow these steps:
-
-1. Close the Xcode.
-  
-2. Go to the `application` folder.
-  
-3. Find the `Xcode` icon.
-  
-4. Right click on Xcode icon.
-  
-5. Choose `Get info`
-  
-6. Check the option `Open using Rosetta`
-
-![img](https://i.ibb.co/vQDnnwG/Stephen-Mickelsen-2-1645220554524.png)
 
 ## Installation To App Clip
 
@@ -372,6 +351,23 @@ For those who would like to keep their design and start the SDK process manually
    2. The customer is paying with a currency that has Apple Pay option enabled from our side.
    3. The customer paying already activate Apple pay in his device.
    4. The customer paying has already added at least one valid card in his Apple Wallet with one our Apple pay payment networks.
+
+### Apple Pay Setup Option
+
+Starting from version 2.2.39+, the SDK supports showing Apple Pay setup button when Apple Pay is not properly configured on the customer's device. This allows customers to set up Apple Pay directly from your payment flow.
+
+**How it works:**
+- When `enableApplePaySetup` is set to `true` in your SessionDataSource, the SDK will show an Apple Pay setup button even if Apple Pay is not fully configured
+- Tapping the setup button will open the system Apple Pay setup flow
+- If `enableApplePaySetup` is `false` (default), Apple Pay option will be hidden when setup is needed
+
+**Implementation:**
+```swift
+// In your SessionDataSource implementation
+var enableApplePaySetup: Bool {
+    return true // Enable Apple Pay setup option
+}
+```
 
 
 
@@ -756,6 +752,12 @@ The following table describes its structure and specifies which fields are requi
         <td><sub><b>NSString</b></sub></td><td><sub><b>String</b></sub></td>
         <td colspan=3><sub><i>false</i></sub></td>
         <td align="left"><sub>Defines the Apple pay merchant id you get from Apple developer account</sub></td>
+    </tr>
+	<tr>
+        <td><sub><i>enableApplePaySetup</i></sub></td>
+        <td><sub><b>BOOL</b></sub></td><td><sub><b>Bool</b></sub></td>
+        <td colspan=3><sub><i>false</i></sub></td>
+        <td align="left"><sub>Defines if Apple Pay setup should be shown when Apple Pay needs setup. If `true`, shows setup option. If `false` or not implemented, skips Apple Pay when setup is needed. Default is `false`.</sub></td>
     </tr>
 	<tr>
         <td><sub><i>allowedCadTypes</i></sub></td>
