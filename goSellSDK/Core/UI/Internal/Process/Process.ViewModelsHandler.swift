@@ -470,8 +470,9 @@ internal extension Process {
             
             let savedCards = self.process.dataManagerInterface.recentCards.filter(currenciesFilter).sorted(by: sortingClosure)
             let webPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .web).filter(currenciesFilter).sorted(by: sortingClosure)
-            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments() ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
+            let applePaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure)
             let cardPaymentOptions = self.process.dataManagerInterface.paymentOptions(of: .card).filter(currenciesFilter).sorted(by: sortingClosure)
+            
             let hasApplaPaymentOption = applePaymentOptions.count > 0 && ((Process.shared.process.externalSession?.dataSource?.applePayMerchantID ?? "").hasPrefix("merchant."))
             
             let hasSavedCards = savedCards.count > 0
@@ -515,10 +516,16 @@ internal extension Process {
                 applePaymentOptions.forEach {
                     
                     let applePayModel = self.applePaymentCellModel(with: $0)
-                    if !applePayModel.isApplePayNeedsSetup() {
-                        applePayModel.indexPath = self.nextIndexPath(for: result)
-                        result.append(applePayModel)
+                    
+                    // Check if Apple Pay setup is enabled from the library configuration
+                    let enableApplePaySetup = Process.shared.externalSession?.dataSource?.enableApplePaySetup ?? false
+                    // If setup is not enabled and Apple Pay needs setup, skip this option
+                    if !enableApplePaySetup && applePayModel.isApplePayNeedsSetup() {
+                        return
                     }
+                    
+                    applePayModel.indexPath = self.nextIndexPath(for: result)
+                    result.append(applePayModel)
                     
                 }
             }
@@ -731,11 +738,17 @@ internal extension Process {
                 applePaymentOptions.forEach {
                     
                     let applePayModel = self.applePaymentCellModel(with: $0)
+                    
+                    // Check if Apple Pay setup is enabled from the library configuration
+                    let enableApplePaySetup = Process.shared.externalSession?.dataSource?.enableApplePaySetup ?? false
+                    
+                    // If setup is not enabled and Apple Pay needs setup, skip this option
+                   if !enableApplePaySetup && applePayModel.isApplePayNeedsSetup() {
+                       return
+                   }
+                    
                     applePayModel.indexPath = self.nextIndexPath(for: result)
-                    if !applePayModel.isApplePayNeedsSetup() {
-                        applePayModel.indexPath = self.nextIndexPath(for: result)
-                        result.append(applePayModel)
-                    }
+                    result.append(applePayModel)
                 }
             }
             
