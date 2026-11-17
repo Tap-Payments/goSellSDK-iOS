@@ -42,4 +42,16 @@ internal class BaseNavigationController: UINavigationController {
         
         return InterfaceOrientationManager.shared.preferredInterfaceOrientationForPresentation(of: self)
     }
+    
+    internal override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        // The window may have changed between phone-sized and iPad-sized (folding a foldable iPhone).
+        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            
+            guard let strongSelf = self else { return }
+            InterfaceOrientationManager.shared.updateSupportedOrientations(after: strongSelf)
+        }
+    }
 }

@@ -1,0 +1,51 @@
+# goSellSDK example installed with Swift Package Manager.
+#
+# It builds the same app as ../Example (CocoaPods): the sources, storyboards and assets are shared
+# from ../Example/goSellSDKExample. goSellSDK comes from this repository as a local package, so
+# changes to the SDK show up here directly.
+#
+# The Xcode project is generated from this file with XcodeGen (https://github.com/yonaskolb/XcodeGen):
+#   cd ExampleSPM && xcodegen generate
+name: goSellSDKExampleSPM
+options:
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+packages:
+  goSellSDK:
+    path: ..
+targets:
+  goSellSDKExample:
+    type: application
+    platform: iOS
+    sources:
+      - path: ../Example/goSellSDKExample
+        excludes:
+          - "Supporting Files/Info.plist"
+          - "goSellSDKExample.entitlements"
+    dependencies:
+      - package: goSellSDK
+        product: goSellSDK
+    settings:
+      base:
+        PRODUCT_NAME: goSellSDKExample
+        PRODUCT_MODULE_NAME: goSellSDKExample
+        PRODUCT_BUNDLE_IDENTIFIER: company.tap.goSellSDKExamplee
+        INFOPLIST_FILE: ../Example/goSellSDKExample/Supporting Files/Info.plist
+        CODE_SIGN_ENTITLEMENTS: ../Example/goSellSDKExample/goSellSDKExample.entitlements
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: G46S76PUH4
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "4.2"
+        MARKETING_VERSION: "2.4.1"
+        CURRENT_PROJECT_VERSION: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+schemes:
+  goSellSDKExampleSPM:
+    build:
+      targets:
+        goSellSDKExample: all
+    run:
+      config: Debug
+    archive:
+      config: Release

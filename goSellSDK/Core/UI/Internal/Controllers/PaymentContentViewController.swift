@@ -44,7 +44,7 @@ internal class PaymentContentViewController: HeaderNavigatedViewController {
 			let paymentOptionsHeight = self.paymentOptionsViewController?.preferredContentSize.height ?? 0.0
 			let payButtonContainerHeight = self.payButtonContainerView?.bounds.size.height ?? 0.0
 			
-			let width = (self.view.window?.screen ?? UIScreen.main).bounds.size.width
+			let width = (self.viewIfLoaded?.window?.bounds ?? UIScreen.main.bounds).size.width
 			let height = ceil(headerHeight + paymentOptionsHeight + payButtonContainerHeight)
 			
 			return CGSize(width: width, height: height)

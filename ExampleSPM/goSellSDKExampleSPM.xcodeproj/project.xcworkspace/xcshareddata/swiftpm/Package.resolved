@@ -1,0 +1,140 @@
+{
+  "pins" : [
+    {
+      "identity" : "editabletextinsetstextfieldv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/EditableTextInsetsTextFieldV2.git",
+      "state" : {
+        "revision" : "ea6008fdc843b426769854d17b4ad5933c32f1a9",
+        "version" : "0.0.4"
+      }
+    },
+    {
+      "identity" : "tapadditionskitv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapAdditionsKitV2.git",
+      "state" : {
+        "revision" : "f13e76eef57162b92ca8ab0c48b677d0137779f5",
+        "version" : "0.0.22"
+      }
+    },
+    {
+      "identity" : "tapapplicationv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapApplicationV2.git",
+      "state" : {
+        "revision" : "889bc26361231add0b8c344d8cd22f4069b6768b",
+        "version" : "0.0.7"
+      }
+    },
+    {
+      "identity" : "tapbundlelocalizationv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapBundleLocalizationV2.git",
+      "state" : {
+        "revision" : "99dfb7722e8061b2988fc41d588ebb8671b2688e",
+        "version" : "0.0.4"
+      }
+    },
+    {
+      "identity" : "tapcardvlidatorkit-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapCardVlidatorKit-iOS.git",
+      "state" : {
+        "revision" : "b3550ce30b31ac8eb161ecf9d0c64317032f605b",
+        "version" : "1.0.27"
+      }
+    },
+    {
+      "identity" : "tapeditableview-iosv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapEditableView-iOSV2.git",
+      "state" : {
+        "revision" : "9da8df5bdd6e28d1eb8f8899632f28d9d8cf17b4",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "tapfontskitv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapFontsKitV2.git",
+      "state" : {
+        "revision" : "dcc895c260cfccd3592815cc0a1fb9bb67f1aac3",
+        "version" : "0.0.6"
+      }
+    },
+    {
+      "identity" : "tapglkitv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapGLKitV2.git",
+      "state" : {
+        "revision" : "deab818fef7361179318b7f275135d5a7cb4eeb6",
+        "version" : "0.0.4"
+      }
+    },
+    {
+      "identity" : "tapkeychainv2-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapKeychainV2-iOS.git",
+      "state" : {
+        "revision" : "2d67bdbd6236eba6114888f3b7ee910e4615817b",
+        "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "tapnetworkmanagerv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapNetworkManagerV2.git",
+      "state" : {
+        "revision" : "0f98073634cc700e4533b5edcae48f6f10f3468f",
+        "version" : "0.0.7"
+      }
+    },
+    {
+      "identity" : "tapnibviewv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapNibViewV2.git",
+      "state" : {
+        "revision" : "6e2bff001f8d21e787f28c532f628f0babb19f6a",
+        "version" : "0.0.4"
+      }
+    },
+    {
+      "identity" : "tapresponderchaininputviewv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapResponderChainInputViewV2.git",
+      "state" : {
+        "revision" : "57aa70742e601195428277abb40e441a30532eda",
+        "version" : "0.0.6"
+      }
+    },
+    {
+      "identity" : "tapsearchviewv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapSearchViewV2.git",
+      "state" : {
+        "revision" : "d848c155d0617d97d07d4641796ef7f9515d75e9",
+        "version" : "0.0.6"
+      }
+    },
+    {
+      "identity" : "tapswiftfixesv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapSwiftFixesV2.git",
+      "state" : {
+        "revision" : "d011672292eddfb7ab14f6dedc54f3531efeb8bf",
+        "version" : "1.0.6"
+      }
+    },
+    {
+      "identity" : "tapvisualeffectviewv2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tap-Payments/TapVisualEffectViewV2.git",
+      "state" : {
+        "revision" : "0aab00b1736f02d84b31ea85be6f3719be64f0fe",
+        "version" : "0.0.5"
+      }
+    }
+  ],
+  "version" : 2
+}

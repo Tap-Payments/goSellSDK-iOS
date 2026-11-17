@@ -182,7 +182,7 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 		let currentController = ResizablePaymentContainerViewController.tap_findInHierarchy()?.currentContentViewController as? NavigationContentViewController
 		
 		let topOffset = currentController?.contentTopOffset ?? 0.0
-		let screenBounds = UIScreen.main.bounds
+		let screenBounds = UIApplication.shared.tap_foregroundKeyWindow?.bounds ?? UIScreen.main.bounds
 		var result = screenBounds
 		result.origin.y += topOffset
 		result.size.height -= topOffset
@@ -196,9 +196,8 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
 	
 		controller.tap_showOnSeparateWindow(below: .tap_statusBar) { [unowned controller] (rootController) in
 			
-			rootController.allowedInterfaceOrientations = .portrait
-			rootController.preferredInterfaceOrientation = .portrait
-			rootController.canAutorotate = false
+			// Portrait on phones; follows the device on iPads and iPad-sized windows (unfolded foldables).
+			InterfaceOrientationManager.shared.configure(rootController)
 			
 			rootController.present(controller, animated: false, completion: nil)
 		}
@@ -343,7 +342,7 @@ internal class __ProcessImplementation<HandlerMode: ProcessMode>: NSObject, Proc
         self.dataManager.currentPaymentOption            = paymentOption
         
         ResizablePaymentContainerViewController.tap_findInHierarchy()?.makeFullscreen {
-            let asyncControllerFrame = PaymentOptionsViewController.tap_findInHierarchy()?.view.frame ?? UIScreen.main.bounds//self.process.loadingControllerFrame(coveringHeader: true)
+            let asyncControllerFrame = PaymentOptionsViewController.tap_findInHierarchy()?.view.frame ?? UIApplication.shared.tap_foregroundKeyWindow?.bounds ?? UIScreen.main.bounds//self.process.loadingControllerFrame(coveringHeader: true)
             if let nonNullSession = Process.shared.externalSession,
                let delegate = nonNullSession.delegate
             {

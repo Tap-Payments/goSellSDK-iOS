@@ -265,9 +265,9 @@ internal extension Process {
             {
                 if let appleViewModel:ApplePaymentOptionTableViewCellModel = cellViewModel as? ApplePaymentOptionTableViewCellModel
                 {
-                    if PKPaymentAuthorizationViewController.canMakePayments()
+                    if ApplePayAvailability.canMakePayments
                     {
-                        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: appleViewModel.applePayMappedSupportedNetworks)
+                        if ApplePayAvailability.canMakePayments(usingNetworks: appleViewModel.applePayMappedSupportedNetworks)
                         {
                             return true
                         }

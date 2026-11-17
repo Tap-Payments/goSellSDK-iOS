@@ -60,6 +60,23 @@ internal final class StatusPopupViewController: SeparateWindowViewController {
     
     // MARK: Methods
     
+    internal override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // The bar's background stays full width; its icon and close button stay out of the side
+        // safe-area insets (the camera on the side of an unfolded foldable iPhone in landscape).
+        if let iconContainer = self.iconImageView?.superview, let bar = iconContainer.superview {
+            
+            bar.tap_pinToHorizontalSafeArea(iconContainer, edges: [.leading])
+        }
+        
+        if let closeButton = self.closeButton, let bar = closeButton.superview {
+            
+            bar.tap_pinToHorizontalSafeArea(closeButton, edges: [.trailing])
+        }
+    }
+    
     internal func display(_ completion: TypeAlias.ArgumentlessClosure? = nil) {
         
         self.showExternally(completion: completion)

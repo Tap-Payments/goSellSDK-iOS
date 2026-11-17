@@ -99,6 +99,10 @@ internal final class Process {
 	
 	@discardableResult internal func start(_ session: SessionProtocol) -> Bool {
 		
+		// Start asking PassKit about Apple Pay now, off the main thread, so the answer is ready
+		// by the time the payment options are shown.
+		ApplePayAvailability.prefetch()
+		
 		self.transactionMode	= session.dataSource?.mode ?? .default
 		self.appearance			= self.obtainAppearanceMode(from: session)
 		
