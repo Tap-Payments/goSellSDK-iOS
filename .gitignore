@@ -71,3 +71,6 @@ Carthage
 docs/docsets/goSellSDK.docset/Contents/Resources/Documents/undocumented.json
 docs/undocumented.json
 .DS_Store
+
+# Tap keys for the example apps (copy Keys.example.json to Keys.json)
+Example/goSellSDKExample/Supporting Files/Keys.json

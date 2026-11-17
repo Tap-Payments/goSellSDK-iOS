@@ -1,0 +1,4 @@
+{
+  "sandboxSecretKey": "YOUR_SANDBOX_SECRET_KEY",
+  "productionSecretKey": "YOUR_PRODUCTION_SECRET_KEY"
+}

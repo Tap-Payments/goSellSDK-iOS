@@ -134,7 +134,13 @@ The repository has the same example app set up both ways:
 - `Example/` uses **CocoaPods**: run `pod install` in `Example`, then open `Example/goSellSDKExample.xcworkspace`.
 - `ExampleSPM/` uses **Swift Package Manager**: open `ExampleSPM/goSellSDKExampleSPM.xcodeproj`; Xcode resolves goSellSDK from this repository as a local package. The project is generated from `ExampleSPM/project.yml` with [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`cd ExampleSPM && xcodegen generate`).
 
-Both build the sources in `Example/goSellSDKExample`. Put your sandbox and production keys in `Example/goSellSDKExample/Supporting Files/AppDelegate.swift` before running a payment.
+Both build the sources in `Example/goSellSDKExample`. Before running a payment, add your keys:
+
+```bash
+cp "Example/goSellSDKExample/Supporting Files/Keys.example.json" "Example/goSellSDKExample/Supporting Files/Keys.json"
+```
+
+Then put your sandbox and production secret keys in `Keys.json`. The file is git-ignored, so your keys are never committed. A build step copies it into both example apps; without it the apps still build, with a warning, and use placeholder keys.
 
 <a name="installation_with_spm"></a>
 ## Installation with Swift Package Manager

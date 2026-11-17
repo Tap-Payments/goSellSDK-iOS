@@ -346,6 +346,7 @@
 				A4D5FE4D2083235E007D52F5 /* Resources */,
 				A499025420EA6A7F0062B3E9 /* Mark all FIXMEs as warning */,
 				6C2E03FD2AEB88150E9CC7A2 /* [CP] Embed Pods Frameworks */,
+				109B67FBB909288B1D0CF64E /* Copy Keys.json */,
 			);
 			buildRules = (
 			);
@@ -405,6 +406,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		109B67FBB909288B1D0CF64E /* Copy Keys.json */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Keys.json";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Keys.json is git-ignored; copy Keys.example.json to Keys.json and add your Tap keys.\nKEYS=\"${SRCROOT}/goSellSDKExample/Supporting Files/Keys.json\"\nif [ -f \"$KEYS\" ]; then\n  cp \"$KEYS\" \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Keys.json\"\nelse\n  echo \"warning: Keys.json not found. Copy Keys.example.json to Keys.json in Example/goSellSDKExample/Supporting Files and add your Tap keys.\"\nfi\n";
+		};
 		6C2E03FD2AEB88150E9CC7A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -736,6 +756,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = G46S76PUH4;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/goSellSDKExample/Supporting Files/Info.plist";
@@ -763,6 +784,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = G46S76PUH4;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/goSellSDKExample/Supporting Files/Info.plist";
