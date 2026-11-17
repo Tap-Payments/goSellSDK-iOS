@@ -1,0 +1,704 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0072426D5FB2105454644B34 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B60AE59E008F91CFA3067 /* ColorTableViewCell.swift */; };
+		0F862DCC87B3E643A61CA167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2ADE799B229622A9A2CF8D /* Assets.xcassets */; };
+		1276FB6B62122DD3347126D2 /* sampleAppleToken.txt in Resources */ = {isa = PBXBuildFile; fileRef = A7796975C5FC9B213DF706FB /* sampleAppleToken.txt */; };
+		12FF2A64569056EB7E5FA8D6 /* PaymentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E4B0B58BFE46C86C925FB /* PaymentItemTableViewCell.swift */; };
+		2BC25637A20C0B6A6B59DFC2 /* TaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5188505325F599F6332CD8A4 /* TaxTableViewCell.swift */; };
+		2C396E1EB04868498198CABB /* DestinationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B25BFE4925CF0CFA9FF002E /* DestinationViewControllerDelegate.swift */; };
+		2E1F38BB70190FCB769004CF /* CustomersListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0695A0F8F696EB373D8FDD1A /* CustomersListViewControllerDelegate.swift */; };
+		328E0375776FDB56FA17A2F0 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3BD23D423D690AEAF3110 /* AppearanceSettings.swift */; };
+		32B8B92F4734DF82ED7B78AD /* ShippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA9F9016E767E6F04F0D3AD /* ShippingTableViewCell.swift */; };
+		36C708E7FB8B47C6D11BE9BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49986C1AE0EEE07514EBCD8 /* AppDelegate.swift */; };
+		378B59D4E63232D61D4D4EA1 /* Encodable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFCF5BD6E4CB9A24831CC7D /* Encodable+Additions.swift */; };
+		38111174B983929B37DED3C6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5581B9787E264F357742AE /* SettingsTableViewController.swift */; };
+		3A0DECB0C6797689D8E331E2 /* FontSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A49256F53A4088EC2FE501 /* FontSelectionTableViewController.swift */; };
+		444264F67588A443127BB4E3 /* ColorSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911A51B53B9D3E6124EF60A /* ColorSelectionTableViewController.swift */; };
+		49058E5419D2A1FBB3EB7D20 /* EnvironmentCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A804B4D1747884DC1D6F835 /* EnvironmentCustomer.swift */; };
+		4C98F01DEA0440A7A1B9A6A1 /* TaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F780EF66618BF84A1C8C2B /* TaxViewController.swift */; };
+		4DF42CDC83DAFB650F3AA47F /* ShippingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C4E424630965519E595F3 /* ShippingViewController.swift */; };
+		4E48A212D73AE2ABEA2C4512 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3B71F44626A35B6A0EE53 /* Settings.swift */; };
+		4FD3FDD12C3C1E024D643150 /* CustomerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF23C9AE0CF508ACF16F7918 /* CustomerViewControllerDelegate.swift */; };
+		50DD4F083EF9C05615D9B6F2 /* PaymentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC27A9135E5E3D5184B19D91 /* PaymentItemViewController.swift */; };
+		50FC0913E9A03A8C4D09D88F /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6D2C6DD230447F81B4CE4 /* ExampleViewController.swift */; };
+		57624D89C5B98B9F10CEE62F /* goSellSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 67FE51FC9E90F91182539BAA /* goSellSDK */; };
+		5C4BA988A02A8FED59E3867F /* CaseSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142ACE15BE435DE258383DB1 /* CaseSelectionTableViewController.swift */; };
+		603C768080851DBA4DAFE8F6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899C89949CB16C8C2710528C /* BaseViewController.swift */; };
+		60D488317C7EE8362B5ED8F7 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6D2A3895815D7A8732A4D0 /* FontTableViewCell.swift */; };
+		650860F9B1760C0B84164DBB /* SerializationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE29C69C8EA2F8F023FF4C /* SerializationHelper.swift */; };
+		65FE2BAAC4CE6A046AC5C2C0 /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8BA22B1CBF91FECA7BD87 /* GlobalSettings.swift */; };
+		683EE87EF471F0C5AC1630C3 /* Currency+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B309FFE33D9F4943AEB03D /* Currency+Additions.swift */; };
+		6A2F3E79E1887BA47BCEF414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F53C0F7783F99BD45BA1E792 /* LaunchScreen.storyboard */; };
+		6D3F46D2907325CBCC04CBA8 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B09DCE65B125C893BA7DE /* Serializer.swift */; };
+		7223A998F8C7147A39D3F0C3 /* Decodable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B970B3F3546D69EB40D1AD0 /* Decodable+Additions.swift */; };
+		73018B50EE3A7F447AAA65C2 /* SeguePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE2BB7341F9ED3AD89778D /* SeguePresenter.swift */; };
+		7704ABEC5543463AAE7CAC66 /* InputFieldObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD760848AA9EECD2BE2DFB7 /* InputFieldObserver.swift */; };
+		78B8197C7FAA39104C3EE7C6 /* TaxViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183277D88AA0D4C729CCB11F /* TaxViewControllerDelegate.swift */; };
+		89D206699393EEC7B0FFB25C /* DataSourceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435F75FCDC1400C2D6711C5 /* DataSourceSettings.swift */; };
+		8A4977F560F9D906B07A4A07 /* GroupHeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE23688A87700DC0B0076B23 /* GroupHeaderCellModel.swift */; };
+		8B3960E0B24FA345A935E203 /* Measurement+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEB58FA9151CBA040309119 /* Measurement+Additions.swift */; };
+		8DE621311F4E875153D793BF /* UIBlurEffect.Style+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D82582206AC33A7566AD2D3 /* UIBlurEffect.Style+Additions.swift */; };
+		8EFA37106BA4B48A8C990946 /* PlainAmountTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACD08DC72749642848C7D84 /* PlainAmountTableViewCellModel.swift */; };
+		8F19A6EE678FAC248B15E385 /* ModalNavigationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8073339F46721AD256D68A77 /* ModalNavigationTableViewController.swift */; };
+		907D09D4CA46A437584F3852 /* PaymentItemTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD4130BEFAAD706CFAF83D /* PaymentItemTableViewCellModel.swift */; };
+		974CB33C461A13138922F39B /* CaseSelectionTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401F82E3E286E0E490E7877 /* CaseSelectionTableViewControllerDelegate.swift */; };
+		98EEDC92846D465EF69F01B9 /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D963A57837876E6A9D6E8F1 /* CustomerTableViewCell.swift */; };
+		9B214C73ED0709273DE28244 /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E062482FF4C785C7E880BD /* TableViewCellModel.swift */; };
+		9CC385C726117DB3E3F5EC92 /* PaymentItemsTableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9C88A1062622CE46C6FFF /* PaymentItemsTableViewHandler.swift */; };
+		A37AA8824493A9D753752F4D /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367498BA618F3CC10556E542 /* CustomerViewController.swift */; };
+		A67E2E115C01D2ED7EC1F555 /* ShippingViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E1BCC42F9DB218819F9FC /* ShippingViewControllerDelegate.swift */; };
+		A9148F3BBBFA902D0FAC0B7C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95CCA62199C0DA93637917 /* Color.swift */; };
+		AAD3D532C4229C0D1DAC4779 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7B6CC22E16E01BF7652BC /* DestinationViewController.swift */; };
+		B41E5C93290DC0767839BD4A /* UIEdgeInsets+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740163655A12232FF8A2C52 /* UIEdgeInsets+Additions.swift */; };
+		B71E83396DC6ABC55E92C824 /* CustomersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09402C28D48911881772F58 /* CustomersListViewController.swift */; };
+		B77A0E69C0F560710109D9A3 /* SavedCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2106D48CBFCCA36E7F59A68C /* SavedCardCell.swift */; };
+		C1D3477598ED93AFB8BD29C7 /* SettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE458E3C27C0D76BADD3A5C7 /* SettingsTableViewControllerDelegate.swift */; };
+		C673C1895D86867CD31AB456 /* DestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB59A8DD6ED0261202DAC5A /* DestinationTableViewCell.swift */; };
+		D800710B92416404EF89798A /* GroupHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E0101E1A2C95B11FEC0F8 /* GroupHeaderCell.swift */; };
+		DBA919C32FFA43E94B319EFC /* PlainAmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5363F3823B6E8D7C43AF7B19 /* PlainAmountTableViewCell.swift */; };
+		DBCF135682F3F595EF329745 /* SavedCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B842CE5EE5FFA86AF4813B /* SavedCardsTableViewController.swift */; };
+		E1D41C28DD5148B9500B2D7B /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349272A25B74D7B4567DB095 /* TitleTableViewCell.swift */; };
+		E3483DF2EE87E3DD172EF0E6 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1D145D8E88CB7EBA455EC /* Language.swift */; };
+		E7FF237D0DF4EABBE64A0DD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB0080134D0565DE0D4713FB /* Main.storyboard */; };
+		EF25E56DC58487777BFC2001 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549D5E3F7E6145594D058BC4 /* SelectableCell.swift */; };
+		F2E2B74C375BA3807AA7358E /* PaymentItemViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA176AF685B77D2861F0358 /* PaymentItemViewControllerDelegate.swift */; };
+		F972D707B96762AF23D24199 /* Notification.Name+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF5842B4B1836EF00BF310 /* Notification.Name+Additions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		03F780EF66618BF84A1C8C2B /* TaxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxViewController.swift; sourceTree = "<group>"; };
+		04B309FFE33D9F4943AEB03D /* Currency+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Additions.swift"; sourceTree = "<group>"; };
+		0695A0F8F696EB373D8FDD1A /* CustomersListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersListViewControllerDelegate.swift; sourceTree = "<group>"; };
+		06FE29C69C8EA2F8F023FF4C /* SerializationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationHelper.swift; sourceTree = "<group>"; };
+		074C4E424630965519E595F3 /* ShippingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingViewController.swift; sourceTree = "<group>"; };
+		0AB59A8DD6ED0261202DAC5A /* DestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationTableViewCell.swift; sourceTree = "<group>"; };
+		11A49256F53A4088EC2FE501 /* FontSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionTableViewController.swift; sourceTree = "<group>"; };
+		142ACE15BE435DE258383DB1 /* CaseSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseSelectionTableViewController.swift; sourceTree = "<group>"; };
+		183277D88AA0D4C729CCB11F /* TaxViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxViewControllerDelegate.swift; sourceTree = "<group>"; };
+		2106D48CBFCCA36E7F59A68C /* SavedCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCardCell.swift; sourceTree = "<group>"; };
+		25C7B6CC22E16E01BF7652BC /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
+		29F8BA22B1CBF91FECA7BD87 /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
+		2BB1D145D8E88CB7EBA455EC /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		2C2E4B0B58BFE46C86C925FB /* PaymentItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemTableViewCell.swift; sourceTree = "<group>"; };
+		2E29EAFBAAA3B814426AF109 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2FFCF5BD6E4CB9A24831CC7D /* Encodable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Additions.swift"; sourceTree = "<group>"; };
+		349272A25B74D7B4567DB095 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		367498BA618F3CC10556E542 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
+		3B5E1BCC42F9DB218819F9FC /* ShippingViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingViewControllerDelegate.swift; sourceTree = "<group>"; };
+		3D5581B9787E264F357742AE /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		42D3F3AD1DE2FDCF0C839BFC /* goSellSDKExample.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = goSellSDKExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4435F75FCDC1400C2D6711C5 /* DataSourceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceSettings.swift; sourceTree = "<group>"; };
+		45EF5842B4B1836EF00BF310 /* Notification.Name+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Additions.swift"; sourceTree = "<group>"; };
+		47E3B71F44626A35B6A0EE53 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		4B4B60AE59E008F91CFA3067 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
+		5188505325F599F6332CD8A4 /* TaxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxTableViewCell.swift; sourceTree = "<group>"; };
+		5363F3823B6E8D7C43AF7B19 /* PlainAmountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAmountTableViewCell.swift; sourceTree = "<group>"; };
+		549D5E3F7E6145594D058BC4 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
+		54C9C88A1062622CE46C6FFF /* PaymentItemsTableViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemsTableViewHandler.swift; sourceTree = "<group>"; };
+		5D82582206AC33A7566AD2D3 /* UIBlurEffect.Style+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBlurEffect.Style+Additions.swift"; sourceTree = "<group>"; };
+		5E0E0101E1A2C95B11FEC0F8 /* GroupHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderCell.swift; sourceTree = "<group>"; };
+		62B842CE5EE5FFA86AF4813B /* SavedCardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCardsTableViewController.swift; sourceTree = "<group>"; };
+		68607B3375379B7105B3406E /* goSellSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "goSellSDK-iOS"; path = ..; sourceTree = SOURCE_ROOT; };
+		6FBE2BB7341F9ED3AD89778D /* SeguePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeguePresenter.swift; sourceTree = "<group>"; };
+		7A804B4D1747884DC1D6F835 /* EnvironmentCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentCustomer.swift; sourceTree = "<group>"; };
+		7ACD08DC72749642848C7D84 /* PlainAmountTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainAmountTableViewCellModel.swift; sourceTree = "<group>"; };
+		7AD760848AA9EECD2BE2DFB7 /* InputFieldObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldObserver.swift; sourceTree = "<group>"; };
+		7B6D2A3895815D7A8732A4D0 /* FontTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
+		8073339F46721AD256D68A77 /* ModalNavigationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationTableViewController.swift; sourceTree = "<group>"; };
+		899C89949CB16C8C2710528C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8A93945C698E1A6203352082 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8B970B3F3546D69EB40D1AD0 /* Decodable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Additions.swift"; sourceTree = "<group>"; };
+		8CE6D2C6DD230447F81B4CE4 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		8D963A57837876E6A9D6E8F1 /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
+		9B25BFE4925CF0CFA9FF002E /* DestinationViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewControllerDelegate.swift; sourceTree = "<group>"; };
+		9BA176AF685B77D2861F0358 /* PaymentItemViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewControllerDelegate.swift; sourceTree = "<group>"; };
+		9CA9F9016E767E6F04F0D3AD /* ShippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingTableViewCell.swift; sourceTree = "<group>"; };
+		A0B3BD23D423D690AEAF3110 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
+		A7796975C5FC9B213DF706FB /* sampleAppleToken.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sampleAppleToken.txt; sourceTree = "<group>"; };
+		BA95CCA62199C0DA93637917 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		BBEB58FA9151CBA040309119 /* Measurement+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Measurement+Additions.swift"; sourceTree = "<group>"; };
+		CE458E3C27C0D76BADD3A5C7 /* SettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		CF23C9AE0CF508ACF16F7918 /* CustomerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		D740163655A12232FF8A2C52 /* UIEdgeInsets+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Additions.swift"; sourceTree = "<group>"; };
+		D911A51B53B9D3E6124EF60A /* ColorSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionTableViewController.swift; sourceTree = "<group>"; };
+		DC27A9135E5E3D5184B19D91 /* PaymentItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemViewController.swift; sourceTree = "<group>"; };
+		DE23688A87700DC0B0076B23 /* GroupHeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderCellModel.swift; sourceTree = "<group>"; };
+		E49986C1AE0EEE07514EBCD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E9E062482FF4C785C7E880BD /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
+		EC1B09DCE65B125C893BA7DE /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
+		F09402C28D48911881772F58 /* CustomersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersListViewController.swift; sourceTree = "<group>"; };
+		F401F82E3E286E0E490E7877 /* CaseSelectionTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseSelectionTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		FBBD4130BEFAAD706CFAF83D /* PaymentItemTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemTableViewCellModel.swift; sourceTree = "<group>"; };
+		FE2ADE799B229622A9A2CF8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A718AB4CC7DDA6296FE2753A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57624D89C5B98B9F10CEE62F /* goSellSDK in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		175683F4C13192BABEE2654D = {
+			isa = PBXGroup;
+			children = (
+				8FD63716F097A12A5E761F38 /* goSellSDK-iOS */,
+				BEE80A4ED2571A32FE041E86 /* Packages */,
+				EDEE92298BC992530C01CA74 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20A2692E074C42CE5D2AC38C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E49986C1AE0EEE07514EBCD8 /* AppDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2CF69A83F794E0974EF17CFC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BA95CCA62199C0DA93637917 /* Color.swift */,
+				7A804B4D1747884DC1D6F835 /* EnvironmentCustomer.swift */,
+				DE23688A87700DC0B0076B23 /* GroupHeaderCellModel.swift */,
+				2BB1D145D8E88CB7EBA455EC /* Language.swift */,
+				54C9C88A1062622CE46C6FFF /* PaymentItemsTableViewHandler.swift */,
+				FBBD4130BEFAAD706CFAF83D /* PaymentItemTableViewCellModel.swift */,
+				7ACD08DC72749642848C7D84 /* PlainAmountTableViewCellModel.swift */,
+				E9E062482FF4C785C7E880BD /* TableViewCellModel.swift */,
+				DC0DE5A473A686A9ED73B8EF /* Settings */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4D180368A6FB02266538B4DF /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				5D32F4EC9D88D78724CCDDA1 /* goSellSDKExample */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		59A4B881BF939937E880EB66 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FE2ADE799B229622A9A2CF8D /* Assets.xcassets */,
+				A7796975C5FC9B213DF706FB /* sampleAppleToken.txt */,
+				F53C0F7783F99BD45BA1E792 /* LaunchScreen.storyboard */,
+				DB0080134D0565DE0D4713FB /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5D32F4EC9D88D78724CCDDA1 /* goSellSDKExample */ = {
+			isa = PBXGroup;
+			children = (
+				791D343190B40B1FD048B8DD /* Cells */,
+				9151EF0ED8511CE7FAAA2EF6 /* Controllers */,
+				D294000BEB53A047BAA6B38E /* Extensions */,
+				2CF69A83F794E0974EF17CFC /* Models */,
+				D2F02A8ADB6A8A1C48D84DAC /* Protocols */,
+				59A4B881BF939937E880EB66 /* Resources */,
+				20A2692E074C42CE5D2AC38C /* Supporting Files */,
+				69B7D4E9AD03DB6CD1AA3D8D /* Utils */,
+			);
+			path = goSellSDKExample;
+			sourceTree = "<group>";
+		};
+		69B7D4E9AD03DB6CD1AA3D8D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				06FE29C69C8EA2F8F023FF4C /* SerializationHelper.swift */,
+				EC1B09DCE65B125C893BA7DE /* Serializer.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		791D343190B40B1FD048B8DD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4B4B60AE59E008F91CFA3067 /* ColorTableViewCell.swift */,
+				8D963A57837876E6A9D6E8F1 /* CustomerTableViewCell.swift */,
+				0AB59A8DD6ED0261202DAC5A /* DestinationTableViewCell.swift */,
+				7B6D2A3895815D7A8732A4D0 /* FontTableViewCell.swift */,
+				5E0E0101E1A2C95B11FEC0F8 /* GroupHeaderCell.swift */,
+				2C2E4B0B58BFE46C86C925FB /* PaymentItemTableViewCell.swift */,
+				5363F3823B6E8D7C43AF7B19 /* PlainAmountTableViewCell.swift */,
+				2106D48CBFCCA36E7F59A68C /* SavedCardCell.swift */,
+				549D5E3F7E6145594D058BC4 /* SelectableCell.swift */,
+				9CA9F9016E767E6F04F0D3AD /* ShippingTableViewCell.swift */,
+				5188505325F599F6332CD8A4 /* TaxTableViewCell.swift */,
+				349272A25B74D7B4567DB095 /* TitleTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8FD63716F097A12A5E761F38 /* goSellSDK-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4D180368A6FB02266538B4DF /* Example */,
+			);
+			name = "goSellSDK-iOS";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9151EF0ED8511CE7FAAA2EF6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				899C89949CB16C8C2710528C /* BaseViewController.swift */,
+				142ACE15BE435DE258383DB1 /* CaseSelectionTableViewController.swift */,
+				D911A51B53B9D3E6124EF60A /* ColorSelectionTableViewController.swift */,
+				F09402C28D48911881772F58 /* CustomersListViewController.swift */,
+				367498BA618F3CC10556E542 /* CustomerViewController.swift */,
+				25C7B6CC22E16E01BF7652BC /* DestinationViewController.swift */,
+				8CE6D2C6DD230447F81B4CE4 /* ExampleViewController.swift */,
+				11A49256F53A4088EC2FE501 /* FontSelectionTableViewController.swift */,
+				8073339F46721AD256D68A77 /* ModalNavigationTableViewController.swift */,
+				DC27A9135E5E3D5184B19D91 /* PaymentItemViewController.swift */,
+				62B842CE5EE5FFA86AF4813B /* SavedCardsTableViewController.swift */,
+				3D5581B9787E264F357742AE /* SettingsTableViewController.swift */,
+				074C4E424630965519E595F3 /* ShippingViewController.swift */,
+				03F780EF66618BF84A1C8C2B /* TaxViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BEE80A4ED2571A32FE041E86 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				68607B3375379B7105B3406E /* goSellSDK-iOS */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		D294000BEB53A047BAA6B38E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04B309FFE33D9F4943AEB03D /* Currency+Additions.swift */,
+				8B970B3F3546D69EB40D1AD0 /* Decodable+Additions.swift */,
+				2FFCF5BD6E4CB9A24831CC7D /* Encodable+Additions.swift */,
+				BBEB58FA9151CBA040309119 /* Measurement+Additions.swift */,
+				45EF5842B4B1836EF00BF310 /* Notification.Name+Additions.swift */,
+				5D82582206AC33A7566AD2D3 /* UIBlurEffect.Style+Additions.swift */,
+				D740163655A12232FF8A2C52 /* UIEdgeInsets+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D2F02A8ADB6A8A1C48D84DAC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F401F82E3E286E0E490E7877 /* CaseSelectionTableViewControllerDelegate.swift */,
+				0695A0F8F696EB373D8FDD1A /* CustomersListViewControllerDelegate.swift */,
+				CF23C9AE0CF508ACF16F7918 /* CustomerViewControllerDelegate.swift */,
+				9B25BFE4925CF0CFA9FF002E /* DestinationViewControllerDelegate.swift */,
+				7AD760848AA9EECD2BE2DFB7 /* InputFieldObserver.swift */,
+				9BA176AF685B77D2861F0358 /* PaymentItemViewControllerDelegate.swift */,
+				6FBE2BB7341F9ED3AD89778D /* SeguePresenter.swift */,
+				CE458E3C27C0D76BADD3A5C7 /* SettingsTableViewControllerDelegate.swift */,
+				3B5E1BCC42F9DB218819F9FC /* ShippingViewControllerDelegate.swift */,
+				183277D88AA0D4C729CCB11F /* TaxViewControllerDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DC0DE5A473A686A9ED73B8EF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A0B3BD23D423D690AEAF3110 /* AppearanceSettings.swift */,
+				4435F75FCDC1400C2D6711C5 /* DataSourceSettings.swift */,
+				29F8BA22B1CBF91FECA7BD87 /* GlobalSettings.swift */,
+				47E3B71F44626A35B6A0EE53 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		EDEE92298BC992530C01CA74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42D3F3AD1DE2FDCF0C839BFC /* goSellSDKExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ABB19EAC74D29C9073824CDC /* goSellSDKExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31849B8F9D4F5395B4DE37A1 /* Build configuration list for PBXNativeTarget "goSellSDKExample" */;
+			buildPhases = (
+				16E3F2F4B50F02A314D9B221 /* Sources */,
+				B8D7CBA699A0047E348238EC /* Resources */,
+				A718AB4CC7DDA6296FE2753A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = goSellSDKExample;
+			packageProductDependencies = (
+				67FE51FC9E90F91182539BAA /* goSellSDK */,
+			);
+			productName = goSellSDKExample;
+			productReference = 42D3F3AD1DE2FDCF0C839BFC /* goSellSDKExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		261BD497C00F4D4C3C762CF4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					ABB19EAC74D29C9073824CDC = {
+						DevelopmentTeam = G46S76PUH4;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 67CA53F08576C128DE93EC0D /* Build configuration list for PBXProject "goSellSDKExampleSPM" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 175683F4C13192BABEE2654D;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A5C50C48AF3F78D2AA441B0D /* XCLocalSwiftPackageReference ".." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EDEE92298BC992530C01CA74 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ABB19EAC74D29C9073824CDC /* goSellSDKExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B8D7CBA699A0047E348238EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F862DCC87B3E643A61CA167 /* Assets.xcassets in Resources */,
+				6A2F3E79E1887BA47BCEF414 /* LaunchScreen.storyboard in Resources */,
+				E7FF237D0DF4EABBE64A0DD6 /* Main.storyboard in Resources */,
+				1276FB6B62122DD3347126D2 /* sampleAppleToken.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		16E3F2F4B50F02A314D9B221 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36C708E7FB8B47C6D11BE9BA /* AppDelegate.swift in Sources */,
+				328E0375776FDB56FA17A2F0 /* AppearanceSettings.swift in Sources */,
+				603C768080851DBA4DAFE8F6 /* BaseViewController.swift in Sources */,
+				5C4BA988A02A8FED59E3867F /* CaseSelectionTableViewController.swift in Sources */,
+				974CB33C461A13138922F39B /* CaseSelectionTableViewControllerDelegate.swift in Sources */,
+				A9148F3BBBFA902D0FAC0B7C /* Color.swift in Sources */,
+				444264F67588A443127BB4E3 /* ColorSelectionTableViewController.swift in Sources */,
+				0072426D5FB2105454644B34 /* ColorTableViewCell.swift in Sources */,
+				683EE87EF471F0C5AC1630C3 /* Currency+Additions.swift in Sources */,
+				98EEDC92846D465EF69F01B9 /* CustomerTableViewCell.swift in Sources */,
+				A37AA8824493A9D753752F4D /* CustomerViewController.swift in Sources */,
+				4FD3FDD12C3C1E024D643150 /* CustomerViewControllerDelegate.swift in Sources */,
+				B71E83396DC6ABC55E92C824 /* CustomersListViewController.swift in Sources */,
+				2E1F38BB70190FCB769004CF /* CustomersListViewControllerDelegate.swift in Sources */,
+				89D206699393EEC7B0FFB25C /* DataSourceSettings.swift in Sources */,
+				7223A998F8C7147A39D3F0C3 /* Decodable+Additions.swift in Sources */,
+				C673C1895D86867CD31AB456 /* DestinationTableViewCell.swift in Sources */,
+				AAD3D532C4229C0D1DAC4779 /* DestinationViewController.swift in Sources */,
+				2C396E1EB04868498198CABB /* DestinationViewControllerDelegate.swift in Sources */,
+				378B59D4E63232D61D4D4EA1 /* Encodable+Additions.swift in Sources */,
+				49058E5419D2A1FBB3EB7D20 /* EnvironmentCustomer.swift in Sources */,
+				50FC0913E9A03A8C4D09D88F /* ExampleViewController.swift in Sources */,
+				3A0DECB0C6797689D8E331E2 /* FontSelectionTableViewController.swift in Sources */,
+				60D488317C7EE8362B5ED8F7 /* FontTableViewCell.swift in Sources */,
+				65FE2BAAC4CE6A046AC5C2C0 /* GlobalSettings.swift in Sources */,
+				D800710B92416404EF89798A /* GroupHeaderCell.swift in Sources */,
+				8A4977F560F9D906B07A4A07 /* GroupHeaderCellModel.swift in Sources */,
+				7704ABEC5543463AAE7CAC66 /* InputFieldObserver.swift in Sources */,
+				E3483DF2EE87E3DD172EF0E6 /* Language.swift in Sources */,
+				8B3960E0B24FA345A935E203 /* Measurement+Additions.swift in Sources */,
+				8F19A6EE678FAC248B15E385 /* ModalNavigationTableViewController.swift in Sources */,
+				F972D707B96762AF23D24199 /* Notification.Name+Additions.swift in Sources */,
+				12FF2A64569056EB7E5FA8D6 /* PaymentItemTableViewCell.swift in Sources */,
+				907D09D4CA46A437584F3852 /* PaymentItemTableViewCellModel.swift in Sources */,
+				50DD4F083EF9C05615D9B6F2 /* PaymentItemViewController.swift in Sources */,
+				F2E2B74C375BA3807AA7358E /* PaymentItemViewControllerDelegate.swift in Sources */,
+				9CC385C726117DB3E3F5EC92 /* PaymentItemsTableViewHandler.swift in Sources */,
+				DBA919C32FFA43E94B319EFC /* PlainAmountTableViewCell.swift in Sources */,
+				8EFA37106BA4B48A8C990946 /* PlainAmountTableViewCellModel.swift in Sources */,
+				B77A0E69C0F560710109D9A3 /* SavedCardCell.swift in Sources */,
+				DBCF135682F3F595EF329745 /* SavedCardsTableViewController.swift in Sources */,
+				73018B50EE3A7F447AAA65C2 /* SeguePresenter.swift in Sources */,
+				EF25E56DC58487777BFC2001 /* SelectableCell.swift in Sources */,
+				650860F9B1760C0B84164DBB /* SerializationHelper.swift in Sources */,
+				6D3F46D2907325CBCC04CBA8 /* Serializer.swift in Sources */,
+				4E48A212D73AE2ABEA2C4512 /* Settings.swift in Sources */,
+				38111174B983929B37DED3C6 /* SettingsTableViewController.swift in Sources */,
+				C1D3477598ED93AFB8BD29C7 /* SettingsTableViewControllerDelegate.swift in Sources */,
+				32B8B92F4734DF82ED7B78AD /* ShippingTableViewCell.swift in Sources */,
+				4DF42CDC83DAFB650F3AA47F /* ShippingViewController.swift in Sources */,
+				A67E2E115C01D2ED7EC1F555 /* ShippingViewControllerDelegate.swift in Sources */,
+				9B214C73ED0709273DE28244 /* TableViewCellModel.swift in Sources */,
+				2BC25637A20C0B6A6B59DFC2 /* TaxTableViewCell.swift in Sources */,
+				4C98F01DEA0440A7A1B9A6A1 /* TaxViewController.swift in Sources */,
+				78B8197C7FAA39104C3EE7C6 /* TaxViewControllerDelegate.swift in Sources */,
+				E1D41C28DD5148B9500B2D7B /* TitleTableViewCell.swift in Sources */,
+				8DE621311F4E875153D793BF /* UIBlurEffect.Style+Additions.swift in Sources */,
+				B41E5C93290DC0767839BD4A /* UIEdgeInsets+Additions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DB0080134D0565DE0D4713FB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E29EAFBAAA3B814426AF109 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F53C0F7783F99BD45BA1E792 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A93945C698E1A6203352082 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5B96AC39A5176BEAF044212D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		6EA9CB45A05BAC83B0AC0AC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ../Example/goSellSDKExample/goSellSDKExample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G46S76PUH4;
+				INFOPLIST_FILE = "../Example/goSellSDKExample/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.4.1;
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
+				PRODUCT_MODULE_NAME = goSellSDKExample;
+				PRODUCT_NAME = goSellSDKExample;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E72A352E8CA7B4E428C7ED19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ../Example/goSellSDKExample/goSellSDKExample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G46S76PUH4;
+				INFOPLIST_FILE = "../Example/goSellSDKExample/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.4.1;
+				PRODUCT_BUNDLE_IDENTIFIER = company.tap.goSellSDKExamplee;
+				PRODUCT_MODULE_NAME = goSellSDKExample;
+				PRODUCT_NAME = goSellSDKExample;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F9F94933620EECA0B274B943 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		31849B8F9D4F5395B4DE37A1 /* Build configuration list for PBXNativeTarget "goSellSDKExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EA9CB45A05BAC83B0AC0AC0 /* Debug */,
+				E72A352E8CA7B4E428C7ED19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		67CA53F08576C128DE93EC0D /* Build configuration list for PBXProject "goSellSDKExampleSPM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9F94933620EECA0B274B943 /* Debug */,
+				5B96AC39A5176BEAF044212D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A5C50C48AF3F78D2AA441B0D /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		67FE51FC9E90F91182539BAA /* goSellSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = goSellSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 261BD497C00F4D4C3C762CF4 /* Project object */;
+}

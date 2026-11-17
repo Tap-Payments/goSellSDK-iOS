@@ -126,6 +126,16 @@ target 'MyApp' do
 end
 ```
 
+<a name="examples"></a>
+## Example apps
+
+The repository has the same example app set up both ways:
+
+- `Example/` uses **CocoaPods**: run `pod install` in `Example`, then open `Example/goSellSDKExample.xcworkspace`.
+- `ExampleSPM/` uses **Swift Package Manager**: open `ExampleSPM/goSellSDKExampleSPM.xcodeproj`; Xcode resolves goSellSDK from this repository as a local package. The project is generated from `ExampleSPM/project.yml` with [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`cd ExampleSPM && xcodegen generate`).
+
+Both build the sources in `Example/goSellSDKExample`. Put your sandbox and production keys in `Example/goSellSDKExample/Supporting Files/AppDelegate.swift` before running a payment.
+
 <a name="installation_with_spm"></a>
 ## Installation with Swift Package Manager
 
