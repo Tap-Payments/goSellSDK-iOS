@@ -7,6 +7,7 @@
 //  Shared by both examples: ../Example (CocoaPods) and ../ExampleSPM (Swift Package Manager).
 //
 
+import Foundation
 import class    goSellSDK.GoSellSDK
 import class    goSellSDK.SecretKey
 import class    UIKit.UIApplication.UIApplication
@@ -23,8 +24,9 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Serializer.markAllCustomersAsSandboxIfNotYet()
 
-        GoSellSDK.secretKey = SecretKey(sandbox:    "YOUR_SANDBOX_SECRET_KEY",
-                                        production:    "YOUR_PRODUCTION_SECRET_KEY")
+        let keys = ExampleKeys.load()
+        GoSellSDK.secretKey = SecretKey(sandbox:    keys.sandboxSecretKey,
+                                        production:    keys.productionSecretKey)
     }
 
     internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
@@ -40,4 +42,27 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 internal class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     internal var window: UIWindow?
+}
+
+/// Tap keys for the example, read from Keys.json.
+///
+/// Keys.json is git-ignored so keys never get committed. Copy Keys.example.json (next to this file) to
+/// Keys.json and fill in your keys; a build step copies it into the app. Both examples use it.
+private struct ExampleKeys: Decodable {
+    
+    let sandboxSecretKey: String
+    let productionSecretKey: String
+    
+    static func load() -> ExampleKeys {
+        
+        guard let url = Bundle.main.url(forResource: "Keys", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let keys = try? JSONDecoder().decode(ExampleKeys.self, from: data) else {
+            
+            print("goSellSDKExample: Keys.json is missing or invalid. Copy Keys.example.json to Keys.json in \"Example/goSellSDKExample/Supporting Files\" and add your keys.")
+            return ExampleKeys(sandboxSecretKey: "YOUR_SANDBOX_SECRET_KEY", productionSecretKey: "YOUR_PRODUCTION_SECRET_KEY")
+        }
+        
+        return keys
+    }
 }

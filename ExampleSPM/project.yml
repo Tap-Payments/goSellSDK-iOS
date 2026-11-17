@@ -23,6 +23,8 @@ targets:
         excludes:
           - "Supporting Files/Info.plist"
           - "goSellSDKExample.entitlements"
+          - "Supporting Files/Keys.json"
+          - "Supporting Files/Keys.example.json"
     dependencies:
       - package: goSellSDK
         product: goSellSDK
@@ -40,6 +42,19 @@ targets:
         MARKETING_VERSION: "2.4.1"
         CURRENT_PROJECT_VERSION: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        # The "Copy Keys.json" step reads a file outside the build inputs.
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    postBuildScripts:
+      - name: Copy Keys.json
+        basedOnDependencyAnalysis: false
+        script: |
+          # Keys.json is git-ignored; copy Keys.example.json to Keys.json and add your Tap keys.
+          KEYS="${SRCROOT}/../Example/goSellSDKExample/Supporting Files/Keys.json"
+          if [ -f "$KEYS" ]; then
+            cp "$KEYS" "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Keys.json"
+          else
+            echo "warning: Keys.json not found. Copy Keys.example.json to Keys.json in Example/goSellSDKExample/Supporting Files and add your Tap keys."
+          fi
 schemes:
   goSellSDKExampleSPM:
     build:
