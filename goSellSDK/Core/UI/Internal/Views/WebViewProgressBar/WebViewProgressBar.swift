@@ -49,8 +49,8 @@ import class    WebKit.WKWebView.WKWebView
     
     internal override var intrinsicContentSize: CGSize {
         
-        let screen = self.window?.screen ?? UIScreen.main
-        return CGSize(width: screen.bounds.width, height: Constants.height)
+        let width = (self.window?.bounds ?? UIScreen.main.bounds).width
+        return CGSize(width: width, height: Constants.height)
     }
     
     // MARK: Methods

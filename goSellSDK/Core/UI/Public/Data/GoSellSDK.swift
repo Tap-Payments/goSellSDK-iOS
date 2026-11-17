@@ -90,5 +90,5 @@ import UIKit
 internal enum SDKVersion {
 
     /// Keep in sync with `goSellSDK.version` in goSellSDK.podspec.
-    internal static let current = "2.4.0"
+    internal static let current = "2.4.1"
 }

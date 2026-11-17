@@ -28,11 +28,12 @@ internal class CardScannerViewController: HeaderNavigatedViewController {
 		
 		get {
 			
-			return UIScreen.main.bounds.size
+			// The window, not the screen: on a foldable iPhone the window follows the active panel.
+			return (self.viewIfLoaded?.window?.bounds ?? UIScreen.main.bounds).size
 		}
 		set {
 			
-			super.preferredContentSize = UIScreen.main.bounds.size
+			super.preferredContentSize = (self.viewIfLoaded?.window?.bounds ?? UIScreen.main.bounds).size
 		}
 	}
     

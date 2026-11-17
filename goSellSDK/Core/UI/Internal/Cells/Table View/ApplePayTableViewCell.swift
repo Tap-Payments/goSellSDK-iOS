@@ -20,6 +20,7 @@ import class PassKit.PKPaymentButton
 import class PassKit.PKPaymentAuthorizationViewController
 import class PassKit.PKPassLibrary
 import enum PassKit.PKPaymentButtonType
+import enum PassKit.PKPaymentButtonStyle
 
 internal class ApplePayTableViewCell: BaseTableViewCell {
     
@@ -33,6 +34,43 @@ internal class ApplePayTableViewCell: BaseTableViewCell {
     
     //@IBOutlet private weak var titleLabel:      UILabel?
     @IBOutlet private weak var iconImageView:   UIImageView?
+    
+    // MARK: - Private -
+    // MARK: Properties
+    
+    private var applePayButton: PKPaymentButton?
+    private var applePayButtonConfiguration: (type: PKPaymentButtonType, style: PKPaymentButtonStyle)?
+    
+    // MARK: Methods
+    
+    /// Shows one Apple Pay button, pinned to the cell's width with Auto Layout so it follows size changes
+    /// (rotation, folding). A PKPaymentButton's type and style can't change after it is created, so the
+    /// button is only replaced when they change, instead of adding a new one on every update.
+    private func showApplePayButton(type: PKPaymentButtonType, style: PKPaymentButtonStyle) {
+        
+        if self.applePayButton != nil, let configuration = self.applePayButtonConfiguration, configuration.type == type, configuration.style == style {
+            
+            return
+        }
+        
+        self.applePayButton?.removeFromSuperview()
+        
+        let applePayButton = PKPaymentButton(paymentButtonType: type, paymentButtonStyle: style)
+        applePayButton.layer.cornerRadius = 4
+        applePayButton.translatesAutoresizingMaskIntoConstraints = false
+        applePayButton.addTarget(self, action: #selector(self.applePayButtonClicked(_:)), for: .touchUpInside)
+        self.contentView.addSubview(applePayButton)
+        
+        NSLayoutConstraint.activate([
+            applePayButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+            applePayButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
+            applePayButton.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            applePayButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        self.applePayButton = applePayButton
+        self.applePayButtonConfiguration = (type, style)
+    }
     //@IBOutlet private weak var arrowImageView:  UIImageView?
 }
 
@@ -41,43 +79,26 @@ extension ApplePayTableViewCell: LoadingWithModelCell {
     
     internal func updateContent(animated: Bool) {
         
-        //self.titleLabel?.text       = self.model?.title
-        //self.titleLabel?.setTextStyle(Theme.current.paymentOptionsCellStyle.web.titleStyle)
         DispatchQueue.main.async {
-
+            
             self.iconImageView?.image   = self.model?.iconImage
+            
             var defaultApplePayType:PKPaymentButtonType = .plain
             if #available(iOS 10.0, *) {
                 defaultApplePayType = .inStore
             }
+            
             let applPayButtonType:PKPaymentButtonType = self.model?.applePayButtonType() ??  defaultApplePayType
+            self.showApplePayButton(type: applPayButtonType, style: self.model?.applePayButtonTypeStyle() ?? .black)
             
-            let applePayButton:PKPaymentButton = PKPaymentButton(paymentButtonType: applPayButtonType, paymentButtonStyle: self.model?.applePayButtonTypeStyle() ?? .black)
-            
-            //applePayButton.backgroundColor = .blue
-            var frame:CGRect = applePayButton.frame
-            frame.size.width = self.frame.width - 30
-            frame.size.height = 40
-            applePayButton.frame = frame
-            //applePayButton.tap_borderColor = UIColor(tap_hex: "E1E1E1")
-            //applePayButton.tap_borderWidth = 1
-            applePayButton.layer.cornerRadius = 4
-            
-            applePayButton.center = self.contentView.center
-            applePayButton.addTarget(self, action: #selector(self.applePayButtonClicked(_:)), for: .touchUpInside)
-            self.contentView.addSubview(applePayButton)
-            
-           // self.arrowImageView?.image  = self.model?.arrowImage
             self.backgroundColor = UIColor.clear
             
-            // Only hide Apple Pay if setup is not enabled - allow setup buttons to show
             let enableApplePaySetup = Process.shared.externalSession?.dataSource?.enableApplePaySetup ?? false
             if !enableApplePaySetup {
-                self.isHidden = !PKPaymentAuthorizationViewController.canMakePayments()
+                self.isHidden = !ApplePayAvailability.canMakePayments
             } else {
                 self.isHidden = false // Always show when setup is enabled
             }
-            
         }
     }
     

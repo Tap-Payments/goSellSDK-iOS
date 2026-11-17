@@ -53,8 +53,8 @@ internal final class TapNavigationView: TapNibView {
     
     internal override var intrinsicContentSize: CGSize {
         
-        let screen = self.window?.screen ?? UIScreen.main
-		return CGSize(width: screen.bounds.width, height: type(of: self).preferredHeight)
+        let width = (self.window?.bounds ?? UIScreen.main.bounds).width
+		return CGSize(width: width, height: type(of: self).preferredHeight)
     }
 	
 	internal var backgroundOpacity: CGFloat {

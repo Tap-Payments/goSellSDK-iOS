@@ -55,6 +55,7 @@ internal class ResizablePaymentContainerViewController: BaseViewController
 		
 		super.viewDidLoad()
 		self.ignoresKeyboardEventsWhenWindowIsNotKey = true
+		self.pinContentToHorizontalSafeArea()
 	}
 	
 	internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -117,6 +118,14 @@ internal class ResizablePaymentContainerViewController: BaseViewController
 	private var forcedFullscreen = false
 	
 	// MARK: Methods
+	
+	/// Keeps the sheet's content out of the side safe-area insets (the status bar and camera on the
+	/// side of an unfolded foldable iPhone in landscape). The blurred background stays full width.
+	private func pinContentToHorizontalSafeArea() {
+		
+		guard let containerView = self.contentContainerView else { return }
+		self.view.tap_pinToHorizontalSafeArea(containerView)
+	}
 	
 	private func resizeNavigationController(to size: CGSize, animated: Bool, completion: TypeAlias.ArgumentlessClosure? = nil) {
 		

@@ -714,7 +714,7 @@ internal extension Process {
             let currenciesFilter: (FilterableByCurrency) -> Bool = { $0.supportedCurrencies.contains(currency) }
             let sortingClosure: (SortableByOrder, SortableByOrder) -> Bool = { $0.orderBy < $1.orderBy }
             
-            let applePaymentOptions = PKPaymentAuthorizationViewController.canMakePayments() ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
+            let applePaymentOptions = ApplePayAvailability.canMakePayments ? self.process.dataManagerInterface.paymentOptions(of: .apple).filter(currenciesFilter).sorted(by: sortingClosure) : []
             let hasApplePaymentOption = applePaymentOptions.count > 0 && ((Process.shared.process.externalSession?.dataSource?.applePayMerchantID ?? "").hasPrefix("merchant."))
             let hasOtherPaymentOptions = hasApplePaymentOption
             let displaysGroupTitles = hasOtherPaymentOptions
