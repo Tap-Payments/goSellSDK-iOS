@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Authorize action model.
 @objcMembers public class AuthorizeAction: NSObject, Codable {
     

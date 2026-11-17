@@ -5,6 +5,8 @@
 //  Created by Osama Rabie on 27/07/2022.
 //
 
+import Foundation
+import UIKit
 
 /// Decides which UI (light or dark) to follow
 @objc public enum UIModeDisplayEnum: Int, CaseIterable {

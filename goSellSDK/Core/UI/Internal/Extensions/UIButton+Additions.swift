@@ -5,7 +5,9 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	TapAdditionsKitV2.UIButton
+import Foundation
+import TapAdditionsKitV2
+import UIKit
 
 internal extension UIButton {
 	

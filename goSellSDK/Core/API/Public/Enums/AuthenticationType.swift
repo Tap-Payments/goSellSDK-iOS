@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Authentication type.
 @objc public enum AuthenticationType: Int {
     

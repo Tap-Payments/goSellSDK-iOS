@@ -1,4 +1,6 @@
 
+import Foundation
+import UIKit
 //
 //  APIClient.swift
 //  goSellSDK
@@ -7,7 +9,6 @@
 //
 
 import class    TapApplicationV2.TapApplicationPlistInfo
-import class    TapApplicationV2.TapBundlePlistInfo
 import func     TapSwiftFixesV2.performOnBackgroundThread
 import func     TapSwiftFixesV2.performOnMainThread
 import class    TapNetworkManagerV2.TapNetworkManager
@@ -210,12 +211,7 @@ internal final class APIClient {
             fatalError("Application must have bundle identifier in order to use goSellSDK.")
         }
         
-        let sdkPlistInfo = TapBundlePlistInfo(bundle: Bundle(for: GoSellSDK.self))
-        
-        guard let requirerVersion = sdkPlistInfo.shortVersionString, !requirerVersion.isEmpty else {
-            
-            fatalError("Seems like SDK is not integrated well.")
-        }
+        let requirerVersion = SDKVersion.current
 		let networkInfo = CTTelephonyNetworkInfo()
 		let carrier = networkInfo.subscriberCellularProvider
 		

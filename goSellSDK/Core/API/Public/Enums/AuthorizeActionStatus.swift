@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Status of the automatic scheduled action after successful charge authorization.
 @objc public enum AuthorizeActionStatus: Int {
     

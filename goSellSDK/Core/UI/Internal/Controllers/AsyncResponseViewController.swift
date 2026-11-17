@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tap Payments. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import struct   TapAdditionsKitV2.TypeAlias
 import class    TapVisualEffectViewV2.TapVisualEffectView

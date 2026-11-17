@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 import class TapNetworkManagerV2.TapNetworkRequestOperation
 
 internal extension APIClient {

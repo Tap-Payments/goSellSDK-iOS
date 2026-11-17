@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import class    UIKit.UICollectionView.UICollectionView
 import protocol UIKit.UICollectionView.UICollectionViewDataSource
 import protocol UIKit.UICollectionView.UICollectionViewDelegate

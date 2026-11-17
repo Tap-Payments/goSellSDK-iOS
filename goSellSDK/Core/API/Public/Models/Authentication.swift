@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Authentication class.
 @objcMembers public final class Authentication: NSObject, IdentifiableWithString {
     

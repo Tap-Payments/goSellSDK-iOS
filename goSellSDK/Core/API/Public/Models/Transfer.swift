@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Transfer model.
 @objcMembers public final class Transfer: NSObject, OptionallyIdentifiableWithString, Decodable {
 	

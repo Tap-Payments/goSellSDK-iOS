@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 extension AddressType: Transformable {
     
     internal init?(untransformedValue: Any?) {

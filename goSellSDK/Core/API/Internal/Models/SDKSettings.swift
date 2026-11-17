@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// goSell SDK Settings model.
 internal class SDKSettings: Decodable {
     

@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import struct   TapAdditionsKitV2.TypeAlias
 import class    TapNetworkManagerV2.TapImageLoader
 import class    UIKit.UIImage.UIImage

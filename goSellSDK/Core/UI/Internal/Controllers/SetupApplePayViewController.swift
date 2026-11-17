@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tap Payments. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import class PassKit.PKPaymentButton
 import enum PassKit.PKPaymentButtonType

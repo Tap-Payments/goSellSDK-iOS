@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Request body for Create Card API.
 internal struct CreateCardRequest: Encodable {
 	

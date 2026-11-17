@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Authorize action type.
 @objc public enum AuthorizeActionType: Int {
     

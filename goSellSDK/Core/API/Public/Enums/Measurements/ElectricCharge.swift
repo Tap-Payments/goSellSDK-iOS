@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Electric charge measurement unit.
 @objc(MeasurementElectricCharge) public enum ElectricCharge: Int, CaseIterable {
     

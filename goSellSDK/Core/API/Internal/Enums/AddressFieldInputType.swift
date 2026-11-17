@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Input type enum.
 ///
 /// - textInput: Text input with the specified text input type.

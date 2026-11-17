@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Unknown or unhandled error.
 @objcMembers public final class TapSDKUnknownError: TapSDKError {
     

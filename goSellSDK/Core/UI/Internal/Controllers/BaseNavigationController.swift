@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import enum UIKit.UIApplication.UIInterfaceOrientation
 import struct UIKit.UIApplication.UIInterfaceOrientationMask
 import class UIKit.UINavigationController.UINavigationController

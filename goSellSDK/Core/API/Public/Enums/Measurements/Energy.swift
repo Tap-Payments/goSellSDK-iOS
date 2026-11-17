@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Energy measurement unit.
 @objc(MeasurementEnergy) public enum Energy: Int, CaseIterable {
     

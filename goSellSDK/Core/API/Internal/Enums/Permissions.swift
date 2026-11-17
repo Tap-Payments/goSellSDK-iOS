@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Permissions option set.
 internal struct Permissions: OptionSet, Decodable {
     

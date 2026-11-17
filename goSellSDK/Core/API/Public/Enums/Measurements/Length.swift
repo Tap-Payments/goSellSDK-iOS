@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Length measurement unit.
 @objc(MeasurementLength) public enum Length: Int, CaseIterable {
     

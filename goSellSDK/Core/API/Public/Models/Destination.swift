@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Destination model.
 @objcMembers public final class Destination: NSObject, Codable, IdentifiableWithString {
 	

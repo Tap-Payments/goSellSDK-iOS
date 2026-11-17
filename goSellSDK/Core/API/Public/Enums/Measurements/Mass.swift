@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Mass measurement unit.
 @objc(MeasurementMass) public enum Mass: Int, CaseIterable {
     

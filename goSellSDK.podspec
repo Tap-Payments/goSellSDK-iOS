@@ -1,12 +1,12 @@
 Pod::Spec.new do |goSellSDK|
     
     goSellSDK.platform              = :ios
-    goSellSDK.ios.deployment_target = '11.0'
-	goSellSDK.swift_versions        = ['4.0', '4.2', '5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8', '5.9']
+    goSellSDK.ios.deployment_target = '15.0'
+	goSellSDK.swift_versions        = ['5.0']
     goSellSDK.name                  = 'goSellSDK'
     goSellSDK.summary               = 'goSell SDK for iOS'
     goSellSDK.requires_arc          = true
-    goSellSDK.version               = '2.3.49'
+    goSellSDK.version               = '2.4.0' # keep in sync with SDKVersion.current
     goSellSDK.license               = { :type => 'MIT', :file => 'LICENSE' }
     goSellSDK.author                = { 'Tap Payments' => 'hello@tap.company' }
     goSellSDK.homepage              = 'https://github.com/Tap-Payments/goSellSDK-iOS'
@@ -37,7 +37,6 @@ Pod::Spec.new do |goSellSDK|
 		core.dependency 'TapResponderChainInputViewV2'
 		core.dependency 'TapSearchViewV2'
 		core.dependency 'TapVisualEffectViewV2'
-		core.dependency 'SwiftyRSA'
 		
 	end
 	

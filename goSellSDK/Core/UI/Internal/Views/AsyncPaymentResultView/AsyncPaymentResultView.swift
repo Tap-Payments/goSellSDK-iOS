@@ -5,6 +5,7 @@
 //  Created by Osama Rabie on 06/02/2020.
 //  Copyright © 2020 Tap Payments. All rights reserved.
 //
+import Foundation
 import class    TapNibViewV2.TapNibView
 import UIKit
 

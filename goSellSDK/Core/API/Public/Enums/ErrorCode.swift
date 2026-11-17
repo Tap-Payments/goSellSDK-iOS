@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// All possible error codes.
 @objc public enum ErrorCode: Int, Codable {
 	

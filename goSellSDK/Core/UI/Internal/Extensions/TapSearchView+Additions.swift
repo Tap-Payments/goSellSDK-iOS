@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import class TapSearchViewV2.TapSearchView
 
 internal extension TapSearchView {

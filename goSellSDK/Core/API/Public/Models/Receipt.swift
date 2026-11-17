@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Receipt dispatch settings.
 @objcMembers public final class Receipt: NSObject, OptionallyIdentifiableWithString, Codable {
     

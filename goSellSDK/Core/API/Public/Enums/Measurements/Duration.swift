@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Duration measurement unit.
 @objc(MeasurementDuration) public enum Duration: Int, CaseIterable {
     

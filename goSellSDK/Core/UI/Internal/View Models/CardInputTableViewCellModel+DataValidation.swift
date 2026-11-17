@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import enum     TapCardVlidatorKit_iOS.CardBrand
 import class   TapCardVlidatorKit_iOS.DefinedCardBrand
 import class    TapEditableViewV2.TapEditableView
