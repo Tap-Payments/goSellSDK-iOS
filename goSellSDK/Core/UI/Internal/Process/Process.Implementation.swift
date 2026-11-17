@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import struct	CoreGraphics.CGGeometry.CGRect
 import protocol	TapAdditionsKitV2.ClassProtocol
 import struct	TapAdditionsKitV2.TypeAlias
@@ -834,7 +836,7 @@ internal final class PaymentImplementation<HandlerMode: ProcessMode>: Process.Im
                    
                    if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
                    {
-                       if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
+                       if let topController:UIViewController = UIApplication.shared.tap_foregroundKeyWindow?.topViewController(){
                            applePayController.delegate = self
                            topController.present(applePayController, animated: true, completion: nil)
                        }
@@ -971,7 +973,7 @@ internal final class CardTokenizationImplementation<HandlerMode: ProcessMode>: P
                 let appleRequest:PKPaymentRequest = self.dataManager.createApplePayRequest()
                 if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: appleRequest)
                 {
-                    if let topController:UIViewController = UIApplication.shared.keyWindow!.topViewController(){
+                    if let topController:UIViewController = UIApplication.shared.tap_foregroundKeyWindow?.topViewController(){
                         applePayController.delegate = self
                         topController.present(applePayController, animated: true, completion: nil)
                     }
@@ -1026,5 +1028,29 @@ extension UIWindow {
             }
         }
         return top
+    }
+}
+
+extension UIApplication {
+    
+    /// The key window of the app, found through its window scenes.
+    ///
+    /// `UIApplication.keyWindow` is deprecated and apps built with the iOS 27 SDK must use the
+    /// UIScene life cycle, so look in the foreground scenes first, then in any connected scene.
+    /// Returns `nil` instead of crashing when there is no window yet.
+    internal var tap_foregroundKeyWindow: UIWindow? {
+        
+        let windowScenes = self.connectedScenes.compactMap { $0 as? UIWindowScene }
+        let foregroundScenes = windowScenes.filter { $0.activationState == .foregroundActive }
+        
+        for scene in foregroundScenes + windowScenes {
+            
+            if let keyWindow = scene.windows.first(where: { $0.isKeyWindow }) {
+                
+                return keyWindow
+            }
+        }
+        
+        return (foregroundScenes + windowScenes).first?.windows.first
     }
 }

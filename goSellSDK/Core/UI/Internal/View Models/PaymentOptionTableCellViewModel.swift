@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import class UIKit.UITableView.UITableView
 
 /// Base class for payment options view models.

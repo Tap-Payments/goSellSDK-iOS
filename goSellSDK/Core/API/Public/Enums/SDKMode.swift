@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Enum defining SDK mode.
 @objc public enum SDKMode: Int, CaseIterable {
     

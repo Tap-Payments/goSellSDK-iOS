@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Extra Fee Model.
 internal final class ExtraFee: AmountModificator {
     

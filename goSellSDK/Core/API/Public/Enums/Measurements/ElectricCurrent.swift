@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Electric current mesurement unit.
 @objc(MeasurementElectricCurrent) public enum ElectricCurrent: Int, CaseIterable {
     

@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Volume measurement unit.
 @objc(MeasurementVolume) public enum Volume: Int, CaseIterable {
     

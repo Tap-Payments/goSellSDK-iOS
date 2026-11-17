@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Power measurement unit.
 @objc(MeasurementPower) public enum Power: Int, CaseIterable {
     

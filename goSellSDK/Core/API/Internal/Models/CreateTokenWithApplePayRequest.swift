@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Request model for token creation with apple pay data.
 internal struct CreateTokenWithApplePayRequest: CreateTokenRequest {
     

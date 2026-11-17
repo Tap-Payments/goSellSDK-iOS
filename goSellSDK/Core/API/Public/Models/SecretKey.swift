@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Secret key class.
 @objcMembers public final class SecretKey: NSObject {
     

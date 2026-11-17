@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 import TapCardVlidatorKit_iOS
 import class TapNetworkManagerV2.TapImageLoader

@@ -13,6 +13,7 @@
 //  - http://hg.mozilla.org/services/fx-home/file/tip/Sources/NetworkAndStorage/CryptoUtils.m#l1036
 //----------------------------------------------------------------------
 
+import Foundation
 internal class RSAUtils {
     
     private static let PADDING_FOR_DECRYPT = SecPadding()

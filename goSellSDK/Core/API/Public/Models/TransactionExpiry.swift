@@ -5,6 +5,7 @@
 //  Created by Osama Rabie on 06/02/2020.
 //
 
+import Foundation
 @objcMembers public final class TransactionExpiry: NSObject{
     
     // MARK: - Public -

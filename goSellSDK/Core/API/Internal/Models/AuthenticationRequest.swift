@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Structure to authenticate the charge.
 internal struct AuthenticationRequest: Encodable {
     

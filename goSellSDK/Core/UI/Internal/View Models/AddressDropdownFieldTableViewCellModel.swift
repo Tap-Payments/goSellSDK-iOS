@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import class UIKit.UIImage.UIImage
 
 /// Cell model to manage address dropdown field.

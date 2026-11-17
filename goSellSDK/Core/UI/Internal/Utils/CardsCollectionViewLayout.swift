@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import struct   CoreGraphics.CGAffineTransform.CGAffineTransform
 import class    UIKit.UICollectionViewFlowLayout.UICollectionViewFlowLayout
 import class    UIKit.UICollectionViewLayout.UICollectionViewLayoutAttributes

@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import class	UIKit.UIResponder.UIResponder
 import PassKit
 
@@ -142,7 +144,7 @@ class ApplePayUI:NSObject,PKPaymentAuthorizationViewControllerDelegate
         if let applePayController = PKPaymentAuthorizationViewController(paymentRequest: applePayRequest)
         {
             applePayController.delegate = self
-            if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            if var topController = UIApplication.shared.tap_foregroundKeyWindow?.rootViewController {
                 while let presentedViewController = topController.presentedViewController {
                     topController = presentedViewController
                 }

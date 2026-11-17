@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Request model for token creation with existing card data.
 internal struct CreateTokenWithSavedCardRequest: CreateTokenRequest {
     

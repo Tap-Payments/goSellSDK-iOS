@@ -4,6 +4,8 @@
 //
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
+import Foundation
+import UIKit
 #if canImport(CardIO)
 import CardIO
 #endif

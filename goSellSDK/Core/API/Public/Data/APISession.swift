@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// API session class, for API calls.
 @objcMembers public final class APISession: NSObject, Singleton {
 	

@@ -16,8 +16,9 @@ A library that fully covers payment/authorization/card saving process inside you
 1. [Requirements](#requirements)
 2. [Installation](#installation)
    1. [Installation with CocoaPods](#installation_with_cocoapods)
-   2. [Installation with Carthage](#installation_with_carthage)
-   3. [Installation with App Clip](#Installation_To_App_Clip)
+   2. [Installation with Swift Package Manager](#installation_with_spm)
+   3. [Installation with Carthage](#installation_with_carthage)
+   4. [Installation with App Clip](#Installation_To_App_Clip)
 3. [Setup](#setup)
    1. [goSellSDK Class Properties](#setup_gosellsdk_class_properties)
    2. [goSellSDK Class Methods](#setup_gosellsdk_class_methods)
@@ -62,10 +63,11 @@ A library that fully covers payment/authorization/card saving process inside you
 
 To use the SDK the following requirements must be met:
 
-1. **Xcode 10.0** or newer
-2. **Swift 4.0** or newer (preinstalled with Xcode)   
-3. Deployment target SDK for the  app: **iOS 11.0** or later
-4. To support apps below iOS 11 please use this command : **pod "goSellSDK", '2.2.22'**
+1. **Xcode 15.0** or newer (Xcode 27 is supported)
+2. **Swift 5** or newer (preinstalled with Xcode)
+3. Deployment target SDK for the app: **iOS 15.0** or later
+4. To support apps below iOS 15 please use this command : **pod "goSellSDK", '2.3.49'**
+5. To support apps below iOS 11 please use this command : **pod "goSellSDK", '2.2.22'**
 
 <a name="installation"></a>
 
@@ -88,10 +90,10 @@ $ gem install cocoapods
 **To integrate goSellSDK into your Xcode 12+ project using CocoaPods, Please make sure you are using goSellSDK version >= 2.2.33**
 
 
-To integrate goSellSDK into your iOS 11+ Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate goSellSDK into your iOS 15+ Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-platform :ios, '12.0'
+platform :ios, '15.0'
 use_frameworks!
 
 source 'https://github.com/CocoaPods/Specs.git'
@@ -123,6 +125,30 @@ target 'MyApp' do
 
 end
 ```
+
+<a name="installation_with_spm"></a>
+## Installation with Swift Package Manager
+
+In Xcode, choose **File > Add Package Dependencies…**, enter
+
+```
+https://github.com/Tap-Payments/goSellSDK-iOS.git
+```
+
+and add the **goSellSDK** library to your app target. Or add it to your own `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/Tap-Payments/goSellSDK-iOS.git", from: "2.4.0")
+],
+targets: [
+    .target(name: "MyApp", dependencies: [
+        .product(name: "goSellSDK", package: "goSellSDK-iOS")
+    ])
+]
+```
+
+Swift Package Manager installs the core SDK. The optional `ErrorReporting` add-on is available through CocoaPods only (`pod 'goSellSDK/ErrorReporting'`).
 
 <!---
 

@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Known error. Either network or serialization error.
 @objcMembers public final class TapSDKKnownError: TapSDKError {
     

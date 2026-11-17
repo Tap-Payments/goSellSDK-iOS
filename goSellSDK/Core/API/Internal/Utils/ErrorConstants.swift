@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 internal struct ErrorConstants {
     
     internal static let internalErrorDomain = "company.tap.gosellsdk"

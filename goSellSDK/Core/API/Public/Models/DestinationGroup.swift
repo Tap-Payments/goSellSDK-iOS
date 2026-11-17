@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Group of destinations.
 @objcMembers public final class DestinationGroup: NSObject, Codable {
 	

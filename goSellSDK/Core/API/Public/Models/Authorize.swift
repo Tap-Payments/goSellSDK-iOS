@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Authorize object.
 @objcMembers public final class Authorize: NSObject, AuthorizeProtocol, IdentifiableWithString {
     

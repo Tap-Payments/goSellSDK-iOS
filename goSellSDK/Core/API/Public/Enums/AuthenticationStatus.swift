@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Status of authentication.
 @objc public enum AuthenticationStatus: Int {
     

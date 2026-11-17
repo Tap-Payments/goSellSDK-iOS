@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Source request model for the charge.
 @objcMembers public class SourceRequest: NSObject, IdentifiableWithString, Encodable {
     

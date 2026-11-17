@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import class    UIKit.UIScrollView.UIScrollView
 import protocol UIKit.UIScrollView.UIScrollViewDelegate
 import class    UIKit.UIStoryboardSegue.UIStoryboardSegue

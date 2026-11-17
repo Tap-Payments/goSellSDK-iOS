@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '15.0'
 use_frameworks!
 
 source 'https://github.com/CocoaPods/Specs.git'
@@ -21,7 +21,6 @@ def shared_pods
     pod 'TapResponderChainInputViewV2'
     pod 'TapSearchViewV2'
     pod 'TapVisualEffectViewV2'
-    pod 'SwiftyRSA'
     
 end
 

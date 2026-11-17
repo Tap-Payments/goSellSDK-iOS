@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 import struct	TapBundleLocalizationV2.LocalizationKey
 import class	UIKit.UITextField.UITextField
 import protocol	UIKit.UITextField.UITextFieldDelegate

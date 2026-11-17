@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Phone number model.
 @objcMembers public final class PhoneNumber: NSObject {
     

@@ -5,7 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
-import class	TapApplicationV2.TapBundlePlistInfo
+import Foundation
+import UIKit
 
 /// Base settings class for goSell SDK.
 @objcMembers public final class GoSellSDK: NSObject {
@@ -42,8 +43,7 @@ import class	TapApplicationV2.TapBundlePlistInfo
 	/// SDK version.
 	public static var sdkVersion: String {
 		
-		let sdkPlistInfo = TapBundlePlistInfo(bundle: .goSellSDKResources)
-		return sdkPlistInfo.shortVersionString!
+		return SDKVersion.current
 	}
 	
 	/// The language of goSellSDK interface. By default the language of your app or "en" (English) if language is not supported.
@@ -80,4 +80,15 @@ import class	TapApplicationV2.TapBundlePlistInfo
 		
 		fatalError("This class cannot be instantiated.")
 	}
+}
+
+/// The goSellSDK version reported to the API and through `GoSellSDK.sdkVersion`.
+///
+/// Reading it from a bundle's Info.plist doesn't work everywhere: Swift Package Manager
+/// resource bundles carry no version, and with static linking `Bundle(for:)` returns the
+/// host app's bundle.
+internal enum SDKVersion {
+
+    /// Keep in sync with `goSellSDK.version` in goSellSDK.podspec.
+    internal static let current = "2.4.0"
 }

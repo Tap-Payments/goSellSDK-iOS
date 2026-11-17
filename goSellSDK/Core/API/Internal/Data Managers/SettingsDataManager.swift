@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import func TapSwiftFixesV2.synchronized
 
 /// Settings data manager.

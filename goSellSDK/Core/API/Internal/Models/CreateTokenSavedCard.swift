@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 /// Model that holds existing card details for token creation.
 internal struct CreateTokenSavedCard: Encodable {
     

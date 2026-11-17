@@ -5,6 +5,8 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
+import UIKit
 import struct	TapBundleLocalizationV2.LocalizationKey
 import class	TapBundleLocalizationV2.LocalizationProvider
 import class	TapResponderChainInputViewV2.TapResponderChainInputView

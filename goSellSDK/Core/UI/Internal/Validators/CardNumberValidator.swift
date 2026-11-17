@@ -5,6 +5,7 @@
 //  Copyright © 2019 Tap Payments. All rights reserved.
 //
 
+import Foundation
 import protocol TapAdditionsKitV2.ClassProtocol
 import struct	TapBundleLocalizationV2.LocalizationKey
 import enum     TapCardVlidatorKit_iOS.CardBrand
